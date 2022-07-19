@@ -1,0 +1,46 @@
+{
+    "color": {
+        "surface": {
+            "primary": {
+                "value": "{color.core.neutral.100}",
+                "type": "color",
+                "group": "semantic"
+            },
+            "secondary": {
+                "value": "{color.core.neutral.200}",
+                "type": "color",
+                "group": "semantic"
+            },
+            "interactive": {
+                "value": "{color.core.passionFruit.100}",
+                "type": "color", 
+                "group": "semantic"
+            },
+            "positive": {
+                "value": "{color.core.kale.100}",
+                "type": "color",
+                "group": "semantic"
+            },
+            "caution": {
+                "value": "{color.core.pineapple.100}",
+                "type": "color",
+                "group": "semantic"
+            },
+            "critical": {
+                "value": "{color.core.pomegranate.100}",
+                "type": "color",
+                "group": "semantic"
+            },
+            "info": {
+                "value": "{color.core.blueberry.100}",
+                "type": "color",
+                "group": "semantic"
+            },
+            "inverse": {
+                "value": "{color.core.neutral.900}",
+                "type": "color",
+                "group": "semantic"
+            }
+        }
+    }
+}

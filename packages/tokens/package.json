@@ -1,0 +1,24 @@
+{
+	"name": "@downbeat-academy/tokens",
+	"private": false,
+	"description": "Downbeat Academy Design Tokens",
+	"author": "Jory Tindall <jory@downbeatacademy.com>",
+	"version": "0.1.0",
+	"license": "MIT",
+	"keywords": [
+		"downbeat academy",
+		"tokens",
+		"design system"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/downbeat-academy/downbeat-academy.git",
+		"directory": "packages/tokens"
+	},
+	"scripts": {
+		"build": "style-dictionary build"
+	},
+	"devDependencies": {
+		"style-dictionary": "^3.7.1"
+	}
+}
