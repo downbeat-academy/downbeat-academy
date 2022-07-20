@@ -4,20 +4,101 @@ button.cds_button {
   flex-direction: row;
   border: none;
   border-radius: 4px;
+  transition: 0.05s all ease-in-out;
 
   &:hover {
     cursor: pointer;
   }
 
+  // Type variants
   &--variant-primary {
     color: $color-core-neutral-100;
-    background: $color-core-passion-fruit-600;
-    border: 1px solid $color-core-passion-fruit-700;
+    background: $color-core-blueberry-600;
+    border: 1px solid $color-core-blueberry-700;
+
+    &:hover {
+      background: $color-core-blueberry-700;
+      border-color: $color-core-blueberry-800;
+    }
+
+    &:active {
+      background: $color-core-blueberry-800;
+    }
   }
 
+  &--variant-secondary {
+    color: $color-core-neutral-900;
+    background: $color-core-neutral-100;
+    border: 1px solid $color-core-neutral-600;
+
+    &:hover {
+      color: $color-core-neutral-1000;
+      background: $color-core-neutral-200;
+      border-color: $color-core-neutral-1000;
+    }
+
+    &:active {
+      background: $color-core-neutral-300;
+    }
+  }
+
+  &--variant-tertiary {
+    color: $color-core-passion-fruit-900;
+    background: transparent;
+
+    &:hover {
+      color: $color-core-passion-fruit-700;
+      background: $color-core-passion-fruit-100;
+    }
+
+    &:active {
+      color: $color-core-passion-fruit-800;
+      background: $color-core-passion-fruit-200;
+    }
+  }
+
+  &--variant-destructive {
+    color: $color-core-neutral-100;
+    background: $color-core-pomegranate-500;
+    border: 1px solid $color-core-pomegranate-600;
+
+    &:hover {
+      background: $color-core-pomegranate-600;
+      border-color: $color-core-pomegranate-700;
+    }
+
+    &:active {
+      background: $color-core-pomegranate-700;
+      border-color: $color-core-pomegranate-800;
+    }
+  }
+
+  // Size variants
   &--size-default {
     font-size: 1rem;
     height: 2.5rem;
     padding: 7px 20px;
+    gap: 8px;
+  }
+
+  &--size-large {
+    font-size: 1.25rem;
+    height: 3rem;
+    padding: 9px 24px;
+    gap: 8px;
+  }
+
+  &--size-small {
+    font-size: 0.875rem;
+    height: 2rem;
+    padding: 5px 16px;
+    gap: 4px;
+  }
+
+  &--size-extra-small {
+    font-size: 0.75rem;
+    height: 1.5rem;
+    padding: 3px 10px;
+    gap: 4px;
   }
 }
