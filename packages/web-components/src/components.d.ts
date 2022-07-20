@@ -7,6 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface CdsButton {
+        "customClass": string;
+        "size": string;
+        "text": string;
+        "variant": string;
     }
     interface MyComponent {
         /**
@@ -43,6 +47,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CdsButton {
+        "customClass"?: string;
+        "size"?: string;
+        "text": string;
+        "variant"?: string;
     }
     interface MyComponent {
         /**

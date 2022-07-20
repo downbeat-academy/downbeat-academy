@@ -1,0 +1,23 @@
+button.cds_button {
+  font-family: 'Favorit Std';
+  display: flex;
+  flex-direction: row;
+  border: none;
+  border-radius: 4px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--variant-primary {
+    color: $color-core-neutral-100;
+    background: $color-core-passion-fruit-600;
+    border: 1px solid $color-core-passion-fruit-700;
+  }
+
+  &--size-default {
+    font-size: 1rem;
+    height: 2.5rem;
+    padding: 7px 20px;
+  }
+}
