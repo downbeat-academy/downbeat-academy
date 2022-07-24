@@ -1,8 +1,8 @@
 {
   "name": "@downbeat-academy/react-components",
-  "sideEffects": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
+  "sideEffects": false,
   "description": "React specific wrapper for component-library",
   "repository": {
     "type": "git",
