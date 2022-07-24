@@ -6,6 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CdsBadge {
+        "size": string;
+        "text": string;
+        "type": string;
+        "variant": string;
+        "withIcon": boolean;
+        "withText": boolean;
+    }
     interface CdsButton {
         "customClass": string;
         "size": string;
@@ -28,6 +36,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCdsBadgeElement extends Components.CdsBadge, HTMLStencilElement {
+    }
+    var HTMLCdsBadgeElement: {
+        prototype: HTMLCdsBadgeElement;
+        new (): HTMLCdsBadgeElement;
+    };
     interface HTMLCdsButtonElement extends Components.CdsButton, HTMLStencilElement {
     }
     var HTMLCdsButtonElement: {
@@ -41,11 +55,20 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "cds-badge": HTMLCdsBadgeElement;
         "cds-button": HTMLCdsButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface CdsBadge {
+        "size"?: string;
+        "text": string;
+        "type"?: string;
+        "variant"?: string;
+        "withIcon"?: boolean;
+        "withText"?: boolean;
+    }
     interface CdsButton {
         "customClass"?: string;
         "size"?: string;
@@ -67,6 +90,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "cds-badge": CdsBadge;
         "cds-button": CdsButton;
         "my-component": MyComponent;
     }
@@ -75,6 +99,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cds-badge": LocalJSX.CdsBadge & JSXBase.HTMLAttributes<HTMLCdsBadgeElement>;
             "cds-button": LocalJSX.CdsButton & JSXBase.HTMLAttributes<HTMLCdsButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

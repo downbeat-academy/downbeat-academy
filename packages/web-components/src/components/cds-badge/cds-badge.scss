@@ -1,0 +1,8 @@
+$cds-badge-sizes: ( 'small', 'default', 'large' );
+$cds-badge-types: ( 'neutral', 'info', 'success', 'warning', 'error' );
+$cds-badge-variants: ( 'filled', 'outline', 'inverse' );
+
+.cds-badge {
+  font-family: 'Favorit Std';
+  font-weight: 700;
+}

@@ -1,6 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass'
-import { reactOutputTarget as react } from '@stencil/react-output-target'
+import { reactOutputTarget } from '@stencil/react-output-target'
 
 export const config: Config = {
   namespace: 'web-components',
@@ -9,25 +9,25 @@ export const config: Config = {
     openBrowser: false,
   },
   outputTargets: [
+    reactOutputTarget({
+      componentCorePackage: '@downbeat-academy/web-components',
+      proxiesFile: '../react-components/src/components/index.ts',
+      includeDefineCustomElements: true
+    }),
     {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
     {
-      type: 'dist-custom-elements',
+      type: 'docs-readme',
     },
     {
-      type: 'docs-readme',
+      type: 'dist-custom-elements',
     },
     {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
-    react({
-      componentCorePackage: '@downbeat-academy/web-components',
-      proxiesFile: '../react-components/src/components/index.ts',
-      includeDefineCustomElements: true
-    })
   ],
   plugins: [
     sass({
