@@ -1,6 +1,6 @@
 {
   "name": "@downbeat-academy/react-components",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "sideEffects": false,
   "description": "React specific wrapper for component-library",
@@ -33,7 +33,9 @@
     "react-dom": "^17.0.2",
     "typescript": "^3.3.4000"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@downbeat-academy/web-components": "^0.0.2"
+  },
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
