@@ -24,8 +24,8 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
     react({
-      componentCorePackage: 'web-components',
-      proxiesFile: '../react/src/components/stencil-generated/index.ts',
+      componentCorePackage: '@downbeat-academy/web-components',
+      proxiesFile: '../react-components/src/components/index.ts',
       includeDefineCustomElements: true
     })
   ],
