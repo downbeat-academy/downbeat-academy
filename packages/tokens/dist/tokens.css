@@ -1,9 +1,15 @@
 /**
  * Do not edit directly
- * Generated on Thu, 07 Jul 2022 02:00:19 GMT
+ * Generated on Mon, 25 Jul 2022 00:45:55 GMT
  */
 
 :root {
+  --color-border-default: #cacad2;
+  --color-border-caution: #b69a2c;
+  --color-border-critical: #b10010;
+  --color-border-positive: #47b0c5;
+  --color-border-info: #326dcd;
+  --color-border-interactive: #6b75f6;
   --color-core-passion-fruit-100: #eaebff;
   --color-core-passion-fruit-200: #c6c8fe;
   --color-core-passion-fruit-300: #a3a7fd;
@@ -74,15 +80,30 @@
   --color-core-neutral-800: #4c4c50;
   --color-core-neutral-900: #262628;
   --color-core-neutral-1000: #1c1c1c;
-  --color-border-default: #cacad2;
-  --color-border-caution: #b69a2c;
-  --color-border-critical: #b10010;
-  --color-border-positive: #47b0c5;
-  --color-border-info: #326dcd;
-  --color-border-interactive: #6b75f6;
+  --color-foreground-interactive-default: #326dcd;
+  --color-foreground-interactive-hover: #25489a;
+  --color-foreground-interactive-active: #1a2c68;
+  --color-foreground-brand-default: #5665ef;
+  --color-foreground-brand-hover: #4949e0;
+  --color-foreground-brand-active: #4639ba;
+  --color-foreground-primary: #4c4c50;
+  --color-foreground-strong: #181e3b;
+  --color-foreground-secondary: #4c568f;
+  --color-foreground-disabled: #97979f;
+  --color-foreground-high-contrast: #ffffff;
+  --color-foreground-success-default: #47b0c5;
+  --color-foreground-success-hover: #298998;
+  --color-foreground-success-active: #13646b;
+  --color-foreground-caution-default: #b69a2c;
+  --color-foreground-caution-hover: #947b1a;
+  --color-foreground-caution-active: #735c0f;
+  --color-foreground-critical-default: #b10010;
+  --color-foreground-critical-hover: #900009;
+  --color-foreground-critical-active: #6f0005;
+  --color-surface-brand: #eaebff;
   --color-surface-primary: #ffffff;
   --color-surface-secondary: #f5f5f5;
-  --color-surface-interactive: #eaebff;
+  --color-surface-interactive: #e6f6ff;
   --color-surface-positive: #e4fff5;
   --color-surface-caution: #fff9e3;
   --color-surface-critical: #ffe1ea;
@@ -98,4 +119,17 @@
   --color-text-secondary: #97979f;
   --color-text-inverse: #ffffff;
   --color-text-inverse-secondary: #e5e5e9;
+  --spacing-10: 56px;
+  --spacing-11: 64px;
+  --spacing-12: 80px;
+  --spacing-13: 120px;
+  --spacing-base: 16px;
+  --spacing-01: 2px;
+  --spacing-02: 4px;
+  --spacing-04: 12px;
+  --spacing-05: 16px;
+  --spacing-06: 24px;
+  --spacing-07: 32px;
+  --spacing-08: 40px;
+  --spacing-09: 48px;
 }

@@ -30,7 +30,7 @@
                     "group": "foreground"
                 },
                 "active": {
-                    "value": "{color.core.passionFruit800}",
+                    "value": "{color.core.passionFruit.800}",
                     "type": "color",
                     "group": "foreground"
                 }
