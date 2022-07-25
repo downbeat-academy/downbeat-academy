@@ -16,7 +16,7 @@
 		"release-web-components": "yarn workspace @downbeat-academy/web-components publish",
 		"dev-tokens": "yarn workspace @downbeat-academy/tokens style-dictionary",
 		"build-tokens": "yarn workspace @downbeat-academy/tokens build",
-		"release-tokens": "yarn workspace @downbeat-academy/tokens publish",
+		"release-tokens": "yarn workspace @downbeat-academy/tokens build && yarn workspace @downbeat-academy/tokens publish",
 		"build-react": "yarn workspace @downbeat-academy/react-components build",
 		"release-react": "yarn build-react && yarn workspace @downbeat-academy/react-components publish"
 	},

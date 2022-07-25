@@ -1,9 +1,18 @@
 /**
  * Do not edit directly
- * Generated on Mon, 25 Jul 2022 00:45:55 GMT
+ * Generated on Mon, 25 Jul 2022 05:15:27 GMT
  */
 
 :root {
+  --transition-01: all 25ms ease-in-out;
+  --transition-02: all 50ms ease-in-out;
+  --transition-03: all 100ms ease-in-out;
+  --transition-04: all 200ms ease-in-out;
+  --transition-05: all 300ms ease-in-out;
+  --transition-06: all 400ms ease-in-out;
+  --transition-07: all 500ms ease-in-out;
+  --transition-08: all 750ms ease-in-out;
+  --transition-09: all 100ms ease-in-out;
   --color-border-default: #cacad2;
   --color-border-caution: #b69a2c;
   --color-border-critical: #b10010;
@@ -119,6 +128,12 @@
   --color-text-secondary: #97979f;
   --color-text-inverse: #ffffff;
   --color-text-inverse-secondary: #e5e5e9;
+  --elevation-box-shadow-base: 0 1px 16px 0 hsla(240, 36%, 22%, 5%);
+  --radii-hard: 0px;
+  --radii-medium: 2px;
+  --radii-soft: 4px;
+  --radii-x-soft: 8px;
+  --radii-rounded: 50%;
   --spacing-10: 56px;
   --spacing-11: 64px;
   --spacing-12: 80px;
@@ -132,4 +147,30 @@
   --spacing-07: 32px;
   --spacing-08: 40px;
   --spacing-09: 48px;
+  --typography-font-expressive-body: Tiempos Text, Georgia, Times, serif;
+  --typography-font-expressive-headline: Favorit Std, Helvetica, Arial, sans-serif;
+  --typography-font-productive-body: Favorit Std, Helvetica, Arial, sans-serif;
+  --typography-font-productive-headline: Favorit, Helvetica, Arial, sans-serif;
+  --typography-font-mono: Favorit Mono, Courier, monospace;
+  --typography-font-music-notation: Noto Music, sans-serif;
+  --typography-line-height-expressive-headline: 1.3;
+  --typography-line-height-expressive-body: 1.8;
+  --typography-line-height-productive-headline: 1.3;
+  --typography-line-height-productive-body: 1.5;
+  --typography-size-expressive-6x-large-fluid: clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem);
+  --typography-size-expressive-6x-large-fixed: 4rem;
+  --typography-size-expressive-5x-large-fluid: clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem);
+  --typography-size-expressive-5x-large-fixed: 3rem;
+  --typography-size-expressive-4x-large-fluid: clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem);
+  --typography-size-expressive-4x-large-fixed: 2.125;
+  --typography-size-expressive-3x-large-fluid: clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem);
+  --typography-size-expressive-3x-large-fixed: 1.75rem;
+  --typography-size-expressive-2x-large-fluid: clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem);
+  --typography-size-expressive-2x-large-fixed: 1.5rem;
+  --typography-size-expressive-x-large-fluid: clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem);
+  --typography-size-expressive-x-large-fixed: 1.25rem;
+  --typography-size-expressive-large-fixed: 1.125rem;
+  --typography-size-expressive-base-fixed: 1rem;
+  --typography-size-expressive-small-fixed: 0.875rem;
+  --typography-size-expressive-x-small-fixed: 0.75rem;
 }
