@@ -2,47 +2,47 @@
 	"color": {
 		"surface": {
 			"brand": {
-				"value": "{color.core.passionFruit.100}",
+				"value": "{color.core.passionFruit.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"primary": {
-				"value": "{color.core.neutral.100}",
+				"value": "{color.core.neutral.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"secondary": {
-				"value": "{color.core.neutral.200}",
+				"value": "{color.core.neutral.200.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"interactive": {
-				"value": "{color.core.blueberry.100}",
+				"value": "{color.core.blueberry.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"positive": {
-				"value": "{color.core.kale.100}",
+				"value": "{color.core.kale.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"caution": {
-				"value": "{color.core.pineapple.100}",
+				"value": "{color.core.pineapple.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"critical": {
-				"value": "{color.core.pomegranate.100}",
+				"value": "{color.core.pomegranate.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"info": {
-				"value": "{color.core.blueberry.100}",
+				"value": "{color.core.blueberry.100.value}",
 				"type": "color",
 				"group": "surface"
 			},
 			"inverse": {
-				"value": "{color.core.neutral.900}",
+				"value": "{color.core.neutral.900.value}",
 				"type": "color",
 				"group": "surface"
 			}

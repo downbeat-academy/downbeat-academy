@@ -10,7 +10,7 @@ module.exports = {
         },
 	},
 	platforms: {
-		scss: {
+		styles: {
 			transformGroup: 'css',
 			buildPath: './dist/',
 			files: [

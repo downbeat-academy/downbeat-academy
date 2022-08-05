@@ -369,13 +369,11 @@
         "100": {
           "value": "#eaebff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#EAEBFF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -393,13 +391,11 @@
         "200": {
           "value": "#c6c8fe",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#C6C8FE",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -417,13 +413,11 @@
         "300": {
           "value": "#a3a7fd",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#A3A7FD",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -441,13 +435,11 @@
         "400": {
           "value": "#848afa",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#848AFA",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -465,13 +457,11 @@
         "500": {
           "value": "#6b75f6",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#6B75F6",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -489,13 +479,11 @@
         "600": {
           "value": "#5665ef",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#5665EF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -513,13 +501,11 @@
         "700": {
           "value": "#4949e0",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#4949E0",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -537,13 +523,11 @@
         "800": {
           "value": "#4639ba",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#4639BA",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -561,13 +545,11 @@
         "900": {
           "value": "#312273",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#312273",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -585,13 +567,11 @@
         "1000": {
           "value": "#190f33",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#190F33",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -611,13 +591,11 @@
         "100": {
           "value": "#e4fff5",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#E4FFF5",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -635,13 +613,11 @@
         "200": {
           "value": "#c6ffee",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#C6FFEE",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -659,13 +635,11 @@
         "300": {
           "value": "#8ff4dc",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#8FF4DC",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -683,13 +657,11 @@
         "400": {
           "value": "#61dcd1",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#61DCD1",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -707,13 +679,11 @@
         "500": {
           "value": "#4ccad1",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#4CCAD1",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -731,13 +701,11 @@
         "600": {
           "value": "#47b0c5",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#47B0C5",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -755,13 +723,11 @@
         "700": {
           "value": "#298998",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#298998",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -779,13 +745,11 @@
         "800": {
           "value": "#13646b",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#13646B",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -803,13 +767,11 @@
         "900": {
           "value": "#063d3f",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#063D3F",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -827,13 +789,11 @@
         "1000": {
           "value": "#001211",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#001211",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -853,13 +813,11 @@
         "100": {
           "value": "#ffe1ea",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#FFE1EA",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -877,13 +835,11 @@
         "200": {
           "value": "#fd9fb5",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#FD9FB5",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -901,13 +857,11 @@
         "300": {
           "value": "#f24866",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#F24866",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -925,13 +879,11 @@
         "400": {
           "value": "#d11a32",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#D11A32",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -949,13 +901,11 @@
         "500": {
           "value": "#b10010",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#B10010",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -973,13 +923,11 @@
         "600": {
           "value": "#900009",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#900009",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -997,13 +945,11 @@
         "700": {
           "value": "#6f0005",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#6F0005",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1021,13 +967,11 @@
         "800": {
           "value": "#4e0002",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#4E0002",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1045,13 +989,11 @@
         "900": {
           "value": "#2e0001",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#2E0001",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1069,13 +1011,11 @@
         "1000": {
           "value": "#0d0000",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#0D0000",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1095,13 +1035,11 @@
         "100": {
           "value": "#fff9e3",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#FFF9E3",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1119,13 +1057,11 @@
         "200": {
           "value": "#fff1c2",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#FFF1C2",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1143,13 +1079,11 @@
         "300": {
           "value": "#f8dc6e",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#F8DC6E",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1167,13 +1101,11 @@
         "400": {
           "value": "#d7ba47",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#D7BA47",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1191,13 +1123,11 @@
         "500": {
           "value": "#b69a2c",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#B69A2C",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1215,13 +1145,11 @@
         "600": {
           "value": "#947b1a",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#947B1A",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1239,13 +1167,11 @@
         "700": {
           "value": "#735c0f",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#735C0F",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1263,13 +1189,11 @@
         "800": {
           "value": "#524009",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#524009",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1287,13 +1211,11 @@
         "900": {
           "value": "#312504",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#312504",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1311,13 +1233,11 @@
         "1000": {
           "value": "#0f0b01",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#0F0B01",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1337,13 +1257,11 @@
         "100": {
           "value": "#e6f6ff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#E6F6FF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1361,13 +1279,11 @@
         "200": {
           "value": "#b8e1ff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#B8E1FF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1385,13 +1301,11 @@
         "300": {
           "value": "#8dcfff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#8DCFFF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1409,13 +1323,11 @@
         "400": {
           "value": "#65c9ff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#65C9FF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1433,13 +1345,11 @@
         "500": {
           "value": "#43a2ff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#43A2FF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1457,13 +1367,11 @@
         "600": {
           "value": "#326dcd",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#326DCD",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1481,13 +1389,11 @@
         "700": {
           "value": "#25489a",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#25489A",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1505,13 +1411,11 @@
         "800": {
           "value": "#1a2c68",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#1A2C68",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1529,13 +1433,11 @@
         "900": {
           "value": "#0e1635",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#0E1635",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1553,13 +1455,11 @@
         "1000": {
           "value": "#010103",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#010103",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1579,13 +1479,11 @@
         "100": {
           "value": "#e6eeff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#E6EEFF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1603,13 +1501,11 @@
         "200": {
           "value": "#b4c1e3",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#B4C1E3",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1627,13 +1523,11 @@
         "300": {
           "value": "#8a97c7",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#8A97C7",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1651,13 +1545,11 @@
         "400": {
           "value": "#6773ab",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#6773AB",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1675,13 +1567,11 @@
         "500": {
           "value": "#4c568f",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#4C568F",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1699,13 +1589,11 @@
         "600": {
           "value": "#374073",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#374073",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1723,13 +1611,11 @@
         "700": {
           "value": "#262e57",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#262E57",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1747,13 +1633,11 @@
         "800": {
           "value": "#181e3b",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#181E3B",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1771,13 +1655,11 @@
         "900": {
           "value": "#0c101f",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#0C101F",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1795,13 +1677,11 @@
         "1000": {
           "value": "#010103",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#010103",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1821,13 +1701,11 @@
         "100": {
           "value": "#ffffff",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#FFFFFF",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1845,13 +1723,11 @@
         "200": {
           "value": "#f5f5f5",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#F5F5F5",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1869,13 +1745,11 @@
         "300": {
           "value": "#e5e5e9",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#E5E5E9",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1893,13 +1767,11 @@
         "400": {
           "value": "#d7d7dd",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#D7D7DD",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1917,13 +1789,11 @@
         "500": {
           "value": "#cacad2",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#CACAD2",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1941,13 +1811,11 @@
         "600": {
           "value": "#97979f",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#97979F",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1965,13 +1833,11 @@
         "700": {
           "value": "#717177",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#717177",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -1989,13 +1855,11 @@
         "800": {
           "value": "#4c4c50",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#4C4C50",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2013,13 +1877,11 @@
         "900": {
           "value": "#262628",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#262628",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2037,13 +1899,11 @@
         "1000": {
           "value": "#1c1c1c",
           "type": "color",
-          "group": "core",
           "filePath": "src/color/core.json",
           "isSource": true,
           "original": {
             "value": "#1C1C1C",
-            "type": "color",
-            "group": "core"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2065,13 +1925,11 @@
         "default": {
           "value": "{color.core.blueberry.600}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.blueberry.600}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2089,13 +1947,11 @@
         "hover": {
           "value": "{color.core.blueberry.700}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.blueberry.700}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2113,13 +1969,11 @@
         "active": {
           "value": "{color.core.blueberry.800}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.blueberry.800}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2139,13 +1993,11 @@
         "default": {
           "value": "{color.core.passionFruit.600}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.passionFruit.600}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2163,13 +2015,11 @@
         "hover": {
           "value": "{color.core.passionFruit.700}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.passionFruit.700}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2187,13 +2037,11 @@
         "active": {
           "value": "{color.core.passionFruit.800}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.passionFruit.800}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2212,13 +2060,11 @@
       "primary": {
         "value": "{color.core.neutral.800}",
         "type": "color",
-        "group": "foreground",
         "filePath": "src/color/foreground.json",
         "isSource": true,
         "original": {
           "value": "{color.core.neutral.800}",
-          "type": "color",
-          "group": "foreground"
+          "type": "color"
         },
         "attributes": {
           "category": "color",
@@ -2234,13 +2080,11 @@
       "strong": {
         "value": "{color.core.blackberry.800}",
         "type": "color",
-        "group": "foreground",
         "filePath": "src/color/foreground.json",
         "isSource": true,
         "original": {
           "value": "{color.core.blackberry.800}",
-          "type": "color",
-          "group": "foreground"
+          "type": "color"
         },
         "attributes": {
           "category": "color",
@@ -2256,13 +2100,11 @@
       "secondary": {
         "value": "{color.core.blackberry.500}",
         "type": "color",
-        "group": "foreground",
         "filePath": "src/color/foreground.json",
         "isSource": true,
         "original": {
           "value": "{color.core.blackberry.500}",
-          "type": "color",
-          "group": "foreground"
+          "type": "color"
         },
         "attributes": {
           "category": "color",
@@ -2278,13 +2120,11 @@
       "disabled": {
         "value": "{color.core.neutral.600}",
         "type": "color",
-        "group": "foreground",
         "filePath": "src/color/foreground.json",
         "isSource": true,
         "original": {
           "value": "{color.core.neutral.600}",
-          "type": "color",
-          "group": "foreground"
+          "type": "color"
         },
         "attributes": {
           "category": "color",
@@ -2300,13 +2140,11 @@
       "highContrast": {
         "value": "{color.core.neutral.100}",
         "type": "color",
-        "group": "foreground",
         "filePath": "src/color/foreground.json",
         "isSource": true,
         "original": {
           "value": "{color.core.neutral.100}",
-          "type": "color",
-          "group": "foreground"
+          "type": "color"
         },
         "attributes": {
           "category": "color",
@@ -2323,13 +2161,11 @@
         "default": {
           "value": "{color.core.kale.600}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.kale.600}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2347,13 +2183,11 @@
         "hover": {
           "value": "{color.core.kale.700}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.kale.700}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2371,13 +2205,11 @@
         "active": {
           "value": "{color.core.kale.800}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.kale.800}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2397,13 +2229,11 @@
         "default": {
           "value": "{color.core.pineapple.500}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.pineapple.500}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2421,13 +2251,11 @@
         "hover": {
           "value": "{color.core.pineapple.600}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.pineapple.600}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2445,13 +2273,11 @@
         "active": {
           "value": "{color.core.pineapple.700}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.pineapple.700}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2471,13 +2297,11 @@
         "default": {
           "value": "{color.core.pomegranate.500}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.pomegranate.500}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2495,13 +2319,11 @@
         "hover": {
           "value": "{color.core.pomegranate.600}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.pomegranate.600}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
@@ -2519,13 +2341,11 @@
         "active": {
           "value": "{color.core.pomegranate.700}",
           "type": "color",
-          "group": "foreground",
           "filePath": "src/color/foreground.json",
           "isSource": true,
           "original": {
             "value": "{color.core.pomegranate.700}",
-            "type": "color",
-            "group": "foreground"
+            "type": "color"
           },
           "attributes": {
             "category": "color",
