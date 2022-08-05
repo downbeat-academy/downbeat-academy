@@ -1,19 +1,19 @@
 {
-    "radii": {
-        "hard": {
-            "value": "0px"
-        },
-        "medium": {
-            "value": "2px"
-        },
-        "soft": {
-            "value": "4px"
-        },
-        "x-soft": {
-            "value": "8px"
-        },
-        "rounded": {
-            "value": "50%"
-        }
-    }
+	"radii": {
+		"hard": {
+			"value": "0px"
+		},
+		"medium": {
+			"value": "2px"
+		},
+		"soft": {
+			"value": "4px"
+		},
+		"x-soft": {
+			"value": "8px"
+		},
+		"rounded": {
+			"value": "50%"
+		}
+	}
 }

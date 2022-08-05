@@ -19,6 +19,7 @@
 		"build": "style-dictionary build"
 	},
 	"devDependencies": {
+		"@divriots/style-dictionary-to-figma": "^0.3.0",
 		"style-dictionary": "^3.7.1"
 	}
 }
