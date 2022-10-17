@@ -1,0 +1,51 @@
+{
+	"color": {
+		"surface": {
+			"brand": {
+				"value": "{color.passionFruit.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"primary": {
+				"value": "{color.neutral.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"secondary": {
+				"value": "{color.neutral.200.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"interactive": {
+				"value": "{color.blueberry.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"positive": {
+				"value": "{color.kale.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"caution": {
+				"value": "{color.pineapple.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"critical": {
+				"value": "{color.pomegranate.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"info": {
+				"value": "{color.blueberry.100.value}",
+				"type": "color",
+				"group": "surface"
+			},
+			"inverse": {
+				"value": "{color.neutral.900.value}",
+				"type": "color",
+				"group": "surface"
+			}
+		}
+	}
+}
