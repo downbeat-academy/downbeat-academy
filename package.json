@@ -10,15 +10,7 @@
 		"lint": "turbo run lint",
 		"format-all": "prettier --write .",
 		"dev": "turbo run dev",
-		"release-all": "yarn release-web-components && yarn release-tokens && yarn release-react",
-		"dev-stencil": "yarn workspace @downbeat-academy/web-components start",
-		"build-stencil": "yarn workspace @downbeat-academy/web-components build",
-		"release-web-components": "yarn workspace @downbeat-academy/web-components publish",
-		"dev-tokens": "yarn workspace @downbeat-academy/tokens style-dictionary",
-		"build-tokens": "yarn workspace @downbeat-academy/tokens build",
-		"release-tokens": "yarn workspace @downbeat-academy/tokens build && yarn workspace @downbeat-academy/tokens publish",
-		"build-react": "yarn workspace @downbeat-academy/react-components build",
-		"release-react": "yarn build-react && yarn workspace @downbeat-academy/react-components publish"
+		"core:dev": "yarn workspace @downbeat-academy/cadence-core dev"
 	},
 	"devDependencies": {
 		"concurrently": "^7.2.2",
