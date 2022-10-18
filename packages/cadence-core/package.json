@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "license": "MPL-2.0",
-  "main": "dist/components",
+  "main": "dist/cadence-core.es.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
