@@ -3017,7 +3017,7 @@
       }
     }
   },
-  "radii": {
+  "radius": {
     "hard": {
       "value": "0px",
       "filePath": "tokens/radii/index.json",
@@ -3026,11 +3026,11 @@
         "value": "0px"
       },
       "attributes": {
-        "category": "radii",
+        "category": "radius",
         "type": "hard"
       },
       "path": [
-        "radii",
+        "radius",
         "hard"
       ]
     },
@@ -3042,11 +3042,11 @@
         "value": "2px"
       },
       "attributes": {
-        "category": "radii",
+        "category": "radius",
         "type": "medium"
       },
       "path": [
-        "radii",
+        "radius",
         "medium"
       ]
     },
@@ -3058,15 +3058,15 @@
         "value": "4px"
       },
       "attributes": {
-        "category": "radii",
+        "category": "radius",
         "type": "soft"
       },
       "path": [
-        "radii",
+        "radius",
         "soft"
       ]
     },
-    "x-soft": {
+    "default": {
       "value": "8px",
       "filePath": "tokens/radii/index.json",
       "isSource": true,
@@ -3074,12 +3074,12 @@
         "value": "8px"
       },
       "attributes": {
-        "category": "radii",
-        "type": "x-soft"
+        "category": "radius",
+        "type": "default"
       },
       "path": [
-        "radii",
-        "x-soft"
+        "radius",
+        "default"
       ]
     },
     "rounded": {
@@ -3090,11 +3090,11 @@
         "value": "50%"
       },
       "attributes": {
-        "category": "radii",
+        "category": "radius",
         "type": "rounded"
       },
       "path": [
-        "radii",
+        "radius",
         "rounded"
       ]
     }

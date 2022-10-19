@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 19 Oct 2022 00:44:48 GMT
+ * Generated on Wed, 19 Oct 2022 00:50:35 GMT
  */
 
 :root {
@@ -129,11 +129,11 @@
   --color-text-inverse: #ffffff;
   --color-text-inverse-secondary: #e5e5e9;
   --elevation-box-shadow-base: 0 1px 16px 0 hsla(240, 36%, 22%, 5%);
-  --radii-hard: 0px;
-  --radii-medium: 2px;
-  --radii-soft: 4px;
-  --radii-x-soft: 8px;
-  --radii-rounded: 50%;
+  --radius-hard: 0px;
+  --radius-medium: 2px;
+  --radius-soft: 4px;
+  --radius-default: 8px;
+  --radius-rounded: 50%;
   --spacing-10: 56px;
   --spacing-11: 64px;
   --spacing-12: 80px;

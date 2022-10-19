@@ -1,8 +1,46 @@
 @use '@downbeat-academy/cadence-tokens/dist/web/tokens.scss' as *;
 
+$button-variants: (
+    'primary',
+    'secondary',
+    'tertiary',
+    'ghost',
+    'destructive',
+);
+
+$button-variant-props: (
+    'primary': (
+        'color': $color-foreground-high-contrast,
+        'background-rest': $color-palette-passion-fruit-600,
+        'background-hover': $color-palette-passion-fruit-700,
+        'background-active': $color-palette-passion-fruit-800,
+        'border-rest': $color-palette-passion-fruit-700,
+        'border-hover': $color-palette-passion-fruit-800,
+        'border-active': $color-palette-passion-fruit-900,
+    ),
+    'secondary': (),
+    'tertiary': (),
+    'ghost': (),
+    'destructive': (),
+);
+
+$button-sizes: (
+    'large',
+    'default',
+    'small',
+    'extra-small',
+);
+
+$button-size-props: (
+    'large': (),
+    'default': (),
+    'small': (),
+    'extra-small': (),
+);
+
 @mixin button-base {
     border: 1px solid;
-    border-radius: 8px;
+    border-radius: $radius-default;
     font-family: $typography-font-productive-body;
     font-weight: 700;
     line-height: $typography-line-height-productive-body;
@@ -11,4 +49,7 @@
     justify-content: center;
     flex-grow: 0;
     gap: $spacing-03;
+    align-self: flex-start;
+    transition: $transition-01;
+    text-decoration: none;
 }

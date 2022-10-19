@@ -1,5 +1,5 @@
 {
-	"radii": {
+	"radius": {
 		"hard": {
 			"value": "0px"
 		},
@@ -9,7 +9,7 @@
 		"soft": {
 			"value": "4px"
 		},
-		"x-soft": {
+		"default": {
 			"value": "8px"
 		},
 		"rounded": {
