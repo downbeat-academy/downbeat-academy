@@ -2999,7 +2999,7 @@
     "boxShadow": {
       "base": {
         "value": "0 1px 16px 0 hsla(240, 36%, 22%, 5%)",
-        "filePath": "tokens/elevation/index.json",
+        "filePath": "tokens/elevation/elevation.json",
         "isSource": true,
         "original": {
           "value": "0 1px 16px 0 hsla(240, 36%, 22%, 5%)"
@@ -3020,7 +3020,7 @@
   "radius": {
     "hard": {
       "value": "0px",
-      "filePath": "tokens/radii/index.json",
+      "filePath": "tokens/radii/radii.json",
       "isSource": true,
       "original": {
         "value": "0px"
@@ -3036,7 +3036,7 @@
     },
     "medium": {
       "value": "2px",
-      "filePath": "tokens/radii/index.json",
+      "filePath": "tokens/radii/radii.json",
       "isSource": true,
       "original": {
         "value": "2px"
@@ -3052,7 +3052,7 @@
     },
     "soft": {
       "value": "4px",
-      "filePath": "tokens/radii/index.json",
+      "filePath": "tokens/radii/radii.json",
       "isSource": true,
       "original": {
         "value": "4px"
@@ -3068,7 +3068,7 @@
     },
     "default": {
       "value": "8px",
-      "filePath": "tokens/radii/index.json",
+      "filePath": "tokens/radii/radii.json",
       "isSource": true,
       "original": {
         "value": "8px"
@@ -3084,7 +3084,7 @@
     },
     "rounded": {
       "value": "50%",
-      "filePath": "tokens/radii/index.json",
+      "filePath": "tokens/radii/radii.json",
       "isSource": true,
       "original": {
         "value": "50%"
@@ -3410,44 +3410,44 @@
     }
   },
   "typography": {
-    "font": {
+    "font-family": {
       "expressive": {
         "body": {
           "value": "Tiempos Text, Georgia, Times, serif",
-          "filePath": "tokens/typography/font.json",
+          "filePath": "tokens/typography/font-family.json",
           "isSource": true,
           "original": {
             "value": "Tiempos Text, Georgia, Times, serif"
           },
           "attributes": {
             "category": "typography",
-            "type": "font",
+            "type": "font-family",
             "item": "expressive",
             "subitem": "body"
           },
           "path": [
             "typography",
-            "font",
+            "font-family",
             "expressive",
             "body"
           ]
         },
         "headline": {
           "value": "Favorit Std, Helvetica, Arial, sans-serif",
-          "filePath": "tokens/typography/font.json",
+          "filePath": "tokens/typography/font-family.json",
           "isSource": true,
           "original": {
             "value": "Favorit Std, Helvetica, Arial, sans-serif"
           },
           "attributes": {
             "category": "typography",
-            "type": "font",
+            "type": "font-family",
             "item": "expressive",
             "subitem": "headline"
           },
           "path": [
             "typography",
-            "font",
+            "font-family",
             "expressive",
             "headline"
           ]
@@ -3456,40 +3456,40 @@
       "productive": {
         "body": {
           "value": "Favorit Std, Helvetica, Arial, sans-serif",
-          "filePath": "tokens/typography/font.json",
+          "filePath": "tokens/typography/font-family.json",
           "isSource": true,
           "original": {
             "value": "Favorit Std, Helvetica, Arial, sans-serif"
           },
           "attributes": {
             "category": "typography",
-            "type": "font",
+            "type": "font-family",
             "item": "productive",
             "subitem": "body"
           },
           "path": [
             "typography",
-            "font",
+            "font-family",
             "productive",
             "body"
           ]
         },
         "headline": {
           "value": "Favorit, Helvetica, Arial, sans-serif",
-          "filePath": "tokens/typography/font.json",
+          "filePath": "tokens/typography/font-family.json",
           "isSource": true,
           "original": {
             "value": "Favorit, Helvetica, Arial, sans-serif"
           },
           "attributes": {
             "category": "typography",
-            "type": "font",
+            "type": "font-family",
             "item": "productive",
             "subitem": "headline"
           },
           "path": [
             "typography",
-            "font",
+            "font-family",
             "productive",
             "headline"
           ]
@@ -3497,39 +3497,609 @@
       },
       "mono": {
         "value": "Favorit Mono, Courier, monospace",
-        "filePath": "tokens/typography/font.json",
+        "filePath": "tokens/typography/font-family.json",
         "isSource": true,
         "original": {
           "value": "Favorit Mono, Courier, monospace"
         },
         "attributes": {
           "category": "typography",
-          "type": "font",
+          "type": "font-family",
           "item": "mono"
         },
         "path": [
           "typography",
-          "font",
+          "font-family",
           "mono"
         ]
       },
       "musicNotation": {
         "value": "Noto Music, sans-serif",
-        "filePath": "tokens/typography/font.json",
+        "filePath": "tokens/typography/font-family.json",
         "isSource": true,
         "original": {
           "value": "Noto Music, sans-serif"
         },
         "attributes": {
           "category": "typography",
-          "type": "font",
+          "type": "font-family",
           "item": "musicNotation"
         },
         "path": [
           "typography",
-          "font",
+          "font-family",
           "musicNotation"
         ]
+      }
+    },
+    "font-size": {
+      "expressive": {
+        "6x-large": {
+          "fluid": {
+            "value": "clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem)",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem)"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "6x-large",
+              "state": "fluid"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "6x-large",
+              "fluid"
+            ]
+          },
+          "fixed": {
+            "value": "4rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "4rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "6x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "6x-large",
+              "fixed"
+            ]
+          }
+        },
+        "5x-large": {
+          "fluid": {
+            "value": "clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem)",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem)"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "5x-large",
+              "state": "fluid"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "5x-large",
+              "fluid"
+            ]
+          },
+          "fixed": {
+            "value": "3rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "3rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "5x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "5x-large",
+              "fixed"
+            ]
+          }
+        },
+        "4x-large": {
+          "fluid": {
+            "value": "clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem)",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem)"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "4x-large",
+              "state": "fluid"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "4x-large",
+              "fluid"
+            ]
+          },
+          "fixed": {
+            "value": "2.125",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "2.125"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "4x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "4x-large",
+              "fixed"
+            ]
+          }
+        },
+        "3x-large": {
+          "fluid": {
+            "value": "clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem)",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem)"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "3x-large",
+              "state": "fluid"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "3x-large",
+              "fluid"
+            ]
+          },
+          "fixed": {
+            "value": "1.75rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.75rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "3x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "3x-large",
+              "fixed"
+            ]
+          }
+        },
+        "2x-large": {
+          "fluid": {
+            "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "2x-large",
+              "state": "fluid"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "2x-large",
+              "fluid"
+            ]
+          },
+          "fixed": {
+            "value": "1.5rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.5rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "2x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "2x-large",
+              "fixed"
+            ]
+          }
+        },
+        "x-large": {
+          "fluid": {
+            "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "x-large",
+              "state": "fluid"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "x-large",
+              "fluid"
+            ]
+          },
+          "fixed": {
+            "value": "1.25rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.25rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "x-large",
+              "fixed"
+            ]
+          }
+        },
+        "large": {
+          "fixed": {
+            "value": "1.125rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.125rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "large",
+              "fixed"
+            ]
+          }
+        },
+        "base": {
+          "fixed": {
+            "value": "1rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "base",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "base",
+              "fixed"
+            ]
+          }
+        },
+        "small": {
+          "fixed": {
+            "value": "0.875rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "0.875rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "small",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "small",
+              "fixed"
+            ]
+          }
+        },
+        "x-small": {
+          "fixed": {
+            "value": "0.75rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "0.75rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "expressive",
+              "subitem": "x-small",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "expressive",
+              "x-small",
+              "fixed"
+            ]
+          }
+        }
+      },
+      "productive": {
+        "4x-large": {
+          "fixed": {
+            "value": "2.5rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "2.5rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "4x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "4x-large",
+              "fixed"
+            ]
+          }
+        },
+        "3x-large": {
+          "fixed": {
+            "value": "2.0rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "2.0rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "3x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "3x-large",
+              "fixed"
+            ]
+          }
+        },
+        "2x-large": {
+          "fixed": {
+            "value": "1.75rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.75rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "2x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "2x-large",
+              "fixed"
+            ]
+          }
+        },
+        "x-large": {
+          "fixed": {
+            "value": "1.5rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.5rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "x-large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "x-large",
+              "fixed"
+            ]
+          }
+        },
+        "large": {
+          "fixed": {
+            "value": "1.25rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.25rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "large",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "large",
+              "fixed"
+            ]
+          }
+        },
+        "base": {
+          "fixed": {
+            "value": "1rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "base",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "base",
+              "fixed"
+            ]
+          }
+        },
+        "small": {
+          "fixed": {
+            "value": "0.875rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "0.875rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "small",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "small",
+              "fixed"
+            ]
+          }
+        },
+        "x-small": {
+          "fixed": {
+            "value": "0.75rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "0.75rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "productive",
+              "subitem": "x-small",
+              "state": "fixed"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "productive",
+              "x-small",
+              "fixed"
+            ]
+          }
+        }
       }
     },
     "lineHeight": {
@@ -3615,382 +4185,6 @@
             "productive",
             "body"
           ]
-        }
-      }
-    },
-    "size": {
-      "expressive": {
-        "6x-large": {
-          "fluid": {
-            "value": "clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem)",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem)"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "6x-large",
-              "state": "fluid"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "6x-large",
-              "fluid"
-            ]
-          },
-          "fixed": {
-            "value": "4rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "4rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "6x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "6x-large",
-              "fixed"
-            ]
-          }
-        },
-        "5x-large": {
-          "fluid": {
-            "value": "clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem)",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem)"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "5x-large",
-              "state": "fluid"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "5x-large",
-              "fluid"
-            ]
-          },
-          "fixed": {
-            "value": "3rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "3rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "5x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "5x-large",
-              "fixed"
-            ]
-          }
-        },
-        "4x-large": {
-          "fluid": {
-            "value": "clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem)",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem)"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "4x-large",
-              "state": "fluid"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "4x-large",
-              "fluid"
-            ]
-          },
-          "fixed": {
-            "value": "2.125",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "2.125"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "4x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "4x-large",
-              "fixed"
-            ]
-          }
-        },
-        "3x-large": {
-          "fluid": {
-            "value": "clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem)",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem)"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "3x-large",
-              "state": "fluid"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "3x-large",
-              "fluid"
-            ]
-          },
-          "fixed": {
-            "value": "1.75rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.75rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "3x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "3x-large",
-              "fixed"
-            ]
-          }
-        },
-        "2x-large": {
-          "fluid": {
-            "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "2x-large",
-              "state": "fluid"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "2x-large",
-              "fluid"
-            ]
-          },
-          "fixed": {
-            "value": "1.5rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.5rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "2x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "2x-large",
-              "fixed"
-            ]
-          }
-        },
-        "x-large": {
-          "fluid": {
-            "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "x-large",
-              "state": "fluid"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "x-large",
-              "fluid"
-            ]
-          },
-          "fixed": {
-            "value": "1.25rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.25rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "x-large",
-              "fixed"
-            ]
-          }
-        },
-        "large": {
-          "fixed": {
-            "value": "1.125rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.125rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "large",
-              "fixed"
-            ]
-          }
-        },
-        "base": {
-          "fixed": {
-            "value": "1rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "1rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "base",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "base",
-              "fixed"
-            ]
-          }
-        },
-        "small": {
-          "fixed": {
-            "value": "0.875rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "0.875rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "small",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "small",
-              "fixed"
-            ]
-          }
-        },
-        "x-small": {
-          "fixed": {
-            "value": "0.75rem",
-            "filePath": "tokens/typography/size.json",
-            "isSource": true,
-            "original": {
-              "value": "0.75rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "size",
-              "item": "expressive",
-              "subitem": "x-small",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "size",
-              "expressive",
-              "x-small",
-              "fixed"
-            ]
-          }
         }
       }
     }

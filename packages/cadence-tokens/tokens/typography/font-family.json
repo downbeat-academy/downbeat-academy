@@ -1,6 +1,6 @@
 {
 	"typography": {
-		"font": {
+		"font-family": {
 			"expressive": {
 				"body": {
 					"value": "Tiempos Text, Georgia, Times, serif"

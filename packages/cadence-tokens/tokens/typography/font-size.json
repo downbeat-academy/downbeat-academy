@@ -1,6 +1,6 @@
 {
 	"typography": {
-		"size": {
+		"font-size": {
 			"expressive": {
 				"6x-large": {
 					"fluid": {
@@ -53,6 +53,48 @@
 				"large": {
 					"fixed": {
 						"value": "1.125rem"
+					}
+				},
+				"base": {
+					"fixed": {
+						"value": "1rem"
+					}
+				},
+				"small": {
+					"fixed": {
+						"value": "0.875rem"
+					}
+				},
+				"x-small": {
+					"fixed": {
+						"value": "0.75rem"
+					}
+				}
+			},
+			"productive": {
+				"4x-large": {
+					"fixed": {
+						"value": "2.5rem"
+					}
+				},
+				"3x-large": {
+					"fixed": {
+						"value": "2.0rem"
+					}
+				},
+				"2x-large": {
+					"fixed": {
+						"value": "1.75rem"
+					}
+				},
+				"x-large": {
+					"fixed": {
+						"value": "1.5rem"
+					}
+				},
+				"large": {
+					"fixed": {
+						"value": "1.25rem"
 					}
 				},
 				"base": {
