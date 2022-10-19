@@ -18,6 +18,12 @@
 			"group": "spacing",
 			"category": "size"
 		},
+		"03": {
+			"value": "8px",
+			"type": "size",
+			"group": "spacing",
+			"category": "size"
+		},
 		"04": {
 			"value": "12px",
 			"type": "size",

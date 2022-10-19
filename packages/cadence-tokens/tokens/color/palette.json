@@ -1,6 +1,6 @@
 {
-	"core-light": {
-		"color": {
+	"color": {
+		"palette": {
 			"passionFruit": {
 				"100": {
 					"value": "#EAEBFF",

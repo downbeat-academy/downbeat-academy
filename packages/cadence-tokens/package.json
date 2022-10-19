@@ -5,6 +5,7 @@
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
 	"version": "1.0.0",
 	"license": "MIT",
+	"main": "dist/web",
 	"keywords": [
 		"downbeat academy",
 		"tokens",

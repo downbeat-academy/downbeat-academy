@@ -1,8 +1,14 @@
 @use '@downbeat-academy/cadence-tokens/dist/web/tokens.scss' as *;
 
-.button {
-    background: $color-core-passion-fruit-600;
-    border: 1px solid $color-core-passion-fruit-700;
-    border-radius: 6px;
-    color: $color-foreground-high-contrast;
+@mixin button-base {
+    border: 1px solid;
+    border-radius: 8px;
+    font-family: $typography-font-productive-body;
+    font-weight: 700;
+    line-height: $typography-line-height-productive-body;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 0;
+    gap: $spacing-03;
 }
