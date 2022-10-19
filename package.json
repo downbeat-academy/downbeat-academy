@@ -2,7 +2,8 @@
 	"name": "@downbeat-academy/cadence",
 	"private": true,
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"apps/*"
 	],
 	"scripts": {
 		"build": "turbo run build",
