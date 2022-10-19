@@ -30,21 +30,37 @@ $button-sizes: (
     'large',
     'default',
     'small',
-    'extra-small',
+    'x-small',
 );
 
 $button-size-props: (
-    'large': (),
-    'default': (),
-    'small': (),
-    'extra-small': (),
+    'large': (
+        'font-size': $typography-font-size-productive-large-fixed,
+        'max-height': 3rem,
+        'padding': 8px 1.5rem,
+    ),
+    'default': (
+        'font-size': $typography-font-size-productive-base-fixed,
+        'max-height': 2.5rem,
+        'padding': 7px 1.25rem,
+    ),
+    'small': (
+        'font-size': $typography-font-size-productive-small-fixed,
+        'max-height': 2.0rem,
+        'padding': 5px 1rem,
+    ),
+    'extra-small': (
+        'font-size': $typography-font-size-productive-x-small-fixed,
+        'max-height': 1.5rem,
+        'padding': 3px 0.625rem,
+    ),
 );
 
 @mixin button-base {
     border: 1px solid;
     border-radius: $radius-default;
     font-family: $typography-font-family-productive-body;
-    font-weight: 700;
+    font-weight: 500;
     line-height: $typography-line-height-productive-body;
     display: inline-flex;
     flex-direction: row;
@@ -52,7 +68,7 @@ $button-size-props: (
     flex-grow: 0;
     gap: $spacing-03;
     align-self: flex-start;
-    transition: $transition-01;
+    transition: $transition-02;
     text-decoration: none;
 
     &:hover {
@@ -82,5 +98,9 @@ $button-size-props: (
 }
 
 @each $size in $button-sizes {
-    .#{$size} {}
+    .#{$size} {
+        font-size: map-get($button-size-props, $size, 'font-size');
+        // max-height: map-get($button-size-props, $size, 'max-height');
+        padding: map-get($button-size-props, $size, 'padding');
+    }
 }

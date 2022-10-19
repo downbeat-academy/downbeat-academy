@@ -5,7 +5,7 @@ import styles from '../../styles/components/button/Button.module.scss'
 interface ButtonProps {
     children: React.ReactNode,
     variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive',
-    size?: 'large' | 'default' | 'small' | 'extra-small',
+    size?: 'large' | 'default' | 'small' | 'x-small',
 }
 
 export const Button = ({ 
