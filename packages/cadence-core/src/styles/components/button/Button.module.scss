@@ -10,7 +10,9 @@ $button-variants: (
 
 $button-variant-props: (
     'primary': (
-        'color': $color-foreground-high-contrast,
+        'color-rest': $color-foreground-high-contrast,
+        'color-hover': $color-foreground-high-contrast,
+        'color-active': $color-foreground-high-contrast,
         'background-rest': $color-palette-passion-fruit-600,
         'background-hover': $color-palette-passion-fruit-700,
         'background-active': $color-palette-passion-fruit-800,
@@ -41,7 +43,7 @@ $button-size-props: (
 @mixin button-base {
     border: 1px solid;
     border-radius: $radius-default;
-    font-family: $typography-font-productive-body;
+    font-family: $typography-font-family-productive-body;
     font-weight: 700;
     line-height: $typography-line-height-productive-body;
     display: inline-flex;
@@ -52,4 +54,33 @@ $button-size-props: (
     align-self: flex-start;
     transition: $transition-01;
     text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+@each $variant in $button-variants {
+    .#{$variant} {
+        @include button-base;
+        color: map-get($button-variant-props, $variant, 'color-rest');
+        background: map-get($button-variant-props, $variant, 'background-rest');
+        border-color: map-get($button-variant-props, $variant, 'border-rest');
+
+        &:hover {
+            color: map-get($button-variant-props, $variant, 'color-hover');
+            background: map-get($button-variant-props, $variant, 'background-hover');
+            border-color: map-get($button-variant-props, $variant, 'border-hover');
+        }
+
+        &:active {
+            color: map-get($button-variant-props, $variant, 'color-active');
+            background: map-get($button-variant-props, $variant, 'background-active');
+            border-color: map-get($button-variant-props, $variant, 'border-active');
+        }
+    }
+}
+
+@each $size in $button-sizes {
+    .#{$size} {}
 }

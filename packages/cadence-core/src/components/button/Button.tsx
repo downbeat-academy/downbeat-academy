@@ -15,7 +15,7 @@ export const Button = ({
 }: ButtonProps) => {
     const classes = getClasses([
         styles[variant],
-        styles[size]
+        styles[size],
     ])
 
     return (
