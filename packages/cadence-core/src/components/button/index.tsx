@@ -1,14 +1,9 @@
-import React from 'react'
+import { forwardRef } from 'react'
 import { getClasses } from '../../utils/getClasses'
 import styles from './Button.module.scss'
+import { ButtonProps } from './types'
 
-interface ButtonProps {
-    children: React.ReactNode,
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive',
-    size?: 'large' | 'default' | 'small' | 'x-small',
-}
-
-export const Button = ({ 
+export const Button = forwardRef(({ 
     children,
     variant = 'primary',
     size = 'default',
@@ -21,4 +16,4 @@ export const Button = ({
     return (
         <button className={classes}>{children}</button>
     )
-}
+})
