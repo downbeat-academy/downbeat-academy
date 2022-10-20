@@ -1,6 +1,6 @@
 import React from 'react'
 import { getClasses } from '../../utils/getClasses'
-import styles from '../../styles/components/button/Button.module.scss'
+import styles from './Button.module.scss'
 
 interface ButtonProps {
     children: React.ReactNode,
