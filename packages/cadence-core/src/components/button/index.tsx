@@ -53,6 +53,7 @@ const Button = forwardRef((
             name={name}
             onClick={onClick}
             ref={ref}
+            role='button'
             type={type}
         >
             <>

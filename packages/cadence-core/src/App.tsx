@@ -7,12 +7,8 @@ function App() {
     <div>
       <h1>Testing playground</h1>
       <div>
-        <Button
-          text='Primary button'
-          variant='primary'
-          size='large'
-        />
-        <Button
+        <Button />
+        {/* <Button
           text='Primary button'
           variant='primary'
           size='default'
@@ -26,9 +22,9 @@ function App() {
           text='Primary button'
           variant='primary'
           size='x-small'
-        />
+        /> */}
       </div>
-      <div>
+      {/* <div>
         <Button
           text='Primary button'
           variant='secondary'
@@ -93,7 +89,7 @@ function App() {
           variant='destructive'
           size='x-small'
         />
-      </div>
+      </div> */}
     </div>
   )
 }
