@@ -13,7 +13,8 @@
 		"dev": "turbo run dev",
 		"core:dev": "yarn workspace @downbeat-academy/cadence-core dev",
 		"core:build": "yarn workspace @downbeat-academy/cadence-core build",
-		"tokens:build": "yarn workspace @downbeat-academy/cadence-tokens build"
+		"tokens:build": "yarn workspace @downbeat-academy/cadence-tokens build",
+		"docs:dev": "yarn workspace @downbeat-academy/cadence-docs dev"
 	},
 	"devDependencies": {
 		"concurrently": "^7.2.2",
