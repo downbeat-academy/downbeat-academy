@@ -1,19 +1,67 @@
-import { forwardRef } from 'react'
-import { getClasses } from '../../utils/getClasses'
-import styles from './Button.module.scss'
+import { ForwardedRef, forwardRef } from 'react'
+import classnames from 'classnames'
 import { ButtonProps } from './types'
+import styles from './Button.module.scss'
 
-export const Button = forwardRef(({ 
-    children,
-    variant = 'primary',
-    size = 'default',
-}: ButtonProps) => {
-    const classes = getClasses([
+const Button = forwardRef((
+    {
+        'aria-controls': ariaControls,
+        'aria-describedby': ariaDescribedBy,
+        'aria-expanded': ariaExpanded,
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        children,
+        className,
+        disabled,
+        form,
+        icon,
+        iconPosition,
+        id,
+        isFullWidth = false,
+        name,
+        onClick,
+        size = 'default',
+        text,
+        type,
+        variant = 'primary',
+    }: ButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>) => {
+
+    const classes = classnames([
         styles[variant],
         styles[size],
+        className,
     ])
 
+    const hasIcon = !!icon
+    const hasText = !!text
+    const hasLeadingIcon = hasIcon && iconPosition === 'leading'
+    const hasTrailingIcon = hasIcon && iconPosition === 'trailing'
+
     return (
-        <button className={classes}>{children}</button>
+        <button
+            aria-controls={ariaControls}
+            aria-describedby={ariaDescribedBy}
+            aria-expanded={ariaExpanded}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            className={classes}
+            disabled={disabled}
+            form={form}
+            id={id}
+            name={name}
+            onClick={onClick}
+            ref={ref}
+            type={type}
+        >
+            <>
+                {hasLeadingIcon && icon}
+                {hasText && text}
+                {hasTrailingIcon && icon}
+            </>
+        </button>
     )
 })
+
+export type { ButtonProps }
+export { Button }

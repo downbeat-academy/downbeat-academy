@@ -8,19 +8,23 @@ function App() {
       <Button
         variant='primary'
         size='large'
-      >Button text</Button>
+        text='Button text'
+      />
       <Button
         variant='primary'
         size='default'
-      >Button text</Button>
+        text='Button text'
+      />
       <Button
         variant='primary'
         size='small'
-      >Button text</Button>
+        text='Button text'
+      />
       <Button
         variant='primary'
         size='x-small'
-      >Button text</Button>
+        text='Button text'
+      />
     </div>
   )
 }
