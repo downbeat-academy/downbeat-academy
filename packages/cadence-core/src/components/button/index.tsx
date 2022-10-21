@@ -10,7 +10,6 @@ const Button = forwardRef((
         'aria-expanded': ariaExpanded,
         'aria-label': ariaLabel,
         'aria-labelledby': ariaLabelledBy,
-        children,
         className,
         disabled,
         form,

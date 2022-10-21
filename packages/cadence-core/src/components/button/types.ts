@@ -17,7 +17,6 @@ type PickedNativeButtonProps = Pick<
 >
 
 interface ButtonProps extends PickedNativeButtonProps {
-    children?: JSX.Element|JSX.Element[],
     icon?: JSX.IntrinsicElements['svg'],
     iconPosition?: 'leading' | 'trailing',
     isFullWidth?: boolean,
