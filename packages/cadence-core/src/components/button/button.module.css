@@ -1,0 +1,73 @@
+@import '@downbeat-academy/cadence-tokens/dist/web/tokens.css';
+
+.root {
+	border: 1px solid;
+	border-radius: var(--radius-default);
+	font-family: var(--typography-font-family-productive-body);
+	font-weight: 400;
+	line-height: var(--typography-line-height-productive-body);
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-grow: 0;
+	gap: var(--spacing-03);
+	align-self: flex-start;
+	transition: var(--transition-02);
+	text-decoration: none;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+/* Variants */
+
+.primary {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-passion-fruit-600);
+	border-color: var(--color-palette-passion-fruit-700);
+}
+
+.secondary {
+}
+
+.tertiary {
+}
+
+.ghost {
+}
+
+.destructive {
+}
+
+/* Sizes */
+
+.large {
+	font-size: var(--typography-font-size-productive-large-fixed);
+	max-height: 3rem;
+	padding: 8px 1.5rem;
+}
+
+.default {
+	font-size: var(--typography-font-size-productive-base-fixed);
+	max-height: 2.5rem;
+	padding: 7px 1.25rem;
+}
+
+.small {
+	font-size: var(--typography-font-size-productive-small-fixed);
+	max-height: 2rem;
+	padding: 5px 1rem;
+}
+
+.x-small {
+	font-size: var(--typography-font-size-productive-x-small-fixed);
+	max-height: 1.5rem;
+	padding: 2px 0.625rem;
+}
+
+/* Full Width */
+
+.full-width {
+	width: 100%;
+}

@@ -8,22 +8,22 @@ function App() {
       <Button
         variant='primary'
         size='large'
-        text='Button text'
+        text='Large button'
       />
       <Button
         variant='primary'
         size='default'
-        text='Button text'
+        text='Default button'
       />
       <Button
         variant='primary'
         size='small'
-        text='Button text'
+        text='Small button'
       />
       <Button
         variant='primary'
         size='x-small'
-        text='Button text'
+        text='Extra small button'
       />
     </div>
   )

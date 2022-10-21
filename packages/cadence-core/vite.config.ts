@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import postcssNesting from 'postcss-nesting'
 
 export default defineConfig({
     plugins: [
@@ -30,6 +31,13 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
+        }
+    },
+    css: {
+        postcss: {
+            plugins: [
+                postcssNesting,
+            ]
         }
     }
 });
