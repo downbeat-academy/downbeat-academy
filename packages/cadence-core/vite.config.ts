@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import tsConfigPaths from 'vite-tsconfig-paths'
 import postcssNesting from 'postcss-nesting'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default defineConfig({
     plugins: [
@@ -13,6 +14,7 @@ export default defineConfig({
             insertTypesEntry: true,
             include: [ 'src/components' ],
         }),
+        cssInjectedByJsPlugin(),
     ],
     build: {
         lib: {
