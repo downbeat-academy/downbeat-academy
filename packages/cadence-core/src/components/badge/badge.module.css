@@ -7,7 +7,7 @@
 	flex-direction: row;
 	flex-grow: 0;
 	flex-shrink: 0;
-	flex-wrap: no-wrap;
+	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
 	border-radius: var(--radius-soft);
