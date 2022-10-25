@@ -9,9 +9,105 @@
 	text-decoration: none;
 }
 
-/* Tags */
+/* Type */
 
-.expressive-h1 {
+.expressive {
 	--font-family: var(--typography-font-family-expressive-headline);
-	--font-size: var(--typography-font-size-fluid-6x-large);
+}
+
+.productive {
+	--font-family: var(--typography-font-family-productive-headline);
+}
+
+/* Size */
+
+.expressive.6x-large {
+	--font-size: var(--typography-font-size-fixed-expressive-6x-large);
+}
+
+.expressive.5x-large {
+	--font-size: var(--typography-font-size-fixed-expressive-5x-large);
+}
+.expressive.4x-large {
+	--font-size: var(--typography-font-size-fixed-expressive-4x-large);
+}
+.expressive.3x-large {
+	--font-size: var(--typography-font-size-fixed-expressive-3x-large);
+}
+.expressive.2x-large {
+	--font-size: var(--typography-font-size-fixed-expressive-2x-large);
+}
+.expressive.x-large {
+	--font-size: var(--typography-font-size-fixed-expressive-x-large);
+}
+.expressive.large {
+	--font-size: var(--typography-font-size-fixed-expressive-large);
+}
+.expressive.base {
+	--font-size: var(--typography-font-size-fixed-expressive-base);
+}
+.expressive.small {
+	--font-size: var(--typography-font-size-fixed-expressive-small);
+}
+.expressive.x-small {
+	--font-size: var(--typography-font-size-fixed-expressive-x-small);
+}
+
+.productive.4x-large {
+	--font-size: var(--typography-font-size-fixed-productive-4x-large);
+}
+.productive.3x-large {
+	--font-size: var(--typography-font-size-fixed-productive-3x-large);
+}
+.productive.2x-large {
+	--font-size: var(--typography-font-size-fixed-productive-2x-large);
+}
+.productive.x-large {
+	--font-size: var(--typography-font-size-fixed-productive-x-large);
+}
+.productive.large {
+	--font-size: var(--typography-font-size-fixed-productive-large);
+}
+.productive.base {
+	--font-size: var(--typography-font-size-fixed-productive-base);
+}
+.productive.small {
+	--font-size: var(--typography-font-size-fixed-productive-small);
+}
+.productive.x-small {
+	--font-size: var(--typography-font-size-fixed-productive-x-small);
+}
+
+/* Fluid */
+
+.expressive.6x-large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-6x-large);
+}
+
+.expressive.5x-large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-5x-large);
+}
+.expressive.4x-large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-4x-large);
+}
+.expressive.3x-large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-3x-large);
+}
+.expressive.2x-large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-2x-large);
+}
+.expressive.x-large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-x-large);
+}
+.expressive.large.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-large);
+}
+.expressive.base.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-base);
+}
+.expressive.small.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-small);
+}
+.expressive.x-small.fluid {
+	--font-size: var(--typography-font-size-fluid-expressive-x-small);
 }

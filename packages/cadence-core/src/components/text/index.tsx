@@ -8,8 +8,9 @@ const Text = ({
 	type = 'productive',
 	size = 'base',
 	color = 'primary',
+    fluid = false,
 }: TextProps) => {
-	const classes = classnames(s.root, s[type], s[size], s[color]);
+	const classes = classnames(s.root, s[type], s[size], s[color], [fluid ? s.fluid : null]);
 
 	switch (tag) {
 		case 'h1':
