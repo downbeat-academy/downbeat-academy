@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Flex, Avatar, Paragraph, StyledLink } from 'cadence-design-system';
+import { Flex, Paragraph, StyledLink, Avatar } from 'cadence-design-system';
 import { linkResolver } from '@utils/linkResolver';
 import { formatIso } from '@utils/dateHelpers';
 import { getSanityImageUrl } from '@utils/getSanityImageUrl';

@@ -4,7 +4,7 @@ import { useNextSanityImage } from 'next-sanity-image';
 import { sanityConfig } from '@lib/sanityConfig';
 import { formatIso } from '@utils/dateHelpers';
 import { linkResolver } from '@utils/linkResolver';
-import { styled, H5, Paragraph, Avatar, Flex } from 'cadence-design-system';
+import { styled, H5, Paragraph, Flex, Avatar } from 'cadence-design-system';
 
 export const PostCard = ({ postObj }) => {
 	const { title, date, image, authors, slug, _type } = postObj;
