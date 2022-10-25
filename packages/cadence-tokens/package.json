@@ -4,8 +4,22 @@
 	"description": "Downbeat Academy Design Tokens",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
 	"version": "1.0.0",
-	"license": "MIT",
+	"license": "MPL-2.0",
+	"scripts": {
+		"build": "style-dictionary build"
+	},
 	"main": "dist/web",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"import": "./dist",
+			"require": "./dist"
+		},
+		"./dist/web.tokens.css": "./dist/web.tokens.css"
+	},
+	"module": "./dist/web.tokens.css",
 	"keywords": [
 		"downbeat academy",
 		"tokens",
@@ -15,9 +29,6 @@
 		"type": "git",
 		"url": "https://github.com/downbeat-academy/downbeat-academy.git",
 		"directory": "packages/tokens"
-	},
-	"scripts": {
-		"build": "style-dictionary build"
 	},
 	"devDependencies": {
 		"@divriots/style-dictionary-to-figma": "^0.3.0",
