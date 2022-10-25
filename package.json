@@ -14,7 +14,11 @@
 		"core:dev": "yarn workspace @downbeat-academy/cadence-core dev",
 		"core:build": "yarn workspace @downbeat-academy/cadence-core build",
 		"tokens:build": "yarn workspace @downbeat-academy/cadence-tokens build",
-		"docs:dev": "yarn workspace @downbeat-academy/cadence-docs dev"
+		"docs:dev": "yarn workspace @downbeat-academy/cadence-docs dev",
+		"www:dev": "yarn workspace @downbeat-academy/www dev",
+		"www:build": "yarn workspace @downbeat-academy/www build",
+		"cms:dev": "yarn workspace @downbeat-academy/sanity-cms sanity start",
+		"cms:build": "yarn workspace @downbeat-academy/sanity-cms sanity build"
 	},
 	"devDependencies": {
 		"concurrently": "^7.2.2",

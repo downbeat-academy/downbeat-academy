@@ -1,5 +1,5 @@
 {
-	"name": "web-ui",
+	"name": "@downbeat-academy/www",
 	"version": "2.3.0",
 	"description": "Primary web UI for Downbeat Academy, built on NextJS",
 	"keywords": [

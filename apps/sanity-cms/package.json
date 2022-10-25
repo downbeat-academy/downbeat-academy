@@ -1,5 +1,5 @@
 {
-	"name": "cms",
+	"name": "@downbeat-academy/sanity-cms",
 	"private": true,
 	"version": "1.0.1",
 	"description": "Content management for Downbeat Academy built on Sanity CMS.",
