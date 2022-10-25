@@ -6,7 +6,7 @@ const Text = ({
     children,
     tag,
     type = 'productive',
-    size,
+    size = 'base',
 }: TextProps) => {
     const classes = classnames(
         s.root,
