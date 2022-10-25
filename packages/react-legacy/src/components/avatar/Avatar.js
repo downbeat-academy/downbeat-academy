@@ -2,17 +2,17 @@ import React from 'react'
 import BoringAvatar from "boring-avatars"
 import { styled } from '../../stitches.config'
 
-interface AvatarProps {
-    size?: string,
-    name: string,
-    children?: any
-}
+// interface AvatarProps {
+//     size?: 'small' | 'default' | 'large',
+//     name: string,
+//     children?: any
+// }
 
 export const Avatar = ({ 
     size,
     name,
     children,
-}: AvatarProps) => {
+}) => {
 
     return (
         <AvatarWrapper
