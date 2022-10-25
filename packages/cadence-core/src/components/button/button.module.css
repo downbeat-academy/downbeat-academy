@@ -60,19 +60,19 @@
 }
 
 .tertiary {
-	color: var(--color-palette-passion-fruit-600);
+	color: var(--color-palette-blueberry-600);
 	background: transparent;
 	border-color: transparent;
 
 	&:hover {
-		color: var(--color-palette-passion-fruit-700);
-		background: var(--color-palette-passion-fruit-100);
+		color: var(--color-palette-blueberry-700);
+		background: var(--color-palette-blueberry-100);
 		border-color: transparent;
 	}
 
 	&:active {
-		color: var(--color-palette-passion-fruit-800);
-		background: var(--color-palette-passion-fruit-200);
+		color: var(--color-palette-blueberry-800);
+		background: var(--color-palette-blueberry-200);
 		border-color: transparent;
 	}
 }
