@@ -7,11 +7,13 @@ const Text = ({
     tag,
     type = 'productive',
     size = 'base',
+    color = 'primary',
 }: TextProps) => {
     const classes = classnames(
         s.root,
         s[type],
         s[size],
+        s[color]
     )
 
     switch (tag) {
