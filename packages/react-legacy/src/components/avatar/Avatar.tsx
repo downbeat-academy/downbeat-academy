@@ -2,8 +2,8 @@ import React from 'react'
 import BoringAvatar from "boring-avatars"
 import { styled } from '../../stitches.config'
 
-type Props = {
-    size?: 'small' | 'default' | 'large',
+interface AvatarProps {
+    size?: string,
     name: string,
     children?: any
 }
@@ -12,7 +12,7 @@ export const Avatar = ({
     size,
     name,
     children,
-}: Props) => {
+}: AvatarProps) => {
 
     return (
         <AvatarWrapper
