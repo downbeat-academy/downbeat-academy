@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef } from 'react'
 import classnames from 'classnames'
 import { ButtonProps } from './types'
-import styles from './button.module.css'
+import s from './button.module.css'
 
 const Button = forwardRef((
     {
@@ -27,10 +27,10 @@ const Button = forwardRef((
     ref: ForwardedRef<HTMLButtonElement>) => {
 
     const classes = classnames(
-        styles.root,
-        styles[variant],
-        styles[size],
-        {[styles.fullWidth]: isFullWidth},
+        s.root,
+        s[variant],
+        s[size],
+        {[s.fullWidth]: isFullWidth},
         className,
     )
 

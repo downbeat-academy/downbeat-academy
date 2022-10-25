@@ -1,0 +1,71 @@
+@import '@downbeat-academy/cadence-tokens/dist/web/tokens.css';
+
+.root {
+	font-family: var(--typography-font-family-productive-body);
+	font-weight: 700;
+	line-height: var(--typography-line-height-productive-body);
+	display: inline-flex;
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-wrap: no-wrap;
+	justify-content: center;
+	align-items: center;
+	gap: var(--spacing-02);
+	border-radius: var(--radius-soft);
+	box-sizing: border-box;
+	text-decoration: none;
+
+	/* Define local variables */
+	color: var(--text-color);
+	background: var(--background-color);
+	border: 1px solid var(--border-color);
+}
+
+/* Types */
+
+.neutral {
+	--text-color: var(--color-palette-neutral-800);
+	--background-color: var(--color-palette-neutral-200);
+	--border-color: none;
+}
+.informational {
+	--text-color: var(--color-palette-blueberry-800);
+	--background-color: var(--color-palette-blueberry-200);
+	--border-color: none;
+}
+.positive {
+	--text-color: var(--color-palette-kale-800);
+	--background-color: var(--color-palette-kale-200);
+	--border-color: none;
+}
+.warning {
+	--text-color: var(--color-palette-pineapple-800);
+	--background-color: var(--color-palette-pineapple-200);
+	--border-color: none;
+}
+.critical {
+	--text-color: var(--color-palette-pomegranate-800);
+	--background-color: var(--color-palette-pomegranate-200);
+	--border-color: none;
+}
+
+/* Sizes */
+
+.small {
+}
+
+.default {
+}
+
+.large {
+}
+
+/* Styles */
+
+.fill {
+}
+.outline {
+}
+.inverse {
+}
