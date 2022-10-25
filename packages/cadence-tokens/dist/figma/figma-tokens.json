@@ -3533,9 +3533,9 @@
       }
     },
     "font-size": {
-      "expressive": {
-        "6x-large": {
-          "fluid": {
+      "fluid": {
+        "expressive": {
+          "6x-large": {
             "value": "clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem)",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3545,43 +3545,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "6x-large",
-              "state": "fluid"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "6x-large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "6x-large",
-              "fluid"
+              "6x-large"
             ]
           },
-          "fixed": {
-            "value": "4rem",
-            "filePath": "tokens/typography/font-size.json",
-            "isSource": true,
-            "original": {
-              "value": "4rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "font-size",
-              "item": "expressive",
-              "subitem": "6x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "font-size",
-              "expressive",
-              "6x-large",
-              "fixed"
-            ]
-          }
-        },
-        "5x-large": {
-          "fluid": {
+          "5x-large": {
             "value": "clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem)",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3591,43 +3567,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "5x-large",
-              "state": "fluid"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "5x-large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "5x-large",
-              "fluid"
+              "5x-large"
             ]
           },
-          "fixed": {
-            "value": "3rem",
-            "filePath": "tokens/typography/font-size.json",
-            "isSource": true,
-            "original": {
-              "value": "3rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "font-size",
-              "item": "expressive",
-              "subitem": "5x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "font-size",
-              "expressive",
-              "5x-large",
-              "fixed"
-            ]
-          }
-        },
-        "4x-large": {
-          "fluid": {
+          "4x-large": {
             "value": "clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem)",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3637,43 +3589,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "4x-large",
-              "state": "fluid"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "4x-large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "4x-large",
-              "fluid"
+              "4x-large"
             ]
           },
-          "fixed": {
-            "value": "2.125",
-            "filePath": "tokens/typography/font-size.json",
-            "isSource": true,
-            "original": {
-              "value": "2.125"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "font-size",
-              "item": "expressive",
-              "subitem": "4x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "font-size",
-              "expressive",
-              "4x-large",
-              "fixed"
-            ]
-          }
-        },
-        "3x-large": {
-          "fluid": {
+          "3x-large": {
             "value": "clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem)",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3683,43 +3611,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "3x-large",
-              "state": "fluid"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "3x-large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "3x-large",
-              "fluid"
+              "3x-large"
             ]
           },
-          "fixed": {
-            "value": "1.75rem",
-            "filePath": "tokens/typography/font-size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.75rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "font-size",
-              "item": "expressive",
-              "subitem": "3x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "font-size",
-              "expressive",
-              "3x-large",
-              "fixed"
-            ]
-          }
-        },
-        "2x-large": {
-          "fluid": {
+          "2x-large": {
             "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3729,43 +3633,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "2x-large",
-              "state": "fluid"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "2x-large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "2x-large",
-              "fluid"
+              "2x-large"
             ]
           },
-          "fixed": {
-            "value": "1.5rem",
-            "filePath": "tokens/typography/font-size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.5rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "font-size",
-              "item": "expressive",
-              "subitem": "2x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "font-size",
-              "expressive",
-              "2x-large",
-              "fixed"
-            ]
-          }
-        },
-        "x-large": {
-          "fluid": {
+          "x-large": {
             "value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3775,43 +3655,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "x-large",
-              "state": "fluid"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "x-large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "x-large",
-              "fluid"
+              "x-large"
             ]
           },
-          "fixed": {
-            "value": "1.25rem",
-            "filePath": "tokens/typography/font-size.json",
-            "isSource": true,
-            "original": {
-              "value": "1.25rem"
-            },
-            "attributes": {
-              "category": "typography",
-              "type": "font-size",
-              "item": "expressive",
-              "subitem": "x-large",
-              "state": "fixed"
-            },
-            "path": [
-              "typography",
-              "font-size",
-              "expressive",
-              "x-large",
-              "fixed"
-            ]
-          }
-        },
-        "large": {
-          "fixed": {
+          "large": {
             "value": "1.125rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3821,21 +3677,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "large",
-              "state": "fixed"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "large"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "large",
-              "fixed"
+              "large"
             ]
-          }
-        },
-        "base": {
-          "fixed": {
+          },
+          "base": {
             "value": "1rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3845,21 +3699,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "base",
-              "state": "fixed"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "base"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "base",
-              "fixed"
+              "base"
             ]
-          }
-        },
-        "small": {
-          "fixed": {
+          },
+          "small": {
             "value": "0.875rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3869,21 +3721,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "small",
-              "state": "fixed"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "small"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "small",
-              "fixed"
+              "small"
             ]
-          }
-        },
-        "x-small": {
-          "fixed": {
+          },
+          "x-small": {
             "value": "0.75rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3893,71 +3743,89 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "expressive",
-              "subitem": "x-small",
-              "state": "fixed"
+              "item": "fluid",
+              "subitem": "expressive",
+              "state": "x-small"
             },
             "path": [
               "typography",
               "font-size",
+              "fluid",
               "expressive",
-              "x-small",
-              "fixed"
+              "x-small"
             ]
           }
         }
       },
-      "productive": {
-        "4x-large": {
-          "fixed": {
-            "value": "2.5rem",
+      "fixed": {
+        "expressive": {
+          "6x-large": {
+            "value": "4rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
             "original": {
-              "value": "2.5rem"
+              "value": "4rem"
             },
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "4x-large",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "6x-large"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "4x-large",
-              "fixed"
+              "fixed",
+              "expressive",
+              "6x-large"
             ]
-          }
-        },
-        "3x-large": {
-          "fixed": {
-            "value": "2.0rem",
+          },
+          "5x-large": {
+            "value": "3rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
             "original": {
-              "value": "2.0rem"
+              "value": "3rem"
             },
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "3x-large",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "5x-large"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "3x-large",
-              "fixed"
+              "fixed",
+              "expressive",
+              "5x-large"
             ]
-          }
-        },
-        "2x-large": {
-          "fixed": {
+          },
+          "4x-large": {
+            "value": "2.125",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "2.125"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "4x-large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "expressive",
+              "4x-large"
+            ]
+          },
+          "3x-large": {
             "value": "1.75rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3967,21 +3835,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "2x-large",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "3x-large"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "2x-large",
-              "fixed"
+              "fixed",
+              "expressive",
+              "3x-large"
             ]
-          }
-        },
-        "x-large": {
-          "fixed": {
+          },
+          "2x-large": {
             "value": "1.5rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -3991,21 +3857,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "x-large",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "2x-large"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "x-large",
-              "fixed"
+              "fixed",
+              "expressive",
+              "2x-large"
             ]
-          }
-        },
-        "large": {
-          "fixed": {
+          },
+          "x-large": {
             "value": "1.25rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -4015,21 +3879,41 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "large",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "x-large"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "large",
-              "fixed"
+              "fixed",
+              "expressive",
+              "x-large"
             ]
-          }
-        },
-        "base": {
-          "fixed": {
+          },
+          "large": {
+            "value": "1.125rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.125rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "expressive",
+              "large"
+            ]
+          },
+          "base": {
             "value": "1rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -4039,21 +3923,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "base",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "base"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "base",
-              "fixed"
+              "fixed",
+              "expressive",
+              "base"
             ]
-          }
-        },
-        "small": {
-          "fixed": {
+          },
+          "small": {
             "value": "0.875rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -4063,21 +3945,19 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "small",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "small"
             },
             "path": [
               "typography",
               "font-size",
-              "productive",
-              "small",
-              "fixed"
+              "fixed",
+              "expressive",
+              "small"
             ]
-          }
-        },
-        "x-small": {
-          "fixed": {
+          },
+          "x-small": {
             "value": "0.75rem",
             "filePath": "tokens/typography/font-size.json",
             "isSource": true,
@@ -4087,16 +3967,194 @@
             "attributes": {
               "category": "typography",
               "type": "font-size",
-              "item": "productive",
-              "subitem": "x-small",
-              "state": "fixed"
+              "item": "fixed",
+              "subitem": "expressive",
+              "state": "x-small"
             },
             "path": [
               "typography",
               "font-size",
+              "fixed",
+              "expressive",
+              "x-small"
+            ]
+          }
+        },
+        "productive": {
+          "4x-large": {
+            "value": "2.5rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "2.5rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "4x-large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
               "productive",
-              "x-small",
-              "fixed"
+              "4x-large"
+            ]
+          },
+          "3x-large": {
+            "value": "2.0rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "2.0rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "3x-large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "3x-large"
+            ]
+          },
+          "2x-large": {
+            "value": "1.75rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.75rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "2x-large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "2x-large"
+            ]
+          },
+          "x-large": {
+            "value": "1.5rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.5rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "x-large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "x-large"
+            ]
+          },
+          "large": {
+            "value": "1.25rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1.25rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "large"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "large"
+            ]
+          },
+          "base": {
+            "value": "1rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "1rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "base"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "base"
+            ]
+          },
+          "small": {
+            "value": "0.875rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "0.875rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "small"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "small"
+            ]
+          },
+          "x-small": {
+            "value": "0.75rem",
+            "filePath": "tokens/typography/font-size.json",
+            "isSource": true,
+            "original": {
+              "value": "0.75rem"
+            },
+            "attributes": {
+              "category": "typography",
+              "type": "font-size",
+              "item": "fixed",
+              "subitem": "productive",
+              "state": "x-small"
+            },
+            "path": [
+              "typography",
+              "font-size",
+              "fixed",
+              "productive",
+              "x-small"
             ]
           }
         }

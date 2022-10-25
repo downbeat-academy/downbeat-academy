@@ -10,16 +10,16 @@
 	},
 	"main": "dist/web",
 	"files": [
-		"dist"
+		"./dist"
 	],
 	"exports": {
 		".": {
-			"import": "./dist",
-			"require": "./dist"
+			"import": "./dist/web/tokens.css",
+			"require": "./dist/web/tokens.css"
 		},
-		"./dist/web.tokens.css": "./dist/web.tokens.css"
+		"./dist/web.tokens.css": "./dist/web/tokens.css"
 	},
-	"module": "./dist/web.tokens.css",
+	"module": "./dist/web/tokens.css",
 	"keywords": [
 		"downbeat academy",
 		"tokens",
