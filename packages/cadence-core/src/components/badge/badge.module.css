@@ -2,8 +2,7 @@
 
 .root {
 	font-family: var(--typography-font-family-productive-body);
-	font-weight: 700;
-	line-height: var(--typography-line-height-productive-body);
+	font-weight: 400;
 	display: inline-flex;
 	flex-direction: row;
 	flex-grow: 0;
@@ -11,7 +10,6 @@
 	flex-wrap: no-wrap;
 	justify-content: center;
 	align-items: center;
-	gap: var(--spacing-02);
 	border-radius: var(--radius-soft);
 	box-sizing: border-box;
 	text-decoration: none;
@@ -20,52 +18,70 @@
 	color: var(--text-color);
 	background: var(--background-color);
 	border: 1px solid var(--border-color);
-}
-
-/* Types */
-
-.neutral {
-	--text-color: var(--color-palette-neutral-800);
-	--background-color: var(--color-palette-neutral-200);
-	--border-color: none;
-}
-.informational {
-	--text-color: var(--color-palette-blueberry-800);
-	--background-color: var(--color-palette-blueberry-200);
-	--border-color: none;
-}
-.positive {
-	--text-color: var(--color-palette-kale-800);
-	--background-color: var(--color-palette-kale-200);
-	--border-color: none;
-}
-.warning {
-	--text-color: var(--color-palette-pineapple-800);
-	--background-color: var(--color-palette-pineapple-200);
-	--border-color: none;
-}
-.critical {
-	--text-color: var(--color-palette-pomegranate-800);
-	--background-color: var(--color-palette-pomegranate-200);
-	--border-color: none;
-}
-
-/* Sizes */
-
-.small {
-}
-
-.default {
-}
-
-.large {
+	font-size: var(--font-size);
+	line-height: var(--line-height);
+	padding: var(--padding);
+	gap: var(--flex-gap);
 }
 
 /* Styles */
 
 .fill {
+	--text-color: var(--color-dark);
+	--background-color: var(--color-light);
 }
 .outline {
+	--text-color: var(--color-dark);
+	--background-color: none;
+	--border-color: var(--color-dark);
 }
 .inverse {
+	--text-color: var(--color-light);
+	--background-color: var(--color-dark);
+}
+
+/* Types */
+
+.neutral {
+	--color-dark: var(--color-palette-neutral-800);
+	--color-light: var(--color-palette-neutral-200);
+}
+.informational {
+	--color-dark: var(--color-palette-blueberry-800);
+	--color-light: var(--color-palette-blueberry-200);
+}
+.positive {
+	--color-dark: var(--color-palette-kale-800);
+	--color-light: var(--color-palette-kale-200);
+}
+.warning {
+	--color-dark: var(--color-palette-pineapple-800);
+	--color-light: var(--color-palette-pineapple-200);
+}
+.critical {
+	--color-dark: var(--color-palette-pomegranate-800);
+	--color-light: var(--color-palette-pomegranate-200);
+}
+
+/* Sizes */
+
+.small {
+	--font-size: var(--typography-font-size-fixed-productive-x-small);
+	--line-height: 16px;
+	--padding: 0 var(--spacing-02);
+	--flex-gap: var(--spacing-02);
+}
+
+.default {
+	--font-size: var(--typography-font-size-fixed-productive-small);
+	--line-height: 20px;
+	--padding: 0 var(--spacing-02);
+	--flex-gap: var(--spacing-02);
+}
+
+.large {
+	--font-size: var(--typography-font-size-fixed-productive-base);
+	--line-height: 24px;
+	--padding: 0 var(--spacing-02);
+	--flex-gap: var(--spacing-03);
 }
