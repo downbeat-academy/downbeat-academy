@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
 	Info,
 	Award,
 	BookAlt,
@@ -24,7 +24,7 @@ import {
 	QuoteLeft,
 	QuoteRight,
 } from './index';
-import { Flex } from '../layout'
+import { Flex } from '../layout';
 
 export default {
 	title: 'Foundations/Icons/Interface',
@@ -39,10 +39,7 @@ export default {
 
 export const Interface = (args) => {
 	return (
-		<Flex
-			direction='row'
-			gap='4'
-		>
+		<Flex direction="row" gap="4">
 			<Info {...args} />
 			<Award {...args} />
 			<BookAlt {...args} />
@@ -67,17 +64,17 @@ export const Interface = (args) => {
 			<QuoteLeft {...args} />
 			<QuoteRight {...args} />
 		</Flex>
-	)
-}
+	);
+};
 
 Interface.args = {
 	size: 'small',
 	color: '$blackberry1000',
-}
+};
 
 Interface.parameters = {
 	design: {
 		type: 'figma',
-		url: 'https://www.figma.com/file/tX0lYmayOr7NR0T3bdM90Y/Foundations?node-id=3%3A171'
-	}
-}
+		url: 'https://www.figma.com/file/tX0lYmayOr7NR0T3bdM90Y/Foundations?node-id=3%3A171',
+	},
+};

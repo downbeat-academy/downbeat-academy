@@ -1,1 +1,1 @@
-export { StyledLink } from './StyledLink'
+export { StyledLink } from './StyledLink';

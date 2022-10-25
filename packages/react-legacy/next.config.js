@@ -3,10 +3,7 @@ module.exports = {
 		webpack5: true,
 	},
 	images: {
-		domains: [
-			'cdn.sanity.com',
-			'via.placeholder.com',
-		]
+		domains: ['cdn.sanity.com', 'via.placeholder.com'],
 	},
 	webpack: (config, options) => {
 		//

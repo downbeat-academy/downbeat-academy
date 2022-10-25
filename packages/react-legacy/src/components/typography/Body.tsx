@@ -33,7 +33,7 @@ export const Paragraph = styled('p', {
 				fontSize: '$displayExtraLarge',
 				lineHeight: '2.5rem',
 				margin: '0 0 2.5rem 0',
-			}
+			},
 		},
 		{
 			context: 'display',

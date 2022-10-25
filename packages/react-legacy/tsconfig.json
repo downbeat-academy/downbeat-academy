@@ -20,6 +20,11 @@
 		"jsx": "preserve",
 		"incremental": true
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/avatar/Avatar.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"src/components/avatar/Avatar.js"
+	],
 	"exclude": ["node_modules"]
 }

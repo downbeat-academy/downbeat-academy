@@ -1,13 +1,13 @@
-const { transform } = require('@divriots/style-dictionary-to-figma')
+const { transform } = require('@divriots/style-dictionary-to-figma');
 
 module.exports = {
 	source: [`tokens/**/*.json`],
 	transform: {},
 	format: {
-        figmaTokens: ({ dictionary }) => {
-            const transformedTokens = transform(dictionary.tokens);
-            return JSON.stringify(transformedTokens, null, 2);
-        },
+		figmaTokens: ({ dictionary }) => {
+			const transformedTokens = transform(dictionary.tokens);
+			return JSON.stringify(transformedTokens, null, 2);
+		},
 	},
 	platforms: {
 		web: {
@@ -24,15 +24,15 @@ module.exports = {
 				},
 			],
 		},
-        figma: {
-            transformGroup: 'js',
-            buildPath: './dist/figma/',
-            files: [
-                {
-                    destination: 'figma-tokens.json',
-                    format: 'figmaTokens'
-                }
-            ]
-        }
+		figma: {
+			transformGroup: 'js',
+			buildPath: './dist/figma/',
+			files: [
+				{
+					destination: 'figma-tokens.json',
+					format: 'figmaTokens',
+				},
+			],
+		},
 	},
 };

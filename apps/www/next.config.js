@@ -6,7 +6,7 @@ const moduleExports = {
 		domains: [
 			'cdn.sanity.io',
 			'via.placeholder.com',
-			'lh3.googleusercontent.com'
+			'lh3.googleusercontent.com',
 		],
 	},
 	async redirects() {

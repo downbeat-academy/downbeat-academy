@@ -22,7 +22,7 @@ export const FeaturedContent = ({ featuredObj }) => {
 		blurUpImageWidth: 100,
 		blueUpImageQuality: 40,
 		blurUpAmount: 24,
-	})
+	});
 
 	return (
 		<Wrapper>

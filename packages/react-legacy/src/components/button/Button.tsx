@@ -99,8 +99,8 @@ export const Button = styled('button', {
 					background: '$pomegranate400',
 					boxShadow: 'inset 0 0 0 2px $colors$pomegranate400, inset 0 0 0 3px $colors$grayscale100',
 				},
-				'&:active': { 
-					background: '$pomegranate600'
+				'&:active': {
+					background: '$pomegranate600',
 				},
 			},
 		},

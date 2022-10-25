@@ -77,11 +77,11 @@
 
 // export { StyledLink } from './src/components/link'
 
-// export { 
-// 	Tooltip, 
-// 	TooltipProvider, 
-// 	TooltipTrigger, 
-// 	TooltipContent, 
+// export {
+// 	Tooltip,
+// 	TooltipProvider,
+// 	TooltipTrigger,
+// 	TooltipContent,
 // 	TooltipArrow
 // } from './src/components/tooltip'
 

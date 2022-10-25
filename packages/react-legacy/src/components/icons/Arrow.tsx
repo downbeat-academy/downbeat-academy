@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '../../stitches.config'
+import { styled } from '../../stitches.config';
 
 interface Props {
 	size?: any;
@@ -104,9 +104,9 @@ const ArrowWrapper = styled('svg', {
 			up: { transform: 'rotate(180deg)' },
 			left: { transform: 'rotate(90deg)' },
 			right: { transform: 'rotate(-90deg)' },
-		}
+		},
 	},
 	defaultVariants: {
 		size: 'small',
 	},
-})
+});

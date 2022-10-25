@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { styled, Button } from 'cadence-design-system';
-import { useUser } from '@auth0/nextjs-auth0'
+import { useUser } from '@auth0/nextjs-auth0';
 
 export const NavLinks = ({ viewport, scroll }) => {
-
 	const { user } = useUser();
-	
+
 	return (
 		<NavLinksWrapper viewport={viewport}>
 			<Links>
@@ -45,8 +44,7 @@ export const NavLinks = ({ viewport, scroll }) => {
 							Join for free
 						</Button>
 					</Link>
-					) : null				
-				}
+				) : null}
 			</AccountActions>
 		</NavLinksWrapper>
 	);

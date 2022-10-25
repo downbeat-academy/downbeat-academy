@@ -51,9 +51,9 @@ export const PostCard = ({ postObj }) => {
 						}}
 					>
 						<Avatar size="small">
-							<Image 
+							<Image
 								{...authorImageProps}
-								layout="responsive" 
+								layout="responsive"
 								alt={authors[0].name}
 							/>
 						</Avatar>

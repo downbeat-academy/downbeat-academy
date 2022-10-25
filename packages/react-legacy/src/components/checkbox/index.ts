@@ -1,1 +1,1 @@
-export { Checkbox, Indicator } from './Checkbox'
+export { Checkbox, Indicator } from './Checkbox';

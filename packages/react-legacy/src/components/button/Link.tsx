@@ -10,7 +10,7 @@ export const Link = styled('a', {
 
 	'&:hover': {
 		cursor: 'pointer',
-		color: '$passionFruit700'
+		color: '$passionFruit700',
 	},
 
 	'&:focus': { color: '$passionFruit800' },
@@ -18,7 +18,7 @@ export const Link = styled('a', {
 	variants: {
 		context: {
 			inline: { display: 'inline' },
-			block: { display: 'flex' }
-		}
-	}
+			block: { display: 'flex' },
+		},
+	},
 });

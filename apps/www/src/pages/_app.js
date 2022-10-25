@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import * as Fathom from 'fathom-client';
-import { UserProvider } from '@auth0/nextjs-auth0'
+import { UserProvider } from '@auth0/nextjs-auth0';
 import { globalStyles } from '@styles/globalStyles';
 import { Header, Footer } from '@components/navigation';
 import { styled, TooltipProvider } from 'cadence-design-system';

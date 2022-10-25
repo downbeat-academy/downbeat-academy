@@ -1,15 +1,9 @@
 import Link from 'next/link';
-import {
-	styled,
-	Flex,
-	Paragraph,
-	Button,
-	Badge,
-} from 'cadence-design-system';
-import { useUser } from '@auth0/nextjs-auth0'
+import { styled, Flex, Paragraph, Button, Badge } from 'cadence-design-system';
+import { useUser } from '@auth0/nextjs-auth0';
 
 export const Secondary = () => {
-	const { user, error, isLoading } = useUser()
+	const { user, error, isLoading } = useUser();
 
 	return (
 		<SecondaryWrapper>
@@ -31,41 +25,45 @@ export const Secondary = () => {
 						</Flex>
 					</BannerLink>
 				</Link>
-				{
-					!user ? (
-						<SecondaryActions
-							direction="row"
-							align="center"
-							gap="3"
-							className="login-actions"
+				{!user ? (
+					<SecondaryActions
+						direction="row"
+						align="center"
+						gap="3"
+						className="login-actions"
+					>
+						<Link href="/for-educators" passHref>
+							<Button size="small" variant="ghost" as="a">
+								For educators
+							</Button>
+						</Link>
+						<Link href="/api/auth/login" passHref>
+							<Button size="small" variant="ghost" as="a">
+								Login
+							</Button>
+						</Link>
+					</SecondaryActions>
+				) : (
+					<SecondaryActions direction="row" align="center" gap="4">
+						<Paragraph
+							context="interface"
+							size="small"
+							css={{ marginBottom: '0' }}
 						>
-							<Link href="/for-educators" passHref>
-								<Button size="small" variant="ghost" as="a">
-									For educators
-								</Button>
-							</Link>
-							<Link href="/api/auth/login" passHref>
-								<Button size="small" variant="ghost" as="a">
-									Login
-								</Button>
-							</Link>
-						</SecondaryActions>
-					) : (
-						<SecondaryActions
-							direction="row"
-							align="center"
-							gap="4"
-						>
-							<Paragraph context='interface' size='small' css={{ marginBottom: '0' }}>{user.name}</Paragraph>
-							<Link href='/account' passHref>
-								<Button size='small' variant='tertiary' as='a'>Account</Button>
-							</Link>
-							<Link href='/api/auth/logout' passHref>
-								<Button size='small' variant='ghost' as='a'>Log out</Button>
-							</Link>
-						</SecondaryActions>
-					)
-				}
+							{user.name}
+						</Paragraph>
+						<Link href="/account" passHref>
+							<Button size="small" variant="tertiary" as="a">
+								Account
+							</Button>
+						</Link>
+						<Link href="/api/auth/logout" passHref>
+							<Button size="small" variant="ghost" as="a">
+								Log out
+							</Button>
+						</Link>
+					</SecondaryActions>
+				)}
 			</ContentWrapper>
 		</SecondaryWrapper>
 	);

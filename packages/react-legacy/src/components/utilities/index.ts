@@ -1,1 +1,1 @@
-export { SvgWrapper } from './SvgWrapper'
+export { SvgWrapper } from './SvgWrapper';

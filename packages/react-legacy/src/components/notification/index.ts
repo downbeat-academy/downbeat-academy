@@ -1,1 +1,1 @@
-export { InlineNotification } from './InlineNotification'
+export { InlineNotification } from './InlineNotification';

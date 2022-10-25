@@ -151,8 +151,10 @@ export const {
 			10: '80px',
 		},
 		fonts: {
-			displayHeadline: 'Favorit Expanded, Helvetica, Arial, sans-serif',
-			interfaceHeadline: 'Favorit, Helvetica, Arial, sans-serif',
+			displayHeadline:
+				'Favorit Expanded, Helvetica, Arial, sans-serif',
+			interfaceHeadline:
+				'Favorit, Helvetica, Arial, sans-serif',
 			displayBody: 'Tiempos Text, Georgia, Times, serif',
 			interfaceBody: 'Favorit, Helvetica, Arial, sans-serif',
 			mono: 'Favorit Mono, Courier, monospace',
@@ -181,8 +183,10 @@ export const {
 			interfaceH1: 'clamp(1.8rem, 1.88vw + 1.36rem, 3.05rem)',
 			interfaceH2: 'clamp(1.6rem, 1.26vw + 1.31rem, 2.44rem)',
 			interfaceH3: 'clamp(1.42rem, 0.8vw + 1.24rem, 1.95rem)',
-			interfaceH4: 'clamp(1.27rem, 0.45vw + 1.16rem, 1.56rem)',
-			interfaceH5: 'clamp(1.13rem, 0.19vw + 1.08rem, 1.25rem)',
+			interfaceH4:
+				'clamp(1.27rem, 0.45vw + 1.16rem, 1.56rem)',
+			interfaceH5:
+				'clamp(1.13rem, 0.19vw + 1.08rem, 1.25rem)',
 			interfaceH6: 'clamp(1rem, 0vw + 1rem, 1rem)',
 		},
 		lineHeights: {
@@ -304,7 +308,7 @@ export const darkTheme = createTheme({
 		grayscale800: '#e5e5e9',
 		grayscale900: '#f5f5f5',
 		grayscale1000: '#ffffff',
-	}
-})
+	},
+});
 
 export type CSS = Stitches.CSS<typeof config>;
