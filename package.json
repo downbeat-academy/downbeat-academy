@@ -9,7 +9,7 @@
 		"build": "turbo run build",
 		"test": "turbo run text",
 		"lint": "turbo run lint",
-		"format-all": "prettier --write .",
+		"prettier": "prettier --write .",
 		"dev": "turbo run dev",
 		"core:dev": "yarn workspace @downbeat-academy/cadence-core dev",
 		"core:build": "yarn workspace @downbeat-academy/cadence-core build",
