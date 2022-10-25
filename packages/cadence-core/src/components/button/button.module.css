@@ -25,19 +25,19 @@
 
 .primary {
 	color: var(--color-foreground-high-contrast);
-	background: var(--color-palette-passion-fruit-600);
-	border-color: var(--color-palette-passion-fruit-700);
+	background: var(--color-palette-blueberry-600);
+	border-color: var(--color-palette-blueberry-700);
 
 	&:hover {
 		color: var(--color-foreground-high-contrast);
-		background: var(--color-palette-passion-fruit-700);
-		border-color: var(--color-palette-passion-fruit-800);
+		background: var(--color-palette-blueberry-700);
+		border-color: var(--color-palette-blueberry-800);
 	}
 
 	&:active {
 		color: var(--color-foreground-high-contrast);
-		background: var(--color-palette-passion-fruit-800);
-		border-color: var(--color-palette-passion-fruit-900);
+		background: var(--color-palette-blueberry-800);
+		border-color: var(--color-palette-blueberry-900);
 	}
 }
 
