@@ -1,5 +1,5 @@
 {
-	"name": "@downbeat-academy/cadence",
+	"name": "downbeat-academy",
 	"private": true,
 	"workspaces": [
 		"packages/*",
@@ -13,7 +13,9 @@
 		"dev": "turbo run dev",
 		"core:dev": "yarn workspace @downbeat-academy/cadence-core dev",
 		"core:build": "yarn workspace @downbeat-academy/cadence-core build",
+		"core:publish": "cd packages/cadence-core && npm publish",
 		"tokens:build": "yarn workspace @downbeat-academy/cadence-tokens build",
+		"tokens:publish": "cd packages/cadence-tokens && yarn build && npm publish",
 		"docs:dev": "yarn workspace @downbeat-academy/cadence-docs dev",
 		"www:dev": "yarn workspace @downbeat-academy/www dev",
 		"www:build": "yarn workspace @downbeat-academy/www build",
