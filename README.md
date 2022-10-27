@@ -2,19 +2,54 @@
 
 This is the monorepo for all Downbeat Academy projects, managed with Yarn workspaces.
 
-## Contents
+# Contents
 
--   Apps
-    -   `www`: Main Downbeat Academy website
-    -   `sanity-cms`: Instance of the Sanity Studio for managing content on `www`
-    -   `cadence-docs`: Documentation for the Cadence Design System
--   Packages
-    -   `cadence-core`: Primary library for Cadence components and assets
-    -   `cadence-icons`: (Coming soon) Icon library for the Cadence Design System
-    -   `cadence-tokens`: Core tokens managed and built with `style-dictionary`
-    -   `cadence-utils`: (Coming soon) Utility library for the Cadence Design system
-    -   `typeface-favorit`: Package for sharing the ABC Favorit typeface
-    -   `typeface-tiempos-text`: Package for sharing the Tiempos Text typeface
+## Apps
+
+### `www`
+
+-   Main Downbeat Academy website
+-   Built with Next.js and Cadence Design System components and tokens.
+-   View at [downbeatacademy.com](https://downbeatacademy.com).
+
+### `sanity-cms`
+
+-   Instance of Sanity Studio for managing content on `www`
+
+### `cadence-docs`
+
+-   Documentation website for the Cadence Design System
+-   View at [cadence.downbeatacademy.com](https://cadence.downbeatacademy.com)
+
+## Packages
+
+These are the packages used to build and maintain Downbeat Academy applications, including the Cadence Design System
+
+### `cadence-core`
+
+-   Primary library for the Cadence Design System
+-   React components compiled using [Vite](https://vitejs.dev)
+
+### `cadence-icons`
+
+-   Icon library for the Cadence Design System
+
+### `cadence-tokens`
+
+-   Global and semantic tokens for the Cadence Design System
+-   Managed and built with `style-dictionary`
+
+### `cadence-utils` (Coming soon!)
+
+-   Utilities for managing and building the Cadence Design System
+
+### `typeface-favorit`
+
+-   Font dependencies for ABC Favorit
+
+### `typeface-tiempos-text`
+
+-   Font dependencies for Tiempos Text
 
 ## Other notes
 
