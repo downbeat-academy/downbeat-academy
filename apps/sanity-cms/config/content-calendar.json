@@ -1,0 +1,14 @@
+{
+	"types": [
+		{
+			"type": "article",
+			"field": "date",
+			"titleField": "title"
+		},
+		{
+			"type": "resource",
+			"field": "date",
+			"titleField": "title"
+		}
+	]
+}

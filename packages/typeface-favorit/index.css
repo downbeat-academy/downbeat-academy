@@ -1,0 +1,35 @@
+@font-face {
+	font-family: 'Favorit Std';
+	font-style: normal;
+	font-display: swap;
+	font-weight: normal;
+	src: url('./files/std/FavoritStd-Regular.woff') format('woff'),
+		url('./files/std/FavoritStd-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Favorit Std';
+	font-style: italic;
+	font-display: swap;
+	font-weight: normal;
+	src: url('./files/std/FavoritStd-Italic.woff') format('woff'),
+		url('./files/std/FavoritStd-Italic.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Favorit Std';
+	font-style: normal;
+	font-display: swap;
+	font-weight: bold;
+	src: url('./files/std/FavoritStd-Bold.woff') format('woff'),
+		url('./files/std/FavoritStd-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Favorit Std';
+	font-style: normal;
+	font-display: swap;
+	font-weight: bold;
+	src: url('./files/std/FavoritStd-BoldItalic.woff') format('woff'),
+		url('./files/std/FavoritStd-BoldItalic.woff2') format('woff2');
+}

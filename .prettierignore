@@ -1,10 +1,10 @@
 node_modules
 .turbo
 
-apps/downbeatacademy-web/.next
-apps/downbeatacademy-web/.swc
-apps/downbeatacademy-web/.turbo
-apps/downbeatacademy-web/node_modules
+apps/www/.next
+apps/www/.swc
+apps/www/.turbo
+apps/www/node_modules
 
 apps/sanity-cms/.turbo
 apps/sanity-cms/dist
@@ -12,10 +12,6 @@ apps/sanity-cms/node_modules
 apps/sanity-cms/static
 apps/sanity-cms/public
 
-packages/cadence-design-system/components/.turbo
-packages/cadence-design-system/components/dist
-packages/cadence-design-system/components/node_modules
-
-packages/tokens/build
+packages/tokens/dist
 
 packages/archive-cadence-design-system

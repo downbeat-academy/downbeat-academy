@@ -1,24 +1,26 @@
 {
-	"name": "@downbeat-academy/cadence",
+	"name": "downbeat-academy",
 	"private": true,
 	"workspaces": [
-		"packages/*"
+		"packages/*",
+		"apps/*"
 	],
 	"scripts": {
 		"build": "turbo run build",
 		"test": "turbo run text",
 		"lint": "turbo run lint",
-		"format-all": "prettier --write .",
+		"prettier": "prettier --write .",
 		"dev": "turbo run dev",
-		"release-all": "yarn release-web-components && yarn release-tokens && yarn release-react",
-		"dev-stencil": "yarn workspace @downbeat-academy/web-components start",
-		"build-stencil": "yarn workspace @downbeat-academy/web-components build",
-		"release-web-components": "yarn workspace @downbeat-academy/web-components publish",
-		"dev-tokens": "yarn workspace @downbeat-academy/tokens style-dictionary",
-		"build-tokens": "yarn workspace @downbeat-academy/tokens build",
-		"release-tokens": "yarn workspace @downbeat-academy/tokens build && yarn workspace @downbeat-academy/tokens publish",
-		"build-react": "yarn workspace @downbeat-academy/react-components build",
-		"release-react": "yarn build-react && yarn workspace @downbeat-academy/react-components publish"
+		"core:dev": "yarn workspace @downbeat-academy/cadence-core dev",
+		"core:build": "yarn workspace @downbeat-academy/cadence-core build",
+		"core:publish": "cd packages/cadence-core && npm publish",
+		"tokens:build": "yarn workspace @downbeat-academy/cadence-tokens build",
+		"tokens:publish": "cd packages/cadence-tokens && yarn build && npm publish",
+		"docs:dev": "yarn workspace @downbeat-academy/cadence-docs dev",
+		"www:dev": "yarn workspace @downbeat-academy/www dev",
+		"www:build": "yarn workspace @downbeat-academy/www build",
+		"cms:dev": "yarn workspace @downbeat-academy/sanity-cms sanity start",
+		"cms:build": "yarn workspace @downbeat-academy/sanity-cms sanity build"
 	},
 	"devDependencies": {
 		"concurrently": "^7.2.2",
@@ -26,6 +28,7 @@
 		"turbo": "^1.3.1"
 	},
 	"dependencies": {
+		"@changesets/cli": "^2.25.0",
 		"@types/prettier": "2.6.0"
 	}
 }
