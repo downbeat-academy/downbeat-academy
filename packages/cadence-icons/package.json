@@ -19,9 +19,9 @@
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "tsc && yarn svgr && vite build",
 		"preview": "vite preview",
-		"optimize": "rimraf ./optimized & svgo -q -p 8 -f ./raw -o ./optimized"
+    "svgr": "svgr --icon --title-prop --no-dimensions --typescript -d src/components src/assets"
 	},
 	"dependencies": {
 		"classnames": "^2.3.2",
@@ -34,8 +34,6 @@
 		"@types/react-dom": "^18.0.7",
 		"@vitejs/plugin-react": "^2.2.0",
 		"postcss-nesting": "^10.2.0",
-		"rimraf": "^3.0.2",
-		"svgo": "^3.0.0",
 		"typescript": "^4.6.4",
 		"vite": "^3.2.0",
 		"vite-plugin-css-injected-by-js": "^2.1.1",
