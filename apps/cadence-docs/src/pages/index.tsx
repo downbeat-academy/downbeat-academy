@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import SvgCheckCircle from '@downbeat-academy/cadence-icons'
 
 const Home: NextPage = () => {
 	return (
