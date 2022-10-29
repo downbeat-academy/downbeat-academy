@@ -5,7 +5,7 @@
 	font-size: var(--font-size);
 	line-height: var(--line-height);
 	color: var(--color);
-	margin: 0 1rem;
+	margin: 1rem 0;
 	text-decoration: none;
 }
 

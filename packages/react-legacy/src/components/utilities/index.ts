@@ -1,1 +1,0 @@
-export { SvgWrapper } from './SvgWrapper';
