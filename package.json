@@ -17,6 +17,7 @@
 		"tokens:build": "yarn workspace @downbeat-academy/cadence-tokens build",
 		"tokens:publish": "cd packages/cadence-tokens && yarn build && npm publish",
 		"docs:dev": "yarn workspace @downbeat-academy/cadence-docs dev",
+		"docs:build": "yarn workspace @downbeat-academy/cadence-docs build",
 		"www:dev": "yarn workspace @downbeat-academy/www dev",
 		"www:build": "yarn workspace @downbeat-academy/www build",
 		"cms:dev": "yarn workspace @downbeat-academy/sanity-cms sanity start",
