@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import { MDXProvider } from '../lib/mdxProvider'
+import { MDXProvider } from '../lib/mdxProvider';
 import '../styles/global.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<MDXProvider>
 			<Component {...pageProps} />
 		</MDXProvider>
-	)
+	);
 }
 
 export default MyApp;

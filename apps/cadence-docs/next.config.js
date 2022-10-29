@@ -10,12 +10,12 @@ const withMDX = require('@next/mdx')({
 	options: {
 		remarkPlugins: [],
 		rehypePlugins: [],
-		providerImportSource: "@mdx-js/react",
-	}
-})
+		providerImportSource: '@mdx-js/react',
+	},
+});
 
 module.exports = withMDX({
-	pageExtensions: [ 'ts', 'tsx', 'js', 'jsx', 'md', 'mdx' ],
+	pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 	reactStrictMode: true,
 	swcMinify: true,
 });
