@@ -6,9 +6,11 @@
     "filenameCase": "pascal",
     "prettier": true,
     "replaceAttrValues": {
-        "#1C1C1C": "{props.color}"
+        "#1C1C1C": "{props.color}",
+        "1em": "{props.height}"
     },
     "svgProps": {
         "role": "img"
+
     }
 }
