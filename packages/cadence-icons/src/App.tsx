@@ -4,7 +4,6 @@ function App() {
 	return (
 		<div className="App">
 			<h1>Cadence icons</h1>
-      <SvgCheckCircle />
 		</div>
 	);
 }

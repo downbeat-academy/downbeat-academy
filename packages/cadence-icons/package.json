@@ -21,7 +21,7 @@
 		"dev": "vite",
 		"build": "tsc && yarn svgr && vite build",
 		"preview": "vite preview",
-    "svgr": "svgr --icon --title-prop --no-dimensions --typescript -d src/components src/assets"
+		"svgr": "svgr --icon --title-prop --no-dimensions --typescript -d src/components src/assets"
 	},
 	"dependencies": {
 		"classnames": "^2.3.2",
@@ -29,6 +29,7 @@
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
+		"@svgr/cli": "^6.5.1",
 		"@testing-library/react": "^13.4.0",
 		"@types/react": "^18.0.22",
 		"@types/react-dom": "^18.0.7",
@@ -38,6 +39,7 @@
 		"vite": "^3.2.0",
 		"vite-plugin-css-injected-by-js": "^2.1.1",
 		"vite-plugin-dts": "^1.6.6",
+		"vite-plugin-svgr": "^2.2.2",
 		"vite-tsconfig-paths": "^3.5.2",
 		"vitest": "^0.24.3"
 	}
