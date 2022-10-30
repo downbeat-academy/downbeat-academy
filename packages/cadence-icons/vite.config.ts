@@ -5,7 +5,6 @@ import dts from 'vite-plugin-dts';
 import tsConfigPaths from 'vite-tsconfig-paths';
 import postcssNesting from 'postcss-nesting';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-import svgr from 'vite-plugin-svgr'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,21 +16,6 @@ export default defineConfig({
 			include: ['src/components'],
 		}),
 		cssInjectedByJsPlugin(),
-		// svgr({
-		// 	svgrOptions: {
-		// 		typescript: true,
-		// 		icon: true,
-		// 		dimensions: false,
-		// 		titleProp: true,
-		// 		filenameCase: 'kebab',
-		// 		svgProps: {
-		// 			role: 'img',
-		// 		}
-		// 	},
-		// 	esbuildOptions: {
-		// 	},
-		// 	include: '**/*.svg',
-		// }),
 	],
 	build: {
 		lib: {

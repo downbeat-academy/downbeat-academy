@@ -22,7 +22,7 @@
 		"build": "tsc && yarn icons:build && vite build",
 		"preview": "vite preview",
     "clean": "rimraf src/components",
-		"svgr": "svgr --typescript --icon --no-dimensions --title-prop --filename-case=pascal --out-dir src/components src/assets",
+    "svgr": "svgr --config-file .svgrrc.json --out-dir src/components src/assets",
     "icons:build": "yarn clean && yarn svgr"
 	},
 	"dependencies": {
