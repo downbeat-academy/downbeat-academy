@@ -17,11 +17,21 @@ export default defineConfig({
 			include: ['src/components'],
 		}),
 		cssInjectedByJsPlugin(),
-		svgr({
-			svgrOptions: {},
-			esbuildOptions: {},
-			include: '**/*.svg',
-		}),
+		// svgr({
+		// 	svgrOptions: {
+		// 		typescript: true,
+		// 		icon: true,
+		// 		dimensions: false,
+		// 		titleProp: true,
+		// 		filenameCase: 'kebab',
+		// 		svgProps: {
+		// 			role: 'img',
+		// 		}
+		// 	},
+		// 	esbuildOptions: {
+		// 	},
+		// 	include: '**/*.svg',
+		// }),
 	],
 	build: {
 		lib: {
