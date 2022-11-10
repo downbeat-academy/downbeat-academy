@@ -1,4 +1,12 @@
 export { default as AlertTriangleOutline } from './AlertTriangleOutline';
+export { default as ArrowBarDown } from './ArrowBarDown';
+export { default as ArrowBarLeft } from './ArrowBarLeft';
+export { default as ArrowBarRight } from './ArrowBarRight';
+export { default as ArrowBarToDown } from './ArrowBarToDown';
+export { default as ArrowBarToLeft } from './ArrowBarToLeft';
+export { default as ArrowBarToRight } from './ArrowBarToRight';
+export { default as ArrowBarToUp } from './ArrowBarToUp';
+export { default as ArrowBarUp } from './ArrowBarUp';
 export { default as CheckCircleOutline } from './CheckCircleOutline';
 export { default as InfoCircleOutline } from './InfoCircleOutline';
 export { default as MinusCircleOutline } from './MinusCircleOutline';
