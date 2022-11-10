@@ -12,25 +12,25 @@ const SvgQuestionCircleOutline = ({
 	<svg
 		width={props.height}
 		height={props.height}
-		strokeWidth={1.98}
 		viewBox="0 0 24 24"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
-		color="#000"
 		role="img"
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 17v.01"
 			stroke="#000"
+			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>
 		<path
-			d="M9 9c0-3.5 5.5-3.5 5.5 0 0 2.5-2.5 2-2.5 5m0 4.01.01-.011"
+			d="M12 13.5a1.5 1.5 0 0 1 1-1.5 2.6 2.6 0 1 0-3-4"
 			stroke="#000"
+			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>

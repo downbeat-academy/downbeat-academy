@@ -4,7 +4,7 @@ interface SVGRProps {
 	title?: string;
 	titleId?: string;
 }
-const SvgWarningCircleOutline = ({
+const SvgAlertTriangleOutline = ({
 	title,
 	titleId,
 	...props
@@ -12,22 +12,21 @@ const SvgWarningCircleOutline = ({
 	<svg
 		width={props.height}
 		height={props.height}
-		strokeWidth={1.98}
 		viewBox="0 0 24 24"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
-		color="#000"
 		role="img"
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			d="M12 7v6m0 4.01.01-.011M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+			d="M12 10v2m0 4v.01M5 20h14a2 2 0 0 0 1.84-2.75L13.74 5a2 2 0 0 0-3.5 0l-7.1 12.25A2 2 0 0 0 4.89 20"
 			stroke="#000"
+			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>
 	</svg>
 );
-export default SvgWarningCircleOutline;
+export default SvgAlertTriangleOutline;

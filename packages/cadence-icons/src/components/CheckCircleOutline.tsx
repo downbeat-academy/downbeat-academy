@@ -21,15 +21,15 @@ const SvgCheckCircleOutline = ({
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			d="m7 12.5 3 3 7-7"
-			stroke="#1C1C1C"
+			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
+			stroke="#000"
 			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>
 		<path
-			d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"
-			stroke="#1C1C1C"
+			d="m9 12 2 2 4-4"
+			stroke="#000"
 			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"

@@ -12,19 +12,18 @@ const SvgMinusCircleOutline = ({
 	<svg
 		width={props.height}
 		height={props.height}
-		strokeWidth={1.98}
 		viewBox="0 0 24 24"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
-		color="#000"
 		role="img"
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			d="M8 12h8m-4 10c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM9 12h6"
 			stroke="#000"
+			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 		/>
