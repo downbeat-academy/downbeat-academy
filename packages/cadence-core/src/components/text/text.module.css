@@ -21,6 +21,8 @@
 
 /* Size */
 
+/* Expressive type */
+
 .expressive.6x-large {
 	--font-size: var(--typography-font-size-fixed-expressive-6x-large);
 }
@@ -52,6 +54,8 @@
 .expressive.x-small {
 	--font-size: var(--typography-font-size-fixed-expressive-x-small);
 }
+
+/* Productive type */
 
 .productive.4x-large {
 	--font-size: var(--typography-font-size-fixed-productive-4x-large);

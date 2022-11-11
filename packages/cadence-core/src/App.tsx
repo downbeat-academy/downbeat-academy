@@ -26,22 +26,22 @@ function App() {
 				</Text>
 			</div>
 			<div>
-				<Text tag="h1" type="productive" size="6x-large">
+				<Text tag="h1" type="productive" size="4x-large">
 					Headline 1
 				</Text>
-				<Text tag="h2" type="productive">
+				<Text tag="h2" type="productive" size='3x-large'>
 					Headline 2
 				</Text>
-				<Text tag="h3" type="productive">
+				<Text tag="h3" type="productive" size='2x-large'>
 					Headline 3
 				</Text>
-				<Text tag="h4" type="productive">
+				<Text tag="h4" type="productive" size='x-large'>
 					Headline 4
 				</Text>
-				<Text tag="h5" type="productive">
+				<Text tag="h5" type="productive" size='large'>
 					Headline 5
 				</Text>
-				<Text tag="h6" type="productive">
+				<Text tag="h6" type="productive" size='base'>
 					Headline 6
 				</Text>
 			</div>
