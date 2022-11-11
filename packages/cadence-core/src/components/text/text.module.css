@@ -59,27 +59,35 @@
 
 .productive.4x-large {
 	--font-size: var(--typography-font-size-fixed-productive-4x-large);
+	--font-size: var(--typography-line-height-productive-headline);
 }
 .productive.3x-large {
 	--font-size: var(--typography-font-size-fixed-productive-3x-large);
+	--font-size: var(--typography-line-height-productive-headline);
 }
 .productive.2x-large {
 	--font-size: var(--typography-font-size-fixed-productive-2x-large);
+	--font-size: var(--typography-line-height-productive-headline);
 }
 .productive.x-large {
 	--font-size: var(--typography-font-size-fixed-productive-x-large);
+	--font-size: var(--typography-line-height-productive-headline);
 }
 .productive.large {
 	--font-size: var(--typography-font-size-fixed-productive-large);
+	--font-size: var(--typography-line-height-productive-headline);
 }
 .productive.base {
 	--font-size: var(--typography-font-size-fixed-productive-base);
+	--font-size: var(--typography-line-height-productive-body);
 }
 .productive.small {
 	--font-size: var(--typography-font-size-fixed-productive-small);
+	--font-size: var(--typography-line-height-productive-body);
 }
 .productive.x-small {
 	--font-size: var(--typography-font-size-fixed-productive-x-small);
+	--font-size: var(--typography-line-height-productive-body);
 }
 
 /* Fluid */
@@ -114,4 +122,13 @@
 }
 .expressive.x-small.fluid {
 	--font-size: var(--typography-font-size-fluid-expressive-x-small);
+}
+
+/* Line Height */
+
+.line-height--headline {
+	--line-height: var(--typography-line-height-expressive-headline);
+}
+.line-height--body {
+	--line-height: var(--typography-line-height-expressive-body);
 }

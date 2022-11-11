@@ -10,9 +10,22 @@ const Text = ({
 	color = 'primary',
 	fluid = false,
 }: TextProps) => {
-	const classes = classnames(s.root, s[type], s[size], s[color], [
-		fluid ? s.fluid : null,
-	]);
+
+	const getLineHeight = (tag: string) => {
+		switch (tag) {
+			case 'h1' || 'h2' || 'h3' || 'h4' || 'h5' || 'h6': return 'headline';
+			case 'p' || 'span' || 'code' || 'pre' || 'sup' || 'sub': return 'body';
+		}
+	} 
+
+	const classes = classnames(
+		s.root,
+		s[type],
+		s[size],
+		s[color],
+		[fluid ? s.fluid : null,],
+		s['line-height--' + getLineHeight(tag)]
+	);
 
 	switch (tag) {
 		case 'h1':
