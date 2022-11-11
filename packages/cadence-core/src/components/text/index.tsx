@@ -16,7 +16,7 @@ const Text = ({
 			case 'h1' || 'h2' || 'h3' || 'h4' || 'h5' || 'h6': return 'headline';
 			case 'p' || 'span' || 'code' || 'pre' || 'sup' || 'sub': return 'body';
 		}
-	} 
+	}
 
 	const classes = classnames(
 		s.root,
