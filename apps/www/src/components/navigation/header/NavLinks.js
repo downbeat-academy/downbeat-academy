@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { styled } from 'cadence-design-system';
-import { Button } from '@downbeat-academy/cadence-core'
+import { Button } from '@downbeat-academy/cadence-core';
 import { useUser } from '@auth0/nextjs-auth0';
 
 export const NavLinks = ({ viewport, scroll }) => {
@@ -40,7 +40,7 @@ export const NavLinks = ({ viewport, scroll }) => {
 							size={`${scroll ? 'small' : 'default'}`}
 							variant="primary"
 							onClick='fathom.trackGoal("BS0TJPWH", 0)'
-							text='Join for free'
+							text="Join for free"
 						/>
 					</Link>
 				) : null}

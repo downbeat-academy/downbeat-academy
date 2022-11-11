@@ -28,7 +28,7 @@ interface TextProps {
 		| 'small'
 		| 'x-small';
 	color?: 'primary' | 'secondary' | 'dark' | 'light';
-	fluid?: boolean,
+	fluid?: boolean;
 }
 
 export type { TextProps };

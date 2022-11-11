@@ -1,0 +1,49 @@
+{
+	"name": "@downbeat-academy/cadence-icons",
+	"private": false,
+	"version": "0.1.0",
+	"type": "module",
+	"license": "MPL-2.0",
+	"author": "Jory Tindall <jory@downbeatacademy.com",
+	"fils": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"import": "./dist/cadence-icons.es.js",
+			"export": "./dist/cadence-icons.umd.js"
+		}
+	},
+	"main": "./dist/cadence-icons.umd.js",
+	"module": "./dist/cadence-icons.es.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && yarn icons:build && vite build",
+		"preview": "vite preview",
+		"clean": "rimraf src/components",
+		"svgr": "svgr --config-file .svgrrc.json --out-dir src/components src/assets",
+		"icons:build": "yarn clean && yarn svgr"
+	},
+	"dependencies": {
+		"classnames": "^2.3.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@svgr/cli": "^6.5.1",
+		"@testing-library/react": "^13.4.0",
+		"@types/react": "^18.0.22",
+		"@types/react-dom": "^18.0.7",
+		"@vitejs/plugin-react": "^2.2.0",
+		"postcss-nesting": "^10.2.0",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.6.4",
+		"vite": "^3.2.0",
+		"vite-plugin-css-injected-by-js": "^2.1.1",
+		"vite-plugin-dts": "^1.6.6",
+		"vite-plugin-svgr": "^2.2.2",
+		"vite-tsconfig-paths": "^3.5.2",
+		"vitest": "^0.24.3"
+	}
+}
