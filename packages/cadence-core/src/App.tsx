@@ -5,10 +5,15 @@ function App() {
 	return (
 		<div>
 			<h1>Testing playground</h1>
-			<div>
-				<Text tag='p' size='base' type='expressive'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
-				<Text tag='p' size='large' type='expressive'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
-			</div>
+			<Text type='expressive' size='6x-large' tag='h1' color='primary'>Primary</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='secondary'>Secondary</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='strong'>Strong</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='brand'>Brand</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='interactive'>Interactive</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='disabled'>Disabled</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='success'>Success</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='caution'>Caution</Text>
+			<Text type='expressive' size='6x-large' tag='h1' color='critical'>Critical</Text>
 		</div>
 	);
 }

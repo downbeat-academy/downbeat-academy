@@ -9,119 +9,119 @@
 	text-decoration: none;
 }
 
-/* Type */
+/* Type with nested size and fluid property */
 
-.expressive {
+.type--expressive {
 	--font-family: var(--typography-font-family-expressive-headline);
+
+	&.6x-large {
+		--font-size: var(--typography-font-size-fixed-expressive-6x-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-6x-large);
+		}
+	}
+
+	&.5x-large {
+		--font-size: var(--typography-font-size-fixed-expressive-5x-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-5x-large);
+		}
+	}
+
+	&.4x-large {
+		--font-size: var(--typography-font-size-fixed-expressive-4x-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-4x-large);
+		}
+	}
+
+	&.3x-large {
+		--font-size: var(--typography-font-size-fixed-expressive-3x-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-3x-large);
+		}
+	}
+
+	&.2x-large {
+		--font-size: var(--typography-font-size-fixed-expressive-2x-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-2x-large);
+		}
+	}
+
+	&.x-large {
+		--font-size: var(--typography-font-size-fixed-expressive-x-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-x-large);
+		}
+	}
+
+	&.large {
+		--font-size: var(--typography-font-size-fixed-expressive-large);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-large);
+		}
+	}
+
+	&.base {
+		--font-size: var(--typography-font-size-fixed-expressive-base);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-base);
+		}
+	}
+
+	&.small {
+		--font-size: var(--typography-font-size-fixed-expressive-small);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-small);
+		}
+	}
+
+	&.x-small {
+		--font-size: var(--typography-font-size-fixed-expressive-x-small);
+
+		&.fluid {
+			--font-size: var(--typography-font-size-fluid-expressive-x-small);
+		}
+	}
 }
 
-.productive {
+.type--productive {
 	--font-family: var(--typography-font-family-productive-headline);
-}
 
-/* Size */
-
-/* Expressive type */
-
-.expressive.6x-large {
-	--font-size: var(--typography-font-size-fixed-expressive-6x-large);
-}
-
-.expressive.5x-large {
-	--font-size: var(--typography-font-size-fixed-expressive-5x-large);
-}
-.expressive.4x-large {
-	--font-size: var(--typography-font-size-fixed-expressive-4x-large);
-}
-.expressive.3x-large {
-	--font-size: var(--typography-font-size-fixed-expressive-3x-large);
-}
-.expressive.2x-large {
-	--font-size: var(--typography-font-size-fixed-expressive-2x-large);
-}
-.expressive.x-large {
-	--font-size: var(--typography-font-size-fixed-expressive-x-large);
-}
-.expressive.large {
-	--font-size: var(--typography-font-size-fixed-expressive-large);
-}
-.expressive.base {
-	--font-size: var(--typography-font-size-fixed-expressive-base);
-}
-.expressive.small {
-	--font-size: var(--typography-font-size-fixed-expressive-small);
-}
-.expressive.x-small {
-	--font-size: var(--typography-font-size-fixed-expressive-x-small);
-}
-
-/* Productive type */
-
-.productive.4x-large {
-	--font-size: var(--typography-font-size-fixed-productive-4x-large);
-	--font-size: var(--typography-line-height-productive-headline);
-}
-.productive.3x-large {
-	--font-size: var(--typography-font-size-fixed-productive-3x-large);
-	--font-size: var(--typography-line-height-productive-headline);
-}
-.productive.2x-large {
-	--font-size: var(--typography-font-size-fixed-productive-2x-large);
-	--font-size: var(--typography-line-height-productive-headline);
-}
-.productive.x-large {
-	--font-size: var(--typography-font-size-fixed-productive-x-large);
-	--font-size: var(--typography-line-height-productive-headline);
-}
-.productive.large {
-	--font-size: var(--typography-font-size-fixed-productive-large);
-	--font-size: var(--typography-line-height-productive-headline);
-}
-.productive.base {
-	--font-size: var(--typography-font-size-fixed-productive-base);
-	--font-size: var(--typography-line-height-productive-body);
-}
-.productive.small {
-	--font-size: var(--typography-font-size-fixed-productive-small);
-	--font-size: var(--typography-line-height-productive-body);
-}
-.productive.x-small {
-	--font-size: var(--typography-font-size-fixed-productive-x-small);
-	--font-size: var(--typography-line-height-productive-body);
-}
-
-/* Fluid */
-
-.expressive.6x-large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-6x-large);
-}
-
-.expressive.5x-large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-5x-large);
-}
-.expressive.4x-large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-4x-large);
-}
-.expressive.3x-large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-3x-large);
-}
-.expressive.2x-large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-2x-large);
-}
-.expressive.x-large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-x-large);
-}
-.expressive.large.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-large);
-}
-.expressive.base.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-base);
-}
-.expressive.small.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-small);
-}
-.expressive.x-small.fluid {
-	--font-size: var(--typography-font-size-fluid-expressive-x-small);
+	&.4x-large {
+		--font-size: var(--typography-font-size-fixed-productive-4x-large);
+	}
+	&.3x-large {
+		--font-size: var(--typography-font-size-fixed-productive-3x-large);
+	}
+	&.2x-large {
+		--font-size: var(--typography-font-size-fixed-productive-2x-large);
+	}
+	&.x-large {
+		--font-size: var(--typography-font-size-fixed-productive-x-large);
+	}
+	&.large {
+		--font-size: var(--typography-font-size-fixed-productive-large);
+	}
+	&.base {
+		--font-size: var(--typography-font-size-fixed-productive-base);
+	}
+	&.small {
+		--font-size: var(--typography-font-size-fixed-productive-small);
+	}
+	&.x-small {
+		--font-size: var(--typography-font-size-fixed-productive-x-small);
+	}
 }
 
 /* Line Height */
@@ -131,4 +131,37 @@
 }
 .line-height--body {
 	--line-height: var(--typography-line-height-expressive-body);
+}
+
+/* Color */
+
+.color--primary {
+	color: var(--color-foreground-primary);
+}
+.color--interactive {
+	color: var(--color-foreground-interactive-default);
+}
+.color--brand {
+	color: var(--color-foreground-brand-default);
+}
+.color--strong {
+	color: var(--color-foreground-strong);
+}
+.color--secondary {
+	color: var(--color-foreground-secondary);
+}
+.color--disabled {
+	color: var(--color-foreground-disabled);
+}
+.color--high-contrast {
+	color: var(--color-foreground-high-contrast);
+}
+.color--success {
+	color: var(--color-foreground-success-default);
+}
+.color--caution {
+	color: var(--color-foreground-caution-default);
+}
+.color--critical {
+	color: var(--color-foreground-critical-default);
 }

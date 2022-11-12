@@ -20,9 +20,9 @@ const Text = ({
 
 	const classes = classnames(
 		s.root,
-		s[type],
+		s['type--' + type],
 		s[size],
-		s[color],
+		s['color--' + color],
 		[fluid ? s.fluid : null,],
 		s['line-height--' + getLineHeight(tag)]
 	);

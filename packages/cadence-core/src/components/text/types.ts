@@ -27,7 +27,17 @@ interface TextProps {
 		| 'base'
 		| 'small'
 		| 'x-small';
-	color?: 'primary' | 'secondary' | 'dark' | 'light';
+	color?:
+		| 'primary'
+		| 'interactive'
+		| 'brand'
+		| 'strong'
+		| 'secondary'
+		| 'disabled'
+		| 'high-contrast'
+		| 'success'
+		| 'caution'
+		| 'critical'
 	fluid?: boolean;
 }
 

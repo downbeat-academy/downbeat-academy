@@ -30,7 +30,7 @@
 				}
 			},
 			"primary": {
-				"value": "{color.palette.neutral.800.value}",
+				"value": "{color.palette.neutral.900.value}",
 				"type": "color"
 			},
 			"strong": {
