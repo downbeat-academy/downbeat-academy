@@ -1,0 +1,13 @@
+# @downbeat-academy/cadence-core
+
+## 0.2.0
+
+### Minor Changes
+
+-   027ce9a: Added more config for Turborepo
+-   Small cleanup in the tokens, added Avatar and Text components to core
+-   2f8a1b2: Setup publishing to NPM
+
+### Patch Changes
+
+-   3835726: Initial changeset created
