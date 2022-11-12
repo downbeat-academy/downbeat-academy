@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-core
 
+## 0.3.0
+
+### Minor Changes
+
+-   Added support Avatar and AvatarGroup components
+
 ## 0.2.0
 
 ### Minor Changes
