@@ -3,6 +3,7 @@
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	box-sizing: border-box;
 
 	& img {
 		max-width: 100%;
@@ -28,4 +29,10 @@
 
 .rounded {
 	border-radius: 50%;
+}
+
+.hasBorder {
+	border-color: var(--color-palette-neutral-100);
+	border-width: 2px;
+	border-style: solid;
 }

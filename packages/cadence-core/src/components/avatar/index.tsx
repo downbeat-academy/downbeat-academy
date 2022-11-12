@@ -9,12 +9,14 @@ const Avatar = ({
     imageUrl,
     name,
     rounded = true,
+    hasBorder = false,
 }: AvatarProps) => {
 
     const classes = classnames(
         s.root,
         s['size--' + size],
-        {[s.rounded]: rounded}
+        {[s.rounded]: rounded},
+        {[s.hasBorder]: hasBorder},
     )
 
     const getSize = (size: string) => {

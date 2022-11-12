@@ -4,6 +4,7 @@ interface AvatarProps {
     imageUrl?: any,
     name?: string,
     rounded?: boolean,
+    hasBorder?: boolean,
 }
 
 export type { AvatarProps }

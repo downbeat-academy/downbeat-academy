@@ -26,6 +26,7 @@ function App() {
 				size='small'
 				name='Jory Tindall'
 				imageUrl='/images/avatar.jpg'
+				hasBorder={true}
 			/>
 			<Avatar
 				size='medium'
