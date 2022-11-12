@@ -1,83 +1,54 @@
 import React from 'react';
-import { Avatar, Text } from './components';
+import { Avatar, AvatarGroup, Text } from './components';
 import image from './assets/images/avatar.png'
 
 function App() {
 
 	const avatarImage = <img src={image} />;
+
+	const avatars = [
+		<Avatar
+			size='medium'
+			name='Jory Tindall'
+			imageUrl='/images/avatar.jpg'
+			hasBorder={true}
+		/>,
+		<Avatar
+			size='medium'
+			name='Jory Tindall'
+			hasBorder={true}
+		/>,
+		<Avatar
+			size='medium'
+			name='Alex Mankey'
+			hasBorder={true}
+		/>
+	]
 	return (
 		<div>
 			<Text tag='h1' size='6x-large' type='expressive'>Testing playground</Text>
-			<Text tag='p' size='base' type='expressive'>No image</Text>
-			<Avatar
-				size='small'
-				name='Jory Tindall'
+			<Text tag='p' size='base' type='expressive'>Avatar group</Text>
+			<AvatarGroup 
+				avatars={avatars}
+				direction='horizontal'
+				overlap={true}
+				overlapSpacing='compact'
 			/>
-			<Avatar
-				size='medium'
-				name='Jory Tindall'
+			<AvatarGroup 
+				avatars={avatars}
+				direction='horizontal'
+				overlap={true}
+				overlapSpacing='default'
 			/>
-			<Avatar
-				size='large'
-				name='Jory Tindall'
+			<AvatarGroup 
+				avatars={avatars}
+				direction='horizontal'
+				overlap={true}
+				overlapSpacing='comfortable'
 			/>
-			<Text tag='p' size='base' type='expressive'>Image passed via URL</Text>
-			<Avatar
-				size='small'
-				name='Jory Tindall'
-				imageUrl='/images/avatar.jpg'
-				hasBorder={true}
-			/>
-			<Avatar
-				size='medium'
-				name='Jory Tindall'
-				imageUrl='/images/avatar.jpg'
-			/>
-			<Avatar
-				size='large'
-				name='Jory Tindall'
-				imageUrl='/images/avatar.jpg'
-			/>
-			<Text tag='p' size='base' type='expressive'>Image passed as an object</Text>
-			<Avatar
-				size='small'
-				name='Jory Tindall'
-				imageObject={avatarImage}
-			/>
-			<Text tag='p' size='base' type='expressive'>No image, not rounded</Text>
-			<Avatar
-				size='small'
-				name='Jory Tindall'
-				rounded={false}
-			/>
-			<Avatar
-				size='medium'
-				name='Jory Tindall'
-				rounded={false}
-			/>
-			<Avatar
-				size='large'
-				name='Jory Tindall'
-				rounded={false}
-			/>
-			<Text tag='p' size='base' type='expressive'>Image passed via url, not rounded</Text>
-			<Avatar
-				size='small'
-				name='Jory Tindall'
-				imageUrl='/images/avatar.jpg'
-				rounded={false}
-			/>
-			<Avatar
-				size='medium'
-				name='Jory Tindall'
-				imageUrl='/images/avatar.jpg'
-				rounded={false}
-			/>
-			<Avatar
-				size='large'
-				name='Jory Tindall'
-				imageUrl='/images/avatar.jpg'
-				rounded={false}
+			<AvatarGroup 
+				avatars={avatars}
+				direction='horizontal'
 			/>
 		</div>
 	);
