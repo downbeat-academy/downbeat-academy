@@ -1,19 +1,83 @@
 import React from 'react';
-import { Text } from './components';
+import { Avatar, Text } from './components';
+import image from './assets/images/avatar.png'
 
 function App() {
+
+	const avatarImage = <img src={image} />;
 	return (
 		<div>
-			<h1>Testing playground</h1>
-			<Text type='expressive' size='6x-large' tag='h1' color='primary'>Primary</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='secondary'>Secondary</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='strong'>Strong</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='brand'>Brand</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='interactive'>Interactive</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='disabled'>Disabled</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='success'>Success</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='caution'>Caution</Text>
-			<Text type='expressive' size='6x-large' tag='h1' color='critical'>Critical</Text>
+			<Text tag='h1' size='6x-large' type='expressive'>Testing playground</Text>
+			<Text tag='p' size='base' type='expressive'>No image</Text>
+			<Avatar
+				size='small'
+				name='Jory Tindall'
+			/>
+			<Avatar
+				size='medium'
+				name='Jory Tindall'
+			/>
+			<Avatar
+				size='large'
+				name='Jory Tindall'
+			/>
+			<Text tag='p' size='base' type='expressive'>Image passed via URL</Text>
+			<Avatar
+				size='small'
+				name='Jory Tindall'
+				imageUrl='/images/avatar.jpg'
+			/>
+			<Avatar
+				size='medium'
+				name='Jory Tindall'
+				imageUrl='/images/avatar.jpg'
+			/>
+			<Avatar
+				size='large'
+				name='Jory Tindall'
+				imageUrl='/images/avatar.jpg'
+			/>
+			<Text tag='p' size='base' type='expressive'>Image passed as an object</Text>
+			<Avatar
+				size='small'
+				name='Jory Tindall'
+				imageObject={avatarImage}
+			/>
+			<Text tag='p' size='base' type='expressive'>No image, not rounded</Text>
+			<Avatar
+				size='small'
+				name='Jory Tindall'
+				rounded={false}
+			/>
+			<Avatar
+				size='medium'
+				name='Jory Tindall'
+				rounded={false}
+			/>
+			<Avatar
+				size='large'
+				name='Jory Tindall'
+				rounded={false}
+			/>
+			<Text tag='p' size='base' type='expressive'>Image passed via url, not rounded</Text>
+			<Avatar
+				size='small'
+				name='Jory Tindall'
+				imageUrl='/images/avatar.jpg'
+				rounded={false}
+			/>
+			<Avatar
+				size='medium'
+				name='Jory Tindall'
+				imageUrl='/images/avatar.jpg'
+				rounded={false}
+			/>
+			<Avatar
+				size='large'
+				name='Jory Tindall'
+				imageUrl='/images/avatar.jpg'
+				rounded={false}
+			/>
 		</div>
 	);
 }

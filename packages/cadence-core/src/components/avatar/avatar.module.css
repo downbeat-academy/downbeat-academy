@@ -1,0 +1,31 @@
+.root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	& img {
+		max-width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
+}
+
+.size--small {
+	height: 40px;
+	width: 40px;
+}
+
+.size--medium {
+	height: 64px;
+	width: 64px;
+}
+
+.size--large {
+	height: 80px;
+	width: 80px;
+}
+
+.rounded {
+	border-radius: 50%;
+}
