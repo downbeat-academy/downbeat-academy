@@ -7,6 +7,7 @@ const AvatarGroup = ({
     overlap = false,
     overlapSpacing = 'default',
     direction = 'horizontal',
+    isInteractive = false,
 }:AvatarGroupProps) => {
 
     const classes = classnames(
@@ -14,6 +15,7 @@ const AvatarGroup = ({
         {[s.overlap]: overlap},
         s['spacing--' + overlapSpacing],
         s['direction--' + direction],
+        {[s.isInteractive]: isInteractive},
     )
 
     return (

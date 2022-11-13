@@ -3,6 +3,7 @@ interface AvatarGroupProps {
     overlap?: boolean,
     overlapSpacing?: 'compact' | 'default' | 'comfortable',
     direction?: 'horizontal' | 'vertical',
+    isInteractive?: boolean,
 }
 
 export type { AvatarGroupProps }

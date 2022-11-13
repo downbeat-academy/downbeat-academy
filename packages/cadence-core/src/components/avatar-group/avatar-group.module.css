@@ -17,6 +17,18 @@
 	& > *:nth-child(5) {
 		z-index: 6;
 	}
+
+	& > *:hover {
+	}
+}
+
+.isInteractive > * {
+	transition: var(--transition-03);
+
+	&:hover {
+		z-index: 20;
+		transform: translateY(-0.5rem);
+	}
 }
 
 .direction--horizontal {
