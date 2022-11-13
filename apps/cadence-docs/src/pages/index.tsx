@@ -1,11 +1,10 @@
 import type { NextPage } from 'next';
-import { CheckCircle } from '@downbeat-academy/cadence-icons'
+import { Text } from '@downbeat-academy/cadence-core'
 
 const Home: NextPage = () => {
 	return (
 		<div>
-			<h1>Cadence Docs Home</h1>
-			<CheckCircle color='var(--color-palette-pomegranate-500' height='2rem' />
+			<Text tag='h1' size='6x-large' type='expressive'>Cadence Docs Home</Text>
 		</div>
 	);
 };
