@@ -1,0 +1,30 @@
+.root {
+	display: flex;
+}
+
+.direction--row {
+	flex-direction: row;
+}
+.direction--column {
+	flex-direction: column;
+}
+
+.gap--x-small {
+	gap: var(--spacing-02);
+}
+
+.gap--small {
+	gap: var(--spacing-03);
+}
+
+.gap--medium {
+	gap: var(--spacing-05);
+}
+
+.gap--large {
+	gap: var(--spacing-06);
+}
+
+.gap--x-large {
+	gap: var(--spacing-08);
+}

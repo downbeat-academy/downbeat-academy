@@ -1,56 +1,28 @@
 import React from 'react';
-import { Avatar, AvatarGroup, Text } from './components';
+import { Text, Flex, Button } from './components';
 import image from './assets/images/avatar.png'
 
 function App() {
-
-	const avatarImage = <img src={image} />;
-
-	const avatars = [
-		<Avatar
-			size='medium'
-			name='Jory Tindall'
-			imageUrl='/images/avatar.jpg'
-			hasBorder={true}
-		/>,
-		<Avatar
-			size='medium'
-			name='Jory Tindall'
-			hasBorder={true}
-		/>,
-		<Avatar
-			size='medium'
-			name='Alex Mankey'
-			hasBorder={true}
-		/>
-	]
 	return (
 		<div>
 			<Text tag='h1' size='6x-large' type='expressive'>Testing playground</Text>
-			<Text tag='p' size='base' type='expressive'>Avatar group</Text>
-			<AvatarGroup 
-				avatars={avatars}
-				direction='horizontal'
-				overlap={true}
-				overlapSpacing='compact'
-				isInteractive={true}
-			/>
-			<AvatarGroup 
-				avatars={avatars}
-				direction='horizontal'
-				overlap={true}
-				overlapSpacing='default'
-			/>
-			<AvatarGroup 
-				avatars={avatars}
-				direction='horizontal'
-				overlap={true}
-				overlapSpacing='comfortable'
-			/>
-			<AvatarGroup 
-				avatars={avatars}
-				direction='horizontal'
-			/>
+			<Flex as='section' direction='row' gap='x-large'>
+				<Flex as='article' direction='column'>
+					<Text tag='h4' size='2x-large'>Item 1</Text>
+					<Text tag='p' size='base' type='expressive'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+					<Button text='Button text' variant='primary' />
+				</Flex>
+				<Flex as='article' direction='column'>
+					<Text tag='h4' size='2x-large'>Item 2</Text>
+					<Text tag='p' size='base' type='expressive'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+					<Button text='Button text' variant='primary' />
+				</Flex>
+				<Flex as='article' direction='column'>
+					<Text tag='h4' size='2x-large'>Item 3</Text>
+					<Text tag='p' size='base' type='expressive'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+					<Button text='Button text' variant='primary' />
+				</Flex>
+			</Flex>
 		</div>
 	);
 }
