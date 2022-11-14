@@ -13,6 +13,7 @@ const Flex = ({
     justify,
     wrap = 'nowrap',
     align,
+    textAlign,
 }: FlexProps) => {
 
     const Component = as || 'div';
@@ -27,6 +28,7 @@ const Flex = ({
         s['justify--' + justify],
         s['wrap--' + wrap],
         s['align--' + align],
+        s['text-align--' + textAlign],
     )
 
     return (

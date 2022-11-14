@@ -5,10 +5,11 @@ interface FlexProps {
     gap?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large',
     padding?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large',
     background?: 'primary' | 'secondary' | 'brand' | 'interactive' | 'positive' | 'caution' | 'critical' | 'info',
-    borderRadius?: 'none' | 'small' | 'medium' | 'large',
+    borderRadius?: 'default' | 'soft' | 'medium' | 'hard' | 'rounded',
     borderColor?: 'default' | 'caution' | 'critical' | 'positive' | 'info' | 'interactive',
-    justify?: 'start' | 'end' | 'cneter' | 'space-between' | 'space-around' | 'space-evenly',
-    align?: 'start' | 'end' | 'cneter' | 'stretch' | 'baseline',
+    justify?: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly',
+    align?: 'start' | 'end' | 'center' | 'stretch' | 'baseline',
+    textAlign?: 'left' | 'right' | 'center',
     wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
 }
 
