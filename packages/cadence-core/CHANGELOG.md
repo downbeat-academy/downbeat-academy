@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-core
 
+## 0.5.0
+
+### Minor Changes
+
+-   Added Flex layout component
+
 ## 0.4.0
 
 ### Minor Changes
