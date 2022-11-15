@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-tokens
 
+## 2.0.0
+
+### Major Changes
+
+-   v1 release!
+
 ## 1.1.0
 
 ### Minor Changes
