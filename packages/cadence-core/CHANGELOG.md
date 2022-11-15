@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-core
 
+## 1.0.0
+
+### Major Changes
+
+-   MVP components ready for v1 release!
+
 ## 0.5.0
 
 ### Minor Changes
