@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
 
-// const nextConfig = {
-// 	reactStrictMode: true,
-// 	swcMinify: true,
-// };
+import remarkFrontmatter from 'remark-frontmatter'
+
+// const { remarkFrontmatter } = require('remark-frontmatter')
 
 const withMDX = require('@next/mdx')({
 	extension: /\.mdx?$/,
 	options: {
-		remarkPlugins: [],
+		remarkPlugins: [
+			remarkFrontmatter,
+		],
 		rehypePlugins: [],
 		providerImportSource: '@mdx-js/react',
 	},
