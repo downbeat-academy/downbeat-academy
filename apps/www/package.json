@@ -24,6 +24,7 @@
 	"dependencies": {
 		"@auth0/nextjs-auth0": "^1.9.1",
 		"@downbeat-academy/cadence-core": "^1.0.0",
+		"@downbeat-academy/cadence-icons": "^1.0.0",
 		"@portabletext/react": "^1.0.6",
 		"@sanity/asset-utils": "^1.2.3",
 		"@sanity/block-content-to-react": "^3.0.0",
