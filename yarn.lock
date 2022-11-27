@@ -2126,7 +2126,6 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-player: ^2.10.0
-    sanity-mux-player: ^0.0.27
     stripe: ^8.219.0
     typescript: ^4.6.3
   languageName: unknown
@@ -14068,7 +14067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.0.1, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.3.0, lodash@npm:~4.17.15":
+"lodash@npm:^4.0.1, lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.3.0, lodash@npm:~4.17.15":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -19591,19 +19590,6 @@ __metadata:
   dependencies:
     diff-match-patch: ^1.0.5
   checksum: 3e2f8a726197d9a6d577ae62ee81dffafd101ce9253e0e843405fc9d026e9395b88875b8147525a6ed423e2edc27ef7fe65e275b1f6b52be3657e2ea063c4f8b
-  languageName: node
-  linkType: hard
-
-"sanity-mux-player@npm:^0.0.27":
-  version: 0.0.27
-  resolution: "sanity-mux-player@npm:0.0.27"
-  dependencies:
-    hls.js: ^0.11.0
-    lodash: ^4.17.20
-    prop-types: ^15.6.0
-  peerDependencies:
-    react: ">=16.3.x"
-  checksum: 02ee04b0925155079049a60b5a0f19d5cd9ea4efef84529738ece367ee4747daa452d32d945a1cfeb4735fd3c471b0ce70864dffcab0c805f0a41220990d0a8a
   languageName: node
   linkType: hard
 
