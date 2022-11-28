@@ -9,6 +9,9 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@codesandbox/sandpack-react": "^1.17.0",
+		"@downbeat-academy/cadence-core": "^1.0.0",
+		"@downbeat-academy/cadence-icons": "^1.0.0",
 		"@mdx-js/loader": "^2.1.5",
 		"@mdx-js/react": "^2.1.5",
 		"@next/mdx": "^13.0.0",
@@ -17,8 +20,8 @@
 		"remark-mdx-frontmatter": "^2.1.1"
 	},
 	"peerDependencies": {
-		"react": "18.2.0",
-		"react-dom": "18.2.0"
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
 		"@types/node": "18.11.3",
