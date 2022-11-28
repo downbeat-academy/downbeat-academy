@@ -1,0 +1,7 @@
+{
+    "buildCommand": "yarn build",
+    "devCommand": "yarn dev",
+    "framework": "nextjs",
+    "installCommand": "yarn install",
+    "redirects": []
+}

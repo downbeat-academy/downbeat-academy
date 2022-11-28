@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-core
 
+## 1.1.0
+
+### Minor Changes
+
+-   Added brand logo components
+
 ## 1.0.0
 
 ### Major Changes
