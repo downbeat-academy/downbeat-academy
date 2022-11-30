@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { styled } from 'cadence-design-system';
-import { Button } from '@downbeat-academy/cadence-core';
+import { Button } from '@downbeat-academy/cadence-core'
+// import { Button } from '@downbeat-academy/cadence-core';
 import { useUser } from '@auth0/nextjs-auth0';
 
 export const NavLinks = ({ viewport, scroll }) => {
@@ -22,27 +23,12 @@ export const NavLinks = ({ viewport, scroll }) => {
 			<AccountActions>
 				{viewport === 'mobile' && (
 					<>
-						<Link href="#" passHref>
-							<Button size="small" variant="tertiary">
-								For educators
-							</Button>
-						</Link>
-						<Link href="/sign-in" passHref>
-							<Button size="small" variant="tertiary">
-								Sign in
-							</Button>
-						</Link>
+						<Link href="#" passHref>For educators</Link>
+						<Link href="/sign-in" passHref>Sign in</Link>
 					</>
 				)}
 				{!user ? (
-					<Link href="/sign-up" passHref>
-						<Button
-							size={`${scroll ? 'small' : 'default'}`}
-							variant="primary"
-							onClick='fathom.trackGoal("BS0TJPWH", 0)'
-							text="Join for free"
-						/>
-					</Link>
+					<Link href="/sign-up" passHref>Join for free</Link>
 				) : null}
 			</AccountActions>
 		</NavLinksWrapper>
