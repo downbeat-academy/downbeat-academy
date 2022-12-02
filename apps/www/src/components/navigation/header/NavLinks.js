@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { styled } from 'cadence-design-system';
-// import { Button } from '@downbeat-academy/cadence-core';
+import { Button } from '@downbeat-academy/cadence-core';
 import { useUser } from '@auth0/nextjs-auth0';
 
 export const NavLinks = ({ viewport, scroll }) => {
@@ -22,12 +22,17 @@ export const NavLinks = ({ viewport, scroll }) => {
 			<AccountActions>
 				{viewport === 'mobile' && (
 					<>
-						<Link href="#" passHref>For educators</Link>
-						<Link href="/sign-in" passHref>Sign in</Link>
+						<Link href="#" passHref>
+							<Button text="For Educators" variant='primary'/>
+						</Link>
+						<Link href="/sign-in" passHref>
+							<Button text='Sign in' variant='secondary' />
+						</Link>
 					</>
 				)}
 				{!user ? (
-					<Link href="/sign-up" passHref>Join for free</Link>
+					<Link href="/sign-up" passHref>
+						<Button text='Join for free' variant='primary' /></Link>
 				) : null}
 			</AccountActions>
 		</NavLinksWrapper>

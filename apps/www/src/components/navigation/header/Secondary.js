@@ -33,9 +33,11 @@ export const Secondary = () => {
 						gap="3"
 						className="login-actions"
 					>
-						<Link href="/for-educators" passHref>For Educators
+						<Link href="/for-educators" passHref>
+							<Button text='For Educators' variant='tertiary' size='small' />
 						</Link>
-						<Link href="/api/auth/login" passHref>Login
+						<Link href="/api/auth/login" passHref>
+							<Button text='Login' variant='tertiary' size='small' />
 						</Link>
 					</SecondaryActions>
 				) : (
@@ -49,19 +51,19 @@ export const Secondary = () => {
 						</Paragraph>
 						<Link href="/account" passHref>
 							Account
-							{/*<Button
+							<Button
 								size="small"
 								variant="tertiary"
 								text="Account"
-							/>*/}
+							/>
 						</Link>
 						<Link href="/api/auth/logout" passHref>
 							Log out
-							{/*<Button
+							<Button
 								size="small"
 								variant="tertiary"
 								text="Log out"
-							/>*/}
+							/>
 						</Link>
 					</SecondaryActions>
 				)}
