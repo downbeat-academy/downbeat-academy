@@ -8,7 +8,7 @@ export default {
 		{ type: 'audio' },
 		{ type: 'documentUpload' },
 		{ type: 'musicNotation' },
-		{ type: 'video' },
+		// { type: 'video' },
 		{ type: 'form' },
 	],
 };
