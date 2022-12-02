@@ -1,5 +1,5 @@
 import Link from 'next/link';
-// import { Button } from '@downbeat-academy/cadence-core';
+import { Button } from '@downbeat-academy/cadence-core';
 import { styled, Flex, Paragraph, Badge } from 'cadence-design-system';
 import { useUser } from '@auth0/nextjs-auth0';
 
@@ -48,18 +48,20 @@ export const Secondary = () => {
 							{user.name}
 						</Paragraph>
 						<Link href="/account" passHref>
-							<Button
+							Account
+							{/*<Button
 								size="small"
 								variant="tertiary"
 								text="Account"
-							/>
+							/>*/}
 						</Link>
 						<Link href="/api/auth/logout" passHref>
-							<Button
+							Log out
+							{/*<Button
 								size="small"
 								variant="tertiary"
 								text="Log out"
-							/>
+							/>*/}
 						</Link>
 					</SecondaryActions>
 				)}

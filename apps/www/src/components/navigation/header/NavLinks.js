@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { styled } from 'cadence-design-system';
-import { Button } from '@downbeat-academy/cadence-core'
 // import { Button } from '@downbeat-academy/cadence-core';
 import { useUser } from '@auth0/nextjs-auth0';
 
