@@ -1,6 +1,6 @@
 {
 	"name": "@downbeat-academy/www",
-	"version": "2.3.0",
+	"version": "2.3.1",
 	"description": "Primary web UI for Downbeat Academy, built on NextJS",
 	"keywords": [
 		"nextjs",
@@ -23,8 +23,8 @@
 	},
 	"dependencies": {
 		"@auth0/nextjs-auth0": "^1.9.1",
-		"@downbeat-academy/cadence-core": "latest",
-		"@downbeat-academy/cadence-icons": "^1.0.0",
+		"@downbeat-academy/cadence-core": "^1.1.1",
+		"@downbeat-academy/cadence-icons": "^1.0.1",
 		"@portabletext/react": "^1.0.6",
 		"@sanity/asset-utils": "^1.2.3",
 		"@sanity/block-content-to-react": "^3.0.0",

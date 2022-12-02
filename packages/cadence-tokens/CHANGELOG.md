@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-tokens
 
+## 2.0.1
+
+### Patch Changes
+
+-   dcb7815: Fixed build issues with how packages are being distributed
+
 ## 2.0.0
 
 ### Major Changes

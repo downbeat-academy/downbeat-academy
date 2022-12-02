@@ -1973,7 +1973,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@downbeat-academy/cadence-core@^1.0.0, @downbeat-academy/cadence-core@workspace:packages/cadence-core":
+"@downbeat-academy/cadence-core@^1.0.0, @downbeat-academy/cadence-core@^1.1.0, @downbeat-academy/cadence-core@workspace:packages/cadence-core":
   version: 0.0.0-use.local
   resolution: "@downbeat-academy/cadence-core@workspace:packages/cadence-core"
   dependencies:
@@ -1994,18 +1994,6 @@ __metadata:
     vitest: ^0.24.3
   languageName: unknown
   linkType: soft
-
-"@downbeat-academy/cadence-core@npm:latest":
-  version: 1.1.0
-  resolution: "@downbeat-academy/cadence-core@npm:1.1.0"
-  dependencies:
-    boring-avatars: ^1.7.0
-    classnames: ^2.3.2
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  checksum: 10bad4c118e72c8d9dc43b1e09c15427856eca35cf380efbbc7c116c842e91b4fbc97cf731ec7928f365782c5c8795d730fe46f2ef7691f551496776ce184f05
-  languageName: node
-  linkType: hard
 
 "@downbeat-academy/cadence-docs@workspace:apps/cadence-docs":
   version: 0.0.0-use.local
@@ -2114,7 +2102,7 @@ __metadata:
   resolution: "@downbeat-academy/www@workspace:apps/www"
   dependencies:
     "@auth0/nextjs-auth0": ^1.9.1
-    "@downbeat-academy/cadence-core": latest
+    "@downbeat-academy/cadence-core": ^1.1.0
     "@downbeat-academy/cadence-icons": ^1.0.0
     "@portabletext/react": ^1.0.6
     "@sanity/asset-utils": ^1.2.3

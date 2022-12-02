@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-icons
 
+## 1.0.1
+
+### Patch Changes
+
+-   dcb7815: Fixed build issues with how packages are being distributed
+
 ## 1.0.0
 
 ### Major Changes

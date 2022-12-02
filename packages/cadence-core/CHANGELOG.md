@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-core
 
+## 1.1.1
+
+### Patch Changes
+
+-   dcb7815: Fixed build issues with how packages are being distributed
+
 ## 1.1.0
 
 ### Minor Changes

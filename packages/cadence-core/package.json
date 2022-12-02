@@ -1,6 +1,6 @@
 {
 	"name": "@downbeat-academy/cadence-core",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"type": "module",
 	"license": "MPL-2.0",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
