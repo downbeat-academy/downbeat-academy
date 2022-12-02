@@ -29,19 +29,19 @@ export default {
 			type: `string`,
 			description: `Briefly describe the video.`,
 		},
-		{
-			name: 'source',
-			title: 'Source',
-			type: 'string',
-			description: 'Select where the video is coming from.',
-			options: {
-				list: [
-					{ title: 'URL', value: 'url' },
-					{ title: 'Mux Video', value: 'muxVideo' },
-				],
-				layout: 'dropdown',
-			},
-		},
+		// {
+		// 	name: 'source',
+		// 	title: 'Source',
+		// 	type: 'string',
+		// 	description: 'Select where the video is coming from.',
+		// 	options: {
+		// 		list: [
+		// 			{ title: 'URL', value: 'url' },
+		// 			{ title: 'Mux Video', value: 'muxVideo' },
+		// 		],
+		// 		layout: 'dropdown',
+		// 	},
+		// },
 		{
 			name: `url`,
 			title: `URL`,

@@ -90,7 +90,7 @@ export default {
 					of: [{ type: 'inlineChord' }, { type: 'inlineMusicText' }],
 				},
 				// Custom Types
-				// { type: 'video' },
+				{ type: 'video' },
 				{ type: 'audio' },
 				{ type: 'musicNotation' },
 				{ type: 'mainImage' },

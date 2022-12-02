@@ -1,6 +1,5 @@
 import { BiNavigation } from 'react-icons/bi';
 import { BiLink } from 'react-icons/bi';
-import CustomLinkInput from '../../components/CustomLinkInput';
 
 export default {
 	name: `navigation`,
@@ -25,24 +24,24 @@ export default {
 				{ type: `person` },
 				{ type: `podcast` },
 				{ type: `article` },
-				{
-					name: `customLink`,
-					title: `Custom Link`,
-					type: `object`,
-					description: `Enter a custom link relative to the root application.`,
-					icon: BiLink,
-					fields: [
-						{
-							name: `link`,
-							title: `Link`,
-							type: `url`,
-							inputComponent: CustomLinkInput,
-							options: {
-								prepend: `https://downbeatacademy.com/`,
-							},
-						},
-					],
-				},
+				// {
+				// 	name: `customLink`,
+				// 	title: `Custom Link`,
+				// 	type: `object`,
+				// 	description: `Enter a custom link relative to the root application.`,
+				// 	icon: BiLink,
+				// 	fields: [
+				// 		{
+				// 			name: `link`,
+				// 			title: `Link`,
+				// 			type: `url`,
+				// 			inputComponent: CustomLinkInput,
+				// 			options: {
+				// 				prepend: `https://downbeatacademy.com/`,
+				// 			},
+				// 		},
+				// 	],
+				// },
 			],
 		},
 	],
