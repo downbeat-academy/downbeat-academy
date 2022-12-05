@@ -1,9 +1,0 @@
-node_modules
-/node_modules
-
-/dist
-
-.DS_STORE
-.DS_Store
-
-public
