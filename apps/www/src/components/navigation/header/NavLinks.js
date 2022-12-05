@@ -32,7 +32,8 @@ export const NavLinks = ({ viewport, scroll }) => {
 				)}
 				{!user ? (
 					<Link href="/sign-up" passHref>
-						<Button text='Join for free' variant='primary' /></Link>
+						<Button text='Join for free' variant='primary' />
+					</Link>
 				) : null}
 			</AccountActions>
 		</NavLinksWrapper>

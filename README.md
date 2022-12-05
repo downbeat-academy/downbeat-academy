@@ -55,3 +55,8 @@ These are the packages used to build and maintain Downbeat Academy applications,
 
 -   Versioning manged with changesets
 -   _Most_ apps and packages (if applicable) deploy to Vercel
+
+## Linking between packages
+
+-   The various apps and projects in this monorepo make use of yarn symlinks (via `yarn link`) to create connections between them.
+-   Link to another package from the workspace level with `yarn link:@downbeat-academy/[pacakge to link]`
