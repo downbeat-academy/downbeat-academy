@@ -2071,7 +2071,6 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-player: ^2.10.0
-    sanity-mux-player: ^0.0.27
     stripe: ^8.219.0
     typescript: ^4.6.3
   languageName: unknown
@@ -9282,16 +9281,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hls.js@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "hls.js@npm:0.11.0"
-  dependencies:
-    string.prototype.endswith: ^0.2.0
-    url-toolkit: ^2.1.2
-  checksum: de8a0feb5f48816b531c925bc44f7d7b54f1304d2b508d11431a1bc5e559efd9c881078f6009bccd8ee68244e7561daaf3e626e2597afaf1eb9ccf4297a20ffb
-  languageName: node
-  linkType: hard
-
 "hoist-non-react-statics@npm:^3.0.0, hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
@@ -10560,7 +10549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.11, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:~4.17.15":
+"lodash@npm:^4.17.11, lodash@npm:^4.17.15, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:~4.17.15":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -12861,7 +12850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.7, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.7, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -13785,19 +13774,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sanity-mux-player@npm:^0.0.27":
-  version: 0.0.27
-  resolution: "sanity-mux-player@npm:0.0.27"
-  dependencies:
-    hls.js: ^0.11.0
-    lodash: ^4.17.20
-    prop-types: ^15.6.0
-  peerDependencies:
-    react: ">=16.3.x"
-  checksum: 02ee04b0925155079049a60b5a0f19d5cd9ea4efef84529738ece367ee4747daa452d32d945a1cfeb4735fd3c471b0ce70864dffcab0c805f0a41220990d0a8a
-  languageName: node
-  linkType: hard
-
 "sanity@npm:^3.0.0":
   version: 3.0.0
   resolution: "sanity@npm:3.0.0"
@@ -14388,13 +14364,6 @@ __metadata:
     is-fullwidth-code-point: ^3.0.0
     strip-ansi: ^6.0.1
   checksum: e52c10dc3fbfcd6c3a15f159f54a90024241d0f149cf8aed2982a2d801d2e64df0bf1dc351cf8e95c3319323f9f220c16e740b06faecd53e2462df1d2b5443fb
-  languageName: node
-  linkType: hard
-
-"string.prototype.endswith@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "string.prototype.endswith@npm:0.2.0"
-  checksum: ee0d1619878a7525a6613da16b3a1d7f6d84a8d4414f78a8a1d24aef9789d4bd774d9e93eeb922a78e7f67d804e60f4cba314beb8f55327bff6e83ba39b91f24
   languageName: node
   linkType: hard
 
@@ -15579,13 +15548,6 @@ __metadata:
     querystringify: ^2.1.1
     requires-port: ^1.0.0
   checksum: fbdba6b1d83336aca2216bbdc38ba658d9cfb8fc7f665eb8b17852de638ff7d1a162c198a8e4ed66001ddbf6c9888d41e4798912c62b4fd777a31657989f7bdf
-  languageName: node
-  linkType: hard
-
-"url-toolkit@npm:^2.1.2":
-  version: 2.2.5
-  resolution: "url-toolkit@npm:2.2.5"
-  checksum: c784040bd4dbd78647a62218b6b8c1abd9a2f7fd8adce1851daf21dc2d98e2a5d69b78a628ec07dcfa112c16a112a182e109b7c872b6e8a1e4a1547b49b81f7b
   languageName: node
   linkType: hard
 
