@@ -1653,7 +1653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@downbeat-academy/cadence-core@^1.0.0, @downbeat-academy/cadence-core@workspace:packages/cadence-core":
+"@downbeat-academy/cadence-core@workspace:packages/cadence-core":
   version: 0.0.0-use.local
   resolution: "@downbeat-academy/cadence-core@workspace:packages/cadence-core"
   dependencies:
@@ -1679,8 +1679,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@downbeat-academy/cadence-docs@workspace:apps/cadence-docs"
   dependencies:
-    "@downbeat-academy/cadence-core": ^1.0.0
-    "@downbeat-academy/cadence-icons": ^1.0.0
     "@mdx-js/loader": ^2.1.5
     "@mdx-js/react": ^2.1.5
     "@next/mdx": ^13.0.0
@@ -1698,7 +1696,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@downbeat-academy/cadence-icons@^1.0.0, @downbeat-academy/cadence-icons@workspace:packages/cadence-icons":
+"@downbeat-academy/cadence-icons@workspace:packages/cadence-icons":
   version: 0.0.0-use.local
   resolution: "@downbeat-academy/cadence-icons@workspace:packages/cadence-icons"
   dependencies:

@@ -9,8 +9,6 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@downbeat-academy/cadence-core": "^1.0.0",
-		"@downbeat-academy/cadence-icons": "^1.0.0",
 		"@mdx-js/loader": "^2.1.5",
 		"@mdx-js/react": "^2.1.5",
 		"@next/mdx": "^13.0.0",
