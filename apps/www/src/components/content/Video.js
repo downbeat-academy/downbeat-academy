@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled, Flex, H5, Paragraph } from 'cadence-design-system';
-import SanityMuxPlayer from 'sanity-mux-player';
 import ReactPlayer from 'react-player';
 
 // type Props = {
@@ -24,12 +23,13 @@ export const Video = ({ input }) => {
 		switch (source) {
 			case 'muxVideo':
 				return (
-					<SanityMuxPlayer
-						assetDocument={muxVideo}
-						autoload={true}
-						autoplay={false}
-						showControls={true}
-					/>
+					// <SanityMuxPlayer
+					// 	assetDocument={muxVideo}
+					// 	autoload={true}
+					// 	autoplay={false}
+					// 	showControls={true}
+					// />
+					<p>This should be a Mux video.</p>
 				);
 			case 'url':
 				return (
