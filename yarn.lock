@@ -1689,6 +1689,7 @@ __metadata:
     eslint-config-next: 12.3.1
     gray-matter: ^4.0.3
     next: 12.3.1
+    next-mdx-remote: ^4.2.0
     react: ^18.2.0
     react-dom: ^18.2.0
     remark-frontmatter: ^4.0.1
@@ -2083,7 +2084,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^2.1.5":
+"@mdx-js/react@npm:^2.0.0, @mdx-js/react@npm:^2.1.5":
   version: 2.1.5
   resolution: "@mdx-js/react@npm:2.1.5"
   dependencies:
@@ -4193,6 +4194,13 @@ __metadata:
   version: 0.1.7
   resolution: "@types/is-hotkey@npm:0.1.7"
   checksum: bce7c8874b30f346f20cf6cfcf4a10372962924f0e1b1a925a279004faeb276242ebfbfee47bd48df57e1021f2e3078c34e25837e226960c418d5f78f83dacea
+  languageName: node
+  linkType: hard
+
+"@types/js-yaml@npm:^4.0.0":
+  version: 4.0.5
+  resolution: "@types/js-yaml@npm:4.0.5"
+  checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
   languageName: node
   linkType: hard
 
@@ -9716,7 +9724,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:^4.1.0":
+"js-yaml@npm:^4.0.0, js-yaml@npm:^4.1.0":
   version: 4.1.0
   resolution: "js-yaml@npm:4.1.0"
   dependencies:
@@ -11209,6 +11217,21 @@ __metadata:
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
   checksum: b8ffeb1e262eff7968fc90a2b6767b04cfd9842582a9d0ece0af7049537266e7b2506dfb1d107a32f06dd849ab2aea834d5830f7f4d0e5cb7d36e1ae55d021d9
+  languageName: node
+  linkType: hard
+
+"next-mdx-remote@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "next-mdx-remote@npm:4.2.0"
+  dependencies:
+    "@mdx-js/mdx": ^2.0.0
+    "@mdx-js/react": ^2.0.0
+    vfile: ^5.3.0
+    vfile-matter: ^3.0.1
+  peerDependencies:
+    react: ">=16.x <=18.x"
+    react-dom: ">=16.x <=18.x"
+  checksum: 06fc3787187bbe359930ee7f8aca5f12aa979e7a2e6773430bf7ed304506dc011550c7f34606dca0058bc37cd0ce98a51d016b22a211f3fbec0e9ea78b8d436e
   languageName: node
   linkType: hard
 
@@ -15274,6 +15297,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vfile-matter@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "vfile-matter@npm:3.0.1"
+  dependencies:
+    "@types/js-yaml": ^4.0.0
+    is-buffer: ^2.0.0
+    js-yaml: ^4.0.0
+  checksum: ced55ed7d79291b6c9321557d685b3c0072321f3de44790b72005f1e232394dd9ae68311b99286e327ec4f1d168d5bada986eaa1d475757e17b7e24150f503ac
+  languageName: node
+  linkType: hard
+
 "vfile-message@npm:^3.0.0":
   version: 3.1.3
   resolution: "vfile-message@npm:3.1.3"
@@ -15284,7 +15318,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vfile@npm:^5.0.0":
+"vfile@npm:^5.0.0, vfile@npm:^5.3.0":
   version: 5.3.6
   resolution: "vfile@npm:5.3.6"
   dependencies:

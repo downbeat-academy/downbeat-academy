@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-import remarkFrontmatter from 'remark-frontmatter'
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
 	webpack: (config, options) => {
@@ -13,7 +11,7 @@ export default {
 					loader: '@mdx-js/loader',
 					options: {
 						providerImportSource: '@mdx-js/react',
-						remarkPlugins: [ remarkFrontmatter ],
+						remarkPlugins: [],
 						rehypePlugins: [],
 					}
 				}
