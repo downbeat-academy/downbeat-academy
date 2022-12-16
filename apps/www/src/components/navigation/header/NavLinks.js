@@ -22,16 +22,16 @@ export const NavLinks = ({ viewport, scroll }) => {
 			<AccountActions>
 				{viewport === 'mobile' && (
 					<>
-						<Link href="#" passHref>
+						<Link href="/for-educators" passHref>
 							<Button text="For Educators" variant='primary'/>
 						</Link>
-						<Link href="/sign-in" passHref>
+						<Link href="/api/auth/login" passHref>
 							<Button text='Sign in' variant='secondary' />
 						</Link>
 					</>
 				)}
 				{!user ? (
-					<Link href="/sign-up" passHref>
+					<Link href="/api/auth/login" passHref>
 						<Button text='Join for free' variant='primary' />
 					</Link>
 				) : null}
