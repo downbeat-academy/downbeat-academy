@@ -15,7 +15,7 @@ export default function Page({ source, frontmatter }) {
     )
 }
 
-export const getStaticProps = async ({ params }) => {
+export async function getStaticProps({ params }) {
     const pagePath = path.join(PAGE_PATH, `${params.slug}.mdx`)
     const source = fs.readFileSync(pagePath)
 
@@ -37,7 +37,7 @@ export const getStaticProps = async ({ params }) => {
     }
 }
 
-export const getStaticPaths = async () => {
+export async function getStaticPaths() {
     const paths = pagePaths
         // Remove file extensions for page paths
         .map((path) => path.replace(/\.mdx?$/, ''))
