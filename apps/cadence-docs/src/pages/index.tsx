@@ -7,6 +7,8 @@ const Home: NextPage = () => {
 		<div>
 			<Text tag='h1' size='6x-large' type='expressive'>Cadence Docs</Text>
 			<Image src='https://badge.fury.io/js/@downbeat-academy%2Fcadence-core.svg' alt='Package version' layout="intrinsic" width='150px' height='25px' />
+			<Text tag='h2' size='5x-large' type='expressive'>Components</Text>
+
 		</div>
 	);
 };

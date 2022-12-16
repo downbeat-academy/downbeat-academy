@@ -6,7 +6,6 @@ import { MDXRemote } from 'next-mdx-remote'
 import { pagePaths, PAGE_PATH } from '../utils/mdxUtils'
 
 export default function Page({ source, frontmatter }) {
-    console.log(frontmatter)
 
     return (
         <div>
