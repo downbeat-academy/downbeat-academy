@@ -25,6 +25,7 @@ export async function getStaticProps({ params }) {
         mdxOptions: {
             remarkPlugins: [],
             rehypePlugins: [],
+            format: 'mdx',
         },
         scope: data,
     })
