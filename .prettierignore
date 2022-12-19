@@ -1,5 +1,9 @@
 node_modules
 .changeset
+package.json
+package-lock.json
+pnpm-workspace.yaml
+pnpm-lock.yaml
 
 # Apps
 apps/**/node_modules
