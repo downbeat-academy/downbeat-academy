@@ -1,0 +1,31 @@
+{
+	"transition": {
+		"01": {
+			"value": "all 25ms ease-in-out"
+		},
+		"02": {
+			"value": "all 50ms ease-in-out"
+		},
+		"03": {
+			"value": "all 100ms ease-in-out"
+		},
+		"04": {
+			"value": "all 200ms ease-in-out"
+		},
+		"05": {
+			"value": "all 300ms ease-in-out"
+		},
+		"06": {
+			"value": "all 400ms ease-in-out"
+		},
+		"07": {
+			"value": "all 500ms ease-in-out"
+		},
+		"08": {
+			"value": "all 750ms ease-in-out"
+		},
+		"09": {
+			"value": "all 100ms ease-in-out"
+		}
+	}
+}

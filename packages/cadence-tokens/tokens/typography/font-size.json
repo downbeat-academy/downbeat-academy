@@ -1,0 +1,100 @@
+{
+	"typography": {
+		"font-size": {
+			"fluid": {
+				"expressive": {
+					"6x-large": {
+						"value": "clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem)"
+					},
+					"5x-large": {
+						"value": "clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem)"
+					},
+					"4x-large": {
+						"value": "clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem)"
+					},
+					"3x-large": {
+						"value": "clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem)"
+					},
+					"2x-large": {
+						"value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)"
+					},
+					"x-large": {
+						"value": "clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem)"
+					},
+					"large": {
+						"value": "1.125rem"
+					},
+					"base": {
+						"value": "1rem"
+					},
+					"small": {
+						"value": "0.875rem"
+					},
+					"x-small": {
+						"value": "0.75rem"
+					}
+				}
+			},
+			"fixed": {
+				"expressive": {
+					"6x-large": {
+						"value": "4rem"
+					},
+					"5x-large": {
+						"value": "3rem"
+					},
+					"4x-large": {
+						"value": "2.125rem"
+					},
+					"3x-large": {
+						"value": "1.75rem"
+					},
+					"2x-large": {
+						"value": "1.5rem"
+					},
+					"x-large": {
+						"value": "1.25rem"
+					},
+					"large": {
+						"value": "1.125rem"
+					},
+					"base": {
+						"value": "1rem"
+					},
+					"small": {
+						"value": "0.875rem"
+					},
+					"x-small": {
+						"value": "0.75rem"
+					}
+				},
+				"productive": {
+					"4x-large": {
+						"value": "2.5rem"
+					},
+					"3x-large": {
+						"value": "2.0rem"
+					},
+					"2x-large": {
+						"value": "1.75rem"
+					},
+					"x-large": {
+						"value": "1.5rem"
+					},
+					"large": {
+						"value": "1.25rem"
+					},
+					"base": {
+						"value": "1rem"
+					},
+					"small": {
+						"value": "0.875rem"
+					},
+					"x-small": {
+						"value": "0.75rem"
+					}
+				}
+			}
+		}
+	}
+}
