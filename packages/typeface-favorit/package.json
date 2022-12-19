@@ -1,0 +1,8 @@
+{
+	"name": "@downbeat-academy/typeface-favorit",
+	"version": "1.0.1",
+	"description": "Self-hosted font for ABC Dinamo Favorit",
+	"main": "index.css",
+	"author": "Jory Tindall <jory@downbeatacademy.com>",
+	"license": "UNLICENSED"
+}
