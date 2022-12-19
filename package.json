@@ -1,12 +1,16 @@
 {
-  "name": "@downbeat-academy/downbeat-academy",
-  "version": "0.0.0",
-  "description": "",
-  "private": true,
-  "scripts": {},
-  "keywords": [],
-  "author": "Jory Tindall <jory@downbeatacademy.com>",
-  "dependencies": {
-    "@changesets/cli": "^2.26.0"
-  }
+    "name": "@downbeat-academy/downbeat-academy",
+    "version": "0.0.0",
+    "description": "",
+    "private": true,
+    "scripts": {
+        "format": "prettier --write ."
+    },
+    "keywords": [],
+    "author": "Jory Tindall <jory@downbeatacademy.com>",
+    "devDependencies": {
+        "@changesets/cli": "^2.26.0",
+        "@types/prettier": "^2.7.1",
+        "prettier": "^2.8.1"
+    }
 }

@@ -1,0 +1,14 @@
+node_modules
+.changeset
+
+# Apps
+apps/**/node_modules
+apps/**/.next
+apps/**/build
+apps/**/dist
+
+# Packages
+packages/**/node_modules
+apps/**/.next
+apps/**/build
+apps/**/dist
