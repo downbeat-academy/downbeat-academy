@@ -1,0 +1,71 @@
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src: url('./files/TiemposText-Regular.woff') format('woff'),
+		url('./files/TiemposText-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: italic;
+	font-display: swap;
+	font-weight: 400;
+	src: url('./files/TiemposText-RegularItalic.woff') format('woff'),
+		url('./files/TiemposText-RegularItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 600;
+	src: url('./files/TiemposText-Medium.woff') format('woff'),
+		url('./files/TiemposText-Medium.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: italic;
+	font-display: swap;
+	font-weight: 500;
+	src: url('./files/TiemposText-MediumItalic.woff') format('woff'),
+		url('./files/TiemposText-MediumItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 600;
+	src: url('./files/TiemposText-Semibold.woff') format('woff'),
+		url('./files/TiemposText-Semibold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: italic;
+	font-display: swap;
+	font-weight: 600;
+	src: url('./files/TiemposText-SemiboldItalic.woff') format('woff'),
+		url('./files/TiemposText-SemiboldItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 700;
+	src: url('./files/TiemposText-Bold.woff') format('woff'),
+		url('./files/TiemposText-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Tiempos Text';
+	font-style: italic;
+	font-display: swap;
+	font-weight: 700;
+	src: url('./files/TiemposText-BoldItalic.woff') format('woff'),
+		url('./files/TiemposText-BoldItalic.woff2') format('woff2');
+}

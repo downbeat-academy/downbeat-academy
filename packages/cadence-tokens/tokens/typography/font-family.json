@@ -1,0 +1,28 @@
+{
+	"typography": {
+		"font-family": {
+			"expressive": {
+				"body": {
+					"value": "Tiempos Text, Georgia, Times, serif"
+				},
+				"headline": {
+					"value": "Favorit Std, Helvetica, Arial, sans-serif"
+				}
+			},
+			"productive": {
+				"body": {
+					"value": "Favorit Std, Helvetica, Arial, sans-serif"
+				},
+				"headline": {
+					"value": "Favorit, Helvetica, Arial, sans-serif"
+				}
+			},
+			"mono": {
+				"value": "Favorit Mono, Courier, monospace"
+			},
+			"musicNotation": {
+				"value": "Noto Music, sans-serif"
+			}
+		}
+	}
+}

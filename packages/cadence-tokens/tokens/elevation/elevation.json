@@ -1,0 +1,9 @@
+{
+	"elevation": {
+		"boxShadow": {
+			"base": {
+				"value": "0 1px 16px 0 hsla(240, 36%, 22%, 5%)"
+			}
+		}
+	}
+}

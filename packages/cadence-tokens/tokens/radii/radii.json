@@ -1,0 +1,19 @@
+{
+	"radius": {
+		"hard": {
+			"value": "0px"
+		},
+		"medium": {
+			"value": "2px"
+		},
+		"soft": {
+			"value": "4px"
+		},
+		"default": {
+			"value": "8px"
+		},
+		"rounded": {
+			"value": "50%"
+		}
+	}
+}
