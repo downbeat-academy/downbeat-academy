@@ -6,7 +6,7 @@
   "scripts": {},
   "keywords": [],
   "author": "Jory Tindall <jory@downbeatacademy.com>",
-  "dependencies": {
+  "devDependencies": {
     "@changesets/cli": "^2.26.0"
   }
 }
