@@ -41,6 +41,9 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [ postcssNesting ]
+    },
+    modules: {
+      localsConvention: 'camelCase',
     }
   }
 })
