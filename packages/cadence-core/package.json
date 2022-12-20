@@ -25,5 +25,21 @@
     "vite-plugin-dts": "^1.7.1",
     "vite-tsconfig-paths": "^4.0.3",
     "vitest": "^0.26.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cadence-core.umd.js",
+  "module": "./dist/cadence-core.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/cadence-core.es.js",
+      "require": "./dist/cadence-core.umd.js"
+    }
   }
 }
