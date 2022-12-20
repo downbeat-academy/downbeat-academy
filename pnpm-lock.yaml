@@ -63,6 +63,7 @@ importers:
 
   apps/www:
     specifiers:
+      '@downbeat-academy/cadence-core': ^1.1.0
       '@next/font': 13.0.7
       '@types/node': 18.11.17
       '@types/react': 18.0.26
@@ -74,6 +75,7 @@ importers:
       react-dom: 18.2.0
       typescript: 4.9.4
     dependencies:
+      '@downbeat-academy/cadence-core': 1.1.0
       '@next/font': 13.0.7
       '@types/node': 18.11.17
       '@types/react': 18.0.26
@@ -1664,6 +1666,15 @@ packages:
   /@divriots/style-dictionary-to-figma/0.3.3:
     resolution: {integrity: sha512-DzFY2noGzer8H5DsYxbO+nHavY+/jZr2I66AE2GJcTmuRfw89ouRfZlA8Cli5ZksuuAMb4+SgApgR5TwKri0QQ==}
     dev: true
+
+  /@downbeat-academy/cadence-core/1.1.0:
+    resolution: {integrity: sha512-xR7HHFkJkD1uZ5GFIJoow7V8N0//3Up2+FGb1/zqEaiB/ME3y8znRAztQManhHTTd7lNIgrVPE3fSSAr6K84mw==}
+    dependencies:
+      boring-avatars: 1.7.0
+      classnames: 2.3.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@emotion/is-prop-valid/0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
@@ -3456,6 +3467,10 @@ packages:
       buffer: 5.7.1
       inherits: 2.0.4
       readable-stream: 3.6.0
+    dev: false
+
+  /boring-avatars/1.7.0:
+    resolution: {integrity: sha512-ZNHd8J7C/V0IjQMGQowLJ5rScEFU23WxePigH6rqKcT2Esf0qhYvYxw8s9i3srmlfCnCV00ddBjaoGey1eNOfA==}
     dev: false
 
   /brace-expansion/1.1.11:
