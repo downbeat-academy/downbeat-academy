@@ -1,0 +1,51 @@
+@import '@downbeat-academy/cadence-tokens';
+
+.root {
+	display: flex;
+	padding: 0;
+	width: 100%;
+}
+
+/* Direction */
+
+.row {
+	flex-direction: row;
+}
+
+.column {
+	flex-direction: column;
+}
+
+/* Gap */
+
+.none {
+	gap: 0;
+}
+
+.x-small {
+	gap: var(--spacing-03);
+}
+
+.small {
+	gap: var(--spacing-04);
+}
+
+.default {
+	gap: var(--spacing-05);
+}
+
+.large {
+	gap: var(--spacing-06);
+}
+
+/* Justify */
+
+.start {
+	justify-content: flex-start;
+}
+.end {
+	justify-content: flex-end;
+}
+.space-between {
+	justify-content: space-between;
+}
