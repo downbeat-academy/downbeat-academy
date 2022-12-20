@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "vitest",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "dependencies": {
