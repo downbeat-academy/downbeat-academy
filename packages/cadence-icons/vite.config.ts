@@ -1,7 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'node:path'
+import dts from 'vite-plugin-dts'
+import tsConfigPaths from 'vite-tsconfig-paths'
+import postcssNesting from 'postcss-nesting'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    tsConfigPaths(),
+
+  ],
 })
