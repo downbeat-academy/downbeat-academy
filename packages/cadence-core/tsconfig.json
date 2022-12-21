@@ -15,10 +15,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
-    "paths": {
-      "src/*": [ "src/*" ]
-    },
     "plugins": [
       { "name": "typescript-plugin-css-modules" }
     ]
