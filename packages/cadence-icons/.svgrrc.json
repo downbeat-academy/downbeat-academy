@@ -1,0 +1,15 @@
+{
+	"typescript": true,
+	"icon": true,
+	"dimensions": false,
+	"titleProp": true,
+	"filenameCase": "pascal",
+	"prettier": true,
+	"replaceAttrValues": {
+		"#000000": "{props.color}",
+		"1em": "{props.height}"
+	},
+	"svgProps": {
+		"role": "img"
+	}
+}

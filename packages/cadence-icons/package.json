@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && pnpm icons:build && vite build",
     "preview": "vite preview",
+    "clean": "rimraf src/components",
+    "svgr": "svgr --config-file .svgrrc.json --out-dir src/components src/assets",
+    "icons:build": "pnpm clean && pnpm svgr",
     "test": "vitest"
   },
   "dependencies": {
