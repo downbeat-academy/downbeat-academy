@@ -1,12 +1,13 @@
 {
-  "name": "cadence-icons",
+  "name": "@downbeat-academy/cadence-icons",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -29,5 +30,17 @@
     "vite-plugin-svgr": "^2.4.0",
     "vite-tsconfig-paths": "^4.0.3",
     "vitest": "^0.26.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cadence-icons.umd.js",
+  "module": "./dist/cadence-icons.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/cadence-icons.es.js",
+      "require": "./dist/cadence-icons.umd.js"
+    }
   }
 }
