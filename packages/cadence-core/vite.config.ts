@@ -12,7 +12,7 @@ export default defineConfig({
     tsConfigPaths(),
     dts({
       insertTypesEntry: true,
-      include: [ 'src/components' ],
+      include: ['src/components'],
     }),
     cssInjectedByJsPlugin(),
   ],
@@ -20,11 +20,11 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, './src/components/index.ts'),
       name: 'CadenceCore',
-      formats: [ 'es', 'umd' ],
+      formats: ['es', 'umd'],
       fileName: (format) => `cadence-core.${format}.js`,
     },
     rollupOptions: {
-      external: [ 'react', 'react-dom' ],
+      external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
@@ -40,7 +40,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [ postcssNesting ]
+      plugins: [postcssNesting]
     },
     modules: {
       localsConvention: 'camelCase',
