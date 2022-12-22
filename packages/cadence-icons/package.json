@@ -1,6 +1,6 @@
 {
   "name": "cadence-icons",
-  "private": false,
+  "private": true,
   "version": "1.0.1",
   "type": "module",
   "license": "MIT",
