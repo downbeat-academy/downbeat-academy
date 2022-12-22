@@ -1,6 +1,6 @@
 {
-  "name": "@downbeat-academy/cadence-icons",
-  "private": false,
+  "name": "cadence-icons",
+  "private": true,
   "version": "1.0.1",
   "type": "module",
   "license": "MIT",
