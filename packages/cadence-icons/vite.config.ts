@@ -12,38 +12,35 @@ export default defineConfig({
     tsConfigPaths(),
     dts({
       insertTypesEntry: true,
-      include: ['src/components'],
+      include: ['src/components']
     }),
     cssInjectedByJsPlugin(),
   ],
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/components/index.ts'),
-      name: 'CadenceCore',
+      name: 'CadenceIcons',
       formats: ['es', 'umd'],
-      fileName: (format) => `cadence-core.${format}.js`,
+      fileName: (format) => `cadence-icons.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM',
-        }
-      }
-    }
+          'react-dom': 'ReactDom',
+        },
+      },
+    },
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src')
-    }
+      '@': path.resolve(__dirname, './src'),
+    },
   },
   css: {
     postcss: {
-      plugins: [postcssNesting]
+      plugins: [postcssNesting],
     },
-    modules: {
-      localsConvention: 'camelCase',
-    }
-  }
+  },
 })
