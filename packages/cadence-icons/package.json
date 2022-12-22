@@ -1,8 +1,9 @@
 {
   "name": "@downbeat-academy/cadence-icons",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.1",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && pnpm icons:build && vite build",

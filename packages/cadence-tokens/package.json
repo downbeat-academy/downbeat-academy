@@ -1,36 +1,37 @@
 {
-"name": "@downbeat-academy/cadence-tokens",
-"description": "Downbeat Academy Design Tokens",
-"author": "Jory Tindall <jory@downbeatacademy.com>",
-"version": "2.0.1",
-"license": "MPL-2.0",
-"scripts": {
-	"build": "style-dictionary build"
-},
-"main": "dist/web",
-"files": [
-	"./dist"
-],
-"exports": {
-	".": {
-		"import": "./dist/web/tokens.css",
-		"require": "./dist/web/tokens.css"
+	"name": "@downbeat-academy/cadence-tokens",
+	"description": "Downbeat Academy Design Tokens",
+	"author": "Jory Tindall <jory@downbeatacademy.com>",
+	"private": false,
+	"version": "2.0.1",
+	"license": "MIT",
+	"scripts": {
+		"build": "style-dictionary build"
 	},
-	"./dist/web.tokens.css": "./dist/web/tokens.css"
-},
-"module": "./dist/web/tokens.css",
-"keywords": [
-	"downbeat academy",
-	"tokens",
-	"design system"
-],
-"repository": {
-	"type": "git",
-	"url": "https://github.com/downbeat-academy/downbeat-academy.git",
-	"directory": "packages/tokens"
-},
-"devDependencies": {
-	"@divriots/style-dictionary-to-figma": "^0.3.0",
-	"style-dictionary": "^3.7.1"
-}
+	"main": "dist/web",
+	"files": [
+		"./dist"
+	],
+	"exports": {
+		".": {
+			"import": "./dist/web/tokens.css",
+			"require": "./dist/web/tokens.css"
+		},
+		"./dist/web.tokens.css": "./dist/web/tokens.css"
+	},
+	"module": "./dist/web/tokens.css",
+	"keywords": [
+		"downbeat academy",
+		"tokens",
+		"design system"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/downbeat-academy/downbeat-academy.git",
+		"directory": "packages/tokens"
+	},
+	"devDependencies": {
+		"@divriots/style-dictionary-to-figma": "^0.3.0",
+		"style-dictionary": "^3.7.1"
+	}
 }
