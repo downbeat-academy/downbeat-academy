@@ -63,7 +63,8 @@ importers:
 
   apps/www:
     specifiers:
-      '@downbeat-academy/cadence-core': ^1.1.0
+      '@downbeat-academy/cadence-core': workspace:^1.1.0
+      '@downbeat-academy/cadence-icons': workspace:^1.0.1
       '@next/font': 13.0.7
       '@types/node': 18.11.17
       '@types/react': 18.0.26
@@ -75,7 +76,8 @@ importers:
       react-dom: 18.2.0
       typescript: 4.9.4
     dependencies:
-      '@downbeat-academy/cadence-core': 1.1.0
+      '@downbeat-academy/cadence-core': link:../../packages/cadence-core
+      '@downbeat-academy/cadence-icons': link:../../packages/cadence-icons
       '@next/font': 13.0.7
       '@types/node': 18.11.17
       '@types/react': 18.0.26
@@ -89,6 +91,7 @@ importers:
 
   packages/cadence-core:
     specifiers:
+      '@downbeat-academy/cadence-icons': workspace:^1.0.1
       '@downbeat-academy/cadence-tokens': workspace:^2.0.1
       '@testing-library/react': ^13.4.0
       '@types/react': ^18.0.26
@@ -108,6 +111,7 @@ importers:
       vite-tsconfig-paths: ^4.0.3
       vitest: ^0.26.1
     dependencies:
+      '@downbeat-academy/cadence-icons': link:../cadence-icons
       '@downbeat-academy/cadence-tokens': link:../cadence-tokens
       boring-avatars: 1.7.0
       classnames: 2.3.2
@@ -172,7 +176,10 @@ importers:
   packages/cadence-tokens:
     specifiers:
       '@divriots/style-dictionary-to-figma': ^0.3.0
+      '@downbeat-academy/cadence-tokens': ^2.0.1
       style-dictionary: ^3.7.1
+    dependencies:
+      '@downbeat-academy/cadence-tokens': 'link:'
     devDependencies:
       '@divriots/style-dictionary-to-figma': 0.3.3
       style-dictionary: 3.7.1
@@ -1709,15 +1716,6 @@ packages:
   /@divriots/style-dictionary-to-figma/0.3.3:
     resolution: {integrity: sha512-DzFY2noGzer8H5DsYxbO+nHavY+/jZr2I66AE2GJcTmuRfw89ouRfZlA8Cli5ZksuuAMb4+SgApgR5TwKri0QQ==}
     dev: true
-
-  /@downbeat-academy/cadence-core/1.1.0:
-    resolution: {integrity: sha512-xR7HHFkJkD1uZ5GFIJoow7V8N0//3Up2+FGb1/zqEaiB/ME3y8znRAztQManhHTTd7lNIgrVPE3fSSAr6K84mw==}
-    dependencies:
-      boring-avatars: 1.7.0
-      classnames: 2.3.2
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
 
   /@emotion/is-prop-valid/0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}

@@ -33,5 +33,8 @@
 	"devDependencies": {
 		"@divriots/style-dictionary-to-figma": "^0.3.0",
 		"style-dictionary": "^3.7.1"
+	},
+	"dependencies": {
+		"@downbeat-academy/cadence-tokens": "^2.0.1"
 	}
 }

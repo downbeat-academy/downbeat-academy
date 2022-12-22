@@ -12,6 +12,7 @@
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },
   "dependencies": {
+    "@downbeat-academy/cadence-icons": "workspace:^1.0.1",
     "@downbeat-academy/cadence-tokens": "workspace:^2.0.1",
     "boring-avatars": "^1.7.0",
     "classnames": "^2.3.2",
