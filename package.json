@@ -4,7 +4,17 @@
   "description": "",
   "private": true,
   "scripts": {
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "core:dev": "pnpm --filter cadence-core dev",
+    "core:build": "pnpm --filter cadence-core build",
+    "icons:dev": "pnpm --filter cadence-icons dev",
+    "icons:build": "pnpm --filter cadence-icons build",
+    "www:dev": "pnpm --filter www dev",
+    "www:build": "pnpm --filter www build",
+    "docs:dev": "pnpm --filter cadence-docs dev",
+    "docs:build": "pnpm --filter cadence-docs build",
+    "cms:dev": "pnpm --filter sanity-cms dev",
+    "cms:build": "pnpm --filter sanity-cms build"
   },
   "keywords": [],
   "author": "Jory Tindall <jory@downbeatacademy.com>",
