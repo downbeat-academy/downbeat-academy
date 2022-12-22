@@ -1,5 +1,5 @@
 {
-  "name": "@downbeat-academy/sanity-cms",
+  "name": "sanity-cms",
   "private": true,
   "version": "1.0.0",
   "main": "package.json",

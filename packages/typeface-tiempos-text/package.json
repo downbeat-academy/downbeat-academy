@@ -1,5 +1,5 @@
 {
-	"name": "@downbeat-academy/typeface-tiempos-text",
+	"name": "typeface-tiempos-text",
 	"version": "1.0.1",
 	"description": "Self-hosted font for Tiempos Text",
 	"main": "index.css",

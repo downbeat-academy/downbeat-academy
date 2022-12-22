@@ -1,5 +1,5 @@
 {
-	"name": "@downbeat-academy/cadence-docs",
+	"name": "cadence-docs",
 	"version": "0.3.0",
 	"private": true,
 	"scripts": {
