@@ -1,5 +1,4 @@
 import { BiLinkExternal, BiLinkAlt, BiText } from 'react-icons/bi';
-import { GiMusicalScore } from 'react-icons/gi';
 
 export default {
 	name: 'richText',
@@ -47,7 +46,7 @@ export default {
 										title: 'URL',
 										name: 'href',
 										type: 'url',
-										validation: (Rule) => [
+										validation: (Rule: any) => [
 											Rule.regex(
 												/https:\/\/(www\.|)(portabletext\.org|sanity\.io)\/.*/gi,
 												{
