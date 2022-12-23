@@ -41,9 +41,7 @@ export default {
 								name: 'link',
 								type: 'object',
 								title: 'External Link',
-								blockEditor: {
-									icon: BiLinkExternal,
-								},
+								icon: BiLinkExternal,
 								fields: [
 									{
 										title: 'URL',
@@ -67,9 +65,7 @@ export default {
 								name: 'internalLink',
 								type: 'object',
 								title: 'Internal Link',
-								blockEditor: {
-									icon: BiLinkAlt,
-								},
+								icon: BiLinkAlt,
 								fields: [
 									{
 										name: 'reference',
