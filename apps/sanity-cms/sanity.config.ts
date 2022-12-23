@@ -7,6 +7,8 @@ import {
   projectInfoWidget,
 } from '@sanity/dashboard'
 import { documentListWidget } from 'sanity-plugin-dashboard-widget-document-list'
+import { scheduledPublishing } from '@sanity/scheduled-publishing'
+import { media } from 'sanity-plugin-media'
 import { schemaTypes } from './schemas'
 
 export default defineConfig({
@@ -50,6 +52,8 @@ export default defineConfig({
       ]
     }),
     deskTool(),
+    // scheduledPublishing(),
+    media(),
     visionTool(),
   ],
 
