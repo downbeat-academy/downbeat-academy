@@ -7,10 +7,11 @@ import {
   projectInfoWidget,
 } from '@sanity/dashboard'
 import { documentListWidget } from 'sanity-plugin-dashboard-widget-document-list'
-import { scheduledPublishing } from '@sanity/scheduled-publishing'
+// import { scheduledPublishing } from '@sanity/scheduled-publishing'
 import { media } from 'sanity-plugin-media'
 import { contentGraphView } from 'sanity-plugin-graph-view'
 import { schemaTypes } from './schemas'
+import { BiPurchaseTag } from 'react-icons/bi'
 
 export default defineConfig({
   name: 'downbeat-academy',
