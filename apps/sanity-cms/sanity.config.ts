@@ -10,8 +10,9 @@ import { documentListWidget } from 'sanity-plugin-dashboard-widget-document-list
 // import { scheduledPublishing } from '@sanity/scheduled-publishing'
 import { media } from 'sanity-plugin-media'
 import { contentGraphView } from 'sanity-plugin-graph-view'
+
 import { schemaTypes } from './schemas'
-import { BiPurchaseTag } from 'react-icons/bi'
+import { deskStructure } from './deskStructure'
 
 export default defineConfig({
   name: 'downbeat-academy',
@@ -53,7 +54,7 @@ export default defineConfig({
         })
       ]
     }),
-    deskTool(),
+    deskTool({ structure: deskStructure }),
     // scheduledPublishing(),
     contentGraphView({}),
     media(),
