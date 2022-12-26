@@ -6,3 +6,7 @@ DS_store
 .DS_STORE
 
 node_modules
+
+.turbo
+packages/**/.turbo
+apps/**/.turbo
