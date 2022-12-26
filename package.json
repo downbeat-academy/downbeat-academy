@@ -18,7 +18,8 @@
     "docs:dev": "pnpm --filter cadence-docs dev",
     "docs:build": "pnpm --filter cadence-docs build",
     "cms:dev": "pnpm --filter sanity-cms dev",
-    "cms:build": "pnpm --filter sanity-cms build"
+    "cms:build": "pnpm --filter sanity-cms build",
+    "tokens:build": "turbo run build --filter=cadence-tokens"
   },
   "keywords": [],
   "author": "Jory Tindall <jory@downbeatacademy.com>",

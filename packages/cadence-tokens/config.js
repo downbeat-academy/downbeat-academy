@@ -17,10 +17,16 @@ module.exports = {
 				{
 					destination: 'tokens.scss',
 					format: 'scss/variables',
+					options: {
+						showFileHeader: false,
+					}
 				},
 				{
 					destination: 'tokens.css',
 					format: 'css/variables',
+					options: {
+						showFileHeader: false,
+					}
 				},
 			],
 		},
