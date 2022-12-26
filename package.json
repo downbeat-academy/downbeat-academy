@@ -1,7 +1,17 @@
 {
   "name": "@downbeat-academy/downbeat-academy",
+  "author": "Jory Tindall <jory@downbeatacademy.com>",
+  "description": "Monorepo for Downbeat Academy applications and packages, including the Cadence Design System.",
+  "keywords": [
+    "music",
+    "design system",
+    "education",
+    "nextjs",
+    "vite",
+    "react",
+    "cadence"
+  ],
   "version": "0.0.0",
-  "description": "",
   "private": true,
   "scripts": {
     "format": "prettier --write .",
@@ -21,8 +31,6 @@
     "cms:build": "turbo run build --filter=sanity-cms",
     "tokens:build": "turbo run build --filter=cadence-tokens"
   },
-  "keywords": [],
-  "author": "Jory Tindall <jory@downbeatacademy.com>",
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
     "@types/prettier": "^2.7.1",
