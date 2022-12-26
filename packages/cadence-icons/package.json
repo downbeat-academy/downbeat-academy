@@ -2,6 +2,7 @@
   "name": "cadence-icons",
   "private": true,
   "version": "1.0.1",
+  "author": "Jory Tindall <jory@downbeatacademy.com>",
   "type": "module",
   "license": "MIT",
   "scripts": {
