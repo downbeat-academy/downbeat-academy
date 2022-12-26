@@ -4,6 +4,7 @@
 	"private": true,
 	"description": "Primary web UI for Downbeat Academy",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
+	"license": "UNLICENSED",
 	"keywords": [
 		"nextjs",
 		"sanity",

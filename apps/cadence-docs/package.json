@@ -2,6 +2,7 @@
 	"name": "cadence-docs",
 	"version": "0.3.0",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
+	"license": "UNLICENSED",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",

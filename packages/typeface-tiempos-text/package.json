@@ -1,7 +1,7 @@
 {
 	"name": "typeface-tiempos-text",
 	"version": "1.0.1",
-	"private": false,
+	"private": true,
 	"description": "Self-hosted font for Tiempos Text",
 	"main": "index.css",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",

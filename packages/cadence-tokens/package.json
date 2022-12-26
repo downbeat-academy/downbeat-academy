@@ -4,7 +4,7 @@
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
 	"private": true,
 	"version": "2.0.1",
-	"license": "MIT",
+	"license": "UNLICENSED",
 	"scripts": {
 		"build": "style-dictionary build"
 	},

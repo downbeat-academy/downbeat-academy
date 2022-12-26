@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "author": "Jory Tindall <jory@downbeatacademy.com>",
   "type": "module",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
     "build": "tsc && pnpm icons:build && vite build",
