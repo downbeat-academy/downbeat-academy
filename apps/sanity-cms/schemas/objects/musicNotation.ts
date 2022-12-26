@@ -1,4 +1,4 @@
-import { GiMusicalScore } from 'react-icons/gi';
+import { GiMusicalScore } from 'react-icons/gi'
 
 export default {
 	name: 'musicNotation',
@@ -36,4 +36,4 @@ export default {
 			},
 		},
 	],
-};
+}

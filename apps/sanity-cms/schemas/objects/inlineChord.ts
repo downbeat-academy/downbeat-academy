@@ -1,4 +1,4 @@
-import { BsMusicNoteList } from 'react-icons/bs';
+import { BsMusicNoteList } from 'react-icons/bs'
 
 export default {
 	name: 'inlineChord',
@@ -95,7 +95,7 @@ export default {
 		},
 		prepare(selection: any) {
 			const { title, type, quality, seventh, extension, alternateBass } =
-				selection;
+				selection
 			return {
 				// title: '${title || ''}${quality || ''}${extension || ''}',
 				title: `${title} ${
@@ -107,7 +107,7 @@ export default {
 						? extension
 						: ''
 				} ${alternateBass ? '/ ' + alternateBass : ''}`,
-			};
+			}
 		},
 	},
-};
+}

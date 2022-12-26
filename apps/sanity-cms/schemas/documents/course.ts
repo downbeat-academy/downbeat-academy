@@ -1,4 +1,4 @@
-import { BiBook } from 'react-icons/bi';
+import { BiBook } from 'react-icons/bi'
 
 export default {
 	name: `course`,
@@ -12,14 +12,10 @@ export default {
 			type: `string`,
 			description: `Title of the lesson`,
 			validation: (Rule) => [
-				Rule.required()
-					.min(5)
-					.error('Title must be longer than 5 characters'),
+				Rule.required().min(5).error('Title must be longer than 5 characters'),
 				Rule.required()
 					.max(96)
-					.warning(
-						'A title shorter than 96 characters might be better.'
-					),
+					.warning('A title shorter than 96 characters might be better.'),
 				Rule.required().error('You must enter a title for the lesson.'),
 			],
 		},
@@ -74,4 +70,4 @@ export default {
 			of: [{ type: `lesson` }],
 		},
 	],
-};
+}

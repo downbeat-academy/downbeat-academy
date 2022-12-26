@@ -1,4 +1,4 @@
-import { BiImage } from 'react-icons/bi';
+import { BiImage } from 'react-icons/bi'
 
 export default {
 	title: `Image`,
@@ -35,4 +35,4 @@ export default {
 			media: `image`,
 		},
 	},
-};
+}

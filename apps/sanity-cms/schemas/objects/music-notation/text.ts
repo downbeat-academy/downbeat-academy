@@ -9,4 +9,4 @@ export default {
 			type: `string`,
 		},
 	],
-};
+}

@@ -1,4 +1,4 @@
-import { BiPencil } from 'react-icons/bi';
+import { BiPencil } from 'react-icons/bi'
 
 export default {
 	name: `article`,
@@ -14,17 +14,13 @@ export default {
 			validation: (Rule) => [
 				Rule.required()
 					.min(5)
-					.error(
-						`The article title should be longer than 5 characters.`
-					),
+					.error(`The article title should be longer than 5 characters.`),
 				Rule.required()
 					.max(96)
 					.warning(
 						`That's a pretty long title, you might want to provide a shorter title.`
 					),
-				Rule.required().error(
-					`You must enter a title for the article.`
-				),
+				Rule.required().error(`You must enter a title for the article.`),
 			],
 		},
 		{
@@ -123,4 +119,4 @@ export default {
 			media: `featuredImage.image`,
 		},
 	},
-};
+}

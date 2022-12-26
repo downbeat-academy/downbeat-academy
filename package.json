@@ -5,22 +5,28 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "core:dev": "pnpm --filter cadence-core dev",
-    "core:build": "pnpm --filter cadence-core build",
-    "icons:dev": "pnpm --filter cadence-icons dev",
-    "icons:build": "pnpm --filter cadence-icons build",
-    "www:dev": "pnpm --filter www dev",
-    "www:build": "pnpm --filter www build",
-    "docs:dev": "pnpm --filter cadence-docs dev",
-    "docs:build": "pnpm --filter cadence-docs build",
-    "cms:dev": "pnpm --filter sanity-cms dev",
-    "cms:build": "pnpm --filter sanity-cms build"
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "dev": "turbo run dev",
+    "core:dev": "turbo run dev --filter=cadence-core",
+    "core:build": "turbo run build --filter=cadence-core",
+    "icons:dev": "turbo run dev --filter=cadence-icons",
+    "icons:build": "turbo run build --filter=cadence-icons",
+    "www:dev": "turbo run dev --filter=www",
+    "www:build": "turbo run build --filter=www",
+    "docs:dev": "turbo run dev --filter=cadence-docs",
+    "docs:build": "turbo run build --filter=cadence-docs",
+    "cms:dev": "turbo run dev --filter=sanity-cms",
+    "cms:build": "turbo run build --filter=sanity-cms",
+    "tokens:build": "turbo run build --filter=cadence-tokens"
   },
   "keywords": [],
   "author": "Jory Tindall <jory@downbeatacademy.com>",
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
     "@types/prettier": "^2.7.1",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.1",
+    "turbo": "^1.6.3"
   }
 }

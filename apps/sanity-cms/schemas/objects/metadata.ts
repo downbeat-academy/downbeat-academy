@@ -1,4 +1,4 @@
-import { BiInfoCircle } from 'react-icons/bi';
+import { BiInfoCircle } from 'react-icons/bi'
 
 export default {
 	name: `metadata`,
@@ -50,4 +50,4 @@ export default {
 			description: `Open graph image for sharing on social media. Images will be cropped to 1200 x 630`,
 		},
 	],
-};
+}

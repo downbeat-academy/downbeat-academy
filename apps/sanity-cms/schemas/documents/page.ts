@@ -1,4 +1,4 @@
-import { BiFile } from 'react-icons/bi';
+import { BiFile } from 'react-icons/bi'
 
 export default {
 	name: `page`,
@@ -16,9 +16,7 @@ export default {
 			validation: (Rule) => [
 				Rule.required()
 					.min(5)
-					.error(
-						`The page title should be longer than 5 characters.`
-					),
+					.error(`The page title should be longer than 5 characters.`),
 				Rule.required()
 					.max(96)
 					.warning(
@@ -65,4 +63,4 @@ export default {
 			title: `title`,
 		},
 	},
-};
+}

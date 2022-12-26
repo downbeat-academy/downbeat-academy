@@ -1,7 +1,7 @@
-import { ForwardedRef, forwardRef } from 'react';
-import classnames from 'classnames';
-import { ButtonProps } from './types';
-import s from './button.module.css';
+import { ForwardedRef, forwardRef } from 'react'
+import classnames from 'classnames'
+import { ButtonProps } from './types'
+import s from './button.module.css'
 
 const Button = forwardRef(
 	(
@@ -33,12 +33,12 @@ const Button = forwardRef(
 			s[size],
 			{ [s.fullWidth]: isFullWidth },
 			className
-		);
+		)
 
-		const hasIcon = !!icon;
-		const hasText = !!text;
-		const hasLeadingIcon = hasIcon && iconPosition === 'leading';
-		const hasTrailingIcon = hasIcon && iconPosition === 'trailing';
+		const hasIcon = !!icon
+		const hasText = !!text
+		const hasLeadingIcon = hasIcon && iconPosition === 'leading'
+		const hasTrailingIcon = hasIcon && iconPosition === 'trailing'
 
 		return (
 			<button
@@ -63,9 +63,9 @@ const Button = forwardRef(
 					{hasTrailingIcon && icon}
 				</>
 			</button>
-		);
+		)
 	}
-);
+)
 
-export type { ButtonProps };
-export { Button };
+export type { ButtonProps }
+export { Button }

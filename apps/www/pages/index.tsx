@@ -1,7 +1,7 @@
 export default function Home() {
-    return (
-        <>
-            <p>App</p>
-        </>
-    )
+	return (
+		<>
+			<p>App</p>
+		</>
+	)
 }

@@ -1,4 +1,4 @@
-import { BiUserCircle } from 'react-icons/bi';
+import { BiUserCircle } from 'react-icons/bi'
 
 export default {
 	name: `person`,
@@ -90,4 +90,4 @@ export default {
 			media: `avatar.image`,
 		},
 	},
-};
+}

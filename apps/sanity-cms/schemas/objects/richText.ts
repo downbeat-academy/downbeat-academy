@@ -1,4 +1,4 @@
-import { BiLinkExternal, BiLinkAlt, BiText } from 'react-icons/bi';
+import { BiLinkExternal, BiLinkAlt, BiText } from 'react-icons/bi'
 
 export default {
 	name: 'richText',
@@ -93,4 +93,4 @@ export default {
 			],
 		},
 	],
-};
+}

@@ -1,4 +1,4 @@
-import { BiMusic } from 'react-icons/bi';
+import { BiMusic } from 'react-icons/bi'
 
 export default {
 	name: `audio`,
@@ -12,9 +12,7 @@ export default {
 			type: `string`,
 			description: `Title for the embedded audio.`,
 			validation: (Rule) => [
-				Rule.required().error(
-					`You must provide a title for the audio.`
-				),
+				Rule.required().error(`You must provide a title for the audio.`),
 			],
 		},
 		{
@@ -29,9 +27,7 @@ export default {
 			type: `file`,
 			description: `Upload or select an audio file. Accepted files include .mp3, .m4a, .ogg, and .wav.`,
 			validation: (Rule) => [
-				Rule.required().error(
-					`You must upload or select an audio file.`
-				),
+				Rule.required().error(`You must upload or select an audio file.`),
 			],
 			options: {
 				accept: `.mp3, .m4a, .ogg, .wav`,
@@ -53,4 +49,4 @@ export default {
 			subtitle: `description`,
 		},
 	},
-};
+}

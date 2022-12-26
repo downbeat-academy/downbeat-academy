@@ -1,4 +1,4 @@
-import { BiCut } from 'react-icons/bi';
+import { BiCut } from 'react-icons/bi'
 
 export default {
 	name: 'snippet',
@@ -26,4 +26,4 @@ export default {
 			],
 		},
 	],
-};
+}

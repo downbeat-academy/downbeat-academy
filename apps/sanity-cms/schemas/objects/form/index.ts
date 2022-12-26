@@ -1,4 +1,4 @@
-import { BiDetail } from 'react-icons/bi';
+import { BiDetail } from 'react-icons/bi'
 
 export default {
 	name: `form`,
@@ -16,9 +16,7 @@ export default {
 			title: `Form Title`,
 			type: `string`,
 			description: `Provide a descriptive name for your form.`,
-			validation: (Rule) => [
-				Rule.required().error(`The form needs a title.`),
-			],
+			validation: (Rule) => [Rule.required().error(`The form needs a title.`)],
 		},
 		{
 			name: `method`,
@@ -50,4 +48,4 @@ export default {
 			description: 'Text content within the submit button.',
 		},
 	],
-};
+}

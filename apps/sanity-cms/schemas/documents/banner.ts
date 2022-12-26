@@ -1,4 +1,4 @@
-import { BiWindow } from 'react-icons/bi';
+import { BiWindow } from 'react-icons/bi'
 
 export default {
 	name: `banner`,
@@ -11,9 +11,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Name the banner.`,
-			validation: (Rule) => [
-				Rule.required().error(`The banner needs a name.`),
-			],
+			validation: (Rule) => [Rule.required().error(`The banner needs a name.`)],
 		},
 		{
 			name: `active`,
@@ -58,4 +56,4 @@ export default {
 			subtitle: 'headline',
 		},
 	},
-};
+}

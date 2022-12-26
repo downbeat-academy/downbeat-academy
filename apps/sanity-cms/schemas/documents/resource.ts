@@ -1,4 +1,4 @@
-import { BiPen } from 'react-icons/bi';
+import { BiPen } from 'react-icons/bi'
 
 export default {
 	name: 'resource',
@@ -15,12 +15,8 @@ export default {
 				Rule.required()
 					.min(5)
 					.max(96)
-					.error(
-						'The resource title should be between 5 and 96 characters.'
-					),
-				Rule.required().error(
-					'You must enter a title for the resource.'
-				),
+					.error('The resource title should be between 5 and 96 characters.'),
+				Rule.required().error('You must enter a title for the resource.'),
 			],
 		},
 		{
@@ -90,8 +86,7 @@ export default {
 			name: 'featuredImage',
 			title: 'Featured Image',
 			type: 'mainImage',
-			description:
-				'Select or upload an image to be paired with the resource.',
+			description: 'Select or upload an image to be paired with the resource.',
 			to: [{ type: 'asset' }],
 			validation: (Rule) => [
 				Rule.required().error('The resource needs an image.'),
@@ -122,4 +117,4 @@ export default {
 			media: 'featureImage.image',
 		},
 	},
-};
+}

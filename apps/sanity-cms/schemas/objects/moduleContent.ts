@@ -11,4 +11,4 @@ export default {
 		// { type: 'video' },
 		{ type: 'form' },
 	],
-};
+}

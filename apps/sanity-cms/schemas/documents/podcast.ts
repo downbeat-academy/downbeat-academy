@@ -1,4 +1,4 @@
-import { BiMicrophone } from 'react-icons/bi';
+import { BiMicrophone } from 'react-icons/bi'
 
 export default {
 	name: `podcast`,
@@ -96,4 +96,4 @@ export default {
 			],
 		},
 	],
-};
+}

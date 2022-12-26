@@ -1,4 +1,4 @@
-import { BiBrush } from 'react-icons/bi';
+import { BiBrush } from 'react-icons/bi'
 
 export default {
 	name: `brandAsset`,
@@ -39,10 +39,8 @@ export default {
 				hotspot: true,
 			},
 			validation: (Rule) => [
-				Rule.required().error(
-					`You must either upload or select an asset.`
-				),
+				Rule.required().error(`You must either upload or select an asset.`),
 			],
 		},
 	],
-};
+}

@@ -1,4 +1,4 @@
-import { BiNews } from 'react-icons/bi';
+import { BiNews } from 'react-icons/bi'
 
 export default {
 	name: 'newsletter',
@@ -26,4 +26,4 @@ export default {
 			],
 		},
 	],
-};
+}

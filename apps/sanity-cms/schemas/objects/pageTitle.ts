@@ -1,4 +1,4 @@
-import { MdTitle } from 'react-icons/md';
+import { MdTitle } from 'react-icons/md'
 
 export default {
 	name: 'pageTitle',
@@ -37,4 +37,4 @@ export default {
 			subtitle: 'title',
 		},
 	},
-};
+}

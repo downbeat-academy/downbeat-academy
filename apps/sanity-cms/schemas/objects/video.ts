@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { BiMovie } from 'react-icons/bi';
-import ReactPlayer from 'react-player';
+import * as React from 'react'
+import { BiMovie } from 'react-icons/bi'
+import ReactPlayer from 'react-player'
 
 // const Preview = ({ value }) => {
 //     return <ReactPlayer url={value.url} />
@@ -18,9 +18,7 @@ export default {
 			type: `string`,
 			description: `Title for the embedded video.`,
 			validation: (Rule) => [
-				Rule.required().error(
-					`You must provide a title for the video.`
-				),
+				Rule.required().error(`You must provide a title for the video.`),
 			],
 		},
 		{
@@ -63,4 +61,4 @@ export default {
 			subtitle: 'description',
 		},
 	},
-};
+}

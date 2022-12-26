@@ -1,4 +1,4 @@
-@import '@downbeat-academy/cadence-tokens';
+@import 'cadence-tokens';
 
 .root {
 	border: 1px solid;
