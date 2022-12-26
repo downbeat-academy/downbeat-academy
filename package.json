@@ -5,6 +5,10 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "dev": "turbo run dev",
     "core:dev": "pnpm --filter cadence-core dev",
     "core:build": "pnpm --filter cadence-core build",
     "icons:dev": "pnpm --filter cadence-icons dev",
