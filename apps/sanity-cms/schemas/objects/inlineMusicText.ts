@@ -1,4 +1,4 @@
-import { GiMusicalScore } from 'react-icons/gi';
+import { GiMusicalScore } from 'react-icons/gi'
 
 export default {
 	name: `inlineMusicText`,
@@ -28,12 +28,12 @@ export default {
 			option3: 'options.2.options',
 		},
 		prepare: ({ option1, option2, option3 }) => {
-			const options = [option1, option2, option3];
-			const title = options.length > 0 ? options.join(' ') : '';
-			console.log(option1);
+			const options = [option1, option2, option3]
+			const title = options.length > 0 ? options.join(' ') : ''
+			console.log(option1)
 			return {
 				title,
-			};
+			}
 		},
 	},
-};
+}

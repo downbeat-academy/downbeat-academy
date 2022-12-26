@@ -1,5 +1,5 @@
-import { BiNavigation } from 'react-icons/bi';
-import { BiLink } from 'react-icons/bi';
+import { BiNavigation } from 'react-icons/bi'
+import { BiLink } from 'react-icons/bi'
 
 export default {
 	name: `navigation`,
@@ -45,4 +45,4 @@ export default {
 			],
 		},
 	],
-};
+}

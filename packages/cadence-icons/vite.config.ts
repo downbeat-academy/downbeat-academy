@@ -7,40 +7,40 @@ import postcssNesting from 'postcss-nesting'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tsConfigPaths(),
-    dts({
-      insertTypesEntry: true,
-      include: ['src/components']
-    }),
-    cssInjectedByJsPlugin(),
-  ],
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, './src/components/index.ts'),
-      name: 'CadenceIcons',
-      formats: ['es', 'umd'],
-      fileName: (format) => `cadence-icons.${format}.js`,
-    },
-    rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDom',
-        },
-      },
-    },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-  css: {
-    postcss: {
-      plugins: [postcssNesting],
-    },
-  },
+	plugins: [
+		react(),
+		tsConfigPaths(),
+		dts({
+			insertTypesEntry: true,
+			include: ['src/components'],
+		}),
+		cssInjectedByJsPlugin(),
+	],
+	build: {
+		lib: {
+			entry: path.resolve(__dirname, './src/components/index.ts'),
+			name: 'CadenceIcons',
+			formats: ['es', 'umd'],
+			fileName: (format) => `cadence-icons.${format}.js`,
+		},
+		rollupOptions: {
+			external: ['react', 'react-dom'],
+			output: {
+				globals: {
+					react: 'React',
+					'react-dom': 'ReactDom',
+				},
+			},
+		},
+	},
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src'),
+		},
+	},
+	css: {
+		postcss: {
+			plugins: [postcssNesting],
+		},
+	},
 })

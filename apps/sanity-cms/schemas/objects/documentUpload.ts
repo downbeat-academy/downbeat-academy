@@ -1,4 +1,4 @@
-import { BiUpload } from 'react-icons/bi';
+import { BiUpload } from 'react-icons/bi'
 
 export default {
 	name: `documentUpload`,
@@ -33,4 +33,4 @@ export default {
 			title: `title`,
 		},
 	},
-};
+}

@@ -1,4 +1,3 @@
-
 // Do not edit directly
 // Generated on Fri, 16 Dec 2022 23:49:17 GMT
 
@@ -147,17 +146,44 @@ $spacing-07: 32px;
 $spacing-08: 40px;
 $spacing-09: 48px;
 $typography-font-family-expressive-body: Tiempos Text, Georgia, Times, serif;
-$typography-font-family-expressive-headline: Favorit Std, Helvetica, Arial, sans-serif;
-$typography-font-family-productive-body: Favorit Std, Helvetica, Arial, sans-serif;
-$typography-font-family-productive-headline: Favorit, Helvetica, Arial, sans-serif;
+$typography-font-family-expressive-headline: Favorit Std, Helvetica, Arial,
+	sans-serif;
+$typography-font-family-productive-body: Favorit Std, Helvetica, Arial,
+	sans-serif;
+$typography-font-family-productive-headline: Favorit, Helvetica, Arial,
+	sans-serif;
 $typography-font-family-mono: Favorit Mono, Courier, monospace;
 $typography-font-family-music-notation: Noto Music, sans-serif;
-$typography-font-size-fluid-expressive-6x-large: clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem);
-$typography-font-size-fluid-expressive-5x-large: clamp(2.49rem, 2.58vw + 1.88rem, 4.21rem);
-$typography-font-size-fluid-expressive-4x-large: clamp(2.07rem, 1.63vw + 1.69rem, 3.16rem);
-$typography-font-size-fluid-expressive-3x-large: clamp(1.73rem, 0.96vw + 1.5rem, 2.37rem);
-$typography-font-size-fluid-expressive-2x-large: clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem);
-$typography-font-size-fluid-expressive-x-large: clamp(1.44rem, 0.51vw + 1.32rem, 1.78rem);
+$typography-font-size-fluid-expressive-6x-large: clamp(
+	2.5rem,
+	3.94vw + 2.06rem,
+	5.25rem
+);
+$typography-font-size-fluid-expressive-5x-large: clamp(
+	2.49rem,
+	2.58vw + 1.88rem,
+	4.21rem
+);
+$typography-font-size-fluid-expressive-4x-large: clamp(
+	2.07rem,
+	1.63vw + 1.69rem,
+	3.16rem
+);
+$typography-font-size-fluid-expressive-3x-large: clamp(
+	1.73rem,
+	0.96vw + 1.5rem,
+	2.37rem
+);
+$typography-font-size-fluid-expressive-2x-large: clamp(
+	1.44rem,
+	0.51vw + 1.32rem,
+	1.78rem
+);
+$typography-font-size-fluid-expressive-x-large: clamp(
+	1.44rem,
+	0.51vw + 1.32rem,
+	1.78rem
+);
 $typography-font-size-fluid-expressive-large: 1.125rem;
 $typography-font-size-fluid-expressive-base: 1rem;
 $typography-font-size-fluid-expressive-small: 0.875rem;
@@ -173,7 +199,7 @@ $typography-font-size-fixed-expressive-base: 1rem;
 $typography-font-size-fixed-expressive-small: 0.875rem;
 $typography-font-size-fixed-expressive-x-small: 0.75rem;
 $typography-font-size-fixed-productive-4x-large: 2.5rem;
-$typography-font-size-fixed-productive-3x-large: 2.0rem;
+$typography-font-size-fixed-productive-3x-large: 2rem;
 $typography-font-size-fixed-productive-2x-large: 1.75rem;
 $typography-font-size-fixed-productive-x-large: 1.5rem;
 $typography-font-size-fixed-productive-large: 1.25rem;

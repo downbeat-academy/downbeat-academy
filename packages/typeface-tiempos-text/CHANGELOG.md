@@ -4,4 +4,4 @@
 
 ### Patch Changes
 
--   2f8a1b2: Setup publishing to NPM
+- 2f8a1b2: Setup publishing to NPM

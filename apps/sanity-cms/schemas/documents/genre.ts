@@ -1,4 +1,4 @@
-import { BiAlbum } from 'react-icons/bi';
+import { BiAlbum } from 'react-icons/bi'
 
 export default {
 	name: 'genre',
@@ -25,9 +25,7 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule) => [
-				Rule.required().error('The genre needs a slug.'),
-			],
+			validation: (Rule) => [Rule.required().error('The genre needs a slug.')],
 		},
 	],
-};
+}

@@ -1,4 +1,4 @@
-import { BiCog } from 'react-icons/bi';
+import { BiCog } from 'react-icons/bi'
 
 export default {
 	name: `settings`,
@@ -25,4 +25,4 @@ export default {
 			description: `Open graph image for sharing on social media. Images will be cropped to 1200 x 630. Serves as the default OG image if none is provided.`,
 		},
 	],
-};
+}

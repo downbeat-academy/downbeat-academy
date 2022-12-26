@@ -1,4 +1,4 @@
-import { BiMusic } from 'react-icons/bi';
+import { BiMusic } from 'react-icons/bi'
 
 export default {
 	name: 'instrument',
@@ -30,4 +30,4 @@ export default {
 			],
 		},
 	],
-};
+}

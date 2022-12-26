@@ -1,6 +1,6 @@
-import classnames from 'classnames';
-import { ButtonSetProps } from './types';
-import styles from './buttonSet.module.css';
+import classnames from 'classnames'
+import { ButtonSetProps } from './types'
+import styles from './buttonSet.module.css'
 
 const ButtonSet = ({
 	children,
@@ -15,10 +15,10 @@ const ButtonSet = ({
 		styles[gap],
 		styles[justify],
 		className
-	);
+	)
 
-	return <div className={classes}>{children}</div>;
-};
+	return <div className={classes}>{children}</div>
+}
 
-export type { ButtonSetProps };
-export { ButtonSet };
+export type { ButtonSetProps }
+export { ButtonSet }

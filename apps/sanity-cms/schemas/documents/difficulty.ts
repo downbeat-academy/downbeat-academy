@@ -1,4 +1,4 @@
-import { BiTachometer } from 'react-icons/bi';
+import { BiTachometer } from 'react-icons/bi'
 
 export default {
 	name: 'difficulty',
@@ -25,4 +25,4 @@ export default {
 			],
 		},
 	],
-};
+}

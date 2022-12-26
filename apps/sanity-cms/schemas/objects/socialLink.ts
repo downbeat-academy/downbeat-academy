@@ -1,4 +1,4 @@
-import { BiLinkAlt } from 'react-icons/bi';
+import { BiLinkAlt } from 'react-icons/bi'
 
 export default {
 	name: `socialLink`,
@@ -32,9 +32,7 @@ export default {
 			title: `URL`,
 			type: `url`,
 			description: `Paste the URL from the your social platform page or account.`,
-			validation: (Rule) => [
-				Rule.required().error(`You must paste a URL.`),
-			],
+			validation: (Rule) => [Rule.required().error(`You must paste a URL.`)],
 		},
 	],
 	preview: {
@@ -43,4 +41,4 @@ export default {
 			subtitle: `url`,
 		},
 	},
-};
+}

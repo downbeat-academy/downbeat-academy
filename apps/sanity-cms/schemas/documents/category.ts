@@ -1,4 +1,4 @@
-import { BiPurchaseTag } from 'react-icons/bi';
+import { BiPurchaseTag } from 'react-icons/bi'
 
 export default {
 	name: 'category',
@@ -12,9 +12,7 @@ export default {
 			type: 'string',
 			description: 'Name of the category',
 			validation: (Rule) => [
-				Rule.required().error(
-					'You must provide a title for the category.'
-				),
+				Rule.required().error('You must provide a title for the category.'),
 			],
 		},
 		{
@@ -33,4 +31,4 @@ export default {
 			],
 		},
 	],
-};
+}
