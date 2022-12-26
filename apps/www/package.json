@@ -3,6 +3,7 @@
 	"version": "2.3.1",
 	"private": true,
 	"description": "Primary web UI for Downbeat Academy",
+	"author": "Jory Tindall <jory@downbeatacademy.com>",
 	"keywords": [
 		"nextjs",
 		"sanity",

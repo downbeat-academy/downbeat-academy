@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "main": "package.json",
+  "author": "Jory Tindall <jory@downbeatacademy.com>",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity dev",
