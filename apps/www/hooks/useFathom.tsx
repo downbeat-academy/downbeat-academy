@@ -2,7 +2,7 @@ import * as Fathom from 'fathom-client'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-export const useFathom = () => {
+const useFathom = () => {
 	const router = useRouter();
 
 	useEffect(() => {
@@ -23,3 +23,5 @@ export const useFathom = () => {
 		};
 	}, [router.events]);
 };
+
+export { useFathom }

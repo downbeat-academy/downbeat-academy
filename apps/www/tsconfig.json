@@ -18,7 +18,7 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "/",
+		"baseUrl": "./",
 		"paths": {
 			"@*": [
 				"*"
@@ -50,7 +50,7 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"hooks/useFathom.js"
+		"hooks/useFathom.tsx"
 	],
 	"exclude": [
 		"node_modules"
