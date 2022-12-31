@@ -2,4 +2,3 @@ User-agent: *
 Crawl-delay: 1
 Allow: /
 Disallow: /api/auth
-Disallow: /api/create-stripe-customer
