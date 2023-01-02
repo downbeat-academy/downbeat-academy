@@ -8,7 +8,7 @@ export default function Home() {
 				description='Welcome to the home of Downbeat Academy, with top courses and resources by leading professionals and educators.'
 				url=''
 			/>
-			<p>App</p>
+			<p>Homepage</p>
 		</>
 	)
 }
