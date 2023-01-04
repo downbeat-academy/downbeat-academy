@@ -35,25 +35,6 @@ export const GET_ARTICLE_PATHS = groq`
 
 // Article Queries
 
-export const articlesBySlugQuery = groq`
-  *[_type == "article" && slug.current == $slug][0] {
-    title,
-    content,
-    excerpt,
-    date,
-    _updatedAt,
-    authors,
-    categories,
-    featuredImage,
-    metadata,
-    "slug": slug.current,
-  }
-`
-
-export const articleSlugsQuery = groq`
-  *[_type == "article" && defined(slug.current)][].slug.current
-`
-
 export const GET_ARTICLES = groq`
     *[_type == 'article'][] {
         _id,
