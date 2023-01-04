@@ -43,6 +43,9 @@
       ],
       "@utils/*": [
         "utils/*"
+      ],
+      "@app/*": [
+        "app/*"
       ]
     },
     "plugins": [
