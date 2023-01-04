@@ -84,7 +84,7 @@ importers:
       '@portabletext/react': ^2.0.0
       '@sanity/image-url': ^1.0.1
       '@sendgrid/mail': ^7.7.0
-      '@supabase/supabase-js': ^2.2.2
+      '@supabase/supabase-js': ^2.2.3
       '@types/node': 18.11.17
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
@@ -95,7 +95,7 @@ importers:
       eslint-config-next: 13.0.7
       fathom-client: ^3.5.0
       next: 13.0.7
-      next-sanity: ^3.1.8
+      next-sanity: ^3.1.9
       react: 18.2.0
       react-dom: 18.2.0
       typescript: 4.9.4
@@ -104,7 +104,7 @@ importers:
       '@portabletext/react': 2.0.0_react@18.2.0
       '@sanity/image-url': 1.0.1
       '@sendgrid/mail': 7.7.0
-      '@supabase/supabase-js': 2.2.2
+      '@supabase/supabase-js': 2.2.3
       '@types/node': 18.11.17
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
@@ -115,7 +115,7 @@ importers:
       eslint-config-next: 13.0.7_lzzuuodtsqwxnvqeq4g4likcqa
       fathom-client: 3.5.0
       next: 13.0.7_biqbaboplfbrettd7655fr4n2y
-      next-sanity: 3.1.8_next@13.0.7+react@18.2.0
+      next-sanity: 3.1.9_next@13.0.7+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       typescript: 4.9.4
@@ -2768,6 +2768,10 @@ packages:
     resolution: {integrity: sha512-dHPgiCMf+lwvQls5uPzorfiq9YuU41AzvifA+ugVHmXvq7JBoofoOPUOmdHUQF0l0shSy0nD3zn52j2I+T2ekg==}
     dev: false
 
+  /@sanity/color/2.2.1:
+    resolution: {integrity: sha512-ecqEkAybTvhqg90Tso6m3zyXzWNzr0WfCLxAPduiK0au9sxirpd18EqFx4XtdH44NKAry1kTmsXZ/nDOuuBENA==}
+    dev: false
+
   /@sanity/dashboard/3.1.1_ptb2rc6z4uw7bctxswspi6slsi:
     resolution: {integrity: sha512-jtlKrsecNp7zXQkIvUk1hj7XBxh3bZk364gnvepIPJuGBEsHy7yvobTzEgWyFjs3n5IaNFd3YJkO/LyZcwIsUg==}
     engines: {node: '>=14'}
@@ -2977,8 +2981,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/preview-kit/1.2.14_react@18.2.0:
-    resolution: {integrity: sha512-cnUlaWjlK+DjIK24KhCfTd6NgJD7AGka/4TYc9PonTR0DkRDaQiSes1Bl5MuAps80XeTel3+ZT6yq9+z5zeDZw==}
+  /@sanity/preview-kit/1.2.17_react@18.2.0:
+    resolution: {integrity: sha512-tR6MRVvv8FOOnbTbrxb+sckNhPaJl686KON2bx+fyqNHI4/7VZr1gcdZu5OSlsEQynl9o+1sDptJ3CNkgyLRcQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^18
@@ -3101,7 +3105,7 @@ packages:
     resolution: {integrity: sha512-hocM0bZVa6ONVjLA50gxRSwIcmsaRPpvhl71MgutHxcnvsGZD55n2LQZb4n7h+J9yEFSkz9lY8HbY8n/bw8tsw==}
     dependencies:
       '@sanity/client': 3.4.1
-      '@sanity/color': 2.1.20
+      '@sanity/color': 2.2.1
       '@types/react': 17.0.52
       rxjs: 6.6.7
     transitivePeerDependencies:
@@ -3279,8 +3283,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/supabase-js/2.2.2:
-    resolution: {integrity: sha512-xwuaSYghC5GkV/Pj4lzXbC8RnFxpPh5FO6nVMcbQbpGJDduiMyr2PCq3+hinWKmsFBBXvq+UioOZQIWUzVRoYg==}
+  /@supabase/supabase-js/2.2.3:
+    resolution: {integrity: sha512-UOKnbkwtCGpI/yoW5FbiDqV1tvtP+kJkYROosCGS7M+EAaNhklNYaU3l3wNfxpR5LW7wOO1O17cb+5CSRjv/zg==}
     dependencies:
       '@supabase/functions-js': 2.0.0
       '@supabase/gotrue-js': 2.6.1
@@ -4198,7 +4202,7 @@ packages:
   /axios/0.26.1:
     resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
-      follow-redirects: 1.15.2_debug@2.6.9
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: false
@@ -6479,6 +6483,16 @@ packages:
       tslib: 2.4.1
     dev: false
 
+  /follow-redirects/1.15.2:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /follow-redirects/1.15.2_debug@2.6.9:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
@@ -6701,7 +6715,7 @@ packages:
       create-error-class: 3.0.2
       debug: 2.6.9
       decompress-response: 6.0.0
-      follow-redirects: 1.15.2_debug@2.6.9
+      follow-redirects: 1.15.2
       form-urlencoded: 2.0.9
       into-stream: 3.1.0
       is-plain-object: 2.0.4
@@ -8078,8 +8092,8 @@ packages:
     resolution: {integrity: sha512-K5AyFYbuHZ4e/ti52y7k18q8UHsS78FlRd85w2Fmsd6AkuLipDihPflKC0p3PN5i8II7+uHxo+CtkLiJDfmS5A==}
     dev: false
 
-  /next-sanity/3.1.8_next@13.0.7+react@18.2.0:
-    resolution: {integrity: sha512-ZsxLc1eSPDIYP9bsOQ4EXLA9b/tRentaWmUVS6woWqk+0DNordHf12PGm0LAdv6KLatL2ISCqurvYKQWCl9zYw==}
+  /next-sanity/3.1.9_next@13.0.7+react@18.2.0:
+    resolution: {integrity: sha512-HL9e0UjOzriRYggNH2Jf4xcLEOwlKUJfVM3g0Qlg9Lo4h0TXGfYf/CjMVxDebE01kQ7BWLSAgWbpjzI1rzpR1Q==}
     engines: {node: '>=16'}
     peerDependencies:
       '@sanity/icons': ^2
@@ -8102,7 +8116,7 @@ packages:
         optional: true
     dependencies:
       '@sanity/client': 3.4.1
-      '@sanity/preview-kit': 1.2.14_react@18.2.0
+      '@sanity/preview-kit': 1.2.17_react@18.2.0
       '@sanity/webhook': 2.0.0
       groq: 2.33.2
       next: 13.0.7_biqbaboplfbrettd7655fr4n2y
