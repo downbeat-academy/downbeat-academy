@@ -37,5 +37,8 @@
     "@types/prettier": "^2.7.1",
     "prettier": "^2.8.1",
     "turbo": "^1.6.3"
+  },
+  "dependencies": {
+    "next": "13.0.7"
   }
 }
