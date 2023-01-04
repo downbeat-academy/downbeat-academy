@@ -22,5 +22,8 @@ export async function getArticleBySlug({
   slug: string
   token?: string
 }): Promise<ArticlePayload | undefined> {
-  return await sanityClient?.fetch(articlesBySlugQuery, { slug })
+  return await sanityClient?.fetch(
+    articlesBySlugQuery,
+    { slug },
+  )
 }

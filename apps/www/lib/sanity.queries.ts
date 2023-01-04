@@ -50,6 +50,10 @@ export const articlesBySlugQuery = groq`
   }
 `
 
+export const articleSlugsQuery = groq`
+  *[_type == "article" && defined(slug.current)][].slug.current
+`
+
 export const GET_ARTICLES = groq`
     *[_type == 'article'][] {
         _id,

@@ -1,38 +1,33 @@
 import { sanityClient } from '@lib/sanity.client'
-import { GET_ALL_ARTICLES } from "@lib/sanity.queries"
-import { getArticleBySlug } from '@lib/sanity.client'
+import { articlesBySlugQuery, articleSlugsQuery } from '@lib/sanity.queries';
+import { ArticlePayload } from '@types';
 
+// This is referencing the async call from sanity.client
 // async function getArticle(params) {
-//   const article = await sanityClient.fetch(GET_ALL_ARTICLES, { next: { revalidate: 60 } });
-//   return article;
+//   const article = await getArticleBySlug({ slug: params.slug })
+
+//   return article
 // }
 
-// export async function generateStaticParams() {
-//   const paths = await getArticlesBySlug();
+export const dynamicParams = true
 
-//   return paths.map((path) => ({
-//     params: {
-//       slug: path.slug,
-//     }
-//   }));
-// }
+export async function generateStaticParams() {
+  const slugs = (await sanityClient.fetch<string[]>(articleSlugsQuery)) || []
 
-async function getArticle(params) {
-  // const article = await sanityClient.fetch(GET_ALL_ARTICLES, { next: { relvalidate: 60 } });
-  const article = await getArticleBySlug({ slug: params.slug })
+  return slugs.map((slug) => ({ slug }))
+}
 
-  // if (!article.ok) {
-  //   throw new Error('Failed to fetch data')
-  // }
+// This is migrating the async call from sanity.client to this server component 
+async function getArticle({ slug }): Promise<ArticlePayload | undefined> {
+  const article = await sanityClient?.fetch(
+    articlesBySlugQuery,
+    { slug, next: { revalidate: 60 } },
+  )
 
   return article
 }
 
-export default async function Article({ params }: {
-  params: {
-    slug: string,
-  }
-}) {
+export default async function Article({ params }) {
 
   const data = await getArticle({ slug: params.slug });
 

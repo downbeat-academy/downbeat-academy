@@ -10,4 +10,5 @@ export interface ArticlePayload {
   featuredImage?: any[],
   metadata?: any,
   slug?: string,
+  map?: any
 }
