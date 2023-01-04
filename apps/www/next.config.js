@@ -5,11 +5,6 @@ const nextConfig = {
 	experimental: {
 		appDir: true,
 	},
-	parserOptions: {
-		babelOptions: {
-			presets: [require.resolve('next/babel')],
-		},
-	}
 }
 
 module.exports = nextConfig

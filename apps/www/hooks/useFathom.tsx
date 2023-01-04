@@ -1,3 +1,5 @@
+'use client'
+
 import * as Fathom from 'fathom-client'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'

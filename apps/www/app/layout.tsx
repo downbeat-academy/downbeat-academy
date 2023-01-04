@@ -1,14 +1,18 @@
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
+// import type { AppProps } from 'next/app'
 import { useFathom } from '@hooks/useFathom'
 
-export default function App({ Component, pageProps }: AppProps) {
-  useFathom()
+interface AppProps {
+  children: any,
+}
+
+export default function App({ children }: AppProps) {
+  // useFathom()
 
   return (
     <html lang='en'>
       <body>
-        <Component {...pageProps} />
+        {/* <Component {...pageProps} /> */}
+        {children}
       </body>
     </html>
   )
