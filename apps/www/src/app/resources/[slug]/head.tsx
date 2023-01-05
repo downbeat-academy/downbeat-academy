@@ -1,5 +1,5 @@
 import DefaultHead from '@app/defaultHead'
-import { getResource } from './page'
+import { getResource } from './queries'
 
 export default async function Head({ params }) {
   const resource = await getResource({ slug: params.slug })

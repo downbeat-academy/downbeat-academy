@@ -1,4 +1,4 @@
-import { getPage } from "./page"
+import { getPage } from "./queries"
 import DefaultHead from '@app/defaultHead'
 
 export default async function Head({ params }) {

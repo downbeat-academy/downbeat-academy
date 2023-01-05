@@ -1,5 +1,5 @@
 import DefaultHead from '@app/defaultHead'
-import { getContributor } from './page'
+import { getContributor } from './queries'
 
 export default async function Head({ params }) {
   const contributor = await getContributor({ slug: params.slug })

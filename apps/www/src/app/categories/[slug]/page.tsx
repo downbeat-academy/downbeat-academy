@@ -1,21 +1,9 @@
-import { sanityClient } from '@lib/sanity.client'
-import { categoriesBySlugQuery, categorySlugsQuery } from './queries'
-import { CategoryPayload } from './types'
+import { getCategory, getAllCategorySlugs } from './queries'
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(categorySlugsQuery)) || []
-  return slugs.map((slug) => ({ slug }))
-}
-
-export async function getCategory({ slug }): Promise<CategoryPayload | undefined> {
-  const category = await sanityClient?.fetch(
-    categoriesBySlugQuery,
-    { slug }
-  )
-
-  return category
+  return await getAllCategorySlugs()
 }
 
 export default async function Category({ params }) {

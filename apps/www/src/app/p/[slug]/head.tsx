@@ -1,5 +1,5 @@
 import DefaultHead from '@app/defaultHead'
-import { getLandingPage } from './page'
+import { getLandingPage } from './queries'
 
 export default async function Head({ params }) {
   const landingPage = await getLandingPage({ slug: params.slug })

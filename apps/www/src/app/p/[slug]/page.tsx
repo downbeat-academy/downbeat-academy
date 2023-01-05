@@ -1,22 +1,9 @@
-import { sanityClient } from "@lib/sanity.client";
-import { landingPageSlugsQuery, landingPagesBySlugQuery } from "./queries";
-import { LandingPagePayload } from "./types";
+import { getLandingPage, getAllLandingPageSlugs } from "./queries";
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(landingPageSlugsQuery)) || []
-
-  return slugs.map((slug) => ({ slug }))
-}
-
-export async function getLandingPage({ slug }): Promise<LandingPagePayload | undefined> {
-  const landingPage = await sanityClient?.fetch(
-    landingPagesBySlugQuery,
-    { slug, next: { revalidate: 60 } },
-  )
-
-  return landingPage
+  return await getAllLandingPageSlugs()
 }
 
 export default async function LandingPage({ params }) {

@@ -1,22 +1,9 @@
-import { sanityClient } from '@lib/sanity.client'
-import { pagesBySlugQuery, pageSlugsQuery } from './queries'
-import { PagePayload } from './types'
+import { getPage, getAllPageSlugs } from './queries'
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(pageSlugsQuery)) || []
-
-  return slugs.map((slug) => ({ slug }))
-}
-
-export async function getPage({ slug }): Promise<PagePayload | undefined> {
-  const page = await sanityClient?.fetch(
-    pagesBySlugQuery,
-    { slug, next: { revalidate: 60 } }
-  )
-
-  return page
+  return await getAllPageSlugs()
 }
 
 export default async function Page({ params }) {

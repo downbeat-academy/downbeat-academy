@@ -1,5 +1,5 @@
 import DefaultHead from "@app/defaultHead";
-import { getCategory } from "./page";
+import { getCategory } from "./queries";
 
 export default async function Head({ params }) {
 
