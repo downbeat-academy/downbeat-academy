@@ -11,31 +11,31 @@ export const socialLinks = [
     name: 'facebook',
     title: 'Facebook',
     url: 'https://facebook.com',
-    icon: <Facebook />,
+    icon: Facebook
   },
   {
     name: 'instagram',
     title: 'Instagram',
     url: 'https://instagram.com',
-    icon: <Instagram />,
+    icon: Instagram,
   },
   {
     name: 'twitter',
     title: 'Twitter',
     url: 'https://twitter.com',
-    icon: <Twitter />,
+    icon: Twitter,
   },
   {
     name: 'youtube',
     title: 'YouTube',
     url: 'https://youtube.com',
-    icon: <YouTube />,
+    icon: Youtube,
   },
   {
     name: 'tiktok',
     title: 'TikTok',
     url: 'https://tiktok.com',
-    icon: <TikTok />,
+    icon: Tiktok,
   },
 ];
 
