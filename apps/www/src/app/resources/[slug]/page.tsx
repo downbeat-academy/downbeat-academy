@@ -1,22 +1,9 @@
-import { sanityClient } from "@lib/sanity.client";
-import { resourcesBySlugQuery, resourceSlugsQuery } from "./queries";
-import { ResourcePayload } from "./types";
+import { getResource, getAllResourceSlugs } from "./queries";
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(resourceSlugsQuery)) || []
-
-  return slugs.map((slug) => ({ slug }))
-}
-
-async function getResource({ slug }): Promise<ResourcePayload | undefined> {
-  const resource = await sanityClient?.fetch(
-    resourcesBySlugQuery,
-    { slug, next: { revalidate: 60 } },
-  )
-
-  return resource
+  return await getAllResourceSlugs()
 }
 
 export default async function Resource({ params }) {

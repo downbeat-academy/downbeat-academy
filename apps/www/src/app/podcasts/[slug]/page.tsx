@@ -1,22 +1,9 @@
-import { sanityClient } from "@lib/sanity.client";
-import { podcastsBySlugQuery, podcastSlugsQuery } from "./queries";
-import { PodcastPayload } from "./types";
+import { getPodcast, getAllPodcastSlugs } from "./queries";
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(podcastSlugsQuery)) || []
-
-  return slugs.map((slug) => ({ slug }))
-}
-
-async function getPodcast({ slug }): Promise<PodcastPayload | undefined> {
-  const podcast = await sanityClient?.fetch(
-    podcastsBySlugQuery,
-    { slug, next: { revalidate: 60 } },
-  )
-
-  return podcast
+  return await getAllPodcastSlugs()
 }
 
 export default async function Podcast({ params }) {

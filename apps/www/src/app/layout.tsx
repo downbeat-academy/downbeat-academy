@@ -1,10 +1,10 @@
 import Analytics from "@hooks/useFathom"
 
-interface AppProps {
+interface AppLayoutProps {
   children: React.ReactNode,
 }
 
-export default function App({ children }: AppProps) {
+export default function App({ children }: AppLayoutProps) {
 
   return (
     <html lang='en'>

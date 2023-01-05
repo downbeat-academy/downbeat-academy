@@ -1,22 +1,9 @@
-import { sanityClient } from "@lib/sanity.client";
-import { contributorsBySlugQuery, contributorSlugsQuery } from "./queries";
-import { ContributorPayload } from "./types";
+import { getContributor, getAllContributorSlugs } from "./queries";
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(contributorSlugsQuery)) || []
-
-  return slugs.map((slug) => ({ slug }))
-}
-
-async function getContributor({ slug }): Promise<ContributorPayload | undefined> {
-  const contributor = await sanityClient?.fetch(
-    contributorsBySlugQuery,
-    { slug, next: { revalidate: 60 } },
-  )
-
-  return contributor
+  return await getAllContributorSlugs()
 }
 
 export default async function Contributor({ params }) {

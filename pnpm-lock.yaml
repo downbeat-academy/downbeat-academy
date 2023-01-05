@@ -98,6 +98,8 @@ importers:
       next-sanity: ^3.1.9
       react: 18.2.0
       react-dom: 18.2.0
+      typeface-favorit: workspace:^1.0.1
+      typeface-tiempos-text: workspace:^1.0.1
       typescript: 4.9.4
     dependencies:
       '@next/font': 13.0.7
@@ -118,6 +120,8 @@ importers:
       next-sanity: 3.1.9_next@13.1.1+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      typeface-favorit: link:../../packages/typeface-favorit
+      typeface-tiempos-text: link:../../packages/typeface-tiempos-text
       typescript: 4.9.4
 
   packages/cadence-core:
@@ -133,6 +137,8 @@ importers:
       postcss-nesting: ^10.2.0
       react: ^18.2.0
       react-dom: ^18.2.0
+      typeface-favorit: workspace:^1.0.1
+      typeface-tiempos-text: workspace:^1.0.1
       typescript: ^4.9.3
       typescript-plugin-css-modules: ^4.1.1
       vite: ^4.0.0
@@ -146,6 +152,8 @@ importers:
       classnames: 2.3.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      typeface-favorit: link:../typeface-favorit
+      typeface-tiempos-text: link:../typeface-tiempos-text
     devDependencies:
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@types/react': 18.0.26
