@@ -1,5 +1,5 @@
 import DefaultHead from '@app/defaultHead'
-import { getArticle } from './page'
+import { getArticle } from './queries'
 
 export default async function Head({ params }) {
 

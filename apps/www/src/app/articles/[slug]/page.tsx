@@ -1,22 +1,9 @@
-import { sanityClient } from '@lib/sanity.client'
-import { articlesBySlugQuery, articleSlugsQuery } from './queries';
-import { ArticlePayload } from './types';
+import { getArticle, getAllArticleSlugs } from './queries';
 
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const slugs = (await sanityClient.fetch<string[]>(articleSlugsQuery)) || []
-
-  return slugs.map((slug) => ({ slug }))
-}
-
-export async function getArticle({ slug }): Promise<ArticlePayload | undefined> {
-  const article = await sanityClient?.fetch(
-    articlesBySlugQuery,
-    { slug, next: { revalidate: 60 } },
-  )
-
-  return article
+  return await getAllArticleSlugs()
 }
 
 export default async function Article({ params }) {
