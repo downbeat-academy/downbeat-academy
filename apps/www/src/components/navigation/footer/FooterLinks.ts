@@ -1,33 +1,41 @@
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Tiktok,
+} from 'cadence-icons'
+
 export const socialLinks = [
   {
     name: 'facebook',
     title: 'Facebook',
     url: 'https://facebook.com',
-    icon: <Facebook color="$colors$blackberry900" />,
+    icon: <Facebook />,
   },
   {
     name: 'instagram',
     title: 'Instagram',
     url: 'https://instagram.com',
-    icon: <Instagram color="$colors$blackberry900" />,
+    icon: <Instagram />,
   },
   {
     name: 'twitter',
     title: 'Twitter',
     url: 'https://twitter.com',
-    icon: <Twitter color="$colors$blackberry900" />,
+    icon: <Twitter />,
   },
   {
     name: 'youtube',
     title: 'YouTube',
     url: 'https://youtube.com',
-    icon: <YouTube color="$colors$blackberry900" />,
+    icon: <YouTube />,
   },
   {
     name: 'tiktok',
     title: 'TikTok',
     url: 'https://tiktok.com',
-    icon: <TikTok color="$colors$blackberry900" />,
+    icon: <TikTok />,
   },
 ];
 
