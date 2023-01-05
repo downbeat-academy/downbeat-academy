@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-async function getPodcast({ slug }): Promise<PodcastPayload | undefined> {
+export async function getPodcast({ slug }): Promise<PodcastPayload | undefined> {
   const podcast = await sanityClient?.fetch(
     podcastsBySlugQuery,
     { slug, next: { revalidate: 60 } },

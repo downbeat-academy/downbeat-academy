@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-async function getCategory({ slug }): Promise<CategoryPayload | undefined> {
+export async function getCategory({ slug }): Promise<CategoryPayload | undefined> {
   const category = await sanityClient?.fetch(
     categoriesBySlugQuery,
     { slug }

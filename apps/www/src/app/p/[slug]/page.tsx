@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-async function getLandingPage({ slug }): Promise<LandingPagePayload | undefined> {
+export async function getLandingPage({ slug }): Promise<LandingPagePayload | undefined> {
   const landingPage = await sanityClient?.fetch(
     landingPagesBySlugQuery,
     { slug, next: { revalidate: 60 } },

@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-async function getContributor({ slug }): Promise<ContributorPayload | undefined> {
+export async function getContributor({ slug }): Promise<ContributorPayload | undefined> {
   const contributor = await sanityClient?.fetch(
     contributorsBySlugQuery,
     { slug, next: { revalidate: 60 } },
