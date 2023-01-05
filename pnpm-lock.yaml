@@ -91,6 +91,7 @@ importers:
       cadence-core: workspace:^1.1.1
       cadence-icons: workspace:^1.0.1
       cadence-tokens: workspace:^2.0.1
+      classnames: ^2.3.2
       eslint: 8.30.0
       eslint-config-next: 13.0.7
       fathom-client: ^3.5.0
@@ -113,6 +114,7 @@ importers:
       cadence-core: link:../../packages/cadence-core
       cadence-icons: link:../../packages/cadence-icons
       cadence-tokens: link:../../packages/cadence-tokens
+      classnames: 2.3.2
       eslint: 8.30.0
       eslint-config-next: 13.0.7_lzzuuodtsqwxnvqeq4g4likcqa
       fathom-client: 3.5.0
