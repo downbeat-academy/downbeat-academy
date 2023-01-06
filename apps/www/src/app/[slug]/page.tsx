@@ -14,5 +14,9 @@ export default async function Page({ params }) {
     slug,
   } = data || {}
 
-  return <h1>{title}</h1>
+  return (
+    <>
+      <h1>{title}</h1>
+    </>
+  )
 }
