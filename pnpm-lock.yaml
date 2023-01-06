@@ -99,6 +99,7 @@ importers:
       next-sanity: ^3.1.9
       react: 18.2.0
       react-dom: 18.2.0
+      sass: ^1.57.1
       typeface-favorit: workspace:^1.0.1
       typeface-tiempos-text: workspace:^1.0.1
       typescript: 4.9.4
@@ -118,13 +119,15 @@ importers:
       eslint: 8.30.0
       eslint-config-next: 13.0.7_lzzuuodtsqwxnvqeq4g4likcqa
       fathom-client: 3.5.0
-      next: 13.1.1_biqbaboplfbrettd7655fr4n2y
+      next: 13.1.1_3duxcpitbtplz62feflag7fwby
       next-sanity: 3.1.9_next@13.1.1+react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       typeface-favorit: link:../../packages/typeface-favorit
       typeface-tiempos-text: link:../../packages/typeface-tiempos-text
       typescript: 4.9.4
+    devDependencies:
+      sass: 1.57.1
 
   packages/cadence-core:
     specifiers:
@@ -7219,7 +7222,6 @@ packages:
 
   /immutable/4.1.0:
     resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
-    dev: true
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -8244,7 +8246,7 @@ packages:
       '@sanity/preview-kit': 1.2.17_react@18.2.0
       '@sanity/webhook': 2.0.0
       groq: 2.33.2
-      next: 13.1.1_biqbaboplfbrettd7655fr4n2y
+      next: 13.1.1_3duxcpitbtplz62feflag7fwby
       react: 18.2.0
     transitivePeerDependencies:
       - supports-color
@@ -8340,7 +8342,7 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /next/13.1.1_biqbaboplfbrettd7655fr4n2y:
+  /next/13.1.1_3duxcpitbtplz62feflag7fwby:
     resolution: {integrity: sha512-R5eBAaIa3X7LJeYvv1bMdGnAVF4fVToEjim7MkflceFPuANY3YyvFxXee/A+acrSYwYPvOvf7f6v/BM/48ea5w==}
     engines: {node: '>=14.6.0'}
     hasBin: true
@@ -8364,6 +8366,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      sass: 1.57.1
       styled-jsx: 5.1.1_react@18.2.0
     optionalDependencies:
       '@next/swc-android-arm-eabi': 13.1.1
@@ -9949,7 +9952,6 @@ packages:
       chokidar: 3.5.3
       immutable: 4.1.0
       source-map-js: 1.0.2
-    dev: true
 
   /sax/1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}

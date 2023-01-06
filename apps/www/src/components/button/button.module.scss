@@ -1,0 +1,123 @@
+.root {
+	border: 1px solid;
+	border-radius: var(--radius-default);
+	font-family: var(--typography-font-family-productive-body);
+	font-weight: 400;
+	line-height: var(--typography-line-height-productive-body);
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-grow: 0;
+	flex-wrap: nowrap;
+	gap: var(--spacing-03);
+	align-self: flex-start;
+	transition: var(--transition-02);
+	text-decoration: none;
+}
+
+
+.root:hover {
+	cursor: pointer;
+}
+
+/* Variants */
+
+.primary {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-blueberry-600);
+	border-color: var(--color-palette-blueberry-700);
+}
+
+.primary:hover {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-blueberry-700);
+	border-color: var(--color-palette-blueberry-800);
+}
+
+.primary:active {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-blueberry-800);
+	border-color: var(--color-palette-blueberry-900);
+}
+
+.secondary {
+	color: var(--color-palette-blackberry-700);
+	background: var(--color-palette-neutral-200);
+	border-color: var(--color-palette-neutral-600);
+}
+
+.secondary:hover {
+	color: var(--color-palette-blackberry-700);
+	background: var(--color-palette-neutral-300);
+	border-color: var(--color-palette-neutral-600);
+}
+
+.secondary:active {
+	color: var(--color-palette-blackberry-700);
+	background: var(--color-palette-neutral-400);
+	border-color: var(--color-palette-neutral-600);
+}
+
+.tertiary {
+	color: var(--color-palette-blueberry-600);
+	background: transparent;
+	border-color: transparent;
+}
+
+.tertiary:hover {
+	color: var(--color-palette-blueberry-700);
+	background: var(--color-palette-blueberry-100);
+	border-color: transparent;
+}
+
+.tertiary:active {
+	color: var(--color-palette-blueberry-800);
+	background: var(--color-palette-blueberry-200);
+	border-color: transparent;
+}
+
+.destructive {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-pomegranate-500);
+	border-color: var(--color-palette-pomegranate-600);
+}
+
+.destructive:hover {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-pomegranate-600);
+	border-color: var(--color-palette-pomegranate-700);
+}
+
+.destructive:active {
+	color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-pomegranate-700);
+	border-color: var(--color-palette-pomegranate-800);
+}
+
+/* Sizes */
+
+.large {
+	font-size: var(--typography-font-size-productive-large-fixed);
+	padding: 8px 1.5rem;
+}
+
+.default {
+	font-size: var(--typography-font-size-productive-base-fixed);
+	padding: 7px 1.25rem;
+}
+
+.small {
+	font-size: var(--typography-font-size-productive-small-fixed);
+	padding: 5px 1rem;
+}
+
+.x-small {
+	font-size: var(--typography-font-size-productive-x-small-fixed);
+	padding: 2px 0.625rem;
+}
+
+/* Full Width */
+
+.full-width {
+	width: 100%;
+}
