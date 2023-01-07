@@ -52,7 +52,7 @@ export const GET_ARTICLES = groq`
 
 // Page Queries
 
-export const GET_ALL_PAGES = groq`
+export const getPages = groq`
     *[_type == "page" && slug.current == $slug][0] {
 		_id,
 		title,
@@ -68,13 +68,13 @@ export const GET_ALL_PAGES = groq`
 	}
 `;
 
-export const GET_PAGE_PATHS = groq`
+export const getPagePaths = groq`
     *[_type == "page" && defined(slug.current)][].slug.current
 `;
 
 // Podcast Queries
 
-export const GET_ALL_PODCASTS = groq`
+export const getPodcasts = groq`
     *[_type == "podcast" && slug.current == $slug][0] {
         _id,
         title,
@@ -82,13 +82,13 @@ export const GET_ALL_PODCASTS = groq`
     }
 `;
 
-export const GET_PODCAST_PATHS = groq`
+export const getPodcastPaths = groq`
     *[_type == "podcast" && defined(slug.current)][].slug.current
 `;
 
 // Landing Page Queries
 
-export const GET_ALL_LANDING_PAGES = groq`
+export const getLandingPages = groq`
     *[_type == "landingPage" && slug.current == $slug][0] {
         _id,
         title,
@@ -96,13 +96,13 @@ export const GET_ALL_LANDING_PAGES = groq`
     }
 `;
 
-export const GET_LANDING_PAGE_PATHS = groq`
+export const getLandingPagePaths = groq`
     *[_type == "landingPage" && defined(slug.current)][].slug.current
 `;
 
 // Category Queries
 
-export const GET_ALL_CATEGORIES = groq`
+export const getCategories = groq`
     *[_type == "category" && slug.current == $slug][0] {
         _id,
         title,
@@ -116,13 +116,13 @@ export const GET_ALL_CATEGORIES = groq`
     }
 `;
 
-export const GET_CATEGORY_PATHS = groq`
+export const getCategoryPaths = groq`
     *[_type == "category" && defined(slug.current)][].slug.current
 `;
 
 // Contributor/Person queries
 
-export const GET_ALL_CONTRIBUTORS = groq`
+export const getContributors = groq`
     *[_type == "person" && slug.current == $slug][0] {
         _id,
         name,
@@ -142,7 +142,7 @@ export const GET_ALL_CONTRIBUTORS = groq`
     }
 `;
 
-export const GET_CONTRIBUTOR_PATHS = groq`
+export const getContributorPaths = groq`
     *[_type == "person" && defined(slug.current)][].slug.current
 `;
 
@@ -159,7 +159,7 @@ export const GET_CONTRIBUTORS = groq`
 
 // Homepage
 
-export const GET_HOMEPAGE_DATA = groq`
+export const getHomepageData = groq`
     *[_type == 'article'] {
         _id,
         _type,

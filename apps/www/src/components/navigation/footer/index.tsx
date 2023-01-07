@@ -5,17 +5,15 @@ import {
   Flex,
 } from 'cadence-core'
 import { socialLinks, siteLinks } from './FooterLinks'
-import s from '@styles/components/navigation/footer.module.css'
-import { Button } from '@components/button'
+import s from './footer.module.scss'
 
 const Footer = ({ }) => {
   return (
     <footer className={s.wrapper}>
       <div className={s.content}>
-        <Button text="Button text" />
-        {/* <Flex direction='column'>
+        <Flex direction='column'>
           <LogoLockup />
-        </Flex> */}
+        </Flex>
       </div>
     </footer>
   )

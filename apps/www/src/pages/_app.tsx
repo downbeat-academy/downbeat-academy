@@ -1,4 +1,5 @@
 import { useFathom } from "@hooks/useFathom";
+import { Footer } from "@components/navigation";
 
 function CustomApp({ Component, pageProps }) {
   useFathom()
@@ -6,6 +7,7 @@ function CustomApp({ Component, pageProps }) {
   return (
     <>
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }
