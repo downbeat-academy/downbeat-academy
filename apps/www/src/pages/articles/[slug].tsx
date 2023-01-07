@@ -16,8 +16,6 @@ export default function Article({ data, preview }) {
     metadata,
   } = data.article;
 
-  console.log(data)
-
   return (
     <>
       <Seo title={title} description={excerpt} />
