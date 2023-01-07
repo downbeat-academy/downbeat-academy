@@ -157,6 +157,20 @@ export const GET_CONTRIBUTORS = groq`
     | order(name, desc)
 `;
 
+// Resources queries
+
+export const getResources = groq`
+    *[_type == "resource" && slug.current == $slug][0] {
+        _id,
+        title,
+        "slug": slug.current,
+    }
+`
+
+export const getResourcePaths = groq`
+    *[_type == "resource" && defined(slug.current)][].slug.current
+`
+
 // Homepage
 
 export const getHomepageData = groq`
