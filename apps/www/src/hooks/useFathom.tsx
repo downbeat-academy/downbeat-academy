@@ -1,29 +1,25 @@
-'use client'
+import * as Fathom from "fathom-client";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-import * as Fathom from 'fathom-client'
-import { useEffect } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
-
-export default function Analytics({ }) {
-	const id = process.env.NEXT_PUBLIC_FATHOM_ID as string;
-	const pathname = usePathname()
-	const searchParams = useSearchParams()
+export const useFathom = () => {
+	const router = useRouter();
 
 	useEffect(() => {
-		Fathom.load(id, {
-			includedDomains: ["downbeatacademy.com", "www.downbeatacademy.com"],
-		})
-
-		let newPageViewPath: string | undefined
-
-		if (pathname) {
-			newPageViewPath = pathname + searchParams.toString()
-			Fathom.trackPageview({
-				url: newPageViewPath,
-				referrer: document.referrer,
-			})
+		if (process.env.NODE_ENV === "production") {
+			Fathom.load(process.env.NEXT_PUBLIC_FATHOM_ID, {
+				includedDomains: ["www.downbeatacademy.com", "downbeatacademy.com"],
+			});
 		}
-	}, [id, pathname, searchParams])
 
-	return <></>
-}
+		function onRouteChangeComplete() {
+			Fathom.trackPageview();
+		}
+
+		router.events.on("routeChangeComplete", onRouteChangeComplete);
+
+		return () => {
+			router.events.off("routeChangeComplete", onRouteChangeComplete);
+		};
+	}, [router.events]);
+};

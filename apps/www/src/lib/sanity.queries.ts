@@ -2,7 +2,7 @@ import { groq } from 'next-sanity';
 
 // Article Queries
 
-export const GET_ALL_ARTICLES = groq`
+export const getArticles = groq`
     *[_type == "article" && slug.current == $slug][0] {
         _id,
         _updatedAt,
@@ -29,11 +29,11 @@ export const GET_ALL_ARTICLES = groq`
     }
 `;
 
-export const GET_ARTICLE_PATHS = groq`
+export const getArticlePaths = groq`
     *[_type == "article" && defined(slug.current)][].slug.current
 `;
 
-// Article Queries
+// Blog Queries
 
 export const GET_ARTICLES = groq`
     *[_type == 'article'][] {
