@@ -4,7 +4,6 @@ import { Seo } from '@components/meta';
 
 export default function Page({ data, preview }) {
 
-
   const { title, moduleContent, showTitle, slug, metadata } = data.page;
 
   return (
@@ -25,7 +24,7 @@ export default function Page({ data, preview }) {
   );
 }
 
-export async function getStaticProps({ params, preview = false }) {
+export const getStaticProps = async ({ params, preview = false }) => {
   const page = await sanityClient.fetch(getPages, {
     slug: params.slug,
   });
@@ -39,7 +38,7 @@ export async function getStaticProps({ params, preview = false }) {
   };
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const paths = await sanityClient.fetch(getPagePaths)
 
   return {
