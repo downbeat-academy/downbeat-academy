@@ -9,6 +9,7 @@ const Text = ({
 	size = 'base',
 	color = 'primary',
 	fluid = false,
+	collapse = false,
 }: TextProps) => {
 	const getLineHeight = (tag: string) => {
 		switch (tag) {
@@ -25,7 +26,8 @@ const Text = ({
 		s[size],
 		s['color--' + color],
 		[fluid ? s.fluid : null],
-		s['line-height--' + getLineHeight(tag)]
+		s['line-height--' + getLineHeight(tag)],
+		[collapse ? s.collapse : null],
 	)
 
 	switch (tag) {

@@ -23,7 +23,7 @@ const Footer = ({ }) => {
   const getSiteLinks = siteLinks.map(category => {
     return (
       <Flex direction='column' key={category.name} gap='small'>
-        <Text tag='p'><strong>{category.title}</strong></Text>
+        <Text tag='p' color='primary' collapse={true}><strong>{category.title}</strong></Text>
         <Flex direction='column' gap='small'>
           {category.links.map(link => {
             return <Link href={link.url} key={link.name} className={s.footerLink}>{link.title}</Link>

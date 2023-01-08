@@ -9,6 +9,10 @@
 	text-decoration: none;
 }
 
+.collapse {
+	margin: 0;
+}
+
 /* Type with nested size and fluid property */
 
 .type--expressive {
