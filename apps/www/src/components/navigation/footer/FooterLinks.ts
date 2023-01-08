@@ -11,7 +11,7 @@ export const socialLinks = [
     name: 'facebook',
     title: 'Facebook',
     url: 'https://facebook.com',
-    icon: Facebook
+    icon: Facebook,
   },
   {
     name: 'instagram',
@@ -45,9 +45,9 @@ export const siteLinks = [
     title: 'Categories',
     links: [
       {
-        name: 'blog',
-        title: 'Blog',
-        url: '/blog',
+        name: 'articles',
+        title: 'Articles',
+        url: '/articles',
       },
       {
         name: 'resources',
@@ -55,9 +55,9 @@ export const siteLinks = [
         url: '/resources',
       },
       {
-        name: 'podcast',
-        title: 'Podcast',
-        url: '/podcast',
+        name: 'podcasts',
+        title: 'Podcasts',
+        url: '/podcasts',
       },
     ],
   },
