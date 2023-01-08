@@ -1,0 +1,124 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	border: 1px solid;
+	border-radius: $radius-default;
+	font-family: $typography-font-family-productive-body;
+	font-weight: 400;
+	line-height: $typography-line-height-productive-body;
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-grow: 0;
+	flex-wrap: nowrap;
+	gap: $spacing-03;
+	align-self: flex-start;
+	transition: $transition-02;
+	text-decoration: none;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+/* Variants */
+
+.primary {
+	color: $color-foreground-high-contrast;
+	background: $color-palette-blueberry-600;
+	border-color: $color-palette-blueberry-700;
+
+	&:hover {
+		color: $color-foreground-high-contrast;
+		background: $color-palette-blueberry-700;
+		border-color: $color-palette-blueberry-800;
+	}
+
+	&:active {
+		color: $color-foreground-high-contrast;
+		background: $color-palette-blueberry-800;
+		border-color: $color-palette-blueberry-900;
+	}
+}
+
+.secondary {
+	color: $color-palette-blackberry-700;
+	background: $color-palette-neutral-200;
+	border-color: $color-palette-neutral-600;
+
+	&:hover {
+		color: $color-palette-blackberry-700;
+		background: $color-palette-neutral-300;
+		border-color: $color-palette-neutral-600;
+	}
+
+	&:active {
+		color: $color-palette-blackberry-700;
+		background: $color-palette-neutral-400;
+		border-color: $color-palette-neutral-600;
+	}
+}
+
+.tertiary {
+	color: $color-palette-blueberry-600;
+	background: transparent;
+	border-color: transparent;
+
+	&:hover {
+		color: $color-palette-blueberry-700;
+		background: $color-palette-blueberry-100;
+		border-color: transparent;
+	}
+
+	&:active {
+		color: $color-palette-blueberry-800;
+		background: $color-palette-blueberry-200;
+		border-color: transparent;
+	}
+}
+
+.destructive {
+	color: $color-foreground-high-contrast;
+	background: $color-palette-pomegranate-500;
+	border-color: $color-palette-pomegranate-600;
+
+	&:hover {
+		color: $color-foreground-high-contrast;
+		background: $color-palette-pomegranate-600;
+		border-color: $color-palette-pomegranate-700;
+	}
+
+	&:active {
+		color: $color-foreground-high-contrast;
+		background: $color-palette-pomegranate-700;
+		border-color: $color-palette-pomegranate-800;
+	}
+}
+
+/* Sizes */
+
+.large {
+	font-size: $typography-font-size-fixed-productive-large;
+	padding: 8px 1.5rem;
+}
+
+.default {
+	font-size: $typography-font-size-fixed-productive-base;
+	padding: 7px 1.25rem;
+}
+
+.small {
+	font-size: $typography-font-size-fixed-productive-small;
+	padding: 5px 1rem;
+}
+
+.x-small {
+	font-size: $typography-font-size-fixed-productive-x-small;
+	padding: 2px 0.625rem;
+}
+
+/* Full Width */
+
+.full-width {
+	width: 100%;
+}

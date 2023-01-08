@@ -183,7 +183,7 @@
 }
 
 .wrap--nowrap {
-	flex-wrap: no-wrap;
+	flex-wrap: nowrap;
 }
 
 .wrap--wrap {
