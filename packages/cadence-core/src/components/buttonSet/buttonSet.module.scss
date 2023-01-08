@@ -1,0 +1,52 @@
+@import 'node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	display: flex;
+	padding: 0;
+	width: 100%;
+}
+
+/* Direction */
+
+$directions: (
+	row,
+	column,
+);
+
+@each $direction in $directions {
+	.direction--#{$direction} {
+		flex-direction: $direction;
+	}
+}
+
+/* Gap */
+
+$gaps: (
+	none: 0,
+	x-small: $spacing-03,
+	small: $spacing-04,
+	default: $spacing-05,
+	large: $spacing-06,
+);
+
+@each $gap,
+$token in $gaps {
+	.gap--#{$gap} {
+		gap: map-get($gaps, $gap);
+	}
+}
+
+/* Justify */
+
+$justifications: (
+	flex-start,
+	flex-end,
+	space-between,
+	space-around,
+);
+
+@each $justification in $justifications {
+	.justify--#{$justification} {
+		justify-content: $justification;
+	}
+}
