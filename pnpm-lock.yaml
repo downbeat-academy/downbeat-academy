@@ -142,6 +142,7 @@ importers:
       postcss-nesting: ^10.2.0
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-router-dom: ^6.6.1
       sass: ^1.57.1
       typeface-favorit: workspace:^1.0.1
       typeface-tiempos-text: workspace:^1.0.1
@@ -158,6 +159,7 @@ importers:
       classnames: 2.3.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-router-dom: 6.6.1_biqbaboplfbrettd7655fr4n2y
       typeface-favorit: link:../typeface-favorit
       typeface-tiempos-text: link:../typeface-tiempos-text
     devDependencies:
@@ -2795,6 +2797,11 @@ packages:
       redux: 4.2.0
       redux-thunk: 2.4.2_redux@4.2.0
       reselect: 4.1.7
+    dev: false
+
+  /@remix-run/router/1.2.1:
+    resolution: {integrity: sha512-XiY0IsyHR+DXYS5vBxpoBe/8veTeoRpMHP+vDosLZxL5bnpetzI0igkxkLZS235ldLzyfkxF+2divEwWHP3vMQ==}
+    engines: {node: '>=14'}
     dev: false
 
   /@rexxars/react-json-inspector/8.0.1_react@18.2.0:
@@ -9318,6 +9325,29 @@ packages:
   /react-refresh/0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
+
+  /react-router-dom/6.6.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-u+8BKUtelStKbZD5UcY0NY90WOzktrkJJhyhNg7L0APn9t1qJNLowzrM9CHdpB6+rcPt6qQrlkIXsTvhuXP68g==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.2.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-router: 6.6.1_react@18.2.0
+    dev: false
+
+  /react-router/6.6.1_react@18.2.0:
+    resolution: {integrity: sha512-YkvlYRusnI/IN0kDtosUCgxqHeulN5je+ew8W+iA1VvFhf86kA+JEI/X/8NqYcr11hCDDp906S+SGMpBheNeYQ==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.2.1
+      react: 18.2.0
+    dev: false
 
   /react-rx/2.1.3_react@18.2.0+rxjs@6.6.7:
     resolution: {integrity: sha512-4dppkgEFAldr75IUUz14WyxuI2cJhpXYrrIM+4gvG6slKzaMUCmcgiiykx9Hst0UmtwNt247nRoOFDmN0Q7GJw==}
