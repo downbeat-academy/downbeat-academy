@@ -33,3 +33,30 @@
 	src: url('./files/std/FavoritStd-BoldItalic.woff') format('woff'),
 		url('./files/std/FavoritStd-BoldItalic.woff2') format('woff2');
 }
+
+@font-face {
+	font-family: 'Favorit Expanded';
+	font-style: normal;
+	font-display: swap;
+	font-weight: normal;
+	src: url('./files/expanded/FavoritStd-Expanded.woff') format('woff'),
+		url('./files/std/FavoritStd-Expanded.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Favorit Expanded';
+	font-style: normal;
+	font-display: swap;
+	font-weight: bold;
+	src: url('./files/expanded/FavoritStd-BoldExpanded.woff') format('woff'),
+		url('./files/std/FavoritStd-BoldExpanded.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Favorit Expanded';
+	font-style: normal;
+	font-display: swap;
+	font-weight: semibold;
+	src: url('./files/expanded/FavoritStd-BoldSemiExpanded.woff') format('woff'),
+		url('./files/std/FavoritStd-BoldSemiExpanded.woff2') format('woff2');
+}
