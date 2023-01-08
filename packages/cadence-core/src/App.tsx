@@ -10,7 +10,10 @@ function App() {
 			<Text tag='h1'>Cadence Core app</Text>
 			<Flex direction='column'>
 				<Text tag='h2'>Button</Text>
-				<Flex direction='column' gap='medium'>
+				<Flex
+					direction='column'
+					gap='medium'
+				>
 					<Text tag='h3'>Size / Large</Text>
 					<Button text="Primary button" variant='primary' size='large' />
 					<Button text="Secondary button" variant='secondary' size='large' />
