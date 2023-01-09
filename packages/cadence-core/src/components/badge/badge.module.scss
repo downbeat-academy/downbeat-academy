@@ -1,0 +1,91 @@
+@import 'node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	font-family: $typography-font-family-productive-body;
+	font-weight: 400;
+	display: inline-flex;
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	border-radius: $radius-soft;
+	box-sizing: border-box;
+	text-decoration: none;
+	width: fit-content;
+	border-width: 1px;
+	border-style: solid;
+}
+
+/* Sizes */
+
+$sizes: (
+	'small': ('font-size': $typography-font-size-fixed-productive-x-small,
+		'line-height': 16px,
+		'padding': 0 $spacing-02,
+		'flex-gap': $spacing-02,
+	),
+	'default': ('font-size': $typography-font-size-fixed-productive-small,
+		'line-height': 20px,
+		'padding': 0 $spacing-02,
+		'flex-gap': $spacing-02,
+	),
+	'large': ('font-size': $typography-font-size-fixed-productive-base,
+		'line-height': 24px,
+		'padding': 0 $spacing-02,
+		'flex-gap': $spacing-03,
+	)
+);
+
+@each $size,
+$font-size,
+$line-height,
+$padding,
+$flex-gap in $sizes {
+	.size--#{$size} {
+		font-size: map-get($sizes, $size, 'font-size');
+		line-height: map-get($sizes, $size, 'line-height');
+		padding: map-get($sizes, $size, 'padding');
+		gap: map-get($sizes, $size, 'flex-gap');
+	}
+}
+
+/* Types */
+
+$types: (
+	(neutral, $color-palette-neutral-200, $color-palette-neutral-800),
+	(informational, $color-palette-blueberry-200, $color-palette-blueberry-800),
+	(positive, $color-palette-kale-200, $color-palette-kale-800),
+	(warning, $color-palette-pineapple-200, $color-palette-pineapple-800),
+	(critical, $color-palette-pomegranate-200, $color-palette-pomegranate-800),
+);
+
+.type--neutral {
+	&.style--filled {
+		color: red;
+		background: blue;
+	}
+}
+
+// @each $type,
+// $light,
+// $dark in $types {
+// 	.type--#{$type} {
+
+// 		$styles: ((fill, $light, $dark, transparent),
+// 			(outline, transparent, $dark, $dark),
+// 			(inverse, $dark, $light, transparent));
+
+// 		@each $style,
+// 		$background,
+// 		$foreground,
+// 		$border in $styles {
+// 			.style--#{$style} {
+// 				color: $foreground;
+// 				background: $background;
+// 				border-color: $border;
+// 			}
+// 		}
+// 	}
+// }

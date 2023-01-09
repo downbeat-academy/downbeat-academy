@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { BadgeProps } from './types'
-import s from './badge.module.css'
+import s from './badge.module.scss'
 
 const Badge = ({
 	type = 'neutral',
@@ -8,7 +8,12 @@ const Badge = ({
 	style = 'fill',
 	size = 'default',
 }: BadgeProps) => {
-	const classes = classnames(s.root, s[type], s[style], s[size])
+	const classes = classnames(
+		s.root,
+		s[`type--${type}`],
+		s[`style--${style}`],
+		s[`size--${size}`]
+	)
 
 	return <span className={classes}>{text}</span>
 }
