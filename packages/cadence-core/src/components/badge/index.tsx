@@ -10,8 +10,8 @@ const Badge = ({
 }: BadgeProps) => {
 	const classes = classnames(
 		s.root,
-		s[`type--${type}`],
-		s[`style--${style}`],
+		s[`type--${type}--${style}`],
+		// s[`style--${style}`],
 		s[`size--${size}`]
 	)
 

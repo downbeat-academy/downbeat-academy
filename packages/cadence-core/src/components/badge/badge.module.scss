@@ -53,39 +53,50 @@ $flex-gap in $sizes {
 
 /* Types */
 
-$types: (
-	(neutral, $color-palette-neutral-200, $color-palette-neutral-800),
-	(informational, $color-palette-blueberry-200, $color-palette-blueberry-800),
-	(positive, $color-palette-kale-200, $color-palette-kale-800),
-	(warning, $color-palette-pineapple-200, $color-palette-pineapple-800),
-	(critical, $color-palette-pomegranate-200, $color-palette-pomegranate-800),
+$types: ('neutral', 'informational', 'warning', 'critical', 'positive');
+$styles: ('fill', 'inverse', 'outline');
+
+$type-props: (
+	'neutral': (
+		'light': $color-palette-neutral-200,
+		'dark': $color-palette-neutral-800,
+	),
+	'positive': (
+		'light': $color-palette-kale-200,
+		'dark': $color-palette-kale-800,
+	),
+	'informational': (
+		'light': $color-palette-blueberry-200,
+		'dark': $color-palette-blueberry-800,
+	),
+	'warning': (
+		'light': $color-palette-pineapple-200,
+		'dark': $color-palette-pineapple-800,
+	),
+	'critical': (
+		'light': $color-palette-pomegranate-200,
+		'dark': $color-palette-pomegranate-800,
+	)
 );
 
-.type--neutral {
-	&.style--filled {
-		color: red;
-		background: blue;
+@each $type in $types {
+	@each $style in $styles {
+		$dark: map-get($type-props, $type, 'dark');
+		$light: map-get($type-props, $type, 'light');
+		.type--#{$type}--#{$style} {
+			@if $style == 'fill' {
+				background: $light;
+				color: $dark;
+				border-color: $light;
+			} @else if $style == 'inverse' {
+				background: $dark;
+				color: $light;
+				border-color: $dark;
+			} @else if $style == 'outline' {
+				background: transparent;
+				color: $dark;
+				border-color: $dark;
+			}
+		}
 	}
 }
-
-// @each $type,
-// $light,
-// $dark in $types {
-// 	.type--#{$type} {
-
-// 		$styles: ((fill, $light, $dark, transparent),
-// 			(outline, transparent, $dark, $dark),
-// 			(inverse, $dark, $light, transparent));
-
-// 		@each $style,
-// 		$background,
-// 		$foreground,
-// 		$border in $styles {
-// 			.style--#{$style} {
-// 				color: $foreground;
-// 				background: $background;
-// 				border-color: $border;
-// 			}
-// 		}
-// 	}
-// }
