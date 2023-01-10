@@ -1,11 +1,11 @@
 const getColor = (color: string) => {
 	switch (color) {
 		case 'brand':
-			return 'var(--color-foreground-brand-default)'
+			return '#5665ef'
 		case 'secondary':
-			return 'var(--color-foreground-strong)'
+			return '#181e3b'
 		case 'high-contrast':
-			return 'var(--color-foreground-high-contrast)'
+			return '#ffffff'
 	}
 }
 
