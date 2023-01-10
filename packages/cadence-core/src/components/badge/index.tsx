@@ -11,7 +11,6 @@ const Badge = ({
 	const classes = classnames(
 		s.root,
 		s[`type--${type}--${style}`],
-		// s[`style--${style}`],
 		s[`size--${size}`]
 	)
 
