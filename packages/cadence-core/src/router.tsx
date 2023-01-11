@@ -4,6 +4,7 @@ import BadgePage from './pages/badge'
 import ButtonPage from './pages/button'
 import ButtonSetPage from './pages/buttonSet'
 import LogoPage from './pages/logo'
+import TextPage from './pages/text'
 
 export const Router = () => {
   return (
@@ -12,6 +13,7 @@ export const Router = () => {
       <Route path='/button' element={<ButtonPage />} />
       <Route path='/button-set' element={<ButtonSetPage />} />
       <Route path='/logo' element={<LogoPage />} />
+      <Route path='/text' element={<TextPage />} />
     </Routes>
   )
 }

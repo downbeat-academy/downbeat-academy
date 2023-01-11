@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { TextProps } from './types'
-import s from './text.module.css'
+import s from './text.module.scss'
 
 const Text = ({
 	children,
@@ -10,8 +10,10 @@ const Text = ({
 	color = 'primary',
 	fluid = false,
 	collapse = false,
+	fontType,
 }: TextProps) => {
-	const getLineHeight = (tag: string) => {
+
+	const getElementType = (tag: string) => {
 		switch (tag) {
 			case 'h1' || 'h2' || 'h3' || 'h4' || 'h5' || 'h6':
 				return 'headline'
@@ -22,13 +24,14 @@ const Text = ({
 
 	const classes = classnames(
 		s.root,
-		s['type--' + type],
-		s[size],
+		s[`size--${size}_type--${type}_font--${fontType}`],
 		s['color--' + color],
 		[fluid ? s.fluid : null],
-		s['line-height--' + getLineHeight(tag)],
+		s['line-height--' + getElementType(tag)],
 		[collapse ? s.collapse : null],
 	)
+
+	console.log(tag)
 
 	switch (tag) {
 		case 'h1':
