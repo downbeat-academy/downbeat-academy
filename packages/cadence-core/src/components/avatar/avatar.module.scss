@@ -1,3 +1,5 @@
+@import 'node_modules/cadence-tokens/dist/web/tokens.scss';
+
 .root {
 	display: flex;
 	justify-content: center;
@@ -12,19 +14,17 @@
 	}
 }
 
-.size--small {
-	height: 40px;
-	width: 40px;
-}
+$sizes: (
+	'small': 40px,
+	'medium': 64px,
+	'large': 80px,
+);
 
-.size--medium {
-	height: 64px;
-	width: 64px;
-}
-
-.size--large {
-	height: 80px;
-	width: 80px;
+@each $size, $value in $sizes {
+	.size--#{$size} {
+		height: $value;
+		width: $value;
+	}
 }
 
 .rounded {
@@ -32,7 +32,7 @@
 }
 
 .hasBorder {
-	border-color: var(--color-palette-neutral-100);
+	border-color: $color-palette-neutral-100;
 	border-width: 2px;
 	border-style: solid;
 }

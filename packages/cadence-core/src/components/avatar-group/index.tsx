@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { AvatarGroupProps } from './types'
-import s from './avatar-group.module.css'
+import s from './avatar-group.module.scss'
 
 const AvatarGroup = ({
 	avatars,

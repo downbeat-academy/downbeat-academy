@@ -1,7 +1,7 @@
 import BoringAvatar from 'boring-avatars'
 import classnames from 'classnames'
 import { AvatarProps } from './types'
-import s from './avatar.module.css'
+import s from './avatar.module.scss'
 
 const Avatar = ({
 	size = 'medium',
@@ -30,10 +30,10 @@ const Avatar = ({
 	}
 
 	const placeholderColors = [
-		'var(--color-palette-passion-fruit-500',
-		'var(--color-palette-blueberry-500',
-		'var(--color-palette-pomegranate-300',
-		'var(--color-palette-kale-500',
+		'#6b75f6',
+		'#43a2ff',
+		'#b10010',
+		'#4ccad1',
 	]
 
 	return (

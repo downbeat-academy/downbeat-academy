@@ -5,6 +5,7 @@ import ButtonPage from './pages/button'
 import ButtonSetPage from './pages/buttonSet'
 import LogoPage from './pages/logo'
 import TextPage from './pages/text'
+import AvatarPage from './pages/avatar'
 
 export const Router = () => {
   return (
@@ -14,6 +15,7 @@ export const Router = () => {
       <Route path='/button-set' element={<ButtonSetPage />} />
       <Route path='/logo' element={<LogoPage />} />
       <Route path='/text' element={<TextPage />} />
+      <Route path='/avatar' element={<AvatarPage />} />
     </Routes>
   )
 }

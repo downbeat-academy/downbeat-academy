@@ -1,3 +1,5 @@
+@import 'node_modules/cadence-tokens/dist/web/tokens.scss';
+
 .root {
 	display: flex;
 
@@ -17,13 +19,10 @@
 	& > *:nth-child(5) {
 		z-index: 6;
 	}
-
-	& > *:hover {
-	}
 }
 
 .isInteractive > * {
-	transition: var(--transition-03);
+	transition: $transition-03;
 
 	&:hover {
 		z-index: 20;
@@ -31,12 +30,15 @@
 	}
 }
 
-.direction--horizontal {
-	flex-direction: row;
-}
+$directions: (
+	'horizontal': row,
+	'vertical': column,
+);
 
-.direction--vertical {
-	flex-direction: column;
+@each $direction, $value in $directions {
+	.direction--#{$direction} {
+		flex-direction: $value;
+	}
 }
 
 .overlap.spacing--compact.direction--horizontal > *:not(:last-child) {
