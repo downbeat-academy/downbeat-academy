@@ -1,14 +1,14 @@
-import { Flex, Text, Button } from '../components'
+import { Flex, Text, Button } from '../../components'
 
 export default function ButtonPage() {
   return (
     <Flex direction='column'>
-      <Text tag='h1'>Button</Text>
+      <Text tag='h1' fontType='expressive-headline' size='6x-large'>Button</Text>
       <Flex
         direction='column'
         gap='medium'
       >
-        <Text tag='h2'>Size / Large</Text>
+        <Text tag='h2' fontType='expressive-headline' size='5x-large'>Size / Large</Text>
         <Button text="Primary button" variant='primary' size='large' />
         <Button text="Secondary button" variant='secondary' size='large' />
         <Button text="Tertiary button" variant='tertiary' size='large' />
@@ -16,7 +16,7 @@ export default function ButtonPage() {
         <Button text="Destructive button" variant='destructive' size='large' />
       </Flex>
       <Flex direction='column' gap='medium'>
-        <Text tag='h2'>Size / Default</Text>
+        <Text tag='h2' fontType='expressive-headline' size='5x-large'>Size / Default</Text>
         <Button text="Primary button" variant='primary' size='default' />
         <Button text="Secondary button" variant='secondary' size='default' />
         <Button text="Tertiary button" variant='tertiary' size='default' />
@@ -24,7 +24,7 @@ export default function ButtonPage() {
         <Button text="Destructive button" variant='destructive' size='default' />
       </Flex>
       <Flex direction='column' gap='medium'>
-        <Text tag='h2'>Size / Small</Text>
+        <Text tag='h2' fontType='expressive-headline' size='5x-large'>Size / Small</Text>
         <Button text="Primary button" variant='primary' size='small' />
         <Button text="Secondary button" variant='secondary' size='small' />
         <Button text="Tertiary button" variant='tertiary' size='small' />
@@ -32,7 +32,7 @@ export default function ButtonPage() {
         <Button text="Destructive button" variant='destructive' size='small' />
       </Flex>
       <Flex direction='column' gap='medium'>
-        <Text tag='h2'>Size / Extra Small</Text>
+        <Text tag='h2' fontType='expressive-headline' size='5x-large'>Size / Extra Small</Text>
         <Button text="Primary button" variant='primary' size='x-small' />
         <Button text="Secondary button" variant='secondary' size='x-small' />
         <Button text="Tertiary button" variant='tertiary' size='x-small' />

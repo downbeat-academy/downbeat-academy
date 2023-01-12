@@ -1,4 +1,4 @@
-import { Text, Flex, Avatar, AvatarGroup } from "../components"
+import { Text, Flex, Avatar, AvatarGroup } from '../../components'
 
 export default function AvatarPage() {
   return (

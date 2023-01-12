@@ -1,4 +1,4 @@
-import { Text, Flex } from '../components'
+import { Text, Flex } from '../../components'
 
 export default function TextPage() {
   return (
