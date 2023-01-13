@@ -6,11 +6,10 @@ const Text = ({
 	children,
 	tag,
 	type = 'productive',
-	size = 'base',
+	size,
 	color = 'primary',
 	fluid = false,
 	collapse = false,
-	fontType,
 }: TextProps) => {
 
 	const getElementType = (tag: string) => {
@@ -24,10 +23,10 @@ const Text = ({
 
 	const classes = classnames(
 		s.root,
-		s[`size--${size}_type--${type}_font--${fontType}`],
-		s['color--' + color],
+		s[`size--${size}`],
+		s[`color--${color}`],
+		s[`line-height--${getElementType(tag)}`],
 		[fluid ? s.fluid : null],
-		s['line-height--' + getElementType(tag)],
 		[collapse ? s.collapse : null],
 	)
 

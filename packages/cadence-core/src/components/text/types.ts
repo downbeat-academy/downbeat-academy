@@ -38,7 +38,6 @@ interface TextProps {
 	| 'success'
 	| 'caution'
 	| 'critical'
-	fontType: 'expressive-headline' | 'expressive-body' | 'productive-headline' | 'productive-body',
 	fluid?: boolean
 	collapse?: boolean
 }

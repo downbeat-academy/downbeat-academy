@@ -1,10 +1,17 @@
 @use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
 
+// Base variables
+
+$font-family: $typography-font-family-productive-body;
+$font-size: $typography-font-size-fixed-productive-base;
+$line-height: $typography-line-height-productive-body;
+$text-color: $color-foreground-primary;
+
 .root {
-	font-family: var(--font-family);
-	font-size: var(--font-size);
-	line-height: var(--line-height);
-	color: var(--color);
+	font-family: $font-family;
+	font-size: $font-size;
+	line-height: $line-height;
+	color: $text-color;
 	margin: 1rem 0;
 	text-decoration: none;
 }
@@ -14,91 +21,36 @@
 }
 
 $types: ('expressive', 'productive');
-
-$type-props: (
-	'expressive-headline': (
-		'font-family': $typography-font-family-expressive-headline,
-		'line-height': $typography-line-height-expressive-headline,
-	),
-	'expressive-body': (
-		'font-family': $typography-font-family-expressive-body,
-		'line-height': $typography-line-height-expressive-body,
-	),
-	'productive-headline': (
-		'font-family': $typography-font-family-productive-headline,
-		'line-height': $typography-line-height-productive-headline,
-	),
-	'productive-body': (
-		'font-family': $typography-font-family-productive-body,
-		'line-height': $typography-line-height-productive-body,
-	),
-);
-
 $sizes: (
-	'x-small': (
-		'expressive': $typography-font-size-fixed-expressive-x-small,
-		'productive': $typography-font-size-fixed-productive-x-small,
-	),
-	'small': (
-		'expressive': $typography-font-size-fixed-expressive-small,
-		'productive': $typography-font-size-fixed-productive-small,
-	),
-	'base': (
-		'expressive': $typography-font-size-fixed-expressive-base,
-		'productive': $typography-font-size-fixed-productive-base,
-	),
-	'large': (
-		'expressive': $typography-font-size-fixed-expressive-large,
-		'productive': $typography-font-size-fixed-productive-large,
-	),
-	'x-large': (
-		'expressive': $typography-font-size-fixed-expressive-x-large,
-		'productive': $typography-font-size-fixed-productive-x-large,
-	),
-	'2x-large': (
-		'expressive': $typography-font-size-fixed-expressive-2x-large,
-		'productive': $typography-font-size-fixed-productive-2x-large,
-	),
-	'3x-large': (
-		'expressive': $typography-font-size-fixed-expressive-3x-large,
-		'productive': $typography-font-size-fixed-productive-3x-large,
-	),
-	'4x-large': (
-		'expressive': $typography-font-size-fixed-expressive-4x-large,
-		'productive': $typography-font-size-fixed-productive-4x-large,
-	),
-	'5x-large': (
-		'expressive': $typography-font-size-fixed-expressive-5x-large,
-	),
-	'6x-large': (
-		'expressive': $typography-font-size-fixed-expressive-6x-large,
-	),
+	'6x-large',
+	'5x-large',
+	'4x-large',
+	'3x-large',
+	'2x-large',
+	'x-large',
+	'large',
+	'base',
+	'small',
+	'x-small',
+);
+$tag: (
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'p',
+	'span',
+	'caption',
+	'code',
+	'cite',
+	'pre',
+	'sup',
+	'sub',
 );
 
-@mixin typography($font-size) {
-	font-size: $font-size;
-}
-
-@each $size, $types in $sizes {
-	@each $type, $token in $types {
-		@each $font-type, $values in $type-props {
-			.size--#{$size}_type--#{$type}_font--#{$font-type} {
-				// @debug #{$value};
-				// font-family: $value;
-				font-size: $token;
-			}
-		}
-	}
-}
-
-/* Line Height */
-
-$line-heights: (
-	'headline': $typography-line-height-expressive-headline,
-	'body': $typography-line-height-expressive-body,
-);
-
-/* Color */
+/* COLOR */
 
 $colors: (
 	'primary': $color-foreground-primary,
@@ -113,8 +65,114 @@ $colors: (
 	'critical': $color-foreground-critical-default,
 );
 
-@each $color, $value in $colors {
+@each $color, $token in $colors {
 	.color--#{$color} {
-		color: $value;
+		color: $token;
 	}
 }
+
+// $types: ('expressive', 'productive');
+
+// $type-props: (
+// 	'expressive-headline': (
+// 		'font-family': $typography-font-family-expressive-headline,
+// 		'line-height': $typography-line-height-expressive-headline,
+// 	),
+// 	'expressive-body': (
+// 		'font-family': $typography-font-family-expressive-body,
+// 		'line-height': $typography-line-height-expressive-body,
+// 	),
+// 	'productive-headline': (
+// 		'font-family': $typography-font-family-productive-headline,
+// 		'line-height': $typography-line-height-productive-headline,
+// 	),
+// 	'productive-body': (
+// 		'font-family': $typography-font-family-productive-body,
+// 		'line-height': $typography-line-height-productive-body,
+// 	),
+// );
+
+// $sizes: (
+// 	'x-small': (
+// 		'expressive': $typography-font-size-fixed-expressive-x-small,
+// 		'productive': $typography-font-size-fixed-productive-x-small,
+// 	),
+// 	'small': (
+// 		'expressive': $typography-font-size-fixed-expressive-small,
+// 		'productive': $typography-font-size-fixed-productive-small,
+// 	),
+// 	'base': (
+// 		'expressive': $typography-font-size-fixed-expressive-base,
+// 		'productive': $typography-font-size-fixed-productive-base,
+// 	),
+// 	'large': (
+// 		'expressive': $typography-font-size-fixed-expressive-large,
+// 		'productive': $typography-font-size-fixed-productive-large,
+// 	),
+// 	'x-large': (
+// 		'expressive': $typography-font-size-fixed-expressive-x-large,
+// 		'productive': $typography-font-size-fixed-productive-x-large,
+// 	),
+// 	'2x-large': (
+// 		'expressive': $typography-font-size-fixed-expressive-2x-large,
+// 		'productive': $typography-font-size-fixed-productive-2x-large,
+// 	),
+// 	'3x-large': (
+// 		'expressive': $typography-font-size-fixed-expressive-3x-large,
+// 		'productive': $typography-font-size-fixed-productive-3x-large,
+// 	),
+// 	'4x-large': (
+// 		'expressive': $typography-font-size-fixed-expressive-4x-large,
+// 		'productive': $typography-font-size-fixed-productive-4x-large,
+// 	),
+// 	'5x-large': (
+// 		'expressive': $typography-font-size-fixed-expressive-5x-large,
+// 	),
+// 	'6x-large': (
+// 		'expressive': $typography-font-size-fixed-expressive-6x-large,
+// 	),
+// );
+
+// @mixin typography($font-size) {
+// 	font-size: $font-size;
+// }
+
+// @each $size, $types in $sizes {
+// 	@each $type, $token in $types {
+// 		@each $font-type, $values in $type-props {
+// 			.size--#{$size}_type--#{$type}_font--#{$font-type} {
+// 				// @debug #{$value};
+// 				// font-family: $value;
+// 				font-size: $token;
+// 			}
+// 		}
+// 	}
+// }
+
+// /* Line Height */
+
+// $line-heights: (
+// 	'headline': $typography-line-height-expressive-headline,
+// 	'body': $typography-line-height-expressive-body,
+// );
+
+// /* Color */
+
+// $colors: (
+// 	'primary': $color-foreground-primary,
+// 	'interactive': $color-foreground-interactive-default,
+// 	'brand': $color-foreground-brand-default,
+// 	'strong': $color-foreground-strong,
+// 	'secondary': $color-foreground-secondary,
+// 	'disabled': $color-foreground-disabled,
+// 	'high-contrast': $color-foreground-high-contrast,
+// 	'success': $color-foreground-success-default,
+// 	'caution': $color-foreground-caution-default,
+// 	'critical': $color-foreground-critical-default,
+// );
+
+// @each $color, $value in $colors {
+// 	.color--#{$color} {
+// 		color: $value;
+// 	}
+// }
