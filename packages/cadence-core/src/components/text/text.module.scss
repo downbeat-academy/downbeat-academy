@@ -1,13 +1,4 @@
-// Base variables
-
-$font-family: $typography-font-family-productive-body;
-$line-height: $typography-line-height-productive-body;
-$text-color: $color-foreground-primary;
-
 .root {
-	font-family: $font-family;
-	line-height: $line-height;
-	color: $text-color;
 	margin: 1rem 0;
 	text-decoration: none;
 }
@@ -117,7 +108,8 @@ $types: ('expressive', 'productive');
 			@if ($type == expressive) and ($category == body) {
 				font-family: $typography-font-family-expressive-body;
 			} @else if ($type == expressive) and ($category == headline) {
-				font-family: $typography-font-family-expressive-headline;
+				// font-family: $typography-font-family-expressive-headline;
+				font-family: 'Favorit Std Expanded';
 			} @else if ($type == productive) and ($category == body) {
 				font-family: $typography-font-family-productive-body;
 			} @else if ($type == productive) and ($category == headline) {
