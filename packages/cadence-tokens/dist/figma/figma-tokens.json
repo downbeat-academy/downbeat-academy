@@ -3433,11 +3433,11 @@
           ]
         },
         "headline": {
-          "value": "Favorit Std, Helvetica, Arial, sans-serif",
+          "value": "Favorit Std Expanded, Helvetica, Arial, sans-serif",
           "filePath": "tokens/typography/font-family.json",
           "isSource": true,
           "original": {
-            "value": "Favorit Std, Helvetica, Arial, sans-serif"
+            "value": "Favorit Std Expanded, Helvetica, Arial, sans-serif"
           },
           "attributes": {
             "category": "typography",
