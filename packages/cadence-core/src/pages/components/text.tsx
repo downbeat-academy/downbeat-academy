@@ -4,6 +4,12 @@ export default function TextPage() {
   return (
     <Flex direction='column' gap='medium'>
       <Flex direction='column'>
+        <Text tag='p' type='expressive' size='base'>Expressive body text</Text>
+        <Text tag='h1' type='expressive' size='base'>Expressive headline text</Text>
+        <Text tag='p' type='productive' size='base'>Productive body text</Text>
+        <Text tag='h1' type='productive' size='base'>Productive headline text</Text>
+      </Flex>
+      <Flex direction='column'>
         <Text tag='p' type='expressive' collapse>Expressive</Text>
         <Text tag='h1' type='expressive' size='6x-large' collapse>6x-large</Text>
         <Text tag='h2' type='expressive' size='5x-large' collapse>5x-large</Text>

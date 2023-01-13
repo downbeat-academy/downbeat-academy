@@ -23,8 +23,10 @@ const Text = ({
 
 	const classes = classnames(
 		s.root,
-		s[`size--${size}`],
+		s[`size--${size}_type--${type}`],
+		s[`type--${type}`],
 		s[`color--${color}`],
+		s[`type--${type}_${getElementType(tag)}`],
 		s[`line-height--${getElementType(tag)}`],
 		[fluid ? s.fluid : null],
 		[collapse ? s.collapse : null],
