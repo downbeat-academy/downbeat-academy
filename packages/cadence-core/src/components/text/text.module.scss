@@ -104,3 +104,12 @@ $alignments: (left, center, right);
 	}
 }
 
+/* WEIGHT */
+
+$weights: (light, regular, semibold, bold, heavy);
+
+@each $weight in $weights {
+	.weight--#{$weight} {
+		font-weight: $weight;
+	}
+}

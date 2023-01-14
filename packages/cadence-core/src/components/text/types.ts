@@ -42,6 +42,7 @@ interface TextProps {
 	fluid?: boolean,
 	collapse?: boolean,
 	align?: 'left' | 'center' | 'right',
+	weight?: 'light' | 'regular' | 'semibold' | 'bold' | 'heavy',
 }
 
 export type { TextProps }

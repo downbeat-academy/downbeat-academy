@@ -11,7 +11,8 @@ const Text = ({
 	fluid = false,
 	collapse = false,
 	category = 'body',
-	align = 'left'
+	align = 'left',
+	weight,
 }: TextProps) => {
 
 	const getElementType = (tag: string) => {
@@ -28,6 +29,7 @@ const Text = ({
 		s[`${type}--${category}--${size}`],
 		s[`color--${color}`],
 		s[`align--${align}`],
+		s[`weight--${weight}`],
 		[fluid ? s.fluid : null],
 		[collapse ? s.collapse : null],
 	)
