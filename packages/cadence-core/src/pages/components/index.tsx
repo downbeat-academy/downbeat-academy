@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function ComponentsPage() {
   return (
     <Flex direction='column'>
-      <Text tag='h1' fontType='expressive-headline' size='6x-large' type='expressive'>Components</Text>
+      <Text tag='h1' category='headline' size='6x-large' type='expressive'>Components</Text>
       <Link to='/components/avatar'>Avatar</Link>
       <Link to='/components/badge'>Badge</Link>
       <Link to='/components/button'>Button</Link>

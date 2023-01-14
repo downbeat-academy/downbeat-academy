@@ -7,7 +7,7 @@ import {
 function App() {
 	return (
 		<div className="App">
-			<Text tag='p' type='expressive' fontType='expressive-headline' size='base'>Cadence Core app</Text>
+			<Text tag='p' type='expressive' category='headline' size='base'>Cadence Core app</Text>
 			<Flex direction='row' gap='medium'>
 				<Link to='/'>Home</Link>
 				<Link to='/components'>Components</Link>

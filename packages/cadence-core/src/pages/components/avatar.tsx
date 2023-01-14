@@ -6,14 +6,14 @@ export default function AvatarPage() {
       <Text
         tag='h1'
         type='expressive'
-        fontType='expressive-headline'
+        category='headline'
         size='6x-large'
       >Avatar</Text>
       <Flex direction='column' gap='medium'>
         <Text
           tag='h2'
           type='expressive'
-          fontType='expressive-headline'
+          category='headline'
           size='5x-large'
         >Size</Text>
         <Avatar size='small' />
@@ -24,14 +24,14 @@ export default function AvatarPage() {
         <Text
           tag='h2'
           type='expressive'
-          fontType='expressive-headline'
+          category='headline'
           size='5x-large'
         >Avatar group</Text>
         <Flex direction='column' gap='small'>
           <Text
             tag='h2'
             type='expressive'
-            fontType='expressive-headline'
+            category='headline'
             size='4x-large'
           >Avatar group</Text>
           <AvatarGroup
