@@ -7,25 +7,6 @@
 	margin: 0;
 }
 
-$types: ('expressive', 'productive');
-
-$tags: (
-	'h1': 'headline',
-	'h2': 'headline',
-	'h3': 'headline',
-	'h4': 'headline',
-	'h5': 'headline',
-	'h6': 'headline',
-	'p': 'body',
-	'span': 'body',
-	'caption': 'body',
-	'code': 'body',
-	'cite': 'body',
-	'pre': 'body',
-	'sup': 'body',
-	'sub': 'body',
-);
-
 /* COLOR */
 
 $colors: (
@@ -49,72 +30,68 @@ $colors: (
 
 /* SIZE */
 
-$sizes: (
-	'6x-large': (
-		'expressive': $typography-font-size-fixed-expressive-6x-large,
+$types: ('expressive', 'productive');
+$categories: ('headline', 'body');
+$sizes: ('6x-large', '5x-large', '4x-large', '3x-large', '2x-large', 'x-large', 'large', 'base', 'small', 'x-small');
+
+$size-props: (
+	'expressive': (
+		'6x-large': $typography-font-size-fixed-expressive-6x-large,
+		'5x-large': $typography-font-size-fixed-expressive-5x-large,
+		'4x-large': $typography-font-size-fixed-expressive-4x-large,
+		'3x-large': $typography-font-size-fixed-expressive-3x-large,
+		'2x-large': $typography-font-size-fixed-expressive-2x-large,
+		'x-large': $typography-font-size-fixed-expressive-x-large,
+		'large': $typography-font-size-fixed-expressive-large,
+		'base': $typography-font-size-fixed-expressive-base,
+		'small': $typography-font-size-fixed-expressive-small,
+		'x-small': $typography-font-size-fixed-expressive-x-small,
 	),
-	'5x-large': (
-		'expressive': $typography-font-size-fixed-expressive-5x-large,
+	'productive': (
+		'4x-large': $typography-font-size-fixed-productive-4x-large,
+		'3x-large': $typography-font-size-fixed-productive-3x-large,
+		'2x-large': $typography-font-size-fixed-productive-2x-large,
+		'x-large': $typography-font-size-fixed-productive-x-large,
+		'large': $typography-font-size-fixed-productive-large,
+		'base': $typography-font-size-fixed-productive-base,
+		'small': $typography-font-size-fixed-productive-small,
+		'x-small': $typography-font-size-fixed-productive-x-small,
 	),
-	'4x-large': (
-		'expressive': $typography-font-size-fixed-expressive-4x-large,
-		'productive': $typography-font-size-fixed-productive-4x-large,
+);
+
+$type-props: (
+	'expressive': (
+		'body': (
+			'font-family': $typography-font-family-expressive-body,
+			'line-height': $typography-line-height-expressive-body,
+		),
+		'headline': (
+			'font-family': $typography-font-family-expressive-headline,
+			'line-height': $typography-line-height-expressive-headline,
+		),
 	),
-	'3x-large': (
-		'expressive': $typography-font-size-fixed-expressive-3x-large,
-		'productive': $typography-font-size-fixed-productive-3x-large,
-	),
-	'2x-large': (
-		'expressive': $typography-font-size-fixed-expressive-2x-large,
-		'productive': $typography-font-size-fixed-productive-2x-large,
-	),
-	'x-large': (
-		'expressive': $typography-font-size-fixed-expressive-x-large,
-		'productive': $typography-font-size-fixed-productive-x-large,
-	),
-	'large': (
-		'expressive': $typography-font-size-fixed-expressive-large,
-		'productive': $typography-font-size-fixed-productive-large,
-	),
-	'base': (
-		'expressive': $typography-font-size-fixed-expressive-base,
-		'productive': $typography-font-size-fixed-productive-base,
-	),
-	'small': (
-		'expressive': $typography-font-size-fixed-expressive-small,
-		'productive': $typography-font-size-fixed-productive-small,
-	),
-	'x-small': (
-		'expressive': $typography-font-size-fixed-expressive-x-small,
-		'productive': $typography-font-size-fixed-productive-x-small,
+	'productive': (
+		'body': (
+			'font-family': $typography-font-family-productive-body,
+			'line-height': $typography-line-height-productive-body,
+		),
+		'headline': (
+			'font-family': $typography-font-family-productive-headline,
+			'line-height': $typography-line-height-productive-headline,
+		),
 	)
 );
 
-@each $size, $font-type in $sizes {
-	@each $type, $token in $font-type {
-		.size--#{$size}_type--#{$type} {
-			font-size: $token;
-		}
-	}
-}
-
-/* TYPE */
-
-$types: ('expressive', 'productive');
-
 @each $type in $types {
-	@each $tag, $category in $tags {
-		.type--#{$type}_#{$category} {
-			@if ($type == expressive) and ($category == body) {
-				font-family: $typography-font-family-expressive-body;
-			} @else if ($type == expressive) and ($category == headline) {
-				// font-family: $typography-font-family-expressive-headline;
-				font-family: 'Favorit Std Expanded';
-			} @else if ($type == productive) and ($category == body) {
-				font-family: $typography-font-family-productive-body;
-			} @else if ($type == productive) and ($category == headline) {
-				font-family: $typography-font-family-productive-headline;
+	@each $category in $categories {
+		@each $size in $sizes {
+			.#{$type}--#{$category}--#{$size} {
+				@debug #{$size};
+				font-family: map-get($type-props, $type, $category, 'font-family');
+				font-size: map-get($size-props, $type, $size);
+				line-height: map-get($type-props, $type, $category, 'line-height');
 			}
 		}
 	}
 }
+

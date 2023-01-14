@@ -42,7 +42,7 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: `@import "./src/styles/global.scss";`
+				additionalData: `@import "./src/styles/global.scss"; @import "node_modules/cadence-tokens/dist/web/tokens.scss";`
 			}
 		},
 		modules: {

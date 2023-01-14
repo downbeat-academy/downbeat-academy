@@ -16,7 +16,7 @@ interface TextProps {
 	| 'sup'
 	| 'sub'
 	type?: 'expressive' | 'productive'
-	size?:
+	size:
 	| '6x-large'
 	| '5x-large'
 	| '4x-large'
@@ -38,6 +38,7 @@ interface TextProps {
 	| 'success'
 	| 'caution'
 	| 'critical'
+	category?: 'body' | 'headline'
 	fluid?: boolean
 	collapse?: boolean
 }
