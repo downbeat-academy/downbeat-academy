@@ -6,7 +6,7 @@ const Flex = ({
 	children,
 	as,
 	direction = 'row',
-	gap,
+	gap = 'base',
 	padding,
 	background = 'primary',
 	borderRadius,

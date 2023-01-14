@@ -2,8 +2,8 @@ import { Text, Flex } from '../../components'
 
 export default function TextPage() {
   return (
-    <Flex direction='column' gap='medium'>
-      <Flex direction='column' gap='medium'>
+    <Flex direction='column' gap='base'>
+      <Flex direction='column' gap='base'>
         <Text
           tag='h1'
           type='expressive'

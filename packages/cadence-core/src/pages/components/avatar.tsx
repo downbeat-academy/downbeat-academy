@@ -2,14 +2,14 @@ import { Text, Flex, Avatar, AvatarGroup } from '../../components'
 
 export default function AvatarPage() {
   return (
-    <Flex direction='column' gap='medium'>
+    <Flex direction='column' gap='base'>
       <Text
         tag='h1'
         type='expressive'
         category='headline'
         size='6x-large'
       >Avatar</Text>
-      <Flex direction='column' gap='medium'>
+      <Flex direction='column' gap='base'>
         <Text
           tag='h2'
           type='expressive'
@@ -20,7 +20,7 @@ export default function AvatarPage() {
         <Avatar size='medium' />
         <Avatar size='large' />
       </Flex>
-      <Flex direction='column' gap='medium'>
+      <Flex direction='column' gap='base'>
         <Text
           tag='h2'
           type='expressive'

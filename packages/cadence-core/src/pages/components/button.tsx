@@ -6,7 +6,7 @@ export default function ButtonPage() {
       <Text tag='h1' category='headline' size='6x-large'>Button</Text>
       <Flex
         direction='column'
-        gap='medium'
+        gap='base'
       >
         <Text tag='h2' category='headline' size='5x-large'>Size / Large</Text>
         <Button text="Primary button" variant='primary' size='large' />
@@ -15,7 +15,7 @@ export default function ButtonPage() {
         <Button text="Ghost button" variant='ghost' size='large' />
         <Button text="Destructive button" variant='destructive' size='large' />
       </Flex>
-      <Flex direction='column' gap='medium'>
+      <Flex direction='column' gap='base'>
         <Text tag='h2' category='headline' size='5x-large'>Size / Default</Text>
         <Button text="Primary button" variant='primary' size='default' />
         <Button text="Secondary button" variant='secondary' size='default' />
@@ -23,7 +23,7 @@ export default function ButtonPage() {
         <Button text="Ghost button" variant='ghost' size='default' />
         <Button text="Destructive button" variant='destructive' size='default' />
       </Flex>
-      <Flex direction='column' gap='medium'>
+      <Flex direction='column' gap='base'>
         <Text tag='h2' category='headline' size='5x-large'>Size / Small</Text>
         <Button text="Primary button" variant='primary' size='small' />
         <Button text="Secondary button" variant='secondary' size='small' />
@@ -31,7 +31,7 @@ export default function ButtonPage() {
         <Button text="Ghost button" variant='ghost' size='small' />
         <Button text="Destructive button" variant='destructive' size='small' />
       </Flex>
-      <Flex direction='column' gap='medium'>
+      <Flex direction='column' gap='base'>
         <Text tag='h2' category='headline' size='5x-large'>Size / Extra Small</Text>
         <Button text="Primary button" variant='primary' size='x-small' />
         <Button text="Secondary button" variant='secondary' size='x-small' />

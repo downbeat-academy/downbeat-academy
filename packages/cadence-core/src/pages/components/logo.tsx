@@ -2,7 +2,7 @@ import { Flex, Text, LogoSymbol, LogoLockup, LogoText } from '../../components'
 
 export default function LogoPage() {
   return (
-    <Flex direction='column' gap='medium'>
+    <Flex direction='column' gap='base'>
       <Text tag='h1' category='headline' size='6x-large'>Logo</Text>
       <Flex direction='column' gap='large'>
         <Text tag='h2' category='headline' size='5x-large'>Types</Text>
