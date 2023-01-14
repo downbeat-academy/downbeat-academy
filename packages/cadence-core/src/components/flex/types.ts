@@ -2,7 +2,7 @@ interface FlexProps {
 	as?: React.ElementType
 	children: React.ReactNode
 	direction?: 'row' | 'column'
-	gap?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large'
+	gap?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large' | '4x-large' | '5x-large,'
 	padding?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large'
 	background?:
 	| 'primary'
