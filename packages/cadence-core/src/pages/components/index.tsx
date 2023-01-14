@@ -11,6 +11,7 @@ export default function ComponentsPage() {
       <Link to='/components/button-set'>Button set</Link>
       <Link to='/components/logo'>Logo</Link>
       <Link to='/components/text'>Text</Link>
+      <Link to='/components/link'>Link</Link>
     </Flex>
   )
 }

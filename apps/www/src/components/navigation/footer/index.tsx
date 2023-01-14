@@ -7,7 +7,7 @@ import {
 import { socialLinks, siteLinks } from './FooterLinks'
 import s from '@styles/components/navigation/footer.module.scss'
 
-const Footer = ({ }) => {
+const Footer = () => {
 
   const getSocialLinks = socialLinks.map(socialLink => {
     return (
@@ -36,7 +36,7 @@ const Footer = ({ }) => {
   return (
     <footer className={s.wrapper}>
       <div className={s.content}>
-        <Flex direction='column'>
+        <Flex direction='column' gap='large'>
           <LogoSymbol color='secondary' width={80} />
           <Flex direction='row' gap='x-large'>
             <Flex direction='column' gap='small'>

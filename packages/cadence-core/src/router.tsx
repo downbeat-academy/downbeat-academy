@@ -7,6 +7,7 @@ import ButtonSetPage from './pages/components/buttonSet'
 import LogoPage from './pages/components/logo'
 import TextPage from './pages/components/text'
 import AvatarPage from './pages/components/avatar'
+import LinkPage from './pages/components/link'
 
 export const Router = () => {
   return (
@@ -18,6 +19,7 @@ export const Router = () => {
       <Route path='/components/logo' element={<LogoPage />} />
       <Route path='/components/text' element={<TextPage />} />
       <Route path='/components/avatar' element={<AvatarPage />} />
+      <Route path='/components/link' element={<LinkPage />} />
     </Routes>
   )
 }
