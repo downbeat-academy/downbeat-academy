@@ -18,11 +18,15 @@ $flex-directions: (
 /* Gap */
 
 $flex-gap-values: (
-	x-small: $spacing-02,
-	small: $spacing-03,
-	medium: $spacing-05,
-	large: $spacing-06,
-	x-large: $spacing-08,
+	'2x-small': $spacing-02,
+	'x-small': $spacing-03,
+	'default': $spacing-05,
+	'large': $spacing-06,
+	'x-large': $spacing-08,
+	'2x-large': $spacing-10,
+	'3x-large': $spacing-11,
+	'4x-large': $spacing-12,
+	'5x-large': $spacing-13,
 );
 
 @each $gap,
