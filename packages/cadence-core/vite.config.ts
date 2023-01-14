@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'node:path'
 import dts from 'vite-plugin-dts'
+import path from 'path'
 import tsConfigPaths from 'vite-tsconfig-paths'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
@@ -30,13 +30,6 @@ export default defineConfig({
 					'react-dom': 'ReactDOM',
 				},
 			},
-		},
-	},
-	resolve: {
-		alias: {
-			'@': path.resolve(__dirname, './src'),
-			'@components': path.resolve(__dirname, './src/components'),
-			'@pages': path.resolve(__dirname, './src/pages'),
 		},
 	},
 	css: {
