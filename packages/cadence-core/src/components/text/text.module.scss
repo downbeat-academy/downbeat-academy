@@ -28,7 +28,7 @@ $colors: (
 	}
 }
 
-/* SIZE */
+/* SIZE and TYPE */
 
 $types: ('expressive', 'productive');
 $categories: ('headline', 'body');
@@ -86,12 +86,21 @@ $type-props: (
 	@each $category in $categories {
 		@each $size in $sizes {
 			.#{$type}--#{$category}--#{$size} {
-				@debug #{$size};
 				font-family: map-get($type-props, $type, $category, 'font-family');
 				font-size: map-get($size-props, $type, $size);
 				line-height: map-get($type-props, $type, $category, 'line-height');
 			}
 		}
+	}
+}
+
+/* ALIGNMENT */
+
+$alignments: (left, center, right);
+
+@each $align in $alignments {
+	.align--#{$align} {
+		text-align: $align;
 	}
 }
 

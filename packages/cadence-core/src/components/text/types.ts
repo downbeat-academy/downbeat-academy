@@ -1,5 +1,5 @@
 interface TextProps {
-	children: React.ReactNode
+	children: React.ReactNode,
 	tag:
 	| 'h1'
 	| 'h2'
@@ -14,8 +14,8 @@ interface TextProps {
 	| 'cite'
 	| 'pre'
 	| 'sup'
-	| 'sub'
-	type?: 'expressive' | 'productive'
+	| 'sub',
+	type?: 'expressive' | 'productive',
 	size:
 	| '6x-large'
 	| '5x-large'
@@ -26,7 +26,7 @@ interface TextProps {
 	| 'large'
 	| 'base'
 	| 'small'
-	| 'x-small'
+	| 'x-small',
 	color?:
 	| 'primary'
 	| 'interactive'
@@ -37,10 +37,11 @@ interface TextProps {
 	| 'high-contrast'
 	| 'success'
 	| 'caution'
-	| 'critical'
-	category?: 'body' | 'headline'
-	fluid?: boolean
-	collapse?: boolean
+	| 'critical',
+	category?: 'body' | 'headline',
+	fluid?: boolean,
+	collapse?: boolean,
+	align?: 'left' | 'center' | 'right',
 }
 
 export type { TextProps }
