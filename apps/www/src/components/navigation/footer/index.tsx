@@ -38,7 +38,7 @@ const Footer = () => {
     <footer className={s.wrapper}>
       <div className={s.content}>
         <Flex direction='column' gap='x-large'>
-          <Link href='/' alt='Homepage'>
+          <Link href='/'>
             <LogoSymbol color='secondary' width={80} />
           </Link>
           <Flex direction='row' gap='4x-large' wrap='wrap'>
