@@ -1,0 +1,35 @@
+@use '../../variables.scss' as *;
+
+.wrapper {
+  padding: 0;
+	margin: 0;
+	position: sticky;
+	top: 0;
+	display: flex;
+  flex-direction: column;
+	justify-content: center;
+	border-bottom: 1px solid $color-palette-neutral-400;
+	background: $color-surface-primary;
+	z-index: 10;
+
+	&.scroll {
+		box-shadow: 0 1px 40px 0px hsla(240, 36%, 22%, 7.5%);
+	}
+}
+
+.navbar {
+  max-width: 1440px;
+	padding: $spacing-04 $spacing-06;
+	position: sticky;
+	top: 0px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	transition: $transition-01;
+	background: $color-palette-neutral-100;
+
+	@media (max-width: 900px) {
+		padding: $spacing-04 $spacing-06 $spacing-04 $spacing-04;
+	}
+}
