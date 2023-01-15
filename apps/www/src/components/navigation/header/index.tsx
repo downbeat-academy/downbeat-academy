@@ -8,6 +8,7 @@ import { Secondary } from './Secondary'
 const Header = () => {
   return (
     <header className={s.wrapper}>
+      <Secondary />
       <nav className={s.navbar}>
         <Link href='/'>
           <LogoLockup color='brand' width={200} />

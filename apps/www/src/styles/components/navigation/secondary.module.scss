@@ -1,0 +1,20 @@
+@use '../../variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+	justify-content: center;
+  width: 100%;
+	align-items: center;
+	background: $color-palette-neutral-100;
+	border-bottom: 1px solid $color-palette-neutral-400;
+}
+
+.content {
+  width: 1440px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: $spacing-02 $spacing-06;
+}
