@@ -1,11 +1,11 @@
-@use '../../variables.scss' as *;
+@use '../../../variables.scss' as *;
 
 .wrapper {
   display: flex;
   flex-direction: row;
 	justify-content: center;
-  width: 100%;
 	align-items: center;
+  width: 100%;
 	background: $color-palette-neutral-100;
 	border-bottom: 1px solid $color-palette-neutral-400;
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Flex, Button, Badge, Text } from 'cadence-core'
-import s from '@styles/components/navigation/secondary.module.scss'
+import s from '@styles/components/navigation/header/secondary.module.scss'
 
 const Secondary = () => {
   return (
@@ -8,7 +8,7 @@ const Secondary = () => {
       <div className={s.content}>
         <Flex>
           <Badge text='Downbeat Academy 3.0' type='informational' style='fill' />
-          <Text category='body' type='productive' size='small' tag='p' collapse>Welcome to Downbeat Academy 3.0 🚀</Text>
+          <Text category='body' type='productive' size='small' tag='p' collapse>Welcome to the new and improved Downbeat Academy 3.0 🚀</Text>
         </Flex>
         <Flex direction='row' gap='x-small'>
           <Button variant='tertiary' size='small' text='Login' />

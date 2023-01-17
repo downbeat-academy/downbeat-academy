@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import classnames from 'classnames'
 import { HeaderLinkTypes } from './types'
-import s from '@styles/components/navigation/headerLinks.module.scss'
+import s from '@styles/components/navigation/header/headerLinks.module.scss'
 
 const HeaderLinks = ({ viewport }: HeaderLinkTypes) => {
 

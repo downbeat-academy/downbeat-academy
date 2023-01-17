@@ -5,7 +5,7 @@ import {
   Flex,
 } from 'cadence-core'
 import { socialLinks, siteLinks } from './FooterLinks'
-import s from '@styles/components/navigation/footer.module.scss'
+import s from '@styles/components/navigation/footer/footer.module.scss'
 
 const Footer = () => {
 
