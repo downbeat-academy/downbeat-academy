@@ -4,6 +4,7 @@ import { Flex, LogoLockup } from 'cadence-core'
 import s from '@styles/components/navigation/header.module.scss'
 
 import { Secondary } from './Secondary'
+import { HeaderLinks } from './HeaderLinks'
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
         <Link href='/'>
           <LogoLockup color='brand' width={200} />
         </Link>
-        <p>This is the navbar</p>
+        <HeaderLinks />
       </nav>
     </header>
   )

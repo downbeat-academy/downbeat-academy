@@ -1,7 +1,9 @@
 @use '../../variables.scss' as *;
 
+// Master component
+
 .wrapper {
-  width: 100%;
+  max-width: 100vw;
   padding: 0;
 	margin: 0;
 	position: sticky;

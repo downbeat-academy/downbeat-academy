@@ -1,6 +1,6 @@
 .root {
 	font-family: $typography-font-family-productive-body;
-	font-weight: 400;
+	font-weight: bold;
 	display: inline-flex;
 	flex-direction: row;
 	flex-grow: 0;
@@ -12,6 +12,7 @@
 	box-sizing: border-box;
 	text-decoration: none;
 	width: fit-content;
+	height: fit-content;
 	border-width: 1px;
 	border-style: solid;
 }
