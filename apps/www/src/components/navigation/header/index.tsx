@@ -8,6 +8,12 @@ import { HeaderLinks } from './HeaderLinks'
 import { Toggle } from './Toggle'
 
 const Header = () => {
+  const [navToggled, setNavToggled] = useState(false)
+
+  const handleNavToggle = () => {
+    setNavToggled(!navToggled);
+  }
+
   return (
     <header className={s.wrapper}>
       <Secondary />
@@ -17,7 +23,7 @@ const Header = () => {
             <LogoLockup color='brand' width={200} />
           </Link>
           <HeaderLinks />
-          <Toggle />
+          <Toggle handleNavToggle={handleNavToggle} />
         </div>
       </nav>
     </header>

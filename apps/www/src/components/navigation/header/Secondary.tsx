@@ -6,14 +6,14 @@ const Secondary = () => {
   return (
     <aside className={s.wrapper}>
       <div className={s.content}>
-        <Flex>
+        <div className={s.banner}>
           <Badge text='Downbeat Academy 3.0' type='informational' style='fill' />
           <Text category='body' type='productive' size='small' tag='p' collapse>Welcome to the new and improved Downbeat Academy 3.0 🚀</Text>
-        </Flex>
-        <Flex direction='row' gap='x-small'>
+        </div>
+        <div className={s.accountActions}>
           <Button variant='tertiary' size='small' text='Login' />
           <Button variant='primary' size='small' text='Sign up for free' />
-        </Flex>
+        </div>
       </div>
     </aside>
   )
