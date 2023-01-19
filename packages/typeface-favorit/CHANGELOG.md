@@ -1,5 +1,11 @@
 # @downbeat-academy/typeface-favorit
 
+## 1.0.2
+
+### Patch Changes
+
+- Lots of cleanup work in components and typeface packages as well as the new navigation for www
+
 ## 1.0.1
 
 ### Patch Changes

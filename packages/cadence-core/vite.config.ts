@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'node:path'
 import dts from 'vite-plugin-dts'
+import path from 'path'
 import tsConfigPaths from 'vite-tsconfig-paths'
-import postcssNesting from 'postcss-nesting'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default defineConfig({
@@ -33,14 +32,11 @@ export default defineConfig({
 			},
 		},
 	},
-	resolve: {
-		alias: {
-			'@': path.resolve(__dirname, './src'),
-		},
-	},
 	css: {
-		postcss: {
-			plugins: [postcssNesting],
+		preprocessorOptions: {
+			scss: {
+				additionalData: `@import "./src/styles/global.scss"; @import "node_modules/cadence-tokens/dist/web/tokens.scss";`
+			}
 		},
 		modules: {
 			localsConvention: 'camelCase',

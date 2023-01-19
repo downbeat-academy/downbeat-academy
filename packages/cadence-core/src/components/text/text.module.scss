@@ -1,0 +1,115 @@
+.root {
+	margin: 1rem 0;
+	text-decoration: none;
+}
+
+.collapse {
+	margin: 0;
+}
+
+/* COLOR */
+
+$colors: (
+	'primary': $color-foreground-primary,
+	'interactive': $color-foreground-interactive-default,
+	'brand': $color-foreground-brand-default,
+	'strong': $color-foreground-strong,
+	'secondary': $color-foreground-secondary,
+	'disabled': $color-foreground-disabled,
+	'high-contrast': $color-foreground-high-contrast,
+	'success': $color-foreground-success-default,
+	'caution': $color-foreground-caution-default,
+	'critical': $color-foreground-critical-default,
+);
+
+@each $color, $token in $colors {
+	.color--#{$color} {
+		color: $token;
+	}
+}
+
+/* SIZE and TYPE */
+
+$types: ('expressive', 'productive');
+$categories: ('headline', 'body');
+$sizes: ('6x-large', '5x-large', '4x-large', '3x-large', '2x-large', 'x-large', 'large', 'base', 'small', 'x-small');
+
+$size-props: (
+	'expressive': (
+		'6x-large': $typography-font-size-fixed-expressive-6x-large,
+		'5x-large': $typography-font-size-fixed-expressive-5x-large,
+		'4x-large': $typography-font-size-fixed-expressive-4x-large,
+		'3x-large': $typography-font-size-fixed-expressive-3x-large,
+		'2x-large': $typography-font-size-fixed-expressive-2x-large,
+		'x-large': $typography-font-size-fixed-expressive-x-large,
+		'large': $typography-font-size-fixed-expressive-large,
+		'base': $typography-font-size-fixed-expressive-base,
+		'small': $typography-font-size-fixed-expressive-small,
+		'x-small': $typography-font-size-fixed-expressive-x-small,
+	),
+	'productive': (
+		'4x-large': $typography-font-size-fixed-productive-4x-large,
+		'3x-large': $typography-font-size-fixed-productive-3x-large,
+		'2x-large': $typography-font-size-fixed-productive-2x-large,
+		'x-large': $typography-font-size-fixed-productive-x-large,
+		'large': $typography-font-size-fixed-productive-large,
+		'base': $typography-font-size-fixed-productive-base,
+		'small': $typography-font-size-fixed-productive-small,
+		'x-small': $typography-font-size-fixed-productive-x-small,
+	),
+);
+
+$type-props: (
+	'expressive': (
+		'body': (
+			'font-family': $typography-font-family-expressive-body,
+			'line-height': $typography-line-height-expressive-body,
+		),
+		'headline': (
+			'font-family': $typography-font-family-expressive-headline,
+			'line-height': $typography-line-height-expressive-headline,
+		),
+	),
+	'productive': (
+		'body': (
+			'font-family': $typography-font-family-productive-body,
+			'line-height': $typography-line-height-productive-body,
+		),
+		'headline': (
+			'font-family': $typography-font-family-productive-headline,
+			'line-height': $typography-line-height-productive-headline,
+		),
+	)
+);
+
+@each $type in $types {
+	@each $category in $categories {
+		@each $size in $sizes {
+			.#{$type}--#{$category}--#{$size} {
+				font-family: map-get($type-props, $type, $category, 'font-family');
+				font-size: map-get($size-props, $type, $size);
+				line-height: map-get($type-props, $type, $category, 'line-height');
+			}
+		}
+	}
+}
+
+/* ALIGNMENT */
+
+$alignments: (left, center, right);
+
+@each $align in $alignments {
+	.align--#{$align} {
+		text-align: $align;
+	}
+}
+
+/* WEIGHT */
+
+$weights: (light, regular, semibold, bold, heavy);
+
+@each $weight in $weights {
+	.weight--#{$weight} {
+		font-weight: $weight;
+	}
+}

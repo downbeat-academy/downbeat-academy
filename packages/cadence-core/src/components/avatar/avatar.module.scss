@@ -1,0 +1,36 @@
+.root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	box-sizing: border-box;
+
+	& img {
+		max-width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
+}
+
+$sizes: (
+	'small': 40px,
+	'medium': 64px,
+	'large': 80px,
+);
+
+@each $size, $value in $sizes {
+	.size--#{$size} {
+		height: $value;
+		width: $value;
+	}
+}
+
+.rounded {
+	border-radius: 50%;
+}
+
+.hasBorder {
+	border-color: $color-palette-neutral-100;
+	border-width: 2px;
+	border-style: solid;
+}

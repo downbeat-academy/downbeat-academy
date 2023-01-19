@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef } from 'react'
 import classnames from 'classnames'
 import { ButtonProps } from './types'
-import s from './button.module.css'
+import s from './button.module.scss'
 
 const Button = forwardRef(
 	(

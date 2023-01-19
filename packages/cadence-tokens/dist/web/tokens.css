@@ -144,9 +144,9 @@
   --spacing-08: 40px;
   --spacing-09: 48px;
   --typography-font-family-expressive-body: Tiempos Text, Georgia, Times, serif;
-  --typography-font-family-expressive-headline: Favorit Std, Helvetica, Arial, sans-serif;
+  --typography-font-family-expressive-headline: Favorit Std Expanded, Helvetica, Arial, sans-serif;
   --typography-font-family-productive-body: Favorit Std, Helvetica, Arial, sans-serif;
-  --typography-font-family-productive-headline: Favorit, Helvetica, Arial, sans-serif;
+  --typography-font-family-productive-headline: Favorit Std, Helvetica, Arial, sans-serif;
   --typography-font-family-mono: Favorit Mono, Courier, monospace;
   --typography-font-family-music-notation: Noto Music, sans-serif;
   --typography-font-size-fluid-expressive-6x-large: clamp(2.5rem, 3.94vw + 2.06rem, 5.25rem);

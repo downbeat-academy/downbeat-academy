@@ -10,16 +10,16 @@
 	},
 	"main": "dist/web",
 	"files": [
-		"./dist"
+		"dist"
 	],
 	"exports": {
 		".": {
-			"import": "./dist/web/tokens.css",
-			"require": "./dist/web/tokens.css"
+			"import": "./dist/web/tokens.scss",
+			"require": "./dist/web/tokens.scss"
 		},
-		"./dist/web.tokens.css": "./dist/web/tokens.css"
+		"./dist/web.tokens.css": "./dist/web/tokens.scss"
 	},
-	"module": "./dist/web/tokens.css",
+	"module": "./dist/web/tokens.scss",
 	"keywords": [
 		"downbeat academy",
 		"tokens",
@@ -33,8 +33,5 @@
 	"devDependencies": {
 		"@divriots/style-dictionary-to-figma": "^0.3.0",
 		"style-dictionary": "^3.7.1"
-	},
-	"dependencies": {
-		"@downbeat-academy/cadence-tokens": "^2.0.1"
 	}
 }

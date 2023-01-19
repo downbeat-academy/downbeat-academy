@@ -1,0 +1,46 @@
+@use '../../../variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-05;
+
+  @media (max-width: 899px) {
+    display: none;
+    position: fixed;
+    top: 101.15px;
+    left: 0;
+    flex-direction: column;
+    padding: $spacing-06 $spacing-05;
+    background: $color-surface-primary;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+
+  }  
+}
+
+.navLinksOpen {
+  display: flex;
+}
+
+.styledLink {
+  font-family: $typography-font-family-productive-body;
+  font-weight: normal;
+  font-size: $typography-font-size-fixed-productive-base;
+  text-decoration: none;
+  color: $color-foreground-strong;
+  transition: $transition-02;
+
+  &:hover {
+    color: $color-foreground-interactive-hover;
+  }
+
+  &:active {
+    color: $color-foreground-interactive-active;
+  }
+
+  @media (max-width: 899px) {
+    font-size: $typography-font-size-fixed-productive-x-large;
+  }
+}

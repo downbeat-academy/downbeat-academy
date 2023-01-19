@@ -1,0 +1,29 @@
+@use '../../../variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $color-surface-primary;
+}
+
+.content {
+  width: 1440px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-08;
+  padding: $spacing-08 $spacing-06;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: $spacing-08;
+    padding: $spacing-08 $spacing-04
+  }
+}
+
+.footerLink {
+  color: $color-foreground-secondary;
+  text-decoration: underline;
+  font-family: $typography-font-family-productive-body;
+  font-size: $typography-font-size-fixed-productive-base;
+}

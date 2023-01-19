@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { ButtonSetProps } from './types'
-import styles from './buttonSet.module.css'
+import styles from './buttonSet.module.scss'
 
 const ButtonSet = ({
 	children,
@@ -11,9 +11,9 @@ const ButtonSet = ({
 }: ButtonSetProps) => {
 	const classes = classnames(
 		styles.root,
-		styles[direction],
-		styles[gap],
-		styles[justify],
+		styles[`direction--${direction}`],
+		styles[`gap--${gap}`],
+		styles[`justify--${justify}`],
 		className
 	)
 
