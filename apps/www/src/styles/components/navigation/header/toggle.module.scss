@@ -1,6 +1,7 @@
 @use '../../../variables.scss' as *;
 
 .toggleButton {
+  font-size: $typography-font-size-fixed-productive-base;
   font-family: $typography-font-family-productive-body;
   color: $color-foreground-interactive-default;
   text-decoration: underline;

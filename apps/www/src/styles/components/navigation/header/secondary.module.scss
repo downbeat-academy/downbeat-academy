@@ -23,7 +23,7 @@
 	}
 
 	@media (max-width: 550px) {
-		padding: $spacing-03;
+		padding: $spacing-03 $spacing-05;
 	}
 }
 
@@ -34,8 +34,8 @@
 	align-items: center;
 
 	@media (max-width: 550px) {
-		flex-direction: column;
-		align-items: flex-start;
+		// flex-direction: column;
+		// align-items: flex-start;
 		gap: $spacing-02;
 	}
 }
@@ -46,6 +46,20 @@
 	gap: $spacing-04;
 
 	@media (max-width: 899px) {
+		display: none;
+	}
+}
+
+.bannerBadge {
+	display: inherit;
+}
+
+.bannerText {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	@media (max-width: 500px) {
 		display: none;
 	}
 }

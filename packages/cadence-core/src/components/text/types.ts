@@ -43,6 +43,7 @@ interface TextProps {
 	collapse?: boolean,
 	align?: 'left' | 'center' | 'right',
 	weight?: 'light' | 'regular' | 'semibold' | 'bold' | 'heavy',
+	className?: any,
 }
 
 export type { TextProps }

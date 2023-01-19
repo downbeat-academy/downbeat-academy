@@ -13,6 +13,7 @@ const Text = ({
 	category = 'body',
 	align = 'left',
 	weight,
+	className,
 }: TextProps) => {
 
 	const getElementType = (tag: string) => {
@@ -32,6 +33,7 @@ const Text = ({
 		s[`weight--${weight}`],
 		[fluid ? s.fluid : null],
 		[collapse ? s.collapse : null],
+		className,
 	)
 
 	switch (tag) {

@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import classnames from 'classnames'
-import s from '@styles/components/navigation/header/headerLinks.module.scss'
+import { NavLinksProps } from './types'
+import s from '@styles/components/navigation/header/navLinks.module.scss'
 
-const HeaderLinks = () => {
+const NavLinks = ({ navToggled }: NavLinksProps) => {
 
   const classes = classnames(
-    s.wrapper
+    s.wrapper,
+    [navToggled === true ? s.navLinksOpen : '']
   )
 
   return (
@@ -18,4 +20,4 @@ const HeaderLinks = () => {
   )
 }
 
-export { HeaderLinks } 
+export { NavLinks } 

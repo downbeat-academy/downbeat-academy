@@ -7,11 +7,13 @@ const Badge = ({
 	text,
 	style = 'fill',
 	size = 'default',
+	className
 }: BadgeProps) => {
 	const classes = classnames(
 		s.root,
 		s[`type--${type}--${style}`],
-		s[`size--${size}`]
+		s[`size--${size}`],
+		className
 	)
 
 	return <span className={classes}>{text}</span>

@@ -5,6 +5,7 @@ interface BadgeProps {
 	size?: 'small' | 'default' | 'large'
 	icon?: JSX.IntrinsicElements['svg']
 	iconPosition?: 'leading' | 'trailing'
+	className?: any
 }
 
 export type { BadgeProps }
