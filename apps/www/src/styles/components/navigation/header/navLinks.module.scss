@@ -36,8 +36,12 @@
 
 .linkWrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: $spacing-05;
+
+  @media (max-width: 899px) {
+    flex-direction: column;
+  }
 }
 
 .styledLink {
