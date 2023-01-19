@@ -14,6 +14,8 @@ const Header = () => {
     setNavToggled(!navToggled);
   }
 
+  console.log(navToggled)
+
   return (
     <header className={s.wrapper}>
       <Secondary />
@@ -22,8 +24,8 @@ const Header = () => {
           <Link href='/'>
             <LogoLockup color='brand' width={200} />
           </Link>
-          <HeaderLinks />
           <Toggle handleNavToggle={handleNavToggle} />
+          <HeaderLinks />
         </div>
       </nav>
     </header>
