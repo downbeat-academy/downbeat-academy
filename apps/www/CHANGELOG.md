@@ -1,5 +1,11 @@
 # www
 
+## 2.5.1
+
+### Patch Changes
+
+- Added account actions to mobile nav
+
 ## 2.5.0
 
 ### Minor Changes
