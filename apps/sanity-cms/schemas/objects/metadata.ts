@@ -31,7 +31,7 @@ export default {
 			type: `string`,
 			description: `Alternate meta title that could be different from the document title.`,
 			initialValue: 'Page title',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.max(60).warning(
 					'A title longer than 60 characters will be truncated.'
 				),

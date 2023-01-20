@@ -11,7 +11,7 @@ export default {
 			type: `string`,
 			title: `Title`,
 			description: `Enter the title for the page.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required()
 					.min(5)
 					.error(`The page title should be longer than 5 characters.`),
@@ -37,7 +37,7 @@ export default {
 			options: {
 				source: `title`,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`The page needs a slug. Create one based on the title with "generate"`
 				),

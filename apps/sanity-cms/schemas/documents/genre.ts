@@ -11,7 +11,7 @@ export default {
 			title: 'title',
 			type: 'string',
 			description: 'Genre title',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The genre must have a title.'),
 				Rule.min(3).warning(`That's a pretty short genre name.`),
 			],
@@ -25,7 +25,7 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule) => [Rule.required().error('The genre needs a slug.')],
+			validation: (Rule: any) => [Rule.required().error('The genre needs a slug.')],
 		},
 	],
 }

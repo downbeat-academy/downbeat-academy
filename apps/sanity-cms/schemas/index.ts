@@ -18,6 +18,7 @@ import instrument from './documents/instrument'
 import genre from './documents/genre'
 import newsletter from './documents/newsletter'
 import snippet from './documents/snippet'
+import resource from './documents/resource'
 
 // Import Objects
 import mainImage from './objects/mainImage'
@@ -36,7 +37,15 @@ import inlineChord from './objects/inlineChord'
 import inlineMusicText from './objects/inlineMusicText'
 import pageTitle from './objects/pageTitle'
 import blockquote from './objects/blockquote'
-import resource from './documents/resource'
+
+// Navigation
+import navigationSection from './objects/navigation/section'
+
+// Links
+import link from './objects/link'
+import customLink from './objects/link/customLink'
+import internalLink from './objects/link/internalLink'
+import externalLink from './objects/link/externalLink'
 
 // Music Notation Objects
 import accidental from './objects/music-notation/accidental'
@@ -84,6 +93,13 @@ export const schemaTypes = [
 	inlineMusicText,
 	pageTitle,
 	blockquote,
+	// Link
+	link,
+	customLink,
+	internalLink,
+	externalLink,
+	// Navigation
+	navigationSection,
 	// Music Notation
 	accidental,
 	musicText,

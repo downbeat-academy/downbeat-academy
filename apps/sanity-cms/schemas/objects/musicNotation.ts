@@ -13,7 +13,7 @@ export default {
 			title: 'Title',
 			type: 'string',
 			description: 'Title of the notation',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					'You must title the music notation you are uploading.'
 				),

@@ -17,7 +17,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Title for the embedded video.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`You must provide a title for the video.`),
 			],
 		},

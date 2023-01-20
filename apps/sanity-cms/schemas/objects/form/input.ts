@@ -23,7 +23,7 @@ export default {
 			name: 'label',
 			title: 'Label',
 			type: 'string',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().warning(
 					`It's recommended to define a label for the input for accessibility.`
 				),

@@ -18,7 +18,7 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`The difficulty must have a slug, generate it form the title.`
 				),

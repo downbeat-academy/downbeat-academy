@@ -11,7 +11,7 @@ export default {
 			title: 'title',
 			type: 'string',
 			description: 'Instrument name',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The instrument must have a title.'),
 				Rule.min(3).warning(`That's a pretty short instrument name.`),
 			],
@@ -25,7 +25,7 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The instrument needs a slug.'),
 			],
 		},

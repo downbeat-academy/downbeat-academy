@@ -11,7 +11,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Title for the document`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`The document needs a title.`),
 			],
 		},
@@ -23,7 +23,7 @@ export default {
 			options: {
 				storeOriginalFilename: true,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`You must upload or select a file.`),
 			],
 		},

@@ -11,7 +11,7 @@ export default {
 			name: `name`,
 			type: `string`,
 			description: `First and last name of the person. Example: John Coltrane.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`Name is a required field, please enter the person's name.`
 				),
@@ -27,7 +27,7 @@ export default {
 			title: `Slug`,
 			type: `slug`,
 			description: `Slug or URL, generate from the name.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`The person needs a slug for a page to be created for them correctly. You can generate one based off the person's name.`
 				),
@@ -48,7 +48,7 @@ export default {
 			title: `Image`,
 			type: `mainImage`,
 			description: `Link an existing image asset for the person. If the asset doesn't already exist create a new asset type.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`You must provide an image for the person, otherwise upload a placeholder.`
 				),
@@ -59,7 +59,7 @@ export default {
 			title: `Avatar`,
 			type: `mainImage`,
 			description: `Square cropped image for use as an avatar.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`You must provide an image for the person, otherwise upload a placeholder.`
 				),
@@ -77,7 +77,7 @@ export default {
 			name: `biography`,
 			type: `richText`,
 			description: `Biography or information about the person.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().warning(
 					`It's recommended to add a biography for the person but not required.`
 				),

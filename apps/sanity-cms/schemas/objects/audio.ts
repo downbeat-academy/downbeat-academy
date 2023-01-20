@@ -11,7 +11,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Title for the embedded audio.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`You must provide a title for the audio.`),
 			],
 		},
@@ -26,7 +26,7 @@ export default {
 			title: `Audio File`,
 			type: `file`,
 			description: `Upload or select an audio file. Accepted files include .mp3, .m4a, .ogg, and .wav.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`You must upload or select an audio file.`),
 			],
 			options: {

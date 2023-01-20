@@ -10,7 +10,7 @@ export default {
 			name: 'title',
 			title: 'Title',
 			type: 'string',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required()
 					.min(5)
 					.max(96)
@@ -21,7 +21,7 @@ export default {
 			name: 'slug',
 			title: 'Slug',
 			type: 'slug',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The snippet needs a slug.'),
 			],
 		},
