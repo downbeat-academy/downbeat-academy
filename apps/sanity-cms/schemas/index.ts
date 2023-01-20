@@ -38,6 +38,9 @@ import inlineMusicText from './objects/inlineMusicText'
 import pageTitle from './objects/pageTitle'
 import blockquote from './objects/blockquote'
 
+// Navigation
+import navigationSection from './objects/navigation/section'
+
 // Links
 import link from './objects/link'
 import customLink from './objects/link/customLink'
@@ -95,6 +98,8 @@ export const schemaTypes = [
 	customLink,
 	internalLink,
 	externalLink,
+	// Navigation
+	navigationSection,
 	// Music Notation
 	accidental,
 	musicText,

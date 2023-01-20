@@ -18,7 +18,8 @@ export default {
 			type: `array`,
 			description: `Links, pages, or content that appear in the navigation.`,
 			of: [
-				{ type: 'link' }
+				{ type: 'link' },
+				{ type: 'navigationSection' }
 			],
 		},
 	],
