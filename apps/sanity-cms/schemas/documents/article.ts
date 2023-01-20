@@ -5,12 +5,23 @@ export default {
 	title: `article`,
 	type: `document`,
 	icon: BiPencil,
+	groups: [
+		{
+			name: 'metadata',
+			title: 'Metadata',
+		},
+		{
+			name: 'content',
+			title: 'Content',
+		}
+	],
 	fields: [
 		{
 			name: `title`,
 			type: `string`,
 			title: `Title`,
 			description: `Enter the title for the article.`,
+			group: 'metadata',
 			validation: (Rule: any) => [
 				Rule.required()
 					.min(5)
@@ -28,6 +39,7 @@ export default {
 			title: `Slug`,
 			type: `slug`,
 			description: `The slug determines the canonical organization of this article within the application.`,
+			group: 'metadata',
 			options: {
 				source: `title`,
 			},
@@ -41,11 +53,13 @@ export default {
 			name: `metadata`,
 			title: `Metadata`,
 			type: `metadata`,
+			group: 'metadata',
 		},
 		{
 			name: 'authors',
 			title: 'Authors',
 			type: 'array',
+			group: 'metadata',
 			of: [
 				{
 					name: 'author',
@@ -60,6 +74,7 @@ export default {
 			title: `Date`,
 			type: `date`,
 			description: `Enter a date for when the published date of the article.`,
+			group: 'metadata',
 			validation: (Rule: any) => [
 				Rule.required().error(`The article needs a published date.`),
 			],
@@ -68,6 +83,7 @@ export default {
 			name: 'updatedDate',
 			title: 'Updated Date',
 			type: 'date',
+			group: 'metadata',
 			description:
 				'(Optional) If the article has been published with meaningful content changes, add an updated date.',
 		},
@@ -76,6 +92,7 @@ export default {
 			title: `Categories`,
 			type: `array`,
 			description: `Categorize this article so that it appears related to other articles.`,
+			group: 'metadata',
 			of: [
 				{
 					name: `category`,
@@ -90,6 +107,7 @@ export default {
 			title: `Featured Image`,
 			type: `mainImage`,
 			description: `Select an image to show up at the top of the article.`,
+			group: 'content',
 			to: [{ type: `asset` }],
 			validation: (Rule: any) => [
 				Rule.required().error(`The article needs an image.`),
@@ -101,12 +119,14 @@ export default {
 			type: `text`,
 			description: `Provide an excerpt for the article for display and SEO purposes.`,
 			rows: 5,
+			group: 'content',
 		},
 		{
 			name: `content`,
 			title: `Content`,
 			type: `richText`,
 			description: `Content of the article.`,
+			group: 'content',
 			validation: (Rule: any) => [
 				Rule.required().error(`The article needs content.`),
 			],
