@@ -11,7 +11,7 @@ export default {
 			title: 'Title',
 			type: 'string',
 			description: 'Enter a title for the resource',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required()
 					.min(5)
 					.max(96)
@@ -28,7 +28,7 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The resource requires a slug.'),
 			],
 		},
@@ -56,7 +56,7 @@ export default {
 			type: 'date',
 			description:
 				'Enter a date corresponding with when the resource is initially published.',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The resource needs a date.'),
 			],
 		},
@@ -88,7 +88,7 @@ export default {
 			type: 'mainImage',
 			description: 'Select or upload an image to be paired with the resource.',
 			to: [{ type: 'asset' }],
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The resource needs an image.'),
 			],
 		},
@@ -105,7 +105,7 @@ export default {
 			title: 'Content',
 			type: 'richText',
 			description: 'Content for the resource.',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The resource needs content.'),
 			],
 		},

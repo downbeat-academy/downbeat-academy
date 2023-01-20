@@ -18,7 +18,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Give this brand asset a title.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`You must provide a title for the brand asset for cataloging purposes.`
 				),
@@ -38,7 +38,7 @@ export default {
 			options: {
 				hotspot: true,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`You must either upload or select an asset.`),
 			],
 		},

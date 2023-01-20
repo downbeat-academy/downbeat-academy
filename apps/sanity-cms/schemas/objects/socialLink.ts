@@ -23,7 +23,7 @@ export default {
 				],
 				layout: `dropdown`,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`You must select a platform.`),
 			],
 		},
@@ -32,7 +32,7 @@ export default {
 			title: `URL`,
 			type: `url`,
 			description: `Paste the URL from the your social platform page or account.`,
-			validation: (Rule) => [Rule.required().error(`You must paste a URL.`)],
+			validation: (Rule: any) => [Rule.required().error(`You must paste a URL.`)],
 		},
 	],
 	preview: {

@@ -16,7 +16,7 @@ export default {
 			title: `Form Title`,
 			type: `string`,
 			description: `Provide a descriptive name for your form.`,
-			validation: (Rule) => [Rule.required().error(`The form needs a title.`)],
+			validation: (Rule: any) => [Rule.required().error(`The form needs a title.`)],
 		},
 		{
 			name: `method`,
@@ -28,7 +28,7 @@ export default {
 				layout: `radio`,
 				direction: `horizontal`,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`Please select a submit method, otherwise the application won't be able to determine what to do with the form.`
 				),

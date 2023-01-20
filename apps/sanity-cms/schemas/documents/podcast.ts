@@ -11,7 +11,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Title of the podcast episode.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The podcast episode needs a title.'),
 			],
 		},
@@ -23,7 +23,7 @@ export default {
 			options: {
 				source: `title`,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('The podcast episode needs a slug.'),
 			],
 		},
@@ -63,7 +63,7 @@ export default {
 			title: `Date`,
 			type: `datetime`,
 			description: `Date the podcast is published.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`The podcast needs a date to be published correctly.`
 				),
@@ -74,7 +74,7 @@ export default {
 			title: `Audio File`,
 			type: `file`,
 			description: `Upload the audio file for the episode.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().warning(
 					`It's recommended you upload an audio file to pair with the episode or link to it elsewhere.`
 				),
@@ -89,7 +89,7 @@ export default {
 			title: `Transcription`,
 			type: `richText`,
 			description: `Transcription of the audio from the episode.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().warning(
 					`It's recommended you upload or provide a transcript of the episode for SEO and content distribution.`
 				),

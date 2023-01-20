@@ -11,7 +11,7 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Title of the lesson`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().min(5).error('Title must be longer than 5 characters'),
 				Rule.required()
 					.max(96)

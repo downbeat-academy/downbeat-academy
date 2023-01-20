@@ -11,14 +11,14 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Name the banner.`,
-			validation: (Rule) => [Rule.required().error(`The banner needs a name.`)],
+			validation: (Rule: any) => [Rule.required().error(`The banner needs a name.`)],
 		},
 		{
 			name: `active`,
 			title: `Active`,
 			type: `boolean`,
 			description: `Toggle whether the banner is active and shows up on all pages.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					'Either toggle the banner on or off. Only one banner can be toggled on at once.'
 				),
@@ -32,7 +32,7 @@ export default {
 			title: `Headline`,
 			type: `string`,
 			description: `Headline for the banner`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					'A headline is required for the banner. Add something short and to the point.'
 				),
@@ -43,7 +43,7 @@ export default {
 			title: `Content`,
 			type: `text`,
 			description: `Main content of the banner.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					'Main content is required for the banner. Add something informative, or a date to express content to the reader.'
 				),

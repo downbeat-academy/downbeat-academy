@@ -25,7 +25,7 @@ export default {
 			title: 'Title',
 			fieldset: 'title',
 			description: 'Enter the title for the error page.',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required()
 					.min(5)
 					.error('The page title should be longer than 5 characters.'),

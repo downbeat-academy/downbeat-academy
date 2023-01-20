@@ -11,7 +11,7 @@ export default {
 			type: `string`,
 			title: `Title`,
 			description: `Enter the title for the article.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required()
 					.min(5)
 					.error(`The article title should be longer than 5 characters.`),
@@ -31,7 +31,7 @@ export default {
 			options: {
 				source: `title`,
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`The article needs a slug. Create one based on the title with "generate"`
 				),
@@ -60,7 +60,7 @@ export default {
 			title: `Date`,
 			type: `date`,
 			description: `Enter a date for when the published date of the article.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`The article needs a published date.`),
 			],
 		},
@@ -91,7 +91,7 @@ export default {
 			type: `mainImage`,
 			description: `Select an image to show up at the top of the article.`,
 			to: [{ type: `asset` }],
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`The article needs an image.`),
 			],
 		},
@@ -107,7 +107,7 @@ export default {
 			title: `Content`,
 			type: `richText`,
 			description: `Content of the article.`,
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(`The article needs content.`),
 			],
 		},

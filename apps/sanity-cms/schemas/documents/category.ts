@@ -11,7 +11,7 @@ export default {
 			title: 'Title',
 			type: 'string',
 			description: 'Name of the category',
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error('You must provide a title for the category.'),
 			],
 		},
@@ -24,7 +24,7 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule) => [
+			validation: (Rule: any) => [
 				Rule.required().error(
 					`The category must have a slug, generate it form the title.`
 				),
