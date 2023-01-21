@@ -12,6 +12,7 @@ export default function ComponentsPage() {
       <Link to='/components/logo'>Logo</Link>
       <Link to='/components/text'>Text</Link>
       <Link to='/components/link'>Link</Link>
+      <Link to='/components/flex'>Flex</Link>
     </Flex>
   )
 }
