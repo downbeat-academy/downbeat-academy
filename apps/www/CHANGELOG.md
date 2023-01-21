@@ -1,5 +1,13 @@
 # www
 
+## 2.5.2
+
+### Patch Changes
+
+- d7426d9: Added copyright bar and fixed a bug in the Flex component
+- Updated dependencies [d7426d9]
+  - cadence-core@1.3.0
+
 ## 2.5.1
 
 ### Patch Changes

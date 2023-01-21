@@ -1,5 +1,11 @@
 # cadence-core
 
+## 1.3.0
+
+### Minor Changes
+
+- d7426d9: Added copyright bar and fixed a bug in the Flex component
+
 ## 1.2.0
 
 ### Minor Changes
