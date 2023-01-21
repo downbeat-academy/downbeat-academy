@@ -8,13 +8,14 @@ const Flex = ({
 	direction = 'row',
 	gap = 'base',
 	padding,
-	background = 'primary',
+	background,
 	borderRadius,
 	justify,
 	wrap = 'nowrap',
 	align,
 	textAlign,
 	borderColor,
+	className,
 }: FlexProps) => {
 	const Component = as || 'div'
 
@@ -29,7 +30,8 @@ const Flex = ({
 		s[`justify--${justify}`],
 		s[`wrap--${wrap}`],
 		s[`align--${align}`],
-		s[`text-align--${textAlign}`]
+		s[`text-align--${textAlign}`],
+		className,
 	)
 
 	return <Component className={classes}>{children}</Component>

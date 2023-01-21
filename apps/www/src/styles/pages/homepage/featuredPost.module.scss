@@ -1,0 +1,35 @@
+@use '../../variables.scss' as *;
+
+.wrapper {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+
+// .image {}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.main {
+  background-color: $color-palette-pineapple-100;
+}
+
+.title {
+  color: $color-palette-passion-fruit-700;
+}
+
+.divider {
+  height: 24px;
+  width: 100%;
+  background: url('/textures/texture-divider-01.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.author {
+  padding: $spacing-05 $spacing-08;
+}

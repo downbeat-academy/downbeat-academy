@@ -31,7 +31,8 @@ interface FlexProps {
 	| 'space-evenly'
 	align?: 'start' | 'end' | 'center' | 'stretch' | 'baseline'
 	textAlign?: 'left' | 'right' | 'center'
-	wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
+	wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
+	className?: any,
 }
 
 export type { FlexProps }
