@@ -56,7 +56,12 @@ const Footer = () => {
             </Flex>
             {getSiteLinks}
           </Flex>
-          <Flex direction='row' justify='space-between' align='center'>
+          <Flex
+            direction='row'
+            justify='space-between'
+            align='center'
+            wrap='wrap'
+          >
             <Text
               tag='p'
               size='small'
