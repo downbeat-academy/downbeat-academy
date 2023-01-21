@@ -106,7 +106,7 @@ $justifications: (
 );
 
 @each $justification in $justifications {
-	.jusitifcation-#{$justification} {
+	.justify--#{$justification} {
 		justify-content: $justification;
 	}
 }
@@ -122,7 +122,7 @@ $alignments: (
 );
 
 @each $alignment in $alignments {
-	.alignment--#{$alignment} {
+	.align--#{$alignment} {
 		align-items: $alignment;
 	}
 }

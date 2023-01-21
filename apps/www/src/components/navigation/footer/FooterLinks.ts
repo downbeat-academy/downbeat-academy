@@ -98,3 +98,16 @@ export const siteLinks = [
     ],
   },
 ];
+
+export const copyrightLinks = [
+  {
+    name: 'privacy-policy',
+    title: 'Privacy Policy',
+    url: '/privacy-policy',
+  },
+  {
+    name: 'terms-and-conditions',
+    title: 'Terms and Conditions',
+    url: '/terms-and-conditions'
+  },
+]

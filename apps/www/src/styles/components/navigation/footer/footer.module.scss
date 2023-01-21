@@ -22,8 +22,15 @@
 }
 
 .footerLink {
-  color: $color-foreground-secondary;
+  color: $color-foreground-primary;
   text-decoration: underline;
   font-family: $typography-font-family-productive-body;
   font-size: $typography-font-size-fixed-productive-base;
+}
+
+.copyrightLink {
+  font-size: $typography-font-size-fixed-productive-small;
+  font-family: $typography-font-family-productive-body;
+  text-decoration: underline;
+  color: $color-foreground-secondary;
 }

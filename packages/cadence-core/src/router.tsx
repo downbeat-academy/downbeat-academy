@@ -8,6 +8,7 @@ import LogoPage from './pages/components/logo'
 import TextPage from './pages/components/text'
 import AvatarPage from './pages/components/avatar'
 import LinkPage from './pages/components/link'
+import FlexPage from './pages/components/flex'
 
 export const Router = () => {
   return (
@@ -20,6 +21,7 @@ export const Router = () => {
       <Route path='/components/text' element={<TextPage />} />
       <Route path='/components/avatar' element={<AvatarPage />} />
       <Route path='/components/link' element={<LinkPage />} />
+      <Route path='/components/flex' element={<FlexPage />} />
     </Routes>
   )
 }
