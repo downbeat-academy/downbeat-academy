@@ -1,3 +1,4 @@
+import { format } from 'date-fns'
 import { Flex, Text, Badge, Avatar } from 'cadence-core'
 import { FeaturedPostProps } from "./types"
 import s from '@styles/pages/homepage/featuredPost.module.scss'
@@ -16,8 +17,8 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
     return authorName.name + ' '
   })
 
-  const articleDate = input.date;
-  console.log(articleDate)
+  // const articleDate = format(input.date, 'MMM do, YYYY');
+  console.log(input.date)
 
   // console.log(articleDate.toLocaleDateString('en-us'))
 

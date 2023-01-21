@@ -34,6 +34,7 @@
 		"cadence-icons": "workspace:^1.0.1",
 		"cadence-tokens": "workspace:^2.0.1",
 		"classnames": "^2.3.2",
+		"date-fns": "^2.29.3",
 		"eslint": "8.30.0",
 		"eslint-config-next": "13.0.7",
 		"fathom-client": "^3.5.0",
