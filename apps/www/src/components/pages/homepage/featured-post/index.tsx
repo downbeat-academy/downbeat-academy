@@ -6,25 +6,11 @@ import { urlFor } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
 
 import { FeaturedPostProps } from "./types"
-import s from '@styles/pages/homepage/featuredPost.module.scss'
+import s from '@styles/pages/homepage/featured-post/featuredPost.module.scss'
 import { Categories } from './Categories'
+import { PostMeta } from './PostMeta'
 
 const FeaturedPost = ({ input }: FeaturedPostProps) => {
-
-  const authorImages = input.authors.slice(0, 3).map(authorImage => {
-    return (<Avatar key={authorImage._id} />)
-  })
-
-  const getAuthors = input.authors.slice(0, 3).map(author => {
-    return (
-      <Link
-        href={linkResolver(author.slug, 'contributor')}
-        key={author._id}
-      >{author.name} </Link>
-    )
-  })
-
-  const articleDate = format(parseISO(input.date), 'MMM do, yyyy');
 
   return (
     <section className={s.wrapper}>
@@ -52,14 +38,18 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
           >{input.excerpt}</Text>
         </Flex>
         <div className={s.divider}></div>
-        <Flex direction='row' className={s.author} align='center'>
+        <PostMeta
+          authors={input.authors}
+          date={input.date}
+        />
+        {/* <Flex direction='row' className={s.author} align='center'>
           {authorImages}
           <Flex direction='column' className={s.meta} gap='2x-small'>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='strong'><strong>{getAuthors}</strong></Text>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong>Published {articleDate}</strong></Text>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong></strong></Text>
           </Flex>
-        </Flex>
+        </Flex> */}
       </aside>
     </section>
   )
