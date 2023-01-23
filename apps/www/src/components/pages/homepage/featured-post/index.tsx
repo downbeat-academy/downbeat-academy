@@ -1,21 +1,27 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { parseISO, format } from 'date-fns'
 import { Flex, Text, Badge, Avatar } from 'cadence-core'
-import { prettyDate } from '@utils/dateFormat'
+import { urlFor } from '@utils/getSanityImage'
+import { linkResolver } from '@utils/linkResolver'
+
 import { FeaturedPostProps } from "./types"
 import s from '@styles/pages/homepage/featuredPost.module.scss'
+import { Categories } from './Categories'
 
 const FeaturedPost = ({ input }: FeaturedPostProps) => {
-
-  const categories = input.categories.slice(0, 2).map(category => {
-    return <Badge type='neutral' style='outline' text={category.title} key={category.title} />
-  })
 
   const authorImages = input.authors.slice(0, 3).map(authorImage => {
     return (<Avatar key={authorImage._id} />)
   })
 
-  const authorNames = input.authors.slice(0, 3).map(authorName => {
-    return authorName.name + ' '
+  const getAuthors = input.authors.slice(0, 3).map(author => {
+    return (
+      <Link
+        href={linkResolver(author.slug, 'contributor')}
+        key={author._id}
+      >{author.name} </Link>
+    )
   })
 
   const articleDate = format(parseISO(input.date), 'MMM do, yyyy');
@@ -23,11 +29,11 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
   return (
     <section className={s.wrapper}>
       <div className={s.image}>
-        <p>Image goes here</p>
+        {/* <Image src={urlFor(input.image._id)} alt='Featured post image' /> */}
       </div>
       <aside className={s.content}>
         <Flex direction='column' gap='base' padding='x-large' className={s.main}>
-          <Flex direction='row' gap='small'>{categories}</Flex>
+          <Flex direction='row' gap='small'><Categories categories={input.categories} /></Flex>
           <Text
             tag='h1'
             size='5x-large'
@@ -49,7 +55,7 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
         <Flex direction='row' className={s.author} align='center'>
           {authorImages}
           <Flex direction='column' className={s.meta} gap='2x-small'>
-            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='strong'><strong>{authorNames}</strong></Text>
+            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='strong'><strong>{getAuthors}</strong></Text>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong>Published {articleDate}</strong></Text>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong></strong></Text>
           </Flex>
