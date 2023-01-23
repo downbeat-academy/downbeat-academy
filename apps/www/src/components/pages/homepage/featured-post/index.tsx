@@ -1,12 +1,13 @@
-import { format } from 'date-fns'
+import { parseISO, format } from 'date-fns'
 import { Flex, Text, Badge, Avatar } from 'cadence-core'
+import { prettyDate } from '@utils/dateFormat'
 import { FeaturedPostProps } from "./types"
 import s from '@styles/pages/homepage/featuredPost.module.scss'
 
 const FeaturedPost = ({ input }: FeaturedPostProps) => {
 
   const categories = input.categories.slice(0, 2).map(category => {
-    return <Badge type='outline' text={category.title} key={category.title} />
+    return <Badge type='neutral' style='outline' text={category.title} key={category.title} />
   })
 
   const authorImages = input.authors.slice(0, 3).map(authorImage => {
@@ -17,10 +18,7 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
     return authorName.name + ' '
   })
 
-  // const articleDate = format(input.date, 'MMM do, YYYY');
-  console.log(input.date)
-
-  // console.log(articleDate.toLocaleDateString('en-us'))
+  const articleDate = format(parseISO(input.date), 'MMM do, yyyy');
 
   return (
     <section className={s.wrapper}>
@@ -52,7 +50,7 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
           {authorImages}
           <Flex direction='column' className={s.meta} gap='2x-small'>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='strong'><strong>{authorNames}</strong></Text>
-            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong>Published {input.date}</strong></Text>
+            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong>Published {articleDate}</strong></Text>
             <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong></strong></Text>
           </Flex>
         </Flex>
