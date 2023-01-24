@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useNextSanityImage } from 'next-sanity-image'
+import { getSanityImageUrl } from '@utils/getSanityImage'
 import { Flex, Text } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
 import { sanityClient } from '@lib/sanity.client'
@@ -23,20 +23,16 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
     image
   } = input;
 
-  const featuredImageProps = useNextSanityImage(
-    sanityClient,
-    image,
-  )
+  const imageUrl = getSanityImageUrl(image.asset)
 
   return (
     <section className={s.wrapper}>
       <div className={s.image}>
         <Image
-          //@ts-ignore
-          src={featuredImageProps.src}
+          src={imageUrl}
           alt='image'
-          style={{ objectFit: 'cover' }}
           fill
+          style={{ objectFit: 'cover' }}
         />
       </div>
       <aside className={s.content}>

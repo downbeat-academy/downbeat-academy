@@ -1,17 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Flex, Avatar, AvatarGroup, Text } from 'cadence-core'
+import { Avatar, AvatarGroup, Text } from 'cadence-core'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/linkResolver'
 import s from '@styles/pages/homepage/featured-post/postMeta.module.scss'
 
 const PostMeta = ({ authors, date }) => {
-
-  const pathBuilderOptions = {
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  }
 
   const postDate = prettyDate(date, 'MMM do, yyyy');
 

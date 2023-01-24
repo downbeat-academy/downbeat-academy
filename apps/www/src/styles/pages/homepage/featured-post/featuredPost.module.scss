@@ -3,7 +3,6 @@
 .wrapper {
   width: 100vw;
   display: grid;
-  // grid-template-columns: 40% 1fr;
   grid-template-columns: repeat(2, 1fr);
   border-bottom: 1px solid $color-palette-neutral-300;
 }
@@ -32,7 +31,6 @@
       text-decoration: underline;
     }
   }
-
 }
 
 .divider {
