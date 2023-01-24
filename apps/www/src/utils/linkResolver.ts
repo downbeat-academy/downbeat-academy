@@ -7,6 +7,7 @@ const linkResolver = (url: string, category: string) => {
     case 'podcast': return `podcasts/${url}`;
     case 'resource': return `resources/${url}`;
     case 'category': return `categories/${url}`
+    case 'landingPage': return `p/${url}`
     default: return `${url}`;
   }
 }
