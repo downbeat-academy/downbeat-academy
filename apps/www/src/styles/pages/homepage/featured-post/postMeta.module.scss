@@ -8,8 +8,12 @@
   padding: $spacing-05 $spacing-08;
 }
 
-.text {
+.textWrapper {
   display: flex;
   flex-direction: column;
   gap: $spacing-02;
+}
+
+.authorLink {
+  color: $color-foreground-primary;
 }

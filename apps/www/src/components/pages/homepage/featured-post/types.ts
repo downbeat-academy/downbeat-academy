@@ -9,6 +9,8 @@ interface FeaturedPostProps {
     excerpt: string,
     authors: author[],
     categories: category[],
+    slug: string,
+    image: any,
   }
 }
 

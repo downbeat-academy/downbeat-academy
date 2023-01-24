@@ -1,8 +1,11 @@
-import { sanityClient } from "@lib/sanity.client";
-import imageUrlBuilder from '@sanity/image-url'
+import { getImageAsset, buildImageUrl } from '@sanity/asset-utils'
+import { sanityConfig } from "@lib/sanity.client";
 
-const builder = imageUrlBuilder(sanityClient)
+export function getSanityImageUrl(imageRef) {
+  if (!imageRef) return null;
 
-export function urlFor(source: string) {
-  return builder.image(source)
+  const image = getImageAsset(imageRef, sanityConfig);
+  const getUrl = buildImageUrl(image, sanityConfig);
+
+  return getUrl;
 }

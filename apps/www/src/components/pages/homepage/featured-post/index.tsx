@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Flex, Text, Badge, Avatar } from 'cadence-core'
-import { urlFor } from '@utils/getSanityImage'
+import { useNextSanityImage } from 'next-sanity-image'
+import { Flex, Text } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
+import { sanityClient } from '@lib/sanity.client'
 
 import { FeaturedPostProps } from "./types"
 import s from '@styles/pages/homepage/featured-post/featuredPost.module.scss'
@@ -11,22 +12,45 @@ import { PostMeta } from './PostMeta'
 
 const FeaturedPost = ({ input }: FeaturedPostProps) => {
 
+  // console.log(input)
+  const {
+    slug,
+    categories,
+    title,
+    excerpt,
+    authors,
+    date,
+    image
+  } = input;
+
+  const featuredImageProps = useNextSanityImage(
+    sanityClient,
+    image,
+  )
+
   return (
     <section className={s.wrapper}>
       <div className={s.image}>
-        {/* <Image src={urlFor(input.image._id)} alt='Featured post image' /> */}
+        <Image
+          //@ts-ignore
+          src={featuredImageProps.src}
+          alt='image'
+          style={{ objectFit: 'cover' }}
+          fill
+        />
       </div>
       <aside className={s.content}>
         <Flex direction='column' gap='base' padding='x-large' className={s.main}>
-          <Flex direction='row' gap='small'><Categories categories={input.categories} /></Flex>
-          <Text
-            tag='h1'
-            size='5x-large'
-            type='expressive'
-            category='headline'
-            collapse={true}
-            className={s.title}
-          >{input.title}</Text>
+          <Flex direction='row' gap='small'><Categories categories={categories} /></Flex>
+          <Link href={linkResolver(slug, 'article')} className={s.title}>
+            <Text
+              tag='h1'
+              size='5x-large'
+              type='expressive'
+              category='headline'
+              collapse={true}
+            >{title}</Text>
+          </Link>
           <Text
             tag='p'
             size='large'
@@ -34,12 +58,12 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
             category='body'
             collapse={true}
             color='primary'
-          >{input.excerpt}</Text>
+          >{excerpt}</Text>
         </Flex>
         <div className={s.divider} aria-hidden='true'></div>
         <PostMeta
-          authors={input.authors}
-          date={input.date}
+          authors={authors}
+          date={date}
         />
       </aside>
     </section>
