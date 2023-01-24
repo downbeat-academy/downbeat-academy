@@ -10,7 +10,7 @@ interface FeaturedPostProps {
     authors: author[],
     categories: category[],
     slug: string,
-    image: any,
+    featuredImage: any,
   }
 }
 

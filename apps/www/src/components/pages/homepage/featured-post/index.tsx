@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { Flex, Text } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
-import { sanityClient } from '@lib/sanity.client'
 
 import { FeaturedPostProps } from "./types"
 import s from '@styles/pages/homepage/featured-post/featuredPost.module.scss'
@@ -20,23 +19,26 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
     excerpt,
     authors,
     date,
-    image
+    featuredImage
   } = input;
 
-  const imageUrl = getSanityImageUrl(image.asset)
+  const imageUrl = getSanityImageUrl(featuredImage.image.asset)
 
   return (
     <section className={s.wrapper}>
       <div className={s.image}>
         <Image
           src={imageUrl}
-          alt='image'
+          alt={featuredImage.alternativeText}
           fill
           style={{ objectFit: 'cover' }}
+          priority
+          sizes="(max-width: 900px) 100vw,
+                (max-width: 500) 50vw"
         />
       </div>
       <aside className={s.content}>
-        <Flex direction='column' gap='base' padding='x-large' className={s.main}>
+        <Flex direction='column' gap='base' className={s.main}>
           <Flex direction='row' gap='small'><Categories categories={categories} /></Flex>
           <Link href={linkResolver(slug, 'article')} className={s.title}>
             <Text

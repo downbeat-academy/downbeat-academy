@@ -8,6 +8,8 @@ export default function HomePage({ data, preview }) {
   const featuredArticle = data.homepage[0]
   const articles = data.homepage.slice(1);
 
+  console.log(data)
+
   return (
     <>
       <FeaturedPost input={featuredArticle} />
