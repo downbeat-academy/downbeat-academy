@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { parseISO, format } from 'date-fns'
 import { Flex, Text, Badge, Avatar } from 'cadence-core'
 import { urlFor } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
@@ -37,19 +36,11 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
             color='primary'
           >{input.excerpt}</Text>
         </Flex>
-        <div className={s.divider}></div>
+        <div className={s.divider} aria-hidden='true'></div>
         <PostMeta
           authors={input.authors}
           date={input.date}
         />
-        {/* <Flex direction='row' className={s.author} align='center'>
-          {authorImages}
-          <Flex direction='column' className={s.meta} gap='2x-small'>
-            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='strong'><strong>{getAuthors}</strong></Text>
-            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong>Published {articleDate}</strong></Text>
-            <Text tag='p' size='small' category='body' type='productive' collapse={true} color='primary'><strong></strong></Text>
-          </Flex>
-        </Flex> */}
       </aside>
     </section>
   )

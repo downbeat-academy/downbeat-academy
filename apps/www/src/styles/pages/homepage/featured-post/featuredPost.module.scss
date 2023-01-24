@@ -4,6 +4,7 @@
   width: 100vw;
   display: grid;
   grid-template-columns: 40% 1fr;
+  border-bottom: 1px solid $color-palette-neutral-300;
 }
 
 // .image {}
@@ -28,9 +29,4 @@
   background: url('/textures/texture-divider-01.png');
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.author {
-  padding: $spacing-05 $spacing-08;
-  border-bottom: 1px solid $color-palette-neutral-300;
 }

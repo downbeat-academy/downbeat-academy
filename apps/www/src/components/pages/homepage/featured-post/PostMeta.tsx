@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Flex, Avatar, Text } from 'cadence-core'
+import { Flex, Avatar, AvatarGroup, Text } from 'cadence-core'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/linkResolver'
 import s from '@styles/pages/homepage/featured-post/postMeta.module.scss'
@@ -23,22 +23,25 @@ const PostMeta = ({ authors, date }) => {
 
   return (
     <div className={s.wrapper}>
-      <Text
-        tag='p'
-        size='small'
-        category='body'
-        type='productive'
-        collapse={true}
-        color='strong'
-      ><strong>{getAuthorNames}</strong></Text>
-      <Text
-        tag='p'
-        size='small'
-        category='body'
-        type='productive'
-        collapse={true}
-        color='primary'
-      ><strong>Published {postDate}</strong></Text>
+      <AvatarGroup avatars={getAuthorImages} />
+      <div className={s.text}>
+        <Text
+          tag='p'
+          size='small'
+          category='body'
+          type='productive'
+          collapse={true}
+          color='strong'
+        ><strong>{getAuthorNames}</strong></Text>
+        <Text
+          tag='p'
+          size='small'
+          category='body'
+          type='productive'
+          collapse={true}
+          color='primary'
+        ><strong>Published {postDate}</strong></Text>
+      </div>
     </div>
   )
 }

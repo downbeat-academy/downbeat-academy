@@ -1,1 +1,15 @@
-.wrapper {}
+@use '../../../variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-05;
+  align-items: center;
+  padding: $spacing-05 $spacing-08;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-02;
+}

@@ -6,6 +6,7 @@ const linkResolver = (url: string, category: string) => {
     case 'contributor': return `contributors/${url}`;
     case 'podcast': return `podcasts/${url}`;
     case 'resource': return `resources/${url}`;
+    case 'category': return `categories/${url}`
     default: return `${url}`;
   }
 }
