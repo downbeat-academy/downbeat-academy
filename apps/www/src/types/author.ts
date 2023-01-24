@@ -1,7 +1,7 @@
 interface AuthorProps {
   _id: string,
   name: string,
-  avatar?: string,
+  avatar?: any,
   slug: string,
 }
 

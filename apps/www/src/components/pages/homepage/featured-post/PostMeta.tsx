@@ -33,8 +33,6 @@ const PostMeta = ({ authors, date }) => {
     )
   })
 
-  console.log(authors)
-
   return (
     <div className={s.wrapper}>
       <AvatarGroup avatars={getAuthorImages} overlap={true} isInteractive={authors.length > 1 ? true : false} />
