@@ -18,6 +18,7 @@ $flex-directions: (
 /* Gap */
 
 $flex-gap-values: (
+	'none': 0,
 	'2x-small': $spacing-02,
 	'x-small': $spacing-03,
 	'small': $spacing-04,

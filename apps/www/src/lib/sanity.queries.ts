@@ -179,18 +179,18 @@ export const getHomepageData = groq`
         _type,
         title,
         date,
-        "image": featuredImage.image,
+        featuredImage,
         "slug": slug.current,
         excerpt,
         authors[]-> {
             _id,
             name,
             avatar,
-            slug { current },
+            "slug": slug.current,
         },
         categories[]-> {
             title,
-            slug { current },
+            "slug": slug.current,
         },
     }
     | order(date desc)[0..9]

@@ -2,7 +2,7 @@ interface FlexProps {
 	as?: React.ElementType
 	children: React.ReactNode
 	direction?: 'row' | 'column'
-	gap?: '2x-small' | 'x-small' | 'small' | 'base' | 'large' | 'x-large' | '2x-large' | '3x-large' | '4x-large' | '5x-large',
+	gap?: 'none' | '2x-small' | 'x-small' | 'small' | 'base' | 'large' | 'x-large' | '2x-large' | '3x-large' | '4x-large' | '5x-large',
 	padding?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large'
 	background?:
 	| 'primary'
@@ -31,7 +31,8 @@ interface FlexProps {
 	| 'space-evenly'
 	align?: 'start' | 'end' | 'center' | 'stretch' | 'baseline'
 	textAlign?: 'left' | 'right' | 'center'
-	wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
+	wrap?: 'nowrap' | 'wrap' | 'wrap-reverse',
+	className?: any,
 }
 
 export type { FlexProps }
