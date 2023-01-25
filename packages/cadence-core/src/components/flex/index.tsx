@@ -31,7 +31,7 @@ const Flex = ({
 		s[`wrap--${wrap}`],
 		s[`align--${align}`],
 		s[`text-align--${textAlign}`],
-		className,
+		className
 	)
 
 	return <Component className={classes}>{children}</Component>

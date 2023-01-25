@@ -13,7 +13,7 @@ export default {
 		{
 			name: 'content',
 			title: 'Content',
-		}
+		},
 	],
 	fields: [
 		{
@@ -76,7 +76,7 @@ export default {
 			description: `Enter a date for when the published date of the article.`,
 			group: 'metadata',
 			options: {
-				dateFormat: 'ISO'
+				dateFormat: 'ISO',
 			},
 			validation: (Rule: any) => [
 				Rule.required().error(`The article needs a published date.`),

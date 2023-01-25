@@ -1,3 +1,3 @@
 export default function Podcasts() {
-  return <h1>Podcasts</h1>
+	return <h1>Podcasts</h1>
 }

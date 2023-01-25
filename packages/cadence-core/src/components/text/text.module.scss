@@ -32,7 +32,18 @@ $colors: (
 
 $types: ('expressive', 'productive');
 $categories: ('headline', 'body');
-$sizes: ('6x-large', '5x-large', '4x-large', '3x-large', '2x-large', 'x-large', 'large', 'base', 'small', 'x-small');
+$sizes: (
+	'6x-large',
+	'5x-large',
+	'4x-large',
+	'3x-large',
+	'2x-large',
+	'x-large',
+	'large',
+	'base',
+	'small',
+	'x-small'
+);
 
 $size-props: (
 	'expressive': (
@@ -79,7 +90,7 @@ $type-props: (
 			'font-family': $typography-font-family-productive-headline,
 			'line-height': $typography-line-height-productive-headline,
 		),
-	)
+	),
 );
 
 @each $type in $types {

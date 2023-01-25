@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity';
+import { groq } from 'next-sanity'
 
 // Article Queries
 
@@ -27,11 +27,11 @@ export const getArticles = groq`
         featuredImage,
         metadata
     }
-`;
+`
 
 export const getArticlePaths = groq`
     *[_type == "article" && defined(slug.current)][].slug.current
-`;
+`
 
 // Blog Queries
 
@@ -48,7 +48,7 @@ export const GET_ARTICLES = groq`
         excerpt,
     }
     | order(date desc)
-`;
+`
 
 // Page Queries
 
@@ -66,11 +66,11 @@ export const getPages = groq`
         //     }
         moduleContent
 	}
-`;
+`
 
 export const getPagePaths = groq`
     *[_type == "page" && defined(slug.current)][].slug.current
-`;
+`
 
 // Podcast Queries
 
@@ -80,11 +80,11 @@ export const getPodcasts = groq`
         title,
         "slug": slug.current
     }
-`;
+`
 
 export const getPodcastPaths = groq`
     *[_type == "podcast" && defined(slug.current)][].slug.current
-`;
+`
 
 // Landing Page Queries
 
@@ -94,11 +94,11 @@ export const getLandingPages = groq`
         title,
         "slug": slug.current
     }
-`;
+`
 
 export const getLandingPagePaths = groq`
     *[_type == "landingPage" && defined(slug.current)][].slug.current
-`;
+`
 
 // Category Queries
 
@@ -114,11 +114,11 @@ export const getCategories = groq`
             "slug": slug.current,
         }
     }
-`;
+`
 
 export const getCategoryPaths = groq`
     *[_type == "category" && defined(slug.current)][].slug.current
-`;
+`
 
 // Contributor/Person queries
 
@@ -140,11 +140,11 @@ export const getContributors = groq`
             "slug": slug.current,
         }
     }
-`;
+`
 
 export const getContributorPaths = groq`
     *[_type == "person" && defined(slug.current)][].slug.current
-`;
+`
 
 export const GET_CONTRIBUTORS = groq`
     *[_type == 'person'][] {
@@ -155,7 +155,7 @@ export const GET_CONTRIBUTORS = groq`
         instrument,
     }
     | order(name, desc)
-`;
+`
 
 // Resources queries
 
@@ -194,7 +194,7 @@ export const getHomepageData = groq`
         },
     }
     | order(date desc)[0..9]
-`;
+`
 
 export const SITEMAP = groq`
     *[_type in [
@@ -212,7 +212,7 @@ export const SITEMAP = groq`
         _type,
         _updatedAt,
     }
-`;
+`
 
 export const NOT_FOUND = groq`
     *[_type == "errorPage" && errorType == '404'][0] {
@@ -223,7 +223,7 @@ export const NOT_FOUND = groq`
 		moduleContent,
 		metadata,
 	}
-`;
+`
 
 export const SERVER_ERROR = groq`
 	*[_type == "errorPage" && errorType == '500'][0] {
@@ -234,4 +234,4 @@ export const SERVER_ERROR = groq`
 		moduleContent,
 		metadata,
 	}
-`;
+`

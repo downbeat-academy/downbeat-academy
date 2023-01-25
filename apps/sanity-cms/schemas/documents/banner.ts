@@ -11,7 +11,9 @@ export default {
 			title: `Title`,
 			type: `string`,
 			description: `Name the banner.`,
-			validation: (Rule: any) => [Rule.required().error(`The banner needs a name.`)],
+			validation: (Rule: any) => [
+				Rule.required().error(`The banner needs a name.`),
+			],
 		},
 		{
 			name: `active`,

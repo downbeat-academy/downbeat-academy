@@ -7,7 +7,7 @@ const Badge = ({
 	text,
 	style = 'fill',
 	size = 'default',
-	className
+	className,
 }: BadgeProps) => {
 	const classes = classnames(
 		s.root,

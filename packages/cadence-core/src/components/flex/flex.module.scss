@@ -4,10 +4,7 @@
 
 /* Direction */
 
-$flex-directions: (
-	row,
-	column
-);
+$flex-directions: (row, column);
 
 @each $direction in $flex-directions {
 	.direction--#{$direction} {
@@ -31,8 +28,7 @@ $flex-gap-values: (
 	'5x-large': $spacing-13,
 );
 
-@each $gap,
-$token in $flex-gap-values {
+@each $gap, $token in $flex-gap-values {
 	.gap--#{$gap} {
 		gap: map-get($flex-gap-values, $gap);
 	}
@@ -52,8 +48,7 @@ $backgrounds: (
 	dark: $color-palette-blackberry-900,
 );
 
-@each $background,
-$token in $backgrounds {
+@each $background, $token in $backgrounds {
 	.background--#{$background} {
 		background: map-get($backgrounds, $background);
 	}
@@ -69,8 +64,7 @@ $borderRadii: (
 	rounded: $radius-rounded,
 );
 
-@each $borderRadius,
-$token in $borderRadii {
+@each $borderRadius, $token in $borderRadii {
 	.border-radius--#{$borderRadius} {
 		border-radius: map-get($borderRadii, $borderRadius);
 	}
@@ -87,8 +81,7 @@ $border-colors: (
 	interactive: $color-border-interactive,
 );
 
-@each $border-color,
-$token in $border-colors {
+@each $border-color, $token in $border-colors {
 	.border-color--#{$border-color} {
 		border-color: map-get($border-colors, $border-color);
 		border-style: solid;
@@ -98,13 +91,7 @@ $token in $border-colors {
 
 /* Justification */
 
-$justifications: (
-	start,
-	end,
-	space-between,
-	space-around,
-	space-evenly,
-);
+$justifications: (start, end, space-between, space-around, space-evenly);
 
 @each $justification in $justifications {
 	.justify--#{$justification} {
@@ -114,13 +101,7 @@ $justifications: (
 
 /* Alignment */
 
-$alignments: (
-	flex-start,
-	flex-end,
-	center,
-	stretch,
-	baseline,
-);
+$alignments: (flex-start, flex-end, center, stretch, baseline);
 
 @each $alignment in $alignments {
 	.align--#{$alignment} {
@@ -128,11 +109,7 @@ $alignments: (
 	}
 }
 
-$text-alignments: (
-	left,
-	center,
-	right,
-);
+$text-alignments: (left, center, right);
 
 @each $text-alignment in $text-alignments {
 	.text-align--#{$text-alignment} {
@@ -142,11 +119,7 @@ $text-alignments: (
 
 /* Wrap */
 
-$wraps: (
-	nowrap,
-	wrap,
-	wrap-reverse,
-);
+$wraps: (nowrap, wrap, wrap-reverse);
 
 @each $wrap in $wraps {
 	.wrap--#{$wrap} {
@@ -161,11 +134,10 @@ $paddings: (
 	small: $spacing-03,
 	medium: $spacing-05,
 	large: $spacing-06,
-	x-large: $spacing-08
+	x-large: $spacing-08,
 );
 
-@each $padding,
-$token in $paddings {
+@each $padding, $token in $paddings {
 	.padding--#{$padding} {
 		padding: map-get($paddings, $padding);
 	}

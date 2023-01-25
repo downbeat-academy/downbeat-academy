@@ -21,28 +21,27 @@
 /* Sizes */
 
 $sizes: (
-	'small': ('font-size': $typography-font-size-fixed-productive-x-small,
+	'small': (
+		'font-size': $typography-font-size-fixed-productive-x-small,
 		'line-height': 16px,
 		'padding': 0 $spacing-02,
 		'flex-gap': $spacing-02,
 	),
-	'default': ('font-size': $typography-font-size-fixed-productive-small,
+	'default': (
+		'font-size': $typography-font-size-fixed-productive-small,
 		'line-height': 20px,
 		'padding': 0 $spacing-02,
 		'flex-gap': $spacing-02,
 	),
-	'large': ('font-size': $typography-font-size-fixed-productive-base,
+	'large': (
+		'font-size': $typography-font-size-fixed-productive-base,
 		'line-height': 24px,
 		'padding': 0 $spacing-02,
 		'flex-gap': $spacing-03,
-	)
+	),
 );
 
-@each $size,
-$font-size,
-$line-height,
-$padding,
-$flex-gap in $sizes {
+@each $size, $font-size, $line-height, $padding, $flex-gap in $sizes {
 	.size--#{$size} {
 		font-size: map-get($sizes, $size, 'font-size');
 		line-height: map-get($sizes, $size, 'line-height');
@@ -76,7 +75,7 @@ $type-props: (
 	'critical': (
 		'light': $color-palette-pomegranate-200,
 		'dark': $color-palette-pomegranate-800,
-	)
+	),
 );
 
 @each $type in $types {

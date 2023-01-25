@@ -15,7 +15,6 @@ const Text = ({
 	weight,
 	className,
 }: TextProps) => {
-
 	const getElementType = (tag: string) => {
 		switch (tag) {
 			case 'h1' || 'h2' || 'h3' || 'h4' || 'h5' || 'h6':
@@ -33,7 +32,7 @@ const Text = ({
 		s[`weight--${weight}`],
 		[fluid ? s.fluid : null],
 		[collapse ? s.collapse : null],
-		className,
+		className
 	)
 
 	switch (tag) {

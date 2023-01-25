@@ -1,17 +1,17 @@
-import { useFathom } from "@hooks/useFathom";
-import { Footer, Header } from "@components/navigation";
+import { useFathom } from '@hooks/useFathom'
+import { Footer, Header } from '@components/navigation'
 import '@styles/index.scss'
 
 function CustomApp({ Component, pageProps }) {
-  useFathom()
+	useFathom()
 
-  return (
-    <>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Header />
+			<Component {...pageProps} />
+			<Footer />
+		</>
+	)
 }
 
-export default CustomApp;
+export default CustomApp
