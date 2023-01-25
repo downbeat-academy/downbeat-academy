@@ -7,6 +7,12 @@
 	border: 1px solid $color-palette-neutral-400;
 	text-decoration: none;
 	overflow: hidden;
+	transition: $transition-04;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: $elevation-box-shadow-base;
+	}
 
 	article {
 		height: 100%;
