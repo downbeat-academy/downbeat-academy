@@ -48,7 +48,8 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: bold;
-	src: url('/fonts/favorit/expanded/FavoritStd-BoldExpanded.woff') format('woff'),
+	src: url('/fonts/favorit/expanded/FavoritStd-BoldExpanded.woff')
+			format('woff'),
 		url('/fonts/favorit/expanded/FavoritStd-BoldExpanded.woff2') format('woff2');
 }
 
@@ -57,8 +58,10 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: semibold;
-	src: url('/fonts/favorit/expanded/FavoritStd-BoldSemiExpanded.woff') format('woff'),
-		url('/fonts/favorit/expanded/FavoritStd-BoldSemiExpanded.woff2') format('woff2');
+	src: url('/fonts/favorit/expanded/FavoritStd-BoldSemiExpanded.woff')
+			format('woff'),
+		url('/fonts/favorit/expanded/FavoritStd-BoldSemiExpanded.woff2')
+			format('woff2');
 }
 
 @font-face {
@@ -132,4 +135,3 @@
 	src: url('/fonts/tiempos-text/TiemposText-BoldItalic.woff') format('woff'),
 		url('/fonts/tiempos-text/TiemposText-BoldItalic.woff2') format('woff2');
 }
-

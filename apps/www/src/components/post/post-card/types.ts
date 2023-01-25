@@ -1,11 +1,11 @@
-import { author } from "../../../types/author"
+import { author } from '../../../types/author'
 
 interface PostCardProps {
-  image: any,
-  title: string,
-  slug: string,
-  authors: author[],
-  date: string,
+	image: any
+	title: string
+	slug: string
+	authors: author[]
+	date: string
 }
 
-export type { PostCardProps } 
+export type { PostCardProps }

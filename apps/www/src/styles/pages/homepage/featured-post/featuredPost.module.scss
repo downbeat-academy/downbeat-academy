@@ -1,67 +1,67 @@
 @use '../../../variables.scss' as *;
 
 .wrapper {
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-bottom: 1px solid $color-palette-neutral-300;
+	width: 100vw;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	border-bottom: 1px solid $color-palette-neutral-300;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: 1fr;
-  }
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+	}
 }
 
 .image {
-  position: relative;
+	position: relative;
 
-  @media (max-width: 1200px) {
-    height: 33vw;
-  }
+	@media (max-width: 1200px) {
+		height: 33vw;
+	}
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
 }
 
 .main {
-  background-color: $color-palette-pineapple-100;
-  padding: $spacing-08;
+	background-color: $color-palette-pineapple-100;
+	padding: $spacing-08;
 
-  @media (max-width: 900px) {
-    padding: $spacing-06;
-  }
+	@media (max-width: 900px) {
+		padding: $spacing-06;
+	}
 
-  @media (max-width: 500px) {
-    padding: $spacing-05
-  }
+	@media (max-width: 500px) {
+		padding: $spacing-05;
+	}
 }
 
 .title {
-  text-decoration: none;
-  h1 {
-    color: $color-palette-passion-fruit-700;
-    text-decoration: none;
+	text-decoration: none;
+	h1 {
+		color: $color-palette-passion-fruit-700;
+		text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
+		&:hover {
+			text-decoration: underline;
+		}
 
-    @media (max-width: 900px) {
-      font-size: $typography-font-size-fixed-expressive-4x-large
-    }
+		@media (max-width: 900px) {
+			font-size: $typography-font-size-fixed-expressive-4x-large;
+		}
 
-    @media (max-width: 500px) {
-      font-size: $typography-font-size-fixed-expressive-3x-large;
-    }
-  }
+		@media (max-width: 500px) {
+			font-size: $typography-font-size-fixed-expressive-3x-large;
+		}
+	}
 }
 
 .divider {
-  height: 24px;
-  width: 100%;
-  background: url('/textures/texture-divider-01.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+	height: 24px;
+	width: 100%;
+	background: url('/textures/texture-divider-01.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }

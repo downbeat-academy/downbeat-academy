@@ -1,5 +1,5 @@
 interface NavLinksProps {
-  navToggled: boolean
+	navToggled: boolean
 }
 
 export type { NavLinksProps }

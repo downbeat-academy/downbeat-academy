@@ -32,7 +32,9 @@ export default {
 			title: `URL`,
 			type: `url`,
 			description: `Paste the URL from the your social platform page or account.`,
-			validation: (Rule: any) => [Rule.required().error(`You must paste a URL.`)],
+			validation: (Rule: any) => [
+				Rule.required().error(`You must paste a URL.`),
+			],
 		},
 	],
 	preview: {

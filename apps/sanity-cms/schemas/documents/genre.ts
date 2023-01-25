@@ -25,7 +25,9 @@ export default {
 			options: {
 				source: 'title',
 			},
-			validation: (Rule: any) => [Rule.required().error('The genre needs a slug.')],
+			validation: (Rule: any) => [
+				Rule.required().error('The genre needs a slug.'),
+			],
 		},
 	],
 }

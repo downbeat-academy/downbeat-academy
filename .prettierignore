@@ -14,6 +14,6 @@ apps/**/dist
 
 # Packages
 packages/**/node_modules
-apps/**/.next
-apps/**/build
-apps/**/dist
+packages/**/.next
+packages/**/build
+packages/**/dist

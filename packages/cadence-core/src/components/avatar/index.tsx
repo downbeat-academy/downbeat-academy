@@ -29,12 +29,7 @@ const Avatar = ({
 		}
 	}
 
-	const placeholderColors = [
-		'#6b75f6',
-		'#43a2ff',
-		'#b10010',
-		'#4ccad1',
-	]
+	const placeholderColors = ['#6b75f6', '#43a2ff', '#b10010', '#4ccad1']
 
 	return (
 		<div className={classes}>

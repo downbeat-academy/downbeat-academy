@@ -1,35 +1,35 @@
-import { sanityClient } from "@lib/sanity.client";
-import { getPodcasts, getPodcastPaths } from "@lib/sanity.queries";
+import { sanityClient } from '@lib/sanity.client'
+import { getPodcasts, getPodcastPaths } from '@lib/sanity.queries'
 
 export default function Podcast({ data, preview }) {
-  const { title } = data.podcast
+	const { title } = data.podcast
 
-  return (
-    <>
-      <h1>{title}</h1>
-    </>
-  )
+	return (
+		<>
+			<h1>{title}</h1>
+		</>
+	)
 }
 
 export const getStaticProps = async ({ params, preview = false }) => {
-  const podcast = await sanityClient.fetch(getPodcasts, {
-    slug: params.slug
-  })
+	const podcast = await sanityClient.fetch(getPodcasts, {
+		slug: params.slug,
+	})
 
-  return {
-    props: {
-      preview,
-      data: { podcast }
-    },
-    revalidate: 60,
-  }
+	return {
+		props: {
+			preview,
+			data: { podcast },
+		},
+		revalidate: 60,
+	}
 }
 
 export const getStaticPaths = async () => {
-  const paths = await sanityClient.fetch(getPodcastPaths)
+	const paths = await sanityClient.fetch(getPodcastPaths)
 
-  return {
-    paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: false,
-  }
+	return {
+		paths: paths.map((slug) => ({ params: { slug } })),
+		fallback: false,
+	}
 }

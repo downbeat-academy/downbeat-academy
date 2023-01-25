@@ -16,7 +16,9 @@ export default {
 			title: `Form Title`,
 			type: `string`,
 			description: `Provide a descriptive name for your form.`,
-			validation: (Rule: any) => [Rule.required().error(`The form needs a title.`)],
+			validation: (Rule: any) => [
+				Rule.required().error(`The form needs a title.`),
+			],
 		},
 		{
 			name: `method`,

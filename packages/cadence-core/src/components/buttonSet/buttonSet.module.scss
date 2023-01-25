@@ -6,10 +6,7 @@
 
 /* Direction */
 
-$directions: (
-	row,
-	column,
-);
+$directions: (row, column);
 
 @each $direction in $directions {
 	.direction--#{$direction} {
@@ -27,8 +24,7 @@ $gaps: (
 	large: $spacing-06,
 );
 
-@each $gap,
-$token in $gaps {
+@each $gap, $token in $gaps {
 	.gap--#{$gap} {
 		gap: map-get($gaps, $gap);
 	}
@@ -36,12 +32,7 @@ $token in $gaps {
 
 /* Justify */
 
-$justifications: (
-	flex-start,
-	flex-end,
-	space-between,
-	space-around,
-);
+$justifications: (flex-start, flex-end, space-between, space-around);
 
 @each $justification in $justifications {
 	.justify--#{$justification} {
