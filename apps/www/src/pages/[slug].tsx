@@ -1,25 +1,18 @@
 import { sanityClient } from '@lib/sanity.client'
 import { getPages, getPagePaths } from '@lib/sanity.queries'
-import { Seo } from '@components/meta'
+import { PageTemplate } from '@templates/page'
 
 export default function Page({ data, preview }) {
 	const { title, moduleContent, showTitle, slug, metadata } = data.page
 
 	return (
-		<>
-			<h1>{title}</h1>
-			{/* <Seo
-				title={title}
-				description={metadata.description}
-				slug={slug}
-				image={
-					metadata.ogImage &&
-					getSanityUrl(metadata.ogImage.asset._ref)
-				}
-			/>
-			{showTitle && <ShowTitleWrapper title={title} />}
+		<PageTemplate
+			title={title}
+		>
+			<p>This is a page</p>
+			{/*{showTitle && <ShowTitleWrapper title={title} />}
 			{moduleContent && <ModuleRenderer modules={moduleContent} />} */}
-		</>
+		</PageTemplate>
 	)
 }
 

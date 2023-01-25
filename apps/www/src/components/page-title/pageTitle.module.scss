@@ -1,0 +1,20 @@
+@use '../../styles/variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-04;
+  padding: $spacing-08 0;
+}
+
+$alignments: (left, center, right);
+
+@each $alignment in $alignments {
+  .alignment--#{$alignment} {
+    text-align: $alignment;
+    
+    .title, .subtitle {
+      text-align: $alignment;
+    }
+  }
+}
