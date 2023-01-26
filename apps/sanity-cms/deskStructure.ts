@@ -105,7 +105,7 @@ export const deskStructure = (S: any) =>
 										.schemaType('article')
 										.title('Articles')
 										.filter('_type == "article"')
-								),
+									),
 							S.listItem()
 								.title('Resources')
 								.icon(BiPen)
