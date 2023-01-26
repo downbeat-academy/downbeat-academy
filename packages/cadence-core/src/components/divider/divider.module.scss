@@ -1,0 +1,17 @@
+.root {
+  color: $color-border-default;
+}
+
+$widths: (
+  'small': 40px,
+  'medium': 80px,
+  'large': 160px,
+  'full-width': 100%,
+);
+
+@each $width, $value in $widths {
+  .width--#{$width} {
+    width: $value;
+  }
+}
+
