@@ -10,6 +10,7 @@ import AvatarPage from './pages/components/avatar'
 import LinkPage from './pages/components/link'
 import FlexPage from './pages/components/flex'
 import DividerPage from './pages/components/divider'
+import ListPage from './pages/components/list'
 
 export const Router = () => {
 	return (
@@ -24,6 +25,7 @@ export const Router = () => {
 			<Route path="/components/link" element={<LinkPage />} />
 			<Route path="/components/flex" element={<FlexPage />} />
 			<Route path='/components/divider' element={<DividerPage />} />
+			<Route path='/components/list' element={<ListPage />} />
 		</Routes>
 	)
 }
