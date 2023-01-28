@@ -1,0 +1,29 @@
+.root {
+	color: $color-foreground-strong;
+	padding: $spacing-06;
+	font-family: $typography-font-family-expressive-body;
+	font-size: $typography-font-size-fixed-expressive-x-large;
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-05;
+	background: $color-surface-secondary;
+	border-left: 4px solid $color-palette-blackberry-500;
+}
+
+.attribution {
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-02;
+}
+
+.sourceText a {
+	color: $color-foreground-interactive-default;
+	transition: $transition-02;
+
+	&:hover {
+		color: $color-foreground-interactive-hover;
+	}
+	&:active {
+		color: $color-foreground-interactive-active;
+	}
+}
