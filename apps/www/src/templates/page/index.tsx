@@ -1,15 +1,18 @@
+import { ModuleRenderer } from '@components/content-modules'
 import { PageTitle } from "@components/page-title"
 import { Seo } from '@components/meta'
+import { PageTemplateProps } from "./types"
 
 const PageTemplate = ({
-  children,
-  title
-}) => {
+  title,
+  subtitle,
+  moduleContent
+}: PageTemplateProps) => {
   return (
     <>
       <Seo title='Page' />
-      <PageTitle title={title} subtitle='This is the subtitle' alignment='center' />
-      {children}
+      <PageTitle title={title} subtitle={subtitle} alignment='left' />
+      <ModuleRenderer modules={moduleContent} />
     </>
   )
 }

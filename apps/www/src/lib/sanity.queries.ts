@@ -59,11 +59,6 @@ export const getPages = groq`
 		showTitle,
 		"slug": slug.current,
 		metadata,
-        // moduleContent,
-		// moduleContent: 
-        //     *[_type == 'internalLink'][0] {
-        //         internalLink[]->,
-        //     }
         moduleContent
 	}
 `

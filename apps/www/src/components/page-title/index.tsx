@@ -1,4 +1,4 @@
-import { Text } from 'cadence-core'
+import { Text, Divider } from 'cadence-core'
 import classnames from 'classnames'
 import { PageTitleProps } from './types'
 import s from './pageTitle.module.scss'
@@ -34,6 +34,7 @@ const PageTitle = ({
         collapse
         className={s.subtitle}
       >{subtitle}</Text>
+      <Divider width='medium' thickness='large' color='brand' align={alignment} />
     </section>
   )
 }
