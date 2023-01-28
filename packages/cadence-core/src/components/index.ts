@@ -1,6 +1,7 @@
 export { Avatar } from './avatar'
 export { AvatarGroup } from './avatar-group'
 export { Badge } from './badge'
+export { Blockquote } from './blockquote'
 export { Button } from './button'
 export { ButtonSet } from './buttonSet'
 export { Divider } from './divider'
