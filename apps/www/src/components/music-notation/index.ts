@@ -1,0 +1,1 @@
+export { InlineChord } from './inline-chord'

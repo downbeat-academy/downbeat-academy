@@ -1,6 +1,7 @@
 import { Text, Blockquote, List } from 'cadence-core'
 import { StyledLink } from '@components/link'
 import { linkResolver } from '@utils/linkResolver'
+import { InlineChord } from '@components/music-notation'
 
 const components = {
   block: {
@@ -28,7 +29,7 @@ const components = {
         <Blockquote attribution={attribution} source={source}>{quote}</Blockquote>
       )
     },
-    inlineChord: ({ value }) => { },
+    inlineChord: ({ value }) => <InlineChord input={value} />,
     inlineMusicText: ({ value }) => { },
     mainImage: ({ value }) => { },
     musicNotation: ({ value }) => { },

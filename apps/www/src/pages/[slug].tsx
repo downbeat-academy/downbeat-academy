@@ -1,6 +1,6 @@
 import { sanityClient } from '@lib/sanity.client'
 import { getPages, getPagePaths } from '@lib/sanity.queries'
-import { PageTemplate } from '@templates/page'
+import { PageTemplate } from '@components/templates/page'
 
 
 export default function Page({ data, preview }) {
