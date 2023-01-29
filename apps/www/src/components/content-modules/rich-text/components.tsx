@@ -25,7 +25,7 @@ const components = {
     blockquote: ({ value }) => {
       const { attribution, source, quote } = value
       return (
-        <Blockquote attribution={attribution} source={source} quote={quote} />
+        <Blockquote attribution={attribution} source={source}>{quote}</Blockquote>
       )
     },
     inlineChord: ({ value }) => { },
