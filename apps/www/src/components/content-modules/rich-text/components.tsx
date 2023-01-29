@@ -1,7 +1,7 @@
 import { Text, Blockquote, List } from 'cadence-core'
 import { StyledLink } from '@components/link'
 import { linkResolver } from '@utils/linkResolver'
-import { InlineChord } from '@components/music-notation'
+import { InlineChord, InlineMusicText, MusicNotation } from '@components/music-notation'
 
 const components = {
   block: {
@@ -30,9 +30,9 @@ const components = {
       )
     },
     inlineChord: ({ value }) => <InlineChord input={value} />,
-    inlineMusicText: ({ value }) => { },
+    inlineMusicText: ({ value }) => <InlineMusicText values={value} />,
     mainImage: ({ value }) => { },
-    musicNotation: ({ value }) => { },
+    musicNotation: ({ value }) => <MusicNotation input={value} />,
     video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
   },
   marks: {
