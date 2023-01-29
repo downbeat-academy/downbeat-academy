@@ -1,0 +1,66 @@
+@use '../../styles/variables.scss' as *;
+
+.root {
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $spacing-02;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+$types: (
+  'primary': (
+    'rest': $color-foreground-interactive-default,
+    'hover': $color-foreground-interactive-hover,
+    'active': $color-foreground-interactive-active,
+    'inverse': $color-palette-blueberry-100,
+  ),
+  'secondary': (
+    'rest': $color-palette-neutral-800,
+    'hover': $color-palette-neutral-900,
+    'active': $color-palette-neutral-1000,
+    'inverse': $color-palette-neutral-200,
+  ),
+);
+
+$styles: (
+  'expressive': (
+    'text-decoration-thickness': $spacing-02,
+    'text-underline-offset': $spacing-01,
+    'transition': $transition-02,
+    'padding': $spacing-01 0,
+  ),
+  'default': (
+    'text-decoration-thickness': auto,
+    'text-underline-offset': auto,
+    'transition': $transition-01,
+    'padding': 0,
+  )
+);
+
+@each $style, $style-value in $styles {
+  @each $type, $type-value in $types {
+    .style--#{$style}_type--#{$type} {
+      text-decoration-thickness: map-get($styles, $style, 'text-decoration-thickness');
+      text-underline-offset: map-get($styles, $style, 'text-decoration-offset');
+      transition: map-get($styles, $style, 'transition');
+      padding: map-get($styles, $style, 'padding');
+      color: map-get($types, $type, 'rest');
+  
+      &:hover {
+        color: map-get($types, $type, 'hover');
+        background: map-get($types, $type, 'inverse');
+      }
+
+      &:active {
+        color: map-get($types, $type, 'active');
+      }
+    }
+  }
+}

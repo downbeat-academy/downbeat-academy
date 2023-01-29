@@ -6,8 +6,6 @@ import { PageTemplate } from '@templates/page'
 export default function Page({ data, preview }) {
 	const { title, moduleContent, showTitle, slug, metadata } = data.page
 
-	console.log(moduleContent)
-
 	return (
 		<PageTemplate
 			title={title}

@@ -1,10 +1,11 @@
 import { RichText } from "@components/content-modules/rich-text";
 
 const ModuleRenderer = ({ modules }) => {
-  const renderModule = modules.map((m) => {
-    switch (m._type) {
-      case 'richText':
-				return <RichText value={m.content} />
+	// console.log(modules)
+	const renderModule = modules.map((m) => {
+		switch (m._type) {
+			case 'richText':
+				return <RichText value={m.content} key={m._key} />
 			// case 'video':
 			// 	return <Video input={m} key={m._key} />;
 			// case 'audio':
@@ -19,10 +20,10 @@ const ModuleRenderer = ({ modules }) => {
 			// 	return <PageTitle input={m} key={m._key} />;
 			default:
 				return 'There was an error rendering the module.';
-    }
-  })
+		}
+	})
 
-  return renderModule
+	return renderModule
 }
 
 export { ModuleRenderer }

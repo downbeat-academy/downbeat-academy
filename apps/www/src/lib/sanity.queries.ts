@@ -11,7 +11,7 @@ export const getArticles = groq`
         content {
             content[] {
                 ...,
-                markDefs[] {
+                markDefs[]-> {
                     ...,
                     _type == "internalLink" => {
                         "type": @.reference->_type,
@@ -59,7 +59,20 @@ export const getPages = groq`
 		showTitle,
 		"slug": slug.current,
 		metadata,
-        moduleContent
+        moduleContent[] {
+            ...,
+            _type == "richText" => {
+                ...,
+                content[] {
+                    ...,
+                    markDefs[] {
+                        ...,
+                        "slug": reference->slug.current,
+                        "type": reference->_type
+                    }
+                }
+            }
+        }
 	}
 `
 

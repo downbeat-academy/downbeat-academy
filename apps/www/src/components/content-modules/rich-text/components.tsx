@@ -1,4 +1,6 @@
 import { Text, Blockquote, List } from 'cadence-core'
+import { StyledLink } from '@components/link'
+import { linkResolver } from '@utils/linkResolver'
 
 const components = {
   block: {
@@ -32,7 +34,10 @@ const components = {
     musicNotation: ({ value }) => { },
     video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
   },
-  marks: {},
+  marks: {
+    link: ({ children, value }) => <StyledLink href={value.href} type='primary' style='expressive'>{children}</StyledLink>,
+    internalLink: ({ children, value }) => <StyledLink href={linkResolver(value.slug, value.type)} type='primary' style='expressive'>{children}</StyledLink>
+  },
 }
 
 export { components }
