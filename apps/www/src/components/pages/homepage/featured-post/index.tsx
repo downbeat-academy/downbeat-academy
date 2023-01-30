@@ -5,12 +5,11 @@ import { Flex, Text } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
 
 import { FeaturedPostProps } from './types'
-import s from '@styles/pages/homepage/featured-post/featuredPost.module.scss'
+import s from './featuredPost.module.scss'
 import { Categories } from './Categories'
 import { PostMeta } from './PostMeta'
 
 const FeaturedPost = ({ input }: FeaturedPostProps) => {
-	// console.log(input)
 	const { slug, categories, title, excerpt, authors, date, featuredImage } =
 		input
 

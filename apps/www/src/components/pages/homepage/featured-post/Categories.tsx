@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Badge } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
-import s from '@styles/pages/homepage/featured-post/categories.module.scss'
+import s from './categories.module.scss'
 
 const Categories = ({ categories }) => {
 	const getCategories = categories.slice(0, 2).map((category) => {

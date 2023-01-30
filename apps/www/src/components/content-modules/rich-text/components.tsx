@@ -31,7 +31,7 @@ const components = {
     },
     inlineChord: ({ value }) => <InlineChord input={value} />,
     inlineMusicText: ({ value }) => <InlineMusicText values={value} />,
-    mainImage: ({ value }) => { },
+    mainImage: ({ value }) => <p>This is an image.</p>,
     musicNotation: ({ value }) => <MusicNotation input={value} />,
     video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
   },

@@ -5,7 +5,7 @@ import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
 import { prettyDate } from '@utils/dateFormat'
 import { PostCardProps } from './types'
-import s from '@styles/components/post/postCard.module.scss'
+import s from './postCard.module.scss'
 
 const PostCard = ({ image, title, slug, authors, date }: PostCardProps) => {
 	const getAuthorNames = authors.slice(0, 1).map((author) => {
@@ -38,6 +38,9 @@ const PostCard = ({ image, title, slug, authors, date }: PostCardProps) => {
 						alt={image.alternativeText}
 						fill
 						style={{ objectFit: 'cover' }}
+						sizes="(max-width: 1440px) 500px,
+									(max-width: 1000px) 400px,
+									375px"
 					/>
 				</div>
 				<Flex
