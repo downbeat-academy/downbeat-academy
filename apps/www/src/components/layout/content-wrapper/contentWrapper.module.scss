@@ -1,4 +1,5 @@
 .root {
+	grid-area: content;
 	display: grid;
 	grid-template-areas: 'left-sidebar content right-sidebar';
 	grid-template-columns: 1fr min(75ch, 100%) 1fr;

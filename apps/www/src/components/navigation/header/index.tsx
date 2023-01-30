@@ -35,7 +35,7 @@ const Header = () => {
 	)
 
 	return (
-		<>
+		<header className={s.wrapper}>
 			<Secondary />
 			<nav className={classes}>
 				<div className={s.navbarContent}>
@@ -46,7 +46,7 @@ const Header = () => {
 					<NavLinks navToggled={navToggled} />
 				</div>
 			</nav>
-		</>
+		</header>
 
 	)
 }

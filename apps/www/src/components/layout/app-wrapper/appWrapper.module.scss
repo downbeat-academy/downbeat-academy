@@ -1,0 +1,5 @@
+.root {
+	display: grid;
+	grid-template-areas: 'header content footer';
+	grid-template-columns: 1fr, min(calc(100vh - 82.15px), 1fr);
+}

@@ -1,6 +1,7 @@
 @use '../../../styles/variables.scss' as *;
 
 .wrapper {
+	grid-area: footer;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
