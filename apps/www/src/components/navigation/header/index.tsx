@@ -28,12 +28,16 @@ const Header = () => {
 		}
 	}, [])
 
-	const classes = classnames(s.wrapper, [scroll ? s.scroll : ''])
+	const classes = classnames(
+		s.wrapper,
+		s.navbar,
+		[scroll ? s.scroll : '']
+	)
 
 	return (
-		<header className={classes}>
+		<>
 			<Secondary />
-			<nav className={s.navbar}>
+			<nav className={classes}>
 				<div className={s.navbarContent}>
 					<Link href="/">
 						<LogoLockup color="brand" width={200} />
@@ -42,7 +46,8 @@ const Header = () => {
 					<NavLinks navToggled={navToggled} />
 				</div>
 			</nav>
-		</header>
+		</>
+
 	)
 }
 
