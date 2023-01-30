@@ -2,7 +2,7 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { Button } from 'cadence-core'
 import { NavLinksProps } from './types'
-import s from '@styles/components/navigation/header/navLinks.module.scss'
+import s from './navLinks.module.scss'
 
 const NavLinks = ({ navToggled }: NavLinksProps) => {
 	const classes = classnames(s.wrapper, [

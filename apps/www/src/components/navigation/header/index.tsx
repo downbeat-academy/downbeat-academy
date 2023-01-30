@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { Flex, LogoLockup } from 'cadence-core'
-import s from '@styles/components/navigation/header/header.module.scss'
+import s from './header.module.scss'
 
 import { Secondary } from './Secondary'
 import { NavLinks } from './NavLinks'
