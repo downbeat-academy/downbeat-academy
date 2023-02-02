@@ -3,8 +3,8 @@
 .wrapper {
 	padding: $spacing-05;
 	display: grid;
-	grid-template-columns: 1fr;
 	gap: $spacing-05;
+	grid-template-columns: 1fr;
 
 	@media (min-width: 650px) {
 		grid-template-columns: repeat(2, 1fr);

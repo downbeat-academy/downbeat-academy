@@ -3,7 +3,7 @@ import { getHomepageData } from '@lib/sanity.queries'
 import { Seo } from '@components/meta'
 import { FeaturedPost } from '@components/pages/homepage'
 import { PostCard, PostGrid } from '@components/post'
-import { ContentWrapper } from '@components/layout'
+import { ContentGrid } from '@components/layout'
 
 export default function HomePage({ data, preview }) {
 	const featuredArticle = data.homepage[0]
@@ -27,10 +27,10 @@ export default function HomePage({ data, preview }) {
 				description='Downbeat Academy features music education and resources for the masses, taught by accomplished musicians and educators in the field'
 				url='/'
 			/>
-			<ContentWrapper>
+			<ContentGrid>
 				<FeaturedPost input={featuredArticle} />
 				<PostGrid>{articles}</PostGrid>
-			</ContentWrapper>
+			</ContentGrid>
 		</>
 	)
 }

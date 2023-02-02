@@ -1,0 +1,13 @@
+@use '../../../styles/variables.scss' as *;
+
+.root {
+  padding: $spacing-08 $spacing-05;
+}
+
+$locations: (sidebar-left, center, sidebar-right);
+
+@each $location in $locations {
+  .location--#{$location} {
+    grid-area: $location;
+  }
+}

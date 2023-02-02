@@ -4,4 +4,5 @@
 		'header'
 		'content'
 		'footer';
+	grid-template-rows: auto minmax(calc(100vh - 105px), auto) auto;
 }
