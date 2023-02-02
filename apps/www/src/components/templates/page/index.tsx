@@ -10,13 +10,15 @@ const PageTemplate = ({
   moduleContent
 }: PageTemplateProps) => {
   return (
-    <ContentWrapper>
+    <>
       <Seo title='Page' />
-      <InnerWrapper location='content'>
-        <PageTitle title={title} subtitle={subtitle} alignment='left' />
-        <ModuleRenderer modules={moduleContent} />
-      </InnerWrapper>
-    </ContentWrapper>
+      <ContentWrapper>
+        <InnerWrapper location='content'>
+          <PageTitle title={title} subtitle={subtitle} alignment='left' />
+          <ModuleRenderer modules={moduleContent} />
+        </InnerWrapper>
+      </ContentWrapper>
+    </>
   )
 }
 

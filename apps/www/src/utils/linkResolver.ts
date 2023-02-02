@@ -8,6 +8,8 @@ const linkResolver = (url: string, category: string) => {
 			return `categories/${url}`
 		case 'contributor':
 			return `contributors/${url}`
+		case 'person':
+			return `contributors/${url}`
 		case 'podcast':
 			return `podcasts/${url}`
 		case 'resource':

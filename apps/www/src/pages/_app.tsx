@@ -1,6 +1,6 @@
 import { useFathom } from '@hooks/useFathom'
 import { Footer, Header } from '@components/navigation'
-import { AppWrapper } from '@components/layout'
+import { AppWrapper, ContentWrapper } from '@components/layout'
 import '@styles/index.scss'
 
 function CustomApp({ Component, pageProps }) {
