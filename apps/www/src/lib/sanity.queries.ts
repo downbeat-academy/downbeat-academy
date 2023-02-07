@@ -33,6 +33,33 @@ export const getArticlePaths = groq`
     *[_type == "article" && defined(slug.current)][].slug.current
 `
 
+export const getAllArticles = groq`
+    *[_type == "article"] {
+        _id,
+        _updatedAt,
+        title,
+        "slug": slug.current,
+        content {
+            content[] {
+                ...,
+                markDefs[]-> {
+                    ...,
+                    _type == "internalLink" => {
+                        "type": @.reference->_type,
+                        "slug": @.reference->slug.current,
+                    }
+                }
+            }
+        },
+        excerpt,
+        date,
+        authors[]->,
+        categories[]->,
+        featuredImage,
+        metadata
+    }
+`
+
 // Blog Queries
 
 export const GET_ARTICLES = groq`

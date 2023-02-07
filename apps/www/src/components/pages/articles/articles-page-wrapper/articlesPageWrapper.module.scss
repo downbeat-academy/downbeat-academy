@@ -1,0 +1,9 @@
+@use '../../../../styles/variables.scss' as *;
+
+.wrapper {
+  grid-area: auto / center / auto / center;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-08;
+  padding: $spacing-08 $spacing-04;
+}
