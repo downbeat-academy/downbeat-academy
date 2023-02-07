@@ -1,0 +1,21 @@
+@use '../../../styles/variables.scss' as *;
+
+.wrapper {
+	display: inline-flex;
+	gap: $spacing-03;
+	padding: 0 $spacing-03;
+	font-family: $typography-font-family-mono;
+	background: $color-palette-passion-fruit-100;
+	color: $color-palette-passion-fruit-900;
+	box-sizing: border-box;
+	margin: 0 $spacing-02;
+
+	sup {
+		font-size: calc(1.125 * 0.75);
+		transform: translateY(-2px);
+	}
+}
+
+.musicText {
+	font-family: $typography-font-family-music-notation;
+}

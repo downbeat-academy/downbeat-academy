@@ -1,6 +1,7 @@
 import { sanityClient } from '@lib/sanity.client'
 import { getPages, getPagePaths } from '@lib/sanity.queries'
-import { PageTemplate } from '@templates/page'
+import { PageTemplate } from '@components/templates/page'
+
 
 export default function Page({ data, preview }) {
 	const { title, moduleContent, showTitle, slug, metadata } = data.page
@@ -8,11 +9,8 @@ export default function Page({ data, preview }) {
 	return (
 		<PageTemplate
 			title={title}
-		>
-			<p>This is a page</p>
-			{/*{showTitle && <ShowTitleWrapper title={title} />}
-			{moduleContent && <ModuleRenderer modules={moduleContent} />} */}
-		</PageTemplate>
+			moduleContent={moduleContent}
+		/>
 	)
 }
 

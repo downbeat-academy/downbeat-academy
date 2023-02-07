@@ -1,0 +1,27 @@
+@use '../../../styles/variables.scss' as *;
+
+$locations: (
+  'sidebar-left': auto / sidebar-left,
+  'sidebar-right': auto / sidebar-right,
+  'center': auto / center,
+  'full-bleed': auto / sidebar-left / auto / sidebar-right,
+);
+
+@each $location, $value in $locations {
+  .location--#{$location} {
+    grid-area: $value;
+  }
+}
+
+$paddings: (
+  'small': $spacing-06,
+  'medium': $spacing-08,
+  'large': $spacing-10,
+);
+
+@each $padding, $value in $paddings {
+  .padding--#{$padding} {
+    padding: $value;
+  }
+}
+

@@ -1,4 +1,4 @@
-import s from '@styles/components/navigation/header/toggle.module.scss'
+import s from './toggle.module.scss'
 
 const Toggle = ({ handleNavToggle }) => {
 	return (

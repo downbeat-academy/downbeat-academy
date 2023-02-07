@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { Flex, LogoLockup } from 'cadence-core'
-import s from '@styles/components/navigation/header/header.module.scss'
+import s from './header.module.scss'
 
 import { Secondary } from './Secondary'
 import { NavLinks } from './NavLinks'
@@ -28,12 +28,16 @@ const Header = () => {
 		}
 	}, [])
 
-	const classes = classnames(s.wrapper, [scroll ? s.scroll : ''])
+	const classes = classnames(
+		s.wrapper,
+		s.navbar,
+		[scroll ? s.scroll : '']
+	)
 
 	return (
-		<header className={classes}>
+		<header className={s.wrapper}>
 			<Secondary />
-			<nav className={s.navbar}>
+			<nav className={classes}>
 				<div className={s.navbarContent}>
 					<Link href="/">
 						<LogoLockup color="brand" width={200} />
@@ -43,6 +47,7 @@ const Header = () => {
 				</div>
 			</nav>
 		</header>
+
 	)
 }
 

@@ -1,0 +1,21 @@
+@use '../../../styles/variables.scss' as *;
+
+.wrapper {
+	padding: $spacing-05;
+	display: grid;
+	grid-area: center;
+	gap: $spacing-05;
+	grid-template-columns: 1fr;
+
+	@media (min-width: 650px) {
+		grid-template-columns: repeat(2, 1fr);
+		padding: $spacing-06;
+		gap: $spacing-06;
+	}
+
+	@media (min-width: 900px) {
+		grid-template-columns: repeat(3, 1fr);
+		padding: $spacing-08;
+		gap: $spacing-08;
+	}
+}

@@ -9,6 +9,9 @@ import TextPage from './pages/components/text'
 import AvatarPage from './pages/components/avatar'
 import LinkPage from './pages/components/link'
 import FlexPage from './pages/components/flex'
+import DividerPage from './pages/components/divider'
+import ListPage from './pages/components/list'
+import BlockquotePage from './pages/components/blockquote'
 
 export const Router = () => {
 	return (
@@ -22,6 +25,9 @@ export const Router = () => {
 			<Route path="/components/avatar" element={<AvatarPage />} />
 			<Route path="/components/link" element={<LinkPage />} />
 			<Route path="/components/flex" element={<FlexPage />} />
+			<Route path='/components/divider' element={<DividerPage />} />
+			<Route path='/components/list' element={<ListPage />} />
+			<Route path='/components/blockquote' element={<BlockquotePage />} />
 		</Routes>
 	)
 }

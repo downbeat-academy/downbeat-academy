@@ -15,6 +15,9 @@ export default function ComponentsPage() {
 			<Link to="/components/text">Text</Link>
 			<Link to="/components/link">Link</Link>
 			<Link to="/components/flex">Flex</Link>
+			<Link to="/components/divider">Divider</Link>
+			<Link to='/components/list'>List</Link>
+			<Link to='/components/blockquote'>Blockquote</Link>
 		</Flex>
 	)
 }

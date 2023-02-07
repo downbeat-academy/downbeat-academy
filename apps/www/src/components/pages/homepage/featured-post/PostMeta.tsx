@@ -4,7 +4,7 @@ import { Avatar, AvatarGroup, Text } from 'cadence-core'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/linkResolver'
-import s from '@styles/pages/homepage/featured-post/postMeta.module.scss'
+import s from './postMeta.module.scss'
 
 const PostMeta = ({ authors, date }) => {
 	const postDate = prettyDate(date, 'MMM do, yyyy')

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Text, LogoSymbol, Flex } from 'cadence-core'
 import { socialLinks, siteLinks, copyrightLinks } from './FooterLinks'
-import s from '@styles/components/navigation/footer/footer.module.scss'
+import s from './footer.module.scss'
 
 const Footer = () => {
 	const getSocialLinks = socialLinks.map((socialLink) => {
