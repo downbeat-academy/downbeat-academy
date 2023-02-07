@@ -3,6 +3,7 @@
 .wrapper {
 	padding: $spacing-05;
 	display: grid;
+	grid-area: center;
 	gap: $spacing-05;
 	grid-template-columns: 1fr;
 

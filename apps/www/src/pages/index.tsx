@@ -27,7 +27,7 @@ export default function HomePage({ data, preview }) {
 				description='Downbeat Academy features music education and resources for the masses, taught by accomplished musicians and educators in the field'
 				url='/'
 			/>
-			<ContentGrid>
+			<ContentGrid location='full-bleed'>
 				<FeaturedPost input={featuredArticle} />
 				<PostGrid>{articles}</PostGrid>
 			</ContentGrid>

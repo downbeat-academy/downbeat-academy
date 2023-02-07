@@ -2,7 +2,7 @@ import { ModuleRenderer } from '@components/content-modules'
 import { PageTitle } from "@components/page-title"
 import { Seo } from '@components/meta'
 import { PageTemplateProps } from "./types"
-import { ContentGrid, ContentGridItem } from '@components/layout'
+import { ContentGrid } from '@components/layout'
 
 const PageTemplate = ({
   title,
@@ -13,11 +13,9 @@ const PageTemplate = ({
   return (
     <>
       <Seo title={title} />
-      <ContentGrid>
-        <ContentGridItem location='center'>
-          <PageTitle title={title} subtitle={subtitle} alignment='left' />
-          <ModuleRenderer modules={moduleContent} />
-        </ContentGridItem>
+      <ContentGrid location='center' padding='small'>
+        <PageTitle title={title} subtitle={subtitle} alignment='left' />
+        <ModuleRenderer modules={moduleContent} />
       </ContentGrid>
     </>
   )
