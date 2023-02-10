@@ -36,7 +36,6 @@ export const getArticlePaths = groq`
 export const getAllArticles = groq`
     *[_type == "article"] {
         _id,
-        _updatedAt,
         title,
         "slug": slug.current,
         content {
@@ -53,6 +52,7 @@ export const getAllArticles = groq`
         },
         excerpt,
         date,
+        updatedDate,
         authors[]->,
         categories[]->,
         featuredImage,
