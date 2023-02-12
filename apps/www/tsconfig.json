@@ -59,8 +59,7 @@
     "**/*.ts",
     "**/*.tsx",
     "hooks/useFathom.tsx",
-    ".next/types/**/*.ts"
-  ],
+    ".next/types/**/*.ts" ],
   "exclude": [
     "node_modules"
   ]
