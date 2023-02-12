@@ -101,6 +101,7 @@ importers:
       fathom-client: ^3.5.0
       next: 13.1.1
       next-sanity: ^3.1.9
+      next-sitemap: ^3.1.52
       opensheetmusicdisplay: ^1.7.3
       react: 18.2.0
       react-dom: 18.2.0
@@ -127,6 +128,7 @@ importers:
       fathom-client: 3.5.0
       next: 13.1.1_5mhhrw5dq6gnbuirj2awdzvyuu
       next-sanity: 3.1.9_next@13.1.1+react@18.2.0
+      next-sitemap: 3.1.52_next@13.1.1
       opensheetmusicdisplay: 1.7.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1792,6 +1794,10 @@ packages:
       '@codemirror/state': 6.2.0
       style-mod: 4.0.0
       w3c-keyname: 2.2.6
+    dev: false
+
+  /@corex/deepmerge/4.0.37:
+    resolution: {integrity: sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==}
     dev: false
 
   /@csstools/selector-specificity/2.1.1_wajs5nedgkikc5pcuwett7legi:
@@ -4443,7 +4449,7 @@ packages:
   /axios/0.26.1:
     resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
     dependencies:
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: false
@@ -6614,16 +6620,6 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /follow-redirects/1.15.2:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: false
-
   /follow-redirects/1.15.2_debug@2.6.9:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
@@ -6899,7 +6895,7 @@ packages:
       create-error-class: 3.0.2
       debug: 2.6.9
       decompress-response: 6.0.0
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
       form-urlencoded: 2.0.9
       into-stream: 3.1.0
       is-plain-object: 2.0.4
@@ -8591,6 +8587,19 @@ packages:
       react: 18.2.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /next-sitemap/3.1.52_next@13.1.1:
+    resolution: {integrity: sha512-tY469i4QRV1PwM9BoL+HdKYBCJ83IQl3PmUNapG/Hxp0MIYIw1hINU8E+Edf5Kr8vHXfVzPqDoul/Abu2P0vkw==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.37
+      minimist: 1.2.7
+      next: 13.1.1_5mhhrw5dq6gnbuirj2awdzvyuu
     dev: false
 
   /next-tick/1.1.0:

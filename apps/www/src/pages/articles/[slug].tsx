@@ -1,6 +1,7 @@
 import { sanityClient } from '@lib/sanity.client'
 import { getArticles, getArticlePaths } from '@lib/sanity.queries'
 import { Seo } from '@components/meta'
+import { ArticleTemplate } from '@components/templates/article'
 
 export default function Article({ data, preview }) {
 	const {
@@ -8,7 +9,7 @@ export default function Article({ data, preview }) {
 		content,
 		excerpt,
 		date,
-		_updatedAt,
+		updatedDate,
 		authors,
 		categories,
 		featuredImage,
@@ -18,7 +19,16 @@ export default function Article({ data, preview }) {
 	return (
 		<>
 			<Seo title={title} description={excerpt} />
-			<h1>{title}</h1>
+			<ArticleTemplate
+				title={title}
+				excerpt={excerpt}
+				content={content}
+				date={date}
+				updatedDate={updatedDate}
+				authors={authors}
+				categories={categories}
+				metadata={metadata}
+			/>
 			{/* <PostTitle
         title={title}
         excerpt={excerpt}

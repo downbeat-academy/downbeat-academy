@@ -1,25 +1,25 @@
 const linkResolver = (url: string, category: string) => {
 	switch (category) {
 		case 'page':
-			return `${url}`
+			return `/${url}`
 		case 'article':
-			return `articles/${url}`
+			return `/articles/${url}`
 		case 'category':
-			return `categories/${url}`
+			return `/categories/${url}`
 		case 'contributor':
-			return `contributors/${url}`
+			return `/contributors/${url}`
 		case 'person':
-			return `contributors/${url}`
+			return `/contributors/${url}`
 		case 'podcast':
-			return `podcasts/${url}`
+			return `/podcasts/${url}`
 		case 'resource':
-			return `resources/${url}`
+			return `/resources/${url}`
 		case 'category':
-			return `categories/${url}`
+			return `/categories/${url}`
 		case 'landingPage':
-			return `p/${url}`
+			return `/p/${url}`
 		default:
-			return `${url}`
+			return `/${url}`
 	}
 }
 

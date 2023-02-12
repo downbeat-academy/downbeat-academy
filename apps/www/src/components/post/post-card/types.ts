@@ -5,7 +5,8 @@ interface PostCardProps {
 	title: string
 	slug: string
 	authors: author[]
-	date: string
+	date: string,
+	excerpt?: string,
 }
 
 export type { PostCardProps }

@@ -7,7 +7,7 @@ import { prettyDate } from '@utils/dateFormat'
 import { PostCardProps } from './types'
 import s from './postCard.module.scss'
 
-const PostCard = ({ image, title, slug, authors, date }: PostCardProps) => {
+const PostCard = ({ image, title, slug, authors, date, excerpt }: PostCardProps) => {
 	const getAuthorNames = authors.slice(0, 1).map((author) => {
 		return author.name
 	})
@@ -26,8 +26,6 @@ const PostCard = ({ image, title, slug, authors, date }: PostCardProps) => {
 	})
 
 	const imageUrl = getSanityImageUrl(image.image.asset)
-
-	// console.log(image.image.asset)
 
 	return (
 		<Link href={linkResolver(slug, 'article')} className={s.wrapper}>
@@ -59,6 +57,18 @@ const PostCard = ({ image, title, slug, authors, date }: PostCardProps) => {
 					>
 						{title}
 					</Text>
+					{excerpt &&
+						<Text
+							tag="p"
+							category="body"
+							type="expressive"
+							color="primary"
+							size="base"
+							collapse
+						>
+							{excerpt}
+						</Text>
+					}
 					<Flex direction="row" gap="base" align="center" className={s.author}>
 						<AvatarGroup
 							avatars={getAuthorImages}

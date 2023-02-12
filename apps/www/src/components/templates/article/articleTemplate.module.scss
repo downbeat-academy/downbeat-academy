@@ -1,0 +1,5 @@
+@use '../../../styles/variables.scss' as *;
+
+.articleWrapper {
+	grid-area: auto / sidebar-left / auto / sidebar-right;
+}

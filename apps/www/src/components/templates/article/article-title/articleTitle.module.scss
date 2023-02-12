@@ -1,0 +1,59 @@
+@use '../../../../styles/variables.scss' as *;
+
+.wrapper {
+	grid-area: auto / sidebar-left / auto / sidebar-right;
+	display: grid;
+	align-items: end;
+	align-content: center;
+	border-bottom: 1px solid $color-border-default;
+
+	@media (min-width: 1200px) {
+		grid-template-columns: 60% 40%;
+	}
+}
+
+.badgeLink {
+	text-decoration: none;
+}
+
+.title {
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-06;
+	background: $color-palette-pineapple-100;
+	border-bottom: 1px solid $color-border-default;
+	border-right: none;
+	padding: $spacing-08 $spacing-05;
+
+	@media (min-width: 1200px) {
+		padding: $spacing-08;
+		border-right: 1px solid $color-border-default;
+		border-bottom: none;
+	}
+}
+
+.excerpt {
+	padding: $spacing-08 $spacing-05;
+	border-bottom: 1px solid $color-border-default;
+
+	@media (min-width: 1200px) {
+		padding: $spacing-08;
+	}
+}
+
+.meta {
+	padding: $spacing-05;
+	display: flex;
+	flex-direction: column;
+
+	@media (min-width: 500px) {
+		gap: $spacing-05;
+		padding: $spacing-05 $spacing-08;
+		align-items: center;
+		flex-direction: row;
+	}
+}
+
+.authorLink {
+	color: $color-foreground-primary;
+}
