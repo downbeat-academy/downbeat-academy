@@ -1,5 +1,7 @@
 import { Seo } from "@components/meta"
 import { ContentGrid } from "@components/layout"
+import { ModuleRenderer } from '@components/content-modules'
+import { RichText } from "@components/content-modules"
 import { ArticleTemplateProps } from "./types"
 import { ArticleTitle } from './article-title'
 import s from './articleTemplate.module.scss'
@@ -15,12 +17,14 @@ const ArticleTemplate = ({
   featuredImage,
   metadata,
 }: ArticleTemplateProps) => {
+
+  console.log(content)
   return (
     <>
       <Seo
         title={title}
       />
-      <main className={s.articleWrapper}>
+      <ContentGrid location="full-bleed">
         <ArticleTitle
           title={title}
           excerpt={excerpt}
@@ -29,7 +33,8 @@ const ArticleTemplate = ({
           date={date}
           updateDate={updatedDate}
         />
-      </main>
+        <RichText value={content.content} />
+      </ContentGrid>
     </>
   )
 }
