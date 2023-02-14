@@ -36,7 +36,7 @@ const components = {
     video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
   },
   marks: {
-    link: ({ children, value }) => <StyledLink href={value.href} type='primary' style='default'>{children}</StyledLink>,
+    link: ({ children, value }) => <StyledLink href={value.href} key='' type='primary' style='default'>{children}</StyledLink>,
     internalLink: ({ children, value }) => <StyledLink href={linkResolver(value.slug, value.type)} type='primary' style='default'>{children}</StyledLink>
   },
 }

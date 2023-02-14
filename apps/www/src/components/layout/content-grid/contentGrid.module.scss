@@ -1,27 +1,8 @@
-@use '../../../styles/variables.scss' as *;
-
-$locations: (
-  'sidebar-left': auto / sidebar-left,
-  'sidebar-right': auto / sidebar-right,
-  'center': auto / center,
-  'full-bleed': auto / sidebar-left / auto / sidebar-right,
-);
-
-@each $location, $value in $locations {
-  .location--#{$location} {
-    grid-area: $value;
-  }
+.root {
+	display: grid;
+	grid-area: content;
+	grid-template-columns: 1fr min(75ch, 100%) 1fr;
+	grid-template-areas: 'sidebar-left center sidebar-right';
+	grid-auto-flow: dense;
+	max-width: 100vw;
 }
-
-$paddings: (
-  'small': $spacing-06,
-  'medium': $spacing-08,
-  'large': $spacing-10,
-);
-
-@each $padding, $value in $paddings {
-  .padding--#{$padding} {
-    padding: $value;
-  }
-}
-

@@ -181,7 +181,7 @@ export const getContributorPaths = groq`
     *[_type == "person" && defined(slug.current)][].slug.current
 `
 
-export const GET_CONTRIBUTORS = groq`
+export const getAllContributors = groq`
     *[_type == 'person'][] {
         _id,
         name,

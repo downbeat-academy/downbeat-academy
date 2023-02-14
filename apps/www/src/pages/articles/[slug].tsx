@@ -29,17 +29,6 @@ export default function Article({ data, preview }) {
 				categories={categories}
 				metadata={metadata}
 			/>
-			{/* <PostTitle
-        title={title}
-        excerpt={excerpt}
-        categories={categories}
-        authors={authors}
-        date={date}
-        lastUpdated={_updatedAt}
-      />
-      <GridInner>
-        <RichText value={content.content} />
-      </GridInner> */}
 		</>
 	)
 }

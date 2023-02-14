@@ -16,7 +16,6 @@ const ArticleTitle = ({
 }) => {
 
   const getCategories = categories.map(category => {
-    console.log(category);
     return (
       <Link
         href={linkResolver(category.slug.current, category._type)}
