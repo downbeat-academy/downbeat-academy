@@ -15,8 +15,6 @@ const ArticleTemplate = ({
   featuredImage,
   metadata,
 }: ArticleTemplateProps) => {
-
-  console.log(content)
   return (
     <>
       <Seo

@@ -2,10 +2,9 @@ import { sanityClient } from "@lib/sanity.client"
 import { getAllContributors } from "@lib/sanity.queries"
 import { ContentGrid, ContentGridItem } from "@components/layout"
 import { ContributorItem } from '@components/pages/contributors'
+import { PageTitle } from "@components/page-title"
 
 export default function ContributorsPage({ data, preview }) {
-
-	console.log(data)
 	
 	const contributors = data.contributorsPage.map(contributor => {
 		return (
@@ -22,6 +21,7 @@ export default function ContributorsPage({ data, preview }) {
 	return (
 		<ContentGrid>
 			<ContentGridItem location='center' padding='medium' gap='large'>
+				<PageTitle title='Contributors' alignment='left' />
 				{contributors}
 			</ContentGridItem>
 		</ContentGrid>

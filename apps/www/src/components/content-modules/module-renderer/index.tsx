@@ -1,7 +1,6 @@
 import { RichText } from "@components/content-modules/rich-text";
 
 const ModuleRenderer = ({ modules }) => {
-	// console.log(modules)
 	const renderModule = modules.map((m) => {
 		switch (m._type) {
 			case 'richText':

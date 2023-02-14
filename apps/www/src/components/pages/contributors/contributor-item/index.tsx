@@ -22,7 +22,7 @@ const ContributorItem = ({
   )
 
   const getInstruments = instrument.map(instrument => {
-    return <Badge text={instrument} key={instrument} />
+    return <Badge text={instrument} key={instrument} style='outline' />
   })
 
   return (
