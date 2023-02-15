@@ -58,6 +58,7 @@ export const getAllArticles = groq`
         featuredImage,
         metadata
     }
+    | order(date desc)
 `
 
 // Blog Queries

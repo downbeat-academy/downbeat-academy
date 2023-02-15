@@ -1,6 +1,6 @@
 import { Seo } from "@components/meta"
 import { ContentGrid, ContentGridItem } from "@components/layout"
-import { RichText } from "@components/content-modules"
+import { ModuleRenderer, RichText } from "@components/content-modules"
 import { ArticleTemplateProps } from "./types"
 import { ArticleTitle } from './article-title'
 
@@ -15,6 +15,7 @@ const ArticleTemplate = ({
   featuredImage,
   metadata,
 }: ArticleTemplateProps) => {
+
   return (
     <>
       <Seo
@@ -32,7 +33,7 @@ const ArticleTemplate = ({
           />
         </ContentGridItem>
         <ContentGridItem location='center'>
-          <RichText value={content.content} />
+          {/* <RichText value={content} /> */}
         </ContentGridItem>
       </ContentGrid>
     </>

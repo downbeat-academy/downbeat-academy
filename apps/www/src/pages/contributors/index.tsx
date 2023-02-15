@@ -13,7 +13,7 @@ export default function ContributorsPage({ data, preview }) {
 				slug={contributor.slug}
 				avatar={contributor.avatar}
 				instrument={contributor.instrument}
-				key={contributor._key}
+				key={contributor._id}
 			/>
 		)
 	})
