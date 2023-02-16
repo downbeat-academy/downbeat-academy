@@ -15,8 +15,6 @@ const ArticleTitle = ({
   updatedDate,
 }) => {
 
-  console.log(authors)
-
   const getCategories = categories.map(category => {
     return (
       <Link
