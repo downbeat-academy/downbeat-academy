@@ -22,7 +22,10 @@ export const getArticles = groq`
         },
         excerpt,
         date,
-        authors[]->,
+        authors[]-> {
+            ...,
+            "slug": slug.current,
+        },
         categories[]->,
         featuredImage,
         metadata
@@ -53,7 +56,10 @@ export const getAllArticles = groq`
         excerpt,
         date,
         updatedDate,
-        authors[]->,
+        authors[]-> {
+            ...,
+            "slug": slug.current,
+        },
         categories[]->,
         featuredImage,
         metadata
@@ -215,6 +221,7 @@ export const getHomepageData = groq`
         _type,
         title,
         date,
+        updatedDate,
         featuredImage,
         "slug": slug.current,
         excerpt,

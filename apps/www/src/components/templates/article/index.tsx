@@ -29,7 +29,7 @@ const ArticleTemplate = ({
             categories={categories}
             authors={authors}
             date={date}
-            updateDate={updatedDate}
+            updatedDate={updatedDate}
           />
         </ContentGridItem>
         <ContentGridItem location='center'>

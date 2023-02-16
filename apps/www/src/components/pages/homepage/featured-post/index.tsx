@@ -1,16 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getSanityImageUrl } from '@utils/getSanityImage'
 import { Flex, Text } from 'cadence-core'
+import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
-
+import { ContentAuthor } from '@components/content-author'
 import { FeaturedPostProps } from './types'
 import s from './featuredPost.module.scss'
 import { Categories } from './Categories'
-import { PostMeta } from './PostMeta'
 
 const FeaturedPost = ({ input }: FeaturedPostProps) => {
-	const { slug, categories, title, excerpt, authors, date, featuredImage } =
+	const { slug, categories, title, excerpt, authors, date, featuredImage, updatedDate } =
 		input
 
 	const imageUrl = getSanityImageUrl(featuredImage.image.asset)
@@ -56,7 +55,14 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
 					</Text>
 				</Flex>
 				<div className={s.divider} aria-hidden="true"></div>
-				<PostMeta authors={authors} date={date} />
+				<div className={s.author}>
+					<ContentAuthor
+						authors={authors}
+						date={date}
+						updatedDate={updatedDate}
+						avatarSize='medium'
+					/>
+				</div>
 			</aside>
 		</section>
 	)

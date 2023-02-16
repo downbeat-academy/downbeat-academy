@@ -4,6 +4,7 @@ import { Flex, Text, Avatar, AvatarGroup } from 'cadence-core'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
 import { prettyDate } from '@utils/dateFormat'
+import { ContentAuthor } from '@components/content-author'
 import { PostCardProps } from './types'
 import s from './postCard.module.scss'
 
@@ -69,7 +70,12 @@ const PostCard = ({ image, title, slug, authors, date, excerpt }: PostCardProps)
 							{excerpt}
 						</Text>
 					}
-					<Flex direction="row" gap="base" align="center" className={s.author}>
+					<ContentAuthor
+						authors={authors}
+						date={date}
+						avatarSize='small'
+					/>
+					{/* <Flex direction="row" gap="base" align="center" className={s.author}>
 						<AvatarGroup
 							avatars={getAuthorImages}
 							overlap={true}
@@ -97,7 +103,7 @@ const PostCard = ({ image, title, slug, authors, date, excerpt }: PostCardProps)
 								{prettyDate(date, 'MMM do, yyyy')}
 							</Text>
 						</Flex>
-					</Flex>
+					</Flex> */}
 				</Flex>
 			</article>
 		</Link>

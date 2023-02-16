@@ -1,0 +1,12 @@
+@use '../../styles/variables.scss' as *;
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: $spacing-05;
+	align-items: center;
+}
+
+.authorLink {
+	color: $color-foreground-primary;
+}

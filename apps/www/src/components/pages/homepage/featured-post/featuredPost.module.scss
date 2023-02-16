@@ -65,3 +65,11 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+.author {
+	padding: $spacing-05 $spacing-08;
+
+	@media (max-width: 900px) {
+		padding: $spacing-05 $spacing-06;
+	}
+}
