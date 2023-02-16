@@ -33,7 +33,7 @@ const ArticleTemplate = ({
           />
         </ContentGridItem>
         <ContentGridItem location='center'>
-          {/* <RichText value={content} /> */}
+          <RichText value={content.content} />
         </ContentGridItem>
       </ContentGrid>
     </>
