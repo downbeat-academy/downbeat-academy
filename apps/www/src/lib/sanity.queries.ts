@@ -176,8 +176,10 @@ export const getContributors = groq`
             references(^._id) 
             && _type != "page"
             && !(title match "Sample")
+            && !(title match "Test post")
         ] {
             _id,
+            "type": _type,
             title,
             "slug": slug.current,
         }

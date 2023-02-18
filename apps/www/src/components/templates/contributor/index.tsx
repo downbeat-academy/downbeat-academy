@@ -1,8 +1,11 @@
 import Image from 'next/image'
-import { Text, Avatar } from 'cadence-core'
+import Link from 'next/link'
+import { Text, Avatar, Badge, Flex } from 'cadence-core'
 import { getSanityImageUrl } from '@utils/getSanityImage'
+import { linkResolver } from '@utils/linkResolver'
 import { ContentGrid, ContentGridItem } from '@components/layout'
 import { RichText } from '@components/content-modules'
+import { StyledLink } from '@components/link'
 import { ContributorTemplateProps } from './types'
 import s from './contributorTemplateProps.module.scss'
 
@@ -11,11 +14,25 @@ const ContributorTemplate = ({
   avatar,
   biography,
   instrument,
-  slug,
   content
 }: ContributorTemplateProps) => {
 
   console.log(content)
+
+  const instruments = instrument.map(instrument => {
+    return <Badge type='neutral' style='outline' text={instrument} key={instrument} />
+  })
+
+  const contributorContent = content.map(content => {
+    return (
+      <StyledLink 
+        href={linkResolver(content.slug, content.type)}
+        style='default'
+        type='primary'
+        key={content.title}
+      >{content.title}</StyledLink>
+    )
+  })
 
   const image = (
     <Image
@@ -27,7 +44,7 @@ const ContributorTemplate = ({
   )
   return (
     <ContentGrid>
-      <ContentGridItem location='center' padding='large'>
+      <ContentGridItem location='center' padding='small'>
         <Avatar 
           imageObject={image}
           size='large'
@@ -38,7 +55,17 @@ const ContributorTemplate = ({
           category='headline'
           type='expressive'
         >{name}</Text>
+        <Flex direction='row' gap='small'>{instruments}</Flex>
         <RichText value={biography.content} />
+        <Flex direction='column' gap='base'>
+          <Text
+            type='expressive'
+            tag='h3'
+            size='4x-large'
+            category='headline'
+          >Content</Text>
+          {contributorContent}
+        </Flex>
       </ContentGridItem>
     </ContentGrid>
   )
