@@ -17,8 +17,6 @@ const ContributorTemplate = ({
   content
 }: ContributorTemplateProps) => {
 
-  console.log(content)
-
   const instruments = instrument.map(instrument => {
     return <Badge type='neutral' style='outline' text={instrument} key={instrument} />
   })
