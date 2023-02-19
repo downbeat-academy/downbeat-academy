@@ -5,6 +5,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	border-bottom: 1px solid $color-palette-neutral-300;
+	min-height: 65vh;
 
 	@media (max-width: 1200px) {
 		grid-template-columns: 1fr;
@@ -22,12 +23,15 @@
 .content {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	gap: 0;
 }
 
 .main {
 	background-color: $color-palette-pineapple-100;
 	padding: $spacing-08;
+	height: 100%;
+	justify-content: center;
 
 	@media (max-width: 900px) {
 		padding: $spacing-06;
