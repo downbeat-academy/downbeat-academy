@@ -20,6 +20,7 @@ const ArticleTemplate = ({
     <>
       <Seo
         title={title}
+        description={excerpt}
       />
       <ContentGrid>
         <ContentGridItem location='full-bleed' padding='none'>
