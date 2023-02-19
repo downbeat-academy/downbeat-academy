@@ -40,7 +40,7 @@ const ContentAuthor = ({
         tag='p'
         size='small'
         category='body'
-        color='secondary'
+        color='primary'
         collapse
         key={_id}
       >

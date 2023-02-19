@@ -19,7 +19,7 @@ const FeaturedPost = ({ input }: FeaturedPostProps) => {
 			<div className={s.image}>
 				<Image
 					src={imageUrl}
-					alt={featuredImage.alternativeText}
+					alt={featuredImage.alternativeText ? featuredImage.alternativeText : 'Featured image'}
 					fill
 					style={{ objectFit: 'cover' }}
 					priority

@@ -5,6 +5,7 @@ import { groq } from 'next-sanity'
 export const getArticles = groq`
     *[_type == "article" && slug.current == $slug][0] {
         _id,
+        _key,
         _updatedAt,
         title,
         "slug": slug.current,
@@ -39,6 +40,7 @@ export const getArticlePaths = groq`
 export const getAllArticles = groq`
     *[_type == "article"] {
         _id,
+        _key,
         title,
         "slug": slug.current,
         content {
