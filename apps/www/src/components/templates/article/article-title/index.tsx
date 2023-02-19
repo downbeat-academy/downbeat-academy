@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Text, Badge, Flex, Avatar, AvatarGroup } from 'cadence-core'
+import { Text, Badge, Flex } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
-import { prettyDate } from '@utils/dateFormat'
 import s from './articleTitle.module.scss'
+import { ContentAuthor } from '@components/content-author'
 
 const ArticleTitle = ({
   title,
@@ -12,11 +12,10 @@ const ArticleTitle = ({
   categories,
   authors,
   date,
-  updateDate
+  updatedDate,
 }) => {
 
   const getCategories = categories.map(category => {
-    console.log(category);
     return (
       <Link
         href={linkResolver(category.slug.current, category._type)}
@@ -31,35 +30,6 @@ const ArticleTitle = ({
       </Link>
     )
   })
-
-  const getAuthorImages = authors.slice(0, 3).map((author) => {
-    const image = (
-      <Image 
-        src={getSanityImageUrl(author.avatar.image.asset)}
-        alt={author.name}
-        width={100}
-        height={100}
-      />
-    )
-
-    return (
-      <Link href={linkResolver(author.slug.current, 'contributor')} key={author._id}>
-        <Avatar imageObject={image} size='medium' />
-      </Link>
-    )
-  })
-
-  const getAuthorNames = authors.slice(0, 3).map((author) => {
-		return (
-			<Link
-				href={linkResolver(author.slug.current, 'contributor')}
-				key={author._id}
-				className={s.authorLink}
-			>
-				{author.name}{' '}
-			</Link>
-		)
-	})
 
   return (
     <div className={s.wrapper}>
@@ -85,13 +55,11 @@ const ArticleTitle = ({
             collapse
           >{excerpt}</Text>
         </div>
-        <div className={s.meta}>
-          <AvatarGroup
-            avatars={getAuthorImages}
-            overlap={true}
-            isInteractive={authors.length > 1 ? true : false}
+        <div className={s.authors}>
+          <ContentAuthor
+            authors={authors}
+            date={date}
           />
-          <Text tag='p' size='small' category='body'><strong>{getAuthorNames}</strong></Text>
         </div>
       </div>
     </div>

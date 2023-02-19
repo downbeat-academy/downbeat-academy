@@ -1,8 +1,8 @@
 import { Seo } from "@components/meta"
-import { ContentGrid } from "@components/layout"
+import { ContentGrid, ContentGridItem } from "@components/layout"
+import { ModuleRenderer, RichText } from "@components/content-modules"
 import { ArticleTemplateProps } from "./types"
 import { ArticleTitle } from './article-title'
-import s from './articleTemplate.module.scss'
 
 const ArticleTemplate = ({
   title,
@@ -15,21 +15,28 @@ const ArticleTemplate = ({
   featuredImage,
   metadata,
 }: ArticleTemplateProps) => {
+
   return (
     <>
       <Seo
         title={title}
+        description={excerpt}
       />
-      <main className={s.articleWrapper}>
-        <ArticleTitle
-          title={title}
-          excerpt={excerpt}
-          categories={categories}
-          authors={authors}
-          date={date}
-          updateDate={updatedDate}
-        />
-      </main>
+      <ContentGrid>
+        <ContentGridItem location='full-bleed' padding='none'>
+          <ArticleTitle
+            title={title}
+            excerpt={excerpt}
+            categories={categories}
+            authors={authors}
+            date={date}
+            updatedDate={updatedDate}
+          />
+        </ContentGridItem>
+        <ContentGridItem location='center'>
+          <RichText value={content.content} />
+        </ContentGridItem>
+      </ContentGrid>
     </>
   )
 }

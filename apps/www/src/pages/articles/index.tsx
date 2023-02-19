@@ -2,6 +2,7 @@ import { sanityClient } from '@lib/sanity.client'
 import { getAllArticles } from '@lib/sanity.queries'
 import { PostCard } from "@components/post"
 import { ArticlesPageWrapper } from '@components/pages/articles'
+import { ContentGrid, ContentGridItem } from '@components/layout'
 
 export default function ArticlesPage({ data, preview }) {
 
@@ -20,9 +21,11 @@ export default function ArticlesPage({ data, preview }) {
 	})
 
 	return (
-		<ArticlesPageWrapper>
-			{articles}
-		</ArticlesPageWrapper>
+		<ContentGrid>
+			<ArticlesPageWrapper>
+				{articles}
+			</ArticlesPageWrapper>
+		</ContentGrid>
 	)
 }
 

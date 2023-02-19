@@ -17,8 +17,6 @@ export default function Article({ data, preview }) {
 	} = data.article
 
 	return (
-		<>
-			<Seo title={title} description={excerpt} />
 			<ArticleTemplate
 				title={title}
 				excerpt={excerpt}
@@ -29,18 +27,6 @@ export default function Article({ data, preview }) {
 				categories={categories}
 				metadata={metadata}
 			/>
-			{/* <PostTitle
-        title={title}
-        excerpt={excerpt}
-        categories={categories}
-        authors={authors}
-        date={date}
-        lastUpdated={_updatedAt}
-      />
-      <GridInner>
-        <RichText value={content.content} />
-      </GridInner> */}
-		</>
 	)
 }
 

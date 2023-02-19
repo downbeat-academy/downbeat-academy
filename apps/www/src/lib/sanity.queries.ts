@@ -5,6 +5,7 @@ import { groq } from 'next-sanity'
 export const getArticles = groq`
     *[_type == "article" && slug.current == $slug][0] {
         _id,
+        _key,
         _updatedAt,
         title,
         "slug": slug.current,
@@ -22,7 +23,10 @@ export const getArticles = groq`
         },
         excerpt,
         date,
-        authors[]->,
+        authors[]-> {
+            ...,
+            "slug": slug.current,
+        },
         categories[]->,
         featuredImage,
         metadata
@@ -36,6 +40,7 @@ export const getArticlePaths = groq`
 export const getAllArticles = groq`
     *[_type == "article"] {
         _id,
+        _key,
         title,
         "slug": slug.current,
         content {
@@ -53,11 +58,15 @@ export const getAllArticles = groq`
         excerpt,
         date,
         updatedDate,
-        authors[]->,
+        authors[]-> {
+            ...,
+            "slug": slug.current,
+        },
         categories[]->,
         featuredImage,
         metadata
     }
+    | order(date desc)
 `
 
 // Blog Queries
@@ -169,8 +178,10 @@ export const getContributors = groq`
             references(^._id) 
             && _type != "page"
             && !(title match "Sample")
+            && !(title match "Test post")
         ] {
             _id,
+            "type": _type,
             title,
             "slug": slug.current,
         }
@@ -181,7 +192,7 @@ export const getContributorPaths = groq`
     *[_type == "person" && defined(slug.current)][].slug.current
 `
 
-export const GET_CONTRIBUTORS = groq`
+export const getAllContributors = groq`
     *[_type == 'person'][] {
         _id,
         name,
@@ -214,6 +225,7 @@ export const getHomepageData = groq`
         _type,
         title,
         date,
+        updatedDate,
         featuredImage,
         "slug": slug.current,
         excerpt,

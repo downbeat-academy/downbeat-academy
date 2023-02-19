@@ -19,7 +19,7 @@ const linkResolver = (url: string, category: string) => {
 		case 'landingPage':
 			return `/p/${url}`
 		default:
-			return `/${url}`
+			return `${url}`
 	}
 }
 

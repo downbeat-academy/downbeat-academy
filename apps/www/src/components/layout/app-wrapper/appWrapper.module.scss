@@ -1,9 +1,8 @@
 .root {
 	display: grid;
 	grid-template-rows: auto minmax(calc(100vh - 105px), auto) auto;
-	grid-template-columns: 1fr min(75ch, 100%) 1fr;
 	grid-template-areas:
-		'header header header'
-		'sidebar-left center sidebar-right'
-		'footer footer footer';
+		'header'
+		'content'
+		'footer';
 }

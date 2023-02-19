@@ -6,6 +6,7 @@ interface FeaturedPostProps {
 		_id: string
 		title: string
 		date: string
+		updatedDate?: string,
 		excerpt: string
 		authors: author[]
 		categories: category[]
