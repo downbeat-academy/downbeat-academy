@@ -3,7 +3,7 @@ import { groq } from 'next-sanity'
 // Article Queries
 
 export const getArticles = groq`
-    *[_type == "article" && slug.current == $slug && title != "Test post"][0] {
+    *[_type == "article" && slug.current == $slug][0] {
         _id,
         _key,
         _updatedAt,
@@ -38,7 +38,7 @@ export const getArticlePaths = groq`
 `
 
 export const getAllArticles = groq`
-    *[_type == "article" && title != "Test post"] {
+    *[_type == "article"] {
         _id,
         _key,
         title,
