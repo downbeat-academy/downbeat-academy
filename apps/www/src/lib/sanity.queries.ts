@@ -220,7 +220,7 @@ export const getResourcePaths = groq`
 // Homepage
 
 export const getHomepageData = groq`
-    *[_type == 'article'] {
+    *[_type == 'article' && title != "Test post"] {
         _id,
         _type,
         title,
