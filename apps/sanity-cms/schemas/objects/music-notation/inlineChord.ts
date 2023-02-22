@@ -14,18 +14,6 @@ export default {
 			description: 'The root center of the chord.',
 		},
 		{
-			name: 'type',
-			title: 'Chord Type',
-			type: 'string',
-			options: {
-				list: [
-					{ title: 'Triad', value: 'triad' },
-					{ title: 'Seventh', value: 'seventh' },
-					{ title: 'Extension', value: 'extension' },
-				],
-			},
-		},
-		{
 			name: 'quality',
 			title: 'Chord Quality',
 			type: 'string',
@@ -94,19 +82,9 @@ export default {
 			alternateBass: 'alternateBass',
 		},
 		prepare(selection: any) {
-			const { title, type, quality, seventh, extension, alternateBass } =
-				selection
+			const { title, quality, seventh, extension, alternateBass } = selection
 			return {
-				// title: '${title || ''}${quality || ''}${extension || ''}',
-				title: `${title} ${
-					type === 'triad'
-						? quality
-						: type === 'seventh'
-						? seventh
-						: type === 'extension'
-						? extension
-						: ''
-				} ${alternateBass ? '/ ' + alternateBass : ''}`,
+				title: `${title} ${seventh}`
 			}
 		},
 	},
