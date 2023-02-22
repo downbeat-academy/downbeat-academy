@@ -9,10 +9,10 @@ export default {
 			type: 'string',
 			options: {
 				list: [
-					{ title: `Flat (♭)`, value: `♭` },
-					{ title: `Sharp (♯)`, value: `♯` },
-					{ title: `Double Flat (𝄫)`, value: `𝄫` },
-					{ title: `Double Sharp (𝄪)`, value: `𝄪` },
+					{ title: `Flat (♭)`, value: `flat` },
+					{ title: `Sharp (♯)`, value: `sharp` },
+					{ title: `Double Flat (𝄫)`, value: `double-flat` },
+					{ title: `Double Sharp (𝄪)`, value: `double-sharp` },
 				],
 			},
 		},

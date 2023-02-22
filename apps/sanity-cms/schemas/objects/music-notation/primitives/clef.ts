@@ -9,11 +9,10 @@ export default {
 			type: `string`,
 			options: {
 				list: [
-					{ title: `G Clef (𝄞)`, value: `𝄞` },
-					{ title: `Alto Clef (𝄡)`, value: `𝄡` },
-					{ title: `Bass Clef (𝄢)`, value: `𝄢` },
-					{ title: `Drum Clef 1 (𝄥)`, value: `𝄥` },
-					{ title: `Drum Clef 2 (𝄦)`, value: `𝄦` },
+					{ title: `Treble Clef (𝄞)`, value: `treble-clef` },
+					{ title: `Alto Clef (𝄡)`, value: `alto-clef` },
+					{ title: `Bass Clef (𝄢)`, value: `bass-clef` },
+					{ title: `Drum Clef`, value: `drum-clef` },
 				],
 			},
 		},

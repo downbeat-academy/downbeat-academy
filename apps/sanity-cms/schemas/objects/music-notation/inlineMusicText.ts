@@ -27,7 +27,7 @@ export default {
 			option2: 'options.1.options',
 			option3: 'options.2.options',
 		},
-		prepare: ({ option1, option2, option3 }) => {
+		prepare: ({ option1, option2, option3 }: any) => {
 			const options = [option1, option2, option3]
 			const title = options.length > 0 ? options.join(' ') : ''
 			console.log(option1)

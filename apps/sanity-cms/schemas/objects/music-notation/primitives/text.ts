@@ -9,4 +9,9 @@ export default {
 			type: `string`,
 		},
 	],
+	preview: {
+		select: {
+			title: 'musicText',
+		}
+	}
 }
