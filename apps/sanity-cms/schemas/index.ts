@@ -30,11 +30,8 @@ import textarea from './objects/form/textarea'
 import audio from './objects/audio'
 // import video from './objects/video';
 import socialLink from './objects/socialLink'
-import musicNotation from './objects/musicNotation'
 import metadata from './objects/metadata'
 import moduleContent from './objects/moduleContent'
-import inlineChord from './objects/inlineChord'
-import inlineMusicText from './objects/inlineMusicText'
 import pageTitle from './objects/pageTitle'
 import blockquote from './objects/blockquote'
 
@@ -48,12 +45,16 @@ import internalLink from './objects/link/internalLink'
 import externalLink from './objects/link/externalLink'
 
 // Music Notation Objects
-import accidental from './objects/music-notation/accidental'
-import musicText from './objects/music-notation/text'
-import rhythmicValue from './objects/music-notation/rhythmicValue'
-import clef from './objects/music-notation/clef'
-import barValue from './objects/music-notation/barValue'
-import musicSymbol from './objects/music-notation/musicSymbol'
+import musicNotation from './objects/music-notation/musicNotation'
+import inlineChord from './objects/music-notation/inlineChord'
+import inlineMusicText from './objects/music-notation/inlineMusicText'
+// -- Primitives
+import accidental from './objects/music-notation/primitives/accidental'
+import musicText from './objects/music-notation/primitives/text'
+import rhythmicValue from './objects/music-notation/primitives/rhythmicValue'
+import clef from './objects/music-notation/primitives/clef'
+import barValue from './objects/music-notation/primitives/barValue'
+import musicSymbol from './objects/music-notation/primitives/musicSymbol'
 
 export const schemaTypes = [
 	page,

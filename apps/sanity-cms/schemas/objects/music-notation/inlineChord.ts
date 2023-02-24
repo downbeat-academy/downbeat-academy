@@ -14,18 +14,6 @@ export default {
 			description: 'The root center of the chord.',
 		},
 		{
-			name: 'type',
-			title: 'Chord Type',
-			type: 'string',
-			options: {
-				list: [
-					{ title: 'Triad', value: 'triad' },
-					{ title: 'Seventh', value: 'seventh' },
-					{ title: 'Extension', value: 'extension' },
-				],
-			},
-		},
-		{
 			name: 'quality',
 			title: 'Chord Quality',
 			type: 'string',
@@ -46,7 +34,7 @@ export default {
 			title: 'Seventh',
 			type: 'string',
 			description: 'Quality of the 7th scale degree of the chord',
-			hidden: ({ parent, type }) => !type && parent.type === 'triad',
+			hidden: ({ parent, type }: any) => !type && parent.type === 'triad',
 			options: {
 				list: [
 					{ title: 'Major 7', value: 'major7' },
@@ -62,7 +50,7 @@ export default {
 			title: 'Extension',
 			type: 'string',
 			description: 'Extension or alteration of the chord.',
-			hidden: ({ parent, type }) => !type && parent.type !== 'extension',
+			hidden: ({ parent, type }: any) => !type && parent.type !== 'extension',
 			options: {
 				list: [
 					{ title: '♭9', value: 'flat9' },
@@ -94,19 +82,9 @@ export default {
 			alternateBass: 'alternateBass',
 		},
 		prepare(selection: any) {
-			const { title, type, quality, seventh, extension, alternateBass } =
-				selection
+			const { title, quality, seventh, extension, alternateBass } = selection
 			return {
-				// title: '${title || ''}${quality || ''}${extension || ''}',
-				title: `${title} ${
-					type === 'triad'
-						? quality
-						: type === 'seventh'
-						? seventh
-						: type === 'extension'
-						? extension
-						: ''
-				} ${alternateBass ? '/ ' + alternateBass : ''}`,
+				title: `${title} ${seventh}`
 			}
 		},
 	},
