@@ -8,6 +8,9 @@ import s from './inlineChord.module.scss'
 import { InlineChordProps } from './types'
 
 const InlineChord = ({ input }: InlineChordProps ) => {
+
+  console.log(input)
+
   const { type, root, quality, seventh, extension, alternateBass } = input;
   
   const classes = classnames(
@@ -17,12 +20,10 @@ const InlineChord = ({ input }: InlineChordProps ) => {
   return (
     <span className={classes}>
       {root}
-      {type === 'triad' && transformQuality(quality)}
-      {type === 'seventh' && transformSeventh(seventh)}
-      <sup>
-        {type === 'extension' && transformExtension(extension)}
-      </sup>
-      {alternateBass}
+      {quality && transformQuality(quality)}
+      {seventh && transformSeventh(seventh)}
+      {extension && <sup>{transformExtension(extension)}</sup>}
+      {alternateBass && `/${alternateBass}`}
     </span>
   )
 }

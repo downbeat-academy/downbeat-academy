@@ -45,11 +45,11 @@ const transformExtension = (extension) => {
 const transformSeventh = (seventh) => {
   switch (seventh) {
     case 'major7':
-      return 'maj7';
+      return '7';
     case 'dominant7':
       return '7';
     case 'minor7':
-      return 'min7';
+      return '7';
     case 'halfDiminished7':
       return (
         <>

@@ -34,7 +34,6 @@ export default {
 			title: 'Seventh',
 			type: 'string',
 			description: 'Quality of the 7th scale degree of the chord',
-			hidden: ({ parent, type }: any) => !type && parent.type === 'triad',
 			options: {
 				list: [
 					{ title: 'Major 7', value: 'major7' },
@@ -50,7 +49,6 @@ export default {
 			title: 'Extension',
 			type: 'string',
 			description: 'Extension or alteration of the chord.',
-			hidden: ({ parent, type }: any) => !type && parent.type !== 'extension',
 			options: {
 				list: [
 					{ title: '♭9', value: 'flat9' },
@@ -58,7 +56,6 @@ export default {
 					{ title: '♭13', value: 'flat13' },
 					{ title: '♯9', value: 'sharp9' },
 					{ title: '♯11', value: 'sharp11' },
-					{ title: 'Major 7', value: 'major7' },
 					{ title: '♯9/♭9', value: 'sharp9flat9' },
 					{ title: '6/9', value: 'sixNine' },
 				],
