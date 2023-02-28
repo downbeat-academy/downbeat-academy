@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { OpenSheetMusicDisplay as OSMD } from 'opensheetmusicdisplay'
 
-class RenderSheetMusic extends Component {
+class OpenSheetMusicDisplay extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { dataReady: false };
@@ -68,4 +68,4 @@ class RenderSheetMusic extends Component {
 	}
 }
 
-export { RenderSheetMusic }
+export { OpenSheetMusicDisplay }

@@ -1,10 +1,14 @@
 @use '../../../styles/variables.scss' as *;
 
 .wrapper {
-	width: 100ch;
+	// width: 100ch;
 	display: flex;
 	flex-direction: column;
 	gap: $spacing-05;
 	background: $color-palette-blackberry-100;
 	padding: $spacing-08;
+
+	& > * {
+		width: 100%;
+	}
 }

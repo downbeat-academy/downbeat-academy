@@ -3,12 +3,12 @@ import { Text, Flex } from 'cadence-core'
 import { getSanityUrl } from '@utils/getSanityUrl'
 import s from './musicNotation.module.scss'
 import { MusicNotationProps } from './types'
-import { RenderSheetMusic } from './RenderSheetMusic'
+import { OpenSheetMusicDisplay } from './OpenSheetMusicDisplay'
 
 const MusicNotation = ({ input }: MusicNotationProps) => {
   const { title, description, file } = input
   const fileUrl = getSanityUrl(file.asset._ref)
-  
+
   const classes = classnames(
     s.wrapper,
   )
@@ -19,7 +19,7 @@ const MusicNotation = ({ input }: MusicNotationProps) => {
         {title && <Text tag='h4' type='expressive' category='headline' size='3x-large'>{title}</Text>}
         {description && <Text tag='p' type='expressive' category='body' size='base'>{description}</Text>}
       </Flex>
-      {input.file && <RenderSheetMusic file={fileUrl} />}
+      {input.file && <OpenSheetMusicDisplay file={fileUrl} />}
     </section>
   )
 }

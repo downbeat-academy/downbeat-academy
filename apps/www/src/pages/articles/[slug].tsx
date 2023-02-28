@@ -1,6 +1,5 @@
 import { sanityClient } from '@lib/sanity.client'
 import { getArticles, getArticlePaths } from '@lib/sanity.queries'
-import { Seo } from '@components/meta'
 import { ArticleTemplate } from '@components/templates/article'
 
 export default function Article({ data, preview }) {
@@ -17,16 +16,16 @@ export default function Article({ data, preview }) {
 	} = data.article
 
 	return (
-			<ArticleTemplate
-				title={title}
-				excerpt={excerpt}
-				content={content}
-				date={date}
-				updatedDate={updatedDate}
-				authors={authors}
-				categories={categories}
-				metadata={metadata}
-			/>
+		<ArticleTemplate
+			title={title}
+			excerpt={excerpt}
+			content={content}
+			date={date}
+			updatedDate={updatedDate}
+			authors={authors}
+			categories={categories}
+			metadata={metadata}
+		/>
 	)
 }
 
