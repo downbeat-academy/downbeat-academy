@@ -25,7 +25,7 @@ const ArticleTitle = ({
         <Badge
           text={category.title}
           type='informational'
-          style='fill'
+          style='outline'
         />
       </Link>
     )

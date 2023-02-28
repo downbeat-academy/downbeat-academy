@@ -1,9 +1,11 @@
+import { author } from "../../../types/author"
+
 interface HomepageTemplateProps {
   articles: [{
     featuredImage: string,
     title: string,
     slug: string,
-    authors: any[],
+    authors: author[],
     date: string,
     _id: string,
   }],
