@@ -38,7 +38,7 @@ export const getArticlePaths = groq`
 `
 
 export const getAllArticles = groq`
-    *[_type == "article"] {
+    *[_type == "article" && title != "Test post"] {
         _id,
         _key,
         title,
