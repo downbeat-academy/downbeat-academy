@@ -298,6 +298,7 @@ importers:
   packages/cadence-web:
     specifiers:
       '@stencil/core': ^3.0.0
+      '@stencil/react-output-target': ^0.4.0
       '@types/jest': ^27.5.2
       '@types/node': ^16.18.11
       jest: ^27.5.1
@@ -306,6 +307,7 @@ importers:
     dependencies:
       '@stencil/core': 3.1.0
     devDependencies:
+      '@stencil/react-output-target': 0.4.0_@stencil+core@3.1.0
       '@types/jest': 27.5.2
       '@types/node': 16.18.14
       jest: 27.5.1
@@ -5142,7 +5144,14 @@ packages:
     resolution: {integrity: sha512-Zfe+evaw9m2L/HkTO97Hu8go2ThXrObyWkVqa7V3HjTnq+8TUd/nwld9PC0bOItC/eyMRXsWHdEDCpJAZ1tEVQ==}
     engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
-    dev: false
+
+  /@stencil/react-output-target/0.4.0_@stencil+core@3.1.0:
+    resolution: {integrity: sha512-X7XW6aHSU7ZypkFj4wX/XL7ROj2GXcdTL+Emo1mKNg5laBcuTVtt8zPR4ERG/grq8ec8wav+FxBuSlQ3cH0qcg==}
+    peerDependencies:
+      '@stencil/core': ^2.9.0 || ^3.0.0-beta.0
+    dependencies:
+      '@stencil/core': 3.1.0
+    dev: true
 
   /@supabase/functions-js/2.0.0:
     resolution: {integrity: sha512-ozb7bds2yvf5k7NM2ZzUkxvsx4S4i2eRKFSJetdTADV91T65g4gCzEs9L3LUXSrghcGIkUaon03VPzOrFredqg==}

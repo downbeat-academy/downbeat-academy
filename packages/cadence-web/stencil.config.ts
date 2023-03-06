@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { reactOutputTarget } from '@stencil/react-output-target'
 
 export const config: Config = {
   namespace: 'cadence-web',
@@ -13,6 +14,10 @@ export const config: Config = {
     {
       type: 'docs-readme',
     },
+    reactOutputTarget({
+      componentCorePackage: 'cadence-web',
+      proxiesFile: '../cadence-react/dist/components/stencil-generated/index.ts',
+    }),
     {
       type: 'www',
       serviceWorker: null, // disable service workers
