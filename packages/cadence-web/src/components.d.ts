@@ -6,6 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CdsButton {
+        "icon": string;
+        "iconPosition": 'leading' | 'trailing';
+        "isFullWidth": boolean;
+        "size": 'large' | 'default' | 'small' | 'x-small';
+        "text": string;
+        "variant": 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +30,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCdsButtonElement extends Components.CdsButton, HTMLStencilElement {
+    }
+    var HTMLCdsButtonElement: {
+        prototype: HTMLCdsButtonElement;
+        new (): HTMLCdsButtonElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +43,19 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "cds-button": HTMLCdsButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface CdsButton {
+        "icon"?: string;
+        "iconPosition"?: 'leading' | 'trailing';
+        "isFullWidth"?: boolean;
+        "size"?: 'large' | 'default' | 'small' | 'x-small';
+        "text"?: string;
+        "variant"?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +71,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "cds-button": CdsButton;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +79,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cds-button": LocalJSX.CdsButton & JSXBase.HTMLAttributes<HTMLCdsButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
