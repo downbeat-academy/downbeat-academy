@@ -93,6 +93,7 @@ importers:
       '@types/react-dom': 18.0.9
       cadence-core: workspace:^1.3.0
       cadence-icons: workspace:^1.0.1
+      cadence-react: workspace:*
       cadence-tokens: workspace:^2.0.1
       classnames: ^2.3.2
       date-fns: ^2.29.3
@@ -120,6 +121,7 @@ importers:
       '@types/react-dom': 18.0.9
       cadence-core: link:../../packages/cadence-core
       cadence-icons: link:../../packages/cadence-icons
+      cadence-react: link:../../packages/cadence-react
       cadence-tokens: link:../../packages/cadence-tokens
       classnames: 2.3.2
       date-fns: 2.29.3
