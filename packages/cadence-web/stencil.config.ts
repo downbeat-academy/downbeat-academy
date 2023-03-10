@@ -16,7 +16,8 @@ export const config: Config = {
     },
     reactOutputTarget({
       componentCorePackage: 'cadence-web',
-      proxiesFile: '../cadence-react/dist/components/stencil-generated/index.ts',
+      proxiesFile: '../cadence-react/src/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
     }),
     {
       type: 'www',
