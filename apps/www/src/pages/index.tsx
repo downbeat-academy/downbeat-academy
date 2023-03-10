@@ -4,6 +4,7 @@ import { Seo } from '@components/meta'
 import { FeaturedPost } from '@components/pages/homepage'
 import { PostCard, PostGrid } from '@components/post'
 import { ContentGrid, ContentGridItem } from '@components/layout'
+import CdsButton from 'cadence-react'
 
 export default function HomePage({ data, preview }) {
 	const featuredArticle = data.homepage[0]
@@ -28,6 +29,7 @@ export default function HomePage({ data, preview }) {
 				url='/'
 			/>
 			<ContentGrid>
+				<CdsButton text='Button' />
 				<ContentGridItem location='full-bleed' padding='none'>
 					<FeaturedPost input={featuredArticle} />
 					<PostGrid>{articles}</PostGrid>
