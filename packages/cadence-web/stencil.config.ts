@@ -3,7 +3,17 @@ import { reactOutputTarget } from '@stencil/react-output-target'
 
 export const config: Config = {
   namespace: 'cadence-web',
+  globalStyle: 'src/global/global.css',
+  srcDir: 'src',
+  devServer: {
+    openBrowser: false,
+  },
   outputTargets: [
+    reactOutputTarget({
+      componentCorePackage: 'cadence-web',
+      proxiesFile: '../cadence-react/src/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
+    }),
     {
       type: 'dist',
       esmLoaderPath: '../loader',
@@ -14,11 +24,6 @@ export const config: Config = {
     {
       type: 'docs-readme',
     },
-    reactOutputTarget({
-      componentCorePackage: 'cadence-web',
-      proxiesFile: '../cadence-react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
-    }),
     {
       type: 'www',
       serviceWorker: null, // disable service workers

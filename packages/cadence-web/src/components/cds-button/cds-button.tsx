@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import classnames from 'classnames'
 
 @Component({
   tag: 'cds-button',
@@ -14,8 +15,13 @@ export class CdsButton {
   @Prop() variant: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
 
   render() {
+    const classes = classnames(
+      `root`,
+      `variant--${this.variant}` || `variant--primary`,
+      `size--${this.size}` || `size--default`,
+    )
     return (
-      <button>
+      <button class={classes}>
         {this.text}
       </button>
     );

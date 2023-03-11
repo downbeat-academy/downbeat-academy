@@ -1,0 +1,81 @@
+/* Variants */
+
+/* -- Primary */
+
+.variant--primary {
+  color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-blueberry-600);
+	border-color: var(--color-palette-blueberry-700);
+}
+
+.variant--primary:hover {
+  color: var(--color-foreground-high-contrast);
+  background: var(--color-palette-blueberry-700);
+  border-color: var(--color-palette-blueberry-800);
+}
+
+.variant--primary:active {
+  color: var(--color-foreground-high-contrast);
+  background: var(--color-palette-blueberry-800);
+  border-color: var(--color-palette-blueberry-900);
+}
+
+/* -- Secondary */
+
+.variant--secondary {
+  color: var(--color-palette-blackberry-700);
+	background: var(--color-palette-neutral-200);
+	border-color: var(--color-palette-neutral-600);
+}
+
+.variant--secondary:hover {
+  color: var(--color-palette-blackberry-700);
+  background: var(--color-palette-neutral-300);
+  border-color: var(--color-palette-neutral-600);
+}
+
+.variant--secondary:active {
+  color: var(--color-palette-blackberry-700);
+  background: var(--color-palette-neutral-400);
+  border-color: var(--color-palette-neutral-600);
+}
+
+/* -- Tertiary */
+
+.variant--tertiary {
+  color: var(--color-palette-blueberry-600);
+	background: transparent;
+	border-color: transparent;
+}
+
+.variant--tertiary:hover {
+  color: var(--color-palette-blueberry-700);
+  background: var(--color-palette-blueberry-100);
+  border-color: transparent;
+}
+
+.variant--tertiary:active {
+  color: var(--color-palette-blueberry-800);
+  background: var(--color-palette-blueberry-200);
+  border-color: transparent;
+}
+
+/* -- Destructive */
+
+.variant--destructive {
+  color: var(--color-foreground-high-contrast);
+	background: var(--color-palette-pomegranate-500);
+	border-color: var(--color-palette-pomegranate-600);
+}
+
+.variant--destructive:hover {
+  color: var(--color-foreground-high-contrast);
+  background: var(--color-palette-pomegranate-600);
+  border-color: var(--color-palette-pomegranate-700);
+}
+
+.variant--destructive:active {
+  color: var(--color-foreground-high-contrast);
+  background: var(--color-palette-pomegranate-700);
+  border-color: var(--color-palette-pomegranate-800);
+}

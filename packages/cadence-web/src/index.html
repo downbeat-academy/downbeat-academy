@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Cadence Web Components with Stencil</title>
 
-    <script type="module" src="/build/cadence-web.esm.js"></script>
-    <script nomodule src="/build/cadence-web.js"></script>
-  </head>
-  <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-    <cds-button text='Button text'></cds-button>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Cadence Web Components</title>
+  <link rel='stylesheet' type='text/css' href='/build/cadence-web.css'>
+  <script type="module" src="/build/cadence-web.esm.js"></script>
+  <script nomodule src="/build/cadence-web.js"></script>
+</head>
+
+<body>
+  <div>
+    <cds-button text='Primary button' variant='primary'
+      isFullWidth='true'></cds-button>
+    <cds-button text='Secondary button' variant='secondary'></cds-button>
+    <cds-button text='Tertiary button' variant='tertiary'></cds-button>
+    <cds-button text='Destructive button' variant='destructive'></cds-button>
+  </div>
+  <div>
+    <cds-button text='Large button' variant='primary' size='large'></cds-button>
+    <cds-button text='Default button' variant='primary'
+      size='default'></cds-button>
+    <cds-button text='Small button' variant='primary' size='small'></cds-button>
+    <cds-button text='Extra small button' variant='primary'
+      size='x-small'></cds-button>
+  </div>
+</body>
+
 </html>
