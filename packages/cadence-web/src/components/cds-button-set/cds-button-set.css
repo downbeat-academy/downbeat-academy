@@ -1,3 +1,49 @@
-:host {
-  display: block;
+.buttonSet {
+  display: flex;
+}
+
+/* Direction */
+
+.direction--row {
+  flex-direction: row;
+}
+
+.direction--column {
+  flex-direction: column;
+}
+
+/* Justify */
+
+.justify--start {
+  justify-content: flex-start;
+}
+
+.justify--end {
+  justify-content: flex-end;
+}
+
+.justify--space-between {
+  justify-content: space-between;
+}
+
+/* Gap */
+
+.gap--none {
+  gap: none;
+}
+
+.gap--x-small {
+  gap: var(--spacing-03);
+}
+
+.gap--small {
+  gap: var(--spacing-04);
+}
+
+.gap--default {
+  gap: var(--spacing-05);
+}
+
+.gap--large {
+  gap: var(--spacing-06);
 }

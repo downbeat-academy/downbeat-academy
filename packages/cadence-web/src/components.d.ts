@@ -26,6 +26,9 @@ export namespace Components {
         "variant": 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
     }
     interface CdsButtonSet {
+        "direction": 'row' | 'column';
+        "gap": 'none' | 'x-small' | 'small' | 'default' | 'large';
+        "justify": 'start' | 'end' | 'space-between';
     }
     interface CdsDivider {
     }
@@ -133,6 +136,9 @@ declare namespace LocalJSX {
         "variant"?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
     }
     interface CdsButtonSet {
+        "direction"?: 'row' | 'column';
+        "gap"?: 'none' | 'x-small' | 'small' | 'default' | 'large';
+        "justify"?: 'start' | 'end' | 'space-between';
     }
     interface CdsDivider {
     }
