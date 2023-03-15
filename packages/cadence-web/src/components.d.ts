@@ -11,11 +11,11 @@ export namespace Components {
     interface CdsAvatarGroup {
     }
     interface CdsBadge {
-        "badgeStyle": 'fill' | 'outline' | 'inverse';
-        "iconPosition": 'leading' | 'trailing';
-        "size": 'small' | 'default' | 'large';
+        "badgeStyle": 'fill';
+        "iconPosition": string;
+        "size": 'default';
         "text": string;
-        "type": 'neutral' | 'informational' | 'positive' | 'warning' | 'critical';
+        "type": 'neutral';
     }
     interface CdsButton {
         "icon": string;
@@ -118,11 +118,11 @@ declare namespace LocalJSX {
     interface CdsAvatarGroup {
     }
     interface CdsBadge {
-        "badgeStyle"?: 'fill' | 'outline' | 'inverse';
-        "iconPosition"?: 'leading' | 'trailing';
-        "size"?: 'small' | 'default' | 'large';
-        "text"?: string;
-        "type"?: 'neutral' | 'informational' | 'positive' | 'warning' | 'critical';
+        "badgeStyle"?: 'fill';
+        "iconPosition"?: string;
+        "size"?: 'default';
+        "text": string;
+        "type"?: 'neutral';
     }
     interface CdsButton {
         "icon"?: string;

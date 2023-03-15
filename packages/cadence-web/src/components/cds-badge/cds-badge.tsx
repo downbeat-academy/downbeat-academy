@@ -8,19 +8,19 @@ import classnames from 'classnames'
 })
 
 export class CdsBadge {
-  @Prop() text: string;
-  @Prop() type: 'neutral' | 'informational' | 'positive' | 'warning' | 'critical';
-  @Prop() badgeStyle: 'fill' | 'outline' | 'inverse';
-  @Prop() size: 'small' | 'default' | 'large';
-  @Prop() iconPosition: 'leading' | 'trailing';
+  @Prop() text!: string;
+  @Prop() type: 'neutral';
+  @Prop() badgeStyle: 'fill';
+  @Prop() size: 'default';
+  @Prop() iconPosition: string;
 
   render() {
 
     const classes = classnames(
       `badge`,
-      `type--${this.type}`,
-      `size--${this.size}`,
-      `badgeStyle--${this.badgeStyle}`,
+      this.type ? `type--${this.type}` : `type--neutral`,
+      this.size ? `size--${this.size}` : `size--default`,
+      this.badgeStyle ? `badgeStyle--${this.badgeStyle}` : `badgeStyle--fill`,
     )
 
     return (
