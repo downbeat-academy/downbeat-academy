@@ -31,6 +31,11 @@ export namespace Components {
         "justify": 'start' | 'end' | 'space-between';
     }
     interface CdsDivider {
+        "align": 'left' | 'center' | 'right';
+        "color": 'primary' | 'secondary' | 'high-contrast' | 'brand' | 'interactive';
+        "spacing": 'none' | 'small' | 'medium' | 'large';
+        "thickness": 'small' | 'large';
+        "width": 'small' | 'medium' | 'large' | 'full-width';
     }
     interface CdsFlex {
     }
@@ -141,6 +146,11 @@ declare namespace LocalJSX {
         "justify"?: 'start' | 'end' | 'space-between';
     }
     interface CdsDivider {
+        "align"?: 'left' | 'center' | 'right';
+        "color"?: 'primary' | 'secondary' | 'high-contrast' | 'brand' | 'interactive';
+        "spacing"?: 'none' | 'small' | 'medium' | 'large';
+        "thickness"?: 'small' | 'large';
+        "width"?: 'small' | 'medium' | 'large' | 'full-width';
     }
     interface CdsFlex {
     }
