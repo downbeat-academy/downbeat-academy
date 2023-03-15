@@ -19,6 +19,6 @@
 @import './cds-button.variants.css';
 @import './cds-button.sizes.css';
 
-.full-width {
+.isFullWidth {
   width: 100%;
 }

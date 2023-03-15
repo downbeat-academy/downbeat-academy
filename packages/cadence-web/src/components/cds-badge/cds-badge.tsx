@@ -9,10 +9,10 @@ import classnames from 'classnames'
 
 export class CdsBadge {
   @Prop() text!: string;
-  @Prop() type: 'neutral';
-  @Prop() badgeStyle: 'fill';
-  @Prop() size: 'default';
-  @Prop() iconPosition: string;
+  @Prop() type: 'neutral' | 'positive' | 'informational' | 'warning' | 'critical';
+  @Prop() badgeStyle: 'fill' | 'outline' | 'inverse';
+  @Prop() size: 'default' | 'small' | 'large';
+  @Prop() iconPosition: 'leading' | 'trailing';
 
   render() {
 

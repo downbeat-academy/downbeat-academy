@@ -17,8 +17,9 @@ export class CdsButton {
   render() {
     const classes = classnames(
       `root`,
-      `variant--${this.variant}` || `variant--primary`,
-      `size--${this.size}` || `size--default`,
+      this.variant ? `variant--${this.variant}` : `variant--primary`,
+      this.size ? `size--${this.size}` : `size--default`,
+      this.isFullWidth ? `isFullWidth` : null,
     )
     return (
       <button class={classes}>
