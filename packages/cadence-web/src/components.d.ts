@@ -40,6 +40,10 @@ export namespace Components {
     interface CdsFlex {
     }
     interface CdsLink {
+        "href": string;
+        "target": '_self' | '_blank';
+        "text": string;
+        "type": 'primary' | 'secondary';
     }
     interface CdsLogo {
     }
@@ -155,6 +159,10 @@ declare namespace LocalJSX {
     interface CdsFlex {
     }
     interface CdsLink {
+        "href"?: string;
+        "target"?: '_self' | '_blank';
+        "text"?: string;
+        "type"?: 'primary' | 'secondary';
     }
     interface CdsLogo {
     }
