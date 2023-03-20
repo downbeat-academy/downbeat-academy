@@ -1,5 +1,5 @@
 import { Component, Prop, Host, h } from '@stencil/core';
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 @Component({
   tag: 'cds-flex',
@@ -21,18 +21,20 @@ export class CdsFlex {
 
   render() {
 
-    const classes = classnames(
+    const classes = classNames(
       'root',
-      this.direction && `direction--${this.direction}`,
-      this.gap && `gap--${this.gap}`,
-      this.padding && `padding--${this.padding}`,
-      this.background && `background--${this.background}`,
-      this.borderRadius && `border-radius--${this.borderRadius}`,
-      this.borderColor && `border-color--${this.borderColor}`,
-      this.justify && `justify--${this.justify}`,
-      this.align && `align--${this.align}`,
-      this.textAlign && `text-align--${this.textAlign}`,
-      this.wrap && `wrap--${this.wrap}`,
+      {
+        [`direction--${this.direction}`]: this.direction,
+        [`gap--${this.gap}`]: this.gap,
+        [`padding--${this.padding}`]: this.padding,
+        [`background--${this.background}`]: this.background,
+        [`border-radius--${this.borderRadius}`]: this.borderRadius,
+        [`border-color--${this.borderColor}`]: this.borderColor,
+        [`justify--${this.justify}`]: this.justify,
+        [`align--${this.align}`]: this.align,
+        [`text-align--${this.textAlign}`]: this.textAlign,
+        [`wrap--${this.wrap}`]: this.wrap,
+      },
     )
 
     return (
@@ -43,5 +45,4 @@ export class CdsFlex {
       </Host >
     );
   }
-
 }
