@@ -11,7 +11,7 @@
   --cds-flex-wrap: nowrap;
 }
 
-.root {
+.cds-flex-root {
   background: var(--cds-flex-background);
   box-sizing: border-box;
   padding: var(--cds-flex-padding);

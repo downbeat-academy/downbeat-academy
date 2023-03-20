@@ -22,7 +22,7 @@ export class CdsFlex {
   render() {
 
     const classes = classNames(
-      'root',
+      'cds-flex-root',
       {
         [`direction--${this.direction}`]: this.direction,
         [`gap--${this.gap}`]: this.gap,
