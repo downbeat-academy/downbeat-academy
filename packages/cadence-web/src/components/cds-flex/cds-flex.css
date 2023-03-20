@@ -1,3 +1,105 @@
-:host {
-  display: block;
+:Host {
+  --cds-flex-direction: row;
+  --cds-flex-gap: var(--spacing-05);
+  --cds-flex-padding: var(--spacing-05);
+  --cds-flex-background: var(--color-surface-primary);
+  --cds-flex-border-radius: 0;
+  --cds-flex-border-color: transparent;
+  --cds-flex-justify: none;
+  --cds-flex-align: none;
+  --cds-flex-text-align: left;
+  --cds-flex-wrap: nowrap;
 }
+
+.root {
+  background: var(--cds-flex-background);
+  box-sizing: border-box;
+  padding: var(--cds-flex-padding);
+  display: flex;
+  flex-direction: var(--cds-flex-direction);
+  gap: var(--cds-flex-gap);
+  justify-content: var(--cds-flex-justify);
+  align-items: var(--cds-flex-align);
+  flex-wrap: var(--cds-flex-wrap);
+  text-align: var(--cds-flex-text-align);
+  border-radius: var(--cds-flex-border-radius);
+  border-color: var(--cds-flex-border-color);
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Direction */
+
+.direction--row { --cds-flex-direction: row; }
+.direction--column { --cds-flex-direction: column; }
+
+/* Gap */
+
+.gap--none { --cds-flex-gap: 0; }
+.gap--2x-small { --cds-flex-gap: var(--spacing-02); }
+.gap--x-small { --cds-flex-gap: var(--spacing-03); }
+.gap--small { --cds-flex-gap: var(--spacing-04); }
+.gap--base { --cds-flex-gap: var(--spacing-05); }
+.gap--large { --cds-flex-gap: var(--spacing-06); }
+.gap--x-large { --cds-flex-gap: var(--spacing-08); }
+.gap--2x-large { --cds-flex-gap: var(--spacing-10); }
+.gap--3x-large { --cds-flex-gap: var(--spacing-11); }
+.gap--4x-large { --cds-flex-gap: var(--spacing-12); }
+.gap--5x-large { --cds-flex-gap: var(--spacing-13); }
+
+/* Background */
+
+.background--primary { --cds-flex-background: var(--color-surface-primary); }
+.background--secondary { --cds-flex-background: var(--color-surface-secondary); }
+.background--brand { --cds-flex-background: var(--color-surface-brand); }
+.background--interactive { --cds-flex-background: var(--color-surface-interactive); }
+.background--positive { --cds-flex-background: var(--color-surface-positive); }
+.background--info { --cds-flex-background: var(--color-surface-info); }
+.background--caution { --cds-flex-background: var(--color-surface-caution); }
+.background--critical { --cds-flex-background: var(--color-surface-critical); }
+.background--inverse { --cds-flex-background: var(--color-palette-neutral-1000); }
+
+/* Border radius */
+
+.border-radius--default { --cds-flex-border-radius: var(--radius-default); }
+.border-radius--soft { --cds-flex-border-radius: var(--radius-soft); }
+.border-radius--medium { --cds-flex-border-radius: var(--radius-medium); }
+.border-radius--hard { --cds-flex-border-radius: var(--radius-hard); }
+.border-radius--rounded { --cdes-flex-border-radius: var(--radius-rounded); }
+
+/* Border color */
+
+.border-color--default { --cds-flex-border-color: var(--color-border-default); }
+.border-color--caution { --cds-flex-border-color: var(--color-border-caution); }
+.border-color--critical { --cds-flex-border-color: var(--color-border-critical); }
+.border-color--interactive { --cds-flex-border-color: var(--color-border-interactive); }
+.border-color--info { --cds-flex-border-color: var(--color-border-info); }
+
+/* Justify */
+
+.justify--start { --cds-flex-justify: start; }
+.justify--end { --cds-flex-justify: end; }
+.justify--center { --cds-flex-justify: center; }
+.justify--space-between { --cds-flex-justify: space-between; }
+.justify--space-around { --cds-flex-justify: space-around; }
+.justify--space-evenly { --cds-flex-justify: space-evenly; }
+
+/* Align */
+
+.align--start { --cds-flex-align: start; }
+.align--end { --cds-flex-align: end; }
+.align--center { --cds-flex-align: center; }
+.align--stretch { --cds-flex-align: stretch; }
+.align--baseline { --cds-flex-align: baseline; }
+
+/* Wrap */
+
+.wrap--nowrap { --cds-flex-wrap: nowrap; }
+.wrap--wrap { --cds-flex-wrap: wrap; }
+.wrap--wrap-reverse { --cds-flex-wrap: wrap-reverse; }
+
+/* Text align */
+
+.text-align--left { --cds-flex-text-align: left; }
+.text-align--center: { --cds-flex-text-align: center; }
+.text-align--right: { --cds-flex-text-align: right; }

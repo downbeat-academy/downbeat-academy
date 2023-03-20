@@ -38,6 +38,16 @@ export namespace Components {
         "width": 'small' | 'medium' | 'large' | 'full-width';
     }
     interface CdsFlex {
+        "align"?: string;
+        "background": 'primary';
+        "borderColor"?: string;
+        "borderRadius"?: string;
+        "direction": 'row';
+        "gap": 'base';
+        "justify"?: string;
+        "padding": 'medium';
+        "textAlign"?: 'left';
+        "wrap"?: 'nowrap';
     }
     interface CdsLink {
         "href": string;
@@ -157,6 +167,16 @@ declare namespace LocalJSX {
         "width"?: 'small' | 'medium' | 'large' | 'full-width';
     }
     interface CdsFlex {
+        "align"?: string;
+        "background"?: 'primary';
+        "borderColor"?: string;
+        "borderRadius"?: string;
+        "direction"?: 'row';
+        "gap"?: 'base';
+        "justify"?: string;
+        "padding"?: 'medium';
+        "textAlign"?: 'left';
+        "wrap"?: 'nowrap';
     }
     interface CdsLink {
         "href"?: string;
