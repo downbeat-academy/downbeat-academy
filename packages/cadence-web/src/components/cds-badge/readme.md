@@ -11,9 +11,9 @@
 | ------------------- | --------------- | ----------- | ----------------------------------------------------------------------- | ----------- |
 | `badgeStyle`        | `badge-style`   |             | `"fill" \| "inverse" \| "outline"`                                      | `undefined` |
 | `iconPosition`      | `icon-position` |             | `"leading" \| "trailing"`                                               | `undefined` |
-| `size`              | `size`          |             | `"default" \| "large" \| "small"`                                       | `undefined` |
+| `size`              | `size`          |             | `"large" \| "medium" \| "small"`                                        | `undefined` |
 | `text` _(required)_ | `text`          |             | `string`                                                                | `undefined` |
-| `type`              | `type`          |             | `"critical" \| "informational" \| "neutral" \| "positive" \| "warning"` | `undefined` |
+| `type`              | `type`          |             | `"caution" \| "critical" \| "informational" \| "neutral" \| "positive"` | `undefined` |
 
 
 ----------------------------------------------

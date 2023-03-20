@@ -8,7 +8,7 @@
 	--cds-badge-border-color: transparent;
 }
 
-.cds-badge-root {	
+.cds-badge-root {
   font-family: var(--typography-font-family-productive-body);
 	font-weight: bold;
 	font-size: var(--cds-badge-font-size);
