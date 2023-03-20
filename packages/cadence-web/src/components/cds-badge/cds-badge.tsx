@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import classnames from 'classnames'
 
 @Component({
@@ -9,22 +9,26 @@ import classnames from 'classnames'
 
 export class CdsBadge {
   @Prop() text!: string;
-  @Prop() type: 'neutral' | 'positive' | 'informational' | 'warning' | 'critical';
-  @Prop() badgeStyle: 'fill' | 'outline' | 'inverse';
-  @Prop() size: 'default' | 'small' | 'large';
-  @Prop() iconPosition: 'leading' | 'trailing';
+  @Prop() type: 'neutral';
+  @Prop() badgeStyle: 'fill';
+  @Prop() size: 'medium';
+  @Prop() iconPosition: string;
 
   render() {
 
     const classes = classnames(
-      `badge`,
-      this.type ? `type--${this.type}` : `type--neutral`,
-      this.size ? `size--${this.size}` : `size--default`,
-      this.badgeStyle ? `badgeStyle--${this.badgeStyle}` : `badgeStyle--fill`,
+      `cds-badge-root`,
+      {
+        [`type--${this.type}`]: this.type,
+        [`size--${this.size}`]: this.size,
+        [`badge-style--${this.badgeStyle}`]: this.badgeStyle,
+      }
     )
 
     return (
-      <span class={classes}>{this.text}</span>
+      <Host>
+        <span class={classes}>{this.text}</span>
+      </Host>
     );
   }
 }
