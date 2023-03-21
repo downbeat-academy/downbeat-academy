@@ -1,4 +1,4 @@
-.buttonSet {
+.cds-button-set {
   display: flex;
 }
 
@@ -40,7 +40,7 @@
   gap: var(--spacing-04);
 }
 
-.gap--default {
+.gap--medium {
   gap: var(--spacing-05);
 }
 

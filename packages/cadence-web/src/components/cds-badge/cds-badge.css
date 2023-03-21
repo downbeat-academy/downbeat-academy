@@ -8,7 +8,7 @@
 	--cds-badge-border-color: transparent;
 }
 
-.cds-badge-root {
+.cds-badge {
 	font-size: var(--cds-badge-font-size);
 	line-height: var(--cds-badge-line-height);
 	padding: var(--cds-badge-padding);

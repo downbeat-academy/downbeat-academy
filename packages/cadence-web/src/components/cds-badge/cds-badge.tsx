@@ -17,7 +17,7 @@ export class CdsBadge {
   render() {
 
     const classes = classnames(
-      `cds-badge-root`,
+      `cds-badge`,
       this.type ? `type--${this.type}` : `type--neutral`,
       this.size ? `type--${this.size}` : `size--medium`,
       this.badgeStyle ? `badge-style--${this.badgeStyle}` : `badge-style--fill`,

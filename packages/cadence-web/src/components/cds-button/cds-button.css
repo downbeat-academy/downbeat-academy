@@ -6,7 +6,7 @@
 	--cds-button-border-color: var(--color-palette-blueberry-700);
 }
 
-.root {
+.cds-button {
 	font-size: var(--cds-button-font-size);
 	padding: var(--cds-button-padding);
 	color: var(--cds-button-text-color);

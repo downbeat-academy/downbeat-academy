@@ -1,3 +1,41 @@
 :host {
-  display: block;
+  --cds-avatar-size: 64px;
+}
+
+.cds-avatar {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	box-sizing: border-box;
+  height: var(--cds-avatar-size);
+  width: var(--cds-avatar-size);
+}
+
+.cds-avatar img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.size--small {
+  --cds-avatar-size: 40px;
+}
+
+.size--medium {
+  --cds-avatar-size: 64px;
+}
+
+.size--large {
+  --cds-avatar-size: 80px;
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.has-border {
+  border-color: var(--color-palette-neutral-100);
+  border-width: 2px;
+  border-style: solid;
 }

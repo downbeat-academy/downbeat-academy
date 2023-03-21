@@ -16,7 +16,7 @@ export class CdsButton {
 
   render() {
     const classes = classnames(
-      `root`,
+      `cds-button`,
       this.variant ? `variant--${this.variant}` : `variant--primary`,
       this.size ? `size--${this.size}` : `size--medium`,
       {

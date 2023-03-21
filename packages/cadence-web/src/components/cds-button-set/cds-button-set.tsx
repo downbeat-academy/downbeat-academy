@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 import classnames from 'classnames'
 
 @Component({
@@ -15,17 +15,18 @@ export class CdsButtonSet {
   render() {
 
     const classes = classnames(
-      'buttonSet',
+      'button-set',
       this.direction ? `direction--${this.direction}` : `direction--row`,
       this.justify ? `justify--${this.justify}` : `justify--start`,
-      this.gap ? `gap--${this.gap}` : `gap--default`,
+      this.gap ? `gap--${this.gap}` : `gap--medium`,
     )
 
     return (
-      <div class={classes}>
-        <slot />
-      </div>
+      <Host>
+        <div class={classes}>
+          <slot />
+        </div>
+      </Host>
     );
   }
-
 }

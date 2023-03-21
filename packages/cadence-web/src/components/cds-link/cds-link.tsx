@@ -17,7 +17,7 @@ export class CdsLink {
   render() {
 
     const classes = classnames(
-      `root`,
+      `cds-link`,
       `type--${this.type}`,
     )
 

@@ -7,6 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface CdsAvatar {
+        "hasBorder"?: boolean;
+        "imageObject"?: any;
+        "imageUrl"?: string;
+        "name"?: string;
+        "rounded"?: boolean;
+        "size": 'small' | 'medium' | 'large';
     }
     interface CdsAvatarGroup {
     }
@@ -170,6 +176,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CdsAvatar {
+        "hasBorder"?: boolean;
+        "imageObject"?: any;
+        "imageUrl"?: string;
+        "name"?: string;
+        "rounded"?: boolean;
+        "size": 'small' | 'medium' | 'large';
     }
     interface CdsAvatarGroup {
     }

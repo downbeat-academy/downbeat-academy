@@ -11,7 +11,7 @@
   --cds-flex-wrap: nowrap;
 }
 
-.cds-flex-root {
+.cds-flex {
   background: var(--cds-flex-background);
   padding: var(--cds-flex-padding);
   flex-direction: var(--cds-flex-direction);
