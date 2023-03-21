@@ -13,9 +13,7 @@
 
 .cds-flex-root {
   background: var(--cds-flex-background);
-  box-sizing: border-box;
   padding: var(--cds-flex-padding);
-  display: flex;
   flex-direction: var(--cds-flex-direction);
   gap: var(--cds-flex-gap);
   justify-content: var(--cds-flex-justify);
@@ -24,6 +22,8 @@
   text-align: var(--cds-flex-text-align);
   border-radius: var(--cds-flex-border-radius);
   border-color: var(--cds-flex-border-color);
+  box-sizing: border-box;
+  display: flex;
   border-width: 1px;
   border-style: solid;
 }

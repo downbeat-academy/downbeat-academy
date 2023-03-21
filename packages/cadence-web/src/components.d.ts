@@ -21,7 +21,7 @@ export namespace Components {
         "icon": string;
         "iconPosition": 'leading' | 'trailing';
         "isFullWidth": boolean;
-        "size": 'large' | 'default' | 'small' | 'x-small';
+        "size": 'large' | 'medium' | 'small' | 'x-small';
         "text": string;
         "variant": 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
     }
@@ -38,16 +38,50 @@ export namespace Components {
         "width": 'small' | 'medium' | 'large' | 'full-width';
     }
     interface CdsFlex {
-        "align"?: string;
-        "background": 'primary';
-        "borderColor"?: string;
-        "borderRadius"?: string;
-        "direction": 'row';
-        "gap": 'base';
-        "justify"?: string;
-        "padding": 'medium';
-        "textAlign"?: 'left';
-        "wrap"?: 'nowrap';
+        "align"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'stretch'
+    | 'baseline';
+        "background"?: | 'primary'
+    | 'secondary'
+    | 'brand'
+    | 'interactive'
+    | 'positive'
+    | 'info'
+    | 'caution'
+    | 'critical'
+    | 'inverse';
+        "borderColor"?: | 'default'
+    | 'caution'
+    | 'critical'
+    | 'interactive'
+    | 'info';
+        "borderRadius"?: | 'default'
+    | 'soft'
+    | 'medium'
+    | 'hard'
+    | 'rounded';
+        "direction": 'row' | 'column';
+        "gap"?: | '2x-small'
+    | 'x-small'
+    | 'small'
+    | 'base'
+    | 'large'
+    | 'x-large'
+    | '2x-large'
+    | '3x-large'
+    | '4x-large'
+    | '5x-large';
+        "justify"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
+        "padding"?: 'medium';
+        "textAlign"?: 'left' | 'center' | 'right';
+        "wrap"?: 'nowrap' | 'wrap' | 'wrap-reverse';
     }
     interface CdsLink {
         "href": string;
@@ -150,7 +184,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         "iconPosition"?: 'leading' | 'trailing';
         "isFullWidth"?: boolean;
-        "size"?: 'large' | 'default' | 'small' | 'x-small';
+        "size"?: 'large' | 'medium' | 'small' | 'x-small';
         "text"?: string;
         "variant"?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
     }
@@ -167,16 +201,50 @@ declare namespace LocalJSX {
         "width"?: 'small' | 'medium' | 'large' | 'full-width';
     }
     interface CdsFlex {
-        "align"?: string;
-        "background"?: 'primary';
-        "borderColor"?: string;
-        "borderRadius"?: string;
-        "direction"?: 'row';
-        "gap"?: 'base';
-        "justify"?: string;
+        "align"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'stretch'
+    | 'baseline';
+        "background"?: | 'primary'
+    | 'secondary'
+    | 'brand'
+    | 'interactive'
+    | 'positive'
+    | 'info'
+    | 'caution'
+    | 'critical'
+    | 'inverse';
+        "borderColor"?: | 'default'
+    | 'caution'
+    | 'critical'
+    | 'interactive'
+    | 'info';
+        "borderRadius"?: | 'default'
+    | 'soft'
+    | 'medium'
+    | 'hard'
+    | 'rounded';
+        "direction": 'row' | 'column';
+        "gap"?: | '2x-small'
+    | 'x-small'
+    | 'small'
+    | 'base'
+    | 'large'
+    | 'x-large'
+    | '2x-large'
+    | '3x-large'
+    | '4x-large'
+    | '5x-large';
+        "justify"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
         "padding"?: 'medium';
-        "textAlign"?: 'left';
-        "wrap"?: 'nowrap';
+        "textAlign"?: 'left' | 'center' | 'right';
+        "wrap"?: 'nowrap' | 'wrap' | 'wrap-reverse';
     }
     interface CdsLink {
         "href"?: string;

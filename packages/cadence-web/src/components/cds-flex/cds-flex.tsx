@@ -8,16 +8,56 @@ import classNames from 'classnames'
 })
 export class CdsFlex {
 
-  @Prop() direction: 'row';
-  @Prop() gap: 'base';
-  @Prop() padding: 'medium';
-  @Prop() background: 'primary';
-  @Prop() borderRadius?: string;
-  @Prop() borderColor?: string;
-  @Prop() justify?: string;
-  @Prop() align?: string;
-  @Prop() textAlign?: 'left';
-  @Prop() wrap?: 'nowrap';
+  @Prop() direction!: 'row' | 'column';
+  @Prop() gap?:
+    | '2x-small'
+    | 'x-small'
+    | 'small'
+    | 'base'
+    | 'large'
+    | 'x-large'
+    | '2x-large'
+    | '3x-large'
+    | '4x-large'
+    | '5x-large';
+  @Prop() padding?: 'medium';
+  @Prop() background?:
+    | 'primary'
+    | 'secondary'
+    | 'brand'
+    | 'interactive'
+    | 'positive'
+    | 'info'
+    | 'caution'
+    | 'critical'
+    | 'inverse';
+  @Prop() borderRadius?:
+    | 'default'
+    | 'soft'
+    | 'medium'
+    | 'hard'
+    | 'rounded';
+  @Prop() borderColor?:
+    | 'default'
+    | 'caution'
+    | 'critical'
+    | 'interactive'
+    | 'info';
+  @Prop() justify?:
+    | 'start'
+    | 'end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
+  @Prop() align?:
+    | 'start'
+    | 'end'
+    | 'center'
+    | 'stretch'
+    | 'baseline';
+  @Prop() textAlign?: 'left' | 'center' | 'right';
+  @Prop() wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
 
   render() {
 

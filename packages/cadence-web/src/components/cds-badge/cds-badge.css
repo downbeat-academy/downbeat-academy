@@ -9,19 +9,20 @@
 }
 
 .cds-badge-root {
-  font-family: var(--typography-font-family-productive-body);
-	font-weight: bold;
 	font-size: var(--cds-badge-font-size);
 	line-height: var(--cds-badge-line-height);
 	padding: var(--cds-badge-padding);
 	background: var(--cds-badge-background-color);
 	color: var(--cds-badge-text-color);
+	gap: var(--cds-badge-flex-gap);
+	border-color: var(--cds-badge-border-color);
+  font-family: var(--typography-font-family-productive-body);
+	font-weight: bold;
 	display: inline-flex;
 	flex-direction: row;
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-wrap: nowrap;
-	gap: var(--cds-badge-flex-gap);
 	justify-content: center;
 	align-items: center;
 	box-sizing: border-box;
@@ -30,7 +31,6 @@
 	height: fit-content;
 	border-width: 1px;
 	border-style: solid;
-	border-color: var(--cds-badge-border-color);
 	border-radius: var(--radius-soft);
 	text-decoration: none;
 }
