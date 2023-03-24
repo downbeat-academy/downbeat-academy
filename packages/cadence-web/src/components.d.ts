@@ -100,7 +100,17 @@ export namespace Components {
         "text": string;
         "type": 'primary' | 'secondary';
     }
-    interface CdsLogo {
+    interface CdsLogoLockup {
+        "color": 'brand' | 'secondary' | 'high-contrast';
+        "width": number;
+    }
+    interface CdsLogoSymbol {
+        "color": 'brand' | 'secondary' | 'high-contrast';
+        "width": number;
+    }
+    interface CdsLogoText {
+        "color": 'brand' | 'secondary' | 'high-contrast';
+        "width": number;
     }
     interface CdsText {
     }
@@ -154,11 +164,23 @@ declare global {
         prototype: HTMLCdsLinkElement;
         new (): HTMLCdsLinkElement;
     };
-    interface HTMLCdsLogoElement extends Components.CdsLogo, HTMLStencilElement {
+    interface HTMLCdsLogoLockupElement extends Components.CdsLogoLockup, HTMLStencilElement {
     }
-    var HTMLCdsLogoElement: {
-        prototype: HTMLCdsLogoElement;
-        new (): HTMLCdsLogoElement;
+    var HTMLCdsLogoLockupElement: {
+        prototype: HTMLCdsLogoLockupElement;
+        new (): HTMLCdsLogoLockupElement;
+    };
+    interface HTMLCdsLogoSymbolElement extends Components.CdsLogoSymbol, HTMLStencilElement {
+    }
+    var HTMLCdsLogoSymbolElement: {
+        prototype: HTMLCdsLogoSymbolElement;
+        new (): HTMLCdsLogoSymbolElement;
+    };
+    interface HTMLCdsLogoTextElement extends Components.CdsLogoText, HTMLStencilElement {
+    }
+    var HTMLCdsLogoTextElement: {
+        prototype: HTMLCdsLogoTextElement;
+        new (): HTMLCdsLogoTextElement;
     };
     interface HTMLCdsTextElement extends Components.CdsText, HTMLStencilElement {
     }
@@ -175,7 +197,9 @@ declare global {
         "cds-divider": HTMLCdsDividerElement;
         "cds-flex": HTMLCdsFlexElement;
         "cds-link": HTMLCdsLinkElement;
-        "cds-logo": HTMLCdsLogoElement;
+        "cds-logo-lockup": HTMLCdsLogoLockupElement;
+        "cds-logo-symbol": HTMLCdsLogoSymbolElement;
+        "cds-logo-text": HTMLCdsLogoTextElement;
         "cds-text": HTMLCdsTextElement;
     }
 }
@@ -274,7 +298,17 @@ declare namespace LocalJSX {
         "text"?: string;
         "type"?: 'primary' | 'secondary';
     }
-    interface CdsLogo {
+    interface CdsLogoLockup {
+        "color"?: 'brand' | 'secondary' | 'high-contrast';
+        "width"?: number;
+    }
+    interface CdsLogoSymbol {
+        "color"?: 'brand' | 'secondary' | 'high-contrast';
+        "width"?: number;
+    }
+    interface CdsLogoText {
+        "color"?: 'brand' | 'secondary' | 'high-contrast';
+        "width"?: number;
     }
     interface CdsText {
     }
@@ -287,7 +321,9 @@ declare namespace LocalJSX {
         "cds-divider": CdsDivider;
         "cds-flex": CdsFlex;
         "cds-link": CdsLink;
-        "cds-logo": CdsLogo;
+        "cds-logo-lockup": CdsLogoLockup;
+        "cds-logo-symbol": CdsLogoSymbol;
+        "cds-logo-text": CdsLogoText;
         "cds-text": CdsText;
     }
 }
@@ -303,7 +339,9 @@ declare module "@stencil/core" {
             "cds-divider": LocalJSX.CdsDivider & JSXBase.HTMLAttributes<HTMLCdsDividerElement>;
             "cds-flex": LocalJSX.CdsFlex & JSXBase.HTMLAttributes<HTMLCdsFlexElement>;
             "cds-link": LocalJSX.CdsLink & JSXBase.HTMLAttributes<HTMLCdsLinkElement>;
-            "cds-logo": LocalJSX.CdsLogo & JSXBase.HTMLAttributes<HTMLCdsLogoElement>;
+            "cds-logo-lockup": LocalJSX.CdsLogoLockup & JSXBase.HTMLAttributes<HTMLCdsLogoLockupElement>;
+            "cds-logo-symbol": LocalJSX.CdsLogoSymbol & JSXBase.HTMLAttributes<HTMLCdsLogoSymbolElement>;
+            "cds-logo-text": LocalJSX.CdsLogoText & JSXBase.HTMLAttributes<HTMLCdsLogoTextElement>;
             "cds-text": LocalJSX.CdsText & JSXBase.HTMLAttributes<HTMLCdsTextElement>;
         }
     }

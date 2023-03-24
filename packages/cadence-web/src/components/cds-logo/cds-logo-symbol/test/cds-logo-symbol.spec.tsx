@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CdsLogo } from '../cds-logo';
+import { CdsLogoSymbol } from '../cds-logo-symbol';
 
-describe('cds-logo', () => {
+describe('cds-logo-symbol', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CdsLogo],
-      html: `<cds-logo></cds-logo>`,
+      components: [CdsLogoSymbol],
+      html: `<cds-logo-symbol></cds-logo-symbol>`,
     });
     expect(page.root).toEqualHtml(`
-      <cds-logo>
+      <cds-logo-symbol>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </cds-logo>
+      </cds-logo-symbol>
     `);
   });
 });
