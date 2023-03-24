@@ -1,3 +1,67 @@
-:host {
-  display: block;
+.cds-avatar-group {
+  display: flex;
+  justify-content: space-around;
+  width: fit-content;
+}
+
+/* Is interactive */
+
+.is-interactive ::slotted(cds-avatar:hover) {
+  transition: var(--transition-03);
+  transform: translateY(-0.25rem);
+  cursor: pointer;
+}
+
+/* Direction */
+
+.direction--horizontal {
+  flex-direction: row;
+}
+
+.direction--vertical {
+  flex-direction: column;
+}
+
+/* Overlap spacing */
+
+.overlap--compact.direction--horizontal ::slotted(cds-avatar) {
+  margin-right: -1.5rem;
+}
+
+.overlap--medium.direction--horizontal ::slotted(cds-avatar) {
+  margin-right: -0.75rem;
+}
+
+.overlap--comfortable.direction--horizontal ::slotted(cds-avatar) {
+  margin-right: -0.35rem;
+}
+
+.overlap--compact.direction--vertical ::slotted(cds-avatar) {
+  margin-bottom: -1.5rem;
+}
+
+.overlap--medium.direction--vertical ::slotted(cds-avatar) {
+  margin-bottom: -0.75rem;
+}
+
+.overlap--comfortable.direction--vertical ::slotted(cds-avatar) {
+  margin-bottom: -0.35rem;
+}
+
+/* Gap */
+
+.gap--none {
+  gap: 0;
+}
+
+.gap--small {
+  gap: 0.5rem;
+}
+
+.gap--medium {
+  gap: 1.0rem;
+}
+
+.gap--large {
+  gap: 1.5rem;
 }

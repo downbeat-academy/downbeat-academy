@@ -15,6 +15,11 @@ export namespace Components {
         "size": 'small' | 'medium' | 'large';
     }
     interface CdsAvatarGroup {
+        "avatars": any[];
+        "direction"?: 'horizontal' | 'vertical';
+        "gap"?: 'small' | 'medium' | 'large';
+        "isInteractive"?: boolean;
+        "overlap"?: 'compact' | 'medium' | 'comfortable';
     }
     interface CdsBadge {
         "badgeStyle": 'fill' | 'outline' | 'inverse';
@@ -184,6 +189,11 @@ declare namespace LocalJSX {
         "size": 'small' | 'medium' | 'large';
     }
     interface CdsAvatarGroup {
+        "avatars": any[];
+        "direction"?: 'horizontal' | 'vertical';
+        "gap"?: 'small' | 'medium' | 'large';
+        "isInteractive"?: boolean;
+        "overlap"?: 'compact' | 'medium' | 'comfortable';
     }
     interface CdsBadge {
         "badgeStyle"?: 'fill' | 'outline' | 'inverse';
