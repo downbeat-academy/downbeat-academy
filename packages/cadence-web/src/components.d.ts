@@ -29,6 +29,39 @@ export namespace Components {
         "type": 'neutral' | 'informational' | 'caution' | 'critical' | 'positive';
     }
     interface CdsBodyText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color": | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size": | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": | 'p'
+    | 'span'
+    | 'caption'
+    | 'code'
+    | 'cite'
+    | 'pre'
+    | 'sup'
+    | 'sub';
+        "type": 'expressive' | 'productive';
     }
     interface CdsButton {
         "icon": string;
@@ -262,6 +295,39 @@ declare namespace LocalJSX {
         "type"?: 'neutral' | 'informational' | 'caution' | 'critical' | 'positive';
     }
     interface CdsBodyText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color"?: | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size"?: | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": | 'p'
+    | 'span'
+    | 'caption'
+    | 'code'
+    | 'cite'
+    | 'pre'
+    | 'sup'
+    | 'sub';
+        "type"?: 'expressive' | 'productive';
     }
     interface CdsButton {
         "icon"?: string;
