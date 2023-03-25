@@ -1,11 +1,11 @@
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
-  tag: 'cds-text',
-  styleUrl: 'cds-text.css',
+  tag: 'cds-body-text',
+  styleUrl: 'cds-body-text.css',
   shadow: true,
 })
-export class CdsText {
+export class CdsBodyText {
 
   render() {
     return (

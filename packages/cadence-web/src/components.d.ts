@@ -28,6 +28,8 @@ export namespace Components {
         "text": string;
         "type": 'neutral' | 'informational' | 'caution' | 'critical' | 'positive';
     }
+    interface CdsBodyText {
+    }
     interface CdsButton {
         "icon": string;
         "iconPosition": 'leading' | 'trailing';
@@ -94,6 +96,34 @@ export namespace Components {
         "textAlign"?: 'left' | 'center' | 'right';
         "wrap"?: 'nowrap' | 'wrap' | 'wrap-reverse';
     }
+    interface CdsHeadlineText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color": | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size": | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "type": 'expressive' | 'productive';
+    }
     interface CdsLink {
         "href": string;
         "target": '_self' | '_blank';
@@ -111,8 +141,6 @@ export namespace Components {
     interface CdsLogoText {
         "color": 'brand' | 'secondary' | 'high-contrast';
         "width": number;
-    }
-    interface CdsText {
     }
 }
 declare global {
@@ -133,6 +161,12 @@ declare global {
     var HTMLCdsBadgeElement: {
         prototype: HTMLCdsBadgeElement;
         new (): HTMLCdsBadgeElement;
+    };
+    interface HTMLCdsBodyTextElement extends Components.CdsBodyText, HTMLStencilElement {
+    }
+    var HTMLCdsBodyTextElement: {
+        prototype: HTMLCdsBodyTextElement;
+        new (): HTMLCdsBodyTextElement;
     };
     interface HTMLCdsButtonElement extends Components.CdsButton, HTMLStencilElement {
     }
@@ -158,6 +192,12 @@ declare global {
         prototype: HTMLCdsFlexElement;
         new (): HTMLCdsFlexElement;
     };
+    interface HTMLCdsHeadlineTextElement extends Components.CdsHeadlineText, HTMLStencilElement {
+    }
+    var HTMLCdsHeadlineTextElement: {
+        prototype: HTMLCdsHeadlineTextElement;
+        new (): HTMLCdsHeadlineTextElement;
+    };
     interface HTMLCdsLinkElement extends Components.CdsLink, HTMLStencilElement {
     }
     var HTMLCdsLinkElement: {
@@ -182,25 +222,20 @@ declare global {
         prototype: HTMLCdsLogoTextElement;
         new (): HTMLCdsLogoTextElement;
     };
-    interface HTMLCdsTextElement extends Components.CdsText, HTMLStencilElement {
-    }
-    var HTMLCdsTextElement: {
-        prototype: HTMLCdsTextElement;
-        new (): HTMLCdsTextElement;
-    };
     interface HTMLElementTagNameMap {
         "cds-avatar": HTMLCdsAvatarElement;
         "cds-avatar-group": HTMLCdsAvatarGroupElement;
         "cds-badge": HTMLCdsBadgeElement;
+        "cds-body-text": HTMLCdsBodyTextElement;
         "cds-button": HTMLCdsButtonElement;
         "cds-button-set": HTMLCdsButtonSetElement;
         "cds-divider": HTMLCdsDividerElement;
         "cds-flex": HTMLCdsFlexElement;
+        "cds-headline-text": HTMLCdsHeadlineTextElement;
         "cds-link": HTMLCdsLinkElement;
         "cds-logo-lockup": HTMLCdsLogoLockupElement;
         "cds-logo-symbol": HTMLCdsLogoSymbolElement;
         "cds-logo-text": HTMLCdsLogoTextElement;
-        "cds-text": HTMLCdsTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -225,6 +260,8 @@ declare namespace LocalJSX {
         "size"?: 'small' | 'medium' | 'large';
         "text": string;
         "type"?: 'neutral' | 'informational' | 'caution' | 'critical' | 'positive';
+    }
+    interface CdsBodyText {
     }
     interface CdsButton {
         "icon"?: string;
@@ -292,6 +329,34 @@ declare namespace LocalJSX {
         "textAlign"?: 'left' | 'center' | 'right';
         "wrap"?: 'nowrap' | 'wrap' | 'wrap-reverse';
     }
+    interface CdsHeadlineText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color"?: | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size"?: | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "type"?: 'expressive' | 'productive';
+    }
     interface CdsLink {
         "href"?: string;
         "target"?: '_self' | '_blank';
@@ -310,21 +375,20 @@ declare namespace LocalJSX {
         "color"?: 'brand' | 'secondary' | 'high-contrast';
         "width"?: number;
     }
-    interface CdsText {
-    }
     interface IntrinsicElements {
         "cds-avatar": CdsAvatar;
         "cds-avatar-group": CdsAvatarGroup;
         "cds-badge": CdsBadge;
+        "cds-body-text": CdsBodyText;
         "cds-button": CdsButton;
         "cds-button-set": CdsButtonSet;
         "cds-divider": CdsDivider;
         "cds-flex": CdsFlex;
+        "cds-headline-text": CdsHeadlineText;
         "cds-link": CdsLink;
         "cds-logo-lockup": CdsLogoLockup;
         "cds-logo-symbol": CdsLogoSymbol;
         "cds-logo-text": CdsLogoText;
-        "cds-text": CdsText;
     }
 }
 export { LocalJSX as JSX };
@@ -334,15 +398,16 @@ declare module "@stencil/core" {
             "cds-avatar": LocalJSX.CdsAvatar & JSXBase.HTMLAttributes<HTMLCdsAvatarElement>;
             "cds-avatar-group": LocalJSX.CdsAvatarGroup & JSXBase.HTMLAttributes<HTMLCdsAvatarGroupElement>;
             "cds-badge": LocalJSX.CdsBadge & JSXBase.HTMLAttributes<HTMLCdsBadgeElement>;
+            "cds-body-text": LocalJSX.CdsBodyText & JSXBase.HTMLAttributes<HTMLCdsBodyTextElement>;
             "cds-button": LocalJSX.CdsButton & JSXBase.HTMLAttributes<HTMLCdsButtonElement>;
             "cds-button-set": LocalJSX.CdsButtonSet & JSXBase.HTMLAttributes<HTMLCdsButtonSetElement>;
             "cds-divider": LocalJSX.CdsDivider & JSXBase.HTMLAttributes<HTMLCdsDividerElement>;
             "cds-flex": LocalJSX.CdsFlex & JSXBase.HTMLAttributes<HTMLCdsFlexElement>;
+            "cds-headline-text": LocalJSX.CdsHeadlineText & JSXBase.HTMLAttributes<HTMLCdsHeadlineTextElement>;
             "cds-link": LocalJSX.CdsLink & JSXBase.HTMLAttributes<HTMLCdsLinkElement>;
             "cds-logo-lockup": LocalJSX.CdsLogoLockup & JSXBase.HTMLAttributes<HTMLCdsLogoLockupElement>;
             "cds-logo-symbol": LocalJSX.CdsLogoSymbol & JSXBase.HTMLAttributes<HTMLCdsLogoSymbolElement>;
             "cds-logo-text": LocalJSX.CdsLogoText & JSXBase.HTMLAttributes<HTMLCdsLogoTextElement>;
-            "cds-text": LocalJSX.CdsText & JSXBase.HTMLAttributes<HTMLCdsTextElement>;
         }
     }
 }

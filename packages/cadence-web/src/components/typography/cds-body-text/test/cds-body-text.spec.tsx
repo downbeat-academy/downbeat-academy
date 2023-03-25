@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CdsText } from '../cds-text';
+import { CdsBodyText } from '../cds-body-text';
 
-describe('cds-text', () => {
+describe('cds-body-text', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CdsText],
-      html: `<cds-text></cds-text>`,
+      components: [CdsBodyText],
+      html: `<cds-body-text></cds-body-text>`,
     });
     expect(page.root).toEqualHtml(`
-      <cds-text>
+      <cds-body-text>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </cds-text>
+      </cds-body-text>
     `);
   });
 });
