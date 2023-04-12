@@ -6,81 +6,474 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CdsAvatar {
+        "hasBorder"?: boolean;
+        "imageObject"?: any;
+        "imageUrl"?: string;
+        "name"?: string;
+        "rounded"?: boolean;
+        "size": 'small' | 'medium' | 'large';
+    }
+    interface CdsAvatarGroup {
+        "avatars": any[];
+        "direction"?: 'horizontal' | 'vertical';
+        "gap"?: 'small' | 'medium' | 'large';
+        "isInteractive"?: boolean;
+        "overlap"?: 'compact' | 'medium' | 'comfortable';
+    }
+    interface CdsBadge {
+        "badgeStyle": 'fill' | 'outline' | 'inverse';
+        "iconPosition": 'leading' | 'trailing';
+        "size": 'small' | 'medium' | 'large';
+        "text": string;
+        "type": 'neutral' | 'informational' | 'caution' | 'critical' | 'positive';
+    }
+    interface CdsBodyText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color": | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size": | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": | 'p'
+    | 'span'
+    | 'caption'
+    | 'code'
+    | 'cite'
+    | 'pre'
+    | 'sup'
+    | 'sub';
+        "type": 'expressive' | 'productive';
+    }
     interface CdsButton {
         "icon": string;
         "iconPosition": 'leading' | 'trailing';
         "isFullWidth": boolean;
-        "size": 'large' | 'default' | 'small' | 'x-small';
+        "size": 'large' | 'medium' | 'small' | 'x-small';
         "text": string;
         "variant": 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface CdsButtonSet {
+        "direction": 'row' | 'column';
+        "gap": 'none' | 'x-small' | 'small' | 'default' | 'large';
+        "justify": 'start' | 'end' | 'space-between';
+    }
+    interface CdsDivider {
+        "align": 'left' | 'center' | 'right';
+        "color": 'primary' | 'secondary' | 'high-contrast' | 'brand' | 'interactive';
+        "spacing": 'none' | 'small' | 'medium' | 'large';
+        "thickness": 'small' | 'large';
+        "width": 'small' | 'medium' | 'large' | 'full-width';
+    }
+    interface CdsFlex {
+        "align"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'stretch'
+    | 'baseline';
+        "background"?: | 'primary'
+    | 'secondary'
+    | 'brand'
+    | 'interactive'
+    | 'positive'
+    | 'info'
+    | 'caution'
+    | 'critical'
+    | 'inverse';
+        "borderColor"?: | 'default'
+    | 'caution'
+    | 'critical'
+    | 'interactive'
+    | 'info';
+        "borderRadius"?: | 'default'
+    | 'soft'
+    | 'medium'
+    | 'hard'
+    | 'rounded';
+        "direction": 'row' | 'column';
+        "gap"?: | '2x-small'
+    | 'x-small'
+    | 'small'
+    | 'base'
+    | 'large'
+    | 'x-large'
+    | '2x-large'
+    | '3x-large'
+    | '4x-large'
+    | '5x-large';
+        "justify"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
+        "padding"?: 'medium';
+        "textAlign"?: 'left' | 'center' | 'right';
+        "wrap"?: 'nowrap' | 'wrap' | 'wrap-reverse';
+    }
+    interface CdsHeadlineText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color": | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size": | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "type": 'expressive' | 'productive';
+    }
+    interface CdsLink {
+        "href": string;
+        "target": '_self' | '_blank';
+        "text": string;
+        "type": 'primary' | 'secondary';
+    }
+    interface CdsLogoLockup {
+        "color": 'brand' | 'secondary' | 'high-contrast';
+        "width": number;
+    }
+    interface CdsLogoSymbol {
+        "color": 'brand' | 'secondary' | 'high-contrast';
+        "width": number;
+    }
+    interface CdsLogoText {
+        "color": 'brand' | 'secondary' | 'high-contrast';
+        "width": number;
     }
 }
 declare global {
+    interface HTMLCdsAvatarElement extends Components.CdsAvatar, HTMLStencilElement {
+    }
+    var HTMLCdsAvatarElement: {
+        prototype: HTMLCdsAvatarElement;
+        new (): HTMLCdsAvatarElement;
+    };
+    interface HTMLCdsAvatarGroupElement extends Components.CdsAvatarGroup, HTMLStencilElement {
+    }
+    var HTMLCdsAvatarGroupElement: {
+        prototype: HTMLCdsAvatarGroupElement;
+        new (): HTMLCdsAvatarGroupElement;
+    };
+    interface HTMLCdsBadgeElement extends Components.CdsBadge, HTMLStencilElement {
+    }
+    var HTMLCdsBadgeElement: {
+        prototype: HTMLCdsBadgeElement;
+        new (): HTMLCdsBadgeElement;
+    };
+    interface HTMLCdsBodyTextElement extends Components.CdsBodyText, HTMLStencilElement {
+    }
+    var HTMLCdsBodyTextElement: {
+        prototype: HTMLCdsBodyTextElement;
+        new (): HTMLCdsBodyTextElement;
+    };
     interface HTMLCdsButtonElement extends Components.CdsButton, HTMLStencilElement {
     }
     var HTMLCdsButtonElement: {
         prototype: HTMLCdsButtonElement;
         new (): HTMLCdsButtonElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLCdsButtonSetElement extends Components.CdsButtonSet, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLCdsButtonSetElement: {
+        prototype: HTMLCdsButtonSetElement;
+        new (): HTMLCdsButtonSetElement;
+    };
+    interface HTMLCdsDividerElement extends Components.CdsDivider, HTMLStencilElement {
+    }
+    var HTMLCdsDividerElement: {
+        prototype: HTMLCdsDividerElement;
+        new (): HTMLCdsDividerElement;
+    };
+    interface HTMLCdsFlexElement extends Components.CdsFlex, HTMLStencilElement {
+    }
+    var HTMLCdsFlexElement: {
+        prototype: HTMLCdsFlexElement;
+        new (): HTMLCdsFlexElement;
+    };
+    interface HTMLCdsHeadlineTextElement extends Components.CdsHeadlineText, HTMLStencilElement {
+    }
+    var HTMLCdsHeadlineTextElement: {
+        prototype: HTMLCdsHeadlineTextElement;
+        new (): HTMLCdsHeadlineTextElement;
+    };
+    interface HTMLCdsLinkElement extends Components.CdsLink, HTMLStencilElement {
+    }
+    var HTMLCdsLinkElement: {
+        prototype: HTMLCdsLinkElement;
+        new (): HTMLCdsLinkElement;
+    };
+    interface HTMLCdsLogoLockupElement extends Components.CdsLogoLockup, HTMLStencilElement {
+    }
+    var HTMLCdsLogoLockupElement: {
+        prototype: HTMLCdsLogoLockupElement;
+        new (): HTMLCdsLogoLockupElement;
+    };
+    interface HTMLCdsLogoSymbolElement extends Components.CdsLogoSymbol, HTMLStencilElement {
+    }
+    var HTMLCdsLogoSymbolElement: {
+        prototype: HTMLCdsLogoSymbolElement;
+        new (): HTMLCdsLogoSymbolElement;
+    };
+    interface HTMLCdsLogoTextElement extends Components.CdsLogoText, HTMLStencilElement {
+    }
+    var HTMLCdsLogoTextElement: {
+        prototype: HTMLCdsLogoTextElement;
+        new (): HTMLCdsLogoTextElement;
     };
     interface HTMLElementTagNameMap {
+        "cds-avatar": HTMLCdsAvatarElement;
+        "cds-avatar-group": HTMLCdsAvatarGroupElement;
+        "cds-badge": HTMLCdsBadgeElement;
+        "cds-body-text": HTMLCdsBodyTextElement;
         "cds-button": HTMLCdsButtonElement;
-        "my-component": HTMLMyComponentElement;
+        "cds-button-set": HTMLCdsButtonSetElement;
+        "cds-divider": HTMLCdsDividerElement;
+        "cds-flex": HTMLCdsFlexElement;
+        "cds-headline-text": HTMLCdsHeadlineTextElement;
+        "cds-link": HTMLCdsLinkElement;
+        "cds-logo-lockup": HTMLCdsLogoLockupElement;
+        "cds-logo-symbol": HTMLCdsLogoSymbolElement;
+        "cds-logo-text": HTMLCdsLogoTextElement;
     }
 }
 declare namespace LocalJSX {
+    interface CdsAvatar {
+        "hasBorder"?: boolean;
+        "imageObject"?: any;
+        "imageUrl"?: string;
+        "name"?: string;
+        "rounded"?: boolean;
+        "size": 'small' | 'medium' | 'large';
+    }
+    interface CdsAvatarGroup {
+        "avatars": any[];
+        "direction"?: 'horizontal' | 'vertical';
+        "gap"?: 'small' | 'medium' | 'large';
+        "isInteractive"?: boolean;
+        "overlap"?: 'compact' | 'medium' | 'comfortable';
+    }
+    interface CdsBadge {
+        "badgeStyle"?: 'fill' | 'outline' | 'inverse';
+        "iconPosition"?: 'leading' | 'trailing';
+        "size"?: 'small' | 'medium' | 'large';
+        "text": string;
+        "type"?: 'neutral' | 'informational' | 'caution' | 'critical' | 'positive';
+    }
+    interface CdsBodyText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color"?: | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size"?: | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": | 'p'
+    | 'span'
+    | 'caption'
+    | 'code'
+    | 'cite'
+    | 'pre'
+    | 'sup'
+    | 'sub';
+        "type"?: 'expressive' | 'productive';
+    }
     interface CdsButton {
         "icon"?: string;
         "iconPosition"?: 'leading' | 'trailing';
         "isFullWidth"?: boolean;
-        "size"?: 'large' | 'default' | 'small' | 'x-small';
+        "size"?: 'large' | 'medium' | 'small' | 'x-small';
         "text"?: string;
         "variant"?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'destructive';
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface CdsButtonSet {
+        "direction"?: 'row' | 'column';
+        "gap"?: 'none' | 'x-small' | 'small' | 'default' | 'large';
+        "justify"?: 'start' | 'end' | 'space-between';
+    }
+    interface CdsDivider {
+        "align"?: 'left' | 'center' | 'right';
+        "color"?: 'primary' | 'secondary' | 'high-contrast' | 'brand' | 'interactive';
+        "spacing"?: 'none' | 'small' | 'medium' | 'large';
+        "thickness"?: 'small' | 'large';
+        "width"?: 'small' | 'medium' | 'large' | 'full-width';
+    }
+    interface CdsFlex {
+        "align"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'stretch'
+    | 'baseline';
+        "background"?: | 'primary'
+    | 'secondary'
+    | 'brand'
+    | 'interactive'
+    | 'positive'
+    | 'info'
+    | 'caution'
+    | 'critical'
+    | 'inverse';
+        "borderColor"?: | 'default'
+    | 'caution'
+    | 'critical'
+    | 'interactive'
+    | 'info';
+        "borderRadius"?: | 'default'
+    | 'soft'
+    | 'medium'
+    | 'hard'
+    | 'rounded';
+        "direction": 'row' | 'column';
+        "gap"?: | '2x-small'
+    | 'x-small'
+    | 'small'
+    | 'base'
+    | 'large'
+    | 'x-large'
+    | '2x-large'
+    | '3x-large'
+    | '4x-large'
+    | '5x-large';
+        "justify"?: | 'start'
+    | 'end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
+        "padding"?: 'medium';
+        "textAlign"?: 'left' | 'center' | 'right';
+        "wrap"?: 'nowrap' | 'wrap' | 'wrap-reverse';
+    }
+    interface CdsHeadlineText {
+        "align"?: 'left' | 'center' | 'right';
+        "collapse"?: boolean;
+        "color"?: | 'primary'
+    | 'interactive'
+    | 'brand'
+    | 'strong'
+    | 'secondary'
+    | 'disabled'
+    | 'high-contrast'
+    | 'success'
+    | 'caution'
+    | 'critical';
+        "customClass"?: string;
+        "fluid"?: boolean;
+        "size"?: | '6x-large'
+    | '5x-large'
+    | '4x-large'
+    | '3x-large'
+    | '2x-large'
+    | 'x-large'
+    | 'large'
+    | 'base'
+    | 'small'
+    | 'x-small';
+        "tag": 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+        "type"?: 'expressive' | 'productive';
+    }
+    interface CdsLink {
+        "href"?: string;
+        "target"?: '_self' | '_blank';
+        "text"?: string;
+        "type"?: 'primary' | 'secondary';
+    }
+    interface CdsLogoLockup {
+        "color"?: 'brand' | 'secondary' | 'high-contrast';
+        "width"?: number;
+    }
+    interface CdsLogoSymbol {
+        "color"?: 'brand' | 'secondary' | 'high-contrast';
+        "width"?: number;
+    }
+    interface CdsLogoText {
+        "color"?: 'brand' | 'secondary' | 'high-contrast';
+        "width"?: number;
     }
     interface IntrinsicElements {
+        "cds-avatar": CdsAvatar;
+        "cds-avatar-group": CdsAvatarGroup;
+        "cds-badge": CdsBadge;
+        "cds-body-text": CdsBodyText;
         "cds-button": CdsButton;
-        "my-component": MyComponent;
+        "cds-button-set": CdsButtonSet;
+        "cds-divider": CdsDivider;
+        "cds-flex": CdsFlex;
+        "cds-headline-text": CdsHeadlineText;
+        "cds-link": CdsLink;
+        "cds-logo-lockup": CdsLogoLockup;
+        "cds-logo-symbol": CdsLogoSymbol;
+        "cds-logo-text": CdsLogoText;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cds-avatar": LocalJSX.CdsAvatar & JSXBase.HTMLAttributes<HTMLCdsAvatarElement>;
+            "cds-avatar-group": LocalJSX.CdsAvatarGroup & JSXBase.HTMLAttributes<HTMLCdsAvatarGroupElement>;
+            "cds-badge": LocalJSX.CdsBadge & JSXBase.HTMLAttributes<HTMLCdsBadgeElement>;
+            "cds-body-text": LocalJSX.CdsBodyText & JSXBase.HTMLAttributes<HTMLCdsBodyTextElement>;
             "cds-button": LocalJSX.CdsButton & JSXBase.HTMLAttributes<HTMLCdsButtonElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "cds-button-set": LocalJSX.CdsButtonSet & JSXBase.HTMLAttributes<HTMLCdsButtonSetElement>;
+            "cds-divider": LocalJSX.CdsDivider & JSXBase.HTMLAttributes<HTMLCdsDividerElement>;
+            "cds-flex": LocalJSX.CdsFlex & JSXBase.HTMLAttributes<HTMLCdsFlexElement>;
+            "cds-headline-text": LocalJSX.CdsHeadlineText & JSXBase.HTMLAttributes<HTMLCdsHeadlineTextElement>;
+            "cds-link": LocalJSX.CdsLink & JSXBase.HTMLAttributes<HTMLCdsLinkElement>;
+            "cds-logo-lockup": LocalJSX.CdsLogoLockup & JSXBase.HTMLAttributes<HTMLCdsLogoLockupElement>;
+            "cds-logo-symbol": LocalJSX.CdsLogoSymbol & JSXBase.HTMLAttributes<HTMLCdsLogoSymbolElement>;
+            "cds-logo-text": LocalJSX.CdsLogoText & JSXBase.HTMLAttributes<HTMLCdsLogoTextElement>;
         }
     }
 }

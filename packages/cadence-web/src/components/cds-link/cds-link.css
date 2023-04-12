@@ -1,0 +1,18 @@
+.cds-link {
+  font-size: inherit;
+	font-family: inherit;
+	line-height: inherit;
+	display: inline;
+	text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Type */
+
+.type--primary {
+  color: var(--color-foreground-primary);
+}
+
+.type--secondary {
+  color: var(--color-foreground-secondary);
+}
