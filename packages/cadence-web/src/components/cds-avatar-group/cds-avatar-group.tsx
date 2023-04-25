@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 @Component({
   tag: 'cds-avatar-group',
-  styleUrl: 'cds-avatar-group.css',
+  styleUrl: 'cds-avatar-group.scss',
   shadow: true,
 })
 export class CdsAvatarGroup {
