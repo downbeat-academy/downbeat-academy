@@ -266,6 +266,7 @@ importers:
     specifiers:
       '@stencil/core': ^3.0.0
       '@stencil/react-output-target': ^0.4.0
+      '@stencil/sass': ^3.0.1
       '@types/jest': ^27.5.2
       '@types/node': ^16.18.11
       cadence-tokens: workspace:*
@@ -279,6 +280,7 @@ importers:
       classnames: 2.3.2
     devDependencies:
       '@stencil/react-output-target': 0.4.0_@stencil+core@3.1.0
+      '@stencil/sass': 3.0.1_@stencil+core@3.1.0
       '@types/jest': 27.5.2
       '@types/node': 16.18.14
       jest: 27.5.1
@@ -3795,6 +3797,14 @@ packages:
     resolution: {integrity: sha512-X7XW6aHSU7ZypkFj4wX/XL7ROj2GXcdTL+Emo1mKNg5laBcuTVtt8zPR4ERG/grq8ec8wav+FxBuSlQ3cH0qcg==}
     peerDependencies:
       '@stencil/core': ^2.9.0 || ^3.0.0-beta.0
+    dependencies:
+      '@stencil/core': 3.1.0
+    dev: true
+
+  /@stencil/sass/3.0.1_@stencil+core@3.1.0:
+    resolution: {integrity: sha512-nAcD7MyUy+gieodk/mMSqYE4FERWf2Hiun+QR+srnugpclP2MMRq/Ik1SGUcFrWj+L6lSvoCyWimSEigf9aSBg==}
+    peerDependencies:
+      '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0'
     dependencies:
       '@stencil/core': 3.1.0
     dev: true

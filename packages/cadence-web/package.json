@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@stencil/react-output-target": "^0.4.0",
+    "@stencil/sass": "^3.0.1",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
     "jest": "^27.5.1",

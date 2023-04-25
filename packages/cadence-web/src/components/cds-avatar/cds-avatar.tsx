@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 @Component({
   tag: 'cds-avatar',
-  styleUrl: 'cds-avatar.css',
+  styleUrl: 'cds-avatar.scss',
   shadow: true,
 })
 export class CdsAvatar {
@@ -37,13 +37,12 @@ export class CdsAvatar {
     const baType = 'marble'
     const baColors = '6b75f6,43a2ff,b10010,4ccad1'
     const baName = this.name !== undefined ? encodeURI(this.name) : 'username';
-    console.log(this.imageUrl)
 
     return (
       <Host>
         <div class={classes}>
           {this.imageObject === undefined && this.imageUrl === undefined ? (
-            <img src={`https://source.boringavatars.com/${baType}/${getSize(this.size)}/${baName}?colors=${baColors}`} />
+            <img src={`https://source.boringavatars.com/${baType}/${getSize(this.size)}/${baName}?colors=${baColors}`} alt={this.name} />
           ) : this.imageObject !== undefined && this.imageUrl === undefined ? (
             this.imageObject
           ) : this.imageObject === undefined && this.imageUrl !== undefined ? (

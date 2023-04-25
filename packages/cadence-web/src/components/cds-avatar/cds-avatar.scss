@@ -1,0 +1,41 @@
+.cds-avatar {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	box-sizing: border-box;
+  height: 64px;
+  width: 64px;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+
+/* Sizes */
+
+$avatar-sizes: (
+  'small': 40px,
+  'medium': 64px,
+  'large': 80px,
+);
+
+@each $size, $value in $avatar-sizes {
+  .size--#{$size} {
+    height: $value;
+    width: $value;
+  }
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.has-border {
+  border-color: $color-palette-neutral-100;
+  border-width: 2px;
+  border-style: solid;
+}
