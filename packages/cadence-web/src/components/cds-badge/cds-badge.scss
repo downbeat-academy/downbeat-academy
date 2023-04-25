@@ -1,0 +1,105 @@
+.cds-badge {
+	font-family: $typography-font-family-productive-body;
+	font-weight: bold;
+	display: inline-flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	text-decoration: none;
+	width: fit-content;
+	height: fit-content;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: $radius-soft;
+}
+
+/* Size */
+
+$badge-sizes: (
+	'small': (
+		'font-size': $typography-font-size-fixed-productive-x-small,
+		'line-height': 16px,
+	),
+	'medium': (
+		'font-size': $typography-font-size-fixed-productive-small,
+		'line-height': 20px,
+	),
+	'large': (
+		'font-size': $typography-font-size-fixed-productive-base,
+		'line-height': 24px,
+	),
+);
+
+@each $size, $values in $badge-sizes {
+	.size--#{$size} {
+		font-size: map-get($values, font-size);
+		line-height: map-get($values, line-height);
+		padding: 0 $spacing-02;
+		gap: $spacing-02;
+	}
+}
+
+/* Type */
+
+$light-color: $color-palette-neutral-200;
+$dark-color: $color-palette-neutral-800;
+
+$types: (
+	'neutral': (
+		'light': $color-palette-neutral-200,
+		'dark': $color-palette-neutral-800,
+	),
+	'informational': (
+		'light': $color-palette-blueberry-200,
+		'dark': $color-palette-blueberry-800,
+	),
+	'caution': (
+		'light': $color-palette-pineapple-200,
+		'dark': $color-palette-pineapple-800,
+	),
+	'critical': (
+		'light': $color-palette-pomegranate-200,
+		'dark': $color-palette-pomegranate-800,
+	),
+	'positive': (
+		'light': $color-palette-kale-200,
+		'dark': $color-palette-kale-800,
+	),
+);
+
+@each $type, $styles in $types {
+	.type--#{$type}  {
+		$light-color: map-get($styles, light);
+		$dark-color: map-get($styles, dark);
+	}
+}
+
+/* Badge Style */
+
+$badge-styles: (
+	'fill': (
+		'background': $light-color,
+		'color': $dark-color,
+		'border-color': transparent,
+	),
+	'outline': (
+		'background': transparent,
+		'color': $dark-color,
+		'border-color': $dark-color,
+	),
+	'inverse': (
+		'background': $dark-color,
+		'color': $light-color,
+		'border-color': transparent,
+	),
+);
+
+@each $style, $mapping in $badge-styles {
+	.badge-style--#{$style} {
+		background: map-get($mapping, background);
+		color: map-get($mapping, color);
+		border-color: map-get($mapping, border-color);
+	}
+}
+

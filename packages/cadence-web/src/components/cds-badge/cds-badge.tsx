@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 @Component({
   tag: 'cds-badge',
-  styleUrl: 'cds-badge.css',
+  styleUrl: 'cds-badge.scss',
   shadow: true,
 })
 
@@ -19,7 +19,7 @@ export class CdsBadge {
     const classes = classnames(
       `cds-badge`,
       this.type ? `type--${this.type}` : `type--neutral`,
-      this.size ? `type--${this.size}` : `size--medium`,
+      this.size ? `size--${this.size}` : `size--medium`,
       this.badgeStyle ? `badge-style--${this.badgeStyle}` : `badge-style--fill`,
     )
 
