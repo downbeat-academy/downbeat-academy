@@ -2,7 +2,7 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { linkResolver } from '@utils/linkResolver'
 import { LinkProps } from './types'
-import s from './styledLink.module.scss'
+import s from './styledLink.module.css'
 
 const StyledLink = ({
   children,

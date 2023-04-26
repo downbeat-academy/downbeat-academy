@@ -4,7 +4,7 @@ import { Text, Flex, Avatar, AvatarGroup } from 'cadence-core'
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
-import s from './contentAuthor.module.scss'
+import s from './contentAuthor.module.css'
 import { ContentAuthorProps } from './types'
 
 const ContentAuthor = ({
@@ -67,12 +67,12 @@ const ContentAuthor = ({
       />
       <Flex direction='column' gap='2x-small'>
         <Flex direction='row' gap='x-small'>{authorNames}</Flex>
-        {date &&        
-          <Text 
-            tag='p' 
-            size='small' 
-            category='body' 
-            color='secondary' 
+        {date &&
+          <Text
+            tag='p'
+            size='small'
+            category='body'
+            color='secondary'
             collapse
           >
             {publishedDate}

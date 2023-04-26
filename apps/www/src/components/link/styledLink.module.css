@@ -1,0 +1,60 @@
+.root {
+  font-family: inherit;
+	font-size: inherit;
+	text-decoration: underline;
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+  gap: var(--spacing-02);
+}
+
+.root:hover {
+  cursor: pointer;
+}
+
+/* Types */
+
+.style--expressive_type--primary {
+  text-decoration-thickness: var(--spacing-02);
+  text-underline-offset: var(--spacing-01);
+  transition: var(--transition-02);
+  padding: var(--spaing-01) 0;
+  color: var(--color-foreground-interactive-default);
+}
+
+.style--expressive_type--primary:hover {
+  color: var(--color-foreground-interactive-hover);
+  background: var(--color-palette-blueberry-100);
+}
+
+.style--expressive_type--primary:active {
+  color: var(--color-foreground-interactive-active);
+}
+
+.style--expressive_type--primary:visited {
+  color: var(--color-foreground-interactive-active);
+}
+
+.style--expressive_type--secondary {
+  text-decoration-thickness: var(--spacing-02);
+  text-underline-offset: var(--spacing-02);
+  transition: var(--transition-02);
+  padding: var(--spaing-01) 0;
+  color: var(--color-palette-neutral-800);
+}
+
+.style--default_type--primary {
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  transition: var(--transition-01);
+  padding: var(--spaing-01) 0;
+  color: var(--color-color-foreground-interactive-default);
+}
+
+.stye--default_type--secondary {
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  transition: var(--transition-01);
+  padding: var(--spaing-01) 0;
+  color: var(--color-palette-neutral-800);
+}

@@ -1,7 +1,7 @@
 import { useFathom } from '@hooks/useFathom'
 import { Footer, Header } from '@components/navigation'
 import { AppWrapper } from '@components/layout'
-import '@styles/index.scss'
+import '@styles/global.css'
 
 function CustomApp({ Component, pageProps }) {
 	useFathom()

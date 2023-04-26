@@ -1,0 +1,10 @@
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: var(--spacing-05);
+	align-items: center;
+}
+
+.authorLink {
+	color: var(--color-foreground-primary);
+}
