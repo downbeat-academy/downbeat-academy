@@ -31,7 +31,7 @@
 		"@supabase/supabase-js": "^2.4.1",
 		"@types/node": "18.11.17",
 		"@types/react-dom": "18.0.9",
-		"cadence-core": "workspace:^1.3.0",
+		"cadence-react": "workspace:^1.3.0",
 		"cadence-icons": "workspace:^1.0.1",
 		"cadence-tokens": "workspace:^2.0.1",
 		"classnames": "^2.3.2",
