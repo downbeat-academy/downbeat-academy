@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { SVGProps } from 'react'
+import type { SVGProps } from 'react'
 interface SVGRProps {
-	title?: string
-	titleId?: string
+	title?: string;
+	titleId?: string;
 }
 const SvgOpenNewWindow = ({
 	title,
@@ -10,22 +10,22 @@ const SvgOpenNewWindow = ({
 	...props
 }: SVGProps<SVGSVGElement> & SVGRProps) => (
 	<svg
+		xmlns="http://www.w3.org/2000/svg"
 		width={props.height}
 		height={props.height}
-		viewBox="0 0 24 24"
 		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
 		role="img"
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<g
-			clipPath="url(#open-new-window_svg__a)"
 			stroke="#000"
-			strokeWidth={2}
 			strokeLinecap="round"
 			strokeLinejoin="round"
+			strokeWidth={2}
+			clipPath="url(#open-new-window_svg__a)"
 		>
 			<path d="M12 6H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-5M11 13 21 3M16 3h5v5" />
 		</g>
