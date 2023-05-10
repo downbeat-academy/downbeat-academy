@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Badge } from 'cadence-core'
+import { Badge } from 'cadence-react'
 import { linkResolver } from '@utils/linkResolver'
 import s from './categories.module.scss'
 

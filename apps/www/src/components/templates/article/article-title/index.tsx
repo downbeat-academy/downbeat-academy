@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Text, Badge, Flex } from 'cadence-core'
+import { Text, Badge, Flex } from 'cadence-react'
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import s from './articleTitle.module.scss'

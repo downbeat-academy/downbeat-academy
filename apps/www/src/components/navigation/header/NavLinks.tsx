@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import classnames from 'classnames'
-import { Button } from 'cadence-core'
+import { Button } from 'cadence-react'
 import { NavLinksProps } from './types'
 import s from './navLinks.module.scss'
 

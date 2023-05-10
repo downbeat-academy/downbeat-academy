@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Flex, Button, Badge, Text } from 'cadence-core'
+import { Flex, Button, Badge, Text } from 'cadence-react'
 import s from './secondary.module.scss'
 
 const Secondary = () => {
