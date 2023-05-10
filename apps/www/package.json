@@ -41,6 +41,7 @@
 		"next": "13.0.7",
 		"next-sanity": "^4.3.2",
 		"next-sitemap": "^4.0.9",
+		"opensheetmusicdisplay": "^1.7.5",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sass": "^1.62.1",
