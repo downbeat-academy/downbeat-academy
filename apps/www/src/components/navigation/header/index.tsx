@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classnames from 'classnames'
-import { Flex, LogoLockup } from 'cadence-core'
+import { Flex, LogoLockup } from 'cadence-react'
 import s from './header.module.scss'
 
 import { Secondary } from './Secondary'

@@ -1,4 +1,4 @@
-import { Text, Divider } from 'cadence-core'
+import { Text, Divider } from 'cadence-react'
 import classnames from 'classnames'
 import { PageTitleProps } from './types'
 import s from './pageTitle.module.scss'

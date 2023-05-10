@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Avatar, AvatarGroup, Text } from 'cadence-core'
+import { Avatar, AvatarGroup, Text } from 'cadence-react'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/linkResolver'

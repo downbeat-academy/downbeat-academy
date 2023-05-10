@@ -20,8 +20,8 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "dev": "turbo run dev",
-    "core:dev": "turbo run dev --filter=cadence-core",
-    "core:build": "turbo run build --filter=cadence-core",
+    "react:dev": "turbo run dev --filter=cadence-react",
+    "react:build": "turbo run build --filter=cadence-react",
     "icons:dev": "turbo run dev --filter=cadence-icons",
     "icons:build": "turbo run build --filter=cadence-icons",
     "www:dev": "turbo run dev --filter=www",
@@ -37,10 +37,10 @@
     "components:build": "pnpm wc:build && pnpm cadence-react:build"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
+    "@changesets/cli": "^2.26.1",
     "@types/prettier": "^2.7.2",
-    "prettier": "^2.8.3",
-    "turbo": "^1.7.0"
+    "prettier": "^2.8.8",
+    "turbo": "^1.9.3"
   },
   "dependencies": {
     "next": "13.0.7"

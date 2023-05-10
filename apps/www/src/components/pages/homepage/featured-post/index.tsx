@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Flex, Text } from 'cadence-core'
+import { Flex, Text } from 'cadence-react'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
 import { ContentAuthor } from '@components/content-author'

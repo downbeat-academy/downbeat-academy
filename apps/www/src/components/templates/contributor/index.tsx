@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Text, Avatar, Badge, Flex } from 'cadence-core'
+import { Text, Avatar, Badge, Flex } from 'cadence-react'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
 import { ContentGrid, ContentGridItem } from '@components/layout'
@@ -23,7 +23,7 @@ const ContributorTemplate = ({
 
   const contributorContent = content.map(content => {
     return (
-      <StyledLink 
+      <StyledLink
         href={linkResolver(content.slug, content.type)}
         style='default'
         type='primary'
@@ -43,12 +43,12 @@ const ContributorTemplate = ({
   return (
     <ContentGrid>
       <ContentGridItem location='center' padding='small'>
-        <Avatar 
+        <Avatar
           imageObject={image}
           size='large'
         />
         <Text
-          tag='h1' 
+          tag='h1'
           size='5x-large'
           category='headline'
           type='expressive'

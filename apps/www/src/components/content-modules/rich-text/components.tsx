@@ -1,4 +1,4 @@
-import { Text, Blockquote, List } from 'cadence-core'
+import { Text, Blockquote, List } from 'cadence-react'
 import { StyledLink } from '@components/link'
 import { linkResolver } from '@utils/linkResolver'
 import { InlineChord, InlineMusicText, MusicNotation } from '@components/music-notation'

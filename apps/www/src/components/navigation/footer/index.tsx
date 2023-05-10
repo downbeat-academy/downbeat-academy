@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Text, LogoSymbol, Flex } from 'cadence-core'
+import { Text, LogoSymbol, Flex } from 'cadence-react'
 import { socialLinks, siteLinks, copyrightLinks } from './FooterLinks'
 import s from './footer.module.scss'
 

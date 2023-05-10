@@ -19,23 +19,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "devDependencies": {
-    "@svgr/cli": "^6.5.1",
-    "@testing-library/react": "^13.4.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react": "^3.0.1",
-    "postcss": "^8.4.21",
-    "postcss-nesting": "^10.2.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.9.3",
-    "vite": "^4.0.4",
-    "vite-plugin-css-injected-by-js": "^2.4.0",
-    "vite-plugin-dts": "^1.7.1",
-    "vite-plugin-svgr": "^2.4.0",
-    "vite-tsconfig-paths": "^4.0.5",
-    "vitest": "^0.26.3"
-  },
   "files": [
     "dist"
   ],
@@ -47,5 +30,22 @@
       "import": "./dist/cadence-icons.es.js",
       "require": "./dist/cadence-icons.umd.js"
     }
+  },
+  "devDependencies": {
+    "@svgr/cli": "^8.0.1",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@vitejs/plugin-react": "^4.0.0",
+    "postcss": "^8.4.23",
+    "postcss-nesting": "^11.2.2",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5",
+    "vite-plugin-css-injected-by-js": "^3.1.1",
+    "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.31.0"
   }
 }
