@@ -38,7 +38,7 @@ export const getArticlePaths = groq`
 `
 
 export const getAllArticles = groq`
-    *[_type == "article"] {
+    *[_type == "article" && slug.current != 'test-post'] {
         _id,
         _key,
         title,
@@ -89,7 +89,7 @@ export const GET_ARTICLES = groq`
 // Page Queries
 
 export const getPages = groq`
-    *[_type == "page" && slug.current == $slug][0] {
+    *[_type == "page" && slug.current == $slug && slug.current != 'test-page'][0] {
 		_id,
 		title,
 		showTitle,
