@@ -113,7 +113,7 @@ export const getPages = groq`
 `
 
 export const getPagePaths = groq`
-    *[_type == "page" && defined(slug.current)][].slug.current
+    *[_type == "page" && defined(slug.current) && slug.current != 'test-page'][].slug.current
 `
 
 // Podcast Queries
