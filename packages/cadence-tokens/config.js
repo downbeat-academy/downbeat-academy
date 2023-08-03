@@ -13,6 +13,7 @@ module.exports = {
 		web: {
 			transformGroup: 'css',
 			buildPath: './dist/web/',
+			prefix: 'cds',
 			files: [
 				{
 					destination: 'tokens.scss',

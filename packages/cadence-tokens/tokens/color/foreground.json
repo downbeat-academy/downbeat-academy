@@ -1,96 +1,84 @@
 {
-	"color": {
-		"foreground": {
-			"interactive": {
-				"default": {
-					"value": "{color.palette.blueberry.600.value}",
-					"type": "color"
-				},
-				"hover": {
-					"value": "{color.palette.blueberry.700.value}",
-					"type": "color"
-				},
-				"active": {
-					"value": "{color.palette.blueberry.800.value}",
-					"type": "color"
-				}
-			},
-			"brand": {
-				"default": {
-					"value": "{color.palette.passionFruit.600.value}",
-					"type": "color"
-				},
-				"hover": {
-					"value": "{color.palette.passionFruit.700.value}",
-					"type": "color"
-				},
-				"active": {
-					"value": "{color.palette.passionFruit.800.value}",
-					"type": "color"
-				}
-			},
-			"primary": {
-				"value": "{color.palette.neutral.900.value}",
-				"type": "color"
-			},
-			"strong": {
-				"value": "{color.palette.blackberry.800.value}",
-				"type": "color"
-			},
-			"secondary": {
-				"value": "{color.palette.blackberry.500.value}",
-				"type": "color"
-			},
-			"disabled": {
-				"value": "{color.palette.neutral.600.value}",
-				"type": "color"
-			},
-			"highContrast": {
-				"value": "{color.palette.neutral.100.value}",
-				"type": "color"
-			},
-			"success": {
-				"default": {
-					"value": "{color.palette.kale.600.value}",
-					"type": "color"
-				},
-				"hover": {
-					"value": "{color.palette.kale.700.value}",
-					"type": "color"
-				},
-				"active": {
-					"value": "{color.palette.kale.800.value}",
-					"type": "color"
-				}
-			},
-			"caution": {
-				"default": {
-					"value": "{color.palette.pineapple.500.value}",
-					"type": "color"
-				},
-				"hover": {
-					"value": "{color.palette.pineapple.600.value}",
-					"type": "color"
-				},
-				"active": {
-					"value": "{color.palette.pineapple.700.value}",
-					"type": "color"
-				}
-			},
-			"critical": {
-				"default": {
-					"value": "{color.palette.pomegranate.500.value}",
-					"type": "color"
-				},
-				"hover": {
-					"value": "{color.palette.pomegranate.600.value}",
-					"type": "color"
-				},
-				"active": {
-					"value": "{color.palette.pomegranate.700.value}",
-					"type": "color"
-				}
-			}
-		}
-	}
+  "color": {
+    "foreground": {
+      "primary": {
+        "value": "{color.palette.blackberry.700}",
+        "type": "color"
+      },
+      "strong": {
+        "value": "{color.palette.blackberry.800}",
+        "type": "color"
+      },
+      "faint": {
+        "value": "{color.palette.blackberry.500}",
+        "type": "color"
+      },
+      "disabled": {
+        "value": "{color.palette.blackberry.400}",
+        "type": "color"
+      },
+      "high-contrast": {
+        "value": "{color.palette.blackberry.50}",
+        "type": "color"
+      },
+      "critical": {
+        "default": {
+          "value": "{color.palette.peach.500}",
+          "type": "color"
+        },
+        "hover": {
+          "value": "{color.palette.peach.600}",
+          "type": "color"
+        }
+      },
+      "warning": {
+        "default": {
+          "value": "{color.palette.pineapple.500}",
+          "type": "color"
+        },
+        "hover": {
+          "value": "{color.palette.pineapple.600}",
+          "type": "color"
+        }
+      },
+      "interactive": {
+        "default": {
+          "value": "{color.palette.blueberry.500}",
+          "type": "color"
+        },
+        "hover": {
+          "value": "{color.palette.blueberry.600}",
+          "type": "color"
+        },
+        "active": {
+          "value": "{color.palette.blueberry.700}",
+          "type": "color"
+        }
+      },
+      "brand": {
+        "default": {
+          "value": "{color.palette.violet.500}",
+          "type": "color"
+        },
+        "hover": {
+          "value": "{color.palette.violet.600}",
+          "type": "color"
+        },
+        "active": {
+          "value": "{color.palette.violet.700}",
+          "type": "color"
+        }
+      },
+      "success": {
+        "default": {
+          "value": "{color.palette.kale.500}",
+          "type": "color"
+        },
+        "hover": {
+          "value": "{color.palette.kale.600}",
+          "type": "color"
+        }
+      }
+    }
+  }
 }
