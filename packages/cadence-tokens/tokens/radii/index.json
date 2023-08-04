@@ -1,0 +1,19 @@
+{
+  "radii": {
+    "x-soft": {
+      "value": "{scale.large}"
+    },
+    "soft": {
+      "value": "{scale.base}"
+    },
+    "medium": {
+      "value": "{scale.x-small}"
+    },
+    "hard": {
+      "value": "{scale.3x-small}"
+    },
+    "none": {
+      "value": "0"
+    }
+  }
+}
