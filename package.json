@@ -34,7 +34,8 @@
     "wc:dev": "pnpm --filter cadence-web start",
     "wc:build": "pnpm --filter cadence-web build",
     "cadence-react:build": "pnpm --filter cadence-react build",
-    "components:build": "pnpm wc:build && pnpm cadence-react:build"
+    "components:build": "pnpm wc:build && pnpm cadence-react:build",
+    "payload:dev": "turbo run dev --filter=payload-cms"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
