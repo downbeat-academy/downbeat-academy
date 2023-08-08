@@ -1,8 +1,0 @@
-.root {
-	display: grid;
-	grid-template-rows: auto minmax(calc(100vh - 105px), auto) auto;
-	grid-template-areas:
-		'header'
-		'content'
-		'footer';
-}

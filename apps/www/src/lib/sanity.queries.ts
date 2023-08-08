@@ -1,9 +1,21 @@
 import { groq } from 'next-sanity'
 
+// Homepage
+
+export const homepageQuery = groq`
+    *[_type == 'article'] {
+        _id,
+        _key,
+        title,
+        "slug": slug.current,
+        content,
+    }
+`
+
 // Article Queries
 
-export const getArticles = groq`
-    *[_type == "article" && slug.current == $slug][0] {
+export const articlesQuery = groq`
+    *[_type == "article"] {
         _id,
         _key,
         _updatedAt,

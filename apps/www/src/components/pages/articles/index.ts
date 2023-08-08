@@ -1,1 +1,0 @@
-export { ArticlesPageWrapper } from './articles-page-wrapper'
