@@ -1,17 +1,5 @@
 import { groq } from 'next-sanity'
 
-// Homepage
-
-export const homepageQuery = groq`
-    *[_type == 'article'] {
-        _id,
-        _key,
-        title,
-        "slug": slug.current,
-        content,
-    }
-`
-
 // Article Queries
 
 export const articlesQuery = groq`
