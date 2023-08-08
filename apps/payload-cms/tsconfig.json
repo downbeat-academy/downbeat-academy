@@ -20,7 +20,8 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "src/payload.config.ts"
   ],
   "exclude": [
     "node_modules",
