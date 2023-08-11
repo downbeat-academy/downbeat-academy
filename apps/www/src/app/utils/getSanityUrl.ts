@@ -1,5 +1,5 @@
 import { parseAssetId, buildFileUrl } from "@sanity/asset-utils";
-import { sanityConfig } from "@lib/sanity.client";
+import { sanityConfig } from '@lib/sanity.client'
 
 function getSanityUrl(assetId) {
   if (!assetId) return null

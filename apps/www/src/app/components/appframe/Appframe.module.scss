@@ -1,0 +1,33 @@
+.appframe--root {
+	display: grid;
+	grid-template-areas:
+		'header header header'
+		'sidebar-left content sidebar-right'
+		'sidebar-left footer sidebar-right';
+	grid-template-columns: 100px min-content 100px;
+	grid-template-rows: 50px min-content 50px;
+}
+
+.appframe--header {
+	grid-area: 'header';
+	background: lightblue;
+}
+
+.appframe--sidebar-left {
+	grid-area: 'sidebar-left';
+	background: lightcoral;
+}
+
+.appframe--sidebar-right {
+	grid-area: 'sidebar-right';
+	background: lightcyan;
+}
+
+.appframe--content {
+	grid-area: 'content';
+}
+
+.appframe--footer {
+	grid-area: 'footer';
+	background: lightgray;
+}

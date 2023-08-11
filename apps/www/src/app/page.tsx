@@ -1,6 +1,6 @@
-import { homepageQuery } from "@lib/queries"
-import { readToken } from "@lib/sanity.api"
-import { getClient } from "@lib/sanity.client"
+import { homepageQuery } from "@app/lib/queries"
+import { readToken } from "@app/lib/sanity.api"
+import { getClient } from "@app/lib/sanity.client"
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 

@@ -1,6 +1,6 @@
-import { readToken } from '@lib/sanity.api'
-import { getClient } from '@lib/sanity.client'
-import { pagesBySlugQuery, pagePaths } from '@lib/queries'
+import { readToken } from '@app/lib/sanity.api'
+import { getClient } from '@app/lib/sanity.client'
+import { pagesBySlugQuery, pagePaths } from '@app/lib/queries'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 

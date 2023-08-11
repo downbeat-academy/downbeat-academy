@@ -27,22 +27,22 @@
         "pages/api/*"
       ],
       "@components/*": [
-        "components/*"
+        "app/components/*"
       ],
       "@lib/*": [
-        "lib/*"
+        "app/lib/*"
       ],
       "@hooks/*": [
-        "hooks/*"
+        "app/hooks/*"
       ],
       "@styles/*": [
-        "styles/*"
+        "app/styles/*"
       ],
       "@types/*": [
-        "types/*"
+        "app/types/*"
       ],
       "@utils/*": [
-        "utils/*"
+        "app/utils/*"
       ],
       "@app/*": [
         "app/*"
