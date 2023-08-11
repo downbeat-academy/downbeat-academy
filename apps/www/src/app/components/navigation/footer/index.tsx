@@ -1,13 +1,21 @@
-import s from './Footer.module.scss'
+import classnames from 'classnames'
+import s from './footer.module.scss'
 
 import type { FooterProps } from './types'
 
-export const Footer = ({
+const Footer = ({
   className,
 }: FooterProps) => {
+
+  const classes = classnames(
+    s['footer--root'],
+    [className]
+  )
   return (
-    <footer className={s.footerRoot}>
+    <footer className={classes}>
       <p>This is the footer</p>
     </footer>
   )
 }
+
+export { Footer }

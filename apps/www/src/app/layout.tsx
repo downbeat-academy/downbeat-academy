@@ -1,4 +1,4 @@
-import { Appframe } from '@components/appframe'
+import { AppFrame } from '@components/appframe'
 import { Footer, MainNavigation } from '@components/navigation'
 import { Sidebar } from '@components/sidebar'
 import { ContentWrapper } from '@components/content-wrapper'
@@ -12,14 +12,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Appframe>
-          <MainNavigation />
+        <AppFrame>
+          <MainNavigation className='custom-class' />
           <Sidebar position='start' />
           <ContentWrapper>
             {children}
           </ContentWrapper>
+          <Sidebar position='end' />
           <Footer />
-        </Appframe>
+        </AppFrame>
       </body>
     </html>
   )

@@ -1,0 +1,11 @@
+.app-frame--root {
+	display: grid;
+	grid-template-areas:
+		'header header header'
+		'sidebar-start content sidebar-end'
+		'sidebar-start footer footer';
+	grid-template-columns: 200px calc(100vw - 400px) 200px;
+	grid-template-rows: 50px calc(100vh - 50px) 50px;
+	max-width: 100%;
+	max-height: 100vh;
+}

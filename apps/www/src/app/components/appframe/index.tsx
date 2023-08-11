@@ -1,14 +1,14 @@
 import classnames from 'classnames'
 
-import type { AppframeProps } from './types'
-import s from './Appframe.module.scss'
+import type { AppFrameProps } from './types'
+import s from './app-frame.module.scss'
 
-const Appframe = ({
+const AppFrame = ({
   children,
-}: AppframeProps) => {
+}: AppFrameProps) => {
 
   const classes = classnames(
-    [s.appframeRoot],
+    s['app-frame--root'],
   )
 
   return (
@@ -18,4 +18,4 @@ const Appframe = ({
   )
 }
 
-export { Appframe };
+export { AppFrame };

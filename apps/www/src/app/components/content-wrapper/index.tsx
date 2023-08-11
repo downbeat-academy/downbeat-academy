@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './ContentWrapper.module.scss'
+import s from './content-wrapper.module.scss'
 
 import type { ContentWrapperProps } from './types'
 
@@ -8,7 +8,7 @@ const ContentWrapper = ({
 }: ContentWrapperProps) => {
 
   const classes = classnames(
-    [s.contentWrapperRoot],
+    s['content-wrapper--root'],
   )
 
   return (

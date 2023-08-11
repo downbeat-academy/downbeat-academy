@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './MainNavigation.module.scss'
+import s from './main-navigation.module.scss'
 
 import type { MainNavigationProps } from './types'
 
@@ -8,8 +8,8 @@ export const MainNavigation = ({
 }: MainNavigationProps) => {
 
   const classes = classnames(
-    [s.mainNavigationRoot],
-    [className]
+    s['main-navigation--root'],
+    [className],
   )
 
   return (

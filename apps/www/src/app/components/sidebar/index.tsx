@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './Sidebar.module.scss'
+import s from './sidebar.module.scss'
 
 import type { SidebarProps } from './types'
 
@@ -9,8 +9,8 @@ const Sidebar = ({
 }: SidebarProps) => {
 
   const classes = classnames(
-    [s.sidebarRoot],
-    [position]
+    s['sidebar--root'],
+    s[`sidebar-position--${position}`],
     [className],
   )
 

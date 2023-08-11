@@ -1,5 +1,5 @@
-interface AppframeProps {
+interface AppFrameProps {
   children?: React.ReactNode,
 }
 
-export type { AppframeProps }
+export type { AppFrameProps }

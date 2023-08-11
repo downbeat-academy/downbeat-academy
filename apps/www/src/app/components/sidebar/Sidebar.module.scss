@@ -1,12 +1,12 @@
-.sidebarRoot {
-	width: 200px;
+.sidebar--root {
+	padding: 1rem;
 	background: lightgreen;
 }
 
-.sidebarPositionStart {
-	grid-area: 'sidebar-start';
+.sidebar-position--start {
+	grid-area: sidebar-start;
 }
 
-.sidebarPositionEnd {
-	grid-area: 'sidebar-end';
+.sidebar-position--end {
+	grid-area: sidebar-end;
 }

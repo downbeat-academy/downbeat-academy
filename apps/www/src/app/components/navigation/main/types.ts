@@ -1,5 +1,5 @@
 interface MainNavigationProps {
-  className?: 'string',
+  className?: string,
 }
 
 export type { MainNavigationProps }
