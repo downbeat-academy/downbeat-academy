@@ -14,6 +14,7 @@ export default function RootLayout({
       <body>
         <AppFrame>
           <MainNavigation />
+          {/* <Sidebar position='start' /> */}
           <ContentWrapper className='custom-class'>
             {children}
           </ContentWrapper>
