@@ -4,11 +4,13 @@ import s from './content-wrapper.module.scss'
 import type { ContentWrapperProps } from './types'
 
 const ContentWrapper = ({
-  children
+  children,
+  className,
 }: ContentWrapperProps) => {
 
   const classes = classnames(
     s['content-wrapper--root'],
+    [className],
   )
 
   return (

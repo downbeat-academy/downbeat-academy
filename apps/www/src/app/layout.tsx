@@ -13,12 +13,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AppFrame>
-          <MainNavigation className='custom-class' />
-          <Sidebar position='start' />
-          <ContentWrapper>
+          <MainNavigation />
+          <ContentWrapper className='custom-class'>
             {children}
           </ContentWrapper>
-          <Sidebar position='end' />
           <Footer />
         </AppFrame>
       </body>

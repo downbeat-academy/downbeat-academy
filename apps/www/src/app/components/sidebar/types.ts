@@ -1,6 +1,6 @@
 interface SidebarProps {
   position: 'start' | 'end',
-  className?: 'string',
+  className?: string,
 }
 
 export type { SidebarProps }
