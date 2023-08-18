@@ -4,19 +4,23 @@ import s from './sidebar.module.scss'
 import type { SidebarProps } from './types'
 
 const Sidebar = ({
-  position,
   className,
+  position,
+  children,
 }: SidebarProps) => {
 
   const classes = classnames(
     s['sidebar--root'],
-    s[`sidebar-position--${position}`],
+    s[
+      position ? `sidebar--position-${position}`
+      : `sidebar--position-left`
+    ],
     [className],
   )
 
   return (
     <aside className={classes}>
-      <p>This is a sidebar</p>
+      {children}
     </aside>
   )
 }

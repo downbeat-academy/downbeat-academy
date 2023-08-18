@@ -3,4 +3,10 @@ interface ContentWrapperProps {
   className?: string,
 }
 
-export type { ContentWrapperProps };
+interface ContentProps {
+  children: React.ReactNode,
+  isFullBleed?: boolean,
+  className?: string,
+}
+
+export type { ContentWrapperProps, ContentProps };

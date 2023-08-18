@@ -1,12 +1,6 @@
 .app-frame--root {
 	display: grid;
-	grid-template-areas:
-		'header header header'
-		'sidebar-start content sidebar-end'
-		'sidebar-start footer footer';
-	grid-template-columns: 2fr 8fr 2fr;
 	grid-template-rows: min-content calc(100vh - 50px) min-content;
-	grid-auto-columns: 0;
-	max-width: 100%;
-	max-height: 100vh;
+	grid-template-areas: 'header' 'content' 'footer';
+	min-width: 100vw;
 }

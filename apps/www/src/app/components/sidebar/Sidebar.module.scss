@@ -3,10 +3,22 @@
 	background: lightgreen;
 }
 
-.sidebar-position--start {
-	grid-area: sidebar-start;
-}
+// .sidebar--position-left {
+// 	grid-area: sidebar-left;
+// }
 
-.sidebar-position--end {
-	grid-area: sidebar-end;
-}
+// .sidebar--position-right {
+// 	grid-area: sidebar-right;
+// }
+
+// $sizes: (
+// 	'small': 2,
+// 	'medium': 3,
+// 	'large': 4,
+// );
+
+// @each $size, $value in $sizes {
+// 	.sidebar--size-#{$size} {
+// 		grid-column: $value;
+// 	}
+// }

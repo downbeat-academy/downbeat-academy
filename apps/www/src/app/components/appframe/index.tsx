@@ -12,9 +12,9 @@ const AppFrame = ({
   )
 
   return (
-    <main className={classes}>
+    <div className={classes}>
       {children}
-    </main>
+    </div>
   )
 }
 
