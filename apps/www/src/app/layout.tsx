@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { AppFrame } from '@components/appframe'
 import { Footer, MainNavigation } from '@components/navigation'
 import { Sidebar } from '@components/sidebar'

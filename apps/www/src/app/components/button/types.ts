@@ -25,6 +25,7 @@ interface ButtonProps extends PickedNativeButtonProps {
   icon?: JSX.IntrinsicElements['svg']
   iconPosition?: 'leading' | 'trailing',
   isFullWidth?: boolean,
+  isLinkInternal?: boolean,
   size?: 'large' | 'medium' | 'small' | 'x-small',
   text?: string,
   variant?: 'primary' | 'secondary' | 'ghost' | 'destructive',

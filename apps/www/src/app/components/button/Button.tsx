@@ -1,8 +1,9 @@
 import { ForwardedRef, forwardRef } from 'react'
+import Link from 'next/link'
 import classnames from 'classnames'
 import s from './button.module.scss'
 
-import type { ButtonProps, ButtonLinkProps } from './types'
+import type { ButtonProps } from './types'
 
 // eslint-disable-next-line react/display-name
 const Button = forwardRef(
@@ -68,7 +69,7 @@ const Button = forwardRef(
       )
     } else if (!!href) {
       return (
-        <a
+        <Link
           href={href}
           aria-controls={ariaControls}
           aria-describedby={ariaDescribedBy}
@@ -79,7 +80,7 @@ const Button = forwardRef(
           id={id}
         >
           {text}
-        </a>
+        </Link>
       )
     }
   }
