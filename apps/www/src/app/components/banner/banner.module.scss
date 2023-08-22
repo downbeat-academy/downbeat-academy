@@ -1,0 +1,10 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.banner--root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: $cds-scale-base;
+  background: $cds-color-surface-high-contrast;
+  color: $cds-color-foreground-high-contrast;
+}

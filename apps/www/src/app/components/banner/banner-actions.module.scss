@@ -1,0 +1,7 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.banner-actions--wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: $cds-scale-base;
+}
