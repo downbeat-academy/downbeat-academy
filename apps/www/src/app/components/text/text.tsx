@@ -1,0 +1,40 @@
+import classnames from 'classnames'
+import s from './text.module.scss'
+
+import type { TextProps } from './types'
+
+const Text = ({
+  align = 'left',
+  background,
+  children,
+  className,
+  collapse,
+  color = 'primary',
+  isFluid = false,
+  size = 'body-base',
+  tag = 'div',
+  type = 'productive-body',
+}: TextProps) => {
+
+  const classes = classnames(
+    s[`type--${type}`],
+    s[`type--${type}-size--${size}`],
+    s[`color--${color}`],
+    s[`background--${background}`],
+    // s[`size--${size}`],
+    s[align],
+    {
+      [s.collapse]: collapse,
+    },
+    className,
+  )
+
+  // Turn the tag in to a function that renders a div by default
+  const Tag = tag;
+
+  return (
+    <Tag className={classes}>{children}</Tag>
+  )
+}
+
+export { Text }
