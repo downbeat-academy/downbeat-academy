@@ -4,7 +4,6 @@ import { Footer, MainNavigation } from '@components/navigation'
 import { Sidebar } from '@components/sidebar'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
-import { Badge } from '@components/badge'
 
 export default function RootLayout({
   children,
