@@ -1,0 +1,53 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  transition: $cds-transition-02;
+}
+
+// Type
+
+.primary {
+  color: $cds-color-foreground-interactive-default;
+
+  &:hover {
+    color: $cds-color-foreground-interactive-hover;
+  }
+
+  &:active {
+    color: $cds-color-foreground-interactive-active;
+  }
+}
+
+.secondary {
+  color: $cds-color-palette-blackberry-700;
+
+  &:hover {
+    color: $cds-color-palette-blackberry-800;
+  }
+
+  &:active {
+    color: $cds-color-palette-blackberry-800;
+  }
+}
+
+.brand {
+  color: $cds-color-foreground-brand-default;
+
+  &:hover {
+    color: $cds-color-foreground-brand-hover;
+  }
+
+  &:active {
+    color: $cds-color-foreground-brand-active;
+  }
+}
+
+// Underline
+
+.underline {
+  text-decoration: underline;
+}
