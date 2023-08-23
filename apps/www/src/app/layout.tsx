@@ -5,6 +5,8 @@ import { Sidebar } from '@components/sidebar'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
 
+import { Button, ButtonWrapper } from '@components/button'
+
 export default function RootLayout({
   children,
 }: {
@@ -20,6 +22,18 @@ export default function RootLayout({
               <p>Left sidebar</p>
             </Sidebar>
             <Content>
+              <ButtonWrapper>
+                <Button
+                  text='Primary button'
+                  variant='primary'
+                  size='medium'
+                />
+                <Button
+                  text='Secondary button'
+                  variant='secondary'
+                  size='medium'
+                />
+              </ButtonWrapper>
               {children}
             </Content>
             <Sidebar>

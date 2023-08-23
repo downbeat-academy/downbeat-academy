@@ -41,4 +41,12 @@ interface ButtonLinkProps extends InheritedButtonProps {
   openInNewTab?: boolean,
 }
 
-export type { ButtonProps, ButtonLinkProps }
+interface ButtonWrapperProps {
+  direction?: 'vertical' | 'horizontal',
+  gap?: 'none' | 'small' | 'medium' | 'large',
+  wrap?: boolean,
+  className?: string,
+  children: React.ReactNode,
+}
+
+export type { ButtonProps, ButtonLinkProps, ButtonWrapperProps }
