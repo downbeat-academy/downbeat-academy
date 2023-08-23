@@ -1,5 +1,5 @@
 import { AppFrame } from '@components/appframe'
-import { Footer, MainNavigation } from '@components/navigation'
+import { Footer, HeaderNavigation } from '@components/navigation'
 import { Sidebar } from '@components/sidebar'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
@@ -13,18 +13,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AppFrame>
-          <MainNavigation />
-          <ContentWrapper>
-            <Sidebar>
-              <p>Left sidebar</p>
-            </Sidebar>
-            <Content>
-              {/* {children} */}
-            </Content>
-            <Sidebar>
-              <p>Right sidebar</p>
-            </Sidebar>
-          </ContentWrapper>
+          <HeaderNavigation />
+          <div>
+            {children}
+          </div>
           <Footer />
         </AppFrame>
       </body>

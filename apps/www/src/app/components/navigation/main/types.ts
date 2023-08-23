@@ -1,5 +1,5 @@
-interface MainNavigationProps {
+interface HeaderNavigationProps {
   className?: string,
 }
 
-export type { MainNavigationProps }
+export type { HeaderNavigationProps }
