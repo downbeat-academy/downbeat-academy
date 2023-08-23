@@ -1,0 +1,66 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+  display: flex;
+}
+
+// Direction
+
+.row { flex-direction: row; }
+.column { flex-direction: column; }
+
+// Gap
+
+.gap--none {}
+
+.gapp--x-small {}
+
+.gap--small {}
+
+.gap--medium {}
+
+.gap--large {}
+
+.gap--x-large {}
+
+.gap--2x-large {}
+
+// Padding
+
+.padding--none {}
+
+.paddingp--x-small {}
+
+.padding--small {}
+
+.padding--medium {}
+
+.padding--large {}
+
+.padding--x-large {}
+
+.padding--2x-large {}
+
+// Align items
+
+.align-items--stretch { align-items: stretch; }
+.align-items--start { align-items: start; }
+.align-items--center { align-items: center; }
+.align-items--end { align-items: end; }
+
+// Align content
+
+.align-content--stretch { align-content: stretch; }
+.align-content--start { align-content: start; }
+.align-content--center { align-content: center; }
+.align-content--end { align-content: end; }
+
+// Justify content
+
+.justify--start { justify-content: start; }
+.justify--center { justify-content: center; }
+.justify--end { justify-content: end; }
+.justify--space-between { justify-content: space-between; }
+.justify--space-around { justify-content: space-around; }
+.justify--space-evenly { justify-content: space-evenly; }
+

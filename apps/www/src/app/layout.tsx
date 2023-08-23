@@ -3,8 +3,9 @@ import { Footer, HeaderNavigation } from '@components/navigation'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
 
-import { Text } from '@components/text'
-import { Link } from '@components/link'
+import { Button } from './components/button'
+import { Text } from './components/text'
+import { Flex } from './components/layout'
 
 export default function RootLayout({
   children,
@@ -18,7 +19,12 @@ export default function RootLayout({
           <HeaderNavigation />
           <ContentWrapper>
             <Content isFullBleed>
-              {children}
+              <Flex direction='row' alignItems='center'>
+                <Text tag='h1' type='expressive-headline' size='h1' collapse>Headline</Text>
+                <Text tag='p' type='expressive-body' size='body-base' collapse>Lorem ipsum dolor sit amet.</Text>
+                <Button text='Button' variant='primary' size='medium' />
+              </Flex>
+              {/* {children} */}
             </Content>
           </ContentWrapper>
           <Footer />
