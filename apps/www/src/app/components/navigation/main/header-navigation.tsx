@@ -1,4 +1,6 @@
 import classnames from 'classnames'
+import { mainNavQuery, bannerQuery } from '@lib/queries'
+import { getClient } from '@lib/sanity.client'
 import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from '@components/text'
@@ -7,9 +9,38 @@ import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
 
-const HeaderNavigation = ({
+// Fetch the data for the navigatin
+async function getNavigationData() {
+  const client = getClient()
+  const res = client.fetch(mainNavQuery)
+
+  if (!res) {
+    throw new Error('Failed to fetch the main navigation data.')
+  }
+
+  return res;
+}
+
+async function getBannerData() {
+  const client = getClient()
+  const res = client.fetch(bannerQuery)
+
+  if (!res) {
+    throw new Error('Failed to fetch the banner data.');
+  }
+
+  return res;
+}
+
+const HeaderNavigation = async ({
   className,
 }: HeaderNavigationProps) => {
+
+  const navData = await getNavigationData();
+  const {
+    title: bannerTitle,
+    headline: bannerHeadline
+  } = await getBannerData();
 
   const classes = classnames(
     s.root,
@@ -27,7 +58,7 @@ const HeaderNavigation = ({
             size='body-small'
             collapse
           >
-            Announcing Downbeat Academy v3! 🚀
+            {bannerHeadline}
           </Text>
         </Banner.Content>
         <Banner.Actions>

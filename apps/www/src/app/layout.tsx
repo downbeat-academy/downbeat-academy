@@ -17,7 +17,7 @@ export default function RootLayout({
           <HeaderNavigation />
           <ContentWrapper>
             <Content isFullBleed>
-              {/* {children} */}
+              {children}
             </Content>
           </ContentWrapper>
           <Footer />
