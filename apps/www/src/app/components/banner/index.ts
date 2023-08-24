@@ -1,5 +1,5 @@
-export { Banner, Root } from './Banner'
-export { BannerActions, Actions } from './Actions'
-export { BannerContent, Content } from './Content'
+export { Banner, Root } from './banner'
+export { BannerActions, Actions } from './actions'
+export { BannerContent, Content } from './content'
 
 export type { BannerProps } from './types'

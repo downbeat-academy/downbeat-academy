@@ -1,0 +1,23 @@
+@import '../../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	grid-area: header;
+	border-radius: 0 0 $cds-radii-x-soft $cds-radii-x-soft;
+	border: 1px solid $cds-color-border-faint;
+	overflow: hidden;
+}
+
+// Component overrides
+
+.login-button {
+	color: $cds-color-foreground-high-contrast !important;
+
+	&:hover {
+		background: $cds-color-palette-blackberry-600 !important;
+	}
+
+	&:active {
+		background: $cds-color-palette-blackberry-500 !important;
+	}
+}
+

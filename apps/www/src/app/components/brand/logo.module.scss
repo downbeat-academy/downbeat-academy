@@ -1,0 +1,17 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+$colors: (
+  'brand': $cds-color-foreground-brand-default,
+  'high-contrast': $cds-color-foreground-high-contrast,
+  'dark': $cds-color-foreground-strong,
+  'blueberry': $cds-color-foreground-interactive-default,
+  'kale': $cds-color-foreground-success-default,
+  'pineapple': $cds-color-foreground-warning-default,
+  'peach': $cds-color-foreground-critical-default,
+);
+
+@each $color, $value in $colors {
+  .#{$color} path {
+    fill: $value;
+  }
+}

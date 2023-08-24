@@ -3,9 +3,7 @@ import { Footer, HeaderNavigation } from '@components/navigation'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
 
-import { Button } from './components/button'
-import { Text } from './components/text'
-import { Flex } from './components/layout'
+import { LogoLockup, LogoSymbol, LogoText } from '@components/brand'
 
 export default function RootLayout({
   children,

@@ -4,4 +4,8 @@
   display: flex;
   flex-direction: row;
   gap: $cds-scale-base;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 }

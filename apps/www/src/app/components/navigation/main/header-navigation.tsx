@@ -1,6 +1,9 @@
 import classnames from 'classnames'
-import s from './main-navigation.module.scss'
-import * as Banner from '@app/components/banner'
+import s from './header-navigation.module.scss'
+import * as Banner from '@components/banner'
+import { Text } from '@components/text'
+import { Button } from '@components/button'
+import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
 
@@ -9,7 +12,7 @@ const HeaderNavigation = ({
 }: HeaderNavigationProps) => {
 
   const classes = classnames(
-    s['main-navigation--root'],
+    s.root,
     [className],
   )
 
@@ -17,14 +20,33 @@ const HeaderNavigation = ({
     <header className={classes}>
       <Banner.Root type='primary'>
         <Banner.Content>
-          <p>This is the banner content</p>
+          <Text
+            tag='p'
+            color='high-contrast'
+            type='productive-body'
+            size='body-small'
+            collapse
+          >
+            Announcing Downbeat Academy v3! 🚀
+          </Text>
         </Banner.Content>
         <Banner.Actions>
-          <p>These are the actions</p>
+          <Button
+            text='Login'
+            variant='ghost'
+            className={s[`login-button`]}
+            size='small'
+          />
+          <Button
+            text='Sign up for free'
+            variant='primary'
+            size='small'
+          />
         </Banner.Actions>
       </Banner.Root>
+      <NavContent />
     </header>
   )
 }
 
-export { HeaderNavigation }
+export { HeaderNavigation } 

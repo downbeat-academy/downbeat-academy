@@ -1,0 +1,10 @@
+@import '../../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: $cds-scale-base $cds-scale-x-large;
+  background: $cds-color-surface-primary;
+}
