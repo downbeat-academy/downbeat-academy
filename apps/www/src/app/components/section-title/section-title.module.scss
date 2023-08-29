@@ -1,0 +1,8 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: $cds-scale-x-large;
+  gap: $cds-scale-small;
+}
