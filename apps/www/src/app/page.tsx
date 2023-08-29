@@ -4,6 +4,8 @@ import { getClient } from "@app/lib/sanity.client"
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
+import type { Metadata } from 'next'
+
 // Fetch the data for the homepage
 async function getHomepageData() {
   const preview = draftMode().isEnabled ? { token: readToken! } : undefined;
@@ -15,6 +17,12 @@ async function getHomepageData() {
   }
 
   return res;
+}
+
+// Render metadata
+export const metadata: Metadata = {
+  title: 'Top resources for advancing musicians | Downbeat Academy',
+  description: 'Top resources for advancing musicians, educators, students, and anyone looking to learn how to play an instrument.',
 }
 
 // Render the homepage data in an async function

@@ -8,3 +8,24 @@
   padding: $cds-scale-base $cds-scale-x-large;
   background: $cds-color-surface-primary;
 }
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: $cds-scale-base;
+}
+
+.link-item {
+ font-family: $cds-typography-font-family-productive-body;
+ font-size: $cds-typography-font-size-fixed-productive-base;
+ list-style: none;
+ color: $cds-color-foreground-strong;
+
+ & > a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+ }
+}

@@ -6,10 +6,9 @@ import * as Banner from '@components/banner'
 import { Text } from '@components/text'
 import { Button } from '@components/button'
 import { NavContent } from './nav-content'
-
 import type { HeaderNavigationProps } from './types'
 
-// Fetch the data for the navigatin
+// Fetch the data for the navigation
 async function getNavigationData() {
   const client = getClient()
   const res = client.fetch(mainNavQuery)
@@ -32,11 +31,15 @@ async function getBannerData() {
   return res;
 }
 
+// Render the component
 const HeaderNavigation = async ({
   className,
 }: HeaderNavigationProps) => {
 
   const navData = await getNavigationData();
+
+  console.log(navData);
+
   const {
     title: bannerTitle,
     headline: bannerHeadline
@@ -75,7 +78,7 @@ const HeaderNavigation = async ({
           />
         </Banner.Actions>
       </Banner.Root>
-      <NavContent />
+      <NavContent links={navData} />
     </header>
   )
 }
