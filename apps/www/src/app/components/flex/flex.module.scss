@@ -56,3 +56,14 @@
 .justify--space-around { justify-content: space-around; }
 .justify--space-evenly { justify-content: space-evenly; }
 
+// Background
+
+.background--primary { background: $cds-color-surface-primary; }
+.background--faint { background: $cds-color-surface-faint; }
+.background--high-contrast { background: $cds-color-surface-high-contrast; }
+.background--brand { background: $cds-color-surface-brand; }
+.background--interactive { background: $cds-color-surface-interactive; }
+.background--success { background: $cds-color-surface-success; }
+.background--warning { background: $cds-color-surface-warning; }
+.background--critical { background: $cds-color-surface-critical; }
+

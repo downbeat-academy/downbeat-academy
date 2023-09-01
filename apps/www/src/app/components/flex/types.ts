@@ -11,6 +11,15 @@ interface FlexProps extends HTMLAttributes<HTMLElement> {
   alignContent?: 'stretch' | 'start' | 'center' | 'end',
   justifyItems?: 'stretch' | 'start' | 'center' | 'end',
   justifyContent?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly',
+  background?:
+  'primary' |
+  'faint' |
+  'high-contrast' |
+  'brand' |
+  'interactive' |
+  'success' |
+  'warning' |
+  'critical',
 }
 
 export type { FlexProps }

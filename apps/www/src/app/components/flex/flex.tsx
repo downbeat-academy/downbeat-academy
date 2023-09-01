@@ -14,6 +14,7 @@ const Flex = ({
   alignContent,
   justifyItems,
   justifyContent,
+  background,
 }: FlexProps) => {
 
   const classes = classnames([

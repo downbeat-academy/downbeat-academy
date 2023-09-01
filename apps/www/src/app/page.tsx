@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
 import { SectionTitle } from "./components/section-title"
+import { SectionContainer } from "./components/section-container"
 import { Text } from '@components/text'
 
 // Fetch the data for the homepage
@@ -40,12 +41,14 @@ export default async function Page() {
   return (
     <>
       <p>Home page</p>
-      <SectionTitle
-        alignment='center'
-        background='success'
-        title={<Text color='high-contrast' tag='h4' size="h4" type='expressive-headline' collapse>This is the section title</Text>}
-        subtitle={<Text color='high-contrast' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
-      />
+      <SectionContainer>
+        <SectionTitle
+          alignment='center'
+          background='success'
+          title={<Text color='high-contrast' tag='h4' size="h4" type='expressive-headline' collapse>This is the section title</Text>}
+          subtitle={<Text color='high-contrast' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
+        />
+      </SectionContainer>
       {renderData}
     </>
   )
