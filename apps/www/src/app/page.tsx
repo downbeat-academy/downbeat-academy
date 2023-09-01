@@ -6,6 +6,9 @@ import { notFound } from 'next/navigation'
 
 import type { Metadata } from 'next'
 
+import { SectionTitle } from "./components/section-title"
+import { Text } from '@components/text'
+
 // Fetch the data for the homepage
 async function getHomepageData() {
   const preview = draftMode().isEnabled ? { token: readToken! } : undefined;
@@ -37,6 +40,12 @@ export default async function Page() {
   return (
     <>
       <p>Home page</p>
+      <SectionTitle
+        alignment='center'
+        background='success'
+        title={<Text color='high-contrast' tag='h4' size="h4" type='expressive-headline' collapse>This is the section title</Text>}
+        subtitle={<Text color='high-contrast' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
+      />
       {renderData}
     </>
   )
