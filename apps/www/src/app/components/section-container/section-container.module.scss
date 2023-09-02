@@ -1,30 +1,78 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
 .root {
-  border-radius: $cds-radii-soft;
-  border-width: 1px;
-  border-style: solid;
-  overflow: hidden;
+	border-radius: $cds-radii-soft;
+	border-width: 1px;
+	border-style: solid;
+	overflow: hidden;
+
+	& > *:not(:last-child) {
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+	}
 }
 
 // Background
 
-.background--primary { background: $cds-color-surface-primary; }
-.background--faint { background: $cds-color-surface-faint; }
-.background--high-contrast { background: $cds-color-surface-high-contrast; }
-.background--brand { background: $cds-color-surface-brand; }
-.background--interactive { background: $cds-color-surface-interactive; }
-.background--success { background: $cds-color-surface-success; }
-.background--warning { background: $cds-color-surface-warning; }
-.background--critical { background: $cds-color-surface-critical; }
+.background--primary {
+	background: $cds-color-surface-primary;
+}
+.background--faint {
+	background: $cds-color-surface-faint;
+}
+.background--high-contrast {
+	background: $cds-color-surface-high-contrast;
+}
+.background--brand {
+	background: $cds-color-surface-brand;
+}
+.background--interactive {
+	background: $cds-color-surface-interactive;
+}
+.background--success {
+	background: $cds-color-surface-success;
+}
+.background--warning {
+	background: $cds-color-surface-warning;
+}
+.background--critical {
+	background: $cds-color-surface-critical;
+}
 
 // Border color
 
-.border-color--primary { border-color: $cds-color-border-primary; }
-.border-color--faint { border-color: $cds-color-border-faint; }
-.border-color--brand { border-color: $cds-color-border-brand; }
-.border-color--interactive { border-color: $cds-color-border-interactive; }
-.border-color--success { border-color: $cds-color-border-success; }
-.border-color--warning { border-color: $cds-color-border-warning; }
-.border-color--critical { border-color: $cds-color-border-critical; }
-.border-color--high-contrast { border-color: $cds-color-border-high-contrast; }
+.border-color--primary,
+.border-color--primary > *:not(:last-child) {
+	border-color: $cds-color-border-primary;
+}
+
+.border-color--faint,
+.border-color--faint > *:not(:last-child) {
+	border-color: $cds-color-border-faint;
+}
+
+.border-color--brand,
+.border-color--brand > *:not(:last-child) {
+	border-color: $cds-color-border-brand;
+}
+
+.border-color--interactive,
+.border-color--interactive > *:not(:last-child) {
+	border-color: $cds-color-border-interactive;
+}
+.border-color--success,
+.border-color--success > *:not(:last-child) {
+	border-color: $cds-color-border-success;
+}
+.border-color--warning,
+.border-color--warning > *:not(:last-child) {
+	border-color: $cds-color-border-warning;
+}
+.border-color--critical,
+.border-color--critical > *:not(:last-child) {
+	border-color: $cds-color-border-critical;
+}
+.border-color--high-contrast,
+.border-color--high-contrast > *:not(:last-child) {
+	border-color: $cds-color-border-high-contrast;
+}

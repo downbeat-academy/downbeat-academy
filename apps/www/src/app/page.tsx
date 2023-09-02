@@ -43,13 +43,12 @@ export default async function Page() {
       <p>Home page</p>
       <SectionContainer>
         <SectionTitle
-          alignment='center'
-          background='success'
-          title={<Text color='high-contrast' tag='h4' size="h4" type='expressive-headline' collapse>This is the section title</Text>}
-          subtitle={<Text color='high-contrast' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
+          alignment='left'
+          title={<Text color='brand' tag='h1' size="h1" type='expressive-headline' collapse>This is the section title</Text>}
+          subtitle={<Text color='brand' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
         />
+        {renderData}
       </SectionContainer>
-      {renderData}
     </>
   )
 }
