@@ -27,6 +27,7 @@ const Flex = ({
     s[`align-content--${alignContent}`],
     s[`justify-items--${justifyItems}`],
     s[`justify--${justifyContent}`],
+    s[`background--${background}`],
     s[wrap ? `wrap` : null],
     className,
   ])

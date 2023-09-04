@@ -39,8 +39,6 @@ const HeaderNavigation = async ({
 
   const navData = await getNavigationData();
 
-  console.log(navData);
-
   const {
     title: bannerTitle,
     headline: bannerHeadline

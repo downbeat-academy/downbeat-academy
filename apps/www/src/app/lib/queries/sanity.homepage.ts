@@ -1,11 +1,12 @@
 import { groq } from 'next-sanity'
 
 export const homepageQuery = groq`
-    *[_type == 'article'] {
+    *[_type == 'article' && title != 'Test post'] {
         _id,
         _key,
         title,
         "slug": slug.current,
+        excerpt,
         content,
     }
 `

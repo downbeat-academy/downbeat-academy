@@ -10,10 +10,7 @@ import type { Metadata } from 'next'
 import { SectionTitle } from "./components/section-title"
 import { SectionContainer } from "./components/section-container"
 import { Text } from '@components/text'
-import { Flex } from '@components/flex'
-
-import { Avatar, AvatarGroup } from '@components/avatar'
-import { Link } from "./components/link"
+import { FeaturedItem } from "@components/featured-item"
 
 // Fetch the data for the homepage
 async function getHomepageData() {
@@ -39,9 +36,11 @@ export default async function Page() {
 
   const data = await getHomepageData();
 
-  const renderData = data.map(item => {
-    return <p key={item._id}>{item.title}</p>
-  })
+  // Get the first post/article from the returned data
+  const featuredPost = data.slice(0,1)[0];
+
+  // Return an array with all but the first post from the returned data.
+  const posts = data.slice(1);
 
   return (
     <>
@@ -51,28 +50,10 @@ export default async function Page() {
           title={<Text color='brand' tag='h1' size="h1" type='expressive-headline' collapse>Home page</Text>}
           subtitle={<Text color='brand' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
         />
-        <Flex direction='row' gap='medium'>
-          <AvatarGroup
-            direction='horizontal'
-            spacing='overlap-small'
-          >
-            <Avatar
-              name='Jory Tindall'
-              size='small'
-            />
-            <Avatar
-              name='Alex Mankey'
-              size='small'
-              imageUrl='https://placehold.co/80x80'
-            />
-            <Avatar
-              name='Cool Avatar'
-              size='small'
-              imageObject={<Image width='80' height='80' src='/images/avatar-test.png' alt='Cool Avatar' />}
-            />
-          </AvatarGroup>
-        </Flex>
-        {/* {renderData} */}
+        <FeaturedItem
+          title={featuredPost.title}
+          description={featuredPost.excerpt}
+        />
       </SectionContainer>
     </>
   )
