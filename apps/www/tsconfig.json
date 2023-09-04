@@ -51,15 +51,13 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "hooks/useFathom.tsx",
-    ".next/types/**/*.ts",
-    "src/app/[slug]"
-  ],
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

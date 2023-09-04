@@ -130,6 +130,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.4
         version: 18.2.4
+      boring-avatars:
+        specifier: ^1.7.0
+        version: 1.7.0
       cadence-icons:
         specifier: workspace:^
         version: link:../../packages/cadence-icons
