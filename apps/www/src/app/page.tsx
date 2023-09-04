@@ -13,6 +13,7 @@ import { Text } from '@components/text'
 import { Flex } from '@components/flex'
 
 import { Avatar, AvatarGroup } from '@components/avatar'
+import { Link } from "./components/link"
 
 // Fetch the data for the homepage
 async function getHomepageData() {
@@ -52,21 +53,21 @@ export default async function Page() {
         />
         <Flex direction='row' gap='medium'>
           <AvatarGroup
-            direction='row'
-            spacing='small'
+            direction='horizontal'
+            spacing='overlap-small'
           >
             <Avatar
               name='Jory Tindall'
-              size='large'
+              size='small'
             />
             <Avatar
               name='Alex Mankey'
-              size='large'
+              size='small'
               imageUrl='https://placehold.co/80x80'
             />
             <Avatar
               name='Cool Avatar'
-              size='large'
+              size='small'
               imageObject={<Image width='80' height='80' src='/images/avatar-test.png' alt='Cool Avatar' />}
             />
           </AvatarGroup>

@@ -8,7 +8,7 @@ const AvatarGroup = ({
   spacing = 'overlap-small',
   direction = 'horizontal',
   className,
-}) => {
+}: AvatarGroupProps) => {
 
   const classes = classnames(
     s.root,
