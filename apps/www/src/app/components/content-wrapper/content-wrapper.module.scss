@@ -1,5 +1,20 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
 .content-wrapper--root {
 	grid-area: content;
 	display: grid;
 	grid-template-columns: 2fr 8fr 2fr;
+	margin: 0 $cds-scale-base;
+
+	@media (min-width: 768px) {
+		margin: 0 $cds-scale-x-large;
+	}
+
+	@media (min-width: 1000px) {
+		margin: 0 $cds-scale-2x-large;
+	}
+
+	@media (min-width: 1200px) {
+		margin: 0 $cds-scale-3x-large;
+	}
 }

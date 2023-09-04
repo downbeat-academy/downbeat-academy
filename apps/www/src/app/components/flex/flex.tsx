@@ -15,6 +15,7 @@ const Flex = ({
   justifyItems,
   justifyContent,
   background,
+  wrap,
 }: FlexProps) => {
 
   const classes = classnames([
@@ -26,6 +27,7 @@ const Flex = ({
     s[`align-content--${alignContent}`],
     s[`justify-items--${justifyItems}`],
     s[`justify--${justifyContent}`],
+    s[wrap ? `wrap` : null],
     className,
   ])
 

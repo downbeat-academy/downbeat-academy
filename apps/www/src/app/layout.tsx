@@ -1,9 +1,7 @@
-import { AppFrame } from '@components/appframe'
+import { AppFrame } from '@app/components/app-frame'
 import { Footer, HeaderNavigation } from '@components/navigation'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
-
-import { LogoLockup, LogoSymbol, LogoText } from '@components/brand'
 
 export default function RootLayout({
   children,

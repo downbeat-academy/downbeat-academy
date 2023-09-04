@@ -40,11 +40,10 @@ export default async function Page() {
 
   return (
     <>
-      <p>Home page</p>
       <SectionContainer>
         <SectionTitle
           alignment='left'
-          title={<Text color='brand' tag='h1' size="h1" type='expressive-headline' collapse>This is the section title</Text>}
+          title={<Text color='brand' tag='h1' size="h1" type='expressive-headline' collapse>Home page</Text>}
           subtitle={<Text color='brand' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
         />
         {renderData}

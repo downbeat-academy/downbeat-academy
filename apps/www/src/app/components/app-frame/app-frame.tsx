@@ -19,3 +19,4 @@ const AppFrame = ({
 }
 
 export { AppFrame };
+export type { AppFrameProps } from './types'

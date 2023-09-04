@@ -1,2 +1,4 @@
-export * from './ContentWrapper'
-export * from './Content'
+export { ContentWrapper } from './content-wrapper'
+export { Content } from './content'
+
+// Types

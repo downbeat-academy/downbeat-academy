@@ -1,69 +1,156 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
 .root {
-  display: flex;
+	display: flex;
 }
 
 // Direction
 
-.row { flex-direction: row; }
-.column { flex-direction: column; }
+.row {
+	flex-direction: row;
+}
+.column {
+	flex-direction: column;
+}
 
 // Gap
 
-.gap--none { gap: 0; }
-.gap--2x-small { gap: $cds-scale-2x-small; }
-.gap--x-small { gap: $cds-scale-x-small; }
-.gap--small { gap: $cds-scale-small; }
-.gap--medium { gap: $cds-scale-base; }
-.gap--large { gap: $cds-scale-large; }
-.gap--x-large { gap: $cds-scale-x-large; }
-.gap--2x-large { gap: $cds-scale-2x-large; }
-.gap--3x-large { gap: $cds-scale-3x-large; }
+.gap--none {
+	gap: 0;
+}
+.gap--2x-small {
+	gap: $cds-scale-2x-small;
+}
+.gap--x-small {
+	gap: $cds-scale-x-small;
+}
+.gap--small {
+	gap: $cds-scale-small;
+}
+.gap--medium {
+	gap: $cds-scale-base;
+}
+.gap--large {
+	gap: $cds-scale-large;
+}
+.gap--x-large {
+	gap: $cds-scale-x-large;
+}
+.gap--2x-large {
+	gap: $cds-scale-2x-large;
+}
+.gap--3x-large {
+	gap: $cds-scale-3x-large;
+}
 
 // Padding
 
-.padding--none { padding: 0; }
-.padding--2x-small { padding: $cds-scale-2x-small; }
-.padding--x-small { padding: $cds-scale-x-small; }
-.padding--small { padding: $cds-scale-small; }
-.padding--medium { padding: $cds-scale-base; }
-.padding--large { padding: $cds-scale-large; }
-.padding--x-large { padding: $cds-scale-x-large; }
-.padding--2x-large { padding: $cds-scale-2x-large; }
-.padding--3x-large { padding: $cds-scale-3x-large; }
+.padding--none {
+	padding: 0;
+}
+.padding--2x-small {
+	padding: $cds-scale-2x-small;
+}
+.padding--x-small {
+	padding: $cds-scale-x-small;
+}
+.padding--small {
+	padding: $cds-scale-small;
+}
+.padding--medium {
+	padding: $cds-scale-base;
+}
+.padding--large {
+	padding: $cds-scale-large;
+}
+.padding--x-large {
+	padding: $cds-scale-x-large;
+}
+.padding--2x-large {
+	padding: $cds-scale-2x-large;
+}
+.padding--3x-large {
+	padding: $cds-scale-3x-large;
+}
 
 // Align items
 
-.align-items--stretch { align-items: stretch; }
-.align-items--start { align-items: start; }
-.align-items--center { align-items: center; }
-.align-items--end { align-items: end; }
+.align-items--stretch {
+	align-items: stretch;
+}
+.align-items--start {
+	align-items: start;
+}
+.align-items--center {
+	align-items: center;
+}
+.align-items--end {
+	align-items: end;
+}
 
 // Align content
 
-.align-content--stretch { align-content: stretch; }
-.align-content--start { align-content: start; }
-.align-content--center { align-content: center; }
-.align-content--end { align-content: end; }
+.align-content--stretch {
+	align-content: stretch;
+}
+.align-content--start {
+	align-content: start;
+}
+.align-content--center {
+	align-content: center;
+}
+.align-content--end {
+	align-content: end;
+}
 
 // Justify content
 
-.justify--start { justify-content: start; }
-.justify--center { justify-content: center; }
-.justify--end { justify-content: end; }
-.justify--space-between { justify-content: space-between; }
-.justify--space-around { justify-content: space-around; }
-.justify--space-evenly { justify-content: space-evenly; }
+.justify--start {
+	justify-content: start;
+}
+.justify--center {
+	justify-content: center;
+}
+.justify--end {
+	justify-content: end;
+}
+.justify--space-between {
+	justify-content: space-between;
+}
+.justify--space-around {
+	justify-content: space-around;
+}
+.justify--space-evenly {
+	justify-content: space-evenly;
+}
 
 // Background
 
-.background--primary { background: $cds-color-surface-primary; }
-.background--faint { background: $cds-color-surface-faint; }
-.background--high-contrast { background: $cds-color-surface-high-contrast; }
-.background--brand { background: $cds-color-surface-brand; }
-.background--interactive { background: $cds-color-surface-interactive; }
-.background--success { background: $cds-color-surface-success; }
-.background--warning { background: $cds-color-surface-warning; }
-.background--critical { background: $cds-color-surface-critical; }
+.background--primary {
+	background: $cds-color-surface-primary;
+}
+.background--faint {
+	background: $cds-color-surface-faint;
+}
+.background--high-contrast {
+	background: $cds-color-surface-high-contrast;
+}
+.background--brand {
+	background: $cds-color-surface-brand;
+}
+.background--interactive {
+	background: $cds-color-surface-interactive;
+}
+.background--success {
+	background: $cds-color-surface-success;
+}
+.background--warning {
+	background: $cds-color-surface-warning;
+}
+.background--critical {
+	background: $cds-color-surface-critical;
+}
 
+.wrap {
+	flex-wrap: wrap;
+}

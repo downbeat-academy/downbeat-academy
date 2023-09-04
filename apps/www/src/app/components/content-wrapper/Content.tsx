@@ -23,3 +23,4 @@ const Content = ({
 }
 
 export { Content }
+export type { ContentProps } from './types'
