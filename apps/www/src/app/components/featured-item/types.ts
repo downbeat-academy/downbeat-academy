@@ -1,11 +1,23 @@
 interface FeaturedItemProps {
-  title?: string,
-  description?: string,
-  authors?: {
-    name?: string,
-    slug?: string,
-    image?: any,
-  }
+  title?: React.ReactNode,
+  image?: React.ReactNode,
+  authors?: React.ReactNode,
 }
 
-export type { FeaturedItemProps }
+interface FeaturedItemTitleProps {
+  title?: string,
+  description?: string,
+  className?: string,
+  background?: string,
+}
+
+interface FeaturedItemImageProps {
+  image?: any,
+  alt?: string,
+}
+
+export type {
+  FeaturedItemProps,
+  FeaturedItemTitleProps,
+  FeaturedItemImageProps,
+}

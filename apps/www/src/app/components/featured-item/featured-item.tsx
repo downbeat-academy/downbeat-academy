@@ -9,36 +9,23 @@ import type { FeaturedItemProps } from "./types"
 
 const FeaturedItem = ({
   title,
-  description,
+  image,
   authors,
 }: FeaturedItemProps) => {
   return (
     <article className={s.root}>
-      <Flex
-        tag='div'
-        background='brand'
-        padding='3x-large'
-        gap='x-large'
-        className={s.title}
-      >
-        <Text
-          tag='h1'
-          size='h1'
-          type='expressive-headline'
-          color='high-contrast'
-          collapse
-        >{title}</Text>
-        <Text
-          tag='p'
-          size='body-large'
-          type='expressive-body'
-          color='high-contrast'
-          collapse
-        >{description}</Text>
+      <Flex direction='column'>
+        {title}
+        {authors}
       </Flex>
+      {image}
     </article>
   )
 }
 
-export { FeaturedItem }
+FeaturedItem.displayName = 'FeaturedItem'
+
+const Root = FeaturedItem;
+
+export { FeaturedItem, Root }
 export type { FeaturedItemProps }

@@ -10,7 +10,7 @@ import type { Metadata } from 'next'
 import { SectionTitle } from "./components/section-title"
 import { SectionContainer } from "./components/section-container"
 import { Text } from '@components/text'
-import { FeaturedItem } from "@components/featured-item"
+import * as FeaturedItem from "@components/featured-item"
 
 // Fetch the data for the homepage
 async function getHomepageData() {
@@ -50,9 +50,29 @@ export default async function Page() {
           title={<Text color='brand' tag='h1' size="h1" type='expressive-headline' collapse>Home page</Text>}
           subtitle={<Text color='brand' tag='p' size='body-base' type='expressive-body' collapse>This is the subtitle</Text>}
         />
-        <FeaturedItem
-          title={featuredPost.title}
-          description={featuredPost.excerpt}
+        <FeaturedItem.Root
+          title={
+            <FeaturedItem.Title
+              title={
+                <Text
+                  tag='h1'
+                  type='expressive-headline'
+                  size='h1'
+                  color='high-contrast'
+                  collapse
+                >{featuredPost.title}</Text>
+              }
+              description={
+                <Text
+                  tag='p'
+                  type='expressive-body'
+                  size='body-large'
+                  color='high-contrast'
+                  collapse
+                >{featuredPost.excerpt}</Text>
+              }
+            />
+          }
         />
       </SectionContainer>
     </>

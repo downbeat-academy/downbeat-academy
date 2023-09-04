@@ -8,5 +8,6 @@ export const homepageQuery = groq`
         "slug": slug.current,
         excerpt,
         content,
+        author,
     }
 `
