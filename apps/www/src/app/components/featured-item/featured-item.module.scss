@@ -1,4 +1,14 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
 .root {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(2, min-content);
+	grid-template-areas:
+		'title title title title title title title image image image image image'
+		'author author author author author author author image image image image image';
+
+	& > * {
+		border-right: 1px solid $cds-color-border-primary;
+	}
 }

@@ -1,12 +1,9 @@
 interface FeaturedItemProps {
-  title?: React.ReactNode,
-  image?: React.ReactNode,
-  authors?: React.ReactNode,
+  children?: React.ReactNode,
 }
 
 interface FeaturedItemTitleProps {
-  title?: string,
-  description?: string,
+  children?: React.ReactNode,
   className?: string,
   background?: string,
 }
@@ -16,8 +13,11 @@ interface FeaturedItemImageProps {
   alt?: string,
 }
 
+interface FeaturedItemAuthorsProps {}
+
 export type {
   FeaturedItemProps,
   FeaturedItemTitleProps,
   FeaturedItemImageProps,
+  FeaturedItemAuthorsProps,
 }

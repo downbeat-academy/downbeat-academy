@@ -3,6 +3,7 @@ interface AvatarProps {
   imageObject?: any,
   name?: string,
   size?: 'small' | 'medium' | 'large',
+  slug?: string,
   className?: string,
 }
 

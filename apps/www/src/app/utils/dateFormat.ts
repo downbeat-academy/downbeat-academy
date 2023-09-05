@@ -1,8 +1,7 @@
 import { format, parseISO } from 'date-fns'
 
-const prettyDate = (date: string, formatType?: string) => {
-	const isoDate = parseISO(date)
-	const formattedDate = format(isoDate, formatType)
+const prettyDate = (date, formatType = 'MMMM do, yyyy') => {
+	const formattedDate = format(parseISO(date), formatType)
 	return formattedDate
 }
 

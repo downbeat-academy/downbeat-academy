@@ -5,21 +5,24 @@ import s from './title.module.scss'
 import type { FeaturedItemTitleProps } from './types'
 
 const FeaturedItemTitle = ({
-  title,
-  description,
+  children,
   background = 'brand',
   className
 }: FeaturedItemTitleProps) => {
 
   const classes = classnames(
     s.root,
+    className,
   )
 
   return (
-    // @ts-ignore
-    <Flex background={background} className={classes}>
-      {title}
-      {description}
+    <Flex
+      // @ts-ignore
+      background={background}
+      gap='x-large'
+      className={classes}
+    >
+      {children}
     </Flex>
   )
 }

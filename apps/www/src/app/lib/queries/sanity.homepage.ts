@@ -8,6 +8,15 @@ export const homepageQuery = groq`
         "slug": slug.current,
         excerpt,
         content,
-        author,
+        date,
+        categories[]-> {
+            ...,
+            "slug": slug.current,
+        },
+        authors[]-> {
+            ...,
+            "slug": slug.current,
+            image,
+        },
     }
 `

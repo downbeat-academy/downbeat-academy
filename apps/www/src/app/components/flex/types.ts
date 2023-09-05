@@ -5,7 +5,7 @@ interface FlexProps extends HTMLAttributes<HTMLElement> {
   className?: string,
   tag?: ElementType,
   direction?: 'row' | 'column',
-  gap?: 'none' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large',
+  gap?: 'none' | '2x-small' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large',
   padding?: 'none' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large',
   alignItems?: 'stretch' | 'start' | 'center' | 'end',
   alignContent?: 'stretch' | 'start' | 'center' | 'end',
