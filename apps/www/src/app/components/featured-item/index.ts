@@ -4,4 +4,9 @@ export { FeaturedItemAuthors, Authors } from './authors'
 export { FeaturedItemImage, Image } from './image'
 
 // Types
-export type { FeaturedItemProps } from './featured-item'
+export type { 
+  FeaturedItemProps,
+  FeaturedItemTitleProps,
+  FeaturedItemAuthorsProps,
+  FeaturedItemImageProps,
+} from './types'
