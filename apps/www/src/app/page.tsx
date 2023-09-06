@@ -57,6 +57,8 @@ export default async function Page() {
     )
   })
 
+  // console.log(featuredPost)
+
   return (
     <>
       <SectionContainer>

@@ -14,9 +14,9 @@ export const homepageQuery = groq`
             "slug": slug.current,
         },
         authors[]-> {
-            ...,
             "slug": slug.current,
             image,
+            name,
         },
     }
 `

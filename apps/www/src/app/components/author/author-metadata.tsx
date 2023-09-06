@@ -23,6 +23,35 @@ const AuthorMetadata = ({
     s.root,
     className,
   )
+  
+  const mapAuthorImages = authors.map(authorImage => {
+    console.log(authorImage)
+    return (
+      // @ts-ignore
+      <Link href={linkResolver(authorImage.slug, 'contributor')} key={authorImage.name}>
+        <Avatar
+          // @ts-ignore
+          imageUrl={getSanityImageUrl(authorImage.image.image.asset).url()}
+          name={authorImage.name}
+          size={avatarSize}
+        />
+      </Link>
+    )
+  })
+
+  const mapAuthorNames = authors.map(authorLink => {
+    return (
+      <strong key={authorLink.name}>
+        <Link
+          type='secondary'
+          href={linkResolver(authorLink.slug, 'contributor')}
+        >
+          {authorLink.name}
+        </Link>
+        {' '}
+      </strong>
+    )
+  })
 
   return (
     <Flex
@@ -33,27 +62,11 @@ const AuthorMetadata = ({
     >
       <Flex tag='div' direction='row' gap='medium'>
         <AvatarGroup spacing='overlap-large'>
-          {authors.map(authorImage => {
-            return (
-              // @ts-ignore
-              <Link href={linkResolver(authorImage.slug, 'contributor')} key={authorImage.name}>
-                <Avatar
-                  // @ts-ignore
-                  // imageUrl={getSanityImageUrl(authorImage.image)}
-                  name={authorImage.name}
-                  size={avatarSize}
-                />
-              </Link>
-            )
-          })}
+          {mapAuthorImages}
         </AvatarGroup>
         <Flex tag='div' direction='column' justifyContent='center' gap='2x-small'>
           <Text tag='p' type='productive-body' size='body-small' collapse>
-            {authors.map(authorLink => {
-              return (
-                <strong key={authorLink.name}><Link type='secondary' href={linkResolver(authorLink.slug, 'contributor')}>{authorLink.name}</Link></strong>
-                )
-              })}
+            {mapAuthorNames}
           </Text>
           <Text tag='p' type='productive-body' size='body-small' collapse>Published on {date}</Text>
         </Flex>
