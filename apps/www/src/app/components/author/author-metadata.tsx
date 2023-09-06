@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import classnames from 'classnames'
-import { format } from 'date-fns'
 import { Text } from '@components/text'
 import { Avatar, AvatarGroup } from '@components/avatar'
 import { Link } from '@components/link'
 import { Flex } from '@components/flex'
-import { getSanityImageUrl } from '@app/utils/getSanityImage'
+import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/linkResolver'
 import s from './author-metadata.module.scss'
 
@@ -25,13 +24,18 @@ const AuthorMetadata = ({
   )
   
   const mapAuthorImages = authors.map(authorImage => {
-    console.log(authorImage)
     return (
-      // @ts-ignore
       <Link href={linkResolver(authorImage.slug, 'contributor')} key={authorImage.name}>
         <Avatar
-          // @ts-ignore
-          imageUrl={getSanityImageUrl(authorImage.image.image.asset).url()}
+          imageObject={
+            <Image
+              // @ts-ignore
+              src={getSanityImageUrl(authorImage.image.image.asset).url()}
+              alt={authorImage.name}
+              width={64}
+              height={64}
+            />
+          }
           name={authorImage.name}
           size={avatarSize}
         />

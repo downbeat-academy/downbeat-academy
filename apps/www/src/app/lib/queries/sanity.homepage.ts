@@ -8,6 +8,7 @@ export const homepageQuery = groq`
         "slug": slug.current,
         excerpt,
         content,
+        featuredImage,
         date,
         categories[]-> {
             ...,

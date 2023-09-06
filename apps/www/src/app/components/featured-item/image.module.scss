@@ -1,0 +1,9 @@
+.root {
+	grid-area: image;
+	position: relative;
+	min-height: 200px;
+
+	& a img {
+		object-fit: cover;
+	}
+}

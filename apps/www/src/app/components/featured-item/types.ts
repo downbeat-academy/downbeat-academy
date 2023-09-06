@@ -11,6 +11,7 @@ interface FeaturedItemTitleProps {
 interface FeaturedItemImageProps {
   image?: any,
   alt?: string,
+  url?: string,
 }
 
 interface FeaturedItemAuthorsProps {}

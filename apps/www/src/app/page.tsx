@@ -7,6 +7,7 @@ import { readToken } from "@app/lib/sanity.api"
 import { getClient } from "@app/lib/sanity.client"
 import { linkResolver } from '@utils/linkResolver'
 import { prettyDate } from '@utils/dateFormat'
+import { getSanityImageUrl } from '@utils/getSanityImage'
 
 import { SectionContainer } from "./components/section-container"
 import { Text } from '@components/text'
@@ -57,8 +58,6 @@ export default async function Page() {
     )
   })
 
-  // console.log(featuredPost)
-
   return (
     <>
       <SectionContainer>
@@ -70,7 +69,7 @@ export default async function Page() {
               size='h1'
               color='high-contrast'
               collapse
-            >{featuredPost.title}</Text>
+            ><Link href={linkResolver(featuredPost.slug, 'article')} type='inherit'>{featuredPost.title}</Link></Text>
             <Text
               tag='p'
               type='expressive-body'
@@ -89,6 +88,11 @@ export default async function Page() {
               </Flex>
             </AuthorMetadata>
           </FeaturedItem.Authors>
+          <FeaturedItem.Image
+            image={getSanityImageUrl(featuredPost.featuredImage.image.asset).url()}
+            alt={featuredPost.featuredImage.alternativeText}
+            url={featuredPost.slug}
+          />
         </FeaturedItem.Root>
       </SectionContainer>
     </>

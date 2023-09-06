@@ -2,13 +2,25 @@
 
 .root {
 	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(2, min-content);
-	grid-template-areas:
-		'title title title title title title title image image image image image'
-		'author author author author author author author image image image image image';
 
 	& > * {
 		border-right: 1px solid $cds-color-border-primary;
+	}
+
+	@media (min-width: 400px) {
+		grid-template-columns: 100%;
+		grid-template-rows: repeat(3, min-content);
+		grid-template-areas:
+			'title'
+			'image'
+			'author';
+	}
+
+	@media (min-width: 1000px) {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(2, min-content);
+		grid-template-areas:
+			'title title image'
+			'author author image';
 	}
 }
