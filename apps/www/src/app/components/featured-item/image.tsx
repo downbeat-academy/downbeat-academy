@@ -1,5 +1,4 @@
 import Img from 'next/image'
-import { linkResolver } from '@utils/linkResolver'
 import { Link } from '@components/link'
 import s from './image.module.scss'
 
@@ -12,7 +11,7 @@ const FeaturedItemImage = ({
 }: FeaturedItemImageProps) => {
   return (
     <aside className={s.root}>
-      <Link href={linkResolver(url, 'article')}>
+      <Link href={url}>
         <Img
           src={image}
           alt={alt}

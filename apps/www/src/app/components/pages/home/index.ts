@@ -1,0 +1,1 @@
+export { HomeFeaturedPost } from './home-featured-post'

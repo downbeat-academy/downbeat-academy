@@ -1,10 +1,8 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
 .root {
-	grid-area: image;
 	position: relative;
-	min-height: 200px;
-	border-left: 1px solid $cds-color-border-primary;
+	min-height: 250px;
 
 	& a img {
 		object-fit: cover;

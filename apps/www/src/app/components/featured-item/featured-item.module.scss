@@ -3,10 +3,6 @@
 .root {
 	display: grid;
 
-	& > * {
-		border-right: 1px solid $cds-color-border-primary;
-	}
-
 	@media (min-width: 400px) {
 		grid-template-columns: 100%;
 		grid-template-rows: repeat(3, min-content);

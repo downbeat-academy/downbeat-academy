@@ -1,6 +1,7 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
 .root {
-	padding: $cds-scale-3x-large;
 	grid-area: title;
+	padding: $cds-scale-3x-large;
+	border-bottom: 1px solid $cds-color-border-primary;
 }

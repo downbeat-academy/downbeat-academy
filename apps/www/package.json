@@ -29,7 +29,6 @@
 		"@sendgrid/mail": "^7.7.0",
 		"@supabase/supabase-js": "^2.22.0",
 		"@types/node": "^20.1.4",
-		"@types/react-dom": "^18.2.4",
 		"boring-avatars": "^1.7.0",
 		"cadence-icons": "workspace:^",
 		"cadence-react": "workspace:^",
@@ -51,6 +50,7 @@
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.6",
+		"@types/react-dom": "^18.2.4",
 		"typescript": "^5.0.4"
 	}
 }

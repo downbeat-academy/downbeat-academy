@@ -12,6 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AppFrame>
+          {/* @ts-expect-error Server Component */}
           <HeaderNavigation />
           <ContentWrapper>
             <Content isFullBleed>
