@@ -1,18 +1,18 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
 .root {
-	border-width: 1px;
-	border-style: solid;
+	outline-width: 1px;
+	outline-style: solid;
 }
 
 .border-color--primary {
-	border-color: $cds-color-border-primary;
+	outline-color: $cds-color-border-primary;
 }
 
 .border-color--faint {
-	border-color: $cds-color-border-faint;
+	outline-color: $cds-color-border-faint;
 }
 
 .border-color--none {
-	border-color: none;
+	outline-color: none;
 }

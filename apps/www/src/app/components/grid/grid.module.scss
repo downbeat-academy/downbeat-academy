@@ -1,0 +1,58 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	display: grid;
+	grid-auto-rows: 1fr;
+}
+
+.columns--1 {
+	grid-template-columns: 1;
+}
+
+.columns--2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.columns--3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.columns--4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.columns--5 {
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.columns--6 {
+	grid-template-columns: repeat(6, 1fr);
+}
+
+.columns--7 {
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.columns--8 {
+	grid-template-columns: repeat(8, 1fr);
+}
+
+.columns--9 {
+	grid-template-columns: repeat(9, 1fr);
+}
+
+.columns--9 {
+	grid-template-columns: repeat(9, 1fr);
+}
+
+.columns--10 {
+	grid-template-columns: repeat(10, 1fr);
+}
+
+.columns--11 {
+	grid-template-columns: repeat(11, 1fr);
+}
+
+.columns--12 {
+	grid-template-columns: repeat(12, 1fr);
+}

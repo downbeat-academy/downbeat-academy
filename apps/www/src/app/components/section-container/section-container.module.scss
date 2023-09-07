@@ -2,14 +2,9 @@
 
 .root {
 	border-radius: $cds-radii-soft;
-	border-width: 1px;
-	border-style: solid;
+	outline-width: 1px;
+	outline-style: solid;
 	overflow: hidden;
-
-	& > *:not(:last-child) {
-		border-bottom-width: 1px;
-		border-bottom-style: solid;
-	}
 }
 
 // Background
@@ -43,36 +38,36 @@
 
 .border-color--primary,
 .border-color--primary > *:not(:last-child) {
-	border-color: $cds-color-border-primary;
+	outline-color: $cds-color-border-primary;
 }
 
 .border-color--faint,
 .border-color--faint > *:not(:last-child) {
-	border-color: $cds-color-border-faint;
+	outline-color: $cds-color-border-faint;
 }
 
 .border-color--brand,
 .border-color--brand > *:not(:last-child) {
-	border-color: $cds-color-border-brand;
+	outline-color: $cds-color-border-brand;
 }
 
 .border-color--interactive,
 .border-color--interactive > *:not(:last-child) {
-	border-color: $cds-color-border-interactive;
+	outline-color: $cds-color-border-interactive;
 }
 .border-color--success,
 .border-color--success > *:not(:last-child) {
-	border-color: $cds-color-border-success;
+	outline-color: $cds-color-border-success;
 }
 .border-color--warning,
 .border-color--warning > *:not(:last-child) {
-	border-color: $cds-color-border-warning;
+	outline-color: $cds-color-border-warning;
 }
 .border-color--critical,
 .border-color--critical > *:not(:last-child) {
-	border-color: $cds-color-border-critical;
+	outline-color: $cds-color-border-critical;
 }
 .border-color--high-contrast,
 .border-color--high-contrast > *:not(:last-child) {
-	border-color: $cds-color-border-high-contrast;
+	outline-color: $cds-color-border-high-contrast;
 }

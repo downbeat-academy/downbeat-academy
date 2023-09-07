@@ -22,7 +22,7 @@ export const featuredPostQuery = groq`
     }
 `
 
-export const homepageQuery = groq`
+export const homepagePostsQuery = groq`
     *[_type == 'article' && title != 'Test post'] {
         _id,
         _key,

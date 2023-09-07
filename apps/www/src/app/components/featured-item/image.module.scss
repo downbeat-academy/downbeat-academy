@@ -4,7 +4,7 @@
 	grid-area: image;
 	position: relative;
 	min-height: 200px;
-	border-left: 1px solid $cds-color-border-primary;
+	outline: 1px solid $cds-color-border-primary;
 
 	& a img {
 		object-fit: cover;
