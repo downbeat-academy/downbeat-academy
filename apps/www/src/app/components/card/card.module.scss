@@ -3,6 +3,8 @@
 .root {
 	outline-width: 1px;
 	outline-style: solid;
+	display: flex;
+	flex-direction: column;
 }
 
 .border-color--primary {

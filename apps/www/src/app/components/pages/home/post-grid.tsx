@@ -4,6 +4,7 @@ import { getClient } from "@lib/sanity.client"
 import { homepagePostsQuery } from '@lib/queries';
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage';
+import { truncateString } from '@utils/truncateString'
 
 import * as Card from '@components/card'
 import { Text } from '@components/text'
@@ -44,7 +45,13 @@ export default async function HomePostGrid() {
           <Link href={linkResolver(post.slug, 'article')} type='inherit'>
             <Text type='expressive-headline' size='h4' collapse>{post.title}</Text>
           </Link>
-          <Text type='expressive-body' size='body-small' collapse>{post.excerpt}</Text>
+          <Text
+            type='expressive-body'
+            size='body-small'
+            collapse
+          >
+            {truncateString(post.excerpt, 180)}
+          </Text>
           <AuthorMetadata
             authors={post.authors}
             avatarSize='small'
@@ -56,7 +63,7 @@ export default async function HomePostGrid() {
   })
 
   return (
-    <Grid columns={4}>
+    <Grid columns={3}>
       {mapPosts}
     </Grid>
   )

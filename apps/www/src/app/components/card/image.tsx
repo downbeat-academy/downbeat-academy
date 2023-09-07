@@ -9,15 +9,18 @@ const CardImage = ({
   alt,
   url,
 }: CardImageProps) => {
-  <div className={s.root}>
-    <Link href={url}>
-      <Img
-        src={image}
-        alt={alt}
-        fill={true}
-      />
-    </Link>
-  </div>
+  return (
+    <div className={s.root}>
+      <Link href={url}>
+        <Img
+          src={image}
+          alt={alt}
+          fill={true}
+          sizes="(max-width: 500px) 90vw, (max-width: 1200px) 30vw"
+        />
+      </Link>
+    </div>
+  )
 }
 
 CardImage.displayName = 'CardImage';
