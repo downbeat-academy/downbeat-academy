@@ -1,5 +1,4 @@
 import { ElementType } from 'react';
-import type { FlexProps } from '@components/flex'
 
 interface CardProps {
   children?: React.ReactNode,
@@ -16,7 +15,7 @@ interface CardImageProps {
 
 interface CardContentProps {
   children?: React.ReactNode,
-  background?: FlexProps;
+  background?: string,
   className?: string,
 }
 

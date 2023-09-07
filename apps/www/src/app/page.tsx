@@ -1,11 +1,11 @@
 import { draftMode } from 'next/headers'
-
 import { homepageQuery } from "@app/lib/queries"
 import { readToken } from "@app/lib/sanity.api"
 import { getClient } from "@app/lib/sanity.client"
-
 import { SectionContainer } from "@components/section-container"
-import { HomeFeaturedPost } from '@components/pages/home'
+import { SectionTitle } from '@components/section-title'
+import { FeaturedPost, HomePostGrid } from '@components/pages/home'
+import { Text } from '@components/text'
 
 import type { Metadata } from 'next'
 
@@ -40,7 +40,21 @@ export default async function Page() {
     <>
       <SectionContainer>
         {/* @ts-expect-error Server Component */}
-        <HomeFeaturedPost />
+        <FeaturedPost />
+      </SectionContainer>
+      <SectionContainer>
+        <SectionTitle
+          title={
+            <Text
+              tag='h2'
+              type='expressive-headline'
+              size='h2'
+              collapse
+            >Recent articles</Text>
+          }
+        />
+        {/* @ts-expect-error Server Component */}
+        <HomePostGrid />
       </SectionContainer>
     </>
   )

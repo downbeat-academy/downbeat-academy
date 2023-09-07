@@ -6,7 +6,7 @@ import type { CardContentProps } from './types'
 
 const CardContent = ({
   children,
-  background,
+  background = 'primary',
   className,
 }: CardContentProps) => {
 
@@ -21,6 +21,7 @@ const CardContent = ({
       background={background}
       direction='column'
       gap='medium'
+      padding='x-large'
       className={classes}
     >
       {children}    

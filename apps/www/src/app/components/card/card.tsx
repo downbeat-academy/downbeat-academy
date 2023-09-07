@@ -5,7 +5,7 @@ import type { CardProps } from './types'
 
 const Card = ({
   children,
-  tag,
+  tag = 'div',
   borderColor,
   className,
 }: CardProps) => {

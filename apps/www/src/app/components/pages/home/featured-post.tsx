@@ -28,7 +28,7 @@ async function getFeaturedPostData() {
   return res;
 }
 
-export default async function HomeFeaturedPost() {
+export default async function FeaturedPost() {
 
   const featuredPost = await getFeaturedPostData();
 
@@ -78,4 +78,4 @@ export default async function HomeFeaturedPost() {
   )
 }
 
-export { HomeFeaturedPost }
+export { FeaturedPost }
