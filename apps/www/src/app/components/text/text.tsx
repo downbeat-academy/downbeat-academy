@@ -33,6 +33,7 @@ const Text = ({
   const Tag = tag;
 
   return (
+    // @ts-ignore
     <Tag className={classes}>{children}</Tag>
   )
 }

@@ -1,4 +1,6 @@
 import { Text } from '@components/text'
+import { Link } from '@components/link'
+import { linkResolver } from '@utils/linkResolver'
 
 const Components = {
   block: {
@@ -32,10 +34,10 @@ const Components = {
   //   musicNotation: ({ value }) => <MusicNotation input={value} />,
   //   video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
   // },
-  // marks: {
-  //   link: ({ children, value }) => <StyledLink href={value.href} type='primary' style='default'>{children}</StyledLink>,
-  //   internalLink: ({ children, value }) => <StyledLink href={linkResolver(value.slug, value.type)} type='primary' style='default'>{children}</StyledLink>
-  // },
+  marks: {
+    link: ({ children, value }) => <Link href={value.href} type='primary'>{children}</Link>,
+    internalLink: ({ children, value }) => <Link href={linkResolver(value.slug, value.type)} type='primary'>{children}</Link>
+  },
 }
 
 export { Components }

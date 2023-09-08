@@ -11,6 +11,7 @@ interface SectionTitleProps {
   alignment?: 'left' | 'center' | 'right',
   title: React.ReactNode,
   subtitle?: React.ReactNode,
+  hasBorder?: boolean,
   className?: string,
 }
 

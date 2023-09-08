@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
+import { ModuleRenderer } from '@components/module-content'
 
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {
@@ -20,15 +21,13 @@ export default async function PageSlugRoute({ params }) {
   const { slug } = params
   const preview = draftMode().isEnabled ? { token: readToken } : undefined;
   const client = getClient(preview)
-  const data = await client.fetch(pagesBySlugQuery, {
+  const page = await client.fetch(pagesBySlugQuery, {
     slug,
   })
 
-  if (!data && !preview) {
+  if (!page && !preview) {
     notFound();
   }
-
-  console.log(data.moduleContent);
 
   return (
     <>
@@ -42,8 +41,11 @@ export default async function PageSlugRoute({ params }) {
               type='expressive-headline'
               color='brand'
               collapse
-            >{data.title}</Text>
+            >{page.title}</Text>
           }
+        />
+        <ModuleRenderer
+          modules={page.moduleContent}
         />
       </SectionContainer>
     </>

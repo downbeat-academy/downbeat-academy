@@ -9,12 +9,16 @@ const SectionTitle = ({
   background,
   alignment = 'left',
   className,
+  hasBorder = true,
 }: SectionTitleProps) => {
 
   const classes = classnames([
     s.root,
     s[`alignment--${alignment}`],
     s[`background--${background}`],
+    {
+      [s[`has-border`]]: hasBorder
+    },
     className,
   ])
 

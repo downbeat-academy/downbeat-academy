@@ -1,0 +1,99 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+$grid-areas: start, center, end;
+
+@each $area in $grid-areas {
+	.grid-area--#{$area} {
+		grid-area: $area;
+	}
+}
+
+// Padding
+
+.padding--none {
+	padding: 0;
+}
+.padding--2x-small {
+	padding: $cds-scale-2x-small;
+}
+.padding--x-small {
+	padding: $cds-scale-x-small;
+}
+.padding--small {
+	padding: $cds-scale-small;
+}
+.padding--medium {
+	padding: $cds-scale-base;
+}
+.padding--large {
+	padding: $cds-scale-large;
+}
+.padding--x-large {
+	padding: $cds-scale-x-large;
+}
+.padding--2x-large {
+	padding: $cds-scale-2x-large;
+}
+.padding--3x-large {
+	padding: $cds-scale-3x-large;
+}
+
+// Padding X
+
+.padding-x--none {
+	padding: 0 0;
+}
+.padding-x--2x-small {
+	padding: 0 $cds-scale-2x-small;
+}
+.padding-x--x-small {
+	padding: 0 $cds-scale-x-small;
+}
+.padding-x--small {
+	padding: 0 $cds-scale-small;
+}
+.padding-x--medium {
+	padding: 0 $cds-scale-base;
+}
+.padding-x--large {
+	padding: 0 $cds-scale-large;
+}
+.padding-x--x-large {
+	padding: 0 $cds-scale-x-large;
+}
+.padding-x--2x-large {
+	padding: 0 $cds-scale-2x-large;
+}
+.padding-x--3x-large {
+	padding: 0 $cds-scale-3x-large;
+}
+
+// Padding X
+
+.padding-y--none {
+	padding: 0 0;
+}
+.padding-y--2x-small {
+	padding: $cds-scale-2x-small 0;
+}
+.padding-y--x-small {
+	padding: $cds-scale-x-small 0;
+}
+.padding-y--small {
+	padding: $cds-scale-small 0;
+}
+.padding-y--medium {
+	padding: $cds-scale-base 0;
+}
+.padding-y--large {
+	padding: $cds-scale-large 0;
+}
+.padding-y--x-large {
+	padding: $cds-scale-x-large 0;
+}
+.padding-y--2x-large {
+	padding: $cds-scale-2x-large 0;
+}
+.padding-y--3x-large {
+	padding: $cds-scale-3x-large 0;
+}

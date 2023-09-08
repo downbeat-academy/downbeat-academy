@@ -7,6 +7,12 @@
 	gap: $cds-scale-small;
 }
 
+// Border
+
+.has-border {
+	outline: 1px solid $cds-color-border-primary;
+}
+
 // Alignment
 
 .alignment--left > * {
