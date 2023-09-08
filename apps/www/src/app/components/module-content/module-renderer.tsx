@@ -6,7 +6,7 @@ const ModuleRenderer = ({ modules }) => {
   const renderModules = modules.map((m) => {
     switch (m._type) {
       case 'richText': return (
-        <ModuleItem gridArea='center' paddingY='3x-large'>
+        <ModuleItem gridArea='center' paddingY='x-large' paddingX='medium'>
           <RichText value={m.content} key={m._key} />
         </ModuleItem>
       )

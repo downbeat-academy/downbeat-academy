@@ -15,13 +15,9 @@ const ModuleItem = ({
   const classes = classnames(
     s.root,
     s[`grid-area--${gridArea}`],
-    {
-      [s[`padding--${padding}`]]: !paddingX && !paddingY,
-    },
-    {
-      [s[`padding-x--${paddingX}`]]: !padding,
-      [s[`padding-y--${paddingY}`]]: !padding,
-    },
+    s[`padding--${padding}`],
+    s[`padding-x--${paddingX}`],
+    s[`padding-y--${paddingY}`],
     className,
   )
 

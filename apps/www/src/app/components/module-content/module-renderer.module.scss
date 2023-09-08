@@ -4,5 +4,4 @@
 	display: grid;
 	grid-template-columns: 1fr min(65ch, 100%) 1fr;
 	grid-template-areas: 'start center end';
-	padding: 0 $cds-scale-base;
 }

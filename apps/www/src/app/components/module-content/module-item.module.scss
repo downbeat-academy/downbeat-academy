@@ -1,5 +1,7 @@
 @import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 
+// Grid Area
+
 $grid-areas: start, center, end;
 
 @each $area in $grid-areas {
@@ -41,59 +43,77 @@ $grid-areas: start, center, end;
 // Padding X
 
 .padding-x--none {
-	padding: 0 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 .padding-x--2x-small {
-	padding: 0 $cds-scale-2x-small;
+	padding-left: $cds-scale-2x-small;
+	padding-right: $cds-scale-2x-small;
 }
 .padding-x--x-small {
-	padding: 0 $cds-scale-x-small;
+	padding-left: $cds-scale-x-small;
+	padding-right: $cds-scale-x-small;
 }
 .padding-x--small {
-	padding: 0 $cds-scale-small;
+	padding-left: $cds-scale-small;
+	padding-right: $cds-scale-small;
 }
 .padding-x--medium {
-	padding: 0 $cds-scale-base;
+	padding-left: $cds-scale-base;
+	padding-right: $cds-scale-base;
 }
 .padding-x--large {
-	padding: 0 $cds-scale-large;
+	padding-left: $cds-scale-large;
+	padding-right: $cds-scale-large;
 }
 .padding-x--x-large {
-	padding: 0 $cds-scale-x-large;
+	padding-left: $cds-scale-x-large;
+	padding-right: $cds-scale-x-large;
 }
 .padding-x--2x-large {
-	padding: 0 $cds-scale-2x-large;
+	padding-left: $cds-scale-2x-large;
+	padding-right: $cds-scale-2x-large;
 }
 .padding-x--3x-large {
-	padding: 0 $cds-scale-3x-large;
+	padding-left: $cds-scale-3x-large;
+	padding-right: $cds-scale-3x-large;
 }
 
 // Padding X
 
 .padding-y--none {
-	padding: 0 0;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 .padding-y--2x-small {
-	padding: $cds-scale-2x-small 0;
+	padding-top: $cds-scale-2x-small;
+	padding-bottom: $cds-scale-2x-small;
 }
 .padding-y--x-small {
-	padding: $cds-scale-x-small 0;
+	padding-top: $cds-scale-x-small;
+	padding-bottom: $cds-scale-x-small;
 }
 .padding-y--small {
-	padding: $cds-scale-small 0;
+	padding-top: $cds-scale-small;
+	padding-bottom: $cds-scale-small;
 }
 .padding-y--medium {
-	padding: $cds-scale-base 0;
+	padding-top: $cds-scale-base;
+	padding-bottom: $cds-scale-base;
 }
 .padding-y--large {
-	padding: $cds-scale-large 0;
+	padding-top: $cds-scale-large;
+	padding-bottom: $cds-scale-large;
 }
 .padding-y--x-large {
-	padding: $cds-scale-x-large 0;
+	padding-top: $cds-scale-x-large;
+	padding-bottom: $cds-scale-x-large;
 }
 .padding-y--2x-large {
-	padding: $cds-scale-2x-large 0;
+	padding-top: $cds-scale-2x-large;
+	padding-bottom: $cds-scale-2x-large;
 }
 .padding-y--3x-large {
-	padding: $cds-scale-3x-large 0;
+	padding-top: $cds-scale-3x-large;
+	padding-bottom: $cds-scale-3x-large;
 }
