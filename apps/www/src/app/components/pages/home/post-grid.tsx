@@ -11,7 +11,7 @@ import { Text } from '@components/text'
 import { Grid } from '@components/grid'
 import { Link } from '@components/link'
 import { AuthorMetadata } from '@components/author';
-import { prettyDate } from '@app/utils/dateFormat';
+import { prettyDate } from '@utils/dateFormat';
 
 // Get the post data
 async function getHomepagePosts() {

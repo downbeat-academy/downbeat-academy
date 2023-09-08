@@ -5,6 +5,21 @@ export const pagesBySlugQuery = groq`
     _id,
     title,
     "slug": slug.current,
+    metadata,
+    moduleContent[] {
+      ...,
+      _type == "richText" => {
+        ...,
+        content[] {
+          ...,
+            markDefs[] {
+              ...,
+              "slug": reference->slug.current,
+              "type": reference->_type
+            }
+        }
+      }
+    }
   }
 `
 

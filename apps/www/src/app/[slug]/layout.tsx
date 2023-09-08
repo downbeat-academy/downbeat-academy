@@ -1,5 +1,4 @@
-import { Content, ContentWrapper } from "@app/components/content-wrapper"
-import { Sidebar } from "@app/components/sidebar"
+import { ContentWrapper, Content } from "@components/content-wrapper"
 
 export default function PageLayout({
   children
