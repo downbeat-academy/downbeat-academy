@@ -28,7 +28,8 @@ async function getHomepagePosts() {
 
 export default async function HomePostGrid() {
 
-  const posts = await getHomepagePosts();
+  const data = await getHomepagePosts();
+  const posts = data.slice(1, -1)
 
   const mapPosts = posts.map(post => {
     return (
