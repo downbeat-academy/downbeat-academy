@@ -1,6 +1,3 @@
-import { draftMode } from 'next/headers'
-import { readToken } from "@app/lib/sanity.api"
-import { getClient } from "@app/lib/sanity.client"
 import { SectionContainer } from "@components/section-container"
 import { SectionTitle } from '@components/section-title'
 import { FeaturedPost, HomePostGrid } from '@components/pages/home'
