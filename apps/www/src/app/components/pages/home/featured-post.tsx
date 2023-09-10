@@ -1,9 +1,3 @@
-import { draftMode } from 'next/headers'
-
-import { featuredPostQuery } from "@lib/queries"
-import { readToken } from "@lib/sanity.api"
-import { sanityClient } from "@lib/sanity.client"
-
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
@@ -15,21 +9,7 @@ import { AuthorMetadata } from '@components/author'
 import { Text } from '@components/text'
 import { Badge } from '@components/badge'
 
-// Fetch the data for the homepage
-async function getFeaturedPostData() {
-  const preview = draftMode().isEnabled ? { token: readToken! } : undefined;
-  const res = sanityClient.fetch(featuredPostQuery)
-
-  if (!res) {
-    throw new Error('Failed to fetch data.');
-  }
-
-  return res;
-}
-
-export default async function FeaturedPost() {
-
-  const featuredPost = await getFeaturedPostData();
+export default async function FeaturedPost({ featuredPost }) {
 
   // Render the categories of the featured post as badges
   const renderCategories = featuredPost.categories.map(category => {

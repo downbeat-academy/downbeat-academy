@@ -1,7 +1,3 @@
-import { draftMode } from 'next/headers'
-import { readToken } from "@lib/sanity.api"
-import { sanityClient } from "@lib/sanity.client"
-import { homepagePostsQuery } from '@lib/queries';
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage';
 import { truncateString } from '@utils/truncateString'
@@ -13,22 +9,7 @@ import { Link } from '@components/link'
 import { AuthorMetadata } from '@components/author';
 import { prettyDate } from '@utils/dateFormat';
 
-// Get the post data
-async function getHomepagePosts() {
-  const preview = draftMode().isEnabled ? { token: readToken! } : undefined;
-  const res = sanityClient.fetch(homepagePostsQuery)
-
-  if (!res) {
-    throw new Error('Failed to fetch data.');
-  }
-
-  return res;
-}
-
-export default async function HomePostGrid() {
-
-  const data = await getHomepagePosts();
-  const posts = data.slice(1, -1)
+export default async function HomePostGrid({ posts }) {
 
   const mapPosts = posts.map(post => {
     return (

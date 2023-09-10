@@ -12,7 +12,14 @@ import { AuthorMetadata } from '@components/author';
 import { prettyDate } from '@utils/dateFormat';
 
 async function getArticles() {
-  const res = sanityClient.fetch(articlesPageQuery)
+  const res = sanityClient.fetch(
+    articlesPageQuery,
+    { 
+      next: {
+        revalidate: 60,
+      },
+    }
+  )
 
   if (!res) {
     throw new Error('Failed to fetch data.');

@@ -1,9 +1,29 @@
+import { homepagePostsQuery } from "@lib/queries"
+import { sanityClient } from "@lib/sanity.client"
+
 import { SectionContainer } from "@components/section-container"
 import { SectionTitle } from '@components/section-title'
 import { FeaturedPost, HomePostGrid } from '@components/pages/home'
 import { Text } from '@components/text'
 
 import type { Metadata } from 'next'
+
+async function getHomepageData() {
+  const res = sanityClient.fetch(
+    homepagePostsQuery,
+    {
+      next: {
+        revalidate: 60,
+      }
+    }
+  )
+
+  if (!res) {
+    throw new Error('Failed to fetch data.')
+  }
+
+  return res
+}
 
 // Render metadata
 export const metadata: Metadata = {
@@ -14,11 +34,15 @@ export const metadata: Metadata = {
 // Render the homepage data in an async function
 export default async function Page() {
 
+  const data = await getHomepageData();
+  const featuredPost = data[0]
+  const posts = data.slice(1, -1);
+
   return (
     <>
       <SectionContainer>
         {/* @ts-expect-error Server Component */}
-        <FeaturedPost />
+        <FeaturedPost featuredPost={featuredPost} />
       </SectionContainer>
       <SectionContainer>
         <SectionTitle
@@ -32,7 +56,7 @@ export default async function Page() {
           }
         />
         {/* @ts-expect-error Server Component */}
-        <HomePostGrid />
+        <HomePostGrid posts={posts} />
       </SectionContainer>
     </>
   )

@@ -12,7 +12,14 @@ import { ModuleRenderer } from '@components/module-content'
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {
   const client = sanityClient
-  const slugs = await client.fetch(pagePaths)
+  const slugs = await client.fetch(
+    pagePaths,
+    { 
+      next: {
+        revalidate: 60,
+      },
+    }
+  )
   return slugs.map((slug) => ({ slug }));
 }
 
