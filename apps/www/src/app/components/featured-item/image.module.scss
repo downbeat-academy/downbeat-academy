@@ -6,7 +6,8 @@
 	min-height: 200px;
 	outline: 1px solid $cds-color-border-primary;
 
-	& a img {
+	& a img,
+	img {
 		object-fit: cover;
 	}
 }
