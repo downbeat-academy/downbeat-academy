@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
 export const articlesBySlugQuery = groq`
-    *[_type == 'article' && title != 'Test post' && slug.current == $slug][0] {
+    *[_type == 'article' && slug.current == $slug][0] {
         _id,
         _key,
         title,
@@ -27,7 +27,7 @@ export const articlePaths = groq`
 `
 
 export const articlesPageQuery = groq`
-    *[_type == 'article' && title != 'Test post'] {
+    *[_type == 'article'] {
         _id,
         _key,
         title,

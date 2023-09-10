@@ -39,4 +39,11 @@ interface TextProps extends HTMLAttributes<HTMLOrSVGElement> {
   className?: string,
 }
 
-export type { TextProps }
+interface ListProps extends HTMLAttributes<HTMLOrSVGElement> {
+  children: React.ReactNode,
+  type?: 'ordered' | 'unordered',
+  collapse?: boolean,
+  className?: string,
+}
+
+export type { TextProps, ListProps }

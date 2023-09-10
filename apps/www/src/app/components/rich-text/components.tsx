@@ -1,5 +1,6 @@
 import { Text } from '@components/text'
 import { Link } from '@components/link'
+import { List } from '@components/text'
 import { linkResolver } from '@utils/linkResolver'
 
 const Components = {
@@ -13,14 +14,28 @@ const Components = {
     normal: ({ children }) => <Text tag='p' size='body-base' type='expressive-body' color='primary'>{children}</Text>,
     // blockquote: ({ children }) => <Blockquote>{children}</Blockquote>
   },
-  // list: {
-  //   bullet: ({ children }) => <List listType='ul' context='expressive'>{children}</List>,
-  //   number: ({ children }) => <List listType='ol' context='expressive'>{children}</List>,
-  // },
-  // listItem: {
-  //   bullet: ({ children }) => <li>{children}</li>,
-  //   number: ({ children }) => <li>{children}</li>,
-  // },
+  list: {
+    bullet: ({ children }) => <List type='unordered'>{children}</List>,
+    number: ({ children }) => <List type='ordered'>{children}</List>,
+  },
+  listItem: {
+    bullet: ({ children }) => 
+      <Text
+        type='expressive-body'
+        size='body-base'
+        color='primary'
+        tag='li'
+        collapse
+      >{children}</Text>,
+    number: ({ children }) => 
+      <Text
+        type='expressive-body'
+        size='body-base'
+        color='primary'
+        tag='li'
+        collapse
+      >{children}</Text>,
+  },
   // types: {
   //   blockquote: ({ value }) => {
   //     const { attribution, source, quote } = value
