@@ -1,6 +1,6 @@
 import { draftMode } from 'next/headers'
 import { readToken } from "@lib/sanity.api"
-import { getClient } from "@lib/sanity.client"
+import { sanityClient } from "@lib/sanity.client"
 import { homepagePostsQuery } from '@lib/queries';
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage';
@@ -16,8 +16,7 @@ import { prettyDate } from '@utils/dateFormat';
 // Get the post data
 async function getHomepagePosts() {
   const preview = draftMode().isEnabled ? { token: readToken! } : undefined;
-  const client = getClient(preview)
-  const res = client.fetch(homepagePostsQuery)
+  const res = sanityClient.fetch(homepagePostsQuery)
 
   if (!res) {
     throw new Error('Failed to fetch data.');

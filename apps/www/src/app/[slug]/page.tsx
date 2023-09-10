@@ -1,5 +1,5 @@
 import { readToken } from '@lib/sanity.api'
-import { getClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity.client'
 import { pagesBySlugQuery, pagePaths } from '@lib/queries'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
@@ -11,7 +11,7 @@ import { ModuleRenderer } from '@components/module-content'
 
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {
-  const client = getClient()
+  const client = sanityClient
   const slugs = await client.fetch(pagePaths)
   return slugs.map((slug) => ({ slug }));
 }
@@ -20,8 +20,7 @@ export async function generateStaticParams() {
 export default async function PageSlugRoute({ params }) {
   const { slug } = params
   const preview = draftMode().isEnabled ? { token: readToken } : undefined;
-  const client = getClient(preview)
-  const page = await client.fetch(pagesBySlugQuery, {
+  const page = await sanityClient.fetch(pagesBySlugQuery, {
     slug,
   })
 

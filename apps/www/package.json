@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@portabletext/react": "^3.0.0",
 		"@sanity/asset-utils": "^1.3.0",
+		"@sanity/client": "^6.4.11",
 		"@sanity/image-url": "^1.0.2",
 		"@supabase/supabase-js": "^2.22.0",
 		"boring-avatars": "^1.7.0",
@@ -42,6 +43,8 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"sass": "^1.62.1",
+		"server-only": "^0.0.1",
+		"suspend-react": "^0.1.3",
 		"typeface-favorit": "workspace:^",
 		"typeface-tiempos-text": "workspace:^"
 	},

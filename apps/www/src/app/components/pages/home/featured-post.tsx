@@ -2,7 +2,7 @@ import { draftMode } from 'next/headers'
 
 import { featuredPostQuery } from "@lib/queries"
 import { readToken } from "@lib/sanity.api"
-import { getClient } from "@lib/sanity.client"
+import { sanityClient } from "@lib/sanity.client"
 
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
@@ -18,8 +18,7 @@ import { Badge } from '@components/badge'
 // Fetch the data for the homepage
 async function getFeaturedPostData() {
   const preview = draftMode().isEnabled ? { token: readToken! } : undefined;
-  const client = getClient(preview)
-  const res = client.fetch(featuredPostQuery)
+  const res = sanityClient.fetch(featuredPostQuery)
 
   if (!res) {
     throw new Error('Failed to fetch data.');

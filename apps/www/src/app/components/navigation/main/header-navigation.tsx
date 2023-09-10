@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
-import { getClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity.client'
 import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from '@components/text'
@@ -11,7 +11,7 @@ import type { HeaderNavigationProps } from './types'
 
 // Fetch the data for the navigation
 async function getNavigationData() {
-  const client = getClient()
+  const client = sanityClient
   const res = client.fetch(mainNavQuery)
 
   if (!res) {
@@ -22,7 +22,7 @@ async function getNavigationData() {
 }
 
 async function getBannerData() {
-  const client = getClient()
+  const client = sanityClient
   const res = client.fetch(bannerQuery)
 
   if (!res) {

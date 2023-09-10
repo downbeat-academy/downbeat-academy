@@ -11,10 +11,10 @@
 // }
 
 
-import { getClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity.client'
 import imageUrlBuilder from '@sanity/image-url'
 
-const builder = imageUrlBuilder(getClient())
+const builder = imageUrlBuilder(sanityClient)
 
 export function getSanityImageUrl(source) {
 	return builder.image(source)
