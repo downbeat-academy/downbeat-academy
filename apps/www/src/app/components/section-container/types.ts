@@ -1,7 +1,7 @@
 import { ElementType, HTMLAttributes } from 'react'
 
 interface SectionContainerProps extends HTMLAttributes<HTMLElement> {
-  tag?: ElementType,
+  tag?: ElementType | string,
   children: React.ReactNode,
   background?:
   'primary' |

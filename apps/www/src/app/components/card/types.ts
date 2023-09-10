@@ -1,9 +1,9 @@
-import { ElementType } from 'react';
+import { ElementType, HTMLAttributes } from 'react';
 
-interface CardProps {
+interface CardProps extends HTMLAttributes<HTMLElement> {
   children?: React.ReactNode,
   borderColor?: 'none' | 'primary' | 'faint',
-  tag?: ElementType,
+  tag?: ElementType | string,
   className?: string,
 }
 

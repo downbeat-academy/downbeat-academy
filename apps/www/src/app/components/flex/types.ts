@@ -3,7 +3,7 @@ import { ElementType, HTMLAttributes } from 'react'
 interface FlexProps extends HTMLAttributes<HTMLElement> {
   children?: React.ReactNode,
   className?: string,
-  tag?: ElementType,
+  tag?: ElementType | string,
   direction?: 'row' | 'column',
   gap?: 'none' | '2x-small' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large',
   padding?: 'none' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | '2x-large' | '3x-large',
