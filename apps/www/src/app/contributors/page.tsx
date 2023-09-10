@@ -1,7 +1,9 @@
+import { sanityClient } from '@lib/sanity.client'
+import { contributorsPageQuery } from '@lib/queries'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
-import { ContributorsGrid } from './contributors-grid'
+import { ContributorsGrid } from '@components/pages/contributors'
 
 import type { Metadata } from 'next'
 
@@ -10,7 +12,27 @@ export const metadata: Metadata = {
   description: 'Downbeat Academy authors and contributors.'
 }
 
+async function getContributors() {
+  const res = sanityClient.fetch(
+    contributorsPageQuery,
+    { 
+      next: {
+        revalidate: 60,
+      },
+    }
+  )
+
+  if (!res) {
+    throw new Error('Failed to fetch data.')
+  }
+
+  return res;
+}
+
 export default async function ContributorsPage() {
+
+  const contributors = await getContributors();
+
   return (
     <>
       <SectionContainer>
@@ -26,7 +48,7 @@ export default async function ContributorsPage() {
           }
         />
         {/* @ts-expect-error Server Component */}
-        <ContributorsGrid />
+        <ContributorsGrid contributors={contributors} />
       </SectionContainer>
     </>
   )

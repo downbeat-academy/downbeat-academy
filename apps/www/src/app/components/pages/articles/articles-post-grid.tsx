@@ -1,5 +1,3 @@
-import { sanityClient } from "@lib/sanity.client"
-import { articlesPageQuery } from '@lib/queries';
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage';
 import { truncateString } from '@utils/truncateString'
@@ -11,25 +9,7 @@ import { Link } from '@components/link'
 import { AuthorMetadata } from '@components/author';
 import { prettyDate } from '@utils/dateFormat';
 
-async function getArticles() {
-  const res = sanityClient.fetch(
-    articlesPageQuery,
-    { 
-      next: {
-        revalidate: 60,
-      },
-    }
-  )
-
-  if (!res) {
-    throw new Error('Failed to fetch data.');
-  }
-
-  return res;
-}
-
-export default async function ArticlesPostGrid() {
-  const articles = await getArticles()
+export default async function ArticlesPostGrid({ articles }) {
 
   const mapArticles = articles.map(article => {
     return (

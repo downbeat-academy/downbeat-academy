@@ -1,6 +1,4 @@
 import Img from 'next/image'
-import { sanityClient } from '@lib/sanity.client'
-import { contributorsPageQuery } from '@lib/queries'
 import { linkResolver } from '@utils/linkResolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 
@@ -12,25 +10,7 @@ import { Flex } from '@components/flex'
 import { Avatar } from '@components/avatar'
 import { Badge } from '@components/badge'
 
-async function getContributors() {
-  const res = sanityClient.fetch(
-    contributorsPageQuery,
-    { 
-      next: {
-        revalidate: 60,
-      },
-    }
-  )
-
-  if (!res) {
-    throw new Error('Failed to fetch data.')
-  }
-
-  return res;
-}
-
-export default async function ContributorsGrid() {
-  const contributors = await getContributors()
+export default async function ContributorsGrid({ contributors }) {
 
   const mapContributors = contributors.map(contributor => {
     return (
