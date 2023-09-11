@@ -2,6 +2,7 @@ import { Text } from '@components/text'
 import { Link } from '@components/link'
 import { List } from '@components/text'
 import { linkResolver } from '@utils/linkResolver'
+import { Chord } from '@components/music-notation'
 
 const Components = {
   block: {
@@ -36,19 +37,22 @@ const Components = {
         collapse
       >{children}</Text>,
   },
-  // types: {
+  types: {
   //   blockquote: ({ value }) => {
   //     const { attribution, source, quote } = value
   //     return (
   //       <Blockquote attribution={attribution} source={source}>{quote}</Blockquote>
   //     )
   //   },
-  //   inlineChord: ({ value }) => <InlineChord input={value} />,
+    inlineChord: ({ value }) =>
+      <Chord 
+        {...value}
+      />,
   //   inlineMusicText: ({ value }) => <InlineMusicText values={value} />,
   //   mainImage: ({ value }) => <p>This is an image.</p>,
   //   musicNotation: ({ value }) => <MusicNotation input={value} />,
   //   video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
-  // },
+  },
   marks: {
     link: ({ children, value }) => <Link href={value.href} type='primary'>{children}</Link>,
     internalLink: ({ children, value }) => <Link href={linkResolver(value.slug, value.type)} type='primary'>{children}</Link>

@@ -1,0 +1,12 @@
+@import '../../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	font-family: $cds-typography-font-family-mono;
+	font-weight: bold;
+	background: $cds-color-palette-blueberry-100;
+	color: $cds-color-palette-blueberry-600;
+	border: 1px solid $cds-color-palette-blueberry-600;
+	border-radius: $cds-radii-medium;
+	padding: $cds-scale-3x-small $cds-scale-2x-small;
+	line-height: inherit;
+}

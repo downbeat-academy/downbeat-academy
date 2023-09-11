@@ -50,7 +50,6 @@ export default {
 			title: 'Extension',
 			type: 'string',
 			description: 'Extension or alteration of the chord.',
-			hidden: ({ parent, type }: any) => !type && parent.type !== 'extension',
 			options: {
 				list: [
 					{ title: '♭9', value: 'flat9' },
