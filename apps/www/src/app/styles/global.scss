@@ -31,3 +31,11 @@ h6 {
 	overflow-wrap: break-word;
 	font-style: normal;
 }
+
+// Noto music
+
+@font-face {
+	font-family: 'Noto Music';
+	src: local('Noto Music'),
+		url('/fonts/noto-music/NotoMusic-Regular.ttf') format('truetype');
+}

@@ -1,11 +1,7 @@
 import classnames from 'classnames'
 import s from './inline-chord.module.scss'
 
-import {
-  transformQuality,
-  transformSeventh,
-  transformExtension,
-} from '../transfomers'
+import { transformChord } from '../transfomers'
 
 import type { ChordProps } from "./types"
 
@@ -23,18 +19,17 @@ const Chord = ({
     className,
   )
 
-  const hasQuality = quality != undefined ? transformQuality(quality) : null;
-  // const hasSeventh = !!seventh;
-  // const hasExtension = !!extension;
-  // const hasAlternateBass = !!alternateBass;
+  const chord = transformChord(
+    root,
+    quality,
+    extension,
+    alternateBass,
+    'abbr'
+  )
 
   return (
     <span className={classes}>
-      {root}
-      {quality}
-      {seventh && seventh}
-      {extension && extension}
-      {alternateBass && ' / ' + alternateBass}
+      {chord}
     </span>
   )
 }
