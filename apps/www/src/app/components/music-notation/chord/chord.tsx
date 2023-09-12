@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './inline-chord.module.scss'
+import s from '../inline-highlight.module.scss'
 
 import { transformChord } from '../transfomers'
 

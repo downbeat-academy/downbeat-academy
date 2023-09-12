@@ -1,45 +1,3 @@
-// const transformQuality = (quality: string, type: 'text' | 'abbr' | 'symbol') => {
-//   switch (type) {
-//     case 'text': return quality
-//     case 'abbr': {
-//       switch (quality) {
-//         case 'major': return 'maj'
-//         case 'minor': return 'min'
-//         case 'diminished': return 'dim'
-//         case 'suspended': return 'sus'
-//         case 'augmented': return 'aug'
-//       }
-//     }
-//     case 'symbol': {
-//       switch (quality) {
-//         case 'major': return '&#1D148';
-//         case 'minor': return 'min'
-//         case 'diminished': return 'dim'
-//         case 'suspended': return 'sus'
-//         case 'augmented': return 'aug'
-//       }
-//     }
-//   }
-// }
-
-// const transformSeventh = (seventh: string, type: 'text' | 'abbr' | 'symbol') => {
-//   switch (type) {
-//     case 'text': return seventh
-//     case 'abbr': {
-//       switch (seventh) {
-//         case 'major7': return 'maj7'
-//         case 'dominant7': return '7'
-//         case 'minor7': return 'min7'
-//         case 'halfDiminished7': return 'half'
-//       }
-//     }
-//   }
-// }
-
-// const transformExtension = (extension) => {
-  
-// }
-
 const getQuality = (
   quality: string,
   type: 'abbr' | 'symbol'
@@ -88,7 +46,7 @@ const getExtension = (
   extension: string
 ) => {
   switch (extension) {
-    case 'flat9': return '♭9'
+    case 'flat9': return '𝄭9'
     case 'flat5': return '♭5'
     case 'sharp5': return '♯5'
     case 'flat13': return '♭13'

@@ -2,7 +2,10 @@ import { Text } from '@components/text'
 import { Link } from '@components/link'
 import { List } from '@components/text'
 import { linkResolver } from '@utils/linkResolver'
-import { Chord } from '@components/music-notation'
+import {
+  Chord,
+  MusicText,
+} from '@components/music-notation'
 
 const Components = {
   block: {
@@ -44,11 +47,8 @@ const Components = {
   //       <Blockquote attribution={attribution} source={source}>{quote}</Blockquote>
   //     )
   //   },
-    inlineChord: ({ value }) =>
-      <Chord 
-        {...value}
-      />,
-  //   inlineMusicText: ({ value }) => <InlineMusicText values={value} />,
+    inlineChord: ({ value }) => <Chord {...value} />,
+    inlineMusicText: ({ value }) => <MusicText {...value} />,
   //   mainImage: ({ value }) => <p>This is an image.</p>,
   //   musicNotation: ({ value }) => <MusicNotation input={value} />,
   //   video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
