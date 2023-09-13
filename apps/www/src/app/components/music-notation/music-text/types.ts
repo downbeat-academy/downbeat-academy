@@ -1,5 +1,33 @@
-interface MusicTextProps {
-  value: string,
+interface MusicTextRendererProps {
+  values?: any,
+  className?: string,
 }
 
-export type { MusicTextProps }
+interface MusicTextProps {
+  text: string,
+}
+
+interface BarValueProps {
+  value?: string,
+}
+
+interface ClefProps {
+  value?: string,
+}
+
+interface AccidentalProps {
+  value?: string,
+}
+
+interface RhythmicValueProps {
+  value?: string,
+}
+
+export type {
+  MusicTextRendererProps,
+  MusicTextProps,
+  BarValueProps,
+  ClefProps,
+  AccidentalProps,
+  RhythmicValueProps
+}

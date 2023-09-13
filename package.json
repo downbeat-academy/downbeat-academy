@@ -41,7 +41,7 @@
     "@changesets/cli": "^2.26.1",
     "@types/prettier": "^2.7.2",
     "prettier": "^2.8.8",
-    "turbo": "^1.9.4"
+    "turbo": "^1.10.13"
   },
   "dependencies": {
     "next": "13.0.7"

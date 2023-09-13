@@ -1,14 +1,11 @@
-import {
-  transformAccidental
-} from '../transfomers'
-
 import type { MusicTextProps } from './types'
 
 const MusicText = ({
-  value,
+  text
 }: MusicTextProps) => {
+
   return (
-    <>Music text</>
+    <>{text}</>
   )
 }
 
