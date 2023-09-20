@@ -59,12 +59,12 @@ export default async function ArticleSlugRoute({ params }) {
             image={getSanityImageUrl(article.featuredImage.image.asset).url()}
             alt={article.featuredImage.alternativeText}
           />
-          <FeaturedItem.Authors>
+          <FeaturedItem.Description>
             <AuthorMetadata
               authors={article.authors}
               date={prettyDate(article.date)}
             />
-          </FeaturedItem.Authors>
+          </FeaturedItem.Description>
         </FeaturedItem.Root>
       </SectionContainer>
       <div>

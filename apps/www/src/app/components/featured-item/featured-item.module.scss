@@ -9,7 +9,7 @@
 		grid-template-areas:
 			'title'
 			'image'
-			'author';
+			'description';
 	}
 
 	@media (min-width: 1000px) {
@@ -17,6 +17,6 @@
 		grid-template-rows: repeat(2, min-content);
 		grid-template-areas:
 			'title title image'
-			'author author image';
+			'description description image';
 	}
 }

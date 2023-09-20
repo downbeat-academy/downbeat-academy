@@ -9,6 +9,18 @@ export const contributorsBySlugQuery = groq`
     image,
     instruments[]->,
     biography,
+    "content": *[
+      references(^._id) 
+      && _type != "page"
+      && !(title match "Sample")
+      && !(title match "Test post")
+    ] {
+        _id,
+        "type": _type,
+        title,
+        "slug": slug.current,
+        excerpt,
+    }
   }
 `
 

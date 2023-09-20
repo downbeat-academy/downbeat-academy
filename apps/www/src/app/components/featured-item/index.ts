@@ -1,7 +1,7 @@
 export { FeaturedItem, Root } from './featured-item'
 export { FeaturedItemTitle, Title } from './title'
-export { FeaturedItemAuthors, Authors } from './authors'
 export { FeaturedItemImage, Image } from './image'
+export { FeaturedItemDescription, Description } from './description'
 
 // Types
 export type { 
@@ -9,4 +9,5 @@ export type {
   FeaturedItemTitleProps,
   FeaturedItemAuthorsProps,
   FeaturedItemImageProps,
+  FeaturedItemDescriptionProps,
 } from './types'

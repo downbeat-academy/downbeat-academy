@@ -38,7 +38,7 @@ export default async function FeaturedPost({ featuredPost }) {
           collapse
         >{featuredPost.excerpt}</Text>
       </FeaturedItem.Title>
-      <FeaturedItem.Authors>
+      <FeaturedItem.Description>
         <AuthorMetadata
           authors={featuredPost.authors}
           date={prettyDate(featuredPost.date)}
@@ -47,7 +47,7 @@ export default async function FeaturedPost({ featuredPost }) {
             {renderCategories}
           </Flex>
         </AuthorMetadata>
-      </FeaturedItem.Authors>
+      </FeaturedItem.Description>
       <FeaturedItem.Image
         image={getSanityImageUrl(featuredPost.featuredImage.image.asset).url()}
         alt={featuredPost.featuredImage.alternativeText}

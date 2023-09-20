@@ -10,7 +10,10 @@ import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { RichText } from '@components/rich-text'
-import { Avatar } from '@components/avatar'
+import * as FeaturedItem from '@components/featured-item'
+import { ListItem } from '@components/list'
+import { linkResolver } from '@utils/linkResolver'
+import { Flex } from '@components/flex'
 
 // Generate the routes for each page
 export async function generateStaticParams() {
@@ -31,35 +34,56 @@ export default async function ContributorSlugRoute({ params }) {
     notFound();
   }
 
-  console.log(contributor)
+  // console.log(contributor)
 
   return (
     <>
       <SectionContainer>
+        <FeaturedItem.Root>
+          <FeaturedItem.Title>
+            <Text
+              tag='h1'
+              size='h1'
+              type='expressive-headline'
+              color='high-contrast'
+              collapse
+            >{contributor.name}</Text>
+          </FeaturedItem.Title>
+          <FeaturedItem.Description>
+            <RichText value={contributor.biography.content} />
+          </FeaturedItem.Description>
+          <FeaturedItem.Image
+            image={getSanityImageUrl(contributor.image.image.asset).url()}
+            alt={contributor.name}
+          />
+        </FeaturedItem.Root>
+      </SectionContainer>
+      <SectionContainer>
         <SectionTitle
-            background='primary'
-            title={
-              <Text
-                tag='h1'
-                size='h1'
-                type='expressive-headline'
-                color='brand'
-                collapse
-              >{contributor.name}</Text>
-            }
-          />
-          <Avatar
-            size='large'
-            imageObject={
-              <Img
-                src={getSanityImageUrl(contributor.image.image.asset).url()}
-                alt={contributor.name}
-                width={80}
-                height={80}
+          title={
+            <Text
+              tag='h2'
+              type='expressive-headline'
+              size='h2'
+              color='primary'
+              collapse
+            >Contributions</Text>
+          }
+        />
+        <Flex direction='column' tag='section'>
+          {contributor.content.map(c => {
+
+            console.log(c)
+            return (
+              <ListItem
+                key={c._id}
+                title={c.title}
+                description={c.excerpt}
+                url={linkResolver(c.slug, c.type)}
               />
-            }
-          />
-          <RichText value={contributor.biography.content} />
+            )
+          })}
+        </Flex>
       </SectionContainer>
     </>
   )
