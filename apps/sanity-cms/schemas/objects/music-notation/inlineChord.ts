@@ -70,10 +70,9 @@ export default {
 			type: 'type',
 			quality: 'quality',
 			extension: 'extension',
-			alternateBass: 'alternateBass',
 		},
 		prepare(selection: any) {
-			const { root, quality, extension, alternateBass } = selection
+			const { root, quality, extension } = selection
 			return {
 				title: `${root && root} ${quality && quality} ${extension && extension}`
 			}

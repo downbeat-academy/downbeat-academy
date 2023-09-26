@@ -16,10 +16,14 @@ interface ClefProps {
 }
 
 interface AccidentalProps {
-  value?: string,
+  value?: any,
 }
 
 interface RhythmicValueProps {
+  value?: string,
+}
+
+interface MusicSymbolProps {
   value?: string,
 }
 
@@ -29,5 +33,6 @@ export type {
   BarValueProps,
   ClefProps,
   AccidentalProps,
-  RhythmicValueProps
+  RhythmicValueProps,
+  MusicSymbolProps,
 }

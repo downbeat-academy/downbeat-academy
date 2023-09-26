@@ -5,6 +5,7 @@ import {
   Clef,
   BarValue,
   RhythmicValue,
+  MusicSymbol,
 } from '@components/music-notation'
 import s from '../inline-highlight.module.scss'
 
@@ -15,8 +16,6 @@ const MusicTextRenderer = ({
   className,
 }: MusicTextRendererProps) => {
 
-  console.log(values)
-
   const classes = classnames(
     s.root,
     className,
@@ -25,10 +24,11 @@ const MusicTextRenderer = ({
   const item = values.map(i => {
     switch (i._type) {
       case 'musicText': return <MusicText text={i.musicText} />
-      case 'accidental': return 'Accidental'
-      case 'barValue': return 'Bar value'
-      case 'rhythmicValue': return 'Rhythmic value'
-      case 'clef': return 'Clef'
+      case 'accidental': return <Accidental value={i.options} />
+      case 'barValue': return <BarValue value={i.options} />
+      case 'rhythmicValue': return <RhythmicValue value={i.options} />
+      case 'clef': return <Clef value={i.options} />
+      case 'musicSymbol': return <MusicSymbol value={i.options} />
       default: throw new Error('Incorrect or unsupported item type.')
     }
   })

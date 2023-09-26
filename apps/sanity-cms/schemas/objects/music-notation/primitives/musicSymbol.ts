@@ -9,12 +9,13 @@ export default {
 			type: `string`,
 			options: {
 				list: [
-					{ title: `Dal Segno`, value: `del-segno` },
-					{ title: `Da Capo (𝄊)`, value: `del-capo` },
+					{ title: `Dal Segno`, value: `dal-segno` },
+					{ title: `Da Capo (𝄊)`, value: `da-capo` },
 					{ title: `Segno`, value: `segno` },
 					{ title: `Fermata`, value: `fermata` },
 					{ title: `Breath Mark`, value: `breath-mark` },
 					{ title: `Caesura`, value: `caesura` },
+					{ title: `Code`, value: `code` },
 				],
 			},
 		},

@@ -4,12 +4,21 @@ const Accidental = ({
   value,
 }: AccidentalProps) => {
 
-  const renderAccidental = value.map(v => {
-    switch (v.options) {
-      case 'quarter-note': return '♩'
+  const renderAccidentalValue = () => {
+    switch (value) {
+      case 'flat': return '♭'
+      case 'sharp': return '♯'
+      case 'double-flat': return '𝄫'
+      case 'double-shart': return '𝄪'
+      case 'natural': return '♮'
+      default: console.error('Unsupported accidental type')
     }
-  })
-  return <>{renderAccidental}</>
+  }
+
+  return (
+    <>{renderAccidentalValue()}</>
+  )
 }
 
 export { Accidental }
+export type { AccidentalProps }
