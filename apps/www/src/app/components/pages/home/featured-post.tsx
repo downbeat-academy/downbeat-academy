@@ -22,7 +22,7 @@ export default async function FeaturedPost({ featuredPost }) {
 
   return (
     <FeaturedItem.Root>
-      <FeaturedItem.Title>
+      <FeaturedItem.Title background='interactive'>
         <Text
           tag='h1'
           type='expressive-headline'

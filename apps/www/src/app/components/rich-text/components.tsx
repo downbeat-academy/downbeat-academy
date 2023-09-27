@@ -7,6 +7,7 @@ import {
   MusicTextRenderer,
   MusicText,
 } from '@components/music-notation'
+import { Blockquote } from '@components/blockquote'
 
 const Components = {
   block: {
@@ -17,7 +18,6 @@ const Components = {
     h5: ({ children }) => <Text tag='h5' size='h5' type='expressive-headline' color='primary'>{children}</Text>,
     h6: ({ children }) => <Text tag='h6' size='h6' type='expressive-headline' color='primary'>{children}</Text>,
     normal: ({ children }) => <Text tag='p' size='body-base' type='expressive-body' color='primary'>{children}</Text>,
-    // blockquote: ({ children }) => <Blockquote>{children}</Blockquote>
   },
   list: {
     bullet: ({ children }) => <List type='unordered'>{children}</List>,
@@ -42,12 +42,13 @@ const Components = {
       >{children}</Text>,
   },
   types: {
-  //   blockquote: ({ value }) => {
-  //     const { attribution, source, quote } = value
-  //     return (
-  //       <Blockquote attribution={attribution} source={source}>{quote}</Blockquote>
-  //     )
-  //   },
+  blockquote: ({ value }) => (
+    <Blockquote
+      quote={value.quote}
+      attribution={value.attribution}
+      link={value.sourceUrl}
+    />
+  ),
   inlineChord: ({ value }) => <Chord {...value} />,
   inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
   //   mainImage: ({ value }) => <p>This is an image.</p>,

@@ -1,0 +1,12 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	background: $cds-color-palette-blueberry-50;
+	padding: $cds-scale-2x-large;
+	border: 1px solid $cds-color-border-interactive;
+	border-radius: $cds-radii-soft;
+
+	& * {
+		color: $cds-color-palette-blueberry-700;
+	}
+}
