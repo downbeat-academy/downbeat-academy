@@ -4,10 +4,10 @@ export default {
 	type: 'array',
 	of: [
 		{ type: 'richText' },
-		{ type: 'audio' },
-		{ type: 'documentUpload' },
-		{ type: 'musicNotation' },
+		// { type: 'audio' },
+		// { type: 'documentUpload' },
+		// { type: 'musicNotation' },
 		// { type: 'video' },
-		{ type: 'form' },
+		// { type: 'form' },
 	],
 }

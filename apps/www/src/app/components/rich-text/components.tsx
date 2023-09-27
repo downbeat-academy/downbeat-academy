@@ -7,6 +7,7 @@ import {
   MusicTextRenderer,
 } from '@components/music-notation'
 import { Blockquote } from '@components/blockquote'
+import { MainImage } from '@components/images'
 
 const Components = {
   block: {
@@ -50,7 +51,7 @@ const Components = {
   ),
   inlineChord: ({ value }) => <Chord {...value} />,
   inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
-  //   mainImage: ({ value }) => <p>This is an image.</p>,
+  mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
   //   musicNotation: ({ value }) => <MusicNotation input={value} />,
   },
   marks: {

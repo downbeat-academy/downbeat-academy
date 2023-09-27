@@ -5,8 +5,13 @@
 	padding: $cds-scale-2x-large;
 	border: 1px solid $cds-color-border-interactive;
 	border-radius: $cds-radii-soft;
+	margin: $cds-scale-2x-large 0;
 
 	& * {
 		color: $cds-color-palette-blueberry-700;
 	}
+}
+
+.collapse {
+	margin: 0 0;
 }

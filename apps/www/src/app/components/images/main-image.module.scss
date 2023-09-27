@@ -1,0 +1,17 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	position: relative;
+	display: block;
+	min-height: 400px;
+	margin: $cds-scale-2x-large 0;
+
+	img {
+		position: relative;
+		object-fit: cover;
+	}
+}
+
+.collapse {
+	margin: 0 0;
+}

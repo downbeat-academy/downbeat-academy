@@ -10,11 +10,13 @@ const Blockquote = ({
   quote,
   attribution,
   link,
+  collapse,
   className,
 }: BlockquoteProps) => {
 
   const classes = classnames([
     s.root,
+    { [s.collapse]: collapse },
     className,
   ])
 

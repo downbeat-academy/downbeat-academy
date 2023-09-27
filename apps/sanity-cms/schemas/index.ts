@@ -32,7 +32,6 @@ import audio from './objects/audio'
 import socialLink from './objects/socialLink'
 import metadata from './objects/metadata'
 import moduleContent from './objects/moduleContent'
-import pageTitle from './objects/pageTitle'
 import blockquote from './objects/blockquote'
 
 // Navigation
@@ -92,7 +91,6 @@ export const schemaTypes = [
 	moduleContent,
 	inlineChord,
 	inlineMusicText,
-	pageTitle,
 	blockquote,
 	// Link
 	link,
