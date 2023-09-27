@@ -5,7 +5,6 @@ import { linkResolver } from '@utils/linkResolver'
 import {
   Chord,
   MusicTextRenderer,
-  MusicText,
 } from '@components/music-notation'
 import { Blockquote } from '@components/blockquote'
 
@@ -53,7 +52,6 @@ const Components = {
   inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
   //   mainImage: ({ value }) => <p>This is an image.</p>,
   //   musicNotation: ({ value }) => <MusicNotation input={value} />,
-  //   video: ({ value }) => <p>Video currently isn&apos;t supported.</p>
   },
   marks: {
     link: ({ children, value }) => <Link href={value.href} type='primary'>{children}</Link>,

@@ -38,11 +38,13 @@ export default async function ContributorsPage() {
       <SectionContainer>
         <SectionTitle
           hasBorder={false}
+          background='brand'
           title={
             <Text
               tag='h1'
               type='expressive-headline'
               size='h1'
+              color='high-contrast'
               collapse
             >Contributors and authors</Text>
           }

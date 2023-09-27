@@ -2,12 +2,15 @@ import { sanityClient } from "@lib/sanity.client";
 import { articlesBySlugQuery, articlePaths } from "@lib/queries";
 import { getSanityImageUrl } from "@utils/getSanityImage";
 import { prettyDate } from "@utils/dateFormat";
+import { linkResolver } from "@utils/linkResolver";
 import { Text } from '@components/text'
 import { SectionContainer } from "@components/section-container";
 import * as FeaturedItem from "@components/featured-item";
 import { AuthorMetadata } from "@components/author";
 import { RichText } from "@components/rich-text";
-import { ModuleRenderer } from '@components/module-content'
+import { Badge } from "@components/badge";
+import { Link } from "@components/link";
+import { Flex } from "@components/flex";
 
 // Generate the slugs/routes for the articles
 export async function generateStaticParams() {
@@ -34,6 +37,14 @@ export default async function ArticleSlugRoute({ params }) {
       }
     }    
   )
+
+  const renderCategories = article.categories.map(category => {
+    return (
+      <Link href={linkResolver(category.slug, 'category')} key={category.name}>
+        <Badge type='neutral' style='filled' text={category.title} />
+      </Link>
+    )
+  })
 
   return (
     <>
@@ -63,7 +74,11 @@ export default async function ArticleSlugRoute({ params }) {
             <AuthorMetadata
               authors={article.authors}
               date={prettyDate(article.date)}
-            />
+            >
+              <Flex tag='div' direction='row' gap='medium'>
+                {renderCategories}
+              </Flex>
+            </AuthorMetadata>
           </FeaturedItem.Description>
         </FeaturedItem.Root>
       </SectionContainer>
