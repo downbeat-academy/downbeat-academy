@@ -8,3 +8,5 @@ export { Clef } from './music-text/clef'
 export { BarValue } from './music-text/bar-value'
 export { RhythmicValue } from './music-text/rhythmic-value'
 export { MusicSymbol } from './music-text/music-symbol'
+
+export { MusicNotation } from './music-notation'

@@ -1,3 +1,5 @@
+import { buildFileUrl, buildFilePath, getFile } from '@sanity/asset-utils'
+import { sanityConfig } from '@lib/sanity.config'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 import { List } from '@components/text'
@@ -5,6 +7,7 @@ import { linkResolver } from '@utils/linkResolver'
 import {
   Chord,
   MusicTextRenderer,
+  MusicNotation,
 } from '@components/music-notation'
 import { Blockquote } from '@components/blockquote'
 import { MainImage } from '@components/images'
@@ -52,7 +55,14 @@ const Components = {
   inlineChord: ({ value }) => <Chord {...value} />,
   inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
   mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
-  //   musicNotation: ({ value }) => <MusicNotation input={value} />,
+  musicNotation: ({ value }) => {
+      const file = getFile(value.file, sanityConfig);
+      return (
+        <MusicNotation
+          file={buildFileUrl(file.asset, sanityConfig)}
+        />
+      )
+    }
   },
   marks: {
     link: ({ children, value }) => <Link href={value.href} type='primary'>{children}</Link>,
