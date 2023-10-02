@@ -18,8 +18,7 @@ const MusicNotation = ({
     <div className={classes}>
       <p>Rendering some music notation</p>
       <OpenSheetMusicDisplay
-        file={file}
-      />
+        file={file} />
     </div>
   )
 }
