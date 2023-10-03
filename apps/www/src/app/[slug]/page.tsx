@@ -9,6 +9,8 @@ import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { ModuleRenderer } from '@components/module-content'
 
+import * as Tabs from '@components/tabs'
+
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {
   const client = sanityClient
@@ -37,6 +39,30 @@ export default async function PageSlugRoute({ params }) {
 
   return (
     <>
+      <SectionContainer>
+        <Tabs.Root defaultValue='opt-1'>
+          <Tabs.List>
+            <Tabs.Trigger value='opt-1'>
+              Option 1
+            </Tabs.Trigger>
+            <Tabs.Trigger value='opt-2'>
+              Option 2
+            </Tabs.Trigger>
+            <Tabs.Trigger value='opt-3'>
+              Option 3
+            </Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value='opt-1'>
+            Content for tab 1
+          </Tabs.Content>
+          <Tabs.Content value='opt-2'>
+            Content for tab 2
+          </Tabs.Content>
+          <Tabs.Content value='opt-3'>
+            Content for tab 3
+          </Tabs.Content>
+        </Tabs.Root>
+      </SectionContainer>
       <SectionContainer>
         <SectionTitle
           background='primary'
