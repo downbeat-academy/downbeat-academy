@@ -7,7 +7,7 @@ import { OpenSheetMusicDisplayProps } from './types'
 const OpenSheetMusicDisplay = ({ 
   file,
   autoResize = true,
-  drawTitle = true,
+  drawTitle = false,
   drawSubtitle = false,
   drawComposer = false,
   drawLyricist = false,
