@@ -16,10 +16,19 @@ interface OpenSheetMusicDisplayProps {
   className?: string,
 }
 
+interface File {
+  asset: {
+    _ref: string,
+    _type: string,
+  },
+  label?: string,
+}
+
 interface MusicNotationProps {
-  file: string,
+  files: File[],
   title?: string,
-  className?,
+  description?: string,
+  className?: string,
 }
 
 export type {

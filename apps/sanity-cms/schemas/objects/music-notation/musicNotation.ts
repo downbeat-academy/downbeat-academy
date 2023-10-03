@@ -27,13 +27,28 @@ export default {
 			rows: 5,
 		},
 		{
-			name: 'file',
-			title: 'Upload File',
-			type: 'file',
-			description: 'Upload a MusicXML file',
-			options: {
-				accept: '.musicxml, .mxl, .xml',
-			},
+			name: 'files',
+			title: 'Files',
+			type: 'array',
+			description: 'Upload multiple MusicXML files in different keys',
+			of: [
+				{
+					name: 'file',
+					title: 'File',
+					type: 'file',
+					options: {
+						accept: '.musicxml, .mxl, .xml',
+					},
+					fields: [
+						{
+							name: 'label',
+							title: 'Label',
+							type: 'string',
+							description: 'Label the notation snippet with the key or instrument (Concert C, Trumpet, etc).'
+						},
+					]
+				},
+			]
 		},
 	],
 }

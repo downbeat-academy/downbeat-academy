@@ -1,5 +1,3 @@
-import { buildFileUrl, buildFilePath, getFile } from '@sanity/asset-utils'
-import { sanityConfig } from '@lib/sanity.config'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 import { List } from '@components/text'
@@ -56,10 +54,13 @@ const Components = {
   inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
   mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
   musicNotation: ({ value }) => {
-      const file = getFile(value.file, sanityConfig);
+      // const file = getFile(value.file, sanityConfig);
       return (
         <MusicNotation
-          file={buildFileUrl(file.asset, sanityConfig)}
+          // files={buildFileUrl(file.asset, sanityConfig)}
+          files={value.files}
+          title={value.title}
+          description={value.description}
         />
       )
     }
