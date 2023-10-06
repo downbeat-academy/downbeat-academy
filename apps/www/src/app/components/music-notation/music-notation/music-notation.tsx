@@ -21,6 +21,8 @@ const MusicNotation = ({
     className,
   ])
 
+  // console.log(files[0])
+
   const renderTriggers = files.map(file => {
 
     const label = toKebabCase(file.label)
@@ -51,7 +53,9 @@ const MusicNotation = ({
     <div className={classes}>
       <Text tag='p' type='productive-body' size='body-large'>{title}</Text>
       <Text tag='p' type='productive-body' size='body-base'>{description}</Text>
-      <Tabs.Root defaultValue={toKebabCase(files[0].label)}>
+      <Tabs.Root
+        defaultValue={toKebabCase(files[0].label)}
+      >
         <Tabs.List>
           {renderTriggers}
         </Tabs.List>

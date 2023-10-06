@@ -54,10 +54,8 @@ const Components = {
   inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
   mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
   musicNotation: ({ value }) => {
-      // const file = getFile(value.file, sanityConfig);
       return (
         <MusicNotation
-          // files={buildFileUrl(file.asset, sanityConfig)}
           files={value.files}
           title={value.title}
           description={value.description}
