@@ -4,6 +4,8 @@ import { sanityConfig } from '@lib/sanity.config'
 import { toKebabCase } from '@utils/stringFormat'
 import * as Tabs from '@components/tabs'
 import { Text } from '@components/text'
+import { SectionContainer } from '@components/section-container'
+import { SectionTitle } from '@components/section-title'
 import { OpenSheetMusicDisplay } from './open-sheet-music-display'
 import s from './music-notation.module.scss'
 
@@ -21,8 +23,6 @@ const MusicNotation = ({
     className,
   ])
 
-  // console.log(files[0])
-
   const renderTriggers = files.map(file => {
 
     const label = toKebabCase(file.label)
@@ -31,7 +31,6 @@ const MusicNotation = ({
       <Tabs.Trigger
         value={label}
         key={label}
-        // disabled={files.length === 1 ? true : false}
       >{file.label}</Tabs.Trigger>
     )
   })
@@ -43,16 +42,25 @@ const MusicNotation = ({
     const label = toKebabCase(file.label)
 
     return (
-      <Tabs.Content value={label} key={label}>
-        <OpenSheetMusicDisplay file={buildFileUrl(fileData.asset, sanityConfig)} />
+      <Tabs.Content
+        value={label}
+        padding='large'
+        background='primary'
+        key={label}
+      >
+        <OpenSheetMusicDisplay
+          file={buildFileUrl(fileData.asset, sanityConfig)}
+        />
       </Tabs.Content>
     )
   })
 
   return (
-    <div className={classes}>
-      <Text tag='p' type='productive-body' size='body-large'>{title}</Text>
-      <Text tag='p' type='productive-body' size='body-base'>{description}</Text>
+    <SectionContainer className={classes}>
+      <SectionTitle
+        title={<Text tag='h5' type='productive-body' size='body-large' collapse>{title}</Text>}
+        subtitle={description && <Text tag='p' type='productive-body' size='body-base'>{description}</Text>}
+      />
       <Tabs.Root
         defaultValue={toKebabCase(files[0].label)}
       >
@@ -61,7 +69,7 @@ const MusicNotation = ({
         </Tabs.List>
         {renderContent}
       </Tabs.Root>
-    </div>
+    </SectionContainer>
   )
 }
 

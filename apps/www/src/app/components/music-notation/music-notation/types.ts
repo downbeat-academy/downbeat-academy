@@ -1,5 +1,7 @@
 interface OpenSheetMusicDisplayProps {
   file: string,
+  backend?: 'canvas' | 'svg',
+  drawingParameters?: string,
   drawTitle?: boolean,
   drawSubtitle?: boolean,
   drawComposer?: boolean,

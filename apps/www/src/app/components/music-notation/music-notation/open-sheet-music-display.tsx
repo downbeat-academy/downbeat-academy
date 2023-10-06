@@ -6,7 +6,9 @@ import { OpenSheetMusicDisplayProps } from './types'
 
 const OpenSheetMusicDisplay = ({ 
   file,
+  backend = 'canvas',
   autoResize = true,
+  drawingParameters = 'compacttight',
   drawTitle = false,
   drawSubtitle = false,
   drawComposer = false,
@@ -25,15 +27,14 @@ const OpenSheetMusicDisplay = ({
   const divRef = useRef(null);
   let osmd = useRef(null);
 
-  const resize = () => {
-    osmd.current?.render(); // Re-render when resizing
-  };
-
   // Define OSMD options/settings
   const osmdOptions = {
     autoResize: autoResize,
-    backend: 'canvas',
-    drawingParameters: 'compacttight',
+    engravingRules: {
+      defaultFontFamily: 'Arial',
+    },
+    backend: backend,
+    drawingParameters: drawingParameters,
     drawTitle: drawTitle,
     drawSubtitle: drawSubtitle,
     drawComposer: drawComposer,
@@ -49,7 +50,11 @@ const OpenSheetMusicDisplay = ({
     defaultColorMusic: '#030923',
   }
 
-  useEffect(() => {
+  const resize = () => {
+    osmd.current?.render(); // Re-render when resizing
+  };
+
+  useEffect(() => {    
     const setupOsmd = () => {      
       osmd.current = new OSMD(divRef.current, osmdOptions);
       osmd.current.load(file).then(() => osmd.current.render());
@@ -64,7 +69,7 @@ const OpenSheetMusicDisplay = ({
     return () => {
       window.removeEventListener('resize', resize);
     };
-  }, [file]);
+  });
 
   return <div className={className} ref={divRef} />;
 }

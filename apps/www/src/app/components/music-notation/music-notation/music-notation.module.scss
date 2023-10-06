@@ -1,3 +1,5 @@
+@import '../../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
 .root {
-	display: block;
+	margin-bottom: $cds-scale-2x-large;
 }
