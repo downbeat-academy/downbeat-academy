@@ -7,7 +7,7 @@ import { Text } from '@components/text'
 import { SectionContainer } from "@components/section-container";
 import * as FeaturedItem from "@components/featured-item";
 import { AuthorMetadata } from "@components/author";
-import { RichText } from "@components/rich-text";
+import { RichText, RichTextWrapper } from "@components/rich-text";
 import { Badge } from "@components/badge";
 import { Link } from "@components/link";
 import { Flex } from "@components/flex";
@@ -82,9 +82,9 @@ export default async function ArticleSlugRoute({ params }) {
           </FeaturedItem.Description>
         </FeaturedItem.Root>
       </SectionContainer>
-      <div>
+      <RichTextWrapper>
         <RichText value={article.content.content} />
-      </div>
+      </RichTextWrapper>
     </>
   )
 }

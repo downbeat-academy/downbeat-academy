@@ -1,0 +1,16 @@
+@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+.root {
+	display: grid;
+	grid-template-columns: 1fr min(75ch, calc(100%)) 1fr;
+	grid-column-gap: $cds-scale-2x-large;
+	max-width: 100%;
+
+	& > * {
+		grid-column: 2;
+	}
+
+	@media (max-width: 768px) {
+		grid-column-gap: 0px;
+	}
+}
