@@ -13,13 +13,13 @@ export default function RootLayout({
       <body>
         <AppFrame>
           {/* @ts-ignore */}
-          <HeaderNavigation />
+          {/* <HeaderNavigation />
           <ContentWrapper>
-            <Content isFullBleed>
+            <Content isFullBleed> */}
               {children}
-            </Content>
+            {/* </Content>
           </ContentWrapper>
-          <Footer />
+          <Footer /> */}
         </AppFrame>
       </body>
     </html>
