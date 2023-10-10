@@ -1,2 +1,2 @@
-export * from './footer'
-export * from './main'
+export { Footer } from './footer'
+export { HeaderNavigation} from './main'
