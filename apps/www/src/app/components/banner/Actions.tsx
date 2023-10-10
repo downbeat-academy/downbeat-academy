@@ -1,8 +1,6 @@
 import classnames from 'classnames'
 import s from './banner-actions.module.scss'
 
-const BANNER_ACTIONS_NAME = 'Actions'
-
 const BannerActions = ({ children }: { children: React.ReactNode }) => {
 
   const classes = classnames([
@@ -16,7 +14,7 @@ const BannerActions = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-BannerActions.displayName = BANNER_ACTIONS_NAME;
+BannerActions.displayName = 'BannerActions';
 
 const Actions = BannerActions
 

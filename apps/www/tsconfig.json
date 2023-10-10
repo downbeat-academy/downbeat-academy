@@ -24,7 +24,7 @@
         "app/*"
       ],
       "@api/*": [
-        "pages/api/*"
+        "app/api/*"
       ],
       "@components/*": [
         "app/components/*"
