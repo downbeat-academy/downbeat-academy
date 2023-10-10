@@ -1,4 +1,4 @@
-export { Button } from './button-test'
+export { Button } from './button'
 export { ButtonWrapper } from './button-wrapper'
 
 // Types
