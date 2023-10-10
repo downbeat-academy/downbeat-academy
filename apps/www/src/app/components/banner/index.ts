@@ -1,4 +1,4 @@
-export { Banner, Root } from './banner'
+export { Banner, Root } from './banner-test'
 export { BannerActions, Actions } from './actions'
 export { BannerContent, Content } from './content'
 
