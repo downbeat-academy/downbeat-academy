@@ -1,5 +1,5 @@
 import { AppFrame } from '@components/app-frame'
-import { Footer, HeaderNavigation } from '@components/navigation-test'
+import { Footer, HeaderNavigation } from '@components/navigation'
 import { ContentWrapper, Content } from '@components/content-wrapper'
 import '@styles/index.scss'
 
@@ -13,13 +13,13 @@ export default function RootLayout({
       <body>
         <AppFrame>
           {/* @ts-ignore */}
-          {/* <HeaderNavigation />
+          <HeaderNavigation />
           <ContentWrapper>
-            <Content isFullBleed> */}
+            <Content isFullBleed>
               {children}
-            {/* </Content>
+            </Content>
           </ContentWrapper>
-          <Footer /> */}
+          <Footer />
         </AppFrame>
       </body>
     </html>
