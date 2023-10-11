@@ -17,6 +17,7 @@ const FeaturedItemImage = ({
             src={image}
             alt={alt}
             fill={true}
+            sizes='(max-width: 768px) 80vw, (max-width: 1200px) 60vw'
             priority
           />
         </Link> :

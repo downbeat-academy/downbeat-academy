@@ -1,15 +1,39 @@
-import { readToken } from '@lib/sanity.api'
-import { sanityClient } from '@lib/sanity.client'
-import { pagesBySlugQuery, pagePaths } from '@lib/queries'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { readToken } from '@lib/sanity.api'
+import { sanityClient } from '@lib/sanity.client'
+import { pagesBySlugQuery, pagePaths, pageMetadata } from '@lib/queries'
+import { getOgTitle, limitDescription } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { ModuleRenderer } from '@components/module-content'
 
-import * as Tabs from '@components/tabs'
+import type { Metadata, ResolvingMetadata } from 'next'
+
+type MetaProps = {
+  params: { title: string }
+}
+
+// Generate metadata
+export async function generateMetadata(
+  { params }: MetaProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+
+  // @ts-ignore
+  const { slug } = params;
+  const client = sanityClient
+  const page = await client.fetch(pageMetadata, {
+    slug
+  })
+
+  return {
+    title: getOgTitle(page.metadata.title),
+    description: page.metadata.description,
+  }
+}
 
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {

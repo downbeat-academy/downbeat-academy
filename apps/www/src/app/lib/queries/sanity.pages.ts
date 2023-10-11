@@ -26,3 +26,9 @@ export const pagesBySlugQuery = groq`
 export const pagePaths = groq`
   *[_type == 'page' && slug.current != null].slug.current
 `
+
+export const pageMetadata = groq`
+  *[_type == 'page' && slug.current == $slug][0] {
+    metadata
+  }
+`
