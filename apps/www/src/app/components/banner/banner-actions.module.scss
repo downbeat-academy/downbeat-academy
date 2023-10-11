@@ -1,11 +1,11 @@
-@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
 
 .banner-actions--wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: $cds-scale-base;
+	display: flex;
+	flex-direction: row;
+	gap: $cds-scale-base;
 
-  @media (max-width: 600px) {
-    display: none;
-  }
+	@media (max-width: 600px) {
+		display: none;
+	}
 }

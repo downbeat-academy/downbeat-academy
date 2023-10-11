@@ -1,31 +1,31 @@
-@import '../../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
 
 .root {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: $cds-scale-base $cds-scale-x-large;
-  background: $cds-color-surface-primary;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: $cds-scale-base $cds-scale-x-large;
+	background: $cds-color-surface-primary;
 }
 
 .nav-links {
-  display: flex;
-  flex-direction: row;
-  gap: $cds-scale-base;
+	display: flex;
+	flex-direction: row;
+	gap: $cds-scale-base;
 }
 
 .link-item {
- font-family: $cds-typography-font-family-productive-body;
- font-size: $cds-typography-font-size-fixed-productive-base;
- list-style: none;
- color: $cds-color-foreground-strong;
+	font-family: $cds-typography-font-family-productive-body;
+	font-size: $cds-typography-font-size-fixed-productive-base;
+	list-style: none;
+	color: $cds-color-foreground-strong;
 
- & > a {
-  text-decoration: none;
+	& > a {
+		text-decoration: none;
 
-  &:hover {
-    text-decoration: underline;
-  }
- }
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }

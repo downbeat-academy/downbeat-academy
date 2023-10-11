@@ -34,8 +34,6 @@ export default async function ContributorSlugRoute({ params }) {
     notFound();
   }
 
-  // console.log(contributor)
-
   return (
     <>
       <SectionContainer>
@@ -72,8 +70,6 @@ export default async function ContributorSlugRoute({ params }) {
         />
         <Flex direction='column' tag='section'>
           {contributor.content.map(c => {
-
-            console.log(c)
             return (
               <ListItem
                 key={c._id}

@@ -1,7 +1,7 @@
 // Packages
-@import 'node_modules/typeface-favorit';
-@import 'node_modules/typeface-tiempos-text';
+@use 'node_modules/typeface-favorit';
+@use 'node_modules/typeface-tiempos-text';
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
 
 // Styles
-@import '../../../node_modules/cadence-tokens/dist/web/tokens.scss';
 @import './global.scss';

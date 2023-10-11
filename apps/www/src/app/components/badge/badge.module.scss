@@ -1,4 +1,4 @@
-@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
 
 .root {
 	display: inline-flex;

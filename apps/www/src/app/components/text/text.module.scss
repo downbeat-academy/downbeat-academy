@@ -1,32 +1,32 @@
-@import '../../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
 
 .root {
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
 }
 
 // Type
 
 .type--productive-body {
-  font-family: $cds-typography-font-family-productive-body;
-  line-height: $cds-typography-line-height-productive-body;
+	font-family: $cds-typography-font-family-productive-body;
+	line-height: $cds-typography-line-height-productive-body;
 }
 
 .type--productive-headline {
-  font-family: $cds-typography-font-family-productive-headline;
-  line-height: $cds-typography-line-height-productive-headline;
+	font-family: $cds-typography-font-family-productive-headline;
+	line-height: $cds-typography-line-height-productive-headline;
 }
 
 .type--expressive-body {
-  font-family: $cds-typography-font-family-expressive-body;
-  line-height: $cds-typography-line-height-expressive-body;
+	font-family: $cds-typography-font-family-expressive-body;
+	line-height: $cds-typography-line-height-expressive-body;
 }
 
 .type--expressive-headline {
-  font-family: $cds-typography-font-family-expressive-headline;
-  line-height: $cds-typography-line-height-expressive-headline;
+	font-family: $cds-typography-font-family-expressive-headline;
+	line-height: $cds-typography-line-height-expressive-headline;
 }
 
 // Size + type
@@ -34,212 +34,212 @@
 // -- Productive Headline
 
 .type--productive-headline-size--h1 {
-  font-size: $cds-typography-font-size-fixed-productive-4x-large;
-  margin-bottom: $cds-typography-font-size-fixed-productive-4x-large;
+	font-size: $cds-typography-font-size-fixed-productive-4x-large;
+	margin-bottom: $cds-typography-font-size-fixed-productive-4x-large;
 }
 
 .type--productive-headline-size--h2 {
-  font-size: $cds-typography-font-size-fixed-productive-3x-large;
-  margin-bottom: $cds-typography-font-size-fixed-productive-3x-large;
+	font-size: $cds-typography-font-size-fixed-productive-3x-large;
+	margin-bottom: $cds-typography-font-size-fixed-productive-3x-large;
 }
 
 .type--productive-headline-size--h3 {
-  font-size: $cds-typography-font-size-fixed-productive-2x-large;
-  margin-bottom: $cds-typography-font-size-fixed-productive-2x-large;
+	font-size: $cds-typography-font-size-fixed-productive-2x-large;
+	margin-bottom: $cds-typography-font-size-fixed-productive-2x-large;
 }
 
 .type--productive-headline-size--h4 {
-  font-size: $cds-typography-font-size-fixed-productive-x-large;
-  margin-bottom: $cds-typography-font-size-fixed-productive-x-large;
+	font-size: $cds-typography-font-size-fixed-productive-x-large;
+	margin-bottom: $cds-typography-font-size-fixed-productive-x-large;
 }
 
 .type--productive-headline-size--h5 {
-  font-size: $cds-typography-font-size-fixed-productive-large;
-  margin-bottom: $cds-typography-font-size-fixed-productive-large;
+	font-size: $cds-typography-font-size-fixed-productive-large;
+	margin-bottom: $cds-typography-font-size-fixed-productive-large;
 }
 
 .type--productive-headline-size--h6 {
-  font-size: $cds-typography-font-size-fixed-productive-base;
-  margin-bottom: $cds-typography-font-size-fixed-productive-base;
+	font-size: $cds-typography-font-size-fixed-productive-base;
+	margin-bottom: $cds-typography-font-size-fixed-productive-base;
 }
 
 // -- Productive Body
 
 .type--productive-body-size--body-large {
-  font-size: $cds-typography-font-size-fixed-productive-large;
-  margin-bottom: $cds-typography-font-size-fixed-productive-large;
+	font-size: $cds-typography-font-size-fixed-productive-large;
+	margin-bottom: $cds-typography-font-size-fixed-productive-large;
 }
 
 .type--productive-body-size--body-base {
-  font-size: $cds-typography-font-size-fixed-productive-base;
-  margin-bottom: $cds-typography-font-size-fixed-productive-base;
+	font-size: $cds-typography-font-size-fixed-productive-base;
+	margin-bottom: $cds-typography-font-size-fixed-productive-base;
 }
 
 .type--productive-body-size--body-small {
-  font-size: $cds-typography-font-size-fixed-productive-small;
-  margin-bottom: $cds-typography-font-size-fixed-productive-small;
+	font-size: $cds-typography-font-size-fixed-productive-small;
+	margin-bottom: $cds-typography-font-size-fixed-productive-small;
 }
 
 .type--productive-body-size--body-x-small {
-  font-size: $cds-typography-font-size-fixed-productive-x-small;
-  margin-bottom: $cds-typography-font-size-fixed-productive-x-small;
+	font-size: $cds-typography-font-size-fixed-productive-x-small;
+	margin-bottom: $cds-typography-font-size-fixed-productive-x-small;
 }
 
 // -- Expressive Headline
 
 .type--expressive-headline-size--mega {
-  font-size: $cds-typography-font-size-fixed-expressive-6x-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-6x-large;
+	font-size: $cds-typography-font-size-fixed-expressive-6x-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-6x-large;
 }
 
 .type--expressive-headline-size--h1 {
-  font-size: $cds-typography-font-size-fixed-expressive-5x-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-5x-large;
+	font-size: $cds-typography-font-size-fixed-expressive-5x-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-5x-large;
 }
 
 .type--expressive-headline-size--h2 {
-  font-size: $cds-typography-font-size-fixed-expressive-4x-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-4x-large;
+	font-size: $cds-typography-font-size-fixed-expressive-4x-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-4x-large;
 }
 
 .type--expressive-headline-size--h3 {
-  font-size: $cds-typography-font-size-fixed-expressive-3x-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-3x-large;
+	font-size: $cds-typography-font-size-fixed-expressive-3x-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-3x-large;
 }
 
 .type--expressive-headline-size--h4 {
-  font-size: $cds-typography-font-size-fixed-expressive-2x-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-2x-large;
+	font-size: $cds-typography-font-size-fixed-expressive-2x-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-2x-large;
 }
 
 .type--expressive-headline-size--h5 {
-  font-size: $cds-typography-font-size-fixed-expressive-x-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-x-large;
+	font-size: $cds-typography-font-size-fixed-expressive-x-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-x-large;
 }
 
 .type--expressive-headline-size--h6 {
-  font-size: $cds-typography-font-size-fixed-expressive-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-large;
+	font-size: $cds-typography-font-size-fixed-expressive-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-large;
 }
 
 // -- Expressive body
 
 .type--expressive-body-size--body-large {
-  font-size: $cds-typography-font-size-fixed-expressive-large;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-large;
+	font-size: $cds-typography-font-size-fixed-expressive-large;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-large;
 }
 
 .type--expressive-body-size--body-base {
-  font-size: $cds-typography-font-size-fixed-expressive-base;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-base;
+	font-size: $cds-typography-font-size-fixed-expressive-base;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-base;
 }
 
 .type--expressive-body-size--body-small {
-font-size: $cds-typography-font-size-fixed-expressive-small;
-margin-bottom: $cds-typography-font-size-fixed-expressive-small;
+	font-size: $cds-typography-font-size-fixed-expressive-small;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-small;
 }
 
 .type--expressive-body-size--body-x-small {
-  font-size: $cds-typography-font-size-fixed-expressive-x-small;
-  margin-bottom: $cds-typography-font-size-fixed-expressive-x-small;
+	font-size: $cds-typography-font-size-fixed-expressive-x-small;
+	margin-bottom: $cds-typography-font-size-fixed-expressive-x-small;
 }
 
 // Color
 
 .color--primary {
-  color: $cds-color-foreground-primary;
+	color: $cds-color-foreground-primary;
 }
 
 .color--strong {
-  color: $cds-color-foreground-strong;
+	color: $cds-color-foreground-strong;
 }
 
 .color--faint {
-  color: $cds-color-foreground-faint;
+	color: $cds-color-foreground-faint;
 }
 
 .color--disabled {
-  color: $cds-color-foreground-disabled;
+	color: $cds-color-foreground-disabled;
 }
 
 .color--high-contrast {
-  color: $cds-color-foreground-high-contrast;
+	color: $cds-color-foreground-high-contrast;
 }
 
 .color--warning {
-  color: $cds-color-foreground-warning-default;
+	color: $cds-color-foreground-warning-default;
 }
 
 .color--critical {
-  color: $cds-color-foreground-critical-default;
+	color: $cds-color-foreground-critical-default;
 }
 
 .color--interactive {
-  color: $cds-color-foreground-interactive-default;
+	color: $cds-color-foreground-interactive-default;
 }
 
 .color--brand {
-  color: $cds-color-foreground-brand-default;
+	color: $cds-color-foreground-brand-default;
 }
 
 .color--success {
-  color: $cds-color-foreground-success-default;
+	color: $cds-color-foreground-success-default;
 }
 
 // Background
 
 .background--primary {
-  background: $cds-color-surface-primary;
+	background: $cds-color-surface-primary;
 }
 
 .background--faint {
-  background: $cds-color-surface-faint;
+	background: $cds-color-surface-faint;
 }
 
 .background--high-contrast {
-  background: $cds-color-surface-high-contrast;
+	background: $cds-color-surface-high-contrast;
 }
 
 .background--brand {
-  background: $cds-color-surface-brand;
+	background: $cds-color-surface-brand;
 }
 
 .background--interactive {
-  background: $cds-color-surface-interactive;
+	background: $cds-color-surface-interactive;
 }
 
 .background--success {
-  background: $cds-color-surface-success;
+	background: $cds-color-surface-success;
 }
 
 .background--warning {
-  background: $cds-color-surface-warning;
+	background: $cds-color-surface-warning;
 }
 
 .background--critical {
-  background: $cds-color-surface-critical;
+	background: $cds-color-surface-critical;
 }
 
 // Align
 
 .left {
-  text-align: left;
+	text-align: left;
 }
 
 .center {
-  text-align: center;
+	text-align: center;
 }
 
 .right {
-  text-align: right;
+	text-align: right;
 }
 
 .justify {
-  text-align: justify;
+	text-align: justify;
 }
 
 // Collapse
 
 .collapse {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
