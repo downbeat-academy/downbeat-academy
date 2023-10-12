@@ -3,6 +3,7 @@ import { articlesBySlugQuery, articlePaths } from "@lib/queries";
 import { getSanityImageUrl } from "@utils/getSanityImage";
 import { prettyDate } from "@utils/dateFormat";
 import { linkResolver } from "@utils/linkResolver";
+import { getOgTitle } from "@utils/metaHelpers";
 import { Text } from '@components/text'
 import { SectionContainer } from "@components/section-container";
 import * as FeaturedItem from "@components/featured-item";
@@ -14,7 +15,6 @@ import { Flex } from "@components/flex";
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../types/meta'
-import { getOgTitle } from "@utils/metaHelpers";
 
 // Generate metadata
 export async function generateMetadata(
