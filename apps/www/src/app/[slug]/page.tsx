@@ -25,8 +25,10 @@ export async function generateMetadata(
     slug
   })
 
+  const { title } = page.metadata
+
   return {
-    title: getOgTitle(page.metadata.title),
+    title: getOgTitle(title),
     description: page.metadata.description,
   }
 }
