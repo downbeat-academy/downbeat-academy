@@ -1,5 +1,6 @@
 import { sanityClient } from '@lib/sanity.client'
 import { articlesPageQuery } from '@lib/queries'
+import { getOgTitle } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
@@ -9,7 +10,7 @@ import { ArticlesPostGrid } from '../components/pages/articles'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Articles | Downbeat Academy',
+  title: getOgTitle('Articles'),
   description: 'Recent articles and learning materials from Downbeat Academy.'
 }
 

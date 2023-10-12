@@ -10,6 +10,7 @@ export const articlesBySlugQuery = groq`
         content,
         featuredImage,
         date,
+        metadata,
         categories[]-> {
             title,
             "slug": slug.current,

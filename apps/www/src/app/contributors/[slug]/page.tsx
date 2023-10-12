@@ -1,10 +1,10 @@
-import Img from 'next/image'
 import { notFound } from 'next/navigation'
 import { draftMode } from 'next/headers'
 import { readToken } from '@lib/sanity.api'
 import { sanityClient } from '@lib/sanity.client'
 import { contributorsBySlugQuery, contributorPaths } from '@lib/queries'
 import { getSanityImageUrl } from '@utils/getSanityImage'
+import { getOgTitle } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
@@ -14,6 +14,26 @@ import * as FeaturedItem from '@components/featured-item'
 import { ListItem } from '@components/list'
 import { linkResolver } from '@utils/linkResolver'
 import { Flex } from '@components/flex'
+
+import type { Metadata, ResolvingMetadata } from 'next'
+import type { MetaProps } from '../../types/meta'
+
+// Generate metadata
+export async function generateMetadata(
+  { params }: MetaProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  
+  const { slug } = params;
+  const client = sanityClient
+  const contributor = await client.fetch(contributorsBySlugQuery, {
+    slug
+  })
+
+  return {
+    title: getOgTitle(contributor.name),
+  }
+}
 
 // Generate the routes for each page
 export async function generateStaticParams() {

@@ -12,6 +12,28 @@ import { Badge } from "@components/badge";
 import { Link } from "@components/link";
 import { Flex } from "@components/flex";
 
+import type { Metadata, ResolvingMetadata } from 'next'
+import type { MetaProps } from '../../types/meta'
+import { getOgTitle } from "@utils/metaHelpers";
+
+// Generate metadata
+export async function generateMetadata(
+  { params }: MetaProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+
+  const { slug } = params;
+  const client = sanityClient
+  const article = await client.fetch(articlesBySlugQuery, {
+    slug
+  })
+
+  return {
+    title: getOgTitle(article.metadata.title),
+    description: article.metadata.description,
+  }
+}
+
 // Generate the slugs/routes for the articles
 export async function generateStaticParams() {
   const slugs = await sanityClient.fetch(
