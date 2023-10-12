@@ -1,8 +1,24 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import classnames from 'classnames'
 import s from './nav-content.module.scss'
 import { LogoLockup } from '@components/brand'
+import { Button } from '@components/button'
 import { Link } from '@components/link'
 
 const NavContent = ({ links }) => {
+
+  const route = usePathname()
+
+  const [ navToggled, setNavToggled ] = useState(false);
+
+  const handleNavToggled = () => {
+    setNavToggled(!navToggled)
+  }
+
+  useEffect(() => setNavToggled(false), [route])
 
   const staticLinks = [
     {
@@ -31,6 +47,10 @@ const NavContent = ({ links }) => {
     )
   })
 
+  const toggledNavClasses = classnames([
+    [navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']]
+  ])
+
   return (
     <div className={s.root}>
       <div className={s.logo}>
@@ -38,11 +58,32 @@ const NavContent = ({ links }) => {
           <LogoLockup width={180} color='brand' />
         </Link>
       </div>
-      <nav>
-        <ul className={s[`nav-links`]}>
-          {mapLinks}
-        </ul>
-      </nav>
+      <div className={toggledNavClasses}>
+        <nav>
+          <ul className={s[`nav-links`]}>
+            {mapLinks}
+          </ul>
+        </nav>
+        <div className={s.actions}>
+          <Button
+            text='Sign up for free'
+            variant='primary'
+            size='large'
+            isFullWidth
+          />
+          <Button
+            text='Login'
+            variant='ghost'
+            size='large'
+            isFullWidth
+          />
+        </div>
+      </div>
+      <button
+        type='button'
+        className={s['menu-button']}
+        onClick={handleNavToggled}
+      >{navToggled ? 'Close menu' : 'Open menu'}</button>
     </div>
   )
 }
