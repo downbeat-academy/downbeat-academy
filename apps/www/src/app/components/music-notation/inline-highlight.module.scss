@@ -1,0 +1,19 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	font-family: $cds-typography-font-family-mono;
+	font-weight: bold;
+	background: $cds-color-palette-blueberry-100;
+	color: $cds-color-palette-blueberry-600;
+	border: 1px solid $cds-color-palette-blueberry-600;
+	border-radius: $cds-radii-medium;
+	padding: $cds-scale-3x-small $cds-scale-x-small;
+	line-height: 1.3;
+	display: inline-flex;
+	margin: 0 $cds-scale-3x-small;
+
+	sup {
+		font-size: 0.75rem;
+		font-family: $cds-typography-font-family-music-notation;
+	}
+}

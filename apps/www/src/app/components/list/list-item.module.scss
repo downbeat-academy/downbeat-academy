@@ -1,0 +1,7 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	background: $cds-color-surface-primary;
+	padding: $cds-scale-large $cds-scale-x-large;
+	outline: 1px solid $cds-color-border-primary;
+}

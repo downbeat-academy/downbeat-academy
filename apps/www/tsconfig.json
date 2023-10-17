@@ -21,31 +21,28 @@
     "baseUrl": "./src",
     "paths": {
       "@*": [
-        "*"
+        "app/*"
       ],
       "@api/*": [
-        "pages/api/*"
+        "app/api/*"
       ],
       "@components/*": [
-        "components/*"
+        "app/components/*"
       ],
       "@lib/*": [
-        "lib/*"
+        "app/lib/*"
       ],
       "@hooks/*": [
-        "hooks/*"
+        "app/hooks/*"
       ],
       "@styles/*": [
-        "styles/*"
+        "app/styles/*"
       ],
       "@types/*": [
-        "types/*"
+        "app/types/*"
       ],
       "@utils/*": [
-        "utils/*"
-      ],
-      "@app/*": [
-        "app/*"
+        "app/utils/*"
       ]
     },
     "plugins": [
@@ -54,13 +51,13 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "hooks/useFathom.tsx",
-    ".next/types/**/*.ts" ],
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

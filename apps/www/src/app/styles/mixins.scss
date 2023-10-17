@@ -1,0 +1,21 @@
+@import '../../../node_modules/cadence-tokens/dist/web/tokens.scss';
+
+@mixin padding {
+	$paddings: (
+		'none': 0,
+		'2x-small': $cds-scale-2x-small,
+		'x-small': $cds-scale-x-small,
+		'small': $cds-scale-small,
+		'medium': $cds-scale-base,
+		'large': $cds-scale-large,
+		'x-large': $cds-scale-x-large,
+		'2x-large': $cds-scale-2x-large,
+		'3x-large': $cds-scale-3x-large,
+	);
+
+	@each $padding, $token in $paddings {
+		.padding--#{$padding} {
+			padding: $padding;
+		}
+	}
+}

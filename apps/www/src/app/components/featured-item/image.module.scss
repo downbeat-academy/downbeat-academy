@@ -1,0 +1,13 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	grid-area: image;
+	position: relative;
+	min-height: 200px;
+	outline: 1px solid $cds-color-border-primary;
+
+	& a img,
+	img {
+		object-fit: cover;
+	}
+}

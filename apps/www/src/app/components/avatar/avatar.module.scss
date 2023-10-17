@@ -1,0 +1,32 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	box-sizing: border-box;
+	border-radius: 50%;
+	border: 1px solid $cds-color-border-faint;
+
+	& img {
+		max-width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
+}
+
+.size--small {
+	height: 40px;
+	width: 40px;
+}
+
+.size--medium {
+	height: 64px;
+	width: 64px;
+}
+
+.size--large {
+	height: 80px;
+	width: 80px;
+}

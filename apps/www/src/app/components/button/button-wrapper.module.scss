@@ -1,0 +1,37 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	display: flex;
+}
+
+// Direction
+
+.horizontal {
+	flex-direction: row;
+}
+
+.vertical {
+	flex-direction: column;
+}
+
+// Gap
+
+.none {
+	gap: 0;
+}
+
+.small {
+	gap: $cds-scale-small;
+}
+
+.medium {
+	gap: $cds-scale-base;
+}
+
+.large {
+	gap: $cds-scale-large;
+}
+
+.wrap {
+	flex-wrap: wrap;
+}

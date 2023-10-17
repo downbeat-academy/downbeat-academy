@@ -1,8 +1,0 @@
-.root {
-	display: grid;
-	grid-area: content;
-	grid-template-columns: 1fr min(75ch, 100%) 1fr;
-	grid-template-areas: 'sidebar-left center sidebar-right';
-	grid-auto-flow: dense;
-	max-width: 100vw;
-}

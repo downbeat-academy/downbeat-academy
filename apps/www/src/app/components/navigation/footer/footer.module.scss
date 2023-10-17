@@ -1,0 +1,53 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.footer--root {
+	padding: $cds-scale-3x-large;
+	grid-area: footer;
+	background: $cds-color-surface-high-contrast;
+	display: flex;
+	flex-direction: column;
+	gap: $cds-scale-3x-large;
+}
+
+.social-links {
+	ul {
+		display: flex;
+		flex-direction: row;
+		gap: $cds-scale-large;
+
+		li {
+			list-style: none;
+		}
+	}
+
+	& li a svg {
+		path {
+			fill: $cds-color-foreground-high-contrast;
+		}
+	}
+}
+
+.footer-links {
+	display: flex;
+	flex-direction: row;
+	gap: $cds-scale-6x-large;
+}
+
+.link-column {
+	& li {
+		list-style: none;
+	}
+}
+
+.copyright {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.high-contrast-link {
+	color: $cds-color-foreground-high-contrast !important;
+	&:hover {
+		color: $cds-color-palette-blackberry-200 !important;
+	}
+}

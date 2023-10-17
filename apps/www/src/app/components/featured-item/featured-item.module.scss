@@ -1,0 +1,20 @@
+.root {
+	display: grid;
+
+	@media (min-width: 400px) {
+		grid-template-columns: 100%;
+		grid-template-rows: repeat(3, min-content);
+		grid-template-areas:
+			'title'
+			'image'
+			'description';
+	}
+
+	@media (min-width: 1000px) {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(2, min-content);
+		grid-template-areas:
+			'title title image'
+			'description description image';
+	}
+}

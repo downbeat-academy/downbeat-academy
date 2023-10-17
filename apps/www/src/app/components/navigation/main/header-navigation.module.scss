@@ -1,0 +1,36 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	grid-area: header;
+	border-radius: 0;
+	border: 1px solid $cds-color-border-faint;
+	overflow: hidden;
+	margin: 0;
+
+	@media (min-width: 768px) {
+		border-radius: 0 0 $cds-radii-x-soft $cds-radii-x-soft;
+		margin: 0 $cds-scale-x-large;
+	}
+
+	@media (min-width: 1000px) {
+		margin: 0 $cds-scale-2x-large;
+	}
+
+	@media (min-width: 1200px) {
+		margin: 0 $cds-scale-3x-large;
+	}
+}
+
+// Component overrides
+
+.login-button {
+	color: $cds-color-foreground-high-contrast !important;
+
+	&:hover {
+		background: $cds-color-palette-blackberry-600 !important;
+	}
+
+	&:active {
+		background: $cds-color-palette-blackberry-500 !important;
+	}
+}

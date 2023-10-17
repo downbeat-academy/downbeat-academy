@@ -1,0 +1,52 @@
+{
+  "scale": {
+    "3x-small": {
+      "value": "0.125rem",
+      "category": "size"
+    },
+    "2x-small": {
+      "value": "0.25rem",
+      "category": "size"
+    },
+    "x-small": {
+      "value": "0.5rem",
+      "category": "size"
+    },
+    "small": {
+      "value": "0.75rem",
+      "category": "size"
+    },
+    "base": {
+      "value": "1rem",
+      "category": "size"
+    },
+    "large": {
+      "value": "1.25rem",
+      "category": "size"
+    },
+    "x-large": {
+      "value": "1.5rem",
+      "category": "size"
+    },
+    "2x-large": {
+      "value": "2.0rem",
+      "category": "size"
+    },
+    "3x-large": {
+      "value": "2.5rem",
+      "category": "size"
+    },
+    "4x-large": {
+      "value": "3.5rem",
+      "category": "size"
+    },
+    "5x-large": {
+      "value": "4.0rem",
+      "category": "size"
+    },
+    "6x-large": {
+      "value": "5.0rem",
+      "category": "size"
+    }
+  }
+}

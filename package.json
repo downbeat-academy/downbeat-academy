@@ -26,6 +26,7 @@
     "icons:build": "turbo run build --filter=cadence-icons",
     "www:dev": "turbo run dev --filter=www",
     "www:build": "turbo run build --filter=www",
+    "www:cypress": "pnpm --filter=www cypress",
     "docs:dev": "turbo run dev --filter=cadence-docs",
     "docs:build": "turbo run build --filter=cadence-docs",
     "cms:dev": "turbo run dev --filter=sanity-cms",
@@ -40,7 +41,7 @@
     "@changesets/cli": "^2.26.1",
     "@types/prettier": "^2.7.2",
     "prettier": "^2.8.8",
-    "turbo": "^1.9.4"
+    "turbo": "^1.10.13"
   },
   "dependencies": {
     "next": "13.0.7"

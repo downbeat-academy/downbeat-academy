@@ -1,0 +1,89 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+}
+
+.tabs--list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 1px;
+	border-bottom: 1px solid $cds-color-border-primary;
+}
+
+.tabs--trigger {
+	font-family: $cds-typography-font-family-productive-body;
+	font-size: $cds-typography-font-size-fixed-productive-base;
+	background: $cds-color-surface-primary;
+	padding: $cds-scale-small $cds-scale-base;
+	outline: 1px solid $cds-color-border-primary;
+	border: none;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&[data-state='active'] {
+		background: $cds-color-surface-interactive;
+		color: $cds-color-foreground-high-contrast;
+	}
+}
+
+.tabs--content {
+	// Padding
+
+	&--padding--none {
+		padding: 0;
+	}
+	&--padding--2x-small {
+		padding: $cds-scale-2x-small;
+	}
+	&--padding--x-small {
+		padding: $cds-scale-x-small;
+	}
+	&--padding--small {
+		padding: $cds-scale-small;
+	}
+	&--padding--medium {
+		padding: $cds-scale-base;
+	}
+	&--padding--large {
+		padding: $cds-scale-large;
+	}
+	&--padding--x-large {
+		padding: $cds-scale-x-large;
+	}
+	&--padding--2x-large {
+		padding: $cds-scale-2x-large;
+	}
+	&--padding--3x-large {
+		padding: $cds-scale-3x-large;
+	}
+
+	// Background
+
+	&--background--primary {
+		background: $cds-color-surface-primary;
+	}
+	&--background--faint {
+		background: $cds-color-surface-faint;
+	}
+	&--background--high-contrast {
+		background: $cds-color-surface-high-contrast;
+	}
+	&--background--brand {
+		background: $cds-color-surface-brand;
+	}
+	&--background--interactive {
+		background: $cds-color-surface-interactive;
+	}
+	&--background--success {
+		background: $cds-color-surface-success;
+	}
+	&--background--warning {
+		background: $cds-color-surface-warning;
+	}
+	&--background--critical {
+		background: $cds-color-surface-critical;
+	}
+}

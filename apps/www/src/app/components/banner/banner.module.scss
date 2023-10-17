@@ -1,0 +1,16 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.banner--root {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	gap: $cds-scale-base;
+	background: $cds-color-surface-high-contrast;
+	color: $cds-color-foreground-high-contrast;
+	padding: $cds-scale-x-small $cds-scale-x-large;
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+	}
+}

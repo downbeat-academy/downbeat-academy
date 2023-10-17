@@ -21,28 +21,20 @@ export default {
 			options: {
 				list: [
 					{ title: 'Major', value: 'major' },
+					{ title: 'Major 7', value: 'major7'},
+					{ title: 'Major 6', value: 'major6' },
+					{ title: 'Dominant 7', value: 'dominant7' },
 					{ title: 'Minor', value: 'minor' },
+					{ title: 'Minor 7', value: 'minor7' },
+					{ title: 'Minor/Major 7', value: 'minMaj7' },
 					{ title: 'Diminished', value: 'dim' },
-					{ title: 'Suspended', value: 'sus4' },
+					{ title: 'Diminished 7', value: 'dim7' },
+					{ title: 'Half diminished 7', value: 'halfDim7' },
+					{ title: 'Suspended (sus4)', value: 'sus4' },
 					{ title: 'Augmented', value: 'aug' },
+					{ title: 'Augmented 7', value: 'aug7' }
 				],
 				layout: 'dropdown',
-			},
-		},
-		{
-			name: 'seventh',
-			title: 'Seventh',
-			type: 'string',
-			description: 'Quality of the 7th scale degree of the chord',
-			hidden: ({ parent, type }: any) => !type && parent.type === 'triad',
-			options: {
-				list: [
-					{ title: 'Major 7', value: 'major7' },
-					{ title: 'Dominant 7', value: 'dominant7' },
-					{ title: 'Minor 7', value: 'minor7' },
-					{ title: 'Half Diminished 7', value: 'halfDiminished7' },
-					{ title: 'Diminished 7', value: 'diminished7' },
-				],
 			},
 		},
 		{
@@ -50,17 +42,17 @@ export default {
 			title: 'Extension',
 			type: 'string',
 			description: 'Extension or alteration of the chord.',
-			hidden: ({ parent, type }: any) => !type && parent.type !== 'extension',
 			options: {
 				list: [
 					{ title: '♭9', value: 'flat9' },
 					{ title: '♭5', value: 'flat5' },
+					{ title: '♯5', value: 'sharp5' },
 					{ title: '♭13', value: 'flat13' },
 					{ title: '♯9', value: 'sharp9' },
 					{ title: '♯11', value: 'sharp11' },
-					{ title: 'Major 7', value: 'major7' },
 					{ title: '♯9/♭9', value: 'sharp9flat9' },
 					{ title: '6/9', value: 'sixNine' },
+					{ title: 'Altered', value: 'altered' }
 				],
 			},
 		},
@@ -74,17 +66,15 @@ export default {
 	],
 	preview: {
 		select: {
-			title: 'root',
+			root: 'root',
 			type: 'type',
 			quality: 'quality',
-			seventh: 'seventh',
 			extension: 'extension',
-			alternateBass: 'alternateBass',
 		},
 		prepare(selection: any) {
-			const { title, quality, seventh, extension, alternateBass } = selection
+			const { root, quality, extension } = selection
 			return {
-				title: `${title} ${seventh}`
+				title: `${root && root} ${quality && quality} ${extension && extension}`
 			}
 		},
 	},

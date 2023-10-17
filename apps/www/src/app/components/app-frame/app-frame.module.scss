@@ -1,0 +1,10 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.app-frame--root {
+	display: grid;
+	grid-template-rows: min-content minmax(calc(100vh - 115px), min-content) min-content;
+	grid-template-areas: 'header' 'content' 'footer';
+	min-width: 100vw;
+	background: $cds-color-page-primary;
+	gap: $cds-scale-3x-large;
+}

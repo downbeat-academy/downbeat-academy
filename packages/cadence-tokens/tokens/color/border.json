@@ -1,66 +1,38 @@
 {
-	"color": {
-		"border": {
-			"default": {
-				"value": "{color.palette.neutral.500.value}",
-				"type": "color",
-				"group": "border",
-				"default": {
-					"value": "{color.palette.neutral.500.value}",
-					"type": "color",
-					"group": "border"
-				},
-				"hover": {
-					"value": "{color.palette.neutral.700.value}",
-					"type": "color",
-					"group": "border"
-				},
-				"active": {
-					"value": "{color.palette.neutral.900.value}",
-					"type": "color",
-					"group": "border"
-				}
-			},
-			"caution": {
-				"value": "{color.palette.pineapple.500.value}",
-				"type": "color",
-				"group": "border"
-			},
-			"critical": {
-				"value": "{color.palette.pomegranate.500.value}",
-				"type": "color",
-				"group": "border"
-			},
-			"positive": {
-				"value": "{color.palette.kale.600.value}",
-				"type": "color",
-				"group": "border"
-			},
-			"info": {
-				"value": "{color.palette.blueberry.600.value}",
-				"type": "color",
-				"group": "border"
-			},
-			"interactive": {
-				"value": "{color.palette.passionFruit.500.value}",
-				"type": "color",
-				"group": "border",
-				"default": {
-					"value": "{color.palette.passionFruit.500.value}",
-					"type": "color",
-					"group": "border"
-				},
-				"hover": {
-					"value": "{color.palette.passionFruit.600.value}",
-					"type": "color",
-					"group": "border"
-				},
-				"active": {
-					"value": "{color.palette.passionFruit.700.value}",
-					"type": "color",
-					"group": "border"
-				}
-			}
-		}
-	}
+  "color": {
+    "border": {
+      "primary": {
+        "value": "{color.palette.blackberry.700}",
+        "type": "color"
+      },
+      "faint": {
+        "value": "{color.palette.blackberry.500}",
+        "type": "color"
+      },
+      "brand": {
+        "value": "{color.palette.violet.500}",
+        "type": "color"
+      },
+      "interactive": {
+        "value": "{color.palette.blueberry.500}",
+        "type": "color"
+      },
+      "success": {
+        "value": "{color.palette.kale.500}",
+        "type": "color"
+      },
+      "warning": {
+        "value": "{color.palette.pineapple.500}",
+        "type": "color"
+      },
+      "critical": {
+        "value": "{color.palette.peach.500}",
+        "type": "color"
+      },
+      "high-contrast": {
+        "value": "{color.palette.blackberry.50}",
+        "type": "color"
+      }
+    }
+  }
 }

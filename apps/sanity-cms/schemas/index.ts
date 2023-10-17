@@ -32,7 +32,6 @@ import audio from './objects/audio'
 import socialLink from './objects/socialLink'
 import metadata from './objects/metadata'
 import moduleContent from './objects/moduleContent'
-import pageTitle from './objects/pageTitle'
 import blockquote from './objects/blockquote'
 
 // Navigation
@@ -46,6 +45,7 @@ import externalLink from './objects/link/externalLink'
 
 // Music Notation Objects
 import musicNotation from './objects/music-notation/musicNotation'
+import flatNotation from './objects/music-notation/flatNotation'
 import inlineChord from './objects/music-notation/inlineChord'
 import inlineMusicText from './objects/music-notation/inlineMusicText'
 // -- Primitives
@@ -87,12 +87,10 @@ export const schemaTypes = [
 	audio,
 	//video,
 	socialLink,
-	musicNotation,
 	metadata,
 	moduleContent,
 	inlineChord,
 	inlineMusicText,
-	pageTitle,
 	blockquote,
 	// Link
 	link,
@@ -102,6 +100,8 @@ export const schemaTypes = [
 	// Navigation
 	navigationSection,
 	// Music Notation
+	musicNotation,
+	flatNotation,
 	accidental,
 	musicText,
 	rhythmicValue,

@@ -1,0 +1,120 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	display: inline-flex;
+	flex-direction: row;
+	font-family: $cds-typography-font-family-productive-body;
+	font-weight: 700;
+	border-radius: $cds-radii-soft;
+	width: fit-content;
+}
+
+// Size
+
+.small {
+	font-size: $cds-typography-font-size-fixed-productive-x-small;
+	line-height: 16px;
+	padding: $cds-scale-3x-small $cds-scale-x-small;
+}
+
+.medium {
+	font-size: $cds-typography-font-size-fixed-productive-small;
+	line-height: 20px;
+	padding: $cds-scale-3x-small $cds-scale-x-small;
+}
+
+.large {
+	font-size: $cds-typography-font-size-fixed-productive-base;
+	line-height: 24px;
+	padding: $cds-scale-2x-small $cds-scale-small;
+}
+
+// Style + color
+
+.filled--neutral {
+	color: $cds-color-foreground-high-contrast;
+	background: $cds-color-palette-blackberry-600;
+}
+
+.filled--info {
+	color: $cds-color-foreground-high-contrast;
+	background: $cds-color-palette-blueberry-600;
+}
+
+.filled--success {
+	color: $cds-color-foreground-high-contrast;
+	background: $cds-color-palette-kale-600;
+}
+
+.filled--warning {
+	color: $cds-color-foreground-high-contrast;
+	background: $cds-color-palette-pineapple-600;
+}
+
+.filled--error {
+	color: $cds-color-foreground-high-contrast;
+	background: $cds-color-palette-peach-600;
+}
+
+.filled--highlight {
+	color: $cds-color-foreground-high-contrast;
+	background: $cds-color-palette-violet-600;
+}
+
+.outlined--neutral {
+	border: 1px solid $cds-color-palette-blackberry-700;
+	color: $cds-color-palette-blackberry-700;
+}
+
+.outlined--info {
+	border: 1px solid $cds-color-palette-blueberry-700;
+	color: $cds-color-palette-blueberry-700;
+}
+.outlined--success {
+	border: 1px solid $cds-color-palette-kale-700;
+	color: $cds-color-palette-kale-700;
+}
+.outlined--warning {
+	border: 1px solid $cds-color-palette-pineapple-700;
+	color: $cds-color-palette-pineapple-700;
+}
+.outlined--error {
+	border: 1px solid $cds-color-palette-peach-700;
+	color: $cds-color-palette-peach-700;
+}
+.outlined--highlight {
+	border: 1px solid $cds-color-palette-violet-600;
+	color: $cds-color-palette-violet-600;
+}
+
+.light--neutral {
+	background: $cds-color-palette-blackberry-100;
+	color: $cds-color-palette-blackberry-600;
+}
+
+.light--info {
+	background: $cds-color-palette-blueberry-200;
+	color: $cds-color-palette-blueberry-700;
+}
+
+.light--success {
+	background: $cds-color-palette-kale-200;
+	color: $cds-color-palette-kale-700;
+}
+
+.light--warning {
+	background: $cds-color-palette-pineapple-200;
+	color: $cds-color-palette-pineapple-700;
+}
+
+.light--error {
+	background: $cds-color-palette-peach-200;
+	color: $cds-color-palette-peach-700;
+}
+
+.light--highlight {
+	background: $cds-color-palette-violet-200;
+	color: $cds-color-palette-violet-700;
+}
+
+// Style

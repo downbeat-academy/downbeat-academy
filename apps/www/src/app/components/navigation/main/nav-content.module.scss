@@ -1,0 +1,86 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: $cds-scale-base $cds-scale-x-large;
+	background: $cds-color-surface-primary;
+}
+
+.nav-links-wrapper {
+	display: block;
+
+	@media (max-width: 600px) {
+		display: none;
+		&--nav-toggled {
+			position: fixed;
+			width: 100vmin;
+			height: calc(100vmax - 105.42px);
+			top: 105.42px;
+			left: 0;
+			z-index: 100;
+			background: $cds-color-surface-primary;
+			padding: $cds-scale-2x-large;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+	}
+}
+
+.nav-links {
+	display: flex;
+	flex-direction: row;
+	gap: $cds-scale-base;
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+	}
+}
+
+.link-item {
+	font-family: $cds-typography-font-family-productive-body;
+	font-size: $cds-typography-font-size-fixed-productive-base;
+	list-style: none;
+	color: $cds-color-foreground-strong;
+
+	@media (max-width: 600px) {
+		font-size: $cds-typography-font-size-fixed-productive-x-large;
+	}
+
+	& > a {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.actions {
+	display: none;
+
+	@media (max-width: 600px) {
+		display: flex;
+		flex-direction: column;
+		gap: $cds-scale-base;
+	}
+}
+
+// Menu button
+
+.menu-button {
+	display: inline-block;
+	background: none;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+	color: $cds-color-foreground-brand-default;
+	font-size: $cds-typography-font-size-fixed-productive-large;
+	border: none;
+
+	@media (min-width: 600px) {
+		display: none;
+	}
+}

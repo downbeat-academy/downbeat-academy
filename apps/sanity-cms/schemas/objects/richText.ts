@@ -88,6 +88,7 @@ export default {
 				// { type: 'video' },
 				{ type: 'audio' },
 				{ type: 'musicNotation' },
+				{ type: 'flatNotation' },
 				{ type: 'mainImage' },
 				{ type: 'blockquote' },
 			],

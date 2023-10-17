@@ -4,8 +4,14 @@ const path = require('path')
 
 const nextConfig = {
 	reactStrictMode: true,
+	experimental: {
+		serverActions: true,
+	},
 	sassOptions: {
-		includePaths: [path.join(__dirname, 'styles')],
+		includePaths: [
+			path.join(__dirname, 'app/styles'),
+			// path.join(__dirname, 'app/styles/**/*.scss')
+		],
 	},
 	images: {
 		domains: ['cdn.sanity.io'],

@@ -13,6 +13,8 @@ module.exports = {
 		web: {
 			transformGroup: 'css',
 			buildPath: './dist/web/',
+			prefix: 'cds',
+			transforms: ['attribute/cti', 'name/cti/kebab', 'color/hex', 'size/rem'],
 			files: [
 				{
 					destination: 'tokens.scss',
@@ -24,6 +26,7 @@ module.exports = {
 				{
 					destination: 'tokens.css',
 					format: 'css/variables',
+					prefix: 'cds',
 					options: {
 						showFileHeader: false,
 					},

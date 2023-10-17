@@ -1,0 +1,10 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	position: relative;
+	flex-basis: 250px;
+
+	& a img {
+		object-fit: cover;
+	}
+}

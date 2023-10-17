@@ -1,0 +1,8 @@
+@use 'node_modules/cadence-tokens/dist/web/tokens.scss' as *;
+
+.root {
+	grid-area: description;
+	padding: $cds-scale-3x-large;
+	background: $cds-color-surface-primary;
+	outline: 1px solid $cds-color-border-primary;
+}
