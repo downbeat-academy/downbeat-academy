@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 async function getContributors() {
   const res = sanityClient.fetch(
     contributorsPageQuery,
-    { 
+    {
       next: {
         revalidate: 60,
       },
@@ -50,7 +50,6 @@ export default async function ContributorsPage() {
             >Contributors and authors</Text>
           }
         />
-        {/* @ts-expect-error Server Component */}
         <ContributorsGrid contributors={contributors} />
       </SectionContainer>
     </>

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 async function getArticles() {
   const res = sanityClient.fetch(
     articlesPageQuery,
-    { 
+    {
       next: {
         revalidate: 60,
       },
@@ -48,7 +48,6 @@ export default async function ArticlesPage() {
             >Recent articles</Text>
           }
         />
-        {/* @ts-expect-error Server Component */}
         <ArticlesPostGrid articles={articles} />
       </SectionContainer>
     </>
