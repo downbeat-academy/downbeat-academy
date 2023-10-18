@@ -41,7 +41,6 @@ export default async function Page() {
   return (
     <>
       <SectionContainer>
-        {/* @ts-expect-error Server Component */}
         <FeaturedPost featuredPost={featuredPost} />
       </SectionContainer>
       <SectionContainer>
@@ -55,7 +54,6 @@ export default async function Page() {
             >Recent articles</Text>
           }
         />
-        {/* @ts-expect-error Server Component */}
         <HomePostGrid posts={posts} />
       </SectionContainer>
     </>

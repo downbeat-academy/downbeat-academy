@@ -11,8 +11,6 @@ const SvgXCircleOutline = ({
 }: SVGProps<SVGSVGElement> & SVGRProps) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		width={props.height}
-		height={props.height}
 		fill="none"
 		viewBox="0 0 24 24"
 		role="img"
