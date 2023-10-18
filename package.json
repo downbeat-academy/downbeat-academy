@@ -38,10 +38,10 @@
     "components:build": "pnpm wc:build && pnpm cadence-react:build"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
-    "@types/prettier": "^2.7.2",
+    "@changesets/cli": "^2.26.2",
+    "@types/prettier": "^2.7.3",
     "prettier": "^2.8.8",
-    "turbo": "^1.10.13"
+    "turbo": "^1.10.15"
   },
   "dependencies": {
     "next": "13.0.7"
