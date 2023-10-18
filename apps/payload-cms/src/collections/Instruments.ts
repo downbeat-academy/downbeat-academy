@@ -4,12 +4,19 @@ const Instruments: CollectionConfig = {
   slug: 'instruments',
   auth: false,
   admin: {
-    useAsTitle: 'title',
+    useAsTitle: 'name',
     group: 'Meta content'
   },
   fields: [
     {
-      name: 'title',
+      name: 'name',
+      label: 'Name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
       type: 'text',
       required: true,
     }
