@@ -7,7 +7,6 @@ import {
 	projectInfoWidget,
 } from '@sanity/dashboard'
 import { documentListWidget } from 'sanity-plugin-dashboard-widget-document-list'
-// import { scheduledPublishing } from '@sanity/scheduled-publishing'
 import { media } from 'sanity-plugin-media'
 import { contentGraphView } from 'sanity-plugin-graph-view'
 
@@ -53,7 +52,6 @@ export default defineConfig({
 			],
 		}),
 		deskTool({ structure: deskStructure }),
-		// scheduledPublishing(),
 		contentGraphView({}),
 		media(),
 		visionTool(),
