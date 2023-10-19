@@ -23,7 +23,7 @@ const Badge = ({
   const hasText = !!text
 
   return (
-    <div className={classes}>
+    <div className={classes} data-cy='cds-badge'>
       {hasIcon && <span className={s.icon} data-cy='icon'>{icon}</span>}
       {hasText && <span className={s.text} data-cy='text'>{text}</span>}
     </div>
