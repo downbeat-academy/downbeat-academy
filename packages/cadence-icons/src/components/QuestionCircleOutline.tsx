@@ -14,19 +14,20 @@ const SvgQuestionCircleOutline = ({
 		fill="none"
 		viewBox="0 0 24 24"
 		role="img"
+		color={props.color}
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			stroke="#000"
+			stroke="currentColor"
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}
 			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 17v.01"
 		/>
 		<path
-			stroke="#000"
+			stroke="currentColor"
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

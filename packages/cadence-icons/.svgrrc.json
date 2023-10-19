@@ -5,11 +5,13 @@
 	"titleProp": true,
 	"filenameCase": "pascal",
 	"prettier": true,
+	"expandProps": true,
+	"svgo": true,
 	"replaceAttrValues": {
-		"#000000": "{props.color}",
-		"1em": "{props.height}"
+		"#000": "currentColor"
 	},
 	"svgProps": {
-		"role": "img"
+		"role": "img",
+		"color": "{props.color}"
 	}
 }

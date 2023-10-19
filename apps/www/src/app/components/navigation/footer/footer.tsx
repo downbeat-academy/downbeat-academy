@@ -21,27 +21,27 @@ const Footer = ({
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/DownbeatAcademy',
-      icon: <Facebook width={24} />,
+      icon: <Facebook color='#fff' width={24} />,
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com/DownbeatAcademy',
-      icon: <Twitter width={24} />,
+      icon: <Twitter color='#fff' width={24} />,
     },
     {
       name: 'TikTok',
       url: 'https://tiktok.com/downbeatacademy',
-      icon: <Tiktok width={24} />,
+      icon: <Tiktok color='#fff' width={24} />,
     },
     {
       name: 'Instagram',
       url: 'https://instagram.com/downbeatacademy',
-      icon: <Instagram width={24} />,
+      icon: <Instagram color='#fff' width={24} />,
     },
     {
       name: 'YouTube',
       url: 'https://youtube.com/downbeatacademy',
-      icon: <Youtube width={24} />,
+      icon: <Youtube color='#fff' width={24} />,
     }
   ]
 

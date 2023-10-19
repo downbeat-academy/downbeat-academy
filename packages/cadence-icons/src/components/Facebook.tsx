@@ -14,13 +14,14 @@ const SvgFacebook = ({
 		fill="none"
 		viewBox="0 0 24 24"
 		role="img"
+		color={props.color}
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<g clipPath="url(#facebook_svg__a)">
 			<path
-				stroke="#000"
+				stroke="currentColor"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth={2}
