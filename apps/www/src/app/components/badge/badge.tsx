@@ -24,8 +24,8 @@ const Badge = ({
 
   return (
     <div className={classes}>
-      {hasIcon && <span className={s.icon}>{icon}</span>}
-      {hasText && <span className={s.text}>{text}</span>}
+      {hasIcon && <span className={s.icon} data-cy='icon'>{icon}</span>}
+      {hasText && <span className={s.text} data-cy='text'>{text}</span>}
     </div>
   )
 }
