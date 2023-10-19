@@ -14,12 +14,13 @@ const SvgArrowBarToLeft = ({
 		fill="none"
 		viewBox="0 0 24 24"
 		role="img"
+		color={props.color}
 		aria-labelledby={titleId}
 		{...props}
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			stroke={props.color}
+			stroke="currentColor"
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

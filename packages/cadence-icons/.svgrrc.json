@@ -8,9 +8,10 @@
 	"expandProps": true,
 	"svgo": true,
 	"replaceAttrValues": {
-		"#000": "{props.color}"
+		"#000": "currentColor"
 	},
 	"svgProps": {
-		"role": "img"
+		"role": "img",
+		"color": "{props.color}"
 	}
 }
