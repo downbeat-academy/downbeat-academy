@@ -20,7 +20,7 @@ const SvgTiktok = ({
 		{title ? <title id={titleId}>{title}</title> : null}
 		<g clipPath="url(#tiktok_svg__a)">
 			<path
-				stroke="#000"
+				stroke={props.color}
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				strokeWidth={2}

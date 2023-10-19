@@ -19,7 +19,7 @@ const SvgPlusCircleOutline = ({
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			stroke="#000"
+			stroke={props.color}
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}

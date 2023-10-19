@@ -19,18 +19,14 @@ const SvgCheckCircleOutline = ({
 	>
 		{title ? <title id={titleId}>{title}</title> : null}
 		<path
-			stroke="#000"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth={2}
-			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
+			fill={props.color}
+			d="M15.707 10.707a1 1 0 0 0-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z"
 		/>
 		<path
-			stroke="#000"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			strokeWidth={2}
-			d="m9 12 2 2 4-4"
+			fill={props.color}
+			fillRule="evenodd"
+			d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z"
+			clipRule="evenodd"
 		/>
 	</svg>
 )
