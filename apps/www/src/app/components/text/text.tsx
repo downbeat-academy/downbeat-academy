@@ -14,6 +14,7 @@ const Text = ({
   size = 'body-base',
   tag = 'div',
   type = 'productive-body',
+  dataCy,
 }: TextProps) => {
 
   const classes = classnames(
@@ -21,7 +22,6 @@ const Text = ({
     s[`type--${type}-size--${size}`],
     s[`color--${color}`],
     s[`background--${background}`],
-    // s[`size--${size}`],
     s[align],
     {
       [s.collapse]: collapse,
@@ -34,7 +34,7 @@ const Text = ({
 
   return (
     // @ts-ignore
-    <Tag className={classes}>{children}</Tag>
+    <Tag className={classes} data-cy={dataCy}>{children}</Tag>
   )
 }
 

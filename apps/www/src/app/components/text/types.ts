@@ -36,6 +36,7 @@ interface TextProps extends HTMLAttributes<HTMLOrSVGElement> {
   | 'critical'
   align?: 'left' | 'center' | 'right' | 'justify',
   collapse?: boolean,
+  dataCy?: string,
   className?: string,
 }
 

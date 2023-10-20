@@ -11,6 +11,7 @@ const Link = ({
   type = 'primary',
   className,
   isUnderline = true,
+  dataCy,
   ...restProps
 }: LinkProps) => {
 
@@ -37,6 +38,7 @@ const Link = ({
       target={target}
       aria-describedby={ariaDescribedBy}
       className={classes}
+      data-cy={dataCy}
     >
       {children}
     </NextLink>
