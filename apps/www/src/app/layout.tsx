@@ -1,3 +1,4 @@
+import Fathom from '@lib/fathom'
 import { AppFrame } from '@components/app-frame'
 import { Footer, HeaderNavigation } from '@components/navigation'
 import { ContentWrapper, Content } from '@components/content-wrapper'
@@ -18,6 +19,7 @@ export default function RootLayout({
           <ContentWrapper>
             <Content isFullBleed>
               {children}
+              <Fathom />
             </Content>
           </ContentWrapper>
           <Footer />
