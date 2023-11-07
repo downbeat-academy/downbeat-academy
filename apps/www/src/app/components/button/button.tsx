@@ -61,6 +61,7 @@ const Button = forwardRef(
           onClick={onClick}
           ref={ref}
           type={type}
+          data-cy='cds-button'
         >
           {/* {hasLeadingIcon && icon} */}
           {hasText && <span>{text}</span>}
@@ -78,6 +79,7 @@ const Button = forwardRef(
           aria-labelledby={ariaLabelledBy}
           className={classes}
           id={id}
+          data-cy='cds-button'
         >
           {text}
         </Link>
