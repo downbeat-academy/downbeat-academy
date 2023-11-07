@@ -234,8 +234,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
       style-dictionary:
-        specifier: ^3.8.0
-        version: 3.8.0
+        specifier: ^3.9.0
+        version: 3.9.0
 
   packages/typeface-favorit: {}
 
@@ -11632,8 +11632,8 @@ packages:
       acorn: 8.11.2
     dev: true
 
-  /style-dictionary@3.8.0:
-    resolution: {integrity: sha512-wHlB/f5eO3mDcYv6WtOz6gvQC477jBKrwuIXe+PtHskTCBsJdAOvL8hCquczJxDui2TnwpeNE+2msK91JJomZg==}
+  /style-dictionary@3.9.0:
+    resolution: {integrity: sha512-mnq8QfPJoj3ellKHRKZwmCgYUGgwYtoagW5edyKpR09O1W4/XqBdeKXoY/LbeIKqHrqVR7sGgk6E/dNYkPS4aA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
