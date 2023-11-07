@@ -1,18 +1,18 @@
-import { ImageResponse } from 'next/server';
- 
+import { ImageResponse } from 'next/og';
+
 export const runtime = 'edge';
- 
+
 export async function GET(request: Request) {
 
   try {
     const { searchParams } = new URL(request.url);
-  
+
     // Get the title
     const hasTitle = searchParams.has('title');
     const title = hasTitle
       ? searchParams.get('title')?.slice(0, 100)
       : 'Downbeat Academy';
-  
+
     return new ImageResponse(
       (
         <div
