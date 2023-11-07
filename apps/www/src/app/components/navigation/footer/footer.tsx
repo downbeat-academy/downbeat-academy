@@ -54,14 +54,6 @@ const Footer = ({
           name: 'Articles',
           url: '/articles',
         },
-        {
-          name: 'Resources',
-          url: '/resources',
-        },
-        {
-          name: 'Podcast',
-          url: '/podcast'
-        },
       ]
     },
     {
