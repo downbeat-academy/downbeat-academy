@@ -10,7 +10,7 @@ const nextConfig = {
 	sassOptions: {
 		includePaths: [
 			path.join(__dirname, 'app/styles'),
-			// path.join(__dirname, 'app/styles/**/*.scss')
+			path.join(__dirname, 'app/components/**/*.scss'),
 		],
 	},
 	images: {
