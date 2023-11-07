@@ -122,7 +122,7 @@ importers:
         version: 3.6.0
       next:
         specifier: 14.0.1
-        version: 14.0.1(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+        version: 14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
       next-sanity:
         specifier: ^6.0.1
         version: 6.0.1(@sanity/client@6.7.1)(@sanity/icons@2.7.0)(@sanity/types@3.19.1)(@sanity/ui@1.9.0)(next@14.0.1)(react@18.2.0)(sanity@3.19.1)(styled-components@6.1.0)
@@ -9366,7 +9366,7 @@ packages:
       '@sanity/ui': 1.9.0(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.0)
       '@sanity/webhook': 3.0.1
       groq: 3.19.1
-      next: 14.0.1(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+      next: 14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
       react: 18.2.0
       sanity: 3.19.1(@types/node@20.8.10)(@types/react@18.2.36)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)(styled-components@6.1.0)
       styled-components: 6.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -9385,14 +9385,14 @@ packages:
       '@next/env': 13.5.6
       fast-glob: 3.3.2
       minimist: 1.2.8
-      next: 14.0.1(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+      next: 14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
     dev: false
 
   /next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: false
 
-  /next@14.0.1(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
+  /next@14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5):
     resolution: {integrity: sha512-s4YaLpE4b0gmb3ggtmpmV+wt+lPRuGtANzojMQ2+gmBpgX9w5fTbjsy6dXByBuENsdCX5pukZH/GxdFgO62+pA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -9415,7 +9415,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       sass: 1.69.5
-      styled-jsx: 5.1.1(@babel/core@7.23.2)(react@18.2.0)
+      styled-jsx: 5.1.1(react@18.2.0)
       watchpack: 2.4.0
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.0.1
@@ -11770,7 +11770,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /styled-jsx@5.1.1(@babel/core@7.23.2)(react@18.2.0):
+  /styled-jsx@5.1.1(react@18.2.0):
     resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
@@ -11783,7 +11783,6 @@ packages:
       babel-plugin-macros:
         optional: true
     dependencies:
-      '@babel/core': 7.23.2
       client-only: 0.0.1
       react: 18.2.0
     dev: false
