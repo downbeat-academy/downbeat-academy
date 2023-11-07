@@ -1,21 +1,22 @@
 'use client'
 
 import { load, trackPageview } from 'fathom-client'
-import React, { useEffect, Suspense } from 'react'
+import { useEffect, Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 
 function TrackPageView() {
+  const id = process.env.NEXT_PUBLIC_FATHOM_ID as string;
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // @ts-ignore
-    load(process.env.NEXT_PUBLIC_FATHOM_ID, {
+    load(id, {
       includedDomains: [
-        "downbeatacademy.com"
+        'downbeatacademy.com',
+        'www.downbeatacademy.com'
       ]
     })
-  }, [])
+  }, [id])
 
   useEffect(() => {
     trackPageview();
