@@ -4,9 +4,6 @@ const path = require('path')
 
 const nextConfig = {
 	reactStrictMode: true,
-	experimental: {
-		serverActions: true,
-	},
 	sassOptions: {
 		includePaths: [
 			path.join(__dirname, 'app/styles'),
