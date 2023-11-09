@@ -59,5 +59,9 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
+  ],
+  "types": [
+    "cypress",
+    "cypress-axe"
   ]
 }
