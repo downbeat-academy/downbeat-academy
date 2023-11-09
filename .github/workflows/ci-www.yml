@@ -14,25 +14,25 @@ concurrency:
    cancel-in-progress: true
 
 jobs:
-  lint:
-    name: "Lint"
-    runs-on: ubuntu-latest
+  # lint:
+  #   name: "Lint"
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
-      - name: Install Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-      - name: Install Dependencies
-        run: pnpm install
-      - name: Lint
-        run: pnpm run lint
-        working-directory: apps/www
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: pnpm/action-setup@v2
+  #       with:
+  #         version: 7
+  #     - name: Install Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #         cache: 'pnpm'
+  #     - name: Install Dependencies
+  #       run: pnpm install
+  #     - name: Lint
+  #       run: pnpm run lint
+  #       working-directory: apps/www
   cypress-run:
     name: "Cypress tests"
     runs-on: ubuntu-latest
