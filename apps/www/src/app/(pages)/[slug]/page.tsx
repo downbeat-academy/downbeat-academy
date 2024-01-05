@@ -13,6 +13,8 @@ import { ModuleRenderer } from '@components/module-content'
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../types/meta'
 
+const client = sanityClient
+
 // Generate metadata
 export async function generateMetadata(
   { params }: MetaProps,
@@ -20,65 +22,75 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 
   const { slug } = params;
-  const client = sanityClient
-  const page = await client.fetch(pagesBySlugQuery, {
-    slug
-  })
-
-  const { title } = page.metadata
-
-  return {
-    title: getOgTitle(title),
-    description: page.metadata.description,
+  try {
+    const page = await client.fetch(pagesBySlugQuery, { slug })
+    const { title } = page.metadata
+    return {
+      title: getOgTitle(title),
+      description: page.metadata.description,
+    }
+  } catch (error) {
+    console.error(error)
+    throw error
   }
 }
 
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {
-  const client = sanityClient
-  const slugs = await client.fetch(
-    pagePaths,
-    {
-      next: {
-        revalidate: 60,
-      },
-    }
-  )
-  return slugs.map((slug) => ({ slug }));
+
+  try {
+    const slugs = await client.fetch(
+      pagePaths,
+      {
+        next: {
+          revalidate: 60,
+        },
+      }
+    )
+    return slugs.map((slug) => ({ slug }));
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
 }
 
 // Render the page data
 export default async function PageSlugRoute({ params }) {
   const { slug } = params
   const preview = draftMode().isEnabled ? { token: readToken } : undefined;
-  const page = await sanityClient.fetch(pagesBySlugQuery, {
-    slug,
-  })
 
-  if (!page && !preview) {
-    notFound();
+  try {
+    const page = await sanityClient.fetch(pagesBySlugQuery, {
+      slug,
+    })
+
+    if (!page && !preview) {
+      notFound();
+    }
+    return (
+      <>
+        <SectionContainer>
+          <SectionTitle
+            background='primary'
+            title={
+              <Text
+                tag='h1'
+                size='h1'
+                type='expressive-headline'
+                color='brand'
+                collapse
+              >{page.title}</Text>
+            }
+          />
+          <ModuleRenderer
+            modules={page.moduleContent}
+          />
+        </SectionContainer>
+      </>
+    )
+  } catch (error) {
+    console.error(error)
+    throw error
   }
-
-  return (
-    <>
-      <SectionContainer>
-        <SectionTitle
-          background='primary'
-          title={
-            <Text
-              tag='h1'
-              size='h1'
-              type='expressive-headline'
-              color='brand'
-              collapse
-            >{page.title}</Text>
-          }
-        />
-        <ModuleRenderer
-          modules={page.moduleContent}
-        />
-      </SectionContainer>
-    </>
-  )
 }
 
