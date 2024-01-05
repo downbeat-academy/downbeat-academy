@@ -7,7 +7,7 @@ import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../types/meta'
+import type { MetaProps } from '../../../types/meta'
 import { ListItem } from '@components/list'
 
 // Generate metadata
@@ -15,7 +15,7 @@ export async function generateMetadata(
   { params }: MetaProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  
+
   const { slug } = params;
   const client = sanityClient
   const category = await client.fetch(categoriesBySlugQuery, {

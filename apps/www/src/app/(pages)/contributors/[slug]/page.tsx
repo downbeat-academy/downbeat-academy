@@ -16,14 +16,14 @@ import { linkResolver } from '@utils/linkResolver'
 import { Flex } from '@components/flex'
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../types/meta'
+import type { MetaProps } from '../../../types/meta'
 
 // Generate metadata
 export async function generateMetadata(
   { params }: MetaProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  
+
   const { slug } = params;
   const client = sanityClient
   const contributor = await client.fetch(contributorsBySlugQuery, {

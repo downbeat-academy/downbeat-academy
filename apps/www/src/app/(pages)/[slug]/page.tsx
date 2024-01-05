@@ -11,7 +11,7 @@ import { Text } from '@components/text'
 import { ModuleRenderer } from '@components/module-content'
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../types/meta'
+import type { MetaProps } from '../../types/meta'
 
 // Generate metadata
 export async function generateMetadata(
@@ -38,7 +38,7 @@ export async function generateStaticParams() {
   const client = sanityClient
   const slugs = await client.fetch(
     pagePaths,
-    { 
+    {
       next: {
         revalidate: 60,
       },

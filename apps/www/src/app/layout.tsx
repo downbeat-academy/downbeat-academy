@@ -14,14 +14,7 @@ export default function RootLayout({
       <body>
         <Fathom />
         <AppFrame>
-          {/* @ts-ignore */}
-          <HeaderNavigation />
-          <ContentWrapper>
-            <Content isFullBleed>
-              {children}
-            </Content>
-          </ContentWrapper>
-          <Footer />
+          {children}
         </AppFrame>
       </body>
     </html>

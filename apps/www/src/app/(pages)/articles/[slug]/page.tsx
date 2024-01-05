@@ -14,7 +14,7 @@ import { Link } from "@components/link";
 import { Flex } from "@components/flex";
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../types/meta'
+import type { MetaProps } from '../../../types/meta'
 
 // Generate metadata
 export async function generateMetadata(
@@ -57,7 +57,7 @@ export default async function ArticleSlugRoute({ params }) {
       next: {
         revalidate: 60,
       }
-    }    
+    }
   )
 
   const renderCategories = article.categories.map(category => {
