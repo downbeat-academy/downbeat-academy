@@ -5,7 +5,7 @@ import { getOgTitle } from '@utils/metaHelpers'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
-import { ArticlesPostGrid } from '../components/pages/articles'
+import { ArticlesPostGrid } from '../../components/pages/articles'
 
 import type { Metadata } from 'next'
 
