@@ -32,7 +32,7 @@ interface FormFieldProps {
 
 // Input
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string,
 }
 
