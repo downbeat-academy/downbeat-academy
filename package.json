@@ -27,15 +27,10 @@
     "www:dev": "turbo run dev --filter=www",
     "www:build": "turbo run build --filter=www",
     "www:cypress": "pnpm --filter=www cypress",
-    "docs:dev": "turbo run dev --filter=cadence-docs",
-    "docs:build": "turbo run build --filter=cadence-docs",
     "cms:dev": "turbo run dev --filter=sanity-cms",
     "cms:build": "turbo run build --filter=sanity-cms",
     "tokens:build": "turbo run build --filter=cadence-tokens",
-    "wc:dev": "pnpm --filter cadence-web start",
-    "wc:build": "pnpm --filter cadence-web build",
-    "cadence-react:build": "pnpm --filter cadence-react build",
-    "components:build": "pnpm wc:build && pnpm cadence-react:build"
+    "email:dev": "turbo run dev --filter=email"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
