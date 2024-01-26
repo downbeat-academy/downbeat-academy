@@ -1,4 +1,8 @@
 .cds-validation-message--root {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: $cds-scale-2x-small;
 	font-size: $cds-typography-font-size-fixed-productive-small;
 	font-family: $cds-typography-font-family-productive-body;
 	font-weight: 600;
