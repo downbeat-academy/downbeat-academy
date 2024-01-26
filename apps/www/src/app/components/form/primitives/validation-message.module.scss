@@ -1,0 +1,17 @@
+.cds-validation-message--root {
+	font-size: $cds-typography-font-size-fixed-productive-small;
+	font-family: $cds-typography-font-family-productive-body;
+	font-weight: 600;
+}
+
+.cds-validation-message--type-success {
+	color: $cds-color-foreground-success-default;
+}
+
+.cds-validation-message--type-warning {
+	color: $cds-color-foreground-warning-default;
+}
+
+.cds-validation-message--type-error {
+	color: $cds-color-foreground-critical-default;
+}
