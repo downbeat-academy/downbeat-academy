@@ -55,7 +55,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 // Textarea
 
 interface TextareaProps {
-  children?: React.ReactNode;
+  name?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  readonly?: boolean;
+  required?: boolean;
+  value?: string;
+  id?: string;
+  rows?: number;
   className?: string;
 }
 

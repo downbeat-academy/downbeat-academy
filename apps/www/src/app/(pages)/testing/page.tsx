@@ -5,7 +5,7 @@ import {
   Textarea,
   HelperText,
   Label,
-  ValidationMessage
+  ValidationMessage,
 } from "@components/form"
 
 export default function TestingPage() {
@@ -21,7 +21,12 @@ export default function TestingPage() {
           type='text'
           placeholder='Input 1'
         />
-        <ValidationMessage type='success'>Validation message</ValidationMessage>
+        <ValidationMessage type='error'>Validation message</ValidationMessage>
+      </FormField>
+      <FormField>
+        <Label htmlFor='textarea-1'>Textarea 1</Label>
+        <HelperText>Helper text</HelperText>
+        <Textarea id='textarea-1' name='textarea-1' />
       </FormField>
     </Form>
   )
