@@ -21,7 +21,7 @@ export default function TestingPage() {
           type='text'
           placeholder='Input 1'
         />
-        <ValidationMessage>Validation message</ValidationMessage>
+        <ValidationMessage type='success'>Validation message</ValidationMessage>
       </FormField>
     </Form>
   )

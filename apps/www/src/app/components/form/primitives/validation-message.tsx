@@ -1,6 +1,7 @@
 import classnames from 'classnames'
 import {
   CheckCircleOutline,
+  AlertTriangleOutline
 } from 'cadence-icons'
 import s from './validation-message.module.scss'
 
@@ -22,6 +23,8 @@ const ValidationMessage = ({
     switch (type) {
       case 'success':
         return <CheckCircleOutline width='16' />
+      case 'warning':
+        return <AlertTriangleOutline width='16' />
       default:
         return null
     }
