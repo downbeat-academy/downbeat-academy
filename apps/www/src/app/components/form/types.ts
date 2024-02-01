@@ -13,7 +13,7 @@ interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
 }
 
 interface ValidationMessageProps extends React.HTMLAttributes<HTMLSpanElement> {
-  children?: React.ReactNode;
+  children?: string | React.ReactNode;
   type?: 'success' | 'warning' | 'error';
   className?: string;
 }

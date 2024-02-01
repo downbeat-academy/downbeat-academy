@@ -75,6 +75,9 @@ importers:
 
   apps/www:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^3.3.4
+        version: 3.3.4(react-hook-form@7.49.3)
       '@portabletext/react':
         specifier: ^3.0.11
         version: 3.0.11(react@18.2.0)
@@ -3484,6 +3487,14 @@ packages:
       react-hook-form: ^7.0.0
     dependencies:
       react-hook-form: 7.48.2(react@18.2.0)
+    dev: false
+
+  /@hookform/resolvers@3.3.4(react-hook-form@7.49.3):
+    resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.49.3(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:

@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form'
 import classnames from 'classnames'
 import s from './form.module.scss'
 
@@ -15,6 +14,10 @@ const Form = ({
   className,
 }: FormProps) => {
 
+  const maxWidthStyle = {
+    maxWidth: maxWidth,
+  }
+
   const classes = classnames(
     s['cds-form--root'],
     s[`cds-form--spacing-${spacing}`],
@@ -28,6 +31,7 @@ const Form = ({
       action={action}
       method={method}
       className={classes}
+      style={maxWidthStyle}
     >
       {children}
     </form>
