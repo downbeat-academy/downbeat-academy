@@ -12,6 +12,7 @@ const Form = ({
   spacing = 'medium',
   maxWidth,
   className,
+  onSubmit,
 }: FormProps) => {
 
   const maxWidthStyle = {
@@ -32,6 +33,7 @@ const Form = ({
       method={method}
       className={classes}
       style={maxWidthStyle}
+      onSubmit={onSubmit}
     >
       {children}
     </form>

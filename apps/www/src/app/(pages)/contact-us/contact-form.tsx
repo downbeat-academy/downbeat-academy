@@ -31,8 +31,26 @@ export function ContactForm() {
     resolver: zodResolver(ContactFormSchema)
   })
 
-  const onSubmit = async (data: ContactFormSchema) => {
-    console.log(data)
+  const onSubmit = async (formData: ContactFormSchema) => {
+    // console.log(data)
+    // reset();
+
+    await fetch('/api/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      }),
+
+    }).then(() => {
+      console.log('Email sent successfully');
+    });
+
     reset();
   }
 
@@ -43,12 +61,15 @@ export function ContactForm() {
     //   <textarea name='message' placeholder='Message' {...register('message', { required: true })} />
     //   <Button type='submit' text='Send' />
     // </form>
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      name='contact-form'
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <FormField>
-        <Input 
-          {...register('name')}
-          type='text' 
-          name='name' 
+        <Input
+          register={register}
+          type='text'
+          name='name'
           placeholder='Name'
         />
         {
@@ -59,17 +80,17 @@ export function ContactForm() {
         }
       </FormField>
       <FormField>
-        <Input 
-          {...register('email')}
-          type='email' 
-          name='email' 
+        <Input
+          register={register}
+          type='email'
+          name='email'
           placeholder='Email'
         />
       </FormField>
       <FormField>
-        <Textarea 
-          {...register('message')}
-          name='message' 
+        <Textarea
+          register={register}
+          name='message'
           placeholder='Message'
         />
       </FormField>

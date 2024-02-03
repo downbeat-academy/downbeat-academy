@@ -27,6 +27,7 @@ interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   method?: 'POST' | 'GET';
   spacing?: 'none' | 'small' | 'medium' | 'large';
   maxWidth?: string;
+  onSubmmit?: any;
   children?: React.ReactNode;
   className?: string;
 }
@@ -50,6 +51,9 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   id?: string;
   className?: string,
+  // Specific properties for react-hook-form
+  register?: any;
+  validationSchema?: any;
 }
 
 // Textarea
@@ -64,6 +68,9 @@ interface TextareaProps {
   id?: string;
   rows?: number;
   className?: string;
+  // Specific properties for react-hook-form
+  register?: any;
+  validationSchema?: any;
 }
 
 export type {
