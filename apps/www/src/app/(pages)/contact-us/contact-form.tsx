@@ -12,8 +12,10 @@ import {
   Label,
 } from '@components/form'
 import { Button } from '@components/button'
+import { useToast } from "@components/toast"
 
 export function ContactForm() {
+  const { toast } = useToast()
 
   // Use react-hook-form to handle the form
   const {
@@ -52,6 +54,16 @@ export function ContactForm() {
       name='contact-form'
       onSubmit={handleSubmit(onSubmit)}
     >
+      <Button
+        text='Make me a toast'
+        onClick={() => {
+          toast({
+            title: 'Hello!',
+            description: 'Downbeat Academy toast!',
+            action: <Button text='Test' size='small' />,
+          })
+        }}
+      />
       <FormField>
         <Label htmlFor='name'>Name</Label>
         <Input

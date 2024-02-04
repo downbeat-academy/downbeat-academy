@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
+
   return (
     <SectionContainer>
-      <SectionTitle 
+      <SectionTitle
         title={
           <Text
             tag='h1'
@@ -22,7 +23,7 @@ export default function ContactPage() {
             color='brand'
             collapse
           >Contact us</Text>
-        } 
+        }
         background='primary'
       />
       <ContactForm />

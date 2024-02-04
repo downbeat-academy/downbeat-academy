@@ -1,0 +1,87 @@
+// Viewport
+
+.toast--viewport {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  padding: $cds-scale-large;
+}
+
+// Base styles
+
+.toast--base {
+  padding: $cds-scale-base;
+  border-radius: $cds-radii-medium;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
+  // align-items: flex-start;
+  gap: $cds-scale-2x-small;
+  box-shadow: $cds-elevation-box-shadow-base;
+  min-width: 25vw;
+
+  @media (max-width: 768px) {
+    min-width: 50vw;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 90vw;
+  }
+}
+
+// Types
+
+.toast--type-default {
+  background: $cds-color-surface-primary;
+  border: 1px solid $cds-color-palette-blackberry-300;
+  color: $cds-color-foreground-primary;
+}
+
+.toast--type-success {
+  background: $cds-color-palette-kale-100;
+  border: 1px solid $cds-color-palette-kale-300;
+  color: $cds-color-foreground-primary;
+}
+
+.toast--type-warning {
+  background: $cds-color-palette-pineapple-100;
+  border: 1px solid $cds-color-palette-pineapple-300;
+  color: $cds-color-foreground-primary;
+}
+
+.toast--type-error {
+  background: $cds-color-palette-peach-100;
+  border: 1px solid $cds-color-palette-peach-300;
+  color: $cds-color-foreground-primary;
+}
+
+// Title
+
+.toast--title {
+  font-weight: bold;
+  font-family: $cds-typography-font-family-productive-body;
+  font-size: $cds-typography-font-size-fixed-productive-base;
+}
+
+// Description
+
+.toast--description {
+  font-family: $cds-typography-font-family-productive-body;
+  font-size: $cds-typography-font-size-fixed-productive-small;
+}
+
+// Action
+
+.toast--action {
+  display: inline-flex;
+}
+
+// Close button
+
+.toast--close {
+  position: absolute;
+  top: $cds-scale-2x-small;
+  right: $cds-scale-2x-small;
+}
