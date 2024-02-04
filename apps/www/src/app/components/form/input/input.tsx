@@ -14,7 +14,6 @@ const Input = ({
   id,
   className,
   register,
-  validationSchema,
 }: InputProps) => {
 
   const classes = classnames(
@@ -32,7 +31,7 @@ const Input = ({
       value={value}
       id={id}
       className={classes}
-      {...register(name, validationSchema)}
+      {...register(name)}
     />
   )
 }

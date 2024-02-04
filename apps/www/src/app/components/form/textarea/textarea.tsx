@@ -14,7 +14,6 @@ const Textarea = ({
   rows = 5,
   className,
   register,
-  validationSchema,
 }: TextareaProps) => {
 
   const classes = classnames(
@@ -32,7 +31,7 @@ const Textarea = ({
       id={id}
       rows={rows}
       className={classes}
-      {...register(name, validationSchema)}
+      {...register(name)}
     />
   )
 }

@@ -1,37 +1,32 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { contactFormSchema, type TContactFormSchema } from '@lib/types/contact-form-schema'
 import {
   Form,
   FormField,
   Input,
   Textarea,
-  ValidationMessage
+  ValidationMessage,
+  Label,
 } from '@components/form'
 import { Button } from '@components/button'
 
-const ContactFormSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email().min(1, 'Email is required'),
-  message: z.string().min(1, 'Message is required')
-}).refine(data => data.name && data.email && data.message)
-
-type ContactFormSchema = z.infer<typeof ContactFormSchema>
-
 export function ContactForm() {
 
+  // Use react-hook-form to handle the form
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<ContactFormSchema>({
-    resolver: zodResolver(ContactFormSchema)
+  } = useForm<TContactFormSchema>({
+    resolver: zodResolver(contactFormSchema)
   })
 
-  const onSubmit = async (formData: ContactFormSchema) => {
+  // Handle form submission and send an email with the Resend API route
+  const onSubmit = async (formData: TContactFormSchema) => {
 
     await fetch('/api/email', {
       method: 'POST',
@@ -58,6 +53,7 @@ export function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormField>
+        <Label htmlFor='name'>Name</Label>
         <Input
           register={register}
           type='text'
@@ -72,19 +68,31 @@ export function ContactForm() {
         }
       </FormField>
       <FormField>
+        <Label htmlFor='email'>Email</Label>
         <Input
           register={register}
           type='email'
           name='email'
           placeholder='Email'
         />
+        {errors.email &&
+          <ValidationMessage type='error'>
+            {`${errors.email.message}`}
+          </ValidationMessage>
+        }
       </FormField>
       <FormField>
+        <Label htmlFor='message'>Message</Label>
         <Textarea
           register={register}
           name='message'
           placeholder='Message'
         />
+        {errors.message &&
+          <ValidationMessage type='error'>
+            {`${errors.message.message}`}
+          </ValidationMessage>
+        }
       </FormField>
       <Button
         type='submit'
