@@ -32,8 +32,6 @@ export function ContactForm() {
   })
 
   const onSubmit = async (formData: ContactFormSchema) => {
-    // console.log(data)
-    // reset();
 
     await fetch('/api/email', {
       method: 'POST',
@@ -55,12 +53,6 @@ export function ContactForm() {
   }
 
   return (
-    // <form onSubmit={handleSubmit(onSubmit)}>
-    //   <input name='name' type='text' placeholder='Name' {...register('name', { required: true })} />
-    //   <input name='email' type='email' placeholder='Email' {...register('email', { required: true })} />
-    //   <textarea name='message' placeholder='Message' {...register('message', { required: true })} />
-    //   <Button type='submit' text='Send' />
-    // </form>
     <Form
       name='contact-form'
       onSubmit={handleSubmit(onSubmit)}

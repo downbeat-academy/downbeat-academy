@@ -8,10 +8,10 @@ export async function POST(request: NextRequest) {
 
   try {
     const data = await resend.emails.send({
-      from: 'Website contact form <hello@email.downbeatacademy.com>',
+      from: 'Downbeat Academycontact form <hello@email.downbeatacademy.com>',
       to: 'jory@downbeatacademy.com',
-      subject: `${name} sent you a message from your website`,
-      html: '<h1>Hello test world</h1>',
+      subject: `${name} sent you a message from the Downbeat Academy contact form`,
+      html: message,
       reply_to: email
     })
 
