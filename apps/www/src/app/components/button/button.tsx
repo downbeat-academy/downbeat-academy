@@ -36,6 +36,7 @@ const Button = forwardRef(
       s[variant],
       s[size],
       [isFullWidth ? s[`is-full-width`] : null],
+      [disabled ? s[`disabled`] : null],
       className,
     ])
 

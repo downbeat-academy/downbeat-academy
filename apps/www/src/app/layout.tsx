@@ -1,5 +1,6 @@
 import Fathom from '@lib/fathom'
 import { AppFrame } from '@components/app-frame'
+import { Provider } from './provider'
 import '@styles/index.scss'
 
 export default function RootLayout({
@@ -10,10 +11,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Provider>
+          <AppFrame>
+            {children}
+          </AppFrame>
+        </Provider>
         <Fathom />
-        <AppFrame>
-          {children}
-        </AppFrame>
       </body>
     </html>
   )

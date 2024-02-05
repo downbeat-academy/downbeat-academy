@@ -1,3 +1,4 @@
+export { default as AlertCircleOutline } from './AlertCircleOutline'
 export { default as AlertTriangleOutline } from './AlertTriangleOutline'
 export { default as ArrowBarDown } from './ArrowBarDown'
 export { default as ArrowBarLeft } from './ArrowBarLeft'

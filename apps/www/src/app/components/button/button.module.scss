@@ -13,6 +13,10 @@
 	&:hover {
 		cursor: pointer;
 	}
+
+	&:disabled {
+		cursor: not-allowed;
+	}
 }
 
 // Size
@@ -103,4 +107,21 @@
 
 .is-full-width {
 	width: 100%;
+}
+
+// Disabled
+
+.disabled {
+	color: $cds-color-palette-blackberry-400;
+	background: $cds-color-palette-blackberry-200;
+
+	&:hover {
+		color: $cds-color-palette-blackberry-400;
+		background: $cds-color-palette-blackberry-200;
+	}
+
+	&:active {
+		color: $cds-color-palette-blackberry-400;
+		background: $cds-color-palette-blackberry-200;
+	}
 }
