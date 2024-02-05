@@ -42,9 +42,7 @@ export async function generateStaticParams() {
     const slugs = await client.fetch(
       pagePaths,
       {
-        next: {
-          revalidate: 60,
-        },
+        revalidate: 60,
       }
     )
     return slugs.map((slug) => ({ slug }));

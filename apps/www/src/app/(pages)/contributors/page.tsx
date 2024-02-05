@@ -17,9 +17,7 @@ async function getContributors() {
   const res = sanityClient.fetch(
     contributorsPageQuery,
     {
-      next: {
-        revalidate: 60,
-      },
+      revalidate: 60,
     }
   )
 

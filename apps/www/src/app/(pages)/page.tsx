@@ -12,9 +12,7 @@ async function getHomepageData() {
   const res = sanityClient.fetch(
     homepagePostsQuery,
     {
-      next: {
-        revalidate: 60,
-      }
+      revalidate: 60,
     }
   )
 

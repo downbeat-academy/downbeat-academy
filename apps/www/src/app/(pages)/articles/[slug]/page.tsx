@@ -48,9 +48,7 @@ export async function generateStaticParams() {
     const slugs = await sanityClient.fetch(
       articlePaths,
       {
-        next: {
-          revalidate: 60,
-        }
+        revalidate: 60,
       }
     )
     return slugs.map((slug) => ({ slug }));
