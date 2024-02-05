@@ -1,13 +1,11 @@
 "use client"
 
-import {
-  Toast,
-  ToastClose,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from "./toast"
+import { Toast } from "./toast"
+import { ToastProvider } from "./primitives/toast-provider"
+import { ToastViewport } from "./primitives/toast-viewport"
+import { ToastClose } from "./primitives/toast-close"
+import { ToastTitle } from "./primitives/toast-title"
+import { ToastDescription } from "./primitives/toast-description"
 import { useToast } from "./use-toast"
 
 export function Toaster() {

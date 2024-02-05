@@ -13,6 +13,8 @@ import {
 } from '@components/form'
 import { Button } from '@components/button'
 import { useToast } from "@components/toast"
+import { Flex } from '@components/flex'
+import s from './contact-form.module.scss'
 
 export function ContactForm() {
   const { toast } = useToast()
@@ -44,73 +46,71 @@ export function ContactForm() {
 
     }).then(() => {
       console.log('Email sent successfully');
+      toast({
+        title: 'Message sent!',
+        description: "hank you for the note, we'll be in touch soon!",
+        variant: 'success',
+      })
     });
 
     reset();
   }
 
   return (
-    <Form
-      name='contact-form'
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <Button
-        text='Make me a toast'
-        onClick={() => {
-          toast({
-            title: 'Hello!',
-            description: 'Downbeat Academy toast!',
-            action: <Button text='Test' size='small' />,
-          })
-        }}
-      />
-      <FormField>
-        <Label htmlFor='name'>Name</Label>
-        <Input
-          register={register}
-          type='text'
-          name='name'
-          placeholder='Name'
+    <section className={s['contact-form']}>
+      <Form
+        name='contact-form'
+        onSubmit={handleSubmit(onSubmit)}
+      // maxWidth="600px"
+      >
+        <FormField>
+          <Label htmlFor='name'>Name</Label>
+          <Input
+            register={register}
+            type='text'
+            name='name'
+            placeholder='Name'
+          />
+          {
+            errors.name &&
+            <ValidationMessage type='error'>
+              {`${errors.name.message}`}
+            </ValidationMessage>
+          }
+        </FormField>
+        <FormField>
+          <Label htmlFor='email'>Email</Label>
+          <Input
+            register={register}
+            type='email'
+            name='email'
+            placeholder='Email'
+          />
+          {errors.email &&
+            <ValidationMessage type='error'>
+              {`${errors.email.message}`}
+            </ValidationMessage>
+          }
+        </FormField>
+        <FormField>
+          <Label htmlFor='message'>Message</Label>
+          <Textarea
+            register={register}
+            name='message'
+            placeholder='Message'
+          />
+          {errors.message &&
+            <ValidationMessage type='error'>
+              {`${errors.message.message}`}
+            </ValidationMessage>
+          }
+        </FormField>
+        <Button
+          type='submit'
+          text={isSubmitting ? 'Sending...' : 'Send message'}
+          disabled={isSubmitting}
         />
-        {
-          errors.name &&
-          <ValidationMessage type='error'>
-            {`${errors.name.message}`}
-          </ValidationMessage>
-        }
-      </FormField>
-      <FormField>
-        <Label htmlFor='email'>Email</Label>
-        <Input
-          register={register}
-          type='email'
-          name='email'
-          placeholder='Email'
-        />
-        {errors.email &&
-          <ValidationMessage type='error'>
-            {`${errors.email.message}`}
-          </ValidationMessage>
-        }
-      </FormField>
-      <FormField>
-        <Label htmlFor='message'>Message</Label>
-        <Textarea
-          register={register}
-          name='message'
-          placeholder='Message'
-        />
-        {errors.message &&
-          <ValidationMessage type='error'>
-            {`${errors.message.message}`}
-          </ValidationMessage>
-        }
-      </FormField>
-      <Button
-        type='submit'
-        text={isSubmitting ? 'Sending...' : 'Send message'}
-        disabled={isSubmitting}
-      />
-    </Form>
+      </Form>
+    </section>
   )
 }

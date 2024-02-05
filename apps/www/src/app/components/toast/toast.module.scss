@@ -14,13 +14,20 @@
 .toast--base {
   padding: $cds-scale-base;
   border-radius: $cds-radii-medium;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-between;
-  // align-items: flex-start;
-  gap: $cds-scale-2x-small;
-  box-shadow: $cds-elevation-box-shadow-base;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $cds-scale-x-small;
+  box-shadow: 2px 2px 8px 0 hsla(240, 36%, 22%, 25%);
   min-width: 25vw;
+  transition: all 0.5s ease;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: $cds-scale-2x-small;
+  }
 
   @media (max-width: 768px) {
     min-width: 50vw;
@@ -31,30 +38,47 @@
   }
 }
 
-// Types
+// Variants
 
-.toast--type-default {
-  background: $cds-color-surface-primary;
-  border: 1px solid $cds-color-palette-blackberry-300;
+.toast--variant-default {
+  background: $cds-color-palette-blackberry-100;
+  border: 1px solid $cds-color-palette-blackberry-400;
   color: $cds-color-foreground-primary;
+  transition: all 0.5s ease;
+
+  & svg {
+    color: $cds-color-palette-blackberry-500;
+  }
 }
 
-.toast--type-success {
+.toast--variant-success {
   background: $cds-color-palette-kale-100;
-  border: 1px solid $cds-color-palette-kale-300;
+  border: 1px solid $cds-color-palette-kale-600;
   color: $cds-color-foreground-primary;
+
+  & svg {
+    color: $cds-color-palette-kale-600;
+  }
 }
 
-.toast--type-warning {
+.toast--variant-warning {
   background: $cds-color-palette-pineapple-100;
-  border: 1px solid $cds-color-palette-pineapple-300;
+  border: 1px solid $cds-color-palette-pineapple-600;
   color: $cds-color-foreground-primary;
+
+  & svg {
+    color: $cds-color-palette-pineapple-600;
+  }
 }
 
-.toast--type-error {
+.toast--variant-error {
   background: $cds-color-palette-peach-100;
-  border: 1px solid $cds-color-palette-peach-300;
+  border: 1px solid $cds-color-palette-peach-400;
   color: $cds-color-foreground-primary;
+
+  & svg {
+    color: $cds-color-palette-peach-600;
+  }
 }
 
 // Title
@@ -82,6 +106,12 @@
 
 .toast--close {
   position: absolute;
-  top: $cds-scale-2x-small;
-  right: $cds-scale-2x-small;
+  top: $cds-scale-2x-large;
+  right: $cds-scale-2x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background: none;
 }
