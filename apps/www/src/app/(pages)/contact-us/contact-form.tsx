@@ -48,7 +48,7 @@ export function ContactForm() {
       console.log('Email sent successfully');
       toast({
         title: 'Message sent!',
-        description: "hank you for the note, we'll be in touch soon!",
+        description: "Thank you for the note, we'll be in touch soon!",
         variant: 'success',
       })
     });
