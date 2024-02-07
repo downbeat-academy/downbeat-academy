@@ -7,6 +7,7 @@ interface CustomLinkProps extends NextLinkProps {
   className?: string,
   dataCy?: string,
   isUnderline?: boolean,
+  children?: React.ReactNode,
 }
 
 type LinkProps = ComponentProps<typeof NextLink> & CustomLinkProps
