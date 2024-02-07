@@ -32,7 +32,7 @@ const Blockquote = ({
         >
           <Link
             href={link}
-            color='secondary'
+            type='secondary'
           >– {attribution}</Link>
         </Text>
       )
