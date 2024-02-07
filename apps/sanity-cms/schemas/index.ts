@@ -33,6 +33,7 @@ import socialLink from './objects/socialLink'
 import metadata from './objects/metadata'
 import moduleContent from './objects/moduleContent'
 import blockquote from './objects/blockquote'
+import fileDownload from './objects/fileDownload'
 
 // Navigation
 import navigationSection from './objects/navigation/section'
@@ -108,4 +109,5 @@ export const schemaTypes = [
 	clef,
 	barValue,
 	musicSymbol,
+	fileDownload,
 ]
