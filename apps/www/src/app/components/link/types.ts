@@ -1,12 +1,14 @@
-import type { ComponentProps } from 'react'
-import NextLink from 'next/link'
+import NextLink, { LinkProps as NextLinkProps } from 'next/link'
+import { ComponentProps } from 'react'
 
-interface LinkProps extends ComponentProps<typeof NextLink> {
+interface CustomLinkProps extends NextLinkProps {
   opensInNewTab?: boolean,
   type?: 'primary' | 'secondary' | 'brand' | 'inherit',
   className?: string,
   dataCy?: string,
   isUnderline?: boolean,
 }
+
+type LinkProps = ComponentProps<typeof NextLink> & CustomLinkProps
 
 export type { LinkProps }
