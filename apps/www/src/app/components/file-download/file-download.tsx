@@ -44,7 +44,8 @@ const FileDownload = ({
 
       body: JSON.stringify({
         email: formData.email,
-        file: file
+        file: file,
+        title: title,
       })
     }).then(() => {
       console.log('Email sent successfully');
