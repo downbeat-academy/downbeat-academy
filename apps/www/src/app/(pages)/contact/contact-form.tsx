@@ -13,7 +13,6 @@ import {
 } from '@components/form'
 import { Button } from '@components/button'
 import { useToast } from "@components/toast"
-import { Flex } from '@components/flex'
 import s from './contact-form.module.scss'
 
 export function ContactForm() {

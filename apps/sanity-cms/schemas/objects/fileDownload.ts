@@ -12,6 +12,11 @@ export default {
       title: 'Title',
     },
     {
+      name: 'description',
+      type: 'text',
+      title: 'Description',
+    },
+    {
       name: 'file',
       type: 'file',
       title: 'File',
