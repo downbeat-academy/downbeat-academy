@@ -39,7 +39,7 @@ const FileDownload = ({
 
   const onSubmit = async (formData: TFileDownloadSchema) => {
 
-    await fetch('/api/file-download', {
+    await fetch('/api/email/file-download', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const FileDownload = ({
       })
     })
 
-    await fetch('/api/create-contact', {
+    await fetch('/api/email/create-contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

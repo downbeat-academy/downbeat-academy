@@ -31,7 +31,7 @@ export function ContactForm() {
   // Handle form submission and send an email with the Resend API route
   const onSubmit = async (formData: TContactFormSchema) => {
 
-    await fetch('/api/email', {
+    await fetch('/api/email/contact-form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
