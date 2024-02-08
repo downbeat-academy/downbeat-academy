@@ -59,6 +59,17 @@ const FileDownload = ({
       })
     })
 
+    await fetch('/api/create-contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({
+        email: formData.email,
+      })
+    })
+
     reset();
   };
 
