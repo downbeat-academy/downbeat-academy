@@ -12,6 +12,7 @@ import {
 } from '@components/form'
 import { Button } from '@components/button'
 import { Text } from '@components/text'
+import { getSanityUrl } from '@utils/getSanityUrl'
 import s from './file-download.module.scss'
 
 import type { FileDownloadProps } from './types'
@@ -24,6 +25,8 @@ const FileDownload = ({
 }: FileDownloadProps) => {
 
   const { toast } = useToast()
+
+  const fileUrl = getSanityUrl(file.asset._ref)
 
   const {
     register,
@@ -44,7 +47,7 @@ const FileDownload = ({
 
       body: JSON.stringify({
         email: formData.email,
-        file: file,
+        file: fileUrl,
         title: title,
       })
     }).then(() => {
