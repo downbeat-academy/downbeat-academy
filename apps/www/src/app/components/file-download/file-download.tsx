@@ -1,6 +1,7 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
+import classnames from 'classnames'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useToast } from "@components/toast"
 import {
@@ -8,7 +9,7 @@ import {
   Input,
   ValidationMessage,
   Label,
-  FormField 
+  FormField,
 } from '@components/form'
 import { Button } from '@components/button'
 import { Text } from '@components/text'
@@ -27,6 +28,10 @@ const FileDownload = ({
   const { toast } = useToast()
 
   const fileUrl = getSanityUrl(file.asset._ref)
+
+  const classes = classnames([
+    s['file_download--root']
+  ])
 
   const {
     register,
@@ -74,21 +79,22 @@ const FileDownload = ({
   };
 
   return (
-    <div>
-      <Text size='h5' tag='h5' type='expressive-headline'>{title}</Text>
+    <section className={classes}>
+      <Text size='h5' tag='h5' type='expressive-headline'>Get &apos;em in your inbox</Text>
       <Text size='body-base' tag='p' type='expressive-body'>{description}</Text>
+      <Text size='body-base' tag='p' type='expressive-body'><strong>Title: </strong>{title}</Text>
       <Form
         name='file-download-form'
         onSubmit={handleSubmit(onSubmit)}
       >
         <FormField>
           <Label htmlFor='email'>Email</Label>
-          <Input
-            register={register}
-            type='email'
-            name='email'
-            placeholder='john@coltrane.com'
-          />
+            <Input
+              register={register}
+              type='email'
+              name='email'
+              placeholder='john@coltrane.com'
+            />
           {errors.email &&
             <ValidationMessage type='error'>
               {`${errors.email.message}`}
@@ -97,11 +103,11 @@ const FileDownload = ({
         </FormField>
         <Button
           type='submit'
-          text={isSubmitting ? 'Landing in your inbox...' : 'Send me the file!'}
+          text={isSubmitting ? 'Landing in your inbox...' : 'Show me the files!'}
           disabled={isSubmitting}
         />
       </Form>
-    </div>
+    </section>
   )
 }
 

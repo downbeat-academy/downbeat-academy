@@ -60,7 +60,6 @@ export function ContactForm() {
       <Form
         name='contact-form'
         onSubmit={handleSubmit(onSubmit)}
-      // maxWidth="600px"
       >
         <FormField>
           <Label htmlFor='name'>Name</Label>
