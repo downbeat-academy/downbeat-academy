@@ -91,6 +91,7 @@ export default {
 				{ type: 'flatNotation' },
 				{ type: 'mainImage' },
 				{ type: 'blockquote' },
+				{ type: 'fileDownload' },
 			],
 		},
 	],

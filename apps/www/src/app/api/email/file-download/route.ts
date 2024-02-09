@@ -1,20 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend'
-import ContactFormEmail from '../../../../../../packages/email/emails/contact-form'
+import FileDownload from '../../../../../../../packages/email/emails/file-download'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
-  const { name, email, message } = await request.json()
+  const { email, file, title } = await request.json()
 
   try {
     const data = await resend.emails.send({
       from: 'Downbeat Academy <hello@email.downbeatacademy.com>',
-      to: 'jory@downbeatacademy.com',
-      subject: `${name} sent you a message from the Downbeat Academy contact form`,
-      // html: message,
-      react: ContactFormEmail({ name: name, email: email, message: message }),
-      reply_to: email
+      to: email,
+      subject: '🎼 Your download from Downbeat Academy is here!',
+      react: FileDownload({ file: file, title: title }),
+      reply_to: 'jory@downbeatacademy.com'
     })
 
     return NextResponse.json(data)
@@ -22,3 +21,4 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error })
   }
 }
+

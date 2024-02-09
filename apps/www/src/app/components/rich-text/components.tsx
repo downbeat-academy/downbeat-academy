@@ -9,6 +9,7 @@ import {
 } from '@components/music-notation'
 import { Blockquote } from '@components/blockquote'
 import { MainImage } from '@components/images'
+import { FileDownload } from '@components/file-download'
 
 const Components = {
   block: {
@@ -43,22 +44,34 @@ const Components = {
       >{children}</Text>,
   },
   types: {
-  blockquote: ({ value }) => (
-    <Blockquote
-      quote={value.quote}
-      attribution={value.attribution}
-      link={value.sourceUrl}
-    />
-  ),
-  inlineChord: ({ value }) => <Chord {...value} />,
-  inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
-  mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
-  musicNotation: ({ value }) => {
+    blockquote: ({ value }) => (
+      <Blockquote
+        quote={value.quote}
+        attribution={value.attribution}
+        link={value.sourceUrl}
+      />
+    ),
+    inlineChord: ({ value }) => <Chord {...value} />,
+    inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
+    mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
+    musicNotation: ({ value }) => {
+        return (
+          <MusicNotation
+            files={value.files}
+            title={value.title}
+            description={value.description}
+          />
+        )
+      },
+    fileDownload: ({ value }) => {
+
+      console.log(value)
+
       return (
-        <MusicNotation
-          files={value.files}
+        <FileDownload
           title={value.title}
           description={value.description}
+          file={value.file}
         />
       )
     }
