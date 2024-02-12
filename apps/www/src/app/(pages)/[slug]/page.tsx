@@ -1,7 +1,7 @@
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { readToken } from '@lib/sanity.api'
-import { sanityClient } from '@lib/sanity.client'
+import { readToken } from '@lib/sanity/sanity.api'
+import { sanityClient } from '@lib/sanity/sanity.client'
 import { pagesBySlugQuery, pagePaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 

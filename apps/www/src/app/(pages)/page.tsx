@@ -1,5 +1,5 @@
 import { homepagePostsQuery } from "@lib/queries"
-import { sanityClient } from "@lib/sanity.client"
+import { sanityClient } from "@lib/sanity/sanity.client"
 
 import { SectionContainer } from "@components/section-container"
 import { SectionTitle } from '@components/section-title'

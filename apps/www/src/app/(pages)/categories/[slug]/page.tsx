@@ -1,4 +1,4 @@
-import { sanityClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity/sanity.client'
 import { categoriesBySlugQuery, categoryPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 import { linkResolver } from '@utils/linkResolver'

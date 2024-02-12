@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
-import { sanityClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity/sanity.client'
 import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from '@components/text'

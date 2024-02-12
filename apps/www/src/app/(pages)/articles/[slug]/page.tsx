@@ -1,4 +1,4 @@
-import { sanityClient } from "@lib/sanity.client";
+import { sanityClient } from "@lib/sanity/sanity.client";
 import { articlesBySlugQuery, articlePaths } from "@lib/queries";
 import { getSanityImageUrl } from "@utils/getSanityImage";
 import { prettyDate } from "@utils/dateFormat";
