@@ -11,7 +11,7 @@ import { Text } from '@components/text'
 import { ModuleRenderer } from '@components/module-content'
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../types/meta'
+import type { MetaProps } from '../../lib/types/meta'
 
 const client = sanityClient
 
