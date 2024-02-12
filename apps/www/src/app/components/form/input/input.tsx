@@ -31,7 +31,7 @@ const Input = ({
       value={value}
       id={id}
       className={classes}
-      {...register(name)}
+      {...register && { ...register(name) }}
     />
   )
 }

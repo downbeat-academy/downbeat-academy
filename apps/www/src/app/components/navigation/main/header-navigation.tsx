@@ -69,11 +69,13 @@ const HeaderNavigation = async ({
             variant='ghost'
             className={s[`login-button`]}
             size='small'
+            href='/login'
           />
           <Button
             text='Sign up for free'
             variant='primary'
             size='small'
+            href='/login'
           />
         </Banner.Actions>
       </Banner.Root>

@@ -42,7 +42,7 @@ interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {
 // Input
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  type?: 'text' | 'email' | 'number' | 'tel' | 'url';
+  type?: 'text' | 'email' | 'number' | 'tel' | 'url' | 'password';
   name?: string;
   placeholder?: string;
   disabled?: boolean;
@@ -50,7 +50,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   required?: boolean;
   value?: string;
   id?: string;
-  className?: string,
+  className?: string;
   // Specific properties for react-hook-form
   register?: any;
   validationSchema?: any;
