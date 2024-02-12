@@ -1,10 +1,13 @@
 import classnames from 'classnames'
+import { cookies } from 'next/headers'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
+import { createClient } from '@lib/supabase/supabase.server'
 import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from '@components/text'
 import { Button } from '@components/button'
+import { logout } from '@actions/auth/logout'
 import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
@@ -37,6 +40,11 @@ const HeaderNavigation = async ({
   className,
 }: HeaderNavigationProps) => {
 
+  const cookieStore = cookies()
+  const supabase = createClient(cookieStore)
+
+  const { data, error } = await supabase.auth.getUser()
+
   const navData = await getNavigationData();
 
   const {
@@ -64,19 +72,41 @@ const HeaderNavigation = async ({
           </Text>
         </Banner.Content>
         <Banner.Actions>
-          <Button
-            text='Login'
-            variant='ghost'
-            className={s[`login-button`]}
-            size='small'
-            href='/login'
-          />
-          <Button
-            text='Sign up for free'
-            variant='primary'
-            size='small'
-            href='/login'
-          />
+          {
+            !data?.user ? (
+              <>
+                <Button
+                  text='Login'
+                  variant='ghost'
+                  className={s[`login-button`]}
+                  size='small'
+                  href='/login'
+                />
+                <Button
+                  text='Sign up for free'
+                  variant='primary'
+                  size='small'
+                  href='/login'
+                />
+              </>
+            ) : (
+              <>
+                <Button
+                  text='Log out'
+                  size='small'
+                  variant='ghost'
+                  className={s[`login-button`]}
+                  href='/logout'
+                />
+                <Button
+                  text='My account'
+                  variant='primary'
+                  size='small'
+                  href='/account'
+                />
+              </>
+            )
+          }
         </Banner.Actions>
       </Banner.Root>
       <NavContent links={navData} />
