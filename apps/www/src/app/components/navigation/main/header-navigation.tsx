@@ -7,7 +7,6 @@ import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from '@components/text'
 import { Button } from '@components/button'
-import { logout } from '@actions/auth/logout'
 import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
@@ -86,7 +85,7 @@ const HeaderNavigation = async ({
                   text='Sign up for free'
                   variant='primary'
                   size='small'
-                  href='/login'
+                  href='/sign-up'
                 />
               </>
             ) : (
@@ -97,6 +96,7 @@ const HeaderNavigation = async ({
                   variant='ghost'
                   className={s[`login-button`]}
                   href='/logout'
+                // formAction={logout}
                 />
                 <Button
                   text='My account'

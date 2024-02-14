@@ -5,7 +5,6 @@ import { SectionTitle } from '@components/section-title'
 import { Button } from '@components/button'
 import { Text } from '@components/text'
 import { Form } from '@components/form'
-import { logout } from '@actions/auth/logout'
 
 import { createClient } from '@lib/supabase/supabase.server'
 
@@ -17,8 +16,6 @@ export default async function AccountPage() {
   if (error || !data?.user) {
     redirect('/login')
   }
-
-  console.log(data)
 
   return (
     <SectionContainer>

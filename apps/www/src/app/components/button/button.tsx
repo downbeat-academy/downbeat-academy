@@ -27,6 +27,7 @@ const Button = forwardRef(
       text,
       type,
       variant = 'primary',
+      formAction,
     }: ButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
@@ -62,6 +63,7 @@ const Button = forwardRef(
           onClick={onClick}
           ref={ref}
           type={type}
+          formAction={formAction}
           data-cy='cds-button'
         >
           {/* {hasLeadingIcon && icon} */}

@@ -7,11 +7,11 @@ import {
   Form,
 } from '@components/form'
 import { Button, ButtonWrapper } from '@components/button'
-import { login } from '@actions/auth/login'
+import { signup } from '@actions/auth/signup'
 
 import { createClient } from '@lib/supabase/supabase.server'
 
-export default async function LoginPage() {
+export default async function SignUpPage() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
@@ -32,7 +32,7 @@ export default async function LoginPage() {
         <Input type='password' id='password' name='password' />
       </FormField>
       <ButtonWrapper>
-        <Button formAction={login} variant='primary' text='Log in' />
+        <Button formAction={signup} text='Sign up' />
       </ButtonWrapper>
     </Form>
   )
