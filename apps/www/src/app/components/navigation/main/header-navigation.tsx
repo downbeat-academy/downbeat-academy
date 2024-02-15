@@ -96,7 +96,6 @@ const HeaderNavigation = async ({
                   variant='ghost'
                   className={s[`login-button`]}
                   href='/logout'
-                // formAction={logout}
                 />
                 <Button
                   text='My account'

@@ -9,6 +9,6 @@ export async function GET() {
   await supabase.auth.signOut();
   return (
     redirect('/'),
-    revalidatePath('/', 'layout')
+    revalidatePath('/', 'page')
   )
 }
