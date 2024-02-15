@@ -1,16 +1,10 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import {
-  Label,
-  Input,
-  FormField,
-  Form,
-} from '@components/form'
-import { Button, ButtonWrapper } from '@components/button'
 import { Wrapper } from '@components/auth/wrapper'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
-import { login } from '@actions/auth/login'
+
+import { LoginForm } from './login-form'
 
 import { createClient } from '@lib/supabase/supabase.server'
 
@@ -40,19 +34,7 @@ export default async function LoginPage() {
       >
         Don't have an account? <Link href='/sign-up'>Sign up for free.</Link>
       </Text>
-      <Form>
-        <FormField>
-          <Label htmlFor="email">Email</Label>
-          <Input type='email' id='email' name='email' />
-        </FormField>
-        <FormField>
-          <Label htmlFor="password">Password</Label>
-          <Input type='password' id='password' name='password' />
-        </FormField>
-        <ButtonWrapper>
-          <Button formAction={login} variant='primary' text='Log in' />
-        </ButtonWrapper>
-      </Form>
+      <LoginForm />
     </Wrapper>
   )
 }
