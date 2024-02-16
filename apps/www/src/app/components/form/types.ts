@@ -23,7 +23,7 @@ interface ValidationMessageProps extends React.HTMLAttributes<HTMLSpanElement> {
 interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   name?: string;
   rel?: string;
-  action?: string;
+  action?: any;
   method?: 'POST' | 'GET';
   spacing?: 'none' | 'small' | 'medium' | 'large';
   maxWidth?: string;

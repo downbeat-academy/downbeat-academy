@@ -7,11 +7,8 @@ import { Form, FormField, Label, Input, ValidationMessage } from '@components/fo
 import { Button, ButtonWrapper } from '@components/button'
 import { login } from '@actions/auth/login'
 
-/**
- * Schema for login form validation.
- */
 export const loginSchema = z.object({
-  email: z.string().email().min(1, 'Email is required'),
+  email: z.string().email('Invalid email address').min(1, 'Email is required'),
   password: z.string().min(1, 'Password is required').min(8, 'Password must be at least 8 characters'),
 });
 
@@ -27,8 +24,13 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  const onSubmit = handleSubmit(formData => {
+    // @ts-ignore
+    login(formData)
+  });
+
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <FormField>
         <Label htmlFor="email">Email</Label>
         <Input
@@ -37,7 +39,9 @@ export function LoginForm() {
           name='email'
           register={register}
         />
-        <ValidationMessage type='error'>{`${errors.email.message}`}</ValidationMessage>
+        {errors.email &&
+          <ValidationMessage type='error'>{`${errors.email.message}`}</ValidationMessage>
+        }
       </FormField>
       <FormField>
         <Label htmlFor="password">Password</Label>
@@ -47,10 +51,16 @@ export function LoginForm() {
           name='password'
           register={register}
         />
-        <ValidationMessage type='error'>{`${errors.password.message}`}</ValidationMessage>
+        {errors.password &&
+          <ValidationMessage type='error'>{`${errors.password.message}`}</ValidationMessage>
+        }
       </FormField>
       <ButtonWrapper>
-        <Button formAction={login} variant='primary' text='Log in' />
+        <Button
+          type='submit'
+          variant='primary'
+          text={isSubmitting ? 'Logging you in…' : 'Login'}
+        />
       </ButtonWrapper>
     </Form>
   )
