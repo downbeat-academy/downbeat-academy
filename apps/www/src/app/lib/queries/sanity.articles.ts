@@ -20,7 +20,7 @@ export const articlesBySlugQuery = groq`
             image,
             name,
         },
-    } | order(date desc)
+    }
 `
 
 export const articlePaths = groq`
