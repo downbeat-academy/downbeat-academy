@@ -32,7 +32,7 @@ export default async function LoginPage() {
         color='primary'
         tag='p'
       >
-        Don't have an account? <Link href='/sign-up'>Sign up for free.</Link>
+        Don&apos;t have an account? <Link href='/sign-up'>Sign up for free.</Link>
       </Text>
       <LoginForm />
     </Wrapper>
