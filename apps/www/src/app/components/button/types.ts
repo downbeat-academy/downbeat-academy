@@ -29,6 +29,7 @@ interface ButtonProps extends PickedNativeButtonProps {
   size?: 'large' | 'medium' | 'small' | 'x-small',
   text?: string,
   variant?: 'primary' | 'secondary' | 'ghost' | 'destructive',
+  formAction?: any,
 }
 
 // Button as link

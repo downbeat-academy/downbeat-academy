@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import {suspend} from 'suspend-react'
+import { suspend } from 'suspend-react'
 
 // const LiveQueryProvider = dynamic(() => import('next-sanity/preview'))
 // @ts-ignore
@@ -17,7 +17,7 @@ export default function PreviewProvider({
   children: React.ReactNode
   token?: string
 }) {
-  const {sanityClient} = suspend(() => import('@lib/sanity.client'), [UniqueKey])
+  const { sanityClient } = suspend(() => import('@lib/sanity/sanity.client'), [UniqueKey])
   if (!token) throw new TypeError('Missing token')
   return (
     // @ts-ignore

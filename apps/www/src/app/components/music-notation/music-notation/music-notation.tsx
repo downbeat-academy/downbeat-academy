@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { buildFileUrl, getFile } from '@sanity/asset-utils'
-import { sanityConfig } from '@lib/sanity.config'
+import { sanityConfig } from '@lib/sanity/sanity.config'
 import { toKebabCase } from '@utils/stringFormat'
 import * as Tabs from '@components/tabs'
 import { Text } from '@components/text'

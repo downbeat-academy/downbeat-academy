@@ -11,7 +11,7 @@
 // }
 
 
-import { sanityClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity/sanity.client'
 import imageUrlBuilder from '@sanity/image-url'
 
 const builder = imageUrlBuilder(sanityClient)

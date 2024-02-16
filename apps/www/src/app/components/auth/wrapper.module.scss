@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $cds-scale-2x-large 0;
+
+  @media (min-width: 768px) {
+    padding: $cds-scale-5x-large $cds-scale-base;
+  }
+}
+
+.inner-wrapper {
+  max-width: 500px;
+  background: $cds-color-surface-primary;
+  border: 1px solid $cds-color-border-primary;
+  border-radius: $cds-radii-soft;
+  padding: $cds-scale-base;
+
+  @media (min-width: 768px) {
+    padding: $cds-scale-4x-large;
+  }
+}

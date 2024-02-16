@@ -1,4 +1,4 @@
-import { sanityClient } from '@lib/sanity.client'
+import { sanityClient } from '@lib/sanity/sanity.client'
 import { contributorsPageQuery } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 import { SectionContainer } from '@components/section-container'
