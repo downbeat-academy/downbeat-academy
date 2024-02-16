@@ -36,6 +36,6 @@
     "@changesets/cli": "^2.26.2",
     "@types/prettier": "^3.0.0",
     "prettier": "^3.0.3",
-    "turbo": "^1.10.16"
+    "turbo": "^1.12.4"
   }
 }
