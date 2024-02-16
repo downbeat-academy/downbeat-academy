@@ -3,10 +3,17 @@ import { redirect } from 'next/navigation'
 import { Wrapper } from '@components/auth/wrapper'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
+import { createClient } from '@lib/supabase/supabase.server'
+
+import type { Metadata } from 'next'
 
 import { LoginForm } from './login-form'
 
-import { createClient } from '@lib/supabase/supabase.server'
+export const metadata: Metadata = {
+  title: 'Login | Downbeat Academy',
+  description: 'Login to your Downbeat Academy account.',
+}
+
 
 export default async function LoginPage() {
   const cookieStore = cookies()
