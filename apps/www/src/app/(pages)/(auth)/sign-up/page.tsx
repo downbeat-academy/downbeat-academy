@@ -4,8 +4,15 @@ import { Wrapper } from '@components/auth/wrapper'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 
+import type { Metadata } from 'next'
+
 import { createClient } from '@lib/supabase/supabase.server'
 import { SignUpForm } from './sign-up-form'
+
+export const metadata: Metadata = {
+  title: 'Sign Up | Downbeat Academy',
+  description: 'Create a free Downbeat Academy account.',
+}
 
 export default async function SignUpPage() {
   const cookieStore = cookies()
