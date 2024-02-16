@@ -46,5 +46,5 @@ export const articlesPageQuery = groq`
             image,
             name,
         },
-    }
+    } | order(date desc)
 `

@@ -14,7 +14,7 @@ export default async function FeaturedPost({ featuredPost }) {
   // Render the categories of the featured post as badges
   const renderCategories = featuredPost.categories.map(category => {
     return (
-      <Link href={linkResolver(category.slug, 'category')} key={category.name}>
+      <Link href={linkResolver(category.slug, 'category')} key={category.title}>
         <Badge type='neutral' style='filled' text={category.title} />
       </Link>
     )

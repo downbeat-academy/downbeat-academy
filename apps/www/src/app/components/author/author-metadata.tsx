@@ -22,7 +22,7 @@ const AuthorMetadata = ({
     s.root,
     className,
   )
-  
+
   const mapAuthorImages = authors.map(authorImage => {
     return (
       <Link href={linkResolver(authorImage.slug, 'contributor')} key={authorImage.name}>
@@ -45,15 +45,16 @@ const AuthorMetadata = ({
 
   const mapAuthorNames = authors.map(authorLink => {
     return (
-      <strong key={authorLink.name}>
-        <Link
-          type='secondary'
-          href={linkResolver(authorLink.slug, 'contributor')}
-        >
+      <Link
+        type='secondary'
+        href={linkResolver(authorLink.slug, 'contributor')}
+        key={authorLink.name}
+      >
+        <strong>
           {authorLink.name}
-        </Link>
+        </strong>
         {' '}
-      </strong>
+      </Link>
     )
   })
 
