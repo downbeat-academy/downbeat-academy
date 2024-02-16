@@ -8,7 +8,6 @@ import * as Banner from '@components/banner'
 import { Text } from '@components/text'
 import { Button } from '@components/button'
 import { NavContent } from './nav-content'
-import { logout } from '@actions/auth/logout'
 
 import type { HeaderNavigationProps } from './types'
 
