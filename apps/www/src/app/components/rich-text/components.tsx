@@ -26,7 +26,7 @@ const Components = {
     number: ({ children }) => <List type='ordered'>{children}</List>,
   },
   listItem: {
-    bullet: ({ children }) => 
+    bullet: ({ children }) =>
       <Text
         type='expressive-body'
         size='body-base'
@@ -34,7 +34,7 @@ const Components = {
         tag='li'
         collapse
       >{children}</Text>,
-    number: ({ children }) => 
+    number: ({ children }) =>
       <Text
         type='expressive-body'
         size='body-base'
@@ -55,18 +55,15 @@ const Components = {
     inlineMusicText: ({ value }) => <MusicTextRenderer values={value.options} />,
     mainImage: ({ value }) => <MainImage image={value.image.asset} altText={value.alternativeText} caption={value.caption} />,
     musicNotation: ({ value }) => {
-        return (
-          <MusicNotation
-            files={value.files}
-            title={value.title}
-            description={value.description}
-          />
-        )
-      },
+      return (
+        <MusicNotation
+          files={value.files}
+          title={value.title}
+          description={value.description}
+        />
+      )
+    },
     fileDownload: ({ value }) => {
-
-      console.log(value)
-
       return (
         <FileDownload
           title={value.title}
