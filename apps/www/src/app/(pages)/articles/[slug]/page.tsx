@@ -75,11 +75,9 @@ export default async function ArticleSlugRoute({ params }) {
       }
     )
 
-    console.log(article)
-
     const renderCategories = article.categories.map(category => {
       return (
-        <Link href={linkResolver(category.slug, 'category')} key={category.name}>
+        <Link href={linkResolver(category.slug, 'category')} key={category.title}>
           <Badge type='neutral' style='filled' text={category.title} />
         </Link>
       )
