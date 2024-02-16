@@ -41,5 +41,5 @@ export const homepagePostsQuery = groq`
             image,
             name,
         },
-    }
+    } | order(date desc)
 `
