@@ -1,18 +1,11 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import {
-  Label,
-  Input,
-  FormField,
-  Form,
-} from '@components/form'
-import { Button, ButtonWrapper } from '@components/button'
 import { Wrapper } from '@components/auth/wrapper'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
-import { signup } from '@actions/auth/signup'
 
 import { createClient } from '@lib/supabase/supabase.server'
+import { SignUpForm } from './sign-up-form'
 
 export default async function SignUpPage() {
   const cookieStore = cookies()
@@ -40,19 +33,7 @@ export default async function SignUpPage() {
       >
         <Link href='/login'>Login</Link> if you already have an account.
       </Text>
-      <Form>
-        <FormField>
-          <Label htmlFor="email">Email</Label>
-          <Input type='email' id='email' name='email' />
-        </FormField>
-        <FormField>
-          <Label htmlFor="password">Password</Label>
-          <Input type='password' id='password' name='password' />
-        </FormField>
-        <ButtonWrapper>
-          <Button formAction={signup} text='Sign up' />
-        </ButtonWrapper>
-      </Form>
+      <SignUpForm />
     </Wrapper>
   )
 }

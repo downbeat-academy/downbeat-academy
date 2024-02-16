@@ -10,6 +10,7 @@ export default async function AccountPage() {
         type='expressive-body'
         size='body-base'
         color='primary'
+        collapse
       >Check your email to confirm your account.</Text>
     </Wrapper>
   )

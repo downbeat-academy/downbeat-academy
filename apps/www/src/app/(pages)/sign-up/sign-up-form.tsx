@@ -2,19 +2,18 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { loginSchema, type TLoginFormSchema } from '@lib/types/auth/login-form-schema'
+import { signUpSchema, type TSignUpFormSchema } from '@lib/types/auth/sign-up-form-schema'
 import { Form, FormField, Label, Input, ValidationMessage } from '@components/form'
 import { Button, ButtonWrapper } from '@components/button'
-import { login } from '@actions/auth/login'
+import { signup } from '@actions/auth/sign-up'
 
-export function LoginForm() {
-
+export function SignUpForm() {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<TLoginFormSchema>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<TSignUpFormSchema>({
+    resolver: zodResolver(signUpSchema),
   });
 
   const onSubmit = handleSubmit((formData) => {
@@ -22,7 +21,7 @@ export function LoginForm() {
       email: formData.email || '',
       password: formData.password || '',
     };
-    login(formDataObject);
+    signup(formDataObject);
   });
 
   return (
@@ -55,7 +54,7 @@ export function LoginForm() {
         <Button
           type='submit'
           variant='primary'
-          text={isSubmitting ? 'Logging you in…' : 'Login'}
+          text={isSubmitting ? 'Kicking it off…' : 'Sign up'}
         />
       </ButtonWrapper>
     </Form>
