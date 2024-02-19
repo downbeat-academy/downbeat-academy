@@ -63,6 +63,7 @@ const MusicNotation = ({
       />
       <Tabs.Root
         defaultValue={toKebabCase(files[0].label)}
+        className={s.content}
       >
         <Tabs.List>
           {renderTriggers}

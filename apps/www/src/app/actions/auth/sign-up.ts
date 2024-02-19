@@ -20,7 +20,7 @@ export async function signup(formData: FormData) {
     email: formData.email,
     password: formData.password,
     options: {
-      emailRedirectTo: `${process.env.PROJECT_URL}/auth/confirm?test`
+      emailRedirectTo: `${process.env.PROJECT_URL}/auth/confirm`
     }
   })
 

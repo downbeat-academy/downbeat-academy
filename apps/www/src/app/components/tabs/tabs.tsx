@@ -18,7 +18,6 @@ const Tabs = ({
 }: TabsProps) => {
 
   const classes = classnames([
-    s.root,
     className,
   ])
 
