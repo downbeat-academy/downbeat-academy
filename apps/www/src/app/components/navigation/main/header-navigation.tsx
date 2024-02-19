@@ -76,16 +76,9 @@ const HeaderNavigation = async ({
               <>
                 <Button
                   text='Login'
-                  variant='ghost'
-                  className={s[`login-button`]}
-                  size='small'
-                  href='/login'
-                />
-                <Button
-                  text='Sign up for free'
                   variant='primary'
                   size='small'
-                  href='/sign-up'
+                  href='/login'
                 />
               </>
             ) : (
@@ -96,12 +89,6 @@ const HeaderNavigation = async ({
                   variant='ghost'
                   className={s[`login-button`]}
                   href='/logout'
-                />
-                <Button
-                  text='My account'
-                  variant='primary'
-                  size='small'
-                  href='/account'
                 />
               </>
             )

@@ -6,6 +6,7 @@ import { signUpSchema, type TSignUpFormSchema } from '@lib/types/auth/sign-up-fo
 import { Form, FormField, Label, Input, ValidationMessage } from '@components/form'
 import { Button, ButtonWrapper } from '@components/button'
 import { signup } from '@actions/auth/sign-up'
+import s from './login.module.scss'
 
 export function SignUpForm() {
   const {

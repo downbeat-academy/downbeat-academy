@@ -1,23 +1,22 @@
-.wrapper {
+.login--wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: $cds-scale-2x-large 0;
-
-  @media (min-width: 768px) {
-    padding: $cds-scale-5x-large $cds-scale-base;
-  }
+  align-items: center;
+  height: 75vh;
 }
 
-.inner-wrapper {
-  max-width: 500px;
+.login--wrapper-inner {
+  max-width: 600px;
   background: $cds-color-surface-primary;
   border: 1px solid $cds-color-border-primary;
   border-radius: $cds-radii-soft;
+}
+
+.login--content {
   padding: $cds-scale-base;
 
   @media (min-width: 768px) {
-    padding: $cds-scale-4x-large;
+    padding: $cds-scale-2x-large;
   }
 }
