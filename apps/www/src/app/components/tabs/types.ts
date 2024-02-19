@@ -21,6 +21,7 @@ interface TabTriggerProps {
   children?: React.ReactNode,
   value: string,
   disabled?: boolean,
+  icon?: any,
   className?: string,
 }
 

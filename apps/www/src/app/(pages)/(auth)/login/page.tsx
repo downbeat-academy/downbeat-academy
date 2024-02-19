@@ -4,6 +4,7 @@ import { Text } from '@components/text'
 import * as Tabs from '@components/tabs'
 import { createClient } from '@lib/supabase/supabase.server'
 import s from './login.module.scss'
+import { PlusCircleOutline } from 'cadence-icons'
 
 import type { Metadata } from 'next'
 
