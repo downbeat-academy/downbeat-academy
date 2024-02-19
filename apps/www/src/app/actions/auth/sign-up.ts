@@ -29,5 +29,5 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/sign-up/confirm')
+  // redirect('/sign-up/confirm')
 }

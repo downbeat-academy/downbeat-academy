@@ -5,14 +5,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { signUpSchema, type TSignUpFormSchema } from '@lib/types/auth/sign-up-form-schema'
 import { Form, FormField, Label, Input, ValidationMessage } from '@components/form'
 import { Button, ButtonWrapper } from '@components/button'
+import { useToast } from '@components/toast'
 import { signup } from '@actions/auth/sign-up'
-import s from './login.module.scss'
 
 export function SignUpForm() {
+  const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpSchema),
   });
@@ -23,6 +26,8 @@ export function SignUpForm() {
       password: formData.password || '',
     };
     signup(formDataObject);
+
+    reset();
   });
 
   return (
@@ -56,6 +61,11 @@ export function SignUpForm() {
           type='submit'
           variant='primary'
           text={isSubmitting ? 'Kicking it off…' : 'Sign up'}
+          onClick={() => !isSubmitting ? toast({
+            title: 'Account created!',
+            description: 'Check your email to confirm your account.',
+            variant: 'success'
+          }) : null}
         />
       </ButtonWrapper>
     </Form>

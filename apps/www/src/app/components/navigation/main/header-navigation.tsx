@@ -90,6 +90,12 @@ const HeaderNavigation = async ({
                   className={s[`login-button`]}
                   href='/logout'
                 />
+                <Button
+                  text='Account'
+                  size='small'
+                  variant='primary'
+                  href='/account'
+                />
               </>
             )
           }

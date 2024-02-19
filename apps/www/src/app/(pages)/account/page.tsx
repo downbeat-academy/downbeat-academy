@@ -10,6 +10,7 @@ import { Flex } from '@components/flex'
 import { createClient } from '@lib/supabase/supabase.server'
 
 export default async function AccountPage() {
+
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
