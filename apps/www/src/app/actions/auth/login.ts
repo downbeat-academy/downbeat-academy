@@ -15,10 +15,16 @@ export async function login(formData: FormData) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const { error } = await supabase.auth.signInWithPassword(formData)
+  // const { error } = await supabase.auth.signInWithPassword(formData)
 
-  if (error) {
-    redirect('/error')
+  // if (error) {
+  //   redirect('/error')
+  // }
+
+  try {
+    await supabase.auth.signInWithPassword(formData)
+  } catch (e) {
+    throw new Error('Failed to sign in')
   }
 
   revalidatePath('/', 'layout')

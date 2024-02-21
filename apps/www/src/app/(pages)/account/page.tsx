@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
@@ -6,15 +5,13 @@ import { Button } from '@components/button'
 import { Text } from '@components/text'
 import { Form } from '@components/form'
 import { Flex } from '@components/flex'
-
-import { createClient } from '@lib/supabase/supabase.server'
+import { readUserSession } from '@actions/auth/read-user-session'
+import { logout } from '@actions/auth/logout'
 
 export default async function AccountPage() {
 
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+  const { data, error } = await readUserSession()
 
-  const { data, error } = await supabase.auth.getUser()
   if (error || !data?.user) {
     redirect('/login')
   }
@@ -50,8 +47,8 @@ export default async function AccountPage() {
           size='body-base'
           color='primary'
         ><strong>Email:</strong> {data.user.email}</Text>
-        <Form>
-          <Button href='/logout' text='Log out' />
+        <Form action={logout}>
+          <Button variant='primary' text='Log out' />
         </Form>
       </Flex>
     </SectionContainer>

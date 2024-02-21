@@ -27,6 +27,8 @@ export function SignUpForm() {
     };
     signup(formDataObject);
 
+    console.log(errors)
+
     reset();
   });
 
