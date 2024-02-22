@@ -14,6 +14,7 @@
 // Base styles
 
 .toast--base {
+  position: relative;
   padding: $cds-scale-base;
   border-radius: $cds-radii-medium;
   display: flex;
@@ -23,7 +24,8 @@
   gap: $cds-scale-x-small;
   box-shadow: 2px 2px 8px 0 hsla(240, 36%, 22%, 25%);
   min-width: 25vw;
-  transition: all 0.5s ease;
+  transition: transform 0.5s ease;
+  animation: slide-up 0.2s ease;
 
   & > div {
     display: flex;
@@ -37,6 +39,15 @@
 
   @media (max-width: 480px) {
     min-width: 90vw;
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 }
 
@@ -96,8 +107,8 @@
 
 .toast--close {
   position: absolute;
-  top: $cds-scale-2x-large;
-  right: $cds-scale-2x-large;
+  top: $cds-scale-base;
+  right: $cds-scale-base;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +119,7 @@
   border-radius: $cds-radii-hard;
   border: 1px solid $cds-color-palette-blackberry-300;
   padding: 2px;
-  transition: $cds-transition-03;
+  transition: background 100ms ease-in-out;
 
   &:hover {
     background: $cds-color-palette-blackberry-200;
