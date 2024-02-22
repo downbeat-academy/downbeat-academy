@@ -1,12 +1,11 @@
 import classnames from 'classnames'
-import { cookies } from 'next/headers'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
-import { createClient } from '@lib/supabase/supabase.server'
 import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from '@components/text'
 import { Button } from '@components/button'
+import { readUserSession } from '@actions/auth/read-user-session'
 import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
@@ -39,10 +38,7 @@ const HeaderNavigation = async ({
   className,
 }: HeaderNavigationProps) => {
 
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
-  // const { data, error } = await supabase.auth.getUser()
+  const { data } = await readUserSession()
 
   const navData = await getNavigationData();
 
@@ -71,14 +67,6 @@ const HeaderNavigation = async ({
           </Text>
         </Banner.Content>
         <Banner.Actions>
-          <Button
-            text='Login / Sign up'
-            variant='primary'
-            size='small'
-            href='/login'
-          />
-        </Banner.Actions>
-        {/* <Banner.Actions>
           {
             !data?.user ? (
               <>
@@ -107,7 +95,7 @@ const HeaderNavigation = async ({
               </>
             )
           }
-        </Banner.Actions> */}
+        </Banner.Actions>
       </Banner.Root>
       <NavContent links={navData} />
     </header>
