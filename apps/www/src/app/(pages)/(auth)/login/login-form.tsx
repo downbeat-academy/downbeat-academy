@@ -25,7 +25,6 @@ export function LoginForm() {
     login(formDataObject);
   });
 
-
   return (
     <Form onSubmit={onSubmit}>
       <FormField>
@@ -35,6 +34,7 @@ export function LoginForm() {
           id='email'
           name='email'
           register={register}
+          isInvalid={!!errors.email}
         />
         {errors.email &&
           <ValidationMessage type='error'>{`${errors.email.message}`}</ValidationMessage>
@@ -47,6 +47,7 @@ export function LoginForm() {
           id='password'
           name='password'
           register={register}
+          isInvalid={!!errors.password}
         />
         {errors.password &&
           <ValidationMessage type='error'>{`${errors.password.message}`}</ValidationMessage>

@@ -41,6 +41,7 @@ export function SignUpForm() {
           id='email'
           name='email'
           register={register}
+          isInvalid={!!errors.email}
         />
         {errors.email &&
           <ValidationMessage type='error'>{`${errors.email.message}`}</ValidationMessage>
@@ -53,11 +54,25 @@ export function SignUpForm() {
           id='password'
           name='password'
           register={register}
+          isInvalid={!!errors.password}
         />
         {errors.password &&
           <ValidationMessage type='error'>{`${errors.password.message}`}</ValidationMessage>
         }
       </FormField>
+      {/* <FormField>
+        <Label htmlFor="confirm-password">Confirm password</Label>
+        <Input
+          type='password'
+          id='confirm-password'
+          name='confirm-password'
+          register={register}
+          isInvalid={!!errors.confirmPassword}
+        />
+        {errors.confirmPassword &&
+          <ValidationMessage type='error'>{`${errors.confirmPassword.message}`}</ValidationMessage>
+        }
+      </FormField> */}
       <ButtonWrapper>
         <Button
           type='submit'

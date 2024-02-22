@@ -5,3 +5,7 @@
 	border: 1px solid $cds-color-border-primary;
 	padding: $cds-scale-small;
 }
+
+.cds-input--is-invalid {
+	border: 2px solid $cds-color-border-critical;
+}

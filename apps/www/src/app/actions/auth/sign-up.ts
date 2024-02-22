@@ -3,15 +3,11 @@
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { TSignUpFormSchema } from '@lib/types/auth/sign-up-form-schema'
 
 import { createClient } from '@lib/supabase/supabase.server'
 
-export type FormData = {
-  email: string
-  password: string
-}
-
-export async function signup(formData: FormData) {
+export async function signup(formData: TSignUpFormSchema) {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
@@ -32,9 +28,9 @@ export async function signup(formData: FormData) {
     await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
-      // options: {
-      //   emailRedirectTo: `${process.env.PROJECT_URL}/auth/confirm`
-      // }
+      options: {
+        emailRedirectTo: `${process.env.PROJECT_URL}/auth/confirm`
+      }
     })
   } catch (e) {
     console.log(e)
@@ -42,5 +38,5 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath('/', 'layout')
-  // redirect('/sign-up/confirm')
+  redirect('/')
 }

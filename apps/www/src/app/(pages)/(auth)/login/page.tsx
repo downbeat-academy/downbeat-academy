@@ -21,11 +21,11 @@ export default async function LoginPage() {
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const { data } = await supabase.auth.getUser()
+  // const { data } = await supabase.auth.getUser()
 
-  if (data?.user) {
-    redirect('/account')
-  }
+  // if (data?.user) {
+  //   redirect('/account')
+  // }
 
   return (
     <section className={s['login--wrapper']}>

@@ -50,6 +50,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   required?: boolean;
   value?: string;
   id?: string;
+  isInvalid?: boolean;
   className?: string;
   // Specific properties for react-hook-form
   register?: any;
