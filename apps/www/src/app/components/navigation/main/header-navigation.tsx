@@ -6,6 +6,7 @@ import * as Banner from '@components/banner'
 import { Text } from '@components/text'
 import { Button } from '@components/button'
 import { readUserSession } from '@actions/auth/read-user-session'
+import { logout } from '@actions/auth/logout'
 import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
@@ -79,13 +80,15 @@ const HeaderNavigation = async ({
               </>
             ) : (
               <>
-                <Button
-                  text='Log out'
-                  size='small'
-                  variant='ghost'
-                  className={s[`login-button`]}
-                  href='/logout'
-                />
+                <form action={logout}>
+                  <Button
+                    type='submit'
+                    text='Log out'
+                    size='small'
+                    variant='ghost'
+                    className={s[`login-button`]}
+                  />
+                </form>
                 <Button
                   text='Account'
                   size='small'
