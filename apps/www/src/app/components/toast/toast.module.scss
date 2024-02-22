@@ -6,6 +6,8 @@
   right: 0;
   z-index: 100;
   display: flex;
+  flex-direction: column;
+  gap: $cds-scale-base;
   padding: $cds-scale-large;
 }
 
@@ -45,30 +47,18 @@
   border: 1px solid $cds-color-palette-blackberry-400;
   color: $cds-color-foreground-primary;
   transition: all 0.5s ease;
-
-  & svg {
-    color: $cds-color-palette-blackberry-500;
-  }
 }
 
 .toast--variant-success {
   background: $cds-color-palette-kale-100;
   border: 1px solid $cds-color-palette-kale-600;
   color: $cds-color-foreground-primary;
-
-  & svg {
-    color: $cds-color-palette-kale-600;
-  }
 }
 
 .toast--variant-warning {
   background: $cds-color-palette-pineapple-100;
   border: 1px solid $cds-color-palette-pineapple-600;
   color: $cds-color-foreground-primary;
-
-  & svg {
-    color: $cds-color-palette-pineapple-600;
-  }
 }
 
 .toast--variant-error {
@@ -113,5 +103,18 @@
   justify-content: center;
   border: none;
   cursor: pointer;
-  background: none;
+  background: $cds-color-palette-blackberry-100;
+  color: $cds-color-palette-blackberry-500;
+  border-radius: $cds-radii-hard;
+  border: 1px solid $cds-color-palette-blackberry-300;
+  padding: 2px;
+  transition: $cds-transition-03;
+
+  &:hover {
+    background: $cds-color-palette-blackberry-200;
+  }
+
+  &:active {
+    background: $cds-color-palette-blackberry-300;
+  }
 }
