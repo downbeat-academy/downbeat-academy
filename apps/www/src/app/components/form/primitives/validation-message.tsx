@@ -37,7 +37,9 @@ const ValidationMessage = ({
     <span
       className={classes}
     >
-      {getType(type)}
+      <i className={s['cds-validation-message--icon']}>
+        {getType(type)}
+      </i>
       {children}
     </span>
   )

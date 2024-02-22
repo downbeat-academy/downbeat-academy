@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { XCircleOutline } from "cadence-icons";
+import { X } from 'cadence-icons'
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import s from "../toast.module.scss";
 
@@ -13,9 +13,7 @@ const ToastClose = forwardRef<
     className={s['toast--close']}
     {...props}
   >
-    <XCircleOutline
-      width={24}
-    />
+    <X width={16} />
   </ToastPrimitives.Close>
 ))
 

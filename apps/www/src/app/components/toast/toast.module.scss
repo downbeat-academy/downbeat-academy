@@ -6,12 +6,15 @@
   right: 0;
   z-index: 100;
   display: flex;
+  flex-direction: column;
+  gap: $cds-scale-base;
   padding: $cds-scale-large;
 }
 
 // Base styles
 
 .toast--base {
+  position: relative;
   padding: $cds-scale-base;
   border-radius: $cds-radii-medium;
   display: flex;
@@ -21,7 +24,8 @@
   gap: $cds-scale-x-small;
   box-shadow: 2px 2px 8px 0 hsla(240, 36%, 22%, 25%);
   min-width: 25vw;
-  transition: all 0.5s ease;
+  transition: transform 0.5s ease;
+  animation: slide-up 0.2s ease;
 
   & > div {
     display: flex;
@@ -36,6 +40,15 @@
   @media (max-width: 480px) {
     min-width: 90vw;
   }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 }
 
 // Variants
@@ -45,30 +58,18 @@
   border: 1px solid $cds-color-palette-blackberry-400;
   color: $cds-color-foreground-primary;
   transition: all 0.5s ease;
-
-  & svg {
-    color: $cds-color-palette-blackberry-500;
-  }
 }
 
 .toast--variant-success {
   background: $cds-color-palette-kale-100;
   border: 1px solid $cds-color-palette-kale-600;
   color: $cds-color-foreground-primary;
-
-  & svg {
-    color: $cds-color-palette-kale-600;
-  }
 }
 
 .toast--variant-warning {
   background: $cds-color-palette-pineapple-100;
   border: 1px solid $cds-color-palette-pineapple-600;
   color: $cds-color-foreground-primary;
-
-  & svg {
-    color: $cds-color-palette-pineapple-600;
-  }
 }
 
 .toast--variant-error {
@@ -106,12 +107,25 @@
 
 .toast--close {
   position: absolute;
-  top: $cds-scale-2x-large;
-  right: $cds-scale-2x-large;
+  top: $cds-scale-base;
+  right: $cds-scale-base;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   cursor: pointer;
-  background: none;
+  background: $cds-color-palette-blackberry-100;
+  color: $cds-color-palette-blackberry-500;
+  border-radius: $cds-radii-hard;
+  border: 1px solid $cds-color-palette-blackberry-300;
+  padding: 2px;
+  transition: background 100ms ease-in-out;
+
+  &:hover {
+    background: $cds-color-palette-blackberry-200;
+  }
+
+  &:active {
+    background: $cds-color-palette-blackberry-300;
+  }
 }

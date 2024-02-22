@@ -2074,11 +2074,11 @@
         ]
       },
       "hard": {
-        "value": "{scale.3x-small}",
+        "value": "{scale.2x-small}",
         "filePath": "tokens/radii/index.json",
         "isSource": true,
         "original": {
-          "value": "{scale.3x-small}"
+          "value": "{scale.2x-small}"
         },
         "attributes": {
           "category": "radii",
