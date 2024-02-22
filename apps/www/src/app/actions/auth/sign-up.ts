@@ -28,9 +28,6 @@ export async function signup(formData: TSignUpFormSchema) {
     await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
-      options: {
-        emailRedirectTo: `${process.env.PROJECT_URL}/auth/confirm`
-      }
     })
   } catch (e) {
     console.log(e)
