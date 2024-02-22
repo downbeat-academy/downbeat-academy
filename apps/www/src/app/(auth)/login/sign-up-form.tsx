@@ -14,7 +14,7 @@ export function SignUpForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpSchema),
@@ -24,12 +24,16 @@ export function SignUpForm() {
     const formDataObject = {
       email: formData.email || '',
       password: formData.password || '',
+      confirmPassword: formData.confirmPassword || '',
     };
     signup(formDataObject);
-
-    console.log(errors)
-
     reset();
+    toast({
+      title: 'Account created!',
+      description: 'We\'ve created your account for you.',
+      variant: 'success',
+      duration: 5000,
+    })
   });
 
   return (
@@ -60,29 +64,24 @@ export function SignUpForm() {
           <ValidationMessage type='error'>{`${errors.password.message}`}</ValidationMessage>
         }
       </FormField>
-      {/* <FormField>
-        <Label htmlFor="confirm-password">Confirm password</Label>
+      <FormField>
+        <Label htmlFor="confirmPassword">Confirm password</Label>
         <Input
           type='password'
-          id='confirm-password'
-          name='confirm-password'
+          id='confirmPassword'
+          name='confirmPassword'
           register={register}
           isInvalid={!!errors.confirmPassword}
         />
         {errors.confirmPassword &&
           <ValidationMessage type='error'>{`${errors.confirmPassword.message}`}</ValidationMessage>
         }
-      </FormField> */}
+      </FormField>
       <ButtonWrapper>
         <Button
           type='submit'
           variant='primary'
-          text={isSubmitting ? 'Kicking it off…' : 'Sign up'}
-          onClick={() => !isSubmitting ? toast({
-            title: 'Account created!',
-            description: 'Check your email to confirm your account.',
-            variant: 'success'
-          }) : null}
+          text='Sign up'
         />
       </ButtonWrapper>
     </Form>

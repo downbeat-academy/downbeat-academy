@@ -1,7 +1,7 @@
 .cds-validation-message--root {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: flex-start;
 	gap: $cds-scale-2x-small;
 	font-size: $cds-typography-font-size-fixed-productive-small;
 	font-family: $cds-typography-font-family-productive-body;
@@ -18,4 +18,10 @@
 
 .cds-validation-message--type-error {
 	color: $cds-color-foreground-critical-default;
+}
+
+// Icon wrapper
+
+.cds-validation-message--icon {
+	padding: 2px;
 }
