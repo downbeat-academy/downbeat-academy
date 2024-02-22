@@ -42,7 +42,7 @@ const HeaderNavigation = async ({
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
 
-  const { data, error } = await supabase.auth.getUser()
+  // const { data, error } = await supabase.auth.getUser()
 
   const navData = await getNavigationData();
 
@@ -71,21 +71,22 @@ const HeaderNavigation = async ({
           </Text>
         </Banner.Content>
         <Banner.Actions>
+          <Button
+            text='Login / Sign up'
+            variant='primary'
+            size='small'
+            href='/login'
+          />
+        </Banner.Actions>
+        {/* <Banner.Actions>
           {
             !data?.user ? (
               <>
                 <Button
-                  text='Login'
-                  variant='ghost'
-                  className={s[`login-button`]}
-                  size='small'
-                  href='/login'
-                />
-                <Button
-                  text='Sign up for free'
+                  text='Login / Sign up'
                   variant='primary'
                   size='small'
-                  href='/sign-up'
+                  href='/login'
                 />
               </>
             ) : (
@@ -98,15 +99,15 @@ const HeaderNavigation = async ({
                   href='/logout'
                 />
                 <Button
-                  text='My account'
-                  variant='primary'
+                  text='Account'
                   size='small'
+                  variant='primary'
                   href='/account'
                 />
               </>
             )
           }
-        </Banner.Actions>
+        </Banner.Actions> */}
       </Banner.Root>
       <NavContent links={navData} />
     </header>

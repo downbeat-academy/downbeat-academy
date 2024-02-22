@@ -5,13 +5,15 @@ interface TabsProps {
   onValueChange?: any,
   orientation?: 'vertical' | 'horizontal',
   dir?: 'ltr' | 'rtl',
-  activationMode?: 'automatic' | 'manual'
+  activationMode?: 'automatic' | 'manual',
+  isContained?: boolean,
   className?: string,
 }
 
 interface TabListProps {
   children?: React.ReactNode,
   loop?: boolean,
+  isContained?: boolean,
   className?: string,
 }
 
@@ -19,6 +21,7 @@ interface TabTriggerProps {
   children?: React.ReactNode,
   value: string,
   disabled?: boolean,
+  icon?: any,
   className?: string,
 }
 

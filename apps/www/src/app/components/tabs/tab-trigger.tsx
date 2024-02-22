@@ -10,6 +10,7 @@ const TabTrigger = ({
   children,
   value,
   disabled,
+  icon,
   className
 }: TabTriggerProps) => {
 
@@ -24,6 +25,7 @@ const TabTrigger = ({
       className={classes}
       disabled={disabled}
     >
+      {icon}
       {children}
     </TabsPrimitive.Trigger>
   )
@@ -33,5 +35,5 @@ TabTrigger.displayName = 'TabTrigger'
 
 const Trigger = TabTrigger;
 
-export { TabTrigger, Trigger } 
+export { TabTrigger, Trigger }
 export type { TabTriggerProps }

@@ -14,10 +14,12 @@ const Input = ({
   id,
   className,
   register,
+  isInvalid,
 }: InputProps) => {
 
   const classes = classnames(
     s['cds-input--root'],
+    isInvalid ? s['cds-input--is-invalid'] : null,
     className,
   )
 
