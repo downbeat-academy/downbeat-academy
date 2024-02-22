@@ -13,96 +13,85 @@ import type { HeaderNavigationProps } from './types'
 
 // Fetch the data for the navigation
 async function getNavigationData() {
-  const client = sanityClient
-  const res = client.fetch(mainNavQuery)
+	const client = sanityClient
+	const res = client.fetch(mainNavQuery)
 
-  if (!res) {
-    throw new Error('Failed to fetch the main navigation data.')
-  }
+	if (!res) {
+		throw new Error('Failed to fetch the main navigation data.')
+	}
 
-  return res;
+	return res
 }
 
 async function getBannerData() {
-  const client = sanityClient
-  const res = client.fetch(bannerQuery)
+	const client = sanityClient
+	const res = client.fetch(bannerQuery)
 
-  if (!res) {
-    throw new Error('Failed to fetch the banner data.');
-  }
+	if (!res) {
+		throw new Error('Failed to fetch the banner data.')
+	}
 
-  return res;
+	return res
 }
 
 // Render the component
-const HeaderNavigation = async ({
-  className,
-}: HeaderNavigationProps) => {
+const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
+	const { data } = await readUserSession()
 
-  const { data } = await readUserSession()
+	const navData = await getNavigationData()
 
-  const navData = await getNavigationData();
+	const { title: bannerTitle, headline: bannerHeadline } = await getBannerData()
 
-  const {
-    title: bannerTitle,
-    headline: bannerHeadline
-  } = await getBannerData();
+	const classes = classnames(s.root, [className])
 
-  const classes = classnames(
-    s.root,
-    [className],
-  )
-
-  return (
-    <header className={classes}>
-      <Banner.Root type='primary'>
-        <Banner.Content>
-          <Text
-            tag='p'
-            color='high-contrast'
-            type='productive-body'
-            size='body-small'
-            collapse
-          >
-            {bannerHeadline}
-          </Text>
-        </Banner.Content>
-        <Banner.Actions>
-          {
-            !data?.user ? (
-              <>
-                <Button
-                  text='Login / Sign up'
-                  variant='primary'
-                  size='small'
-                  href='/login'
-                />
-              </>
-            ) : (
-              <>
-                <form action={logout}>
-                  <Button
-                    type='submit'
-                    text='Log out'
-                    size='small'
-                    variant='ghost'
-                    className={s[`login-button`]}
-                  />
-                </form>
-                <Button
-                  text='Account'
-                  size='small'
-                  variant='primary'
-                  href='/account'
-                />
-              </>
-            )
-          }
-        </Banner.Actions>
-      </Banner.Root>
-      <NavContent links={navData} />
-    </header>
-  )
+	return (
+		<header className={classes}>
+			<Banner.Root type="primary">
+				<Banner.Content>
+					<Text
+						tag="p"
+						color="high-contrast"
+						type="productive-body"
+						size="body-small"
+						collapse
+					>
+						{bannerHeadline}
+					</Text>
+				</Banner.Content>
+				<Banner.Actions>
+					{!data?.user ? (
+						<>
+							<Button
+								text="Login / Sign up"
+								variant="primary"
+								size="small"
+								href="/login"
+							/>
+						</>
+					) : (
+						<>
+							<form action={logout}>
+								<Button
+									type="submit"
+									text="Log out"
+									size="small"
+									variant="ghost"
+									className={s[`login-button`]}
+								/>
+							</form>
+							<Button
+								text="Account"
+								size="small"
+								variant="primary"
+								href="/account"
+							/>
+						</>
+					)}
+				</Banner.Actions>
+			</Banner.Root>
+			<NavContent links={navData} />
+		</header>
+	)
 }
 
-export { HeaderNavigation } 
+export { HeaderNavigation }
