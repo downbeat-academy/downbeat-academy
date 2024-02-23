@@ -4,7 +4,6 @@ import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { TSignUpFormSchema } from '@lib/types/auth/sign-up-form-schema'
-import { useToast } from '@components/toast'
 
 import { createClient } from '@lib/supabase/supabase.server'
 

@@ -13,6 +13,7 @@ import {
 } from '@components/form'
 import { Button } from '@components/button'
 import { useToast } from "@components/toast"
+import { sendEmail } from '@actions/email/send-email'
 import s from './contact-form.module.scss'
 
 export function ContactForm() {
@@ -28,31 +29,23 @@ export function ContactForm() {
     resolver: zodResolver(contactFormSchema)
   })
 
-  // Handle form submission and send an email with the Resend API route
   const onSubmit = async (formData: TContactFormSchema) => {
-
-    await fetch('/api/email/contact-form', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-      }),
-
-    }).then(() => {
-      console.log('Email sent successfully');
+    try {
+      const contactFormObject = {
+        name: formData.name || '',
+        email: formData.email || '',
+        message: formData.message || '',
+      }
+      await sendEmail(contactFormObject)
       toast({
         title: 'Message sent!',
         description: "Thank you for the note, we'll be in touch soon!",
         variant: 'success',
       })
-    });
-
-    reset();
+      reset()
+    } catch (e) {
+      throw new Error('Failed to send email')
+    }
   }
 
   return (

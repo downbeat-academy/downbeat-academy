@@ -17,16 +17,21 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = handleSubmit((formData) => {
-    const formDataObject = {
-      email: formData.email || '',
-      password: formData.password || '',
-    };
-    login(formDataObject);
-  });
+  const onSubmit = async (formData: TLoginFormSchema) => {
+    try {
+      const formDataObject = {
+        email: formData.email || '',
+        password: formData.password || '',
+      };
+      await login(formDataObject);
+    } catch (e) {
+      console.log(e);
+      throw new Error('Failed to sign up');
+    }
+  }
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormField>
         <Label htmlFor="email">Email</Label>
         <Input
@@ -57,7 +62,8 @@ export function LoginForm() {
         <Button
           type='submit'
           variant='primary'
-          text={isSubmitting ? 'Logging you in…' : 'Login'}
+          text={isSubmitting ? '🎵 Logging you in…' : 'Login'}
+          disabled={isSubmitting}
         />
       </ButtonWrapper>
     </Form>
