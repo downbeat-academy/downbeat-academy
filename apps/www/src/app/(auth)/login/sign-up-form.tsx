@@ -39,8 +39,6 @@ export function SignUpForm() {
       // Call the signup function and pass the data
       await signup(formDataObject);
       // Create a contact from the signup
-      await createContact(createContactObject);
-
       // Display a toast to the user when the data has been passed to the form
       toast({
         title: 'Account created!',
@@ -49,6 +47,8 @@ export function SignUpForm() {
         duration: 5000,
         direction: 'from-bottom',
       })
+      await createContact(createContactObject);
+
       // Reset the form
       reset()
     } catch (e) {
