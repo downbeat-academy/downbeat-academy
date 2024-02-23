@@ -14,31 +14,40 @@ export function SignUpForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = handleSubmit((formData) => {
-    const formDataObject = {
-      email: formData.email || '',
-      password: formData.password || '',
-      confirmPassword: formData.confirmPassword || '',
-    };
-    signup(formDataObject);
-    reset();
-    toast({
-      title: 'Account created!',
-      description: 'Confirm your email to activate your account.',
-      variant: 'success',
-      duration: 5000,
-      direction: 'from-bottom',
-    })
-  });
+  const onSubmit = async (formData: TSignUpFormSchema) => {
+    try {
+      // Create/define what the data should look like
+      const formDataObject = {
+        email: formData.email || '',
+        password: formData.password || '',
+        confirmPassword: formData.confirmPassword || '',
+      };
+      // Call the signup function and pass the data
+      await signup(formDataObject);
+      // Display a toast to the user when the data has been passed to the form
+      toast({
+        title: 'Account created!',
+        description: 'Confirm your email to activate your account.',
+        variant: 'success',
+        duration: 5000,
+        direction: 'from-bottom',
+      })
+      // Reset the form
+      reset()
+    } catch (e) {
+      console.log(e);
+      throw new Error('Failed to sign up');
+    }
+  }
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormField>
         <Label htmlFor="email">Email</Label>
         <Input
@@ -82,7 +91,8 @@ export function SignUpForm() {
         <Button
           type='submit'
           variant='primary'
-          text='Sign up'
+          text={isSubmitting ? 'Signing you up…' : 'Sign up'}
+          disabled={isSubmitting}
         />
       </ButtonWrapper>
     </Form>
