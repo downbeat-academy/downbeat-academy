@@ -1,10 +1,10 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormField, Input, Label, ValidationMessage }  from '@components/form'
+import { Form, FormField, Input, Label, ValidationMessage } from '@components/form'
 import { Button } from '@components/button'
 import { useToast } from "@components/toast"
+import { deleteContact } from '@actions/email/delete-contact'
 
 export function UnsubscribeForm() {
   const { toast } = useToast()
@@ -17,26 +17,18 @@ export function UnsubscribeForm() {
   } = useForm();
 
   const onSubmit = async (formData: any) => {
-
-    await fetch('/api/email/delete-contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: formData.email,
-      }),
-    }).then(() => {
-      console.log('Unsubscribed', formData);
+    try {
+      await deleteContact({ email: formData.email, audienceId: process.env.RESEND_DEFAULT_AUDIENCE_ID });
       toast({
         title: 'Unsubscribed',
         description: "You have been unsubscribed from our newsletter.",
         variant: 'success',
       })
       reset();
-    });
-
-    reset();
+    } catch (e) {
+      console.log(e);
+      throw new Error('Failed to unsubscribe');
+    }
   }
 
   return (
@@ -60,7 +52,7 @@ export function UnsubscribeForm() {
       <Button
         type='submit'
         disabled={isSubmitting}
-        text={isSubmitting ? 'See you later...' : 'Unsubscribe'}
+        text={isSubmitting ? 'See you later 👋' : 'Unsubscribe'}
       />
     </Form>
   )

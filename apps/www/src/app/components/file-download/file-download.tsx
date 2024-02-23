@@ -14,6 +14,8 @@ import {
 import { Button } from '@components/button'
 import { Text } from '@components/text'
 import { getSanityUrl } from '@utils/getSanityUrl'
+import { sendFileDownload } from '@actions/email/file-download'
+import { createContact } from '@actions/email/create-contact'
 import s from './file-download.module.scss'
 
 import type { FileDownloadProps } from './types'
@@ -43,40 +45,32 @@ const FileDownload = ({
   })
 
   const onSubmit = async (formData: TFileDownloadSchema) => {
-
-    await fetch('/api/email/file-download', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify({
-        email: formData.email,
+    try {
+      const fileDownloadObject = {
+        email: formData.email || '',
         file: fileUrl,
         title: title,
-      })
-    }).then(() => {
-      console.log('Email sent successfully');
+      }
+
+      const createContactObject = {
+        email: formData.email || '',
+        firstName: '',
+        lastName: '',
+      }
+      // Send the email
+      await sendFileDownload(fileDownloadObject)
+      // Subscribe the user to the mailing list
+      await createContact(createContactObject)
       toast({
         title: 'File sent!',
         description: "Check your inbox for the file you requested!",
         variant: 'success',
       })
-    })
-
-    await fetch('/api/email/create-contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify({
-        email: formData.email,
-      })
-    })
-
-    reset();
-  };
+      reset()
+    } catch (e) {
+      throw new Error('Failed to send email')
+    }
+  }
 
   return (
     <section className={classes}>
@@ -89,12 +83,12 @@ const FileDownload = ({
       >
         <FormField>
           <Label htmlFor='email'>Email</Label>
-            <Input
-              register={register}
-              type='email'
-              name='email'
-              placeholder='john@coltrane.com'
-            />
+          <Input
+            register={register}
+            type='email'
+            name='email'
+            placeholder='john@coltrane.com'
+          />
           {errors.email &&
             <ValidationMessage type='error'>
               {`${errors.email.message}`}

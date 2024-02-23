@@ -7,6 +7,7 @@ import { Form, FormField, Label, Input, ValidationMessage } from '@components/fo
 import { Button, ButtonWrapper } from '@components/button'
 import { useToast } from '@components/toast'
 import { signup } from '@actions/auth/sign-up'
+import { createContact } from '@actions/email/create-contact'
 
 export function SignUpForm() {
   const { toast } = useToast();
@@ -28,8 +29,18 @@ export function SignUpForm() {
         password: formData.password || '',
         confirmPassword: formData.confirmPassword || '',
       };
+
+      const createContactObject = {
+        email: formData.email || '',
+        firstName: '',
+        lastName: '',
+      }
+
       // Call the signup function and pass the data
       await signup(formDataObject);
+      // Create a contact from the signup
+      await createContact(createContactObject);
+
       // Display a toast to the user when the data has been passed to the form
       toast({
         title: 'Account created!',
