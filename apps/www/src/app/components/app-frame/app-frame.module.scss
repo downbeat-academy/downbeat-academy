@@ -3,6 +3,7 @@
 	grid-template-rows: min-content minmax(calc(100vh - 115px), min-content) min-content;
 	grid-template-areas: 'header' 'content' 'footer';
 	min-width: 100vw;
+	min-height: 100vh;
 	background: $cds-color-page-primary;
 	gap: $cds-scale-3x-large;
 }

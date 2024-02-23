@@ -30,9 +30,10 @@ export function SignUpForm() {
     reset();
     toast({
       title: 'Account created!',
-      description: 'We\'ve created your account for you.',
+      description: 'Confirm your email to activate your account.',
       variant: 'success',
       duration: 5000,
+      direction: 'from-bottom',
     })
   });
 

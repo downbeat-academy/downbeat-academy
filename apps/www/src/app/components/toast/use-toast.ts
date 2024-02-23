@@ -11,7 +11,8 @@ type ToasterToast = ToastProps & {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
-  action?: ToastActionElement
+  action?: ToastActionElement,
+  direction?: 'from-right' | 'from-bottom',
 }
 
 const actionTypes = {

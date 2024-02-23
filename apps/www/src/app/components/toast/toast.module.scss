@@ -9,9 +9,11 @@
   flex-direction: column;
   gap: $cds-scale-base;
   padding: $cds-scale-large;
+  height: fit-content;
+  transition: height 0.5s ease;
 }
 
-// Base styles
+// Toast element
 
 .toast--base {
   position: relative;
@@ -24,8 +26,7 @@
   gap: $cds-scale-x-small;
   box-shadow: 2px 2px 8px 0 hsla(240, 36%, 22%, 25%);
   min-width: 25vw;
-  transition: transform 0.5s ease;
-  animation: slide-up 0.2s ease;
+  transition: $cds-transition-07;
 
   & > div {
     display: flex;
@@ -40,18 +41,9 @@
   @media (max-width: 480px) {
     min-width: 90vw;
   }
-
-  @keyframes slide-up {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
 }
 
-// Variants
+// -- Variants
 
 .toast--variant-default {
   background: $cds-color-palette-blackberry-100;
@@ -76,9 +68,31 @@
   background: $cds-color-palette-peach-100;
   border: 1px solid $cds-color-palette-peach-400;
   color: $cds-color-foreground-primary;
+}
 
-  & svg {
-    color: $cds-color-palette-peach-600;
+// -- Direction
+
+.toast--direction-from-bottom {
+  animation: slide-up 0.2s ease;
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+.toast--direction-from-right {
+  animation: slide-left 0.2s ease;
+  @keyframes slide-left {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -119,7 +133,7 @@
   border-radius: $cds-radii-hard;
   border: 1px solid $cds-color-palette-blackberry-300;
   padding: 2px;
-  transition: background 100ms ease-in-out;
+  transition: $cds-transition-02;
 
   &:hover {
     background: $cds-color-palette-blackberry-200;
