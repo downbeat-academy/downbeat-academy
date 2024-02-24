@@ -9,12 +9,12 @@ const Input = ({
   placeholder,
   disabled,
   readonly,
-  required,
   value,
   id,
   className,
   register,
   isInvalid,
+  onChange,
 }: InputProps) => {
 
   const classes = classnames(
@@ -34,6 +34,7 @@ const Input = ({
       id={id}
       className={classes}
       {...register && { ...register(name) }}
+      onChange={onChange}
     />
   )
 }
