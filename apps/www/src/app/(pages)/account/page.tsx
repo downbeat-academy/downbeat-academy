@@ -5,7 +5,7 @@ import { Button, ButtonWrapper } from '@components/button'
 import { Text } from '@components/text'
 import { Form } from '@components/form'
 import { Flex } from '@components/flex'
-import { UpdateUserForm } from './update-user-form'
+import { UpdateUserForm } from './components/update-user-form'
 import { readUserSession } from '@actions/auth/read-user-session'
 import { logout } from '@actions/auth/logout'
 
@@ -16,8 +16,6 @@ export default async function AccountPage() {
   if (error || !data?.user) {
     redirect('/login')
   }
-
-  console.log(data.user)
 
   return (
     <SectionContainer>
@@ -58,7 +56,6 @@ export default async function AccountPage() {
           size='body-base'
           color='primary'
         ><strong>Email:</strong> {data.user.email}</Text>
-        <UpdateUserForm />
         <Form action={logout}>
           <ButtonWrapper>
             <Button variant='secondary' text='Log out' type='submit' />

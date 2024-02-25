@@ -25,7 +25,6 @@ export function UpdateUserForm() {
       const formDataObject = {
         email: formData.email || '',
         password: formData.password || '',
-        name: formData.name || '',
       };
       await updateUser(formDataObject);
       toast({
@@ -44,6 +43,7 @@ export function UpdateUserForm() {
     }
   }
 
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormField>
@@ -61,15 +61,6 @@ export function UpdateUserForm() {
           type='password'
           id='password'
           name='password'
-          register={register}
-        />
-      </FormField>
-      <FormField>
-        <Label htmlFor='name'>Name</Label>
-        <Input
-          type='text'
-          id='name'
-          name='name'
           register={register}
         />
       </FormField>

@@ -12,9 +12,6 @@ export async function updateUser(formData: TUpdateUserSchema) {
     await supabase.auth.updateUser({
       email: formData.email,
       password: formData.password,
-      data: {
-        name: formData.name,
-      }
     })
   } catch (e) {
     throw new Error('Failed to update user')

@@ -30,9 +30,12 @@
 	gap: $cds-scale-x-small;
 	justify-content: center;
 	align-items: center;
+	transition: $cds-transition-03;
 
 	&:hover {
 		cursor: pointer;
+		background: $cds-color-palette-blackberry-100;
+		border-color: $cds-color-palette-blackberry-300;
 	}
 
 	&[data-state='active'] {
@@ -40,6 +43,10 @@
 		color: $cds-color-foreground-high-contrast;
 		border: $cds-color-palette-blackberry-700;
 		box-shadow: $cds-elevation-box-shadow-base;
+
+		&:hover {
+			background: $cds-color-palette-blackberry-700;	
+		}
 	}
 }
 
