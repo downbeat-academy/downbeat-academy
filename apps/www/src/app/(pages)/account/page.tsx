@@ -9,6 +9,15 @@ import { UpdateUserForm } from './components/update-user-form'
 import { readUserSession } from '@actions/auth/read-user-session'
 import { logout } from '@actions/auth/logout'
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@components/dialog'
+
 export default async function AccountPage() {
 
   const { data, error } = await readUserSession()
@@ -56,6 +65,14 @@ export default async function AccountPage() {
           size='body-base'
           color='primary'
         ><strong>Email:</strong> {data.user.email}</Text>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant='primary' text='Update profile' />
+          </DialogTrigger>
+          <DialogContent>
+            <p>This is the Dialog content.</p>
+          </DialogContent>
+        </Dialog>
         <Form action={logout}>
           <ButtonWrapper>
             <Button variant='secondary' text='Log out' type='submit' />
