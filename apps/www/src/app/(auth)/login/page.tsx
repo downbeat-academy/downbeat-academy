@@ -34,6 +34,9 @@ export default async function LoginPage() {
 						<Text type="expressive-headline" size="h4" tag="h1" color="brand">
 							Login to your Downbeat Academy account
 						</Text>
+						<Text type='productive-body' size='body-base' tag='p' color='primary'>
+							Forgot your password? <Link href="/reset-password">Reset it here</Link>
+						</Text>
 						<LoginForm />
 					</Tabs.Content>
 					<Tabs.Content value="Sign up" className={s['login--content']}>

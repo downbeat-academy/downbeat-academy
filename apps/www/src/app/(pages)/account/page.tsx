@@ -7,8 +7,6 @@ import { readUserSession } from '@actions/auth/read-user-session'
 
 import { UpdateEmailForm } from './components/update-email-form'
 import { UpdatePasswordForm } from './components/update-password-form'
-import { EditProfileForm } from './components/edit-profile-form'
-import { LogoutForm } from './components/logout-form'
 
 export default async function AccountPage() {
 
