@@ -16,6 +16,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
+  DialogClose,
 } from '@components/dialog'
 
 export default async function AccountPage() {
@@ -70,7 +72,20 @@ export default async function AccountPage() {
             <Button variant='primary' text='Update profile' />
           </DialogTrigger>
           <DialogContent>
-            <p>This is the Dialog content.</p>
+            <DialogHeader>
+              <DialogTitle>Header title etc</DialogTitle>
+            </DialogHeader>
+            <DialogDescription>
+              This is the dialog description, lorem ipsum dolor sit amet.
+            </DialogDescription>
+            <DialogFooter>
+              <ButtonWrapper>
+                <Button text='Button' variant='primary' />
+                <DialogClose asChild>
+                  <Button text='Cancel' variant='secondary' />
+                </DialogClose>
+              </ButtonWrapper>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
         <Form action={logout}>

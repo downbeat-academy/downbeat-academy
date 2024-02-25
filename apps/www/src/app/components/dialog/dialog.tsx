@@ -7,11 +7,11 @@ import { DialogHeader } from './primitives/header'
 import { DialogFooter } from './primitives/footer'
 import { DialogTitle } from './primitives/title'
 import { DialogDescription } from './primitives/description'
+import { DialogClose } from './primitives/close'
 
 const Dialog = DialogPrimitive.Root
 const DialogTrigger = DialogPrimitive.Trigger
 const DialogPortal = DialogPrimitive.Portal
-const DialogClose = DialogPrimitive.Close
 
 export {
   Dialog,

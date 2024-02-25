@@ -1,8 +1,11 @@
+import s from '../dialog.module.scss'
+
 const DialogHeader = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
+    className={s.header}
     {...props}
   />
 )
