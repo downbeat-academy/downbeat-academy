@@ -1,24 +1,14 @@
 import { redirect } from 'next/navigation'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Button, ButtonWrapper } from '@components/button'
 import { Text } from '@components/text'
-import { Form } from '@components/form'
 import { Flex } from '@components/flex'
-import { UpdateUserForm } from './components/update-user-form'
 import { readUserSession } from '@actions/auth/read-user-session'
-import { logout } from '@actions/auth/logout'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-  DialogClose,
-} from '@components/dialog'
+import { UpdateEmailForm } from './components/update-email-form'
+import { UpdatePasswordForm } from './components/update-password-form'
+import { EditProfileForm } from './components/edit-profile-form'
+import { LogoutForm } from './components/logout-form'
 
 export default async function AccountPage() {
 
@@ -53,46 +43,10 @@ export default async function AccountPage() {
           color='primary'>
           We&apos;re working on new account features, check back soon to get the latest updates.
         </Text>
-        {data.user.user_metadata.name && (
-          <Text
-            tag='p'
-            type='expressive-body'
-            size='body-base'
-            color='primary'
-          ><strong>Name:</strong> {data.user.user_metadata.name}</Text>
-        )}
-        <Text
-          tag='p'
-          type='expressive-body'
-          size='body-base'
-          color='primary'
-        ><strong>Email:</strong> {data.user.email}</Text>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant='primary' text='Update profile' />
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Header title etc</DialogTitle>
-            </DialogHeader>
-            <DialogDescription>
-              This is the dialog description, lorem ipsum dolor sit amet.
-            </DialogDescription>
-            <DialogFooter>
-              <ButtonWrapper>
-                <Button text='Button' variant='primary' />
-                <DialogClose asChild>
-                  <Button text='Cancel' variant='secondary' />
-                </DialogClose>
-              </ButtonWrapper>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-        <Form action={logout}>
-          <ButtonWrapper>
-            <Button variant='secondary' text='Log out' type='submit' />
-          </ButtonWrapper>
-        </Form>
+        <UpdateEmailForm email={data.user.email} />
+        <UpdatePasswordForm />
+        {/* <EditProfileForm /> */}
+        {/* <LogoutForm /> */}
       </Flex>
     </SectionContainer>
   )
