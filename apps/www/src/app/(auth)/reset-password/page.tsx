@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 import { readUserSession } from "@actions/auth/read-user-session"
 import { Text } from "@components/text"
-import { ResetPasswordForm } from "./reset-password-form"
+import { ResetPasswordForm } from "./send-password-reset"
 import s from './reset-password-page.module.scss'
 
 export default async function ResetPasswordPage() {
