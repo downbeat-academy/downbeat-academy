@@ -1,12 +1,14 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
+import { useQueryState } from 'nuqs'
 import { Form, FormField, Input, Label, ValidationMessage } from '@components/form'
 import { Button } from '@components/button'
 import { useToast } from "@components/toast"
 import { deleteContact } from '@actions/email/delete-contact'
 
 export function UnsubscribeForm() {
+  const [email, setEmail] = useQueryState('email')
   const { toast } = useToast()
 
   const {
@@ -14,7 +16,11 @@ export function UnsubscribeForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: email || ''
+    }
+  });
 
   const onSubmit = async (formData: any) => {
     try {
@@ -40,6 +46,7 @@ export function UnsubscribeForm() {
           register={register}
           name='email'
           placeholder='john@coltrane.com'
+          onChange={e => setEmail(e.target.value)}
         />
         {
           errors.email && (

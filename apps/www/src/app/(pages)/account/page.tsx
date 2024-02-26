@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Button } from '@components/button'
 import { Text } from '@components/text'
-import { Form } from '@components/form'
 import { Flex } from '@components/flex'
 import { readUserSession } from '@actions/auth/read-user-session'
-import { logout } from '@actions/auth/logout'
+
+import { UpdateEmailForm } from './components/update-email-form'
+import { UpdatePasswordForm } from './components/update-password-form'
 
 export default async function AccountPage() {
 
@@ -41,15 +41,10 @@ export default async function AccountPage() {
           color='primary'>
           We&apos;re working on new account features, check back soon to get the latest updates.
         </Text>
-        <Text
-          tag='p'
-          type='expressive-body'
-          size='body-base'
-          color='primary'
-        ><strong>Email:</strong> {data.user.email}</Text>
-        <Form action={logout}>
-          <Button variant='primary' text='Log out' />
-        </Form>
+        <UpdateEmailForm email={data.user.email} />
+        <UpdatePasswordForm />
+        {/* <EditProfileForm /> */}
+        {/* <LogoutForm /> */}
       </Flex>
     </SectionContainer>
   )

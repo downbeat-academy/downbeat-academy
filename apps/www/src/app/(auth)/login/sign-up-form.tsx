@@ -102,7 +102,7 @@ export function SignUpForm() {
         <Button
           type='submit'
           variant='primary'
-          text={isSubmitting ? 'Signing you up…' : 'Sign up'}
+          text={isSubmitting ? '🤘 Signing you up…' : 'Sign up'}
           disabled={isSubmitting}
         />
       </ButtonWrapper>
