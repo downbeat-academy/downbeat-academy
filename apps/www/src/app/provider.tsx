@@ -1,13 +1,15 @@
 'use client'
 
 import { Toaster } from '@components/toast'
+import { TooltipProvider } from '@components/tooltip'
 
 const Provider = ({ children }) => {
   return (
     <>
-      {children}
-      <Toaster />
-      {/* <Fathom /> */}
+      <TooltipProvider delayDuration={500}>
+        {children}
+        <Toaster />
+      </TooltipProvider>
     </>
   )
 }
