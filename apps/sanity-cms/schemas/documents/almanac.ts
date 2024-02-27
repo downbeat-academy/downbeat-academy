@@ -56,6 +56,23 @@ export default {
       group: 'metadata'
     },
     {
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      group: 'metadata',
+      of: [{ type: 'reference', to: [{ type: 'category' }] }],
+    },
+    {
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      description: 'Excerpt for the almanac item.',
+      group: 'content',
+      validation: (Rule: any) => [
+        Rule.required().error('You must enter an excerpt for the almanac item.')
+      ]
+    },
+    {
       name: 'content',
       title: 'Content',
       type: 'richText',
