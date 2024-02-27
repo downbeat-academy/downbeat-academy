@@ -87,6 +87,10 @@ const Footer = ({
         {
           name: 'Contact',
           url: '/contact',
+        },
+        {
+          name: 'Newsletter',
+          url: '/newsletter',
         }
       ]
     }
