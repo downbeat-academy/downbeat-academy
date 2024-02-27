@@ -18,6 +18,8 @@ const linkResolver = (url: string, category: string) => {
 			return `/categories/${url}`
 		case 'landingPage':
 			return `/p/${url}`
+		case 'almanac':
+			return `/almanac/${url}`
 		default:
 			return `${url}`
 	}

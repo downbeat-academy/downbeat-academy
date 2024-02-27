@@ -19,6 +19,7 @@ import genre from './documents/genre'
 import newsletter from './documents/newsletter'
 import snippet from './documents/snippet'
 import resource from './documents/resource'
+import almanac from './documents/almanac'
 
 // Import Objects
 import mainImage from './objects/mainImage'
@@ -34,6 +35,7 @@ import metadata from './objects/metadata'
 import moduleContent from './objects/moduleContent'
 import blockquote from './objects/blockquote'
 import fileDownload from './objects/fileDownload'
+import almanacReference from './objects/almanac-reference'
 
 // Navigation
 import navigationSection from './objects/navigation/section'
@@ -78,6 +80,7 @@ export const schemaTypes = [
 	resource,
 	newsletter,
 	snippet,
+	almanac,
 	// Objects
 	mainImage,
 	richText,
@@ -110,4 +113,5 @@ export const schemaTypes = [
 	barValue,
 	musicSymbol,
 	fileDownload,
+	almanacReference,
 ]

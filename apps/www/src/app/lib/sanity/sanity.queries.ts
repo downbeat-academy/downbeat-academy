@@ -282,3 +282,55 @@ export const SERVER_ERROR = groq`
 		metadata,
 	}
 `
+
+// Almanac
+
+export const almanacQuery = groq`
+    *[_type == "almanac"] {
+        _id,
+        _key,
+        _updatedAt,
+        title,
+        "slug": slug.current,
+        content {
+            content[] {
+                ...,
+                markDefs[]-> {
+                    ...,
+                    _type == "internalLink" => {
+                        "type": @.reference->_type,
+                        "slug": @.reference->slug.current,
+                    }
+                }
+            }
+        },
+        metadata
+    }
+`
+
+export const getAlmanacPaths = groq`
+    *[_type == "almanac" && defined(slug.current)][].slug.current
+`
+
+export const getAllAlmanacs = groq`
+    *[_type == "alamanc" && slug.current] {
+        _id,
+        _key,
+        title,
+        "slug": slug.current,
+        content {
+            content[] {
+                ...,
+                markDefs[]-> {
+                    ...,
+                    _type == "internalLink" => {
+                        "type": @.reference->_type,
+                        "slug": @.reference->slug.current,
+                    }
+                }
+            }
+        },
+        metadata
+    }
+    | order(date desc)
+`

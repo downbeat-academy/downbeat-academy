@@ -14,7 +14,7 @@ import { Link } from "@components/link";
 import { Flex } from "@components/flex";
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../../types/meta'
+import type { MetaProps } from '../../../../types/meta'
 
 const client = sanityClient
 
@@ -82,6 +82,9 @@ export default async function ArticleSlugRoute({ params }) {
         </Link>
       )
     })
+
+    // console.log(article.content.content[0].children[1])
+    // console.log(article)
 
     return (
       <>

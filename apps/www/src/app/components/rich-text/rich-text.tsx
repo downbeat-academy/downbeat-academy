@@ -2,6 +2,7 @@ import { PortableText } from "@portabletext/react";
 import { Components } from './components'
 
 const RichText = ({ value }) => {
+
   return (
     <PortableText
       value={value}
