@@ -7,7 +7,29 @@ export const articlesBySlugQuery = groq`
         title,
         "slug": slug.current,
         excerpt,
-        content,
+        content {
+            ...,
+            _type == "richText" => {
+                content[] {
+                    ...,
+                    children[] {
+                        ...,
+                        _type == "almanacReference" => {
+                            reference-> {
+                                ...,
+                                "slug": slug.current,
+                                title,
+                                excerpt,
+                                categories[]-> {
+                                    _id,
+                                    title,
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         featuredImage,
         date,
         metadata,

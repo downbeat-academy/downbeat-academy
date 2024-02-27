@@ -83,6 +83,9 @@ export default async function ArticleSlugRoute({ params }) {
       )
     })
 
+    // console.log(article.content.content[0].children[1])
+    // console.log(article)
+
     return (
       <>
         <SectionContainer>

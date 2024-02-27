@@ -82,7 +82,11 @@ export default {
 						],
 					},
 					// Inline Custom Types
-					of: [{ type: 'inlineChord' }, { type: 'inlineMusicText' }],
+					of: [
+						{ type: 'inlineChord' },
+						{ type: 'inlineMusicText' },
+						{ type: 'almanacReference' }
+					],
 				},
 				// Custom Types
 				// { type: 'video' },

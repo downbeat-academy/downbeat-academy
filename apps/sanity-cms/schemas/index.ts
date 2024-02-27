@@ -35,6 +35,7 @@ import metadata from './objects/metadata'
 import moduleContent from './objects/moduleContent'
 import blockquote from './objects/blockquote'
 import fileDownload from './objects/fileDownload'
+import almanacReference from './objects/almanac-reference'
 
 // Navigation
 import navigationSection from './objects/navigation/section'
@@ -112,4 +113,5 @@ export const schemaTypes = [
 	barValue,
 	musicSymbol,
 	fileDownload,
+	almanacReference,
 ]
