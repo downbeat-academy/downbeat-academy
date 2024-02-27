@@ -3,5 +3,6 @@
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 
 const HoverCard = HoverCardPrimitive.Root
+const HoverCardArrow = HoverCardPrimitive.Arrow
 
-export { HoverCard }
+export { HoverCard, HoverCardArrow }
