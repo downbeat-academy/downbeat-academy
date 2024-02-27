@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-tokens
 
+## 2.1.0
+
+### Minor Changes
+
+- 01fbdf4: Updating the toast styling and cleanup of the authentication experience
+
 ## 2.0.1
 
 ### Patch Changes
