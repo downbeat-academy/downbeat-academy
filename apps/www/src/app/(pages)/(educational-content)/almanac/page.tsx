@@ -39,13 +39,14 @@ export default async function AlmanacPage() {
     <>
       <SectionContainer>
         <SectionTitle
+          background='primary'
           title={
             <Text
               tag='h1'
               type='expressive-headline'
               size='h1'
               collapse
-            >Educational content</Text>
+            >Almanac</Text>
           }
         />
         <Flex direction='column' gap='small' padding='large'>

@@ -12,7 +12,7 @@ const NavContent = ({ links }) => {
 
   const route = usePathname()
 
-  const [ navToggled, setNavToggled ] = useState(false);
+  const [navToggled, setNavToggled] = useState(false);
 
   const handleNavToggled = () => {
     setNavToggled(!navToggled)
@@ -32,6 +32,10 @@ const NavContent = ({ links }) => {
     {
       text: 'Contributors',
       href: '/contributors'
+    },
+    {
+      text: 'Almanac',
+      href: '/almanac'
     },
     {
       text: 'Contact',
