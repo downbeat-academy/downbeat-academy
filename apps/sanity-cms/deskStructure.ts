@@ -18,6 +18,7 @@ import {
 	BiAlbum,
 	BiUserCircle,
 	BiMusic,
+	BiBookBookmark,
 } from 'react-icons/bi'
 
 export const deskStructure = (S: any) =>
@@ -105,7 +106,7 @@ export const deskStructure = (S: any) =>
 										.schemaType('article')
 										.title('Articles')
 										.filter('_type == "article"')
-									),
+								),
 							S.listItem()
 								.title('Resources')
 								.icon(BiPen)
@@ -132,6 +133,15 @@ export const deskStructure = (S: any) =>
 										.schemaType('podcast')
 										.title('Podcasts')
 										.filter('_type == "podcast"')
+								),
+							S.listItem()
+								.title('Almanac')
+								.icon(BiBookBookmark)
+								.child(
+									S.documentList()
+										.schemaType('almanac')
+										.title('Almanac')
+										.filter('_type == "almanac"')
 								),
 							S.divider(),
 							S.listItem()

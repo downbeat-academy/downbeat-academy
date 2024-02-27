@@ -19,6 +19,7 @@ import genre from './documents/genre'
 import newsletter from './documents/newsletter'
 import snippet from './documents/snippet'
 import resource from './documents/resource'
+import almanac from './documents/almanac'
 
 // Import Objects
 import mainImage from './objects/mainImage'
@@ -78,6 +79,7 @@ export const schemaTypes = [
 	resource,
 	newsletter,
 	snippet,
+	almanac,
 	// Objects
 	mainImage,
 	richText,
