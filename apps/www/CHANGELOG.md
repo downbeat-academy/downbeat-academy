@@ -1,5 +1,12 @@
 # www
 
+## 3.1.0
+
+### Minor Changes
+
+- Updated Almanac to Handbook
+- 7ddaad9: Added a newsletter signup page
+
 ## 3.0.0
 
 ### Major Changes
