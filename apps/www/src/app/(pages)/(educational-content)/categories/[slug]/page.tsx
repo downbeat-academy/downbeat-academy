@@ -10,6 +10,8 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../types/meta'
 import { ListItem } from '@components/list'
 
+const client = sanityClient
+
 // Generate metadata
 export async function generateMetadata(
   { params }: MetaProps,
@@ -19,11 +21,7 @@ export async function generateMetadata(
   const { slug } = params;
 
   try {
-    const client = sanityClient
-    const category = await client.fetch(categoriesBySlugQuery, {
-      slug
-    })
-
+    const category = await client.fetch(categoriesBySlugQuery, { slug })
     return {
       title: getOgTitle(category.title)
     }
@@ -36,12 +34,10 @@ export async function generateMetadata(
 // Generate slugs/routes for categories
 export async function generateStaticParams() {
   try {
-    const slugs = await sanityClient.fetch(
+    const slugs = await client.fetch(
       categoryPaths,
       {
-        next: {
-          revalidate: 60,
-        }
+        revalidate: 60,
       }
     )
     return slugs.map((slug) => ({ slug }))
@@ -56,7 +52,7 @@ export default async function CategorySlugRoute({ params }) {
   const { slug } = params
 
   try {
-    const category = await sanityClient.fetch(
+    const category = await client.fetch(
       categoriesBySlugQuery,
       { slug },
       {

@@ -18,9 +18,7 @@ async function getArticles() {
   const res = sanityClient.fetch(
     articlesPageQuery,
     {
-      next: {
-        revalidate: 60,
-      },
+      revalidate: 60,
     }
   )
 

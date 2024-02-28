@@ -18,9 +18,7 @@ async function getHandbooks() {
   const res = sanityClient.fetch(
     handbookPageQuery,
     {
-      next: {
-        revalidate: 60,
-      },
+      revalidate: 60,
     }
   )
 
