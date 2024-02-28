@@ -33,7 +33,10 @@ async function getHandbooks() {
 
 export default async function HandbookPage() {
 
+  // Get all of the handbook entries
   const handbooks = await getHandbooks();
+  // Sort the entries alphabetically by title
+  handbooks.sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <>
@@ -45,8 +48,14 @@ export default async function HandbookPage() {
               tag='h1'
               type='expressive-headline'
               size='h1'
+              color='brand'
               collapse
             >Handbook</Text>
+          }
+          subtitle={
+            <Text tag='p' type='expressive-body' size='body-base' color='primary' collapse>
+              The Downbeat Academy Handbook is a collection of educational content that covers a wide range of topics. From music theory to instrument technique, the handbook is a valuable resource for students and teachers alike.
+            </Text>
           }
         />
         <Flex direction='column' gap='small' padding='large'>

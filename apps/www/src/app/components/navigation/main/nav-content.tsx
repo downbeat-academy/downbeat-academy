@@ -26,16 +26,16 @@ const NavContent = ({ links }) => {
       href: '/articles'
     },
     {
-      text: 'About',
-      href: '/about'
+      text: 'Handbook',
+      href: '/handbook'
     },
     {
       text: 'Contributors',
       href: '/contributors'
     },
     {
-      text: 'Handbook',
-      href: '/handbook'
+      text: 'About',
+      href: '/about'
     },
     {
       text: 'Contact',

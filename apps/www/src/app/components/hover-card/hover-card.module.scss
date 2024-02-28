@@ -41,6 +41,7 @@
   will-change: transform, opacity;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  z-index: 40;
 }
 
 .content[data-side='top'] {

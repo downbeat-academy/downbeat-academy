@@ -1,11 +1,11 @@
 .root {
 	font-family: $cds-typography-font-family-mono;
 	font-weight: bold;
-	background: $cds-color-palette-blueberry-100;
+	background: $cds-color-palette-blueberry-50;
 	color: $cds-color-palette-blueberry-600;
-	border: 1px solid $cds-color-palette-blueberry-600;
+	border: 1px solid $cds-color-palette-blueberry-300;
 	border-radius: $cds-radii-medium;
-	padding: $cds-scale-3x-small $cds-scale-x-small;
+	padding: 0 $cds-scale-2x-small;
 	line-height: 1.3;
 	display: inline-flex;
 	margin: 0 $cds-scale-3x-small;
