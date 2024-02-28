@@ -5,10 +5,9 @@ import { Text } from '@components/text'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { RichText, RichTextWrapper } from '@components/rich-text'
-import { Flex } from '@components/flex'
 import { Badge } from '@components/badge'
 import { Link } from '@components/link'
-import s from './alamanac-page.module.scss'
+import s from './handbook-page.module.scss'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 
