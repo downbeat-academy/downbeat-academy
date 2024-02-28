@@ -17,7 +17,7 @@ const HandbookReference = ({ text, title, excerpt, link, categories }: HandbookR
   return (
     <HoverCard openDelay={300}>
       <HoverCardTrigger hasIcon>
-        {text}
+        <Link href={link}>{text}</Link>
       </HoverCardTrigger>
       <HoverCardContent>
         <HoverCardTitle>
@@ -26,15 +26,16 @@ const HandbookReference = ({ text, title, excerpt, link, categories }: HandbookR
         <HoverCardMain>
           <Flex direction='column' gap='small'>
             <Text tag='p' type='productive-body' size='body-base' collapse>{excerpt}</Text>
-            {categories.map((category) => (
-              <Flex key={category._id} gap='small'>
+            <Flex gap='small' direction='row' wrap>
+              {categories.map((category) => (
                 <Badge
+                  key={category._id}
                   size='small'
                   text={category.title}
                   type='neutral'
                 />
-              </Flex>
-            ))}
+              ))}
+            </Flex>
           </Flex>
         </HoverCardMain>
         <HoverCardFooter>
