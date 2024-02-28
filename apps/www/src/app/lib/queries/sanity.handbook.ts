@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
-export const almanacsBySlugQuery = groq`
-    *[_type == 'almanac' && slug.current == $slug][0] {
+export const handbooksBySlugQuery = groq`
+    *[_type == 'handbook' && slug.current == $slug][0] {
       _id,
       _key,
       title,
@@ -15,12 +15,12 @@ export const almanacsBySlugQuery = groq`
     }
 `
 
-export const almanacPaths = groq`
-    *[_type == 'almanac' && slug.current != null].slug.current
+export const handbookPaths = groq`
+    *[_type == 'handbook' && slug.current != null].slug.current
 `
 
-export const almanacPageQuery = groq`
-  *[_type == 'almanac'] {
+export const handbookPageQuery = groq`
+  *[_type == 'handbook'] {
       _id,
       _key,
       title,

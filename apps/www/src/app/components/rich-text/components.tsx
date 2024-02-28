@@ -10,7 +10,7 @@ import {
 import { Blockquote } from '@components/blockquote'
 import { MainImage } from '@components/images'
 import { FileDownload } from '@components/file-download'
-import { AlmanacReference } from '@components/almanac-reference'
+import { HandbookReference } from '@components/handbook-reference'
 
 const Components = {
   block: {
@@ -73,13 +73,13 @@ const Components = {
         />
       )
     },
-    almanacReference: ({ value }) => {
+    handbookReference: ({ value }) => {
       return (
-        <AlmanacReference
+        <HandbookReference
           text={value.text}
           title={value.reference.title}
           excerpt={value.reference.excerpt}
-          link={linkResolver(value.reference.slug, 'almanac')}
+          link={linkResolver(value.reference.slug, 'handbook')}
           categories={value.reference.categories}
         />
       )

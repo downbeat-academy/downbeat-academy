@@ -85,7 +85,7 @@ export default {
 					of: [
 						{ type: 'inlineChord' },
 						{ type: 'inlineMusicText' },
-						{ type: 'almanacReference' }
+						{ type: 'handbookReference' }
 					],
 				},
 				// Custom Types

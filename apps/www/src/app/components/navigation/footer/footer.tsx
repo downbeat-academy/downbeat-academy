@@ -55,8 +55,8 @@ const Footer = ({
           url: '/articles',
         },
         {
-          name: 'Almanac',
-          url: '/almanac',
+          name: 'Handbook',
+          url: '/handbook',
         }
       ]
     },

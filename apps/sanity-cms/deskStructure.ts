@@ -135,13 +135,13 @@ export const deskStructure = (S: any) =>
 										.filter('_type == "podcast"')
 								),
 							S.listItem()
-								.title('Almanac')
+								.title('Handbook')
 								.icon(BiBookBookmark)
 								.child(
 									S.documentList()
-										.schemaType('almanac')
-										.title('Almanac')
-										.filter('_type == "almanac"')
+										.schemaType('handbook')
+										.title('Handbook')
+										.filter('_type == "handbook"')
 								),
 							S.divider(),
 							S.listItem()

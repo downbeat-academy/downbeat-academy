@@ -11,9 +11,9 @@ import { Link } from '@components/link'
 import { Badge } from '@components/badge'
 import { Flex } from '@components/flex'
 
-import type { AlmanacReferenceProps } from './types'
+import type { HandbookReferenceProps } from './types'
 
-const AlmanacReference = ({ text, title, excerpt, link, categories }: AlmanacReferenceProps) => {
+const HandbookReference = ({ text, title, excerpt, link, categories }: HandbookReferenceProps) => {
   return (
     <HoverCard openDelay={300}>
       <HoverCardTrigger hasIcon>
@@ -39,7 +39,7 @@ const AlmanacReference = ({ text, title, excerpt, link, categories }: AlmanacRef
         </HoverCardMain>
         <HoverCardFooter>
           <Text tag='p' type='productive-body' size='body-base' collapse>
-            <Link href={link}>Learn more in the Almanac</Link>
+            <Link href={link}>Learn more in the Handbook</Link>
           </Text>
         </HoverCardFooter>
       </HoverCardContent>
@@ -47,4 +47,4 @@ const AlmanacReference = ({ text, title, excerpt, link, categories }: AlmanacRef
   )
 }
 
-export { AlmanacReference }
+export { HandbookReference }

@@ -1,1 +1,1 @@
-export { AlmanacReference } from './almanac-reference'
+export { HandbookReference } from './handbook-reference'

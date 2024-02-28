@@ -283,10 +283,10 @@ export const SERVER_ERROR = groq`
 	}
 `
 
-// Almanac
+// Handbook
 
-export const almanacQuery = groq`
-    *[_type == "almanac"] {
+export const handbookQuery = groq`
+    *[_type == "handbook"] {
         _id,
         _key,
         _updatedAt,
@@ -308,11 +308,11 @@ export const almanacQuery = groq`
     }
 `
 
-export const getAlmanacPaths = groq`
-    *[_type == "almanac" && defined(slug.current)][].slug.current
+export const getHandbookPaths = groq`
+    *[_type == "handbook" && defined(slug.current)][].slug.current
 `
 
-export const getAllAlmanacs = groq`
+export const getAllHandbooks = groq`
     *[_type == "alamanc" && slug.current] {
         _id,
         _key,
