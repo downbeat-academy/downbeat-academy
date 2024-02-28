@@ -1,5 +1,11 @@
 # www
 
+## 3.2.0
+
+### Minor Changes
+
+- c5a0cdf: Updated Almanac to Handbook
+
 ## 3.1.0
 
 ### Minor Changes
