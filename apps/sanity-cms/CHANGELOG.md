@@ -1,5 +1,17 @@
 # sanity-cms
 
+## 2.2.0
+
+### Minor Changes
+
+- c5a0cdf: Updated Almanac to Handbook
+
+## 2.1.0
+
+### Minor Changes
+
+- Updated Almanac to Handbook
+
 ## 2.0.0
 
 ### Major Changes

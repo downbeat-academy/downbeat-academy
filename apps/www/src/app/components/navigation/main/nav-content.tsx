@@ -34,8 +34,8 @@ const NavContent = ({ links }) => {
       href: '/contributors'
     },
     {
-      text: 'Almanac',
-      href: '/almanac'
+      text: 'Handbook',
+      href: '/handbook'
     },
     {
       text: 'Contact',

@@ -14,7 +14,7 @@ export const articlesBySlugQuery = groq`
                     ...,
                     children[] {
                         ...,
-                        _type == "almanacReference" => {
+                        _type == "handbookReference" => {
                             reference-> {
                                 ...,
                                 "slug": slug.current,

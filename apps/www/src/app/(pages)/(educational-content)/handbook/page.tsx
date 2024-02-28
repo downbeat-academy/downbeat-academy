@@ -1,5 +1,5 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
-import { almanacPageQuery } from '@lib/queries'
+import { handbookPageQuery } from '@lib/queries'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
@@ -10,13 +10,13 @@ import type { Metadata } from 'next'
 import { Flex } from '@components/flex'
 
 export const metadata: Metadata = {
-  title: 'Almanac',
+  title: 'Handbook',
   description: 'A collection of educational content from Downbeat Academy.'
 }
 
-async function getAlmanacs() {
+async function getHandbooks() {
   const res = sanityClient.fetch(
-    almanacPageQuery,
+    handbookPageQuery,
     {
       next: {
         revalidate: 60,
@@ -31,9 +31,9 @@ async function getAlmanacs() {
   return res;
 }
 
-export default async function AlmanacPage() {
+export default async function HandbookPage() {
 
-  const almanacs = await getAlmanacs();
+  const handbooks = await getHandbooks();
 
   return (
     <>
@@ -46,13 +46,13 @@ export default async function AlmanacPage() {
               type='expressive-headline'
               size='h1'
               collapse
-            >Almanac</Text>
+            >Handbook</Text>
           }
         />
         <Flex direction='column' gap='small' padding='large'>
-          {almanacs.map((almanac) => (
+          {handbooks.map((handbook) => (
             <Text
-              key={almanac._id}
+              key={handbook._id}
               tag='p'
               type='expressive-body'
               size='body-base'
@@ -60,9 +60,9 @@ export default async function AlmanacPage() {
             >
               <Link
                 type='inherit'
-                href={`/almanac/${almanac.slug}`}
+                href={`/handbook/${handbook.slug}`}
               >
-                {almanac.title}
+                {handbook.title}
               </Link>
             </Text>
           ))}

@@ -1,4 +1,4 @@
-interface AlmanacReferenceProps {
+interface HandbookReferenceProps {
   title?: string,
   excerpt?: string,
   link?: string,
@@ -9,4 +9,4 @@ interface AlmanacReferenceProps {
   }],
 }
 
-export type { AlmanacReferenceProps }
+export type { HandbookReferenceProps }

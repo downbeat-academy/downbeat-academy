@@ -1,9 +1,9 @@
 import { BiInfoCircle } from "react-icons/bi";
 
 export default {
-  name: 'almanacReference',
+  name: 'handbookReference',
   type: 'object',
-  title: 'Almanac Reference',
+  title: 'Handbook Reference',
   icon: BiInfoCircle,
   fields: [
     {
@@ -17,7 +17,7 @@ export default {
       title: 'Reference',
       to: [
         {
-          type: 'almanac'
+          type: 'handbook'
         }
       ]
     }

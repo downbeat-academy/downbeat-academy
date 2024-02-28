@@ -1,14 +1,13 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
-import { almanacsBySlugQuery, almanacPaths } from '@lib/queries'
+import { handbooksBySlugQuery, handbookPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 import { Text } from '@components/text'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { RichText, RichTextWrapper } from '@components/rich-text'
-import { Flex } from '@components/flex'
 import { Badge } from '@components/badge'
 import { Link } from '@components/link'
-import s from './alamanac-page.module.scss'
+import s from './handbook-page.module.scss'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 
@@ -23,7 +22,7 @@ export async function generateMetadata(
   const { slug } = params;
 
   try {
-    const article = await sanityClient.fetch(almanacsBySlugQuery, {
+    const article = await sanityClient.fetch(handbooksBySlugQuery, {
       slug
     })
 
@@ -37,12 +36,12 @@ export async function generateMetadata(
   }
 }
 
-// Generate the slugs/routes for the almanacs
+// Generate the slugs/routes for the handbooks
 export async function generateStaticParams() {
 
   try {
     const slugs = await sanityClient.fetch(
-      almanacPaths,
+      handbookPaths,
       {
         next: {
           revalidate: 60,
@@ -56,11 +55,11 @@ export async function generateStaticParams() {
   }
 }
 
-// Render the almanac data
-export default async function AlmanacSlugRoute({ params }) {
+// Render the handbook data
+export default async function HandbookSlugRoute({ params }) {
   const { slug } = params
 
-  const almanac = await client.fetch(almanacsBySlugQuery, {
+  const handbook = await client.fetch(handbooksBySlugQuery, {
     slug
   })
 
@@ -76,19 +75,19 @@ export default async function AlmanacSlugRoute({ params }) {
               size='h1'
               color='brand'
               collapse
-            >{almanac.title}</Text>
+            >{handbook.title}</Text>
           }
         />
         <aside className={s.categories}>
           <Text tag='p' type='expressive-body' size='body-base' collapse>Categories:</Text>
-          {almanac.categories.map((category) => (
+          {handbook.categories.map((category) => (
             <Link key={category.title} href={`/category/${category.slug}`}>
               <Badge text={category.title} />
             </Link>
           ))}
         </aside>
         <RichTextWrapper className={s['rich-text']}>
-          <RichText value={almanac.content.content} />
+          <RichText value={handbook.content.content} />
         </RichTextWrapper>
       </SectionContainer>
     </>
