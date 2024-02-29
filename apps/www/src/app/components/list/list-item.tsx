@@ -1,6 +1,5 @@
 import classnames from 'classnames'
 import s from './list-item.module.scss'
-import { linkResolver } from '@utils/linkResolver'
 import { Link } from '@components/link'
 import { Text } from '@components/text'
 
@@ -18,8 +17,6 @@ const ListItem = ({
     className,
   )
 
-  console
-
   return (
     <article className={classes}>
       <Text
@@ -27,6 +24,7 @@ const ListItem = ({
         size='h5'
         type='expressive-headline'
         color='primary'
+        collapse
       >
         <Link href={url} type='inherit'>{title}</Link>
       </Text>
@@ -35,6 +33,7 @@ const ListItem = ({
           tag='p'
           size='body-base'
           type='expressive-body'
+          collapse
         >{description}</Text>
       }
     </article>

@@ -19,6 +19,7 @@ import {
 	BiUserCircle,
 	BiMusic,
 	BiBookBookmark,
+	BiLink,
 } from 'react-icons/bi'
 
 export const deskStructure = (S: any) =>
@@ -196,6 +197,15 @@ export const deskStructure = (S: any) =>
 										.schemaType('newsletter')
 										.title('Newsletters')
 										.filter('_type == "newsletter"')
+								),
+							S.listItem()
+								.title('Link in Bio')
+								.icon(BiLink)
+								.child(
+									S.documentList()
+										.schemaType('linkInBio')
+										.title('Link in Bio')
+										.filter('_type == "linkInBio"')
 								),
 						])
 				),
