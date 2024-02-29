@@ -20,6 +20,7 @@ import newsletter from './documents/newsletter'
 import snippet from './documents/snippet'
 import resource from './documents/resource'
 import handbook from './documents/handbook'
+import linkInBio from './documents/linkInBio'
 
 // Import Objects
 import mainImage from './objects/mainImage'
@@ -60,6 +61,7 @@ import barValue from './objects/music-notation/primitives/barValue'
 import musicSymbol from './objects/music-notation/primitives/musicSymbol'
 
 export const schemaTypes = [
+	// Documents
 	page,
 	person,
 	brandAsset,
@@ -81,6 +83,8 @@ export const schemaTypes = [
 	newsletter,
 	snippet,
 	handbook,
+	linkInBio,
+
 	// Objects
 	mainImage,
 	richText,
@@ -89,21 +93,19 @@ export const schemaTypes = [
 	input,
 	textarea,
 	audio,
-	//video,
 	socialLink,
 	metadata,
 	moduleContent,
 	inlineChord,
 	inlineMusicText,
 	blockquote,
-	// Link
+	fileDownload,
+	handbookReference,
 	link,
 	customLink,
 	internalLink,
 	externalLink,
-	// Navigation
 	navigationSection,
-	// Music Notation
 	musicNotation,
 	flatNotation,
 	accidental,
@@ -112,6 +114,4 @@ export const schemaTypes = [
 	clef,
 	barValue,
 	musicSymbol,
-	fileDownload,
-	handbookReference,
 ]
