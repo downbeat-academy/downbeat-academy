@@ -2,4 +2,7 @@
 	background: $cds-color-surface-primary;
 	padding: $cds-scale-large $cds-scale-x-large;
 	outline: 1px solid $cds-color-border-primary;
+	display: flex;
+	flex-direction: column;
+	gap: $cds-scale-base;
 }

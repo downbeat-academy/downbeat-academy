@@ -57,6 +57,10 @@ const Footer = ({
         {
           name: 'Handbook',
           url: '/handbook',
+        },
+        {
+          name: 'Links',
+          url: '/links',
         }
       ]
     },
