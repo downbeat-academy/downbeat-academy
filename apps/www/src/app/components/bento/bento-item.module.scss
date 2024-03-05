@@ -1,0 +1,148 @@
+.root {
+  border-radius: $cds-radii-soft;
+  overflow: hidden;
+}
+
+// Color
+
+.background--primary {
+  background-color: $cds-color-surface-primary;
+  border: 1px solid $cds-color-border-primary;
+}
+
+.background--faint {
+  background-color: $cds-color-surface-faint;
+  border: 1px solid $cds-color-border-faint;
+}
+
+.background--high-contrast {
+  background-color: $cds-color-surface-high-contrast;
+  border: 1px solid $cds-color-palette-blackberry-800;
+}
+
+.background--brand {
+  background-color: $cds-color-surface-brand;
+  border: 1px solid $cds-color-border-brand;
+}
+
+.background--interactive {
+  background-color: $cds-color-surface-interactive;
+  border: 1px solid $cds-color-border-interactive;
+}
+
+.background--success {
+  background-color: $cds-color-surface-success;
+  border: 1px solid $cds-color-border-success;
+}
+
+.background--warning {
+  background-color: $cds-color-surface-warning;
+  border: 1px solid $cds-color-border-warning;
+}
+
+.background--critical {
+  background-color: $cds-color-surface-critical;
+  border: 1px solid $cds-color-border-critical;
+}
+
+// Sizing
+
+// -- Height
+
+.height--1 {
+  grid-row: span 1;
+}
+
+.height--2 {
+  grid-row: span 2;
+}
+
+.height--3 {
+  grid-row: span 3;
+}
+
+.height--4 {
+  grid-row: span 4;
+}
+
+.height--5 {
+  grid-row: span 5;
+}
+
+.height--6 {
+  grid-row: span 6;
+}
+
+.height--7 {
+  grid-row: span 7;
+}
+
+.height--8 {
+  grid-row: span 8;
+}
+
+.height--9 {
+  grid-row: span 9;
+}
+
+.height--10 {
+  grid-row: span 10;
+}
+
+.height--11 {
+  grid-row: span 11;
+}
+
+.height--12 {
+  grid-row: span 12;
+}
+
+// -- Width
+
+.width--1 {
+  grid-column: span 1;
+}
+
+.width--2 {
+  grid-column: span 2;
+}
+
+.width--3 {
+  grid-column: span 3;
+}
+
+.width--4 {
+  grid-column: span 4;
+}
+
+.width--5 {
+  grid-column: span 5;
+}
+
+.width--6 {
+  grid-column: span 6;
+}
+
+.width--7 {
+  grid-column: span 7;
+}
+
+.width--8 {
+  grid-column: span 8;
+}
+
+.width--9 {
+  grid-column: span 9;
+}
+
+.width--10 {
+  grid-column: span 10;
+}
+
+.width--11 {
+  grid-column: span 11;
+}
+
+.width--12 {
+  grid-column: span 12;
+}

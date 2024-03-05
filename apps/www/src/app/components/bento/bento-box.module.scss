@@ -1,0 +1,18 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-gap: $cds-scale-3x-large;
+  width: 100%;
+
+  @media (max-width: 300px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: unset;
+  }
+}
+
+// Height
+
+.full-height {
+  height: calc(100dvh - 185px);
+}
