@@ -10,7 +10,14 @@ export async function getProfile() {
 
   const { data, error } = await readUserSession()
 
-  const profile = await supabase.from('profiles').select('*').eq('id', data.user.id)
+  try {
+    const profile = await supabase
+      .from('profiles')
+      .select()
+      .eq('id', data.user.id)
 
-  return profile;
+    return profile
+  } catch (e) {
+    throw new Error("Failed to get profile")
+  }
 }

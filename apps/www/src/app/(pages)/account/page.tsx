@@ -7,7 +7,7 @@ import { readUserSession } from '@actions/auth/read-user-session'
 import { getProfile } from '@actions/profile/get-profile'
 
 import { UpdateLogin } from './update-login'
-import { UpdateProfile } from './update-profile'
+import { ProfileSettings } from './update-profile'
 
 export default async function AccountPage() {
 
@@ -18,6 +18,8 @@ export default async function AccountPage() {
   }
 
   const { data: profileData } = await getProfile()
+
+  // console.log(profileData)
 
   const hasFirstName = profileData[0]?.first_name ? profileData[0].first_name : 'Enter your first name'
   const hasLastName = profileData[0]?.last_name ? profileData[0].last_name : 'Enter your last name'
@@ -51,7 +53,7 @@ export default async function AccountPage() {
           We&apos;re working on new account features, check back soon to get the latest updates.
         </Text>
         <UpdateLogin email={data.user.email} />
-        <UpdateProfile
+        <ProfileSettings
           firstName={hasFirstName}
           lastName={hasLastName}
         />

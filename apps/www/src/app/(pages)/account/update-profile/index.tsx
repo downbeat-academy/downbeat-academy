@@ -3,25 +3,24 @@ import { Text } from "@components/text"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@components/dialog'
 import { Button, ButtonWrapper } from '@components/button'
 
-import { ProfileForm } from "./profile-form"
+import { UpdateProfileForm } from "./update-profile-form"
 
 interface UpdateProfileProps {
   firstName: string;
   lastName: string;
 }
 
-const UpdateProfile = ({ firstName, lastName }) => {
+const ProfileSettings = ({ firstName, lastName }: UpdateProfileProps) => {
   return (
     <Flex direction='column' tag='article' gap='medium'>
       <Text tag='h2' size='h4' type='expressive-headline' collapse>Profile settings</Text>
-      <ProfileForm
+      <UpdateProfileForm
         isReadOnly={true}
         firstName={firstName}
         lastName={lastName}
@@ -39,9 +38,7 @@ const UpdateProfile = ({ firstName, lastName }) => {
             <DialogHeader>
               <DialogTitle>Update profile</DialogTitle>
             </DialogHeader>
-            <DialogDescription>
-              <ProfileForm isReadOnly={false} />
-            </DialogDescription>
+            <UpdateProfileForm isReadOnly={false} />
           </DialogContent>
         </Dialog>
       </ButtonWrapper>
@@ -49,4 +46,4 @@ const UpdateProfile = ({ firstName, lastName }) => {
   )
 }
 
-export { UpdateProfile }
+export { ProfileSettings }
