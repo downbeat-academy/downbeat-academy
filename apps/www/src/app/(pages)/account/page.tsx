@@ -9,6 +9,8 @@ import { getProfile } from '@actions/profile/get-profile'
 import { UpdateLogin } from './update-login'
 import { ProfileSettings } from './update-profile'
 
+import { Separator } from '@components/separator'
+
 export default async function AccountPage() {
 
   const { data, error } = await readUserSession()
@@ -52,7 +54,9 @@ export default async function AccountPage() {
         >
           We&apos;re working on new account features, check back soon to get the latest updates.
         </Text>
+        <Separator />
         <UpdateLogin email={data.user.email} />
+        <Separator />
         <ProfileSettings
           firstName={hasFirstName}
           lastName={hasLastName}

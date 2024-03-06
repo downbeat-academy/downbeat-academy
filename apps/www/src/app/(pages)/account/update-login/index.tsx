@@ -13,6 +13,8 @@ import { Flex } from '@components/flex'
 import { UpdateEmailForm } from './update-email-form'
 import { UpdatePasswordForm } from './update-password-form'
 
+import { Separator } from '@components/separator'
+
 const UpdateLogin = ({ email }) => {
   return (
     <Flex direction='column' gap='medium' tag='article'>
