@@ -3,19 +3,37 @@ import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { Flex } from '@components/flex'
+import { Separator } from '@components/separator'
 import { readUserSession } from '@actions/auth/read-user-session'
 import { getProfile } from '@actions/profile/get-profile'
 
 import { UpdateLogin } from './update-login'
 import { ProfileSettings } from './update-profile'
 
-import { Separator } from '@components/separator'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+} from '@components/dropdown'
+import { Button } from '@components/button'
 
 export default async function AccountPage() {
 
-  const { data, error } = await readUserSession()
+  const { data: accountData, error } = await readUserSession()
 
-  if (error || !data?.user) {
+  if (error || !accountData?.user) {
     redirect('/login')
   }
 
@@ -55,7 +73,7 @@ export default async function AccountPage() {
           We&apos;re working on new account features, check back soon to get the latest updates.
         </Text>
         <Separator />
-        <UpdateLogin email={data.user.email} />
+        <UpdateLogin email={accountData.user.email} />
         <Separator />
         <ProfileSettings
           firstName={hasFirstName}
