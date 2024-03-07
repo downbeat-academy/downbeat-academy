@@ -1,0 +1,45 @@
+.root {
+  height: 1px;
+}
+
+.root[data-orientation='horizontal'] {
+  height: 1px;
+  width: 100%;
+}
+
+.root[data-orientation='vertical'] {
+  min-height: 100%;
+  width: 1px;
+}
+
+.color--primary {
+  background: $cds-color-border-primary;
+}
+
+.color--faint {
+  background: $cds-color-border-faint;
+}
+
+.color--brand {
+  background: $cds-color-border-brand;
+}
+
+.color--interactive {
+  background: $cds-color-border-interactive;
+}
+
+.color--success {
+  background: $cds-color-border-success;
+}
+
+.color--warning {
+  background: $cds-color-border-warning;
+}
+
+.color--critical {
+  background: $cds-color-border-critical;
+}
+
+.color--high-contrast {
+  background: $cds-color-border-high-contrast;
+}
