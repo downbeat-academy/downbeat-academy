@@ -64,7 +64,7 @@ const UpdateProfileForm = ({
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} maxWidth='400px'>
       <FormField>
         <Label htmlFor='first-name'>First name</Label>
         <Input

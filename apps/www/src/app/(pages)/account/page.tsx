@@ -10,25 +10,6 @@ import { getProfile } from '@actions/profile/get-profile'
 import { UpdateLogin } from './update-login'
 import { ProfileSettings } from './update-profile'
 
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
-} from '@components/dropdown'
-import { Button } from '@components/button'
-
 export default async function AccountPage() {
 
   const { data: accountData, error } = await readUserSession()
