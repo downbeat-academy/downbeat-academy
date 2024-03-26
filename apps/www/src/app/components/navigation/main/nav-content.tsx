@@ -30,6 +30,10 @@ const NavContent = ({ links }) => {
       href: '/handbook'
     },
     {
+      text: 'Jazz Language Lexicon',
+      href: '/lexicon',
+    },
+    {
       text: 'Contributors',
       href: '/contributors'
     },
