@@ -188,6 +188,12 @@ export default {
       ],
     },
     {
+      name: 'audio',
+      title: 'Audio',
+      type: 'file',
+      group: 'content',
+    },
+    {
       name: 'metadata',
       type: 'metadata',
       title: 'Metadata',
