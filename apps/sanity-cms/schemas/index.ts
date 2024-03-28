@@ -59,6 +59,7 @@ import rhythmicValue from './objects/music-notation/primitives/rhythmicValue'
 import clef from './objects/music-notation/primitives/clef'
 import barValue from './objects/music-notation/primitives/barValue'
 import musicSymbol from './objects/music-notation/primitives/musicSymbol'
+import lexicon from './documents/lexicon'
 
 export const schemaTypes = [
 	// Documents
@@ -84,7 +85,7 @@ export const schemaTypes = [
 	snippet,
 	handbook,
 	linkInBio,
-
+	lexicon,
 	// Objects
 	mainImage,
 	richText,

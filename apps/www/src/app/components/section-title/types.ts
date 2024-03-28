@@ -12,6 +12,7 @@ interface SectionTitleProps {
   title: React.ReactNode,
   subtitle?: React.ReactNode,
   hasBorder?: boolean,
+  children?: React.ReactNode,
   className?: string,
 }
 
