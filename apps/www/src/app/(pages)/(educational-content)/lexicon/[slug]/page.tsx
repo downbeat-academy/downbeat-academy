@@ -1,13 +1,15 @@
 import { sanityClient } from "@lib/sanity/sanity.client";
 import { lexiconPaths, lexiconsBySlugQuery } from "@lib/queries";
 import { getOgTitle } from "@utils/metaHelpers";
+import { getTime } from "@utils/getTime";
+import { getSanityUrl } from "@utils/getSanityUrl";
 import { Text } from "@components/text";
 import { SectionContainer } from "@components/section-container";
 import { RichText } from "@components/rich-text";
 import { Badge } from "@components/badge";
 import { Flex } from "@components/flex";
+import { MusicNotation } from "@components/music-notation";
 import { getLexiconSlug } from "../getLexiconSlug";
-import { getTime } from "@utils/getTime";
 
 const client = sanityClient;
 
@@ -101,7 +103,8 @@ export default async function LexiconSlugRoute({ params }) {
     )
   })
 
-  console.log(lexicon)
+  const audioFile = getSanityUrl(audio.asset._ref,)
+  console.log(audioFile)
 
   return (
     <>
@@ -122,7 +125,11 @@ export default async function LexiconSlugRoute({ params }) {
             direction='column'
             gap='medium'
           >
-            <RichText value={lexicon.description.content} />
+            <RichText value={description.content} />
+            <MusicNotation
+              files={excerpt.files}
+            />
+            <audio src={audioFile} controls />
           </Flex>
         </Flex>
       </SectionContainer>

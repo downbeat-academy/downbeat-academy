@@ -34,7 +34,7 @@ export const lexiconsBySlugQuery = groq`
         }
       }
     },
-    excerpt->,
+    excerpt,
     audio,
   }
 `
