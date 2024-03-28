@@ -6,8 +6,7 @@ import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 
-import { slugify } from '@utils/slugify'
-import { getTime } from '@utils/getTime'
+import { getLexiconSlug } from './getLexiconSlug'
 
 import type { Metadata } from 'next'
 
@@ -29,15 +28,19 @@ async function getLexicons() {
 export default async function LexiconPage() {
   const lexicons = await getLexicons();
 
-  const getLexiconString = (artist, album, track, timestamp) => {
-    const formatArtist = slugify(artist);
-    const formatAlbum = slugify(album);
-    const formatTrack = slugify(track);
-    const formatMinutes = getTime(timestamp).minutes;
-    const formatSeconds = getTime(timestamp).remainingSeconds;
-
-    return `${formatArtist}-${formatAlbum}-${formatTrack}-${formatMinutes}-${formatSeconds}`;
-  }
+  const renderLexiconItems = lexicons.map((lexicon) => {
+    const slug = getLexiconSlug(lexicon);
+    return (
+      <Link
+        key={lexicon._key}
+        href={`/lexicon/${slug}`}
+      >
+        <Text tag='p' type='expressive-body' size='body-base' color='primary' collapse>
+          {slug}
+        </Text>
+      </Link>
+    )
+  })
 
   return (
     <>
@@ -60,11 +63,7 @@ export default async function LexiconPage() {
           }
         />
         <div>
-          {lexicons.map((lexicon) => {
-            return (
-              <p key={lexicon._key}>Slug: {getLexiconString(lexicon.artist, lexicon.album, lexicon.track, lexicon.timestamp)}</p>
-            )
-          })}
+          {renderLexiconItems}
         </div>
       </SectionContainer>
     </>

@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
 export const lexiconsBySlugQuery = groq`
-  *[_type == 'lexicon' && slug.current == $slug][0] {
+  *[_type == 'lexicon'][0] {
     _id,
     _key,
     artist,
@@ -36,6 +36,17 @@ export const lexiconsBySlugQuery = groq`
     },
     excerpt->,
     audio,
+  }
+`
+
+export const lexiconPaths = groq`
+  *[_type == 'lexicon'] {
+    _key,
+    _id,
+    artist,
+    album,
+    track,
+    timestamp,
   }
 `
 
