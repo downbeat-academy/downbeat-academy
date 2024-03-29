@@ -5,11 +5,14 @@ import { getTime } from "@utils/getTime";
 import { getSanityUrl } from "@utils/getSanityUrl";
 import { Text } from "@components/text";
 import { SectionContainer } from "@components/section-container";
+import { SectionTitle } from "@components/section-title";
 import { RichText } from "@components/rich-text";
 import { Badge } from "@components/badge";
 import { Flex } from "@components/flex";
 import { MusicNotation } from "@components/music-notation";
 import { getLexiconSlug } from "../getLexiconSlug";
+
+import s from './lexicon-page.module.scss'
 
 const client = sanityClient;
 
@@ -96,8 +99,8 @@ export default async function LexiconSlugRoute({ params }) {
 
   const renderMetadata = lexiconMetadata.map((item) => {
     return (
-      <Flex direction='column' alignItems='start' gap='2x-small' justifyContent='space-between' key={item.value}>
-        <Text tag='p' type='productive-body' size='body-large' color='primary' collapse>{item.title}:</Text>
+      <Flex direction='column' alignItems='start' gap='2x-small' key={item.value}>
+        <Text tag='p' type='productive-body' size='body-base' color='primary' collapse>{item.title}:</Text>
         <Badge text={item.value} type='neutral' size='large' />
       </Flex>
     )
@@ -109,29 +112,27 @@ export default async function LexiconSlugRoute({ params }) {
   return (
     <>
       <SectionContainer>
-        <Flex
-          direction='row'
-          padding='large'
-          background='primary'
-          gap='3x-large'
-        >
+        <SectionTitle background='primary'>
           <Flex
+            direction='row'
             gap='large'
-            direction='column'
+            justifyContent='space-between'
+            wrap
           >
             {renderMetadata}
           </Flex>
+        </SectionTitle>
+        <section className={s.excerpt}>
           <Flex
             direction='column'
             gap='medium'
+            className={s['excerpt-content']}
           >
             <RichText value={description.content} />
-            <MusicNotation
-              files={excerpt.files}
-            />
             <audio src={audioFile} controls />
+            <MusicNotation files={excerpt.files} collapse />
           </Flex>
-        </Flex>
+        </section>
       </SectionContainer>
     </>
   );

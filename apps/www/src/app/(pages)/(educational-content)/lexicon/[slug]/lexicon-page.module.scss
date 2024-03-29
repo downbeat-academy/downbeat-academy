@@ -1,0 +1,10 @@
+.excerpt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $cds-scale-2x-large $cds-scale-base $cds-scale-base $cds-scale-base;
+}
+
+.excerpt-content {
+  max-width: 75ch;
+}

@@ -15,11 +15,15 @@ const MusicNotation = ({
   files,
   title,
   description,
+  collapse,
   className,
 }: MusicNotationProps) => {
 
   const classes = classnames([
     s.root,
+    {
+      [s.collapse]: collapse
+    },
     className,
   ])
 
