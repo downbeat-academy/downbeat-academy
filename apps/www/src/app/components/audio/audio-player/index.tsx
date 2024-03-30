@@ -2,10 +2,22 @@
 
 import { useState, useRef } from 'react'
 import { Controls } from '../shared/controls'
+import { DisplayTrack } from '../shared/display-track'
+import { ProgressBar } from '../shared/progress-bar'
+
+import s from './audio-player.module.scss'
+
+interface AudioPlayerProps {
+  tracks: any[];
+  showTitle: boolean;
+  showArtist: boolean;
+}
 
 const AudioPlayer = ({
-  tracks
-}) => {
+  tracks,
+  showTitle,
+  showArtist,
+}: AudioPlayerProps) => {
   const [trackIndex, setTrackIndex] = useState(0)
   const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex])
   const [timeProgress, setTimeProgress] = useState(0)
@@ -25,7 +37,28 @@ const AudioPlayer = ({
   }
 
   return (
-    <div>
+    <div className={s.root}>
+      <DisplayTrack
+        {...{
+          currentTrack,
+          audioRef,
+          setDuration,
+          progressBarRef,
+          handleNext,
+          tracks,
+          trackIndex,
+          showTitle,
+          showArtist,
+        }}
+      />
+      <ProgressBar
+        {...{
+          progressBarRef,
+          audioRef,
+          timeProgress,
+          duration,
+        }}
+      />
       <Controls
         {...{
           audioRef,
@@ -36,10 +69,9 @@ const AudioPlayer = ({
           trackIndex,
           setTrackIndex,
           setCurrentTrack,
-          handleNext
+          handleNext,
         }}
       />
-      Single audio player.
     </div>
   )
 }

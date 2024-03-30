@@ -1,0 +1,8 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: $cds-scale-small;
+  background: $cds-color-surface-high-contrast;
+  border-radius: $cds-radii-soft;
+  padding: $cds-scale-base;
+}

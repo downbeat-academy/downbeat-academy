@@ -2,7 +2,6 @@ import { sanityClient } from "@lib/sanity/sanity.client";
 import { lexiconPaths, lexiconsBySlugQuery } from "@lib/queries";
 import { getOgTitle } from "@utils/metaHelpers";
 import { getTime } from "@utils/getTime";
-import { getSanityUrl } from "@utils/getSanityUrl";
 import { Text } from "@components/text";
 import { SectionContainer } from "@components/section-container";
 import { SectionTitle } from "@components/section-title";
@@ -107,9 +106,6 @@ export default async function LexiconSlugRoute({ params }) {
     )
   })
 
-  const audioFile = getSanityUrl(audio.asset._ref,)
-  console.log(audioFile)
-
   return (
     <>
       <SectionContainer>
@@ -130,8 +126,12 @@ export default async function LexiconSlugRoute({ params }) {
             className={s['excerpt-content']}
           >
             <RichText value={description.content} />
-            <SinglePlayer />
-            <audio src={audioFile} controls />
+            <AudioPlayer
+              tracks={audio}
+              showTitle={false}
+              showArtist={false}
+            />
+            {/* <audio src={audioFile} controls /> */}
             <MusicNotation files={excerpt.files} collapse />
           </Flex>
         </section>

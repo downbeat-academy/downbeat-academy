@@ -190,8 +190,14 @@ export default {
     {
       name: 'audio',
       title: 'Audio',
-      type: 'file',
+      type: 'array',
       group: 'content',
+      of: [
+        {
+          type: 'audio',
+          title: 'Audio file'
+        }
+      ],
     },
     {
       name: 'metadata',

@@ -51,7 +51,7 @@ const PlayerButton = ({
 
   const classes = classnames([
     s.root,
-    s[size],
+    s[`size--${size}`],
     className,
   ])
 

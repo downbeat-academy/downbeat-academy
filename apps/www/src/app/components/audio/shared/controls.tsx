@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { PlayerButton } from './player-button'
+import s from './controls.module.scss'
 
 const Controls = ({
   audioRef,
@@ -26,9 +27,10 @@ const Controls = ({
     progressBarRef.current.value = currentTime;
     progressBarRef.current.style.setProperty(
       '--range-progress',
-      `${(progressBarRef.current.value / progressBarRef.current.max) * 100}%`,
+      `${(progressBarRef.current.value / duration) * 100}%`,
     );
 
+    // @ts-ignore
     playAnimationRef.current = requestAnimationFrame(repeat);
   }, [audioRef, duration, progressBarRef, setTimeProgress])
 
@@ -38,11 +40,12 @@ const Controls = ({
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play()
+      audioRef.current.play();
     } else {
-      audioRef.current.pause()
+      audioRef.current.pause();
     }
 
+    // @ts-ignore
     playAnimationRef.current = requestAnimationFrame(repeat)
   }, [isPlaying, audioRef, repeat])
 
@@ -73,43 +76,51 @@ const Controls = ({
   }, [volume, audioRef, muteVolume])
 
   return (
-    <div>
-      <section>
+    <div className={s.root}>
+      <section className={s['track-navigation']}>
         {multipleTracks && (
           <PlayerButton
             type='previous'
             ariaLabel='Previous'
+            size='small'
             onClick={handlePrevious}
           />
         )}
         <PlayerButton
           type="rewind"
           ariaLabel="Rewind"
+          size='medium'
           onClick={rewind}
         />
         <PlayerButton
           type={isPlaying ? 'pause' : 'play'}
           ariaLabel="Play"
+          size='large'
           onClick={togglePlayPause}
         />
         <PlayerButton
           type="fast-forward"
           ariaLabel="Fast Forward"
+          size='medium'
           onClick={fastForward}
         />
         {multipleTracks &&
           <PlayerButton
             type='next'
             ariaLabel='Next'
+            size='small'
             onClick={handleNext}
           />
         }
       </section>
-      <aside>
+      <aside className={s.volume}>
         <PlayerButton
           type={
-            muteVolume || volume < 50 ? 'volume-quiet' : 'volume'
+            muteVolume || volume < 1 ? 'volume-mute' :
+              volume < 50 ? 'volume-quiet' :
+                'volume'
           }
+          size='small'
           ariaLabel='Volume'
           onClick={() => setMuteVolume((prev) => !prev)}
         />
@@ -118,7 +129,8 @@ const Controls = ({
           min={0}
           max={100}
           value={volume}
-          onChange={(e) => setVolume(e.target.value)}
+          onChange={(e) => setVolume(parseInt(e.target.value))}
+          className={s['volume-slider']}
         />
       </aside>
     </div>
