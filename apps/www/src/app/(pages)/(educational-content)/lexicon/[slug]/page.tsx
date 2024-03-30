@@ -11,6 +11,7 @@ import { Badge } from "@components/badge";
 import { Flex } from "@components/flex";
 import { MusicNotation } from "@components/music-notation";
 import { getLexiconSlug } from "../getLexiconSlug";
+import { SinglePlayer } from '@components/audio'
 
 import s from './lexicon-page.module.scss'
 
@@ -129,6 +130,7 @@ export default async function LexiconSlugRoute({ params }) {
             className={s['excerpt-content']}
           >
             <RichText value={description.content} />
+            <SinglePlayer />
             <audio src={audioFile} controls />
             <MusicNotation files={excerpt.files} collapse />
           </Flex>
