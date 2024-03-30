@@ -11,7 +11,7 @@ import { Badge } from "@components/badge";
 import { Flex } from "@components/flex";
 import { MusicNotation } from "@components/music-notation";
 import { getLexiconSlug } from "../getLexiconSlug";
-import { SinglePlayer } from '@components/audio'
+import { AudioPlayer } from '@components/audio'
 
 import s from './lexicon-page.module.scss'
 

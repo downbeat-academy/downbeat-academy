@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react'
 import { Controls } from '../shared/controls'
 
-const SinglePlayer = ({
+const AudioPlayer = ({
   tracks
 }) => {
   const [trackIndex, setTrackIndex] = useState(0)
@@ -44,4 +44,4 @@ const SinglePlayer = ({
   )
 }
 
-export { SinglePlayer }
+export { AudioPlayer }

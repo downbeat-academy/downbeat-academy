@@ -1,1 +1,1 @@
-export { SinglePlayer } from './single-player'
+export { AudioPlayer } from './audio-player'
