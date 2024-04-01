@@ -16,6 +16,14 @@ export default {
 			],
 		},
 		{
+			name: 'artist',
+			title: 'Artist',
+			type: 'string',
+			validation: (Rule: any) => [
+				Rule.required().error('Please enter the artist.'),
+			],
+		},
+		{
 			name: `description`,
 			title: `Description`,
 			type: `string`,

@@ -16,4 +16,19 @@ interface PlayerButtonProps {
   className?: string;
 }
 
-export type { PlayerButtonProps }
+interface DisplayTrackProps {
+  currentTrack: any;
+  audioRef: any;
+  setDuration: any;
+  progressBarRef: any;
+  handleNext: any;
+  trackIndex: number;
+  tracks: any[];
+  showTitle?: boolean;
+  showArtist?: boolean;
+}
+
+export type {
+  PlayerButtonProps,
+  DisplayTrackProps
+}

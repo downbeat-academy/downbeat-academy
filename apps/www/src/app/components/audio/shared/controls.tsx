@@ -17,6 +17,8 @@ const Controls = ({
   const [volume, setVolume] = useState(80)
   const [muteVolume, setMuteVolume] = useState(false)
 
+  console.log('audioRef=' + audioRef.current)
+
   const multipleTracks = tracks.length > 1 ? true : false;
 
   const playAnimationRef = useRef()

@@ -47,9 +47,9 @@ const AudioPlayer = ({
           handleNext,
           tracks,
           trackIndex,
-          showTitle,
-          showArtist,
         }}
+        showTitle={true}
+        showArtist={true}
       />
       <ProgressBar
         {...{
