@@ -1,5 +1,6 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { lexiconPageQuery } from '@lib/queries'
+import { getTime } from "@utils/getTime";
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
@@ -7,6 +8,7 @@ import { Text } from '@components/text'
 import { Link } from '@components/link'
 
 import { getLexiconSlug } from './getLexiconSlug'
+import { LexiconItem } from './lexicon-item'
 
 import type { Metadata } from 'next'
 
@@ -30,15 +32,16 @@ export default async function LexiconPage() {
 
   const renderLexiconItems = lexicons.map((lexicon) => {
     const slug = getLexiconSlug(lexicon);
+    const time = getTime(lexicon.timestamp).totalTime;
     return (
-      <Link
+      <LexiconItem
         key={lexicon._key}
-        href={`/lexicon/${slug}`}
-      >
-        <Text tag='p' type='expressive-body' size='body-base' color='primary' collapse>
-          {slug}
-        </Text>
-      </Link>
+        title={lexicon.artist}
+        url={slug}
+        album={lexicon.album}
+        track={lexicon.track}
+        timestamp={time}
+      />
     )
   })
 
