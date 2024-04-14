@@ -1,5 +1,12 @@
 # sanity-cms
 
+## 2.3.0
+
+### Minor Changes
+
+- d11bb98: Add support for link in bio
+- Adding support for a Lexicon content model, various additional icons to support an audio player, addition of the audio player component.
+
 ## 2.2.0
 
 ### Minor Changes

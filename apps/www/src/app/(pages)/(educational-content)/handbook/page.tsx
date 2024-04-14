@@ -5,9 +5,9 @@ import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
+import { Flex } from '@components/flex'
 
 import type { Metadata } from 'next'
-import { Flex } from '@components/flex'
 
 export const metadata: Metadata = {
   title: 'Handbook',

@@ -10,6 +10,7 @@ const SectionTitle = ({
   alignment = 'left',
   className,
   hasBorder = true,
+  children,
 }: SectionTitleProps) => {
 
   const classes = classnames([
@@ -26,6 +27,7 @@ const SectionTitle = ({
     <div className={classes}>
       {title}
       {subtitle}
+      {children}
     </div>
   )
 }

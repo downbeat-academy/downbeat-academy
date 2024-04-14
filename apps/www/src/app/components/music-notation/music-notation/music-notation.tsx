@@ -15,11 +15,15 @@ const MusicNotation = ({
   files,
   title,
   description,
+  collapse,
   className,
 }: MusicNotationProps) => {
 
   const classes = classnames([
     s.root,
+    {
+      [s.collapse]: collapse
+    },
     className,
   ])
 
@@ -57,10 +61,12 @@ const MusicNotation = ({
 
   return (
     <SectionContainer className={classes}>
-      <SectionTitle
-        title={<Text tag='h5' type='productive-body' size='body-large' collapse>{title}</Text>}
-        subtitle={description && <Text tag='p' type='productive-body' size='body-base'>{description}</Text>}
-      />
+      {title &&
+        <SectionTitle
+          title={<Text tag='h5' type='productive-body' size='body-large' collapse>{title}</Text>}
+          subtitle={description && <Text tag='p' type='productive-body' size='body-base'>{description}</Text>}
+        />
+      }
       <Tabs.Root
         defaultValue={toKebabCase(files[0].label)}
         className={s.content}

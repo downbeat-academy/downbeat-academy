@@ -1,5 +1,11 @@
 # cadence-icons
 
+## 1.3.0
+
+### Minor Changes
+
+- Adding support for a Lexicon content model, various additional icons to support an audio player, addition of the audio player component.
+
 ## 1.2.0
 
 ### Minor Changes
