@@ -16,27 +16,27 @@ import s from './lexicon-page.module.scss'
 
 const client = sanityClient;
 
-// export async function generateMetadata({ params }: { params: { id: string, slug: string } }) {
-//   const { slug } = params;
+export async function generateMetadata({ params }: { params: { id: string, slug: string } }) {
+  const { slug } = params;
 
-//   try {
-//     const lexicon = await sanityClient.fetch(lexiconsBySlugQuery, {
-//       slug,
-//     });
+  try {
+    const lexicon = await sanityClient.fetch(lexiconsBySlugQuery, {
+      slug,
+    });
 
-//     return {
-//       title: getOgTitle(`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${getTime(lexicon.timestamp).totalTime}`),
-//       description: lexicon.excerpt,
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// }
+    return {
+      title: getOgTitle(`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${getTime(lexicon.timestamp).totalTime}`),
+      description: lexicon.excerpt,
+    };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
 
 export async function generateStaticParams() {
   try {
-    const lexicons = await sanityClient.fetch(
+    const slugs = await sanityClient.fetch(
       lexiconPaths,
       {
         next: {
@@ -44,11 +44,7 @@ export async function generateStaticParams() {
         }
       }
     );
-    return lexicons.map((lexicon) => ({
-      params: {
-        slug: `${getLexiconSlug(lexicon)}_${lexicon._id}`,
-      }
-    }));
+    return slugs.map((slug) => ({ slug }));
   } catch (error) {
     {
       console.error(error);
@@ -58,9 +54,8 @@ export async function generateStaticParams() {
 }
 
 export default async function LexiconSlugRoute({ params }) {
-  // const [slug, id] = params.slug.split('_');
-  console.log(params)
-  const lexicon = await client.fetch(lexiconsBySlugQuery, { params })
+  const { slug } = params;
+  const lexicon = await client.fetch(lexiconsBySlugQuery, { slug })
   const {
     artist,
     album,

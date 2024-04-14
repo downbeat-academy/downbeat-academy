@@ -7,7 +7,6 @@ import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 
-import { getLexiconSlug } from './getLexiconSlug'
 import { LexiconItem } from './lexicon-item'
 
 import type { Metadata } from 'next'
@@ -33,14 +32,12 @@ export default async function LexiconPage() {
   console.log(lexicons)
 
   const renderLexiconItems = lexicons.map((lexicon) => {
-    const slug = getLexiconSlug(lexicon);
-    // const slug = lexicon.id;
     const time = getTime(lexicon.timestamp).totalTime;
     return (
       <LexiconItem
         key={lexicon._key}
         title={lexicon.artist}
-        url={slug}
+        url={lexicon.slug}
         album={lexicon.album}
         track={lexicon.track}
         timestamp={time}
