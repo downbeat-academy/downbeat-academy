@@ -1,5 +1,18 @@
 # www
 
+## 3.3.0
+
+### Minor Changes
+
+- d11bb98: Add support for link in bio
+- Adding support for a Lexicon content model, various additional icons to support an audio player, addition of the audio player component.
+- 76420c2: Updated the styling for some music notation and stuff and a bit of cleanup'
+
+### Patch Changes
+
+- Updated dependencies
+  - cadence-icons@1.3.0
+
 ## 3.2.0
 
 ### Minor Changes
