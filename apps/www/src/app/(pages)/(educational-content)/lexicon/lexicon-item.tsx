@@ -13,7 +13,6 @@ const LexiconItem = ({
   timestamp,
 }) => {
 
-  console.log(url)
   return (
     <Link href={linkResolver(url, 'lexicon')} className={s.root}>
       <Text

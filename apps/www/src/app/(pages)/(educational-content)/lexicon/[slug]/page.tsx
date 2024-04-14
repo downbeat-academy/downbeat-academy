@@ -9,7 +9,6 @@ import { RichText } from "@components/rich-text";
 import { Badge } from "@components/badge";
 import { Flex } from "@components/flex";
 import { MusicNotation } from "@components/music-notation";
-import { getLexiconSlug } from "../getLexiconSlug";
 import { AudioPlayer } from '@components/audio'
 
 import s from './lexicon-page.module.scss'

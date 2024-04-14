@@ -1,15 +1,18 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { lexiconPageQuery } from '@lib/queries'
 import { getTime } from "@utils/getTime";
-
+import { getOgTitle } from '@utils/metaHelpers';
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from '@components/text'
-import { Link } from '@components/link'
-
 import { LexiconItem } from './lexicon-item'
 
 import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: getOgTitle('Jazz Language Lexicon'),
+  description: 'A collection of educational content from Downbeat Academy.'
+}
 
 async function getLexicons() {
   const res = sanityClient.fetch(
@@ -28,8 +31,6 @@ async function getLexicons() {
 
 export default async function LexiconPage() {
   const lexicons = await getLexicons();
-
-  console.log(lexicons)
 
   const renderLexiconItems = lexicons.map((lexicon) => {
     const time = getTime(lexicon.timestamp).totalTime;
