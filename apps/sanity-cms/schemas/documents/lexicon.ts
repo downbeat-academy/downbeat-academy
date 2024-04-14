@@ -1,5 +1,7 @@
 import { BiCabinet } from 'react-icons/bi';
 import { timestampFormat } from '../../utils/timestamp-format';
+import { getTime } from '../../utils/getTime';
+import { slugify } from '../../utils/slugify';
 
 type LexiconTitle = {
   artist: string,
@@ -80,6 +82,19 @@ export default {
       validation: [(Rule: any) => [
         Rule.required().error('Please enter the year.')]
       ],
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      group: 'metadata',
+      options: {
+        source: (doc: any) => {
+          const { artist, album, track, timestamp } = doc
+          const slug = slugify([artist, album, track, getTime(timestamp).totalTimeToString])
+          return slug
+        },
+      },
     },
     {
       name: 'style',

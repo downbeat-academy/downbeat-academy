@@ -24,8 +24,6 @@ export const DisplayTrack = ({
     progressBarRef.current.max = seconds;
   };
 
-  console.log(audioRef)
-
   const trackMetadata = () => {
     if (showTitle === true && showArtist === true) {
       return (

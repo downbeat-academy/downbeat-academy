@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
 export const lexiconsBySlugQuery = groq`
-  *[_type == 'lexicon'][0] {
+  *[_type == 'lexicon' && _id == $_id][0] {
     _id,
     _key,
     artist,
@@ -11,6 +11,7 @@ export const lexiconsBySlugQuery = groq`
     style,
     length,
     chordProgression,
+    year,
     description {
       ...,
       _type == "richText" => {
@@ -39,9 +40,20 @@ export const lexiconsBySlugQuery = groq`
   }
 `
 
+// export const lexiconPaths = groq`
+//   *[_type == 'lexicon'] {
+//     _key,
+//     "id": _id,
+//     artist,
+//     album,
+//     track,
+//     timestamp,
+//     year,
+//   }
+// `
+
 export const lexiconPaths = groq`
   *[_type == 'lexicon'] {
-    _key,
     _id,
     artist,
     album,
@@ -52,7 +64,7 @@ export const lexiconPaths = groq`
 
 export const lexiconPageQuery = groq`
   *[_type == 'lexicon'] {
-    _id,
+    "id": _id,
     _key,
     artist,
     album,

@@ -25,8 +25,6 @@ export const ProgressBar = ({
     return '00:00';
   }
 
-  console.log(duration)
-
   return (
     <div className={s.progress}>
       <Text

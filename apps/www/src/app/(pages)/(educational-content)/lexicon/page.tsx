@@ -30,8 +30,11 @@ async function getLexicons() {
 export default async function LexiconPage() {
   const lexicons = await getLexicons();
 
+  console.log(lexicons)
+
   const renderLexiconItems = lexicons.map((lexicon) => {
     const slug = getLexiconSlug(lexicon);
+    // const slug = lexicon.id;
     const time = getTime(lexicon.timestamp).totalTime;
     return (
       <LexiconItem

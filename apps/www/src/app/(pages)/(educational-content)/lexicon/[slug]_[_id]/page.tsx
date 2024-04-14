@@ -16,31 +16,38 @@ import s from './lexicon-page.module.scss'
 
 const client = sanityClient;
 
-export async function generateMetadata({ params }: { params: any }) {
-  const { slug } = params;
+// export async function generateMetadata({ params }: { params: { id: string, slug: string } }) {
+//   const { slug } = params;
 
-  try {
-    const lexicon = await sanityClient.fetch(lexiconsBySlugQuery, {
-      slug,
-    });
+//   try {
+//     const lexicon = await sanityClient.fetch(lexiconsBySlugQuery, {
+//       slug,
+//     });
 
-    return {
-      title: getOgTitle(`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${getTime(lexicon.timestamp).totalTime}`),
-      description: lexicon.excerpt,
-    };
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
+//     return {
+//       title: getOgTitle(`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${getTime(lexicon.timestamp).totalTime}`),
+//       description: lexicon.excerpt,
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// }
 
 export async function generateStaticParams() {
   try {
-    const lexicons = await sanityClient.fetch(lexiconPaths, {
-      revalidate: 60,
-    });
+    const lexicons = await sanityClient.fetch(
+      lexiconPaths,
+      {
+        next: {
+          revalidate: 60,
+        }
+      }
+    );
     return lexicons.map((lexicon) => ({
-      slug: getLexiconSlug(lexicon),
+      params: {
+        slug: `${getLexiconSlug(lexicon)}_${lexicon._id}`,
+      }
     }));
   } catch (error) {
     {
@@ -51,8 +58,9 @@ export async function generateStaticParams() {
 }
 
 export default async function LexiconSlugRoute({ params }) {
-  const { slug } = params;
-  const lexicon = await client.fetch(lexiconsBySlugQuery, { slug })
+  // const [slug, id] = params.slug.split('_');
+  console.log(params)
+  const lexicon = await client.fetch(lexiconsBySlugQuery, { params })
   const {
     artist,
     album,
@@ -63,7 +71,7 @@ export default async function LexiconSlugRoute({ params }) {
     chordProgression,
     description,
     excerpt,
-    audio
+    audio,
   } = lexicon
 
   const lexiconMetadata = [
@@ -131,7 +139,6 @@ export default async function LexiconSlugRoute({ params }) {
               showTitle={false}
               showArtist={false}
             />
-            {/* <audio src={audioFile} controls /> */}
             <MusicNotation files={excerpt.files} collapse />
           </Flex>
         </section>
