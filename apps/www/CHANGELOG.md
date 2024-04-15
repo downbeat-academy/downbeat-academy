@@ -1,5 +1,18 @@
 # www
 
+## 3.4.0
+
+### Minor Changes
+
+- 1504f9f: Updating the layout and routing of auth pages
+- 3a93e7b: Add support for more complex account management
+
+### Patch Changes
+
+- e802d8a: Added not-allowed cursor to disabled variant
+- Updated dependencies [3a93e7b]
+  - cadence-icons@1.4.0
+
 ## 3.3.0
 
 ### Minor Changes

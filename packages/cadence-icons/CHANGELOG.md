@@ -1,5 +1,11 @@
 # cadence-icons
 
+## 1.4.0
+
+### Minor Changes
+
+- 3a93e7b: Add support for more complex account management
+
 ## 1.3.0
 
 ### Minor Changes
