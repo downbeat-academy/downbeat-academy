@@ -13,16 +13,21 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
       
       - name: Setup Node.js 20
-        uses: actions/checkout@v3
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
+          cache: 'pnpm'
       
       - name: Install Dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - name: Create Release Pull Request
+        id: changesets
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
