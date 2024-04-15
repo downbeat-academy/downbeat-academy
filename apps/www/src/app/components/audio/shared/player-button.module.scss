@@ -1,0 +1,25 @@
+.root {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: $cds-color-surface-primary;
+  border: none;
+}
+
+.size--small {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+}
+
+.size--medium {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.size--large {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+}

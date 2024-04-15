@@ -9,9 +9,10 @@ interface SectionTitleProps {
   'warning' |
   'critical',
   alignment?: 'left' | 'center' | 'right',
-  title: React.ReactNode,
+  title?: React.ReactNode,
   subtitle?: React.ReactNode,
   hasBorder?: boolean,
+  children?: React.ReactNode,
   className?: string,
 }
 
