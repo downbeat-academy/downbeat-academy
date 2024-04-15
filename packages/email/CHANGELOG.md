@@ -1,5 +1,11 @@
 # email
 
+## 1.2.0
+
+### Minor Changes
+
+- 80edb95: Updated core deps and fixed dependency issue
+
 ## 1.1.0
 
 ### Minor Changes
