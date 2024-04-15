@@ -6,8 +6,8 @@ export default function AuthLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<ContentWrapper>
-			<Content isFullBleed>{children}</Content>
-		</ContentWrapper>
+		<>
+			{children}
+		</>
 	)
 }
