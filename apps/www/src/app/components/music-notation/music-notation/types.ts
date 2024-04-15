@@ -31,6 +31,7 @@ interface MusicNotationProps {
   title?: string,
   description?: string,
   className?: string,
+  collapse?: boolean,
 }
 
 export type {

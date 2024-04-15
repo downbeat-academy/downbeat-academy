@@ -1,0 +1,8 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: $cds-scale-small;
+  background: $cds-color-palette-blackberry-700;
+  border-radius: $cds-radii-soft;
+  padding: $cds-scale-base;
+}

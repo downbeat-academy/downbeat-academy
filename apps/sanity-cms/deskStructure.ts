@@ -20,6 +20,7 @@ import {
 	BiMusic,
 	BiBookBookmark,
 	BiLink,
+	BiCabinet,
 } from 'react-icons/bi'
 
 export const deskStructure = (S: any) =>
@@ -143,6 +144,15 @@ export const deskStructure = (S: any) =>
 										.schemaType('handbook')
 										.title('Handbook')
 										.filter('_type == "handbook"')
+								),
+							S.listItem()
+								.title('Lexicon')
+								.icon(BiCabinet)
+								.child(
+									S.documentList()
+										.schemaType('lexicon')
+										.title('Lexicon')
+										.filter('_type == "lexicon"')
 								),
 							S.divider(),
 							S.listItem()

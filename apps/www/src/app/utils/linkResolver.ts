@@ -20,6 +20,8 @@ const linkResolver = (url: string, category: string) => {
 			return `/p/${url}`
 		case 'handbook':
 			return `/handbook/${url}`
+		case 'lexicon':
+			return `/lexicon/${url}`
 		default:
 			return `${url}`
 	}
