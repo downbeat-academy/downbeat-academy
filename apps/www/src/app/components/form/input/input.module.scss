@@ -6,6 +6,11 @@
 	padding: $cds-scale-small;
 }
 
+.cds-input--root[disabled] {
+	cursor: not-allowed;
+}
+
 .cds-input--is-invalid {
 	border: 2px solid $cds-color-border-critical;
 }
+
