@@ -27,7 +27,7 @@ jobs:
           cache: 'pnpm'
       
       - name: Install Dependencies
-        run: pnpm
+        run: pnpm install
 
       - name: Create Release Pull Request
         id: changesets
