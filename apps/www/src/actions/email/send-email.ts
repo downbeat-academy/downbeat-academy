@@ -1,7 +1,7 @@
 'use server'
 
 import { Resend } from "resend"
-import ContactFormEmail from "../../../../../../packages/email/emails/contact-form"
+import ContactFormEmail from "../../../../../packages/email/emails/contact-form"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 

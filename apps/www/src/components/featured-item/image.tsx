@@ -11,7 +11,7 @@ const FeaturedItemImage = ({
 }: FeaturedItemImageProps) => {
   return (
     <aside className={s.root}>
-      {url ? 
+      {url ?
         <Link href={url}>
           <Img
             src={image}
@@ -26,7 +26,7 @@ const FeaturedItemImage = ({
           alt={alt}
           fill={true}
           priority
-      />
+        />
       }
     </aside>
   )

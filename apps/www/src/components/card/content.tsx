@@ -24,7 +24,7 @@ const CardContent = ({
       padding='x-large'
       className={classes}
     >
-      {children}    
+      {children}
     </Flex>
   )
 }

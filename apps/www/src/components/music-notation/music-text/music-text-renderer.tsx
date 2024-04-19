@@ -36,5 +36,5 @@ const MusicTextRenderer = ({
   return <span className={classes}>{item}</span>;
 }
 
-export { MusicTextRenderer } 
+export { MusicTextRenderer }
 export type { MusicTextRendererProps }

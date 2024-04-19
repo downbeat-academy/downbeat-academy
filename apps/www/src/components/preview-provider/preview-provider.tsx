@@ -8,7 +8,7 @@ import { suspend } from 'suspend-react'
 const LiveQueryProvider = dynamic(() => import('next-sanity/preview'))
 
 // suspend-react cache is global, so we use a unique key to avoid collisions
-const UniqueKey = Symbol('lib/sanity.client')
+const UniqueKey = Symbol('@lib/sanity.client')
 
 export default function PreviewProvider({
   children,

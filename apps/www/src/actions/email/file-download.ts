@@ -1,7 +1,7 @@
 'use server'
 
 import { Resend } from "resend"
-import FileDownload from "../../../../../../packages/email/emails/file-download"
+import FileDownload from "../../../../../packages/email/emails/file-download"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 

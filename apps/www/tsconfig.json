@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -18,37 +13,48 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@*": [
-        "app/*"
+        "src/*"
       ],
       "@api/*": [
-        "app/api/*"
+        "src/app/api/*"
       ],
       "@components/*": [
-        "app/components/*"
+        "src/components/*"
       ],
       "@lib/*": [
-        "app/lib/*"
+        "src/lib/*"
       ],
       "@hooks/*": [
-        "app/hooks/*"
+        "src/hooks/*"
       ],
       "@styles/*": [
-        "app/styles/*"
+        "src/styles/*"
       ],
       "@types/*": [
-        "app/types/*"
+        "src/types/*"
       ],
       "@utils/*": [
-        "app/utils/*"
+        "src/utils/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@actions/*": [
+        "src/actions/*"
       ]
     },
     "plugins": [
       {
         "name": "next"
       }
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ]
   },
   "exclude": [
