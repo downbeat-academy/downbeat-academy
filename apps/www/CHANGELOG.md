@@ -1,5 +1,11 @@
 # www
 
+## 3.5.0
+
+### Minor Changes
+
+- 07b8e74: Restructured the project to move some things out of the app folder.
+
 ## 3.4.0
 
 ### Minor Changes
