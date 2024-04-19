@@ -1,4 +1,4 @@
-import { Text } from '@components/text'
+import { Text } from 'components/text'
 import {
   Dialog,
   DialogContent,
@@ -6,14 +6,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@components/dialog'
-import { Button, ButtonWrapper } from '@components/button'
-import { Flex } from '@components/flex'
+} from 'components/dialog'
+import { Button, ButtonWrapper } from 'components/button'
+import { Flex } from 'components/flex'
 
 import { UpdateEmailForm } from './update-email-form'
 import { UpdatePasswordForm } from './update-password-form'
 
-import { Separator } from '@components/separator'
+import { Separator } from 'components/separator'
 
 const UpdateLogin = ({ email }) => {
   return (

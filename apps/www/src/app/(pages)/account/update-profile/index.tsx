@@ -1,13 +1,13 @@
-import { Flex } from "@components/flex"
-import { Text } from "@components/text"
+import { Flex } from "components/flex"
+import { Text } from "components/text"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@components/dialog'
-import { Button, ButtonWrapper } from '@components/button'
+} from 'components/dialog'
+import { Button, ButtonWrapper } from 'components/button'
 
 import { UpdateProfileForm } from "./update-profile-form"
 

@@ -1,5 +1,5 @@
-import { Footer, HeaderNavigation } from '@components/navigation'
-import { ContentWrapper, Content } from '@components/content-wrapper'
+import { Footer, HeaderNavigation } from 'components/navigation'
+import { ContentWrapper, Content } from 'components/content-wrapper'
 
 export default function PageLayout({
   children,

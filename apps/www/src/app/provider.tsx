@@ -1,7 +1,7 @@
 'use client'
 
-import { Toaster } from '@components/toast'
-import { TooltipProvider } from '@components/tooltip'
+import { Toaster } from 'components/toast'
+import { TooltipProvider } from 'components/tooltip'
 
 const Provider = ({ children }) => {
   return (

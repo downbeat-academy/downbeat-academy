@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
-import { sanityClient } from "@lib/sanity/sanity.client";
-import { linkInBioPageQuery } from "@lib/queries/sanity.link-in-bio"
-import { SectionContainer } from "@components/section-container";
-import { SectionTitle } from "@components/section-title";
-import { ListItem } from "@components/list";
-import { Text } from "@components/text";
-import { linkResolver } from "@utils/linkResolver";
+import { sanityClient } from "lib/sanity/sanity.client";
+import { linkInBioPageQuery } from "lib/queries/sanity.link-in-bio"
+import { SectionContainer } from "components/section-container";
+import { SectionTitle } from "components/section-title";
+import { ListItem } from "components/list";
+import { Text } from "components/text";
+import { linkResolver } from "utils/linkResolver";
 
 import type { Metadata } from "next";
 

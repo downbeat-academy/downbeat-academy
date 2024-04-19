@@ -21,28 +21,28 @@
     "baseUrl": "./src",
     "paths": {
       "@*": [
-        "app/*"
+        "src/*"
       ],
       "@api/*": [
-        "app/api/*"
+        "src/app/api/*"
       ],
       "@components/*": [
-        "app/components/*"
+        "src/components/*"
       ],
       "@lib/*": [
-        "app/lib/*"
+        "src/lib/*"
       ],
       "@hooks/*": [
-        "app/hooks/*"
+        "src/hooks/*"
       ],
       "@styles/*": [
-        "app/styles/*"
+        "src/styles/*"
       ],
       "@types/*": [
-        "app/types/*"
+        "src/types/*"
       ],
       "@utils/*": [
-        "app/utils/*"
+        "src/utils/*"
       ]
     },
     "plugins": [

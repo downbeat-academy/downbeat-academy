@@ -2,11 +2,11 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { loginSchema, type TLoginFormSchema } from '@lib/types/auth/login-form-schema'
-import { Form, FormField, Label, Input, ValidationMessage } from '@components/form'
-import { Button, ButtonWrapper } from '@components/button'
-import { login } from '@actions/auth/login'
-import { useToast } from '@components/toast'
+import { loginSchema, type TLoginFormSchema } from 'lib/types/auth/login-form-schema'
+import { Form, FormField, Label, Input, ValidationMessage } from 'components/form'
+import { Button, ButtonWrapper } from 'components/button'
+import { login } from 'actions/auth/login'
+import { useToast } from 'components/toast'
 
 export function LoginForm() {
   const { toast } = useToast();

@@ -2,19 +2,19 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { updatePasswordSchema, TUpdatePasswordSchema } from '@lib/types/auth/update-password-schema'
-import { updatePassword } from '@actions/auth/update-password'
-import { logout } from '@actions/auth/logout'
+import { updatePasswordSchema, TUpdatePasswordSchema } from 'lib/types/auth/update-password-schema'
+import { updatePassword } from 'actions/auth/update-password'
+import { logout } from 'actions/auth/logout'
 import {
   Form,
   FormField,
   Label,
   Input,
   ValidationMessage,
-} from '@components/form'
-import { Button, ButtonWrapper } from '@components/button'
-import { useToast } from '@components/toast'
-import { DialogClose } from '@components/dialog'
+} from 'components/form'
+import { Button, ButtonWrapper } from 'components/button'
+import { useToast } from 'components/toast'
+import { DialogClose } from 'components/dialog'
 
 const UpdatePasswordForm = () => {
   const { toast } = useToast()

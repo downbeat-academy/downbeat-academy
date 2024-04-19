@@ -2,12 +2,12 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signUpSchema, type TSignUpFormSchema } from '@lib/types/auth/sign-up-form-schema'
-import { Form, FormField, Label, Input, ValidationMessage } from '@components/form'
-import { Button, ButtonWrapper } from '@components/button'
-import { useToast } from '@components/toast'
-import { signup } from '@actions/auth/sign-up'
-import { createContact } from '@actions/email/create-contact'
+import { signUpSchema, type TSignUpFormSchema } from 'lib/types/auth/sign-up-form-schema'
+import { Form, FormField, Label, Input, ValidationMessage } from 'components/form'
+import { Button, ButtonWrapper } from 'components/button'
+import { useToast } from 'components/toast'
+import { signup } from 'actions/auth/sign-up'
+import { createContact } from 'actions/email/create-contact'
 
 export function SignUpForm() {
   const { toast } = useToast();

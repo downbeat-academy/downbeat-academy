@@ -1,4 +1,4 @@
-import { ContentWrapper, Content } from '@components/content-wrapper'
+import { ContentWrapper, Content } from 'components/content-wrapper'
 
 export default function AuthLayout({
 	children,

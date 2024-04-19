@@ -2,11 +2,11 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormField, Input, Label, ValidationMessage } from '@components/form'
-import { Button } from '@components/button'
-import { useToast } from '@components/toast'
-import { subscribeToNewsletter } from '@actions/email/newsletter-subscription'
-import { subscribeToNewsletterSchema, TSubscribeToNewsletterSchema } from '@lib/types/email/subscribe-to-newsletter-schema'
+import { Form, FormField, Input, Label, ValidationMessage } from 'components/form'
+import { Button } from 'components/button'
+import { useToast } from 'components/toast'
+import { subscribeToNewsletter } from 'actions/email/newsletter-subscription'
+import { subscribeToNewsletterSchema, TSubscribeToNewsletterSchema } from 'lib/types/email/subscribe-to-newsletter-schema'
 
 const NewsletterSubscriptionForm = () => {
   const { toast } = useToast()

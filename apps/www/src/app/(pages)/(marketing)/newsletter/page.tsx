@@ -1,6 +1,6 @@
-import { SectionContainer } from "@components/section-container"
-import { SectionTitle } from "@components/section-title"
-import { Text } from "@components/text"
+import { SectionContainer } from "components/section-container"
+import { SectionTitle } from "components/section-title"
+import { Text } from "components/text"
 import { NewsletterSubscriptionForm } from "./newsletter-subscription-form"
 import s from './newsletter-page.module.scss'
 
