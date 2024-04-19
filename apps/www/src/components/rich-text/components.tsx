@@ -1,16 +1,16 @@
-import { Text } from 'components/text'
-import { Link } from 'components/link'
-import { List } from 'components/text'
-import { linkResolver } from 'utils/linkResolver'
+import { Text } from '@components/text'
+import { Link } from '@components/link'
+import { List } from '@components/text'
+import { linkResolver } from '@utils/linkResolver'
 import {
   Chord,
   MusicTextRenderer,
   MusicNotation,
-} from 'components/music-notation'
-import { Blockquote } from 'components/blockquote'
-import { MainImage } from 'components/images'
-import { FileDownload } from 'components/file-download'
-import { HandbookReference } from 'components/handbook-reference'
+} from '@components/music-notation'
+import { Blockquote } from '@components/blockquote'
+import { MainImage } from '@components/images'
+import { FileDownload } from '@components/file-download'
+import { HandbookReference } from '@components/handbook-reference'
 
 const Components = {
   block: {

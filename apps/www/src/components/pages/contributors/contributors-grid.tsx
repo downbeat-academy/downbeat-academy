@@ -1,14 +1,14 @@
 import Img from 'next/image'
-import { linkResolver } from 'utils/linkResolver'
-import { getSanityImageUrl } from 'utils/getSanityImage'
+import { linkResolver } from '@utils/linkResolver'
+import { getSanityImageUrl } from '@utils/getSanityImage'
 
-import * as Card from 'components/card'
-import { Text } from 'components/text'
-import { Grid } from 'components/grid'
-import { Link } from 'components/link'
-import { Flex } from 'components/flex'
-import { Avatar } from 'components/avatar'
-import { Badge } from 'components/badge'
+import * as Card from '@components/card'
+import { Text } from '@components/text'
+import { Grid } from '@components/grid'
+import { Link } from '@components/link'
+import { Flex } from '@components/flex'
+import { Avatar } from '@components/avatar'
+import { Badge } from '@components/badge'
 
 export default async function ContributorsGrid({ contributors }) {
 

@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import classnames from 'classnames'
 import s from './nav-content.module.scss'
-import { LogoLockup } from 'components/brand'
-import { Button } from 'components/button'
-import { Link } from 'components/link'
+import { LogoLockup } from '@components/brand'
+import { Button } from '@components/button'
+import { Link } from '@components/link'
 
 const NavContent = ({ links }) => {
 

@@ -1,7 +1,7 @@
 'use client'
 
-import { getSanityUrl } from "utils/getSanityUrl";
-import { Text } from "components/text";
+import { getSanityUrl } from "@utils/getSanityUrl";
+import { Text } from "@components/text";
 
 import type { DisplayTrackProps } from './types';
 

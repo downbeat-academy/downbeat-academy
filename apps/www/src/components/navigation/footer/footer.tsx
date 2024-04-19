@@ -1,9 +1,9 @@
 import classnames from 'classnames'
 import { Twitter, Facebook, Tiktok, Youtube, Instagram } from 'cadence-icons'
-import { Link } from 'components/link'
-import { LogoSymbol } from 'components/brand'
-import { Text } from 'components/text'
-import { Flex } from 'components/flex'
+import { Link } from '@components/link'
+import { LogoSymbol } from '@components/brand'
+import { Text } from '@components/text'
+import { Flex } from '@components/flex'
 import s from './footer.module.scss'
 
 import type { FooterProps } from './types'

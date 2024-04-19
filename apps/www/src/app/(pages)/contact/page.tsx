@@ -1,7 +1,7 @@
-import { SectionContainer } from "components/section-container"
-import { SectionTitle } from "components/section-title"
+import { SectionContainer } from "@components/section-container"
+import { SectionTitle } from "@components/section-title"
 import { ContactForm } from "./contact-form"
-import { Text } from "components/text"
+import { Text } from "@components/text"
 
 import type { Metadata } from 'next'
 

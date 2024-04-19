@@ -5,11 +5,11 @@ import {
   HoverCardMain,
   HoverCardTitle,
   HoverCardFooter,
-} from 'components/hover-card'
-import { Text } from 'components/text'
-import { Link } from 'components/link'
-import { Badge } from 'components/badge'
-import { Flex } from 'components/flex'
+} from '@components/hover-card'
+import { Text } from '@components/text'
+import { Link } from '@components/link'
+import { Badge } from '@components/badge'
+import { Flex } from '@components/flex'
 
 import type { HandbookReferenceProps } from './types'
 

@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { linkResolver } from "utils/linkResolver"
-import { Text } from 'components/text'
-import { Flex } from "components/flex"
-import { Badge } from "components/badge"
+import { linkResolver } from "@utils/linkResolver"
+import { Text } from '@components/text'
+import { Flex } from "@components/flex"
+import { Badge } from "@components/badge"
 import s from './lexicon-item.module.scss'
 
 const LexiconItem = ({

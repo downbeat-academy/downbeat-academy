@@ -3,12 +3,12 @@
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { updateProfileSchema, TUpdateProfileSchema } from 'lib/types/profile/update-profile-schema'
-import { updateProfile } from 'actions/profile/update-profile'
-import { Button, ButtonWrapper } from 'components/button';
-import { Form, FormField, Label, Input, ValidationMessage } from 'components/form'
-import { useToast } from 'components/toast'
-import { DialogClose } from 'components/dialog'
+import { updateProfileSchema, TUpdateProfileSchema } from '@lib/types/profile/update-profile-schema'
+import { updateProfile } from '@actions/profile/update-profile'
+import { Button, ButtonWrapper } from '@components/button';
+import { Form, FormField, Label, Input, ValidationMessage } from '@components/form'
+import { useToast } from '@components/toast'
+import { DialogClose } from '@components/dialog'
 
 interface UpdateProfileFormProps {
   isReadOnly: boolean;

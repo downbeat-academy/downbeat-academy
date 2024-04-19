@@ -2,18 +2,18 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { updateEmailSchema, TUpdateEmailSchema } from 'lib/types/auth/update-email-schema'
-import { updateEmail } from 'actions/auth/update-email'
+import { updateEmailSchema, TUpdateEmailSchema } from '@lib/types/auth/update-email-schema'
+import { updateEmail } from '@actions/auth/update-email'
 import {
   Form,
   FormField,
   Label,
   Input,
   ValidationMessage,
-} from 'components/form'
-import { Button, ButtonWrapper } from 'components/button'
-import { useToast } from 'components/toast'
-import { DialogClose } from 'components/dialog'
+} from '@components/form'
+import { Button, ButtonWrapper } from '@components/button'
+import { useToast } from '@components/toast'
+import { DialogClose } from '@components/dialog'
 
 const UpdateEmailForm = () => {
   const { toast } = useToast()

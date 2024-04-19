@@ -1,5 +1,5 @@
 import { UnsubscribeForm } from "./unsubscribe-form";
-import { Text } from "components/text";
+import { Text } from "@components/text";
 import s from './unsubscribe.module.scss'
 
 export default function UnsubscribePage() {

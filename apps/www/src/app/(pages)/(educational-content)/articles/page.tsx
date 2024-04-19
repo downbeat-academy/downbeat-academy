@@ -1,10 +1,10 @@
-import { sanityClient } from 'lib/sanity/sanity.client'
-import { articlesPageQuery } from 'lib/queries'
-import { getOgTitle } from 'utils/metaHelpers'
+import { sanityClient } from '@lib/sanity/sanity.client'
+import { articlesPageQuery } from '@lib/queries'
+import { getOgTitle } from '@utils/metaHelpers'
 
-import { SectionContainer } from 'components/section-container'
-import { SectionTitle } from 'components/section-title'
-import { Text } from 'components/text'
+import { SectionContainer } from '@components/section-container'
+import { SectionTitle } from '@components/section-title'
+import { Text } from '@components/text'
 import { ArticlesPostGrid } from '../../../../components/pages/articles'
 
 import type { Metadata } from 'next'

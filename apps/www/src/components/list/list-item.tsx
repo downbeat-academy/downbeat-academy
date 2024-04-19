@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import s from './list-item.module.scss'
-import { Link } from 'components/link'
-import { Text } from 'components/text'
+import { Link } from '@components/link'
+import { Text } from '@components/text'
 
 import type { ListItemProps } from './types'
 

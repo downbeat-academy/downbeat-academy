@@ -1,10 +1,10 @@
-import { sanityClient } from 'lib/sanity/sanity.client'
-import { lexiconPageQuery } from 'lib/queries'
-import { getTime } from "utils/getTime";
-import { getOgTitle } from 'utils/metaHelpers';
-import { SectionContainer } from 'components/section-container'
-import { SectionTitle } from 'components/section-title'
-import { Text } from 'components/text'
+import { sanityClient } from '@lib/sanity/sanity.client'
+import { lexiconPageQuery } from '@lib/queries'
+import { getTime } from "@utils/getTime";
+import { getOgTitle } from '@utils/metaHelpers';
+import { SectionContainer } from '@components/section-container'
+import { SectionTitle } from '@components/section-title'
+import { Text } from '@components/text'
 import { LexiconItem } from './lexicon-item'
 
 import type { Metadata } from 'next'

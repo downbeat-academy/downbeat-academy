@@ -1,5 +1,5 @@
-import { RichText } from 'components/rich-text'
-import { ModuleItem } from 'components/module-content'
+import { RichText } from '@components/rich-text'
+import { ModuleItem } from '@components/module-content'
 import s from './module-renderer.module.scss'
 
 const ModuleRenderer = ({ modules }) => {

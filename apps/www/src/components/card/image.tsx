@@ -1,5 +1,5 @@
 import Img from 'next/image'
-import { Link } from 'components/link'
+import { Link } from '@components/link'
 import s from './image.module.scss'
 
 import type { CardImageProps } from './types'

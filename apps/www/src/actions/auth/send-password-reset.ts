@@ -1,7 +1,7 @@
 'use server'
 
 import { cookies } from 'next/headers'
-import { createClient } from "lib/supabase/supabase.server"
+import { createClient } from "@lib/supabase/supabase.server"
 
 export type FormData = {
   email: string

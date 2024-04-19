@@ -1,4 +1,4 @@
-import type { AvatarProps } from 'components/avatar'
+import type { AvatarProps } from '@components/avatar'
 
 interface AuthorMetadataProps {
   authors?: AvatarProps[],

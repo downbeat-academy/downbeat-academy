@@ -1,5 +1,5 @@
-import { Text } from 'components/text'
-import { Link } from 'components/link'
+import { Text } from '@components/text'
+import { Link } from '@components/link'
 import {
   HoverCard,
   HoverCardTrigger,
@@ -7,7 +7,7 @@ import {
   HoverCardMain,
   HoverCardTitle,
   HoverCardFooter,
-} from 'components/hover-card'
+} from '@components/hover-card'
 
 export default function HoverCardTest() {
   return (

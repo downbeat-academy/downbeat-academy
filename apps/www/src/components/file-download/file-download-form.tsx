@@ -2,12 +2,12 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { fileDownloadSchema, type TFileDownloadSchema } from 'lib/types/file-download-schema'
-import { sendFileDownload } from 'actions/email/file-download'
-import { createContact } from 'actions/email/create-contact'
-import { Form, Input, ValidationMessage, Label, FormField } from 'components/form'
-import { Button } from 'components/button'
-import { useToast } from "components/toast"
+import { fileDownloadSchema, type TFileDownloadSchema } from '@lib/types/file-download-schema'
+import { sendFileDownload } from '@actions/email/file-download'
+import { createContact } from '@actions/email/create-contact'
+import { Form, Input, ValidationMessage, Label, FormField } from '@components/form'
+import { Button } from '@components/button'
+import { useToast } from "@components/toast"
 
 const FileDownloadForm = ({ fileUrl, title }) => {
   const { toast } = useToast()

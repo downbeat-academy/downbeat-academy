@@ -1,11 +1,11 @@
-import { sanityClient } from 'lib/sanity/sanity.client'
-import { handbookPageQuery } from 'lib/queries'
+import { sanityClient } from '@lib/sanity/sanity.client'
+import { handbookPageQuery } from '@lib/queries'
 
-import { SectionContainer } from 'components/section-container'
-import { SectionTitle } from 'components/section-title'
-import { Text } from 'components/text'
-import { Link } from 'components/link'
-import { Flex } from 'components/flex'
+import { SectionContainer } from '@components/section-container'
+import { SectionTitle } from '@components/section-title'
+import { Text } from '@components/text'
+import { Link } from '@components/link'
+import { Flex } from '@components/flex'
 
 import type { Metadata } from 'next'
 

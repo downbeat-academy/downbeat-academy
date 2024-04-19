@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge } from 'components/badge'
+import { Badge } from '@components/badge'
 
 describe('<Badge />', () => {
 

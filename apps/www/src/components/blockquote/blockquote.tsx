@@ -1,7 +1,7 @@
 import classnames from 'classnames'
-import { Flex } from 'components/flex'
-import { Text } from 'components/text'
-import { Link } from 'components/link'
+import { Flex } from '@components/flex'
+import { Text } from '@components/text'
+import { Link } from '@components/link'
 import s from './blockquote.module.scss'
 
 import type { BlockquoteProps } from './types'

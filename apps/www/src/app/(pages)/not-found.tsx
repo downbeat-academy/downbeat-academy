@@ -1,8 +1,8 @@
-import { Flex } from "components/flex";
-import { Link } from "components/link";
-import { SectionContainer } from "components/section-container";
-import { SectionTitle } from 'components/section-title'
-import { Text } from 'components/text'
+import { Flex } from "@components/flex";
+import { Link } from "@components/link";
+import { SectionContainer } from "@components/section-container";
+import { SectionTitle } from '@components/section-title'
+import { Text } from '@components/text'
 
 import type { Metadata } from 'next'
 

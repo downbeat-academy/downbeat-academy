@@ -2,10 +2,10 @@
 
 import { useForm } from 'react-hook-form'
 import { useQueryState } from 'nuqs'
-import { Form, FormField, Input, Label, ValidationMessage } from 'components/form'
-import { Button } from 'components/button'
-import { useToast } from "components/toast"
-import { deleteContact } from 'actions/email/delete-contact'
+import { Form, FormField, Input, Label, ValidationMessage } from '@components/form'
+import { Button } from '@components/button'
+import { useToast } from "@components/toast"
+import { deleteContact } from '@actions/email/delete-contact'
 
 export function UnsubscribeForm() {
   const [email, setEmail] = useQueryState('email')

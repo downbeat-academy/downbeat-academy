@@ -1,15 +1,15 @@
-import { sanityClient } from "lib/sanity/sanity.client";
-import { lexiconPaths, lexiconsBySlugQuery } from "lib/queries";
-import { getOgTitle } from "utils/metaHelpers";
-import { getTime } from "utils/getTime";
-import { Text } from "components/text";
-import { SectionContainer } from "components/section-container";
-import { SectionTitle } from "components/section-title";
-import { RichText } from "components/rich-text";
-import { Badge } from "components/badge";
-import { Flex } from "components/flex";
-import { MusicNotation } from "components/music-notation";
-import { AudioPlayer } from 'components/audio'
+import { sanityClient } from "@lib/sanity/sanity.client";
+import { lexiconPaths, lexiconsBySlugQuery } from "@lib/queries";
+import { getOgTitle } from "@utils/metaHelpers";
+import { getTime } from "@utils/getTime";
+import { Text } from "@components/text";
+import { SectionContainer } from "@components/section-container";
+import { SectionTitle } from "@components/section-title";
+import { RichText } from "@components/rich-text";
+import { Badge } from "@components/badge";
+import { Flex } from "@components/flex";
+import { MusicNotation } from "@components/music-notation";
+import { AudioPlayer } from '@components/audio'
 
 import s from './lexicon-page.module.scss'
 

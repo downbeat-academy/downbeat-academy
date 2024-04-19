@@ -1,4 +1,4 @@
-import { Text } from 'components/text'
+import { Text } from '@components/text'
 import s from './progress-bar.module.scss'
 
 export const ProgressBar = ({

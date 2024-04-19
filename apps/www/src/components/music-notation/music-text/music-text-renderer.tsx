@@ -6,7 +6,7 @@ import {
   BarValue,
   RhythmicValue,
   MusicSymbol,
-} from 'components/music-notation'
+} from '@components/music-notation'
 import s from '../inline-highlight.module.scss'
 
 import type { MusicTextRendererProps } from './types'

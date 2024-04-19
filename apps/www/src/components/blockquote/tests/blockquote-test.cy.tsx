@@ -1,5 +1,5 @@
 import React from 'react'
-import { Blockquote } from 'components/blockquote'
+import { Blockquote } from '@components/blockquote'
 
 describe('<Blockquote />', () => {
   // General

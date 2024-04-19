@@ -1,13 +1,13 @@
-import { linkResolver } from 'utils/linkResolver'
-import { getSanityImageUrl } from 'utils/getSanityImage';
-import { truncateString } from 'utils/truncateString'
+import { linkResolver } from '@utils/linkResolver'
+import { getSanityImageUrl } from '@utils/getSanityImage';
+import { truncateString } from '@utils/truncateString'
 
-import * as Card from 'components/card'
-import { Text } from 'components/text'
-import { Grid } from 'components/grid'
-import { Link } from 'components/link'
-import { AuthorMetadata } from 'components/author';
-import { prettyDate } from 'utils/dateFormat';
+import * as Card from '@components/card'
+import { Text } from '@components/text'
+import { Grid } from '@components/grid'
+import { Link } from '@components/link'
+import { AuthorMetadata } from '@components/author';
+import { prettyDate } from '@utils/dateFormat';
 
 export default async function HomePostGrid({ posts }) {
 

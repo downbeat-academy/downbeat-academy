@@ -1,14 +1,14 @@
-import { sanityClient } from 'lib/sanity/sanity.client'
-import { categoriesBySlugQuery, categoryPaths } from 'lib/queries'
-import { getOgTitle } from 'utils/metaHelpers'
-import { linkResolver } from 'utils/linkResolver'
-import { Text } from 'components/text'
-import { SectionContainer } from 'components/section-container'
-import { SectionTitle } from 'components/section-title'
+import { sanityClient } from '@lib/sanity/sanity.client'
+import { categoriesBySlugQuery, categoryPaths } from '@lib/queries'
+import { getOgTitle } from '@utils/metaHelpers'
+import { linkResolver } from '@utils/linkResolver'
+import { Text } from '@components/text'
+import { SectionContainer } from '@components/section-container'
+import { SectionTitle } from '@components/section-title'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../../types/meta'
-import { ListItem } from 'components/list'
+import { ListItem } from '@components/list'
 
 const client = sanityClient
 

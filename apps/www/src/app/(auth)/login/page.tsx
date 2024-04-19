@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation'
-import { readUserSession } from 'actions/auth/read-user-session'
-import { Text } from 'components/text'
-import * as Tabs from 'components/tabs'
-import { Link } from 'components/link'
+import { readUserSession } from '@actions/auth/read-user-session'
+import { Text } from '@components/text'
+import * as Tabs from '@components/tabs'
+import { Link } from '@components/link'
 import s from './login.module.scss'
 
 import type { Metadata } from 'next'

@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -18,7 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@*": [
         "src/*"
@@ -43,12 +38,23 @@
       ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@actions/*": [
+        "src/actions/*"
       ]
     },
     "plugins": [
       {
         "name": "next"
       }
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ]
   },
   "exclude": [

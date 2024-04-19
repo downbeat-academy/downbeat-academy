@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { contactFormSchema, type TContactFormSchema } from 'lib/types/contact-form-schema'
+import { contactFormSchema, type TContactFormSchema } from '@lib/types/contact-form-schema'
 import {
   Form,
   FormField,
@@ -10,10 +10,10 @@ import {
   Textarea,
   ValidationMessage,
   Label,
-} from 'components/form'
-import { Button } from 'components/button'
-import { useToast } from "components/toast"
-import { sendEmail } from 'actions/email/send-email'
+} from '@components/form'
+import { Button } from '@components/button'
+import { useToast } from "@components/toast"
+import { sendEmail } from '@actions/email/send-email'
 import s from './contact-form.module.scss'
 
 export function ContactForm() {

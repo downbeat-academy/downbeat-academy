@@ -1,17 +1,17 @@
-import { sanityClient } from "lib/sanity/sanity.client";
-import { articlesBySlugQuery, articlePaths } from "lib/queries";
-import { getSanityImageUrl } from "utils/getSanityImage";
-import { prettyDate } from "utils/dateFormat";
-import { linkResolver } from "utils/linkResolver";
-import { getOgTitle } from "utils/metaHelpers";
-import { Text } from 'components/text'
-import { SectionContainer } from "components/section-container";
-import * as FeaturedItem from "components/featured-item";
-import { AuthorMetadata } from "components/author";
-import { RichText, RichTextWrapper } from "components/rich-text";
-import { Badge } from "components/badge";
-import { Link } from "components/link";
-import { Flex } from "components/flex";
+import { sanityClient } from "@lib/sanity/sanity.client";
+import { articlesBySlugQuery, articlePaths } from "@lib/queries";
+import { getSanityImageUrl } from "@utils/getSanityImage";
+import { prettyDate } from "@utils/dateFormat";
+import { linkResolver } from "@utils/linkResolver";
+import { getOgTitle } from "@utils/metaHelpers";
+import { Text } from '@components/text'
+import { SectionContainer } from "@components/section-container";
+import * as FeaturedItem from "@components/featured-item";
+import { AuthorMetadata } from "@components/author";
+import { RichText, RichTextWrapper } from "@components/rich-text";
+import { Badge } from "@components/badge";
+import { Link } from "@components/link";
+import { Flex } from "@components/flex";
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../../types/meta'

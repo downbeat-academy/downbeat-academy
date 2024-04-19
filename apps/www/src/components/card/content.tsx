@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { Flex } from 'components/flex'
+import { Flex } from '@components/flex'
 import s from './content.module.scss'
 
 import type { CardContentProps } from './types'

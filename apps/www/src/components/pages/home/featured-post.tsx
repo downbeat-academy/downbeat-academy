@@ -1,13 +1,13 @@
-import { linkResolver } from 'utils/linkResolver'
-import { getSanityImageUrl } from 'utils/getSanityImage'
-import { prettyDate } from 'utils/dateFormat'
+import { linkResolver } from '@utils/linkResolver'
+import { getSanityImageUrl } from '@utils/getSanityImage'
+import { prettyDate } from '@utils/dateFormat'
 
-import { Link } from 'components/link'
-import { Flex } from 'components/flex'
-import * as FeaturedItem from 'components/featured-item'
-import { AuthorMetadata } from 'components/author'
-import { Text } from 'components/text'
-import { Badge } from 'components/badge'
+import { Link } from '@components/link'
+import { Flex } from '@components/flex'
+import * as FeaturedItem from '@components/featured-item'
+import { AuthorMetadata } from '@components/author'
+import { Text } from '@components/text'
+import { Badge } from '@components/badge'
 
 export default async function FeaturedPost({ featuredPost }) {
 

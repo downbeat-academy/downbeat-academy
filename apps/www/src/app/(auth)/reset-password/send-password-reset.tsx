@@ -2,8 +2,8 @@
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { resetPasswordSchema, TResetPasswordSchema } from "lib/types/auth/reset-password-schema"
-import { resetPassword } from "actions/auth/send-password-reset"
+import { resetPasswordSchema, TResetPasswordSchema } from "@lib/types/auth/reset-password-schema"
+import { resetPassword } from "@actions/auth/send-password-reset"
 
 import {
   Form,
@@ -11,9 +11,9 @@ import {
   FormField,
   ValidationMessage,
   Label
-} from 'components/form'
-import { Button, ButtonWrapper } from 'components/button'
-import { useToast } from 'components/toast'
+} from '@components/form'
+import { Button, ButtonWrapper } from '@components/button'
+import { useToast } from '@components/toast'
 
 const ResetPasswordForm = () => {
   const { toast } = useToast()
