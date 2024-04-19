@@ -1,31 +1,35 @@
 /** @type {import('next').NextConfig} */
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const path = require('path')
 
 const nextConfig = {
-	reactStrictMode: true,
-	sassOptions: {
-		includePaths: [
-			path.join(__dirname, 'app/styles'),
-			path.join(__dirname, 'app/components/**/*.scss'),
-		],
-		prependData: `
+  reactStrictMode: true,
+  sassOptions: {
+    includePaths: [
+      path.join(__dirname, 'app/styles'),
+      path.join(__dirname, 'app/components/**/*.scss'),
+    ],
+    prependData: `
 			@import "./node_modules/cadence-tokens/dist/web/tokens.scss";
 			@import "./node_modules/typeface-favorit";
 			@import "./node_modules/typeface-tiempos-text";`
-	},
-	images: {
-		remotePatterns: [
-			{
-				protocol: 'https',
-				hostname: 'cdn.sanity.io',
-				port: '',
-			}
-		]
-	},
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+      }
+    ]
+  },
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)
 
 
 // Injected content via Sentry wizard below
