@@ -21,7 +21,8 @@
 		"postbuild": "next-sitemap --config next-sitemap.config.js",
 		"start": "next start",
 		"lint": "next lint",
-		"cypress": "cypress open"
+		"cypress": "cypress open",
+		"analyze": "ANALYZE=true pnpm build"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
