@@ -5,7 +5,7 @@ import { SectionContainer } from "@components/section-container";
 import { SectionTitle } from "@components/section-title";
 import { ListItem } from "@components/list";
 import { Text } from "@components/text";
-import { linkResolver } from "@utils/linkResolver";
+import { linkResolver } from "@utils/link-resolver";
 
 import type { Metadata } from "next";
 

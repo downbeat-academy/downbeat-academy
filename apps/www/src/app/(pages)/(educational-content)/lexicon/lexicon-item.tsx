@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { linkResolver } from "@utils/linkResolver"
+import { linkResolver } from "@utils/link-resolver"
 import { Text } from '@components/text'
 import { Flex } from "@components/flex"
 import { Badge } from "@components/badge"

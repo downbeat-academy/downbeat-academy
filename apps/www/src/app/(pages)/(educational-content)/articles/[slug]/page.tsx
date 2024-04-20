@@ -2,7 +2,7 @@ import { sanityClient } from "@lib/sanity/sanity.client";
 import { articlesBySlugQuery, articlePaths } from "@lib/queries";
 import { getSanityImageUrl } from "@utils/getSanityImage";
 import { prettyDate } from "@utils/dateFormat";
-import { linkResolver } from "@utils/linkResolver";
+import { linkResolver } from "@utils/link-resolver";
 import { getOgTitle } from "@utils/metaHelpers";
 import { Text } from '@components/text'
 import { SectionContainer } from "@components/section-container";

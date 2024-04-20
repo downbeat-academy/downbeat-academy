@@ -1,7 +1,7 @@
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 import { List } from '@components/text'
-import { linkResolver } from '@utils/linkResolver'
+import { linkResolver } from '@utils/link-resolver'
 import {
   Chord,
   MusicTextRenderer,
