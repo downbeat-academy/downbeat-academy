@@ -32,45 +32,8 @@ async function getLexicons() {
 
 export default async function LexiconPage() {
   const lexicons = await getLexicons();
-
-  const renderLexiconItems = lexicons.map((lexicon) => {
-    const time = formatTime(lexicon.timestamp).totalTime;
-    return (
-      <LexiconItem
-        key={lexicon._key}
-        title={lexicon.artist}
-        url={lexicon.slug}
-        album={lexicon.album}
-        track={lexicon.track}
-        timestamp={time}
-      />
-    )
-  })
-
   return (
     <>
-      <SectionContainer>
-        <SectionTitle
-          background='primary'
-          title={
-            <Text
-              tag='h1'
-              type='expressive-headline'
-              size='h1'
-              color='brand'
-              collapse
-            >Jazz Language Lexicon</Text>
-          }
-          subtitle={
-            <Text tag='p' type='expressive-body' size='body-base' color='primary' collapse>
-              The Downbeat Academy Jazz Lexicon is a collection and categorization of language excerpts from across the recorded jazz idion.
-            </Text>
-          }
-        />
-        <div>
-          {renderLexiconItems}
-        </div>
-      </SectionContainer>
       <SectionContainer>
         <SectionTitle
           background='primary'
