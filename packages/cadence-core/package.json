@@ -4,7 +4,8 @@
   "description": "Core component library for Downbeat Academy and the Cadence Design System.",
   "scripts": {
     "format": "prettier --write --parser typescript '**/*.{ts,tsx}'",
-    "lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore --fix"
+    "lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore --fix",
+    "build": "tsc && vite build"
   },
   "keywords": [],
   "author": {
@@ -13,11 +14,11 @@
     "url": "https://downbeatacademy.com"
   },
   "files": [
-    "dist/**/*"
+    "dist/"
   ],
   "type": "module",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "license": "ISC",
   "devDependencies": {
@@ -32,7 +33,9 @@
     "eslint-plugin-storybook": "^0.8.0",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite": "^4.5.0",
+    "vite-plugin-dts": "^3.6.3"
   },
   "peerDependencies": {
     "react": "^18.2.0"
