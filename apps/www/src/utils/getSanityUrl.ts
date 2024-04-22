@@ -1,13 +1,13 @@
-import { parseAssetId, buildFileUrl } from "@sanity/asset-utils";
+import { parseAssetId, buildFileUrl } from '@sanity/asset-utils'
 import { sanityConfig } from '@lib/sanity/sanity.config'
 
 function getSanityUrl(assetId) {
-  if (!assetId) return null
+	if (!assetId) return null
 
-  const assetParts = parseAssetId(assetId);
-  const url = buildFileUrl(assetParts, sanityConfig)
+	const assetParts = parseAssetId(assetId)
+	const url = buildFileUrl(assetParts, sanityConfig)
 
-  return url
+	return url
 }
 
-export { getSanityUrl } 
+export { getSanityUrl }

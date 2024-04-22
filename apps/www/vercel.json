@@ -1,6 +1,6 @@
 {
-  "buildCommand": "turbo run build",
-  "devCommand": "pnpm www:dev",
-  "framework": "nextjs",
-  "redirects": []
+	"buildCommand": "turbo run build",
+	"devCommand": "pnpm www:dev",
+	"framework": "nextjs",
+	"redirects": []
 }

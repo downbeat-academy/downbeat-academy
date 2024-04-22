@@ -10,7 +10,6 @@
 // 	return getUrl
 // }
 
-
 import { sanityClient } from '@lib/sanity/sanity.client'
 import imageUrlBuilder from '@sanity/image-url'
 

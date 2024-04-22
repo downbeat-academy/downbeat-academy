@@ -1,18 +1,12 @@
 import * as React from 'react'
 
 const TableCaption = React.forwardRef<
-  HTMLTableCaptionElement,
-  React.HTMLAttributes<HTMLTableCaptionElement>
+	HTMLTableCaptionElement,
+	React.HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref) => {
-  return (
-    <caption
-      ref={ref}
-      className={className}
-      {...props}
-    />
-  )
+	return <caption ref={ref} className={className} {...props} />
 })
 
-TableCaption.displayName = "TableCaption"
+TableCaption.displayName = 'TableCaption'
 
 export { TableCaption }

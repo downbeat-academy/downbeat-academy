@@ -4,8 +4,8 @@ export { TabTrigger, Trigger } from './tab-trigger'
 export { TabContent, Content } from './tab-content'
 
 export type {
-  TabsProps,
-  TabListProps,
-  TabTriggerProps,
-  TabContentProps,
+	TabsProps,
+	TabListProps,
+	TabTriggerProps,
+	TabContentProps,
 } from './types'

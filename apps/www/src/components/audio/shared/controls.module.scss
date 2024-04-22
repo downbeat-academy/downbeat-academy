@@ -1,60 +1,60 @@
 .root {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .track-navigation {
-  display: flex;
-  flex-direction: row;
-  gap: $cds-scale-x-small;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: $cds-scale-x-small;
+	align-items: center;
 }
 
 .volume {
-  display: flex;
-  flex-direction: row;
-  gap: $cds-scale-x-small;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: $cds-scale-x-small;
+	align-items: center;
 }
 
 .volume-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  background: $cds-color-surface-primary;
-  border-radius: 2px;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 4px;
+	background: $cds-color-surface-primary;
+	border-radius: 2px;
 
-  &::before {
-    background: red;
-  }
+	&::before {
+		background: red;
+	}
 
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background: $cds-color-palette-blueberry-500;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    border: 1px solid $cds-color-palette-blueberry-600;
-    cursor: ew-resize;
-    position: relative;
-    top: -8px;
-  }
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		background: $cds-color-palette-blueberry-500;
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+		border: 1px solid $cds-color-palette-blueberry-600;
+		cursor: ew-resize;
+		position: relative;
+		top: -8px;
+	}
 
-  &::-webkit-slider-runnable-track {
-    height: 4px;
-    border-radius: 2px;
-    cursor: pointer;
-    background: $cds-color-palette-blackberry-50;
-    box-shadow: none;
-  }
+	&::-webkit-slider-runnable-track {
+		height: 4px;
+		border-radius: 2px;
+		cursor: pointer;
+		background: $cds-color-palette-blackberry-50;
+		box-shadow: none;
+	}
 
-  &::-moz-range-track {
-    height: 4px;
+	&::-moz-range-track {
+		height: 4px;
 		border-radius: 4px;
 		cursor: pointer;
 		background: $cds-color-palette-blackberry-50;
 		box-shadow: none;
-  }
+	}
 }

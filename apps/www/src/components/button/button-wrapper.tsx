@@ -1,31 +1,26 @@
 import classnames from 'classnames'
 import s from './button-wrapper.module.scss'
 
-import type { ButtonWrapperProps } from "./types"
+import type { ButtonWrapperProps } from './types'
 
 const ButtonWrapper = ({
-  direction = 'horizontal',
-  gap = 'medium',
-  wrap = true,
-  className,
-  children,
+	direction = 'horizontal',
+	gap = 'medium',
+	wrap = true,
+	className,
+	children,
 }: ButtonWrapperProps) => {
+	const classes = classnames([
+		s.root,
+		s[direction],
+		s[gap],
+		{
+			[s.wrap]: wrap,
+		},
+		className,
+	])
 
-  const classes = classnames([
-    s.root,
-    s[direction],
-    s[gap],
-    {
-      [s.wrap]: wrap,
-    },
-    className,
-  ])
-
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  )
+	return <div className={classes}>{children}</div>
 }
 
 export { ButtonWrapper }

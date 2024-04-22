@@ -14,14 +14,14 @@ const DialogTrigger = DialogPrimitive.Trigger
 const DialogPortal = DialogPrimitive.Portal
 
 export {
-  Dialog,
-  DialogPortal,
-  DialogTrigger,
-  DialogClose,
-  DialogOverlay,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
+	Dialog,
+	DialogPortal,
+	DialogTrigger,
+	DialogClose,
+	DialogOverlay,
+	DialogContent,
+	DialogHeader,
+	DialogFooter,
+	DialogTitle,
+	DialogDescription,
 }

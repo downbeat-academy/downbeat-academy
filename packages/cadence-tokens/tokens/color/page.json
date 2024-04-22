@@ -1,18 +1,18 @@
 {
-  "color": {
-    "page": {
-      "primary": {
-        "value": "{color.palette.pineapple.50}",
-        "type": "color"
-      },
-      "secondary": {
-        "value": "{color.palette.blackberry.50}",
-        "type": "color"
-      },
-      "faint": {
-        "value": "{color.palette.blackberry.100}",
-        "type": "color"
-      }
-    }
-  }
+	"color": {
+		"page": {
+			"primary": {
+				"value": "{color.palette.pineapple.50}",
+				"type": "color"
+			},
+			"secondary": {
+				"value": "{color.palette.blackberry.50}",
+				"type": "color"
+			},
+			"faint": {
+				"value": "{color.palette.blackberry.100}",
+				"type": "color"
+			}
+		}
+	}
 }

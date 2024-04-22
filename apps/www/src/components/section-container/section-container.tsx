@@ -1,30 +1,25 @@
 import classnames from 'classnames'
 import s from './section-container.module.scss'
 
-import type { SectionContainerProps } from "./types"
+import type { SectionContainerProps } from './types'
 
 const SectionContainer = ({
-  children,
-  tag = 'div',
-  background,
-  borderColor = 'primary',
-  className,
+	children,
+	tag = 'div',
+	background,
+	borderColor = 'primary',
+	className,
 }: SectionContainerProps) => {
+	const classes = classnames([
+		s.root,
+		s[`background--${background}`],
+		s[`border-color--${borderColor}`],
+		className,
+	])
 
-  const classes = classnames([
-    s.root,
-    s[`background--${background}`],
-    s[`border-color--${borderColor}`],
-    className,
-  ])
+	const Tag = tag
 
-  const Tag = tag;
-
-  return (
-    <Tag className={classes}>
-      {children}
-    </Tag>
-  )
+	return <Tag className={classes}>{children}</Tag>
 }
 
 export { SectionContainer }

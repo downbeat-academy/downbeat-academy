@@ -10,44 +10,37 @@ import { ArticlesPostGrid } from '../../../../components/pages/articles'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: getOgTitle('Articles'),
-  description: 'Recent articles and learning materials from Downbeat Academy.'
+	title: getOgTitle('Articles'),
+	description: 'Recent articles and learning materials from Downbeat Academy.',
 }
 
 async function getArticles() {
-  const res = sanityClient.fetch(
-    articlesPageQuery,
-    {
-      revalidate: 60,
-    }
-  )
+	const res = sanityClient.fetch(articlesPageQuery, {
+		revalidate: 60,
+	})
 
-  if (!res) {
-    throw new Error('Failed to fetch data.');
-  }
+	if (!res) {
+		throw new Error('Failed to fetch data.')
+	}
 
-  return res;
+	return res
 }
 
 export default async function ArticlesPage() {
+	const articles = await getArticles()
 
-  const articles = await getArticles();
-
-  return (
-    <>
-      <SectionContainer>
-        <SectionTitle
-          title={
-            <Text
-              tag='h1'
-              type='expressive-headline'
-              size='h1'
-              collapse
-            >Recent articles</Text>
-          }
-        />
-        <ArticlesPostGrid articles={articles} />
-      </SectionContainer>
-    </>
-  )
+	return (
+		<>
+			<SectionContainer>
+				<SectionTitle
+					title={
+						<Text tag="h1" type="expressive-headline" size="h1" collapse>
+							Recent articles
+						</Text>
+					}
+				/>
+				<ArticlesPostGrid articles={articles} />
+			</SectionContainer>
+		</>
+	)
 }

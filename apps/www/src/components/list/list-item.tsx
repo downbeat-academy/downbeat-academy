@@ -5,39 +5,29 @@ import { Text } from '@components/text'
 
 import type { ListItemProps } from './types'
 
-const ListItem = ({
-  title,
-  description,
-  url,
-  className,
-}: ListItemProps) => {
+const ListItem = ({ title, description, url, className }: ListItemProps) => {
+	const classes = classnames(s.root, className)
 
-  const classes = classnames(
-    s.root,
-    className,
-  )
-
-  return (
-    <article className={classes}>
-      <Text
-        tag='h3'
-        size='h5'
-        type='expressive-headline'
-        color='primary'
-        collapse
-      >
-        <Link href={url} type='inherit'>{title}</Link>
-      </Text>
-      {description &&
-        <Text
-          tag='p'
-          size='body-base'
-          type='expressive-body'
-          collapse
-        >{description}</Text>
-      }
-    </article>
-  )
+	return (
+		<article className={classes}>
+			<Text
+				tag="h3"
+				size="h5"
+				type="expressive-headline"
+				color="primary"
+				collapse
+			>
+				<Link href={url} type="inherit">
+					{title}
+				</Link>
+			</Text>
+			{description && (
+				<Text tag="p" size="body-base" type="expressive-body" collapse>
+					{description}
+				</Text>
+			)}
+		</article>
+	)
 }
 
 export { ListItem }

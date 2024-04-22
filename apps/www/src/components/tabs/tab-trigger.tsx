@@ -7,33 +7,29 @@ import s from './tabs.module.scss'
 import type { TabTriggerProps } from './types'
 
 const TabTrigger = ({
-  children,
-  value,
-  disabled,
-  icon,
-  className
+	children,
+	value,
+	disabled,
+	icon,
+	className,
 }: TabTriggerProps) => {
+	const classes = classnames([s[`tabs--trigger`], className])
 
-  const classes = classnames([
-    s[`tabs--trigger`],
-    className,
-  ])
-
-  return (
-    <TabsPrimitive.Trigger
-      value={value}
-      className={classes}
-      disabled={disabled}
-    >
-      {icon}
-      {children}
-    </TabsPrimitive.Trigger>
-  )
+	return (
+		<TabsPrimitive.Trigger
+			value={value}
+			className={classes}
+			disabled={disabled}
+		>
+			{icon}
+			{children}
+		</TabsPrimitive.Trigger>
+	)
 }
 
 TabTrigger.displayName = 'TabTrigger'
 
-const Trigger = TabTrigger;
+const Trigger = TabTrigger
 
 export { TabTrigger, Trigger }
 export type { TabTriggerProps }

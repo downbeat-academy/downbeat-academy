@@ -1,5 +1,5 @@
 interface HeaderNavigationProps {
-  className?: string,
+	className?: string
 }
 
 export type { HeaderNavigationProps }

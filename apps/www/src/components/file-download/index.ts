@@ -1,1 +1,1 @@
-export { FileDownload } from './file-download';
+export { FileDownload } from './file-download'

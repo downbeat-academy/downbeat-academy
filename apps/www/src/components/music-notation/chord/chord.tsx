@@ -3,35 +3,21 @@ import s from '../inline-highlight.module.scss'
 
 import { transformChord } from '../transfomers'
 
-import type { ChordProps } from "./types"
+import type { ChordProps } from './types'
 
 const Chord = ({
-  root,
-  quality,
-  seventh,
-  extension,
-  alternateBass,
-  className,
+	root,
+	quality,
+	seventh,
+	extension,
+	alternateBass,
+	className,
 }: ChordProps) => {
+	const classes = classnames(s.root, className)
 
-  const classes = classnames(
-    s.root,
-    className,
-  )
+	const chord = transformChord(root, quality, extension, alternateBass, 'abbr')
 
-  const chord = transformChord(
-    root,
-    quality,
-    extension,
-    alternateBass,
-    'abbr'
-  )
-
-  return (
-    <span className={classes}>
-      {chord}
-    </span>
-  )
+	return <span className={classes}>{chord}</span>
 }
 
 export { Chord }

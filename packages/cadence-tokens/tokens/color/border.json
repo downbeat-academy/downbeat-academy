@@ -1,38 +1,38 @@
 {
-  "color": {
-    "border": {
-      "primary": {
-        "value": "{color.palette.blackberry.700}",
-        "type": "color"
-      },
-      "faint": {
-        "value": "{color.palette.blackberry.500}",
-        "type": "color"
-      },
-      "brand": {
-        "value": "{color.palette.violet.500}",
-        "type": "color"
-      },
-      "interactive": {
-        "value": "{color.palette.blueberry.500}",
-        "type": "color"
-      },
-      "success": {
-        "value": "{color.palette.kale.500}",
-        "type": "color"
-      },
-      "warning": {
-        "value": "{color.palette.pineapple.500}",
-        "type": "color"
-      },
-      "critical": {
-        "value": "{color.palette.peach.500}",
-        "type": "color"
-      },
-      "high-contrast": {
-        "value": "{color.palette.blackberry.50}",
-        "type": "color"
-      }
-    }
-  }
+	"color": {
+		"border": {
+			"primary": {
+				"value": "{color.palette.blackberry.700}",
+				"type": "color"
+			},
+			"faint": {
+				"value": "{color.palette.blackberry.500}",
+				"type": "color"
+			},
+			"brand": {
+				"value": "{color.palette.violet.500}",
+				"type": "color"
+			},
+			"interactive": {
+				"value": "{color.palette.blueberry.500}",
+				"type": "color"
+			},
+			"success": {
+				"value": "{color.palette.kale.500}",
+				"type": "color"
+			},
+			"warning": {
+				"value": "{color.palette.pineapple.500}",
+				"type": "color"
+			},
+			"critical": {
+				"value": "{color.palette.peach.500}",
+				"type": "color"
+			},
+			"high-contrast": {
+				"value": "{color.palette.blackberry.50}",
+				"type": "color"
+			}
+		}
+	}
 }

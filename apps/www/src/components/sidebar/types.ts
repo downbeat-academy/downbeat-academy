@@ -1,8 +1,7 @@
 interface SidebarProps {
-  className?: string,
-  position?: 'left' | 'right',
-  children?: React.ReactNode,
+	className?: string
+	position?: 'left' | 'right'
+	children?: React.ReactNode
 }
 
 export type { SidebarProps }
-

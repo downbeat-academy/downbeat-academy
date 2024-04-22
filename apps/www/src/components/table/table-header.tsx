@@ -1,18 +1,12 @@
 import * as React from 'react'
 
 const TableHeader = React.forwardRef<
-  HTMLTableSectionElement,
-  React.HTMLAttributes<HTMLTableSectionElement>
+	HTMLTableSectionElement,
+	React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => {
-  return (
-    <thead
-      ref={ref}
-      className={className}
-      {...props}
-    />
-  )
+	return <thead ref={ref} className={className} {...props} />
 })
 
-TableHeader.displayName = "TableHeader"
+TableHeader.displayName = 'TableHeader'
 
 export { TableHeader }

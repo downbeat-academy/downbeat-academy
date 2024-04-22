@@ -7,20 +7,20 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@lib/supabase/supabase.server'
 
 export type FormData = {
-  email: string
-  password: string
+	email: string
+	password: string
 }
 
 export async function login(formData: FormData) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+	const cookieStore = cookies()
+	const supabase = createClient(cookieStore)
 
-  try {
-    await supabase.auth.signInWithPassword(formData)
-  } catch (e) {
-    throw new Error('Failed to sign in')
-  }
+	try {
+		await supabase.auth.signInWithPassword(formData)
+	} catch (e) {
+		throw new Error('Failed to sign in')
+	}
 
-  revalidatePath('/', 'layout')
-  redirect('/account')
+	revalidatePath('/', 'layout')
+	redirect('/account')
 }
