@@ -1,5 +1,11 @@
 # www
 
+## 3.6.0
+
+### Minor Changes
+
+- 0594e4c: Added support for NextJS bundle analyzer
+
 ## 3.5.0
 
 ### Minor Changes
