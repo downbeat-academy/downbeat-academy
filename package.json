@@ -20,8 +20,6 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "dev": "turbo run dev",
-    "react:dev": "turbo run dev --filter=cadence-react",
-    "react:build": "turbo run build --filter=cadence-react",
     "icons:dev": "turbo run dev --filter=cadence-icons",
     "icons:build": "turbo run build --filter=cadence-icons",
     "www:dev": "turbo run dev --filter=www",
