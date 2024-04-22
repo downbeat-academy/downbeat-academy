@@ -1,7 +1,7 @@
 import { sanityClient } from "@lib/sanity/sanity.client";
 import { lexiconPaths, lexiconsBySlugQuery } from "@lib/queries";
 import { getOgTitle } from "@utils/metaHelpers";
-import { getTime } from "@utils/getTime";
+import { formatTime } from "@utils/format-time";
 import { Text } from "@components/text";
 import { SectionContainer } from "@components/section-container";
 import { SectionTitle } from "@components/section-title";
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { id: string, slug:
     });
 
     return {
-      title: getOgTitle(`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${getTime(lexicon.timestamp).totalTime}`),
+      title: getOgTitle(`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${formatTime(lexicon.timestamp).totalTime}`),
       description: lexicon.excerpt,
     };
   } catch (error) {
@@ -83,7 +83,7 @@ export default async function LexiconSlugRoute({ params }) {
     },
     {
       title: 'Timestamp',
-      value: getTime(timestamp).totalTime,
+      value: formatTime(timestamp).totalTime,
     },
     {
       title: 'Style',

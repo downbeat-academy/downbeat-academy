@@ -1,5 +1,5 @@
 import Img from 'next/image'
-import { linkResolver } from '@utils/linkResolver'
+import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 
 import * as Card from '@components/card'

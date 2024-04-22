@@ -1,4 +1,4 @@
-import { linkResolver } from '@utils/linkResolver'
+import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 

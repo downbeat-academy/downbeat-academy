@@ -5,7 +5,7 @@ import { Avatar, AvatarGroup } from '@components/avatar'
 import { Link } from '@components/link'
 import { Flex } from '@components/flex'
 import { getSanityImageUrl } from '@utils/getSanityImage'
-import { linkResolver } from '@utils/linkResolver'
+import { linkResolver } from '@utils/link-resolver'
 import s from './author-metadata.module.scss'
 
 import type { AuthorMetadataProps } from './types'

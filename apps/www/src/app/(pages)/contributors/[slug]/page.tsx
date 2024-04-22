@@ -12,7 +12,7 @@ import { Text } from '@components/text'
 import { RichText } from '@components/rich-text'
 import * as FeaturedItem from '@components/featured-item'
 import { ListItem } from '@components/list'
-import { linkResolver } from '@utils/linkResolver'
+import { linkResolver } from '@utils/link-resolver'
 import { Flex } from '@components/flex'
 
 import type { Metadata, ResolvingMetadata } from 'next'
