@@ -1,0 +1,33 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./Example.tsx";
+import * as Badge from "./badge.stories.tsx";
+
+<Meta of={Badge} title="Badge" />
+
+# Badge
+
+Badge component!
+
+## Example
+
+{/* <Canvas of={Badge} /> */}
+
+## Usage
+
+```ts
+import { Badge } from "cadence-core";
+
+const Example = () => {
+  return (
+      <Badge
+        text='Badge text'
+      />
+  );
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **text** _`() => void`_ - A string that represents the text content of the button.
