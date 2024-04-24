@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { peerDependencies } from "./package.json";
@@ -17,4 +19,15 @@ export default defineConfig({
     emptyOutDir: true, // Clears the output directory before building.
   },
   plugins: [dts()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
+  css: {
+    modules: {
+      localsConvention: "camelCase", // Converts CSS class names to camelCase.
+      generateScopedName: "[name]__[local]--[hash:base64:5]", // Generates unique class names.
+    }
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./setup-tests.ts",
+  }
 });
