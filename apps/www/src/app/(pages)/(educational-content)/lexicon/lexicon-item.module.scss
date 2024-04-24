@@ -1,19 +1,19 @@
 .root {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  background: $cds-color-surface-primary;
-  padding: $cds-scale-base $cds-scale-large;
-  gap: $cds-scale-x-small;
+	display: flex;
+	flex-direction: column;
+	text-decoration: none;
+	background: $cds-color-surface-primary;
+	padding: $cds-scale-base $cds-scale-large;
+	gap: $cds-scale-x-small;
 
-  &:hover {
-    background: $cds-color-surface-faint;
-    & > h2 {
-      color: $cds-color-foreground-interactive-hover;
-    }
-  }
+	&:hover {
+		background: $cds-color-surface-faint;
+		& > h2 {
+			color: $cds-color-foreground-interactive-hover;
+		}
+	}
 
-  &:not(:last-child) {
-    border-bottom: 1px solid $cds-color-border-primary;
-  }
+	&:not(:last-child) {
+		border-bottom: 1px solid $cds-color-border-primary;
+	}
 }

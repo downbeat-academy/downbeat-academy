@@ -1,24 +1,29 @@
-import type { BarValueProps } from "./types"
+import type { BarValueProps } from './types'
 
-const BarValue = ({
-  value,
-}: BarValueProps) => {
+const BarValue = ({ value }: BarValueProps) => {
+	const renderBarValue = () => {
+		switch (value) {
+			case 'single':
+				return '𝄀'
+			case 'double':
+				return '𝄁'
+			case 'final':
+				return '𝄂'
+			case 'final-reverse':
+				return '𝄃'
+			case 'dashed':
+				return '𝄄'
+			case 'repeat-left':
+				return '𝄆'
+			case 'repeat-right':
+				return '𝄇'
+			default:
+				console.error('Unsupported bar value')
+		}
+	}
 
-  const renderBarValue = () => {
-    switch (value) {
-      case 'single': return '𝄀'
-      case 'double': return '𝄁'
-      case 'final': return '𝄂'
-      case 'final-reverse': return '𝄃'
-      case 'dashed': return '𝄄'
-      case 'repeat-left': return '𝄆'
-      case 'repeat-right': return '𝄇'
-      default: console.error('Unsupported bar value')
-    }
-  }
-
-  return <>{renderBarValue()}</>
+	return <>{renderBarValue()}</>
 }
 
-export { BarValue } 
+export { BarValue }
 export type { BarValueProps }

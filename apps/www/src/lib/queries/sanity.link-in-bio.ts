@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity';
+import { groq } from 'next-sanity'
 
 export const linkInBioPageQuery = groq`
   *[_type == 'linkInBio'] {

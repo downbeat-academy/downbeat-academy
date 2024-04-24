@@ -1,10 +1,5 @@
 const BannerContent = ({ children }: { children: React.ReactNode }) => {
-
-  return (
-    <section>
-      {children}
-    </section>
-  )
+	return <section>{children}</section>
 }
 
 BannerContent.displayName = 'BannerContent'

@@ -10,12 +10,12 @@ env:
   NODE_VERSION: '18.x'
 
 concurrency:
-   group: ci-website-${{ github.head_ref || github.ref }}
-   cancel-in-progress: true
+  group: ci-website-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
-    name: "Lint"
+    name: 'Lint'
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,7 @@ jobs:
         run: pnpm run lint
         working-directory: apps/www
   cypress-run:
-    name: "Cypress tests"
+    name: 'Cypress tests'
     runs-on: ubuntu-latest
 
     steps:

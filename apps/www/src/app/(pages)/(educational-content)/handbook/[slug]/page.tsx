@@ -15,79 +15,78 @@ const client = sanityClient
 
 // Generate metadata
 export async function generateMetadata(
-  { params }: { params: any },
-  parent: ResolvingMetadata
+	{ params }: { params: any },
+	parent: ResolvingMetadata
 ): Promise<Metadata> {
+	const { slug } = params
 
-  const { slug } = params;
+	try {
+		const article = await sanityClient.fetch(handbooksBySlugQuery, {
+			slug,
+		})
 
-  try {
-    const article = await sanityClient.fetch(handbooksBySlugQuery, {
-      slug
-    })
-
-    return {
-      title: getOgTitle(article.title),
-      description: article.excerpt,
-    }
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
+		return {
+			title: getOgTitle(article.title),
+			description: article.excerpt,
+		}
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }
 
 // Generate the slugs/routes for the handbooks
 export async function generateStaticParams() {
-
-  try {
-    const slugs = await sanityClient.fetch(
-      handbookPaths,
-      {
-        revalidate: 60,
-      }
-    )
-    return slugs.map((slug) => ({ slug }));
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
+	try {
+		const slugs = await sanityClient.fetch(handbookPaths, {
+			revalidate: 60,
+		})
+		return slugs.map((slug) => ({ slug }))
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }
 
 // Render the handbook data
 export default async function HandbookSlugRoute({ params }) {
-  const { slug } = params
+	const { slug } = params
 
-  const handbook = await client.fetch(handbooksBySlugQuery, {
-    slug
-  })
+	const handbook = await client.fetch(handbooksBySlugQuery, {
+		slug,
+	})
 
-  return (
-    <>
-      <SectionContainer>
-        <SectionTitle
-          background='primary'
-          title={
-            <Text
-              tag='h1'
-              type='expressive-headline'
-              size='h1'
-              color='brand'
-              collapse
-            >{handbook.title}</Text>
-          }
-        />
-        <aside className={s.categories}>
-          <Text tag='p' type='expressive-body' size='body-base' collapse>Categories:</Text>
-          {handbook.categories.map((category) => (
-            <Link key={category.title} href={`/category/${category.slug}`}>
-              <Badge text={category.title} />
-            </Link>
-          ))}
-        </aside>
-        <RichTextWrapper className={s['rich-text']}>
-          <RichText value={handbook.content.content} />
-        </RichTextWrapper>
-      </SectionContainer>
-    </>
-  )
+	return (
+		<>
+			<SectionContainer>
+				<SectionTitle
+					background="primary"
+					title={
+						<Text
+							tag="h1"
+							type="expressive-headline"
+							size="h1"
+							color="brand"
+							collapse
+						>
+							{handbook.title}
+						</Text>
+					}
+				/>
+				<aside className={s.categories}>
+					<Text tag="p" type="expressive-body" size="body-base" collapse>
+						Categories:
+					</Text>
+					{handbook.categories.map((category) => (
+						<Link key={category.title} href={`/category/${category.slug}`}>
+							<Badge text={category.title} />
+						</Link>
+					))}
+				</aside>
+				<RichTextWrapper className={s['rich-text']}>
+					<RichText value={handbook.content.content} />
+				</RichTextWrapper>
+			</SectionContainer>
+		</>
+	)
 }

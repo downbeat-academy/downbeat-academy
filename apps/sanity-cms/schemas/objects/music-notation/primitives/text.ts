@@ -12,6 +12,6 @@ export default {
 	preview: {
 		select: {
 			title: 'musicText',
-		}
-	}
+		},
+	},
 }

@@ -1,2 +1,2 @@
 export { Footer } from './footer'
-export { HeaderNavigation} from './main'
+export { HeaderNavigation } from './main'

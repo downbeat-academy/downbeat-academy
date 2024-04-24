@@ -21,7 +21,7 @@ export default {
 			options: {
 				list: [
 					{ title: 'Major', value: 'major' },
-					{ title: 'Major 7', value: 'major7'},
+					{ title: 'Major 7', value: 'major7' },
 					{ title: 'Major 6', value: 'major6' },
 					{ title: 'Dominant 7', value: 'dominant7' },
 					{ title: 'Minor', value: 'minor' },
@@ -32,7 +32,7 @@ export default {
 					{ title: 'Half diminished 7', value: 'halfDim7' },
 					{ title: 'Suspended (sus4)', value: 'sus4' },
 					{ title: 'Augmented', value: 'aug' },
-					{ title: 'Augmented 7', value: 'aug7' }
+					{ title: 'Augmented 7', value: 'aug7' },
 				],
 				layout: 'dropdown',
 			},
@@ -52,7 +52,7 @@ export default {
 					{ title: '♯11', value: 'sharp11' },
 					{ title: '♯9/♭9', value: 'sharp9flat9' },
 					{ title: '6/9', value: 'sixNine' },
-					{ title: 'Altered', value: 'altered' }
+					{ title: 'Altered', value: 'altered' },
 				],
 			},
 		},
@@ -74,7 +74,9 @@ export default {
 		prepare(selection: any) {
 			const { root, quality, extension } = selection
 			return {
-				title: `${root && root} ${quality && quality} ${extension && extension}`
+				title: `${root && root} ${quality && quality} ${
+					extension && extension
+				}`,
 			}
 		},
 	},

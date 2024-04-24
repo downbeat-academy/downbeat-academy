@@ -1,5 +1,5 @@
 interface AppFrameProps {
-  children?: React.ReactNode,
+	children?: React.ReactNode
 }
 
 export type { AppFrameProps }

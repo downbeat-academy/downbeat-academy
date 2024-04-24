@@ -1,6 +1,6 @@
 interface RichTextWrapperProps {
-  children?: React.ReactNode,
-  className?: string,
+	children?: React.ReactNode
+	className?: string
 }
 
 export type { RichTextWrapperProps }

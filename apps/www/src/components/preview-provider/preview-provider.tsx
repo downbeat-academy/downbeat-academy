@@ -11,18 +11,21 @@ const LiveQueryProvider = dynamic(() => import('next-sanity/preview'))
 const UniqueKey = Symbol('@lib/sanity.client')
 
 export default function PreviewProvider({
-  children,
-  token,
+	children,
+	token,
 }: {
-  children: React.ReactNode
-  token?: string
+	children: React.ReactNode
+	token?: string
 }) {
-  const { sanityClient } = suspend(() => import('@lib/sanity/sanity.client'), [UniqueKey])
-  if (!token) throw new TypeError('Missing token')
-  return (
-    // @ts-ignore
-    <LiveQueryProvider client={sanityClient} token={token} logger={console}>
-      {children}
-    </LiveQueryProvider>
-  )
+	const { sanityClient } = suspend(
+		() => import('@lib/sanity/sanity.client'),
+		[UniqueKey]
+	)
+	if (!token) throw new TypeError('Missing token')
+	return (
+		// @ts-ignore
+		<LiveQueryProvider client={sanityClient} token={token} logger={console}>
+			{children}
+		</LiveQueryProvider>
+	)
 }

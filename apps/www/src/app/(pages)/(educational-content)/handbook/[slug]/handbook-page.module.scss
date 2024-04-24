@@ -1,13 +1,13 @@
 .categories {
-  display: flex;
-  flex-direction : row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: $cds-scale-x-small;
-  padding: $cds-scale-base;
-  border-bottom: 1px solid $cds-color-border-primary;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: $cds-scale-x-small;
+	padding: $cds-scale-base;
+	border-bottom: 1px solid $cds-color-border-primary;
 }
 
 .rich-text {
-  padding: $cds-scale-base 0;
+	padding: $cds-scale-base 0;
 }

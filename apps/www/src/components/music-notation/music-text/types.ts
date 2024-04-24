@@ -1,38 +1,38 @@
 interface MusicTextRendererProps {
-  values?: any,
-  className?: string,
+	values?: any
+	className?: string
 }
 
 interface MusicTextProps {
-  text: string,
+	text: string
 }
 
 interface BarValueProps {
-  value?: string,
+	value?: string
 }
 
 interface ClefProps {
-  value?: string,
+	value?: string
 }
 
 interface AccidentalProps {
-  value?: any,
+	value?: any
 }
 
 interface RhythmicValueProps {
-  value?: string,
+	value?: string
 }
 
 interface MusicSymbolProps {
-  value?: string,
+	value?: string
 }
 
 export type {
-  MusicTextRendererProps,
-  MusicTextProps,
-  BarValueProps,
-  ClefProps,
-  AccidentalProps,
-  RhythmicValueProps,
-  MusicSymbolProps,
+	MusicTextRendererProps,
+	MusicTextProps,
+	BarValueProps,
+	ClefProps,
+	AccidentalProps,
+	RhythmicValueProps,
+	MusicSymbolProps,
 }

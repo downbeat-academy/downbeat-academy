@@ -1,15 +1,12 @@
 import s from '../dialog.module.scss'
 
 const DialogHeader = ({
-  className,
-  ...props
+	className,
+	...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={s.header}
-    {...props}
-  />
+	<div className={s.header} {...props} />
 )
 
-DialogHeader.displayName = "DialogHeader"
+DialogHeader.displayName = 'DialogHeader'
 
 export { DialogHeader }
