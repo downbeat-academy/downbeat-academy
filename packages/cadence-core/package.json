@@ -69,6 +69,7 @@
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.5.1",
+    "next": "^14.2.3",
     "react-dom": "^18.2.0",
     "typeface-favorit": "workspace:^",
     "typeface-tiempos-text": "workspace:^"

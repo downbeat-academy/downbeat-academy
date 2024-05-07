@@ -1,0 +1,35 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as Button from "./button.stories.tsx";
+
+{/* <Meta of={Button} title="Button" /> */}
+
+# Button
+
+It's a Button, what more do you want?
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { Button } from "cadence-core";
+
+const Example = () => {
+  return (
+      <Button
+        text='Primary button'
+        variant='primary'
+        size='medium'
+      />
+  );
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **text** - A string that represents the text content of the Button.
