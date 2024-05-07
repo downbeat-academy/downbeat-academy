@@ -23,7 +23,7 @@ export default defineConfig({
     modules: {
       localsConvention: "camelCase", // Converts CSS class names to camelCase.
       generateScopedName: "[name]__[local]--[hash:base64:5]", // Generates unique class names.
-    }
+    },
   },
   test: {
     globals: true,

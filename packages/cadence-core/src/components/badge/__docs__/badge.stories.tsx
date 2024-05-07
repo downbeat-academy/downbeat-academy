@@ -9,21 +9,56 @@ const meta: Meta<typeof Example> = {
 export default meta;
 type Story = StoryObj<typeof Example>;
 
-export const Primary: Story = {
+export const Neutral: Story = {
   args: {
-    text: "Badge",
-    // primary: true,
-    // disabled: false,
-    // size: "small",
-    // onClick: () => console.log("Button"),
+    text: 'Neutral badge',
+    type: 'neutral',
+    size: 'medium',
+    style: 'filled',
   },
 };
-export const Secondary: Story = {
+
+export const Info: Story = {
   args: {
-    text: "Badge",
-    // primary: false,
-    // disabled: false,
-    // size: "small",
-    // onClick: () => console.log("Button"),
+    text: 'Info badge',
+    type: 'info',
+    size: 'medium',
+    style: 'filled',
   },
-};
+}
+
+export const Success: Story = {
+  args: {
+    text: 'Success badge',
+    type: 'success',
+    size: 'medium',
+    style: 'filled',
+  },
+}
+
+export const Highlight: Story = {
+  args: {
+    text: 'Highlight badge',
+    type: 'highlight',
+    size: 'medium',
+    style: 'filled',
+  },
+}
+
+export const Warning: Story = {
+  args: {
+    text: 'Warning badge',
+    type: 'warning',
+    size: 'medium',
+    style: 'filled',
+  },
+}
+
+export const Error: Story = {
+  args: {
+    text: 'Error badge',
+    type: 'error',
+    size: 'medium',
+    style: 'filled',
+  },
+}

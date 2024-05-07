@@ -9,7 +9,7 @@
     "test": "vitest run",
     "test-watch": "vitest",
     "test:ui": "vitest --ui",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
     "prepare": "husky"
   },
@@ -69,6 +69,8 @@
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.5.1",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "typeface-favorit": "workspace:^",
+    "typeface-tiempos-text": "workspace:^"
   }
 }
