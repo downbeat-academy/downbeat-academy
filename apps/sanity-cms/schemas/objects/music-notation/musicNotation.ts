@@ -44,11 +44,12 @@ export default {
 							name: 'label',
 							title: 'Label',
 							type: 'string',
-							description: 'Label the notation snippet with the key or instrument (Concert C, Trumpet, etc).'
+							description:
+								'Label the notation snippet with the key or instrument (Concert C, Trumpet, etc).',
 						},
-					]
+					],
 				},
-			]
+			],
 		},
 	],
 }

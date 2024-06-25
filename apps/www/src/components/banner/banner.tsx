@@ -4,18 +4,13 @@ import s from './banner.module.scss'
 import type { BannerProps } from './types'
 
 const Banner = ({ children, className, type }: BannerProps) => {
+	const classes = classnames([
+		s[`banner--root`],
+		s[type ? `banner--type-${type}` : null],
+		className,
+	])
 
-  const classes = classnames([
-    s[`banner--root`],
-    s[type ? `banner--type-${type}` : null],
-    className,
-  ])
-
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  )
+	return <div className={classes}>{children}</div>
 }
 
 Banner.displayName = 'Banner'

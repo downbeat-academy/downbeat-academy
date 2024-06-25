@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
@@ -15,10 +15,10 @@ const DropdownMenuSub = DropdownMenuPrimitive.Sub
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
 export {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuRadioGroup,
+	DropdownMenu,
+	DropdownMenuTrigger,
+	DropdownMenuGroup,
+	DropdownMenuPortal,
+	DropdownMenuSub,
+	DropdownMenuRadioGroup,
 }

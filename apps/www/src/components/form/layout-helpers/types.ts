@@ -1,5 +1,5 @@
 interface HorizontalWrapperProps {
-  children?: React.ReactNode
+	children?: React.ReactNode
 }
 
 export type { HorizontalWrapperProps }

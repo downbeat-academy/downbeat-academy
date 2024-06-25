@@ -1,73 +1,39 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": "./",
-    "paths": {
-      "@*": [
-        "src/*"
-      ],
-      "@api/*": [
-        "src/app/api/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@types/*": [
-        "src/types/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@actions/*": [
-        "src/actions/*"
-      ]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ]
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "types": [
-    "cypress",
-    "cypress-axe"
-  ]
+	"compilerOptions": {
+		"target": "es5",
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"baseUrl": "./",
+		"paths": {
+			"@*": ["src/*"],
+			"@api/*": ["src/app/api/*"],
+			"@components/*": ["src/components/*"],
+			"@lib/*": ["src/lib/*"],
+			"@hooks/*": ["src/hooks/*"],
+			"@styles/*": ["src/styles/*"],
+			"@types/*": ["src/types/*"],
+			"@utils/*": ["src/utils/*"],
+			"@app/*": ["src/app/*"],
+			"@actions/*": ["src/actions/*"]
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"lib": ["dom", "dom.iterable", "esnext"]
+	},
+	"exclude": ["node_modules"],
+	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+	"types": ["cypress", "cypress-axe"]
 }

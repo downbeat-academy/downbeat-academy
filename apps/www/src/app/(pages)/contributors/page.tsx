@@ -9,49 +9,47 @@ import { ContributorsGrid } from '@components/pages/contributors'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: getOgTitle('Contributors'),
-  description: 'Downbeat Academy authors and contributors.'
+	title: getOgTitle('Contributors'),
+	description: 'Downbeat Academy authors and contributors.',
 }
 
 async function getContributors() {
-  const res = sanityClient.fetch(
-    contributorsPageQuery,
-    {
-      next: {
-        revalidate: 60,
-      },
-    }
-  )
+	const res = sanityClient.fetch(contributorsPageQuery, {
+		next: {
+			revalidate: 60,
+		},
+	})
 
-  if (!res) {
-    throw new Error('Failed to fetch data.')
-  }
+	if (!res) {
+		throw new Error('Failed to fetch data.')
+	}
 
-  return res;
+	return res
 }
 
 export default async function ContributorsPage() {
+	const contributors = await getContributors()
 
-  const contributors = await getContributors();
-
-  return (
-    <>
-      <SectionContainer>
-        <SectionTitle
-          hasBorder={false}
-          background='brand'
-          title={
-            <Text
-              tag='h1'
-              type='expressive-headline'
-              size='h1'
-              color='high-contrast'
-              collapse
-            >Contributors and authors</Text>
-          }
-        />
-        <ContributorsGrid contributors={contributors} />
-      </SectionContainer>
-    </>
-  )
+	return (
+		<>
+			<SectionContainer>
+				<SectionTitle
+					hasBorder={false}
+					background="brand"
+					title={
+						<Text
+							tag="h1"
+							type="expressive-headline"
+							size="h1"
+							color="high-contrast"
+							collapse
+						>
+							Contributors and authors
+						</Text>
+					}
+				/>
+				<ContributorsGrid contributors={contributors} />
+			</SectionContainer>
+		</>
+	)
 }

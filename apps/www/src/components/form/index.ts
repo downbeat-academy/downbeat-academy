@@ -12,8 +12,4 @@ export { ValidationMessage } from './primitives/validation-message'
 // Layout helpers
 export { HorizontalWrapper } from './layout-helpers'
 
-export type {
-  FormProps,
-  FormFieldProps,
-  InputProps,
-} from './types'
+export type { FormProps, FormFieldProps, InputProps } from './types'

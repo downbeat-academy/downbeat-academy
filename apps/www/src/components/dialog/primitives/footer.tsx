@@ -1,15 +1,12 @@
 import s from '../dialog.module.scss'
 
 const DialogFooter = ({
-  className,
-  ...props
+	className,
+	...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={s.footer}
-    {...props}
-  />
+	<div className={s.footer} {...props} />
 )
 
-DialogFooter.displayName = "DialogFooter"
+DialogFooter.displayName = 'DialogFooter'
 
 export { DialogFooter }

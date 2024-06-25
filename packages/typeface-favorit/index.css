@@ -3,7 +3,8 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: normal;
-	src: url('./files/std/FavoritStd-Regular.woff') format('woff'),
+	src:
+		url('./files/std/FavoritStd-Regular.woff') format('woff'),
 		url('./files/std/FavoritStd-Regular.woff2') format('woff2');
 }
 
@@ -12,7 +13,8 @@
 	font-style: italic;
 	font-display: swap;
 	font-weight: normal;
-	src: url('./files/std/FavoritStd-Italic.woff') format('woff'),
+	src:
+		url('./files/std/FavoritStd-Italic.woff') format('woff'),
 		url('./files/std/FavoritStd-Italic.woff2') format('woff2');
 }
 
@@ -21,7 +23,8 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: bold;
-	src: url('./files/std/FavoritStd-Bold.woff') format('woff'),
+	src:
+		url('./files/std/FavoritStd-Bold.woff') format('woff'),
 		url('./files/std/FavoritStd-Bold.woff2') format('woff2');
 }
 
@@ -30,7 +33,8 @@
 	font-style: italic;
 	font-display: swap;
 	font-weight: bold;
-	src: url('./files/std/FavoritStd-BoldItalic.woff') format('woff'),
+	src:
+		url('./files/std/FavoritStd-BoldItalic.woff') format('woff'),
 		url('./files/std/FavoritStd-BoldItalic.woff2') format('woff2');
 }
 
@@ -39,7 +43,8 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: normal;
-	src: url('./files/expanded/FavoritStd-Expanded.woff') format('woff'),
+	src:
+		url('./files/expanded/FavoritStd-Expanded.woff') format('woff'),
 		url('./files/expanded/FavoritStd-Expanded.woff2') format('woff2');
 }
 
@@ -48,7 +53,8 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: bold;
-	src: url('./files/expanded/FavoritStd-BoldExpanded.woff') format('woff'),
+	src:
+		url('./files/expanded/FavoritStd-BoldExpanded.woff') format('woff'),
 		url('./files/expanded/FavoritStd-BoldExpanded.woff2') format('woff2');
 }
 
@@ -57,6 +63,7 @@
 	font-style: normal;
 	font-display: swap;
 	font-weight: semibold;
-	src: url('./files/expanded/FavoritStd-BoldSemiExpanded.woff') format('woff'),
+	src:
+		url('./files/expanded/FavoritStd-BoldSemiExpanded.woff') format('woff'),
 		url('./files/expanded/FavoritStd-BoldSemiExpanded.woff2') format('woff2');
 }

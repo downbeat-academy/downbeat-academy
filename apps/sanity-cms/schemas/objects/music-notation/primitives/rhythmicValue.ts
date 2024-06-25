@@ -14,7 +14,7 @@ export default {
 					{ title: `Quarter Note`, value: `quarter-note` },
 					{ title: `Eighth Note`, value: `eighth-note` },
 					{ title: `Sixteenth Note`, value: `sixteenth-note` },
-					{ title: `Thirty-second Note`, value: `thirty-second-note`}
+					{ title: `Thirty-second Note`, value: `thirty-second-note` },
 				],
 			},
 		},

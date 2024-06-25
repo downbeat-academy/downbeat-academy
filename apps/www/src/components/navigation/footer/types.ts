@@ -1,5 +1,5 @@
 interface FooterProps {
-  className?: string,
+	className?: string
 }
 
-export type { FooterProps };
+export type { FooterProps }

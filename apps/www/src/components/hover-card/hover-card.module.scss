@@ -1,102 +1,102 @@
 // Trigger
 
 .trigger {
-  text-decoration: underline;
-  color: $cds-color-foreground-interactive-default;
-  cursor: help;
-  display: inline-flex;
-  gap: $cds-scale-3x-small;
-  align-items: center;
+	text-decoration: underline;
+	color: $cds-color-foreground-interactive-default;
+	cursor: help;
+	display: inline-flex;
+	gap: $cds-scale-3x-small;
+	align-items: center;
 }
 
 // Title
 
 .title {
-  padding: $cds-scale-x-small $cds-scale-base;
-  border-bottom: 1px solid $cds-color-palette-blackberry-200;
+	padding: $cds-scale-x-small $cds-scale-base;
+	border-bottom: 1px solid $cds-color-palette-blackberry-200;
 }
 
 // Main
 
 .main {
-  padding: $cds-scale-x-small $cds-scale-base;
+	padding: $cds-scale-x-small $cds-scale-base;
 }
 
 // Footer
 
 .footer {
-  padding: $cds-scale-x-small $cds-scale-base;
-  border-top: 1px solid $cds-color-palette-blackberry-200;
+	padding: $cds-scale-x-small $cds-scale-base;
+	border-top: 1px solid $cds-color-palette-blackberry-200;
 }
 
 // Content
 
 .content {
-  background: $cds-color-surface-primary;
-  border-radius: $cds-radii-medium;
-  border: 1px solid $cds-color-palette-blackberry-200;
-  max-width: 400px;
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  z-index: 40;
+	background: $cds-color-surface-primary;
+	border-radius: $cds-radii-medium;
+	border: 1px solid $cds-color-palette-blackberry-200;
+	max-width: 400px;
+	animation-duration: 400ms;
+	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	will-change: transform, opacity;
+	box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	z-index: 40;
 }
 
 .content[data-side='top'] {
-  animation-name: slideDownAndFade;
+	animation-name: slideDownAndFade;
 }
 .content[data-side='right'] {
-  animation-name: slideLeftAndFade;
+	animation-name: slideLeftAndFade;
 }
 .content[data-side='bottom'] {
-  animation-name: slideUpAndFade;
+	animation-name: slideUpAndFade;
 }
 .content[data-side='left'] {
-  animation-name: slideRightAndFade;
+	animation-name: slideRightAndFade;
 }
 
 @keyframes slideUpAndFade {
-  0% {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideRightAndFade {
-  0% {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateX(-2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes slideDownAndFade {
-  0% {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideLeftAndFade {
-  0% {
-    opacity: 0;
-    transform: translateX(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateX(2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

@@ -1,14 +1,10 @@
 const DropdownMenuShortcut = ({
-  className,
-  ...props
+	className,
+	...props
 }: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span
-      {...props}
-    />
-  )
+	return <span {...props} />
 }
 
-DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
+DropdownMenuShortcut.displayName = 'DropdownMenuShortcut'
 
 export { DropdownMenuShortcut }

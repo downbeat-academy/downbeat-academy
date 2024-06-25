@@ -13,7 +13,7 @@ export default {
 					{ title: `Sharp (♯)`, value: `sharp` },
 					{ title: `Double Flat (𝄫)`, value: `double-flat` },
 					{ title: `Double Sharp (𝄪)`, value: `double-sharp` },
-					{ title: `Natural (♮)`, value: 'natural' }
+					{ title: `Natural (♮)`, value: 'natural' },
 				],
 			},
 		},

@@ -9,51 +9,56 @@ import { Button } from '@components/button'
 import { Link } from '@components/link'
 
 const NavContent = ({ links }) => {
+	const route = usePathname()
 
-  const route = usePathname()
+	const [navToggled, setNavToggled] = useState(false)
 
-  const [navToggled, setNavToggled] = useState(false);
+	const handleNavToggled = () => {
+		setNavToggled(!navToggled)
+	}
 
-  const handleNavToggled = () => {
-    setNavToggled(!navToggled)
-  }
+	useEffect(() => setNavToggled(false), [route])
 
-  useEffect(() => setNavToggled(false), [route])
+	const staticLinks = [
+		{
+			text: 'Articles',
+			href: '/articles',
+		},
+		{
+			text: 'Handbook',
+			href: '/handbook',
+		},
+		{
+			text: 'Jazz Language Lexicon',
+			href: '/lexicon',
+		},
+		{
+			text: 'Contributors',
+			href: '/contributors',
+		},
+		{
+			text: 'About',
+			href: '/about',
+		},
+		{
+			text: 'Contact',
+			href: '/contact',
+		},
+	]
 
-  const staticLinks = [
-    {
-      text: 'Articles',
-      href: '/articles'
-    },
-    {
-      text: 'Handbook',
-      href: '/handbook'
-    },
-    {
-      text: 'Jazz Language Lexicon',
-      href: '/lexicon',
-    },
-    {
-      text: 'Contributors',
-      href: '/contributors'
-    },
-    {
-      text: 'About',
-      href: '/about'
-    },
-    {
-      text: 'Contact',
-      href: '/contact',
-    }
-  ]
+	const mapLinks = staticLinks.map((link) => {
+		return (
+			<li key={link.text} className={s[`link-item`]}>
+				<Link href={link.href} type="secondary">
+					{link.text}
+				</Link>
+			</li>
+		)
+	})
 
-  const mapLinks = staticLinks.map(link => {
-    return (
-      <li key={link.text} className={s[`link-item`]}>
-        <Link href={link.href} type='secondary'>{link.text}</Link>
-      </li>
-    )
-  })
+	const toggledNavClasses = classnames([
+		[navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']],
+	])
 
   const toggledNavClasses = classnames([
     [navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']]
@@ -91,4 +96,4 @@ const NavContent = ({ links }) => {
   )
 }
 
-export { NavContent };
+export { NavContent }

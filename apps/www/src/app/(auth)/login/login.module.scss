@@ -1,23 +1,23 @@
 .login--wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 75dvh;
-  gap: $cds-scale-base;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 75dvh;
+	gap: $cds-scale-base;
 }
 
 .login--wrapper-inner {
-  max-width: 600px;
-  background: $cds-color-surface-primary;
-  border: 1px solid $cds-color-border-primary;
-  border-radius: $cds-radii-soft;
+	max-width: 600px;
+	background: $cds-color-surface-primary;
+	border: 1px solid $cds-color-border-primary;
+	border-radius: $cds-radii-soft;
 }
 
 .login--content {
-  padding: $cds-scale-base;
+	padding: $cds-scale-base;
 
-  @media (min-width: 768px) {
-    padding: $cds-scale-2x-large;
-  }
+	@media (min-width: 768px) {
+		padding: $cds-scale-2x-large;
+	}
 }

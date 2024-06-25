@@ -1,28 +1,14 @@
 import classnames from 'classnames'
-import s from './grid.module.scss';
+import s from './grid.module.scss'
 
 import { GridProps } from './types'
 
-const Grid = ({
-  children,
-  tag = 'div',
-  columns,
-  className,
-}: GridProps) => {
+const Grid = ({ children, tag = 'div', columns, className }: GridProps) => {
+	const classes = classnames(s.root, s[`columns--${columns}`], className)
 
-  const classes = classnames(
-    s.root,
-    s[`columns--${columns}`],
-    className,
-  )
+	const Tag = tag
 
-  const Tag = tag
-
-  return (
-    <Tag className={classes}>
-      {children}
-    </Tag>
-  )
+	return <Tag className={classes}>{children}</Tag>
 }
 
 export { Grid }
