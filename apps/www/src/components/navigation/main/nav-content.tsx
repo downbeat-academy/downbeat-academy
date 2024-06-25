@@ -60,10 +60,6 @@ const NavContent = ({ links }) => {
 		[navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']],
 	])
 
-  const toggledNavClasses = classnames([
-    [navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']]
-  ])
-
   return (
     <div className={s.root}>
       <div className={s.logo}>
