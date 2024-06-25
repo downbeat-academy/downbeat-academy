@@ -74,15 +74,10 @@ const NavContent = ({ links }) => {
         </nav>
         <div className={s.actions}>
           <Button
-            text='Sign up for free'
+            text='Login / Signup'
             variant='primary'
             size='large'
-            isFullWidth
-          />
-          <Button
-            text='Login'
-            variant='ghost'
-            size='large'
+            href='/login'
             isFullWidth
           />
         </div>
