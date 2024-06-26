@@ -1,5 +1,15 @@
 # www
 
+## 3.7.0
+
+### Minor Changes
+
+- 8eec2e2: Added a basic Table component and migrated the list of Lexicon items to a table.
+
+### Patch Changes
+
+- e25e682: Fixed the routing and links in the mobile navigation.
+
 ## 3.6.0
 
 ### Minor Changes

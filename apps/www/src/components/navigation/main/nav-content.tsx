@@ -60,36 +60,36 @@ const NavContent = ({ links }) => {
 		[navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']],
 	])
 
-	return (
-		<div className={s.root}>
-			<div className={s.logo}>
-				<Link href="/">
-					<LogoLockup width={180} color="brand" />
-				</Link>
-			</div>
-			<div className={toggledNavClasses}>
-				<nav>
-					<ul className={s[`nav-links`]}>{mapLinks}</ul>
-				</nav>
-				<div className={s.actions}>
-					<Button
-						text="Sign up for free"
-						variant="primary"
-						size="large"
-						isFullWidth
-					/>
-					<Button text="Login" variant="ghost" size="large" isFullWidth />
-				</div>
-			</div>
-			<button
-				type="button"
-				className={s['menu-button']}
-				onClick={handleNavToggled}
-			>
-				{navToggled ? 'Close menu' : 'Open menu'}
-			</button>
-		</div>
-	)
+  return (
+    <div className={s.root}>
+      <div className={s.logo}>
+        <Link href="/">
+          <LogoLockup width={180} color='brand' />
+        </Link>
+      </div>
+      <div className={toggledNavClasses}>
+        <nav>
+          <ul className={s[`nav-links`]}>
+            {mapLinks}
+          </ul>
+        </nav>
+        <div className={s.actions}>
+          <Button
+            text='Login / Signup'
+            variant='primary'
+            size='large'
+            href='/login'
+            isFullWidth
+          />
+        </div>
+      </div>
+      <button
+        type='button'
+        className={s['menu-button']}
+        onClick={handleNavToggled}
+      >{navToggled ? 'Close menu' : 'Open menu'}</button>
+    </div>
+  )
 }
 
 export { NavContent }
