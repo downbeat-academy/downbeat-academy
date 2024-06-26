@@ -1,6 +1,6 @@
 {
 	"name": "typeface-favorit",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"private": true,
 	"description": "Self-hosted font for ABC Dinamo Favorit",
 	"main": "index.css",
