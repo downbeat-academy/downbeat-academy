@@ -24,6 +24,10 @@
 		"declaration": true,
 		"emitDeclarationOnly": true
 	},
-	"include": ["src/**/*.ts", "src/**/*.tsx"],
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"test/vitest.setup.ts"
+	],
 	"exclude": ["node_modules", "dist"]
 }
