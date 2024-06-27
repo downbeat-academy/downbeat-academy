@@ -1,5 +1,18 @@
 # www
 
+## 3.7.1
+
+### Patch Changes
+
+- c601ce8: Formatting cleanup, etc
+- Updated dependencies [c601ce8]
+- Updated dependencies [8c4cb6b]
+  - typeface-tiempos-text@1.0.3
+  - typeface-favorit@1.0.3
+  - cadence-tokens@2.1.1
+  - cadence-icons@1.4.1
+  - cadence-core@1.1.0
+
 ## 3.7.0
 
 ### Minor Changes
