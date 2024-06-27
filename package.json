@@ -20,8 +20,6 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "dev": "turbo run dev",
-    "react:dev": "turbo run dev --filter=cadence-react",
-    "react:build": "turbo run build --filter=cadence-react",
     "icons:dev": "turbo run dev --filter=cadence-icons",
     "icons:build": "turbo run build --filter=cadence-icons",
     "www:dev": "turbo run dev --filter=www",
@@ -30,7 +28,8 @@
     "cms:dev": "turbo run dev --filter=sanity-cms",
     "cms:build": "turbo run build --filter=sanity-cms",
     "tokens:build": "turbo run build --filter=cadence-tokens",
-    "email:dev": "turbo run dev --filter=email"
+    "email:dev": "turbo run dev --filter=email",
+    "core:storybook": "turbo run storybook --filter=cadence-core"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
