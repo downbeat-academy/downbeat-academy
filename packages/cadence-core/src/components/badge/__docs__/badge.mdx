@@ -1,0 +1,41 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as Badge from "./badge.stories.tsx";
+
+<Meta of={Badge} title="Badge" />
+
+# Badge
+
+Use a Badge to highlight important metadata or information pertaining to an object or UI element.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { Badge } from "cadence-core";
+
+const Example = () => {
+  return (
+      <Badge
+        text='Badge text'
+        type='neutral'
+        size='medium'
+        style='filled'
+      />
+  );
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **text** - A string that represents the text content of the Badge.
+- **type** - The communication type of the Badge. Can be one of `neutral`, `success`, `warning`, `error`, `info`.
+- **size** - The size of the Badge. Can be one of `small`, `medium`, `large`.
+- **style** - The style of the Badge. Can be one of `filled`, `outlined`, or `light`.
+- **icon** - An optional icon to display in the Badge.
+- **className** - An optional class name to apply to the Badge.
