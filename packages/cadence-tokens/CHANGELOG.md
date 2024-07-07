@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-tokens
 
+## 2.1.1
+
+### Patch Changes
+
+- c601ce8: Formatting cleanup, etc
+
 ## 2.1.0
 
 ### Minor Changes

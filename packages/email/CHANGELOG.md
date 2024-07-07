@@ -1,5 +1,11 @@
 # email
 
+## 1.2.1
+
+### Patch Changes
+
+- c601ce8: Formatting cleanup, etc
+
 ## 1.2.0
 
 ### Minor Changes
