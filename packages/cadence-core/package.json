@@ -4,9 +4,9 @@
   "description": "Core component library for Downbeat Academy and the Cadence Design System.",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "pnpm run build:js && build:types",
+    "build": "pnpm run clean && pnpm run build:js && pnpm run build:types",
     "build:js": "rollup -c",
-    "build:types": "tsc --emitDeclarationOnly --outDur dist"
+    "build:types": "tsc --emitDeclarationOnly --outDir dist"
   },
   "keywords": [],
   "author": {
@@ -32,6 +32,7 @@
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.3.2",
+    "node-sass": "^9.0.0",
     "postcss": "^8.4.31",
     "postcss-modules": "^6.0.0",
     "postcss-preset-env": "^9.3.0",
