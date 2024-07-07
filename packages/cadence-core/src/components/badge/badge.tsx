@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import s from './badge.module.css'
+import s from './badge.css'
 
 import type { BadgeProps } from './types'
 

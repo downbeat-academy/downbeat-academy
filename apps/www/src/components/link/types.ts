@@ -7,6 +7,7 @@ interface LinkProps extends ComponentProps<typeof NextLink> {
 	className?: string
 	dataCy?: string
 	isUnderline?: boolean
+	children?: React.ReactNode
 }
 
 export type { LinkProps }

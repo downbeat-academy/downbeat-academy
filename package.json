@@ -29,7 +29,8 @@
     "cms:build": "turbo run build --filter=sanity-cms",
     "tokens:build": "turbo run build --filter=cadence-tokens",
     "email:dev": "turbo run dev --filter=email",
-    "core:storybook": "turbo run storybook --filter=cadence-core"
+    "core:storybook": "turbo run storybook --filter=cadence-core",
+    "core:build-storybook": "turbo run build:storybook --filter=cadence-core"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
