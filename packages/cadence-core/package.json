@@ -8,7 +8,7 @@
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build:storybook": "storybook build"
   },
   "keywords": [],
   "author": {
