@@ -14,6 +14,7 @@
   "version": "0.0.0",
   "license": "UNLICENSED",
   "private": true,
+  "packageManager": "pnpm@8.14.0",
   "scripts": {
     "format": "prettier --write .",
     "build": "turbo run build",
