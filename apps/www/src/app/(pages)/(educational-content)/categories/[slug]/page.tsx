@@ -20,7 +20,15 @@ export async function generateMetadata(
 	const { slug } = params
 
 	try {
-		const category = await client.fetch(categoriesBySlugQuery, { slug })
+		const category = await client.fetch(
+			categoriesBySlugQuery,
+			{ slug },
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
 		return {
 			title: getOgTitle(category.title),
 		}
@@ -33,9 +41,14 @@ export async function generateMetadata(
 // Generate slugs/routes for categories
 export async function generateStaticParams() {
 	try {
-		const slugs = await client.fetch(categoryPaths, {
-			revalidate: 60,
-		})
+		const slugs = await client.fetch(categoryPaths,
+			{},
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
 		return slugs.map((slug) => ({ slug }))
 	} catch (error) {
 		console.error(error)

@@ -22,7 +22,16 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	const { slug } = params
 	try {
-		const page = await client.fetch(pagesBySlugQuery, { slug })
+		const page = await client.fetch(
+			pagesBySlugQuery,
+			{ slug },
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
+		
 		const { title } = page.metadata
 		return {
 			title: getOgTitle(title),
@@ -37,11 +46,7 @@ export async function generateMetadata(
 // Generate the slugs/routes for each page
 export async function generateStaticParams() {
 	try {
-		const slugs = await client.fetch(pagePaths, {
-			next: {
-				revalidate: 60,
-			},
-		})
+		const slugs = await client.fetch(pagePaths)
 		return slugs.map((slug) => ({ slug }))
 	} catch (error) {
 		console.error(error)

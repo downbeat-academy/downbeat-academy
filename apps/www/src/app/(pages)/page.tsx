@@ -9,11 +9,15 @@ import { Text } from '@components/text'
 import type { Metadata } from 'next'
 
 async function getHomepageData() {
-	const res = sanityClient.fetch(homepagePostsQuery, {
-		next: {
-			revalidate: 60,
-		},
-	})
+	const res = sanityClient.fetch(
+		homepagePostsQuery,
+		{},
+		{
+			next: {
+				revalidate: 60,
+			},
+		}
+	)
 
 	if (!res) {
 		throw new Error('Failed to fetch data.')

@@ -26,9 +26,16 @@ export async function generateMetadata(
 	const { slug } = params
 
 	try {
-		const article = await client.fetch(articlesBySlugQuery, {
-			slug,
-		})
+		const article = await client.fetch(articlesBySlugQuery,
+			{
+				slug,
+			},
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
 
 		return {
 			title: getOgTitle(article.metadata.title),
@@ -43,9 +50,14 @@ export async function generateMetadata(
 // Generate the slugs/routes for the articles
 export async function generateStaticParams() {
 	try {
-		const slugs = await sanityClient.fetch(articlePaths, {
-			revalidate: 60,
-		})
+		const slugs = await sanityClient.fetch(articlePaths,
+			{},
+			{
+				next: {
+					revalidate: 60
+				}
+			}
+		)
 		return slugs.map((slug) => ({ slug }))
 	} catch (error) {
 		console.error(error)

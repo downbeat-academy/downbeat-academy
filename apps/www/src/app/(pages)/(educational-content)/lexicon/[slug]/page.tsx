@@ -23,9 +23,15 @@ export async function generateMetadata({
 	const { slug } = params
 
 	try {
-		const lexicon = await sanityClient.fetch(lexiconsBySlugQuery, {
-			slug,
-		})
+		const lexicon = await sanityClient.fetch(
+			lexiconsBySlugQuery,
+			{ slug },
+			{
+				next: {
+					revalidate: 60,
+				}
+			}	
+		)
 
 		return {
 			title: getOgTitle(
@@ -43,11 +49,16 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
 	try {
-		const slugs = await sanityClient.fetch(lexiconPaths, {
-			next: {
-				revalidate: 60,
-			},
-		})
+		const slugs = await sanityClient.fetch(
+			lexiconPaths,
+			{},
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
+
 		return slugs.map((slug) => ({ slug }))
 	} catch (error) {
 		{
