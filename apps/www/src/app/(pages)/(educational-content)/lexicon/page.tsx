@@ -16,9 +16,15 @@ export const metadata: Metadata = {
 }
 
 async function getLexicons() {
-	const res = sanityClient.fetch(lexiconPageQuery, {
-		revalidate: 60,
-	})
+	const res = sanityClient.fetch(
+		lexiconPageQuery,
+		{},
+		{
+			next: {
+				revalidate: 60,
+			}
+		}
+	)
 
 	if (!res) {
 		throw new Error('Failed to fetch data.')

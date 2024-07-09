@@ -14,11 +14,15 @@ export const metadata: Metadata = {
 }
 
 async function getContributors() {
-	const res = sanityClient.fetch(contributorsPageQuery, {
-		next: {
-			revalidate: 60,
-		},
-	})
+	const res = sanityClient.fetch(
+		contributorsPageQuery, 
+		{},
+		{
+			next: {
+				revalidate: 60,
+			}
+		}
+	)
 
 	if (!res) {
 		throw new Error('Failed to fetch data.')

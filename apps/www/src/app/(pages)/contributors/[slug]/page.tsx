@@ -44,11 +44,15 @@ export async function generateMetadata(
 // Generate the routes for each page
 export async function generateStaticParams() {
 	try {
-		const slugs = await client.fetch(contributorPaths, {
-			next: {
-				revalidate: 60,
-			},
-		})
+		const slugs = await client.fetch(
+			contributorPaths, 
+			{},
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
 		return slugs.map((slug) => ({ slug }))
 	} catch (error) {
 		console.error(error)
@@ -62,9 +66,15 @@ export default async function ContributorSlugRoute({ params }) {
 	const preview = draftMode().isEnabled ? { token: readToken } : undefined
 
 	try {
-		const contributor = await sanityClient.fetch(contributorsBySlugQuery, {
-			slug,
-		})
+		const contributor = await sanityClient.fetch(
+			contributorsBySlugQuery,
+			{ slug },
+			{ 
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
 
 		if (!contributor && !preview) {
 			notFound()
