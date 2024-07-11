@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import s from './flex.module.scss'
+import s from './flex.module.css'
 
 import type { FlexProps } from './types'
 
