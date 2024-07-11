@@ -1,5 +1,13 @@
 # www
 
+## 3.7.2
+
+### Patch Changes
+
+- Updated dependencies [9fa61f3]
+- Updated dependencies [a4a847f]
+  - cadence-core@1.2.0
+
 ## 3.7.1
 
 ### Patch Changes
