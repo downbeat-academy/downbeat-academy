@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Example from "./example";
 
 const meta: Meta<typeof Example> = {
-  title: "Badge",
+  title: "Cadence / Components / Badge",
   component: Example,
 };
 
