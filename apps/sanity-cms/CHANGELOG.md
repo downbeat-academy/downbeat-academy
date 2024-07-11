@@ -1,5 +1,11 @@
 # sanity-cms
 
+## 2.3.1
+
+### Patch Changes
+
+- c601ce8: Formatting cleanup, etc
+
 ## 2.3.0
 
 ### Minor Changes

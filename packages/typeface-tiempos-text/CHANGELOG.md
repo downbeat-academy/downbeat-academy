@@ -1,5 +1,11 @@
 # @downbeat-academy/typeface-tiempos-text
 
+## 1.0.3
+
+### Patch Changes
+
+- c601ce8: Formatting cleanup, etc
+
 ## 1.0.2
 
 ### Patch Changes
