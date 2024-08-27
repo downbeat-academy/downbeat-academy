@@ -33,7 +33,7 @@
     "@storybook/addon-links": "^8.2.9",
     "@storybook/addon-onboarding": "^8.2.9",
     "@storybook/blocks": "^8.2.9",
-    "@storybook/react": "^8.1.11",
+    "@storybook/react": "^8.2.9",
     "@storybook/react-vite": "^8.2.9",
     "@storybook/test": "^8.2.9",
     "@testing-library/react": "^16.0.0",
@@ -66,7 +66,7 @@
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.5.1",
-    "next": "^14.2.3",
+    "next": "^14.2.6",
     "react-dom": "^18.3.1",
     "typeface-favorit": "workspace:^",
     "typeface-tiempos-text": "workspace:^"
