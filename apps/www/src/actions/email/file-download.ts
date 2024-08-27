@@ -12,7 +12,7 @@ export async function sendFileDownload({ email, file, title }) {
 			to: email,
 			subject: '🎼 Your download from Downbeat Academy is here!',
 			react: FileDownload({ file: file, title: title }),
-			reply_to: 'jory@downbeatacademy.com',
+			replyTo: 'jory@downbeatacademy.com',
 		})
 
 		console.log(data)
