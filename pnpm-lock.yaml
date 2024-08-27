@@ -391,8 +391,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
       style-dictionary:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: ^4.0.1
+        version: 4.0.1
 
   packages/email:
     dependencies:
@@ -1384,8 +1384,8 @@ packages:
   '@bundled-es-modules/glob@10.4.2':
     resolution: {integrity: sha512-740y5ofkzydsFao5EXJrGilcIL6EFEw/cmPf2uhTw9J6G1YOhiIFjNFCHdpgEiiH5VlU3G0SARSjlFlimRRSMA==}
 
-  '@bundled-es-modules/memfs@4.9.3':
-    resolution: {integrity: sha512-dWX/xFPJnnl0K3ZCG0xAc6mcwtJBwQzixMxLlZgg6nSM2UpYD11XfM4bEjw1i/suaESh1g8IS9KMFcg85AYf5g==}
+  '@bundled-es-modules/memfs@4.9.4':
+    resolution: {integrity: sha512-1XyYPUaIHwEOdF19wYVLBtHJRr42Do+3ctht17cZOHwHf67vkmRNPlYDGY2kJps4RgE5+c7nEZmEzxxvb1NZWA==}
 
   '@changesets/apply-release-plan@7.0.4':
     resolution: {integrity: sha512-HLFwhKWayKinWAul0Vj+76jVx1Pc2v55MGPVjZ924Y/ROeSsBMFutv9heHmCUj48lJyRfOTJG5+ar+29FUky/A==}
@@ -2527,14 +2527,14 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/json-pack@1.0.4':
-    resolution: {integrity: sha512-aOcSN4MeAtFROysrbqG137b7gaDDSmVrl5mpo6sT/w+kcXpWnzhMjmY/Fh/sDx26NBxyIE7MB1seqLeCAzy9Sg==}
+  '@jsonjoy.com/json-pack@1.1.0':
+    resolution: {integrity: sha512-zlQONA+msXPPwHWZMKFVS78ewFczIll5lXiVPwFPCZUsrOKdxc2AvxU1HoNBmMRhqDZUR9HkC3UOm+6pME6Xsg==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
 
-  '@jsonjoy.com/util@1.2.0':
-    resolution: {integrity: sha512-4B8B+3vFsY4eo33DMKyJPlQ3sBMpPFUZK2dr3O3rXrOGKKbYG44J0XSFkDo1VOQiri5HFEhIeVvItjR2xcazmg==}
+  '@jsonjoy.com/util@1.3.0':
+    resolution: {integrity: sha512-Cebt4Vk7k1xHy87kHY7KSPLT77A7Ev7IfOblyLZhtYEhrdQ6fX4EoLq3xOQ3O/DRMEh2ok5nyC180E+ABS8Wmw==}
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
@@ -5527,8 +5527,8 @@ packages:
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
 
-  '@zip.js/zip.js@2.7.45':
-    resolution: {integrity: sha512-Mm2EXF33DJQ/3GWWEWeP1UCqzpQ5+fiMvT3QWspsXY05DyqqxWu7a9awSzU4/spHMHVFrTjani1PR0vprgZpow==}
+  '@zip.js/zip.js@2.7.51':
+    resolution: {integrity: sha512-RKHaebzZZgQkUuzb49/qweN69e8Np9AUZ9QygydDIrbG1njypSAKwkeqIVeuf2JVGBDyB7Z9HKvzPgYrSlv9gw==}
     engines: {bun: '>=0.7.0', deno: '>=1.0.0', node: '>=16.5.0'}
 
   abbrev@1.1.1:
@@ -9211,8 +9211,8 @@ packages:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
 
-  memfs@4.9.3:
-    resolution: {integrity: sha512-bsYSSnirtYTWi1+OPMFb0M048evMKyUYe0EbtuGQgq6BVQM1g1W8/KIUJCCvjgI/El0j6Q4WsmMiBwLUBSw8LA==}
+  memfs@4.11.1:
+    resolution: {integrity: sha512-LZcMTBAgqUUKNXZagcZxvXXfgF1bHX7Y7nQ0QyEiNbRJgE29GhgPd8Yna1VQcLlPiHt/5RFJMWYN9Uv/VPNvjQ==}
     engines: {node: '>= 4.0.0'}
 
   memoize-one@6.0.0:
@@ -11831,8 +11831,8 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  style-dictionary@4.0.0:
-    resolution: {integrity: sha512-7UA+gdkNumWwKF8EIWIxvY2kNjNizeozA5P04c9EDZzP/bMAqTgf3GpwDNEFSv9QFAjQ/KXEhfyWZZDUoIKuLA==}
+  style-dictionary@4.0.1:
+    resolution: {integrity: sha512-aZ2iouI0i0DIXk3QhCkwOeo5rQeuk5Ja0PhHo32/EXCNuay4jK4CZ+hQJW0Er0J74VWniR+qaeoWgjklcULxOQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -12507,8 +12507,9 @@ packages:
   url-set-query@1.0.0:
     resolution: {integrity: sha512-3AChu4NiXquPfeckE5R5cGdiHCMWJx1dwCWOmWIL4KHAziJNOFIYJlpGFeKDvwLPHovZRCxK3cYlwzqI9Vp+Gg==}
 
-  url@0.11.3:
-    resolution: {integrity: sha512-6hxOLGfZASQK/cijlZnZJTq8OXAkt/3YGfQX45vvMYXpZoo8NdWZcY73K108Jf759lS1Bv/8wXnHDTSz17dSRw==}
+  url@0.11.4:
+    resolution: {integrity: sha512-oCwdVC7mTuWiPyjLUz/COz5TLk6wgp0RCsN+wHZ2Ekneac9w8uuV0njcbbie2ME+Vs+d6duwmYuR3HgQXs1fOg==}
+    engines: {node: '>= 0.4'}
 
   use-callback-ref@1.3.0:
     resolution: {integrity: sha512-3FT9PRuRdbB9HfXhEq35u4oZkvpJ5kuYbpqhCfmiZyReuRgpnhDlbr2ZEnnuS0RrJAPn6l23xjFg9kpDM+Ms7w==}
@@ -12980,11 +12981,6 @@ packages:
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
-
-  yaml@2.4.5:
-    resolution: {integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==}
-    engines: {node: '>= 14'}
-    hasBin: true
 
   yaml@2.5.0:
     resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
@@ -14237,14 +14233,14 @@ snapshots:
       path: 0.12.7
       stream: 0.0.3
       string_decoder: 1.3.0
-      url: 0.11.3
+      url: 0.11.4
 
-  '@bundled-es-modules/memfs@4.9.3':
+  '@bundled-es-modules/memfs@4.9.4':
     dependencies:
       assert: 2.1.0
       buffer: 6.0.3
       events: 3.3.0
-      memfs: 4.9.3
+      memfs: 4.11.1
       path: 0.12.7
       stream: 0.0.3
       util: 0.12.5
@@ -15315,15 +15311,15 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  '@jsonjoy.com/json-pack@1.0.4(tslib@2.7.0)':
+  '@jsonjoy.com/json-pack@1.1.0(tslib@2.7.0)':
     dependencies:
       '@jsonjoy.com/base64': 1.1.2(tslib@2.7.0)
-      '@jsonjoy.com/util': 1.2.0(tslib@2.7.0)
+      '@jsonjoy.com/util': 1.3.0(tslib@2.7.0)
       hyperdyperid: 1.2.0
       thingies: 1.21.0(tslib@2.7.0)
       tslib: 2.7.0
 
-  '@jsonjoy.com/util@1.2.0(tslib@2.7.0)':
+  '@jsonjoy.com/util@1.3.0(tslib@2.7.0)':
     dependencies:
       tslib: 2.7.0
 
@@ -15903,7 +15899,7 @@ snapshots:
       '@portabletext/patches': 1.1.0
       '@sanity/block-tools': 3.55.0(debug@4.3.6)
       '@sanity/schema': 3.55.0(debug@4.3.6)
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       '@sanity/util': 3.55.0(debug@4.3.6)
       debug: 4.3.6(supports-color@8.1.1)
       is-hotkey-esm: 1.0.0
@@ -17287,7 +17283,7 @@ snapshots:
 
   '@sanity/block-tools@3.55.0(debug@4.3.6)':
     dependencies:
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       '@types/react': 18.3.4
       get-random-values-esm: 1.0.2
       lodash: 4.17.21
@@ -17488,7 +17484,7 @@ snapshots:
   '@sanity/insert-menu@1.0.8(@sanity/types@3.55.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@sanity/icons': 3.4.0(react@18.3.1)
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       '@sanity/ui': 2.8.8(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       lodash.startcase: 4.4.0
       react: 18.3.1
@@ -17590,7 +17586,7 @@ snapshots:
   '@sanity/schema@3.55.0(debug@4.3.6)':
     dependencies:
       '@sanity/generate-help-url': 3.0.0
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       arrify: 1.0.1
       groq-js: 1.13.0
       humanize-list: 1.0.1
@@ -17617,9 +17613,16 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/types@3.55.0(debug@4.3.6)':
+  '@sanity/types@3.55.0':
     dependencies:
       '@sanity/client': 6.21.3
+      '@types/react': 18.3.4
+    transitivePeerDependencies:
+      - debug
+
+  '@sanity/types@3.55.0(debug@4.3.6)':
+    dependencies:
+      '@sanity/client': 6.21.3(debug@4.3.6)
       '@types/react': 18.3.4
     transitivePeerDependencies:
       - debug
@@ -17664,7 +17667,7 @@ snapshots:
   '@sanity/util@3.55.0(debug@4.3.6)':
     dependencies:
       '@sanity/client': 6.21.3
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       get-random-values-esm: 1.0.2
       moment: 2.30.1
       rxjs: 7.8.1
@@ -19266,7 +19269,7 @@ snapshots:
 
   '@yarnpkg/lockfile@1.1.0': {}
 
-  '@zip.js/zip.js@2.7.45': {}
+  '@zip.js/zip.js@2.7.51': {}
 
   abbrev@1.1.1:
     optional: true
@@ -22119,7 +22122,7 @@ snapshots:
 
   find-yarn-workspace-root@2.0.0:
     dependencies:
-      micromatch: 4.0.7
+      micromatch: 4.0.8
 
   flat-cache@3.1.1:
     dependencies:
@@ -23756,10 +23759,10 @@ snapshots:
 
   media-typer@0.3.0: {}
 
-  memfs@4.9.3:
+  memfs@4.11.1:
     dependencies:
-      '@jsonjoy.com/json-pack': 1.0.4(tslib@2.7.0)
-      '@jsonjoy.com/util': 1.2.0(tslib@2.7.0)
+      '@jsonjoy.com/json-pack': 1.1.0(tslib@2.7.0)
+      '@jsonjoy.com/util': 1.3.0(tslib@2.7.0)
       tree-dump: 1.0.2(tslib@2.7.0)
       tslib: 2.7.0
 
@@ -24026,7 +24029,7 @@ snapshots:
       '@sanity/client': 6.21.3
       '@sanity/icons': 3.4.0(react@18.3.1)
       '@sanity/preview-kit': 5.1.0(@sanity/client@6.21.3)(react@18.3.1)
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       '@sanity/ui': 2.8.8(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/visual-editing': 2.1.8(@sanity/client@6.21.3)(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       groq: 3.55.0
@@ -24621,7 +24624,7 @@ snapshots:
       semver: 7.6.3
       slash: 2.0.0
       tmp: 0.0.33
-      yaml: 2.4.5
+      yaml: 2.5.0
 
   path-browserify@1.0.1: {}
 
@@ -26335,7 +26338,7 @@ snapshots:
       '@sanity/presentation': 1.16.4(@sanity/client@6.21.3)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/schema': 3.55.0(debug@4.3.6)
       '@sanity/telemetry': 0.7.9(react@18.3.1)
-      '@sanity/types': 3.55.0(debug@4.3.6)
+      '@sanity/types': 3.55.0
       '@sanity/ui': 2.8.8(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/util': 3.55.0(debug@4.3.6)
       '@sanity/uuid': 3.0.2
@@ -27041,12 +27044,12 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  style-dictionary@4.0.0:
+  style-dictionary@4.0.1:
     dependencies:
       '@bundled-es-modules/deepmerge': 4.3.1
       '@bundled-es-modules/glob': 10.4.2
-      '@bundled-es-modules/memfs': 4.9.3
-      '@zip.js/zip.js': 2.7.45
+      '@bundled-es-modules/memfs': 4.9.4
+      '@zip.js/zip.js': 2.7.51
       chalk: 5.3.0
       change-case: 5.4.4
       commander: 8.3.0
@@ -27828,7 +27831,7 @@ snapshots:
 
   url-set-query@1.0.0: {}
 
-  url@0.11.3:
+  url@0.11.4:
     dependencies:
       punycode: 1.4.1
       qs: 6.13.0
@@ -28382,8 +28385,6 @@ snapshots:
   yallist@5.0.0: {}
 
   yaml@1.10.2: {}
-
-  yaml@2.4.5: {}
 
   yaml@2.5.0: {}
 
