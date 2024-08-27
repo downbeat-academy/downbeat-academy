@@ -1,5 +1,11 @@
 # email
 
+## 1.3.0
+
+### Minor Changes
+
+- Update core dependencies
+
 ## 1.2.1
 
 ### Patch Changes

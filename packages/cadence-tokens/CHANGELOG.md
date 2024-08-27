@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-tokens
 
+## 2.2.0
+
+### Minor Changes
+
+- Update core dependencies
+
 ## 2.1.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # sanity-cms
 
+## 2.4.0
+
+### Minor Changes
+
+- Update core dependencies
+
 ## 2.3.1
 
 ### Patch Changes

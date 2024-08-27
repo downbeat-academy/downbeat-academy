@@ -1,5 +1,18 @@
 # www
 
+## 3.8.0
+
+### Minor Changes
+
+- Update core dependencies
+
+### Patch Changes
+
+- Updated dependencies
+  - cadence-tokens@2.2.0
+  - cadence-icons@1.5.0
+  - cadence-core@1.3.0
+
 ## 3.7.2
 
 ### Patch Changes

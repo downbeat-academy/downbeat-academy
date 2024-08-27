@@ -1,5 +1,11 @@
 # cadence-icons
 
+## 1.5.0
+
+### Minor Changes
+
+- Update core dependencies
+
 ## 1.4.1
 
 ### Patch Changes
