@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Badge } from '../index'
 import Example from "./example";
 
 const meta: Meta<typeof Example> = {
   title: "Cadence / Components / Badge",
-  component: Example,
+  component: Badge,
 };
 
 export default meta;
