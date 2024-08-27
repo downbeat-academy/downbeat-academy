@@ -12,7 +12,7 @@ export async function sendEmail({ name, email, message }) {
 			to: 'jory@downbeatacademy.com',
 			subject: `${name} sent you a message from the Downbeat Academy contact form`,
 			react: ContactFormEmail({ name: name, email: email, message: message }),
-			reply_to: email,
+			replyTo: email,
 		})
 
 		console.log(data)
