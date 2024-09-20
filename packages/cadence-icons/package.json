@@ -33,19 +33,19 @@
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
-    "@testing-library/react": "^16.0.0",
-    "@types/react": "^18.3.4",
+    "@testing-library/react": "^16.0.1",
+    "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.47",
     "postcss-nesting": "^13.0.0",
     "rimraf": "^6.0.1",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.6",
     "vite-plugin-css-injected-by-js": "^3.5.1",
-    "vite-plugin-dts": "^4.0.3",
+    "vite-plugin-dts": "^4.2.1",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.1"
   }
 }
