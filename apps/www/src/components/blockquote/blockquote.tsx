@@ -25,7 +25,7 @@ const Blockquote = ({
 					collapse
 					dataCy="cds-blockquote-attribution"
 				>
-					<Link href={link} color="secondary">
+					<Link href={link} type="secondary">
 						– {attribution}
 					</Link>
 				</Text>
