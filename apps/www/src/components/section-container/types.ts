@@ -1,26 +1,26 @@
 import { ElementType, HTMLAttributes } from 'react'
 
-interface SectionContainerProps extends HTMLAttributes<HTMLElement> {
+interface SectionContainerProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
 	tag?: ElementType | string
 	children: React.ReactNode
 	background?:
-		| 'primary'
-		| 'faint'
-		| 'high-contrast'
-		| 'brand'
-		| 'interactive'
-		| 'success'
-		| 'warning'
-		| 'critical'
+	| 'primary'
+	| 'faint'
+	| 'high-contrast'
+	| 'brand'
+	| 'interactive'
+	| 'success'
+	| 'warning'
+	| 'critical'
 	borderColor?:
-		| 'primary'
-		| 'faint'
-		| 'brand'
-		| 'interactive'
-		| 'success'
-		| 'warning'
-		| 'critical'
-		| 'high-contrast'
+	| 'primary'
+	| 'faint'
+	| 'brand'
+	| 'interactive'
+	| 'success'
+	| 'warning'
+	| 'critical'
+	| 'high-contrast'
 	className?: string
 }
 

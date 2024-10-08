@@ -12,11 +12,11 @@ const Link = ({
 	className,
 	isUnderline = true,
 	dataCy,
+	target,
+	ariaDescribedBy,
 	...restProps
 }: LinkProps) => {
-	const target = opensInNewTab ? '_blank' : restProps.target
 
-	let ariaDescribedBy: LinkProps['aria-describedby']
 	if (restProps['aria-describedby']?.length > 0) {
 		ariaDescribedBy += ` ${restProps['aria-describedby']}`
 	}

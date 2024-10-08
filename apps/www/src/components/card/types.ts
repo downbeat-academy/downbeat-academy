@@ -1,6 +1,6 @@
 import { ElementType, HTMLAttributes } from 'react'
 
-interface CardProps extends HTMLAttributes<HTMLElement> {
+interface CardProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
 	children?: React.ReactNode
 	borderColor?: 'none' | 'primary' | 'faint'
 	tag?: ElementType | string
