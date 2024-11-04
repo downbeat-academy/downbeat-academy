@@ -34,8 +34,8 @@
     "core:build-storybook": "turbo run build:storybook --filter=cadence-core"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.8",
+    "@changesets/cli": "^2.27.9",
     "prettier": "^3.3.3",
-    "turbo": "^2.1.2"
+    "turbo": "^2.2.3"
   }
 }
