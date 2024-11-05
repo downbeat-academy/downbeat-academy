@@ -2,16 +2,18 @@
 
 import dynamic from 'next/dynamic'
 import { OpenSheetMusicDisplayProps } from './types'
+import { SkeletonLoader } from '@components/loader/skeleton'
+import { Text } from '@components/text'
 
 const OSMDComponent = dynamic(
   () => import('./osmd-component'),
   {
     loading: () => (
-      <div className="flex items-center justify-center w-full min-h-[200px] bg-gray-50 rounded-md">
-        <p>Loading...</p>
-      </div>
+			<Text tag='h1' size='mega'>
+				<SkeletonLoader count={1} />
+			</Text>
     ),
-    ssr: false // Disable server-side rendering since OSMD requires browser APIs
+    ssr: false
   }
 )
 
