@@ -16,83 +16,97 @@ import { Flex } from '@components/flex'
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../../types/meta'
 
+type PageProps = {
+	params: {
+		slug: string;
+	}
+}
+
+type ArticleData = {
+  metadata: {
+    title: string;
+    description: string;
+  };
+  title: string;
+  excerpt: string;
+  featuredImage: {
+    image: {
+      asset: any; // Replace 'any' with proper Sanity image type
+    };
+    alternativeText: string;
+  };
+  authors: any[]; // Replace with proper author type
+  date: string;
+  categories: Array<{
+    title: string;
+    slug: string;
+  }>;
+  content: {
+    content: any; // Replace with proper content type
+  };
+}
+
 const client = sanityClient
 
 // Generate metadata
 export async function generateMetadata(
-	{ params }: MetaProps,
-	parent: ResolvingMetadata
+  { params }: PageProps,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const { slug } = params
+  const { slug } = params
 
-	try {
-		const article = await client.fetch(articlesBySlugQuery,
-			{
-				slug,
-			},
-			{
-				next: {
-					revalidate: 60,
-				}
-			}
-		)
+  try {
+    const article = await client.fetch<ArticleData>(articlesBySlugQuery,
+      { slug },
+      { next: { revalidate: 60 } }
+    )
 
-		return {
-			title: getOgTitle(article.metadata.title),
-			description: article.metadata.description,
-		}
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+    return {
+      title: getOgTitle(article.metadata.title),
+      description: article.metadata.description,
+    }
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
 }
 
-// Generate the slugs/routes for the articles
+// Generate static params
 export async function generateStaticParams() {
-	try {
-		const slugs = await sanityClient.fetch(articlePaths,
-			{},
-			{
-				next: {
-					revalidate: 60
-				}
-			}
-		)
-		return slugs.map((slug) => ({ slug }))
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+  try {
+    const slugs = await sanityClient.fetch(articlePaths,
+      {},
+      { next: { revalidate: 60 } }
+    )
+    return slugs.map((slug: string) => ({ slug }))
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
 }
 
 // Render the article data
-export default async function ArticleSlugRoute({ params }) {
+export default async function ArticleSlugRoute({ params }: PageProps) {
 	const { slug } = params
 
-	try {
-		const article = await sanityClient.fetch(
-			articlesBySlugQuery,
-			{ slug },
-			{
-				next: {
-					revalidate: 60,
-				},
-			}
-		)
+  try {
+    const article = await sanityClient.fetch<ArticleData>(
+      articlesBySlugQuery,
+      { slug },
+      { next: { revalidate: 60 } }
+    )
 
-		const renderCategories = article.categories.map((category) => {
-			return (
-				<Link
-					href={linkResolver(category.slug, 'category')}
-					key={category.title}
-				>
-					<Badge type="neutral" style="filled" text={category.title} />
-				</Link>
-			)
-		})
-
-		// console.log(article.content.content[0].children[1])
-		// console.log(article)
+    // Rest of your component code remains the same
+    const renderCategories = article.categories.map((category) => {
+      return (
+        <Link
+          href={linkResolver(category.slug, 'category')}
+          key={category.title}
+        >
+          <Badge type="neutral" style="filled" text={category.title} />
+        </Link>
+      )
+    })
 
 		return (
 			<>
