@@ -24,7 +24,7 @@ const SvgDot = ({
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={1.5}
-			d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
+			d="M8 12a4 4 0 1 0 8 0 4 4 0 0 0-8 0"
 		/>
 	</svg>
 )

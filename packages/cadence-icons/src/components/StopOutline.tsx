@@ -22,7 +22,7 @@ const SvgStopOutline = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M7 6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H7ZM4.879 4.879A3 3 0 0 1 7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 .879-2.121Z"
+			d="M7 6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1zM4.879 4.879A3 3 0 0 1 7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 .879-2.121"
 			clipRule="evenodd"
 		/>
 	</svg>

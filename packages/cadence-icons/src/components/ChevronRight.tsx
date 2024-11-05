@@ -22,7 +22,7 @@ const SvgChevronRight = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M8.293 18.707a1 1 0 0 1 0-1.414L13.586 12 8.293 6.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414 0Z"
+			d="M8.293 18.707a1 1 0 0 1 0-1.414L13.586 12 8.293 6.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 0 1-1.414 0"
 			clipRule="evenodd"
 		/>
 	</svg>

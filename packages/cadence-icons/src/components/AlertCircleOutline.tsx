@@ -22,13 +22,13 @@ const SvgAlertCircleOutline = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M8.173 2.761a10 10 0 1 1 7.654 18.478A10 10 0 0 1 8.173 2.761ZM12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16Z"
+			d="M8.173 2.761a10 10 0 1 1 7.654 18.478A10 10 0 0 1 8.173 2.761M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16"
 			clipRule="evenodd"
 		/>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M12 8a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1ZM12 15a1 1 0 0 1 1 1v.01a1 1 0 1 1-2 0V16a1 1 0 0 1 1-1Z"
+			d="M12 8a1 1 0 0 1 1 1v4a1 1 0 1 1-2 0V9a1 1 0 0 1 1-1M12 15a1 1 0 0 1 1 1v.01a1 1 0 1 1-2 0V16a1 1 0 0 1 1-1"
 			clipRule="evenodd"
 		/>
 	</svg>

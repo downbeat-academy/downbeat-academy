@@ -22,7 +22,7 @@ const SvgPlayOutline = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M6.512 3.127a1 1 0 0 1 1.012.021l13 8a1 1 0 0 1 0 1.704l-13 8A1 1 0 0 1 6 20V4a1 1 0 0 1 .512-.873ZM8 5.79v12.42L18.092 12 8 5.79Z"
+			d="M6.512 3.127a1 1 0 0 1 1.012.021l13 8a1 1 0 0 1 0 1.704l-13 8A1 1 0 0 1 6 20V4a1 1 0 0 1 .512-.873M8 5.79v12.42L18.092 12z"
 			clipRule="evenodd"
 		/>
 	</svg>

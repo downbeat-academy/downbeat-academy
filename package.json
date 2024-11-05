@@ -31,11 +31,12 @@
     "tokens:build": "turbo run build --filter=cadence-tokens",
     "email:dev": "turbo run dev --filter=email",
     "core:storybook": "turbo run storybook --filter=cadence-core",
-    "core:build-storybook": "turbo run build:storybook --filter=cadence-core"
+    "core:build-storybook": "turbo run build:storybook --filter=cadence-core",
+    "core:build": "turbo run build --filter=cadence-core"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.8",
+    "@changesets/cli": "^2.27.9",
     "prettier": "^3.3.3",
-    "turbo": "^2.1.2"
+    "turbo": "^2.2.3"
   }
 }

@@ -22,19 +22,19 @@ const SvgMusic = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-4 2a4 4 0 1 1 8 0 4 4 0 0 1-8 0ZM16 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-4 2a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z"
+			d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-4 2a4 4 0 1 1 8 0 4 4 0 0 1-8 0M16 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-4 2a4 4 0 1 1 8 0 4 4 0 0 1-8 0"
 			clipRule="evenodd"
 		/>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M8 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v13a1 1 0 1 1-2 0V5h-8v12a1 1 0 1 1-2 0V4Z"
+			d="M8 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v13a1 1 0 1 1-2 0V5h-8v12a1 1 0 1 1-2 0z"
 			clipRule="evenodd"
 		/>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M8 8a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Z"
+			d="M8 8a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1"
 			clipRule="evenodd"
 		/>
 	</svg>

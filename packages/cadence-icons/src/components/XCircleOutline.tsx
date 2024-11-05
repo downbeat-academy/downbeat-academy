@@ -24,7 +24,7 @@ const SvgXCircleOutline = ({
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}
-			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM10 10l4 4m0-4-4 4"
+			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M10 10l4 4m0-4-4 4"
 		/>
 	</svg>
 )

@@ -22,7 +22,7 @@ const SvgPauseOutline = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M5.586 4.586A2 2 0 0 1 7 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 .586-1.414ZM9 6H7v12h2V6ZM13.586 4.586A2 2 0 0 1 15 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V6a2 2 0 0 1 .586-1.414ZM17 6h-2v12h2V6Z"
+			d="M5.586 4.586A2 2 0 0 1 7 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 .586-1.414M9 6H7v12h2zM13.586 4.586A2 2 0 0 1 15 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V6a2 2 0 0 1 .586-1.414M17 6h-2v12h2z"
 			clipRule="evenodd"
 		/>
 	</svg>
