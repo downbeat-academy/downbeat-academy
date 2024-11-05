@@ -29,7 +29,7 @@ const SvgReload = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M20 3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 1 1 0-2h4V4a1 1 0 0 1 1-1Z"
+			d="M20 3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 1 1 0-2h4V4a1 1 0 0 1 1-1"
 			clipRule="evenodd"
 		/>
 	</svg>

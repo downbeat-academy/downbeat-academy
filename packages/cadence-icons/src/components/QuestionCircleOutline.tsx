@@ -24,7 +24,7 @@ const SvgQuestionCircleOutline = ({
 			strokeLinecap="round"
 			strokeLinejoin="round"
 			strokeWidth={2}
-			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 17v.01"
+			d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M12 17v.01"
 		/>
 		<path
 			stroke="currentColor"

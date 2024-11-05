@@ -26,7 +26,7 @@ const SvgInfoCircleOutline = ({
 			strokeWidth={2}
 			clipPath="url(#info-circle-outline_svg__a)"
 		>
-			<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 8h.01" />
+			<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18M12 8h.01" />
 			<path d="M11 12h1v4h1" />
 		</g>
 		<defs>

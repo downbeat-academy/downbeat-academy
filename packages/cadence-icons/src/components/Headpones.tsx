@@ -22,13 +22,13 @@ const SvgHeadpones = ({
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M6 14a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H6Zm-3 1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-3ZM17 14a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-1Zm-3 1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-1a3 3 0 0 1-3-3v-3Z"
+			d="M6 14a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zm-3 1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM17 14a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zm-3 1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3h-1a3 3 0 0 1-3-3z"
 			clipRule="evenodd"
 		/>
 		<path
 			fill="currentColor"
 			fillRule="evenodd"
-			d="M12 5a7 7 0 0 0-7 7v3a1 1 0 1 1-2 0v-3a9 9 0 1 1 18 0v3a1 1 0 1 1-2 0v-3a7 7 0 0 0-7-7Z"
+			d="M12 5a7 7 0 0 0-7 7v3a1 1 0 1 1-2 0v-3a9 9 0 1 1 18 0v3a1 1 0 1 1-2 0v-3a7 7 0 0 0-7-7"
 			clipRule="evenodd"
 		/>
 	</svg>
