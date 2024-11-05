@@ -3,6 +3,7 @@ export { Form } from './form/form'
 export { FormField } from './form-field/form-field'
 export { Input } from './input/input'
 export { Textarea } from './textarea/textarea'
+export { Switch } from './switch/switch'
 
 // Primitives
 export { HelperText } from './primitives/helper-text'

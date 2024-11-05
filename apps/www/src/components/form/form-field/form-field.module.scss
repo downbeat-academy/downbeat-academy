@@ -1,5 +1,14 @@
 .cds-form-field--root {
 	display: flex;
+}
+
+.cds-form-field--orientation-horizontal {
+	flex-direction: row;
+	align-items: center;
+	gap: $cds-scale-small;
+}
+
+.cds-form-field--orientation-vertical {
 	flex-direction: column;
 	gap: $cds-scale-2x-small;
 }
