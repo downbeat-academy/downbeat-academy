@@ -35,6 +35,7 @@ interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
 // Form Field
 
 interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {
+	orientation?: 'vertical' | 'horizontal'
 	children?: React.ReactNode
 	className?: string
 }

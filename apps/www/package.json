@@ -1,6 +1,6 @@
 {
 	"name": "www",
-	"version": "3.8.0",
+	"version": "3.9.0",
 	"private": true,
 	"description": "Primary web UI for Downbeat Academy",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
@@ -32,6 +32,7 @@
 		"@radix-ui/react-dropdown-menu": "^2.1.2",
 		"@radix-ui/react-hover-card": "^1.1.2",
 		"@radix-ui/react-separator": "^1.1.0",
+		"@radix-ui/react-switch": "^1.1.1",
 		"@radix-ui/react-tabs": "^1.1.1",
 		"@radix-ui/react-toast": "^1.2.2",
 		"@radix-ui/react-tooltip": "1.1.3",

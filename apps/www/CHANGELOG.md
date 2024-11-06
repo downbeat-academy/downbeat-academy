@@ -1,5 +1,11 @@
 # www
 
+## 3.9.0
+
+### Minor Changes
+
+- 46b8cb2: Added Switch component
+
 ## 3.8.0
 
 ### Minor Changes
