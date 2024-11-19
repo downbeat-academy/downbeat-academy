@@ -2,7 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { OpenSheetMusicDisplay as OSMD } from 'opensheetmusicdisplay'
-import { OpenSheetMusicDisplayProps } from './types'
+import type { OpenSheetMusicDisplayProps } from './types'
+
+interface ExtendedOpenSheetMusicDisplayProps extends OpenSheetMusicDisplayProps {
+  onRenderComplete?: () => void
+}
 
 const OpenSheetMusicDisplay = ({
   file,
@@ -22,10 +26,12 @@ const OpenSheetMusicDisplay = ({
   drawLyrics = false,
   measureNumberInterval = 5,
   className,
-}: OpenSheetMusicDisplayProps) => {
+  onRenderComplete,
+}: ExtendedOpenSheetMusicDisplayProps) => {
   const [error, setError] = useState<string | null>(null)
   const divRef = useRef<HTMLDivElement>(null)
   const osmd = useRef<OSMD | null>(null)
+  const initialRenderComplete = useRef(false)
 
   const osmdOptions = {
     autoResize,
@@ -49,52 +55,75 @@ const OpenSheetMusicDisplay = ({
     defaultColorMusic: '#030923',
   }
 
-  const resize = () => {
+  // Cleanup function
+  const cleanup = () => {
     if (osmd.current) {
-      osmd.current.render()
+      // Clear the div content
+      if (divRef.current) {
+        divRef.current.innerHTML = ''
+      }
+      osmd.current = null
     }
   }
 
   useEffect(() => {
-		let mounted = true;
+    let mounted = true
+    let timeoutId: NodeJS.Timeout
 
     const setupOsmd = async () => {
-			if (!divRef.current || !file) {
-				return;
-			}
+      if (!divRef.current || !file) {
+        return
+      }
 
       try {
-        if (osmd.current) {
-          osmd.current = null
-        }
+        cleanup() // Clean up before creating new instance
 
+        // Create new instance
         const osmdInstance = new OSMD(divRef.current, osmdOptions)
         osmd.current = osmdInstance
-        
+
         await osmdInstance.load(file)
-        
-        if (mounted) {
-          await osmdInstance.render()
-          setError(null)
-        }
+
+        // Add small delay to ensure container is ready
+        timeoutId = setTimeout(async () => {
+          if (mounted && osmd.current) {
+            await osmd.current.render()
+            initialRenderComplete.current = true
+            setError(null)
+            onRenderComplete?.()
+          }
+        }, 100)
       } catch (err) {
         if (mounted) {
-          setError(err instanceof Error ? err.message : 'Failed to load music sheet')
           console.error('OSMD Error:', err)
+          setError(err instanceof Error ? err.message : 'Failed to load music sheet')
+          onRenderComplete?.()
         }
       }
     }
 
     setupOsmd()
 
-    // Add event listener for resize
-    window.addEventListener('resize', resize)
-
-    // Clean up
     return () => {
-      window.removeEventListener('resize', resize)
+      mounted = false
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+      cleanup()
     }
-  }, [file, JSON.stringify(osmdOptions)]) // Dependencies array includes file and options
+  }, [file, JSON.stringify(osmdOptions), onRenderComplete])
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (osmd.current && initialRenderComplete.current) {
+        osmd.current.render()
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   if (error) {
     return <div className="text-red-500">Error: {error}</div>
