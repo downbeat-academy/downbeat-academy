@@ -10,7 +10,7 @@ interface OpenSheetMusicDisplayProps {
 	drawPartNames?: boolean
 	drawMetronomeMarks?: boolean
 	drawTimeSignatures?: boolean
-	drawMeasureNumbers?: false
+	drawMeasureNumbers?: boolean
 	drawMeasureNumbersOnlyAtSystemStart?: boolean
 	drawLyrics?: boolean
 	measureNumberInterval?: number
