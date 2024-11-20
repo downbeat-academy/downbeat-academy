@@ -8,7 +8,9 @@ export const ProgressBar = ({
 	duration,
 }) => {
 	const handleProgressChange = () => {
-		audioRef.current.currentTime = progressBarRef.current.value
+		if (audioRef?.current && progressBarRef?.current) {
+			audioRef.current.currentTime = parseFloat(progressBarRef.current.value)
+		}
 	}
 
 	const formatTime = (time) => {
@@ -24,6 +26,10 @@ export const ProgressBar = ({
 
 		return '00:00'
 	}
+
+	// Set max value and step size for finer control
+	const maxValue = duration || 0
+	const step = duration && duration < 5 ? "0.01" : "0.1"
 
 	return (
 		<div className={s.progress}>
@@ -41,6 +47,9 @@ export const ProgressBar = ({
 				className={s['progress-bar']}
 				ref={progressBarRef}
 				defaultValue="0"
+				min="0"
+				max={maxValue}
+				step={step}
 				onChange={handleProgressChange}
 			/>
 			<Text

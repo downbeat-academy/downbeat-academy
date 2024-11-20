@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { PlayerButton } from './player-button'
+import type { ControlsProps } from './types'
 import s from './controls.module.scss'
 
 const Controls = ({
@@ -12,68 +13,133 @@ const Controls = ({
 	setTrackIndex,
 	setCurrentTrack,
 	handleNext,
-}) => {
+}: ControlsProps) => {
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [volume, setVolume] = useState(80)
 	const [muteVolume, setMuteVolume] = useState(false)
 
-	const multipleTracks = tracks.length > 1 ? true : false
-
-	const playAnimationRef = useRef()
+	const multipleTracks = tracks.length > 1
+	const playAnimationRef = useRef<number | null>(null)
 
 	const repeat = useCallback(() => {
+		if (!audioRef?.current) return
+
 		const currentTime = audioRef.current.currentTime
 		setTimeProgress(currentTime)
-		progressBarRef.current.value = currentTime
-		progressBarRef.current.style.setProperty(
-			'--range-progress',
-			`${(progressBarRef.current.value / duration) * 100}%`
-		)
 
-		// @ts-ignore
+		if (progressBarRef?.current) {
+			// For very short audio clips, we need more precise progress calculation
+			const progress = (currentTime / duration) * 100
+
+			// Ensure we reach 100% at the end
+			const adjustedProgress = audioRef.current.ended ? 100 : progress
+
+			progressBarRef.current.value = currentTime.toString()
+			progressBarRef.current.style.setProperty(
+				'--range-progress',
+				`${adjustedProgress}%`
+			)
+		}
+
 		playAnimationRef.current = requestAnimationFrame(repeat)
 	}, [audioRef, duration, progressBarRef, setTimeProgress])
 
+	const handleTrackEnd = useCallback(() => {
+		setIsPlaying(false)
+		if (playAnimationRef.current) {
+			cancelAnimationFrame(playAnimationRef.current)
+		}
+	}, [])
+
+	// Handle audio ending
+	useEffect(() => {
+		const audio = audioRef.current
+
+		if (audio) {
+			audio.addEventListener('ended', handleTrackEnd)
+
+			return () => {
+				audio.removeEventListener('ended', handleTrackEnd)
+			}
+		}
+	}, [audioRef, handleTrackEnd])
+
 	const togglePlayPause = () => {
-		setIsPlaying((prev) => !prev)
+		if (audioRef.current) {
+			if (audioRef.current.ended) {
+				audioRef.current.currentTime = 0
+				setTimeProgress(0)
+				if (progressBarRef.current) {
+					progressBarRef.current.value = '0'
+					progressBarRef.current.style.setProperty('--range-progress', '0%')
+				}
+			}
+			setIsPlaying(prev => !prev)
+		}
 	}
 
 	useEffect(() => {
+		if (!audioRef?.current) return
+
 		if (isPlaying) {
-			audioRef.current.play()
+			audioRef.current.play().catch((error) => {
+				console.error('Error playing audio:', error)
+				setIsPlaying(false)
+			})
 		} else {
 			audioRef.current.pause()
 		}
 
-		// @ts-ignore
 		playAnimationRef.current = requestAnimationFrame(repeat)
+
+		return () => {
+			if (playAnimationRef.current) {
+				cancelAnimationFrame(playAnimationRef.current)
+			}
+		}
 	}, [isPlaying, audioRef, repeat])
 
 	const fastForward = () => {
+		if (!audioRef?.current) return
 		audioRef.current.currentTime += 15
 	}
 
 	const rewind = () => {
+		if (!audioRef?.current) return
 		audioRef.current.currentTime -= 15
 	}
 
 	const handlePrevious = () => {
 		if (trackIndex === 0) {
-			let lastTrackIndex = tracks.length - 1
+			const lastTrackIndex = tracks.length - 1
 			setTrackIndex(lastTrackIndex)
 			setCurrentTrack(tracks[lastTrackIndex])
 		} else {
-			setTrackIndex((prev) => prev - 1)
+			setTrackIndex((prev: number) => prev - 1)
 			setCurrentTrack(tracks[trackIndex - 1])
 		}
 	}
 
 	useEffect(() => {
-		if (audioRef) {
-			audioRef.current.volume = volume / 100
-			audioRef.current.muted = muteVolume
-		}
+		if (!audioRef?.current) return
+
+		audioRef.current.volume = volume / 100
+		audioRef.current.muted = muteVolume
 	}, [volume, audioRef, muteVolume])
+
+	const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newVolume = parseInt(e.target.value)
+		setVolume(newVolume)
+		e.target.style.setProperty('--range-progress', `${newVolume}%`)
+	}
+
+	// Add an effect to initialize the volume progress
+	useEffect(() => {
+		const volumeSlider = document.querySelector<HTMLInputElement>('.volume-slider')
+		if (volumeSlider) {
+			volumeSlider.style.setProperty('--range-progress', `${volume}%`)
+		}
+	}, [])
 
 	return (
 		<div className={s.root}>
@@ -94,7 +160,7 @@ const Controls = ({
 				/>
 				<PlayerButton
 					type={isPlaying ? 'pause' : 'play'}
-					ariaLabel="Play"
+					ariaLabel={isPlaying ? 'Pause' : 'Play'}
 					size="large"
 					onClick={togglePlayPause}
 				/>
@@ -119,11 +185,11 @@ const Controls = ({
 						muteVolume || volume < 1
 							? 'volume-mute'
 							: volume < 50
-							? 'volume-quiet'
-							: 'volume'
+								? 'volume-quiet'
+								: 'volume'
 					}
 					size="small"
-					ariaLabel="Volume"
+					ariaLabel={muteVolume ? 'Unmute' : 'Mute'}
 					onClick={() => setMuteVolume((prev) => !prev)}
 				/>
 				<input
@@ -131,7 +197,7 @@ const Controls = ({
 					min={0}
 					max={100}
 					value={volume}
-					onChange={(e) => setVolume(parseInt(e.target.value))}
+					onChange={handleVolumeChange}
 					className={s['volume-slider']}
 				/>
 			</aside>
