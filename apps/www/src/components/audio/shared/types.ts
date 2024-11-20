@@ -25,13 +25,21 @@ interface PlayerButtonProps {
 }
 
 interface DisplayTrackProps {
-	currentTrack: Track
+	currentTrack: {
+		title: string
+		artist: string
+		file: {
+			asset: {
+				_ref: string
+			}
+		}
+	}
 	audioRef: React.RefObject<HTMLAudioElement>
 	setDuration: (duration: number) => void
 	progressBarRef: React.RefObject<HTMLInputElement>
 	handleNext: () => void
 	trackIndex: number
-	tracks: Track[]
+	tracks: Array<any> // You might want to type this more specifically
 	showTitle?: boolean
 	showArtist?: boolean
 }

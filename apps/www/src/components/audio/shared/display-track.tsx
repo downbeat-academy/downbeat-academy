@@ -2,7 +2,6 @@
 
 import { getSanityUrl } from '@utils/getSanityUrl'
 import { Text } from '@components/text'
-
 import type { DisplayTrackProps } from './types'
 
 export const DisplayTrack = ({
@@ -19,9 +18,12 @@ export const DisplayTrack = ({
 	const track = getSanityUrl(currentTrack.file.asset._ref)
 
 	const onLoadedMetadata = () => {
+		if (!audioRef.current || !progressBarRef.current) return
+
 		const seconds = audioRef.current.duration
 		setDuration(seconds)
-		progressBarRef.current.max = seconds
+		// Convert the seconds to string for the max attribute
+		progressBarRef.current.max = seconds.toString()
 	}
 
 	const trackMetadata = () => {
