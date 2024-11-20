@@ -1,5 +1,11 @@
 # www
 
+## 3.9.1
+
+### Patch Changes
+
+- 25e8844: Fixed null rendering in the audio player
+
 ## 3.9.0
 
 ### Minor Changes
