@@ -12,39 +12,10 @@ import { RichText, RichTextWrapper } from '@components/rich-text'
 import { Badge } from '@components/badge'
 import { Link } from '@components/link'
 import { Flex } from '@components/flex'
+import { TableOfContents } from '@components/table-of-contents'
 
+import type { PageProps, ArticleData } from './types'
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../../../../types/meta'
-
-type PageProps = {
-	params: {
-		slug: string;
-	}
-}
-
-type ArticleData = {
-  metadata: {
-    title: string;
-    description: string;
-  };
-  title: string;
-  excerpt: string;
-  featuredImage: {
-    image: {
-      asset: any; // Replace 'any' with proper Sanity image type
-    };
-    alternativeText: string;
-  };
-  authors: any[]; // Replace with proper author type
-  date: string;
-  categories: Array<{
-    title: string;
-    slug: string;
-  }>;
-  content: {
-    content: any; // Replace with proper content type
-  };
-}
 
 const client = sanityClient
 
@@ -87,7 +58,7 @@ export async function generateStaticParams() {
 
 // Render the article data
 export default async function ArticleSlugRoute({ params }: PageProps) {
-	const { slug } = params
+  const { slug } = params
 
   try {
     const article = await sanityClient.fetch<ArticleData>(
@@ -108,53 +79,54 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
       )
     })
 
-		return (
-			<>
-				<SectionContainer>
-					<FeaturedItem.Root>
-						<FeaturedItem.Title>
-							<Text
-								tag="h1"
-								type="expressive-headline"
-								size="h1"
-								color="high-contrast"
-								collapse
-							>
-								{article.title}
-							</Text>
-							<Text
-								tag="p"
-								type="expressive-body"
-								size="body-large"
-								color="high-contrast"
-								collapse
-							>
-								{article.excerpt}
-							</Text>
-						</FeaturedItem.Title>
-						<FeaturedItem.Image
-							image={getSanityImageUrl(article.featuredImage.image.asset).url()}
-							alt={article.featuredImage.alternativeText}
-						/>
-						<FeaturedItem.Description>
-							<AuthorMetadata
-								authors={article.authors}
-								date={prettyDate(article.date)}
-							>
-								<Flex tag="div" direction="row" gap="medium">
-									{renderCategories}
-								</Flex>
-							</AuthorMetadata>
-						</FeaturedItem.Description>
-					</FeaturedItem.Root>
-				</SectionContainer>
-				<RichTextWrapper>
-					<RichText value={article.content.content} />
-				</RichTextWrapper>
-			</>
-		)
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+    return (
+      <>
+        <SectionContainer>
+          <FeaturedItem.Root>
+            <FeaturedItem.Title>
+              <Text
+                tag="h1"
+                type="expressive-headline"
+                size="h1"
+                color="high-contrast"
+                collapse
+              >
+                {article.title}
+              </Text>
+              <Text
+                tag="p"
+                type="expressive-body"
+                size="body-large"
+                color="high-contrast"
+                collapse
+              >
+                {article.excerpt}
+              </Text>
+            </FeaturedItem.Title>
+            <FeaturedItem.Image
+              image={getSanityImageUrl(article.featuredImage.image.asset).url()}
+              alt={article.featuredImage.alternativeText}
+            />
+            <FeaturedItem.Description>
+              <AuthorMetadata
+                authors={article.authors}
+                date={prettyDate(article.date)}
+              >
+                <Flex tag="div" direction="row" gap="medium">
+                  {renderCategories}
+                </Flex>
+              </AuthorMetadata>
+            </FeaturedItem.Description>
+          </FeaturedItem.Root>
+        </SectionContainer>
+        <TableOfContents items={article.content.content} title='Jump to' />
+        <RichTextWrapper>
+          <RichText value={article.content.content} />
+        </RichTextWrapper>
+      </>
+    )
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
 }

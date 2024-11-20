@@ -43,6 +43,7 @@ interface TextProps extends Omit<HTMLAttributes<HTMLOrSVGElement>, 'children'> {
 	| 'critical'
 	align?: 'left' | 'center' | 'right' | 'justify'
 	collapse?: boolean
+	id?: string
 	dataCy?: string
 	className?: string
 }
