@@ -14,6 +14,7 @@ const Text = ({
 	size = 'body-base',
 	tag = 'div',
 	type = 'productive-body',
+	id,
 	dataCy,
 }: TextProps) => {
 	const classes = classnames(
@@ -33,7 +34,7 @@ const Text = ({
 
 	return (
 		// @ts-ignore
-		<Tag className={classes} data-cy={dataCy}>
+		<Tag className={classes} data-cy={dataCy} id={id}>
 			{children}
 		</Tag>
 	)
