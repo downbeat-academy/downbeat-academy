@@ -250,7 +250,7 @@ importers:
         version: 15.3.0(rollup@4.24.4)
       '@rollup/plugin-typescript':
         specifier: ^11.1.6
-        version: 11.1.6(rollup@4.24.4)(tslib@2.8.1)(typescript@5.6.3)
+        version: 11.1.6(rollup@4.24.4)(tslib@2.8.1)(typescript@5.7.3)
       '@storybook/addon-essentials':
         specifier: ^8.4.1
         version: 8.4.2(@types/react@18.3.12)(storybook@8.4.2(prettier@3.4.2))(webpack-sources@3.2.3)
@@ -268,10 +268,10 @@ importers:
         version: 8.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))
       '@storybook/react':
         specifier: ^8.4.1
-        version: 8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))(typescript@5.6.3)
+        version: 8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))(typescript@5.7.3)
       '@storybook/react-vite':
         specifier: ^8.4.1
-        version: 8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.4)(storybook@8.4.2(prettier@3.4.2))(typescript@5.6.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))(webpack-sources@3.2.3)
+        version: 8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.4)(storybook@8.4.2(prettier@3.4.2))(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))(webpack-sources@3.2.3)
       '@storybook/test':
         specifier: ^8.4.1
         version: 8.4.2(storybook@8.4.2(prettier@3.4.2))
@@ -318,17 +318,17 @@ importers:
         specifier: ^1.1.3
         version: 1.1.3
       typescript:
-        specifier: ^5.6.2
-        version: 5.6.3
+        specifier: ^5.7.3
+        version: 5.7.3
       typescript-plugin-css-modules:
         specifier: ^5.1.0
-        version: 5.1.0(typescript@5.6.3)
+        version: 5.1.0(typescript@5.7.3)
       vite:
         specifier: ^5.4.6
         version: 5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0)
       vite-plugin-dts:
         specifier: ^4.3.0
-        version: 4.3.0(@types/node@22.10.6)(rollup@4.24.4)(typescript@5.6.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))
+        version: 4.3.0(@types/node@22.10.6)(rollup@4.24.4)(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))
       vitest:
         specifier: ^2.1.4
         version: 2.1.4(@types/node@22.10.6)(jsdom@23.2.0)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0)
@@ -10480,6 +10480,11 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
 
@@ -12939,15 +12944,15 @@ snapshots:
     dependencies:
       minipass: 7.1.2
 
-  '@joshwooding/vite-plugin-react-docgen-typescript@0.3.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))':
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.3.0(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))':
     dependencies:
       glob: 7.2.3
       glob-promise: 4.2.2(glob@7.2.3)
       magic-string: 0.27.0
-      react-docgen-typescript: 2.2.2(typescript@5.6.3)
+      react-docgen-typescript: 2.2.2(typescript@5.7.3)
       vite: 5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0)
     optionalDependencies:
-      typescript: 5.6.3
+      typescript: 5.7.3
 
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
@@ -14152,11 +14157,11 @@ snapshots:
     optionalDependencies:
       rollup: 4.24.4
 
-  '@rollup/plugin-typescript@11.1.6(rollup@4.24.4)(tslib@2.8.1)(typescript@5.6.3)':
+  '@rollup/plugin-typescript@11.1.6(rollup@4.24.4)(tslib@2.8.1)(typescript@5.7.3)':
     dependencies:
       '@rollup/pluginutils': 5.1.3(rollup@4.24.4)
       resolve: 1.22.8
-      typescript: 5.6.3
+      typescript: 5.7.3
     optionalDependencies:
       rollup: 4.24.4
       tslib: 2.8.1
@@ -15190,12 +15195,12 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       storybook: 8.4.2(prettier@3.4.2)
 
-  '@storybook/react-vite@8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.4)(storybook@8.4.2(prettier@3.4.2))(typescript@5.6.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))(webpack-sources@3.2.3)':
+  '@storybook/react-vite@8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.4)(storybook@8.4.2(prettier@3.4.2))(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))(webpack-sources@3.2.3)':
     dependencies:
-      '@joshwooding/vite-plugin-react-docgen-typescript': 0.3.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))
+      '@joshwooding/vite-plugin-react-docgen-typescript': 0.3.0(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))
       '@rollup/pluginutils': 5.1.3(rollup@4.24.4)
       '@storybook/builder-vite': 8.4.2(storybook@8.4.2(prettier@3.4.2))(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0))(webpack-sources@3.2.3)
-      '@storybook/react': 8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))(typescript@5.6.3)
+      '@storybook/react': 8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))(typescript@5.7.3)
       find-up: 5.0.0
       magic-string: 0.30.12
       react: 18.3.1
@@ -15212,7 +15217,7 @@ snapshots:
       - typescript
       - webpack-sources
 
-  '@storybook/react@8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))(typescript@5.6.3)':
+  '@storybook/react@8.4.2(@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.4.2(prettier@3.4.2))(typescript@5.7.3)':
     dependencies:
       '@storybook/components': 8.4.2(storybook@8.4.2(prettier@3.4.2))
       '@storybook/global': 5.0.0
@@ -15225,7 +15230,7 @@ snapshots:
       storybook: 8.4.2(prettier@3.4.2)
     optionalDependencies:
       '@storybook/test': 8.4.2(storybook@8.4.2(prettier@3.4.2))
-      typescript: 5.6.3
+      typescript: 5.7.3
 
   '@storybook/test@8.4.2(storybook@8.4.2(prettier@3.4.2))':
     dependencies:
@@ -16006,6 +16011,19 @@ snapshots:
       path-browserify: 1.0.1
     optionalDependencies:
       typescript: 5.6.3
+
+  '@vue/language-core@2.1.6(typescript@5.7.3)':
+    dependencies:
+      '@volar/language-core': 2.4.8
+      '@vue/compiler-dom': 3.5.12
+      '@vue/compiler-vue2': 2.7.16
+      '@vue/shared': 3.5.12
+      computeds: 0.0.1
+      minimatch: 9.0.5
+      muggle-string: 0.4.1
+      path-browserify: 1.0.1
+    optionalDependencies:
+      typescript: 5.7.3
 
   '@vue/shared@3.5.12': {}
 
@@ -21112,9 +21130,9 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
 
-  react-docgen-typescript@2.2.2(typescript@5.6.3):
+  react-docgen-typescript@2.2.2(typescript@5.7.3):
     dependencies:
-      typescript: 5.6.3
+      typescript: 5.7.3
 
   react-docgen@7.1.0:
     dependencies:
@@ -22948,7 +22966,7 @@ snapshots:
 
   typescript-collections@1.3.3: {}
 
-  typescript-plugin-css-modules@5.1.0(typescript@5.6.3):
+  typescript-plugin-css-modules@5.1.0(typescript@5.7.3):
     dependencies:
       '@types/postcss-modules-local-by-default': 4.0.2
       '@types/postcss-modules-scope': 3.0.4
@@ -22966,7 +22984,7 @@ snapshots:
       source-map-js: 1.2.1
       stylus: 0.62.0
       tsconfig-paths: 4.2.0
-      typescript: 5.6.3
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -22974,6 +22992,8 @@ snapshots:
   typescript@5.4.2: {}
 
   typescript@5.6.3: {}
+
+  typescript@5.7.3: {}
 
   ufo@1.5.4: {}
 
@@ -23199,6 +23219,25 @@ snapshots:
       local-pkg: 0.5.0
       magic-string: 0.30.12
       typescript: 5.6.3
+    optionalDependencies:
+      vite: 5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - rollup
+      - supports-color
+
+  vite-plugin-dts@4.3.0(@types/node@22.10.6)(rollup@4.24.4)(typescript@5.7.3)(vite@5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0)):
+    dependencies:
+      '@microsoft/api-extractor': 7.47.11(@types/node@22.10.6)
+      '@rollup/pluginutils': 5.1.3(rollup@4.24.4)
+      '@volar/typescript': 2.4.8
+      '@vue/language-core': 2.1.6(typescript@5.7.3)
+      compare-versions: 6.1.1
+      debug: 4.3.7(supports-color@8.1.1)
+      kolorist: 1.8.0
+      local-pkg: 0.5.0
+      magic-string: 0.30.12
+      typescript: 5.7.3
     optionalDependencies:
       vite: 5.4.10(@types/node@22.10.6)(less@4.2.0)(sass@1.80.6)(stylus@0.62.0)(terser@5.37.0)
     transitivePeerDependencies:
