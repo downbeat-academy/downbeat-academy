@@ -7,7 +7,7 @@
     "build": "pnpm run clean && pnpm run build:js && pnpm run build:types",
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --ci",
     "build:storybook": "storybook build"
   },
   "keywords": [],
