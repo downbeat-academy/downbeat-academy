@@ -73,8 +73,8 @@ importers:
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.54.2(react@18.3.1))
       '@next/bundle-analyzer':
-        specifier: ^14.2.6
-        version: 14.2.16
+        specifier: ^15.1.4
+        version: 15.1.4
       '@portabletext/react':
         specifier: ^3.2.0
         version: 3.2.0(react@18.3.1)
@@ -103,8 +103,8 @@ importers:
         specifier: 1.1.6
         version: 1.1.6(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@sanity/asset-utils':
-        specifier: ^1.3.0
-        version: 1.3.2
+        specifier: ^2.2.1
+        version: 2.2.1
       '@sanity/client':
         specifier: ^6.24.3
         version: 6.24.3
@@ -115,14 +115,14 @@ importers:
         specifier: ^8.48.0
         version: 8.48.0(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.56.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(encoding@0.1.13)(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4))(react@18.3.1)(webpack@5.96.1)
       '@supabase/ssr':
-        specifier: ^0.5.0
-        version: 0.5.1(@supabase/supabase-js@2.47.13)
+        specifier: ^0.5.2
+        version: 0.5.2(@supabase/supabase-js@2.47.13)
       '@supabase/supabase-js':
         specifier: ^2.47.13
         version: 2.47.13
       '@vercel/og':
-        specifier: ^0.6.2
-        version: 0.6.3
+        specifier: ^0.6.4
+        version: 0.6.4
       boring-avatars:
         specifier: ^1.11.2
         version: 1.11.2
@@ -139,8 +139,8 @@ importers:
         specifier: ^2.5.1
         version: 2.5.1
       date-fns:
-        specifier: ^3.6.0
-        version: 3.6.0
+        specifier: ^4.1.0
+        version: 4.1.0
       eslint:
         specifier: ^9.18.0
         version: 9.18.0
@@ -160,8 +160,8 @@ importers:
         specifier: ^4.2.3
         version: 4.2.3(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4))
       nuqs:
-        specifier: ^1.17.8
-        version: 1.20.0(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4))
+        specifier: ^2.3.1
+        version: 2.3.1(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4))(react@18.3.1)
       opensheetmusicdisplay:
         specifier: ^1.8.9
         version: 1.8.9
@@ -2307,8 +2307,8 @@ packages:
   '@microsoft/tsdoc@0.15.1':
     resolution: {integrity: sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==}
 
-  '@next/bundle-analyzer@14.2.16':
-    resolution: {integrity: sha512-pMitc/pJ7II9skw5JYCmjvtaBQ9qmhF1W3M9L5JbbL98H31x0WvmUsF7gA4Hv4horludg6eHWIbAHmWErYzIwA==}
+  '@next/bundle-analyzer@15.1.4':
+    resolution: {integrity: sha512-W8X96jOW0U5VjLVAkFr1P37kH2f/Ma9zzwgX2o3Omft92pI0XHpFG8Xa9YUT3NlhRJCe4ZKznr1VxhSrFNA+BA==}
 
   '@next/env@13.5.7':
     resolution: {integrity: sha512-uVuRqoj28Ys/AI/5gVEgRAISd0KWI0HRjOO1CTpNgmX3ZsHb5mdn14Y59yk0IxizXdo7ZjsI2S7qbWnO+GNBcA==}
@@ -3832,10 +3832,6 @@ packages:
   '@rushstack/ts-command-line@4.23.3':
     resolution: {integrity: sha512-HazKL8fv4HMQMzrKJCrOrhyBPPdzk7iajUXgsASwjQ8ROo1cmgyqxt/k9+SdmrNLGE1zATgRqMUH3s/6smbRMA==}
 
-  '@sanity/asset-utils@1.3.2':
-    resolution: {integrity: sha512-dixN6MpMXsCEVh0Dr932cgZ4cU3Z2JnNOYBxjV+dgO6AnqVpNQTY+KgGMYlA1ca5zCztQI1VSk/MBCPSxihPqQ==}
-    engines: {node: '>=10'}
-
   '@sanity/asset-utils@2.2.1':
     resolution: {integrity: sha512-dBsZWH5X6ANcvclFRnQT9Y+NNvoWTJZIMKR5HT6hzoRpRb48p7+vWn+wi1V1wPvqgZg2ScsOQQcGXWXskbPbQQ==}
     engines: {node: '>=18'}
@@ -4451,8 +4447,8 @@ packages:
   '@supabase/realtime-js@2.11.2':
     resolution: {integrity: sha512-u/XeuL2Y0QEhXSoIPZZwR6wMXgB+RQbJzG9VErA3VghVt7uRfSVsjeqd7m5GhX3JR6dM/WRmLbVR8URpDWG4+w==}
 
-  '@supabase/ssr@0.5.1':
-    resolution: {integrity: sha512-+G94H/GZG0nErZ3FQV9yJmsC5Rj7dmcfCAwOt37hxeR1La+QTl8cE9whzYwPUrTJjMLGNXoO+1BMvVxwBAbz4g==}
+  '@supabase/ssr@0.5.2':
+    resolution: {integrity: sha512-n3plRhr2Bs8Xun1o4S3k1CDv17iH5QY9YcoEvXX3bxV1/5XSasA0mNXYycFmADIdtdE6BG9MRjP5CGIs8qxC8A==}
     peerDependencies:
       '@supabase/supabase-js': ^2.43.4
 
@@ -4661,6 +4657,9 @@ packages:
 
   '@types/cookie@0.4.1':
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
+
+  '@types/cookie@0.6.0':
+    resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
   '@types/cors@2.8.17':
     resolution: {integrity: sha512-8CGDvrBj1zgo2qE+oS3pOCyYNqCPryMWY2bGfwA0dcfopWGgxs+78df0Rs3rc9THP4JkOhLsAa+15VdpAqkcUA==}
@@ -4953,8 +4952,8 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  '@vercel/og@0.6.3':
-    resolution: {integrity: sha512-aoCrC9FqkeA+WEEb9CwSmjD0rGlFeNqbUsI41JPmKWR9Hx6FFn86tvH96O5HZMF6VAXTGHxa3nPH3BokROpdgA==}
+  '@vercel/og@0.6.4':
+    resolution: {integrity: sha512-+IB8fYbVHEAtLfhCXSRS61Q/OfBJTaPCXhvGvXTBIUfs9lqZMDesZ2UnvKYbnEYHSMgCzBaj5BOq66iePl8mjw==}
     engines: {node: '>=16'}
 
   '@vercel/stega@0.1.2':
@@ -5951,10 +5950,6 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
 
-  cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
-    engines: {node: '>= 0.6'}
-
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
@@ -6040,6 +6035,10 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     peerDependencies:
       postcss: ^8.0.9
+
+  css-gradient-parser@0.0.16:
+    resolution: {integrity: sha512-3O5QdqgFRUbXvK1x5INf1YkBz1UKSWqrd63vWsum8MNHDBYD5urm3QtxZbKU259OrEXNM26lP/MPY3d1IGkBgA==}
+    engines: {node: '>=16'}
 
   css-has-pseudo@7.0.1:
     resolution: {integrity: sha512-EOcoyJt+OsuKfCADgLT7gADZI5jMzIe/AeI6MeAYKiFBDmNmM7kk46DtSfMj5AohUJisqVzopBpnQTlvbyaBWg==}
@@ -6259,8 +6258,8 @@ packages:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
 
-  date-fns@3.6.0:
-    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   dayjs@1.11.13:
     resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
@@ -8857,10 +8856,23 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuqs@1.20.0:
-    resolution: {integrity: sha512-nGVfv7eWMNxAzOJ9n8ARTo6ObqeEr1ETYZ+dIMCg/VfGUoZoPrqyTOndIvQIgUzK3pIC41mTXg10JJxh9ziEhw==}
+  nuqs@2.3.1:
+    resolution: {integrity: sha512-IyzSay4UlaBj+KnPBFjoJKilEmX5XLePfwC+X5wJS87dMFf8tvxysIaBwma6eupQJ5mdu35f4gFzp9+v1CK/jQ==}
     peerDependencies:
-      next: '>=13.4 <14.0.2 || ^14.0.3'
+      '@remix-run/react': '>=2'
+      next: '>=14.2.0'
+      react: '>=18.2.0 || ^19.0.0-0'
+      react-router: ^6 || ^7
+      react-router-dom: ^6 || ^7
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      next:
+        optional: true
+      react-router:
+        optional: true
+      react-router-dom:
+        optional: true
 
   nwsapi@2.2.16:
     resolution: {integrity: sha512-F1I/bimDpj3ncaNDhfyMWuFqmQDBwDB0Fogc2qpL3BWvkQteFD/8BzWuIRl83rq0DXfm8SGt/HFhLXZyljTXcQ==}
@@ -10410,8 +10422,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  satori@0.10.9:
-    resolution: {integrity: sha512-XU9EELUEZuioT4acLIpCXxHcFzrsC8muvg0MY28d+TlqwxbkTzBmWbw+3+hnCzXT7YZ0Qm8k3eXktDaEu+qmEw==}
+  satori@0.12.0:
+    resolution: {integrity: sha512-e0e+qQyeFwEszujN7SpWpRtZgww7Nh8lSO3bUn2spHZ5JpqEl3zJ3P14/JlWruxEwdgREs35ZnavrPrWaRVFDg==}
     engines: {node: '>=16'}
 
   sax@1.3.0:
@@ -14101,7 +14113,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.1': {}
 
-  '@next/bundle-analyzer@14.2.16':
+  '@next/bundle-analyzer@15.1.4':
     dependencies:
       webpack-bundle-analyzer: 4.10.1
     transitivePeerDependencies:
@@ -14669,7 +14681,7 @@ snapshots:
 
   '@portabletext/block-tools@1.0.2(@sanity/types@3.70.0(@types/react@19.0.7)(debug@4.4.0))(@types/react@19.0.7)':
     dependencies:
-      '@sanity/types': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
+      '@sanity/types': 3.70.0(@types/react@19.0.7)
       '@types/react': 19.0.7
       get-random-values-esm: 1.0.2
       lodash: 4.17.21
@@ -14703,7 +14715,7 @@ snapshots:
       '@portabletext/block-tools': 1.0.2(@sanity/types@3.70.0(@types/react@19.0.7)(debug@4.4.0))(@types/react@19.0.7)
       '@portabletext/patches': 1.1.1
       '@sanity/schema': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
-      '@sanity/types': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
+      '@sanity/types': 3.70.0(@types/react@19.0.7)
       '@xstate/react': 5.0.2(@types/react@19.0.7)(react@18.3.1)(xstate@5.19.2)
       debug: 4.4.0(supports-color@5.5.0)
       get-random-values-esm: 1.0.2
@@ -15595,8 +15607,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@sanity/asset-utils@1.3.2': {}
-
   '@sanity/asset-utils@2.2.1': {}
 
   '@sanity/bifur-client@0.4.1':
@@ -15921,7 +15931,7 @@ snapshots:
   '@sanity/insert-menu@1.0.19(@emotion/is-prop-valid@1.3.1)(@sanity/types@3.70.0(@types/react@19.0.7)(debug@4.4.0))(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@sanity/icons': 3.5.7(react@18.3.1)
-      '@sanity/types': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
+      '@sanity/types': 3.70.0(@types/react@19.0.7)
       '@sanity/ui': 2.11.2(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       lodash: 4.17.21
       react: 18.3.1
@@ -16139,7 +16149,7 @@ snapshots:
   '@sanity/schema@3.70.0(@types/react@19.0.7)(debug@4.4.0)':
     dependencies:
       '@sanity/generate-help-url': 3.0.0
-      '@sanity/types': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
+      '@sanity/types': 3.70.0(@types/react@19.0.7)
       arrify: 2.0.1
       groq-js: 1.14.2
       humanize-list: 1.0.1
@@ -16202,9 +16212,16 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/types@3.70.0(@types/react@19.0.7)(debug@4.4.0)':
+  '@sanity/types@3.70.0(@types/react@19.0.7)':
     dependencies:
       '@sanity/client': 6.24.3
+      '@types/react': 19.0.7
+    transitivePeerDependencies:
+      - debug
+
+  '@sanity/types@3.70.0(@types/react@19.0.7)(debug@4.4.0)':
+    dependencies:
+      '@sanity/client': 6.24.3(debug@4.4.0)
       '@types/react': 19.0.7
     transitivePeerDependencies:
       - debug
@@ -16811,10 +16828,11 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@supabase/ssr@0.5.1(@supabase/supabase-js@2.47.13)':
+  '@supabase/ssr@0.5.2(@supabase/supabase-js@2.47.13)':
     dependencies:
       '@supabase/supabase-js': 2.47.13
-      cookie: 0.6.0
+      '@types/cookie': 0.6.0
+      cookie: 0.7.2
 
   '@supabase/storage-js@2.7.1':
     dependencies:
@@ -17049,6 +17067,8 @@ snapshots:
       '@types/node': 22.10.6
 
   '@types/cookie@0.4.1': {}
+
+  '@types/cookie@0.6.0': {}
 
   '@types/cors@2.8.17':
     dependencies:
@@ -17409,10 +17429,10 @@ snapshots:
       - '@codemirror/lint'
       - '@codemirror/search'
 
-  '@vercel/og@0.6.3':
+  '@vercel/og@0.6.4':
     dependencies:
       '@resvg/resvg-wasm': 2.4.0
-      satori: 0.10.9
+      satori: 0.12.0
       yoga-wasm-web: 0.3.3
 
   '@vercel/stega@0.1.2': {}
@@ -18593,8 +18613,6 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
-  cookie@0.6.0: {}
-
   cookie@0.7.2: {}
 
   copy-anything@2.0.6:
@@ -18678,6 +18696,8 @@ snapshots:
   css-declaration-sorter@6.4.1(postcss@8.4.47):
     dependencies:
       postcss: 8.4.47
+
+  css-gradient-parser@0.0.16: {}
 
   css-has-pseudo@7.0.1(postcss@8.4.47):
     dependencies:
@@ -18980,7 +19000,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
 
-  date-fns@3.6.0: {}
+  date-fns@4.1.0: {}
 
   dayjs@1.11.13: {}
 
@@ -22137,9 +22157,11 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuqs@1.20.0(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4)):
+  nuqs@2.3.1(next@14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4))(react@18.3.1):
     dependencies:
       mitt: 3.0.1
+      react: 18.3.1
+    optionalDependencies:
       next: 14.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.4)
 
   nwsapi@2.2.16: {}
@@ -24120,7 +24142,7 @@ snapshots:
       '@sanity/presentation': 1.21.3(@emotion/is-prop-valid@1.3.1)(@sanity/color@3.0.6)(debug@4.4.0)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/schema': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
       '@sanity/telemetry': 0.7.9(react@18.3.1)
-      '@sanity/types': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
+      '@sanity/types': 3.70.0(@types/react@19.0.7)
       '@sanity/ui': 2.11.2(@emotion/is-prop-valid@1.3.1)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/util': 3.70.0(@types/react@19.0.7)(debug@4.4.0)
       '@sanity/uuid': 3.0.2
@@ -24247,11 +24269,12 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.5.0
 
-  satori@0.10.9:
+  satori@0.12.0:
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0
       css-box-shadow: 1.0.0-3
+      css-gradient-parser: 0.0.16
       css-to-react-native: 3.2.0
       emoji-regex: 10.4.0
       escape-html: 1.0.3
