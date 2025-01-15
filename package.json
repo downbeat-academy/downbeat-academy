@@ -35,8 +35,8 @@
     "core:build": "turbo run build --filter=cadence-core"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.9",
-    "prettier": "^3.3.3",
-    "turbo": "^2.2.3"
+    "@changesets/cli": "^2.27.11",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3"
   }
 }
