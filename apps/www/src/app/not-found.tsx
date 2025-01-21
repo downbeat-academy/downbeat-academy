@@ -1,4 +1,4 @@
-import { Flex } from '@components/flex'
+import { Flex } from 'cadence-core'
 import { Link } from '@components/link'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'

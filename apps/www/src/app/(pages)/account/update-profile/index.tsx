@@ -1,4 +1,4 @@
-import { Flex } from '@components/flex'
+import { Flex } from 'cadence-core'
 import { Text } from '@components/text'
 import {
 	Dialog,

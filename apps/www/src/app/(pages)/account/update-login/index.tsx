@@ -8,7 +8,7 @@ import {
 	DialogTrigger,
 } from '@components/dialog'
 import { Button, ButtonWrapper } from '@components/button'
-import { Flex } from '@components/flex'
+import { Flex } from 'cadence-core'
 
 import { UpdateEmailForm } from './update-email-form'
 import { UpdatePasswordForm } from './update-password-form'
