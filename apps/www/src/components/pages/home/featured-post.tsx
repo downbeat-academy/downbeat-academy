@@ -7,7 +7,7 @@ import { Flex } from '@components/flex'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { Text } from '@components/text'
-import { Badge } from '@components/badge'
+import { Badge } from 'cadence-core'
 
 export default async function FeaturedPost({ featuredPost }) {
 	// Render the categories of the featured post as badges

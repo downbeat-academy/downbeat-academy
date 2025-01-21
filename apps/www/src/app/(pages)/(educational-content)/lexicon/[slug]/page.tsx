@@ -6,8 +6,7 @@ import { Text } from '@components/text'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { RichText } from '@components/rich-text'
-import { Badge } from '@components/badge'
-import { Flex } from '@components/flex'
+import { Badge, Flex } from 'cadence-core'
 import { MusicNotation } from '@components/music-notation'
 import { AudioPlayer } from '@components/audio'
 
@@ -30,13 +29,12 @@ export async function generateMetadata({
 				next: {
 					revalidate: 60,
 				}
-			}	
+			}
 		)
 
 		return {
 			title: getOgTitle(
-				`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${
-					formatTime(lexicon.timestamp).totalTime
+				`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${formatTime(lexicon.timestamp).totalTime
 				}`
 			),
 			description: lexicon.excerpt,
