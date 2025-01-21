@@ -10,7 +10,7 @@ import { formatTime } from '@utils/format-time'
 import { deslugify } from '@utils/deslugify'
 import { linkResolver } from '@utils/link-resolver'
 import { Link } from '@components/link'
-import { Badge } from '@components/badge'
+import { Badge } from 'cadence-core'
 
 const LexiconTable = ({ data }) => {
 	return (

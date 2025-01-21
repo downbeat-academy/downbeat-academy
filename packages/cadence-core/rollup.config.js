@@ -17,7 +17,7 @@ const globals = {
   'react-dom': 'ReactDOM',
 };
 
-// Adjust this path to point to your generated tokens CSS file
+// This imports tokens from the cadence-tokens package
 const tokensPath = resolve(__dirname, '../cadence-tokens/dist/tokens.css');
 
 export default {
@@ -32,13 +32,13 @@ export default {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       globals,
-    },
+    }
   ],
   plugins: [
     peerDepsExternal(),
     nodeResolve({ extensions, browser: true }),
     commonjs(),
-    typescript({ 
+    typescript({
       tsconfig: './tsconfig.json',
       declaration: true,
       // declarationDir: 'dist',

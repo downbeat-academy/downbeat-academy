@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { Flex } from '@components/flex'
+import { Flex } from 'cadence-core'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
 import s from './blockquote.module.scss'

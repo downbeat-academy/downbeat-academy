@@ -8,8 +8,7 @@ import {
 } from '@components/hover-card'
 import { Text } from '@components/text'
 import { Link } from '@components/link'
-import { Badge } from '@components/badge'
-import { Flex } from '@components/flex'
+import { Badge, Flex } from 'cadence-core'
 
 import type { HandbookReferenceProps } from './types'
 

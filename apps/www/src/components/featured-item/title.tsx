@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { Flex } from '@components/flex'
+import { Flex } from 'cadence-core'
 import s from './title.module.scss'
 
 import type { FeaturedItemTitleProps } from './types'

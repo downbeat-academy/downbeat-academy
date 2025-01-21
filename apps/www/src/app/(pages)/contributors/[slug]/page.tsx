@@ -13,7 +13,7 @@ import { RichText } from '@components/rich-text'
 import * as FeaturedItem from '@components/featured-item'
 import { ListItem } from '@components/list'
 import { linkResolver } from '@utils/link-resolver'
-import { Flex } from '@components/flex'
+import { Flex } from 'cadence-core'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../types/meta'
@@ -45,7 +45,7 @@ export async function generateMetadata(
 export async function generateStaticParams() {
 	try {
 		const slugs = await client.fetch(
-			contributorPaths, 
+			contributorPaths,
 			{},
 			{
 				next: {
@@ -69,7 +69,7 @@ export default async function ContributorSlugRoute({ params }) {
 		const contributor = await sanityClient.fetch(
 			contributorsBySlugQuery,
 			{ slug },
-			{ 
+			{
 				next: {
 					revalidate: 60,
 				}
