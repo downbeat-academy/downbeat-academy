@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import classnames from 'classnames'
-import s from './nav-content.module.scss'
-import { LogoLockup } from '@components/brand'
+import { LogoLockup } from 'cadence-core'
 import { Button } from '@components/button'
 import { Link } from '@components/link'
+import s from './nav-content.module.scss'
 
 const NavContent = ({ links }) => {
 	const route = usePathname()
@@ -60,36 +60,36 @@ const NavContent = ({ links }) => {
 		[navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']],
 	])
 
-  return (
-    <div className={s.root}>
-      <div className={s.logo}>
-        <Link href="/">
-          <LogoLockup width={180} color='brand' />
-        </Link>
-      </div>
-      <div className={toggledNavClasses}>
-        <nav>
-          <ul className={s[`nav-links`]}>
-            {mapLinks}
-          </ul>
-        </nav>
-        <div className={s.actions}>
-          <Button
-            text='Login / Signup'
-            variant='primary'
-            size='large'
-            href='/login'
-            isFullWidth
-          />
-        </div>
-      </div>
-      <button
-        type='button'
-        className={s['menu-button']}
-        onClick={handleNavToggled}
-      >{navToggled ? 'Close menu' : 'Open menu'}</button>
-    </div>
-  )
+	return (
+		<div className={s.root}>
+			<div className={s.logo}>
+				<Link href="/">
+					<LogoLockup width={180} color='brand' />
+				</Link>
+			</div>
+			<div className={toggledNavClasses}>
+				<nav>
+					<ul className={s[`nav-links`]}>
+						{mapLinks}
+					</ul>
+				</nav>
+				<div className={s.actions}>
+					<Button
+						text='Login / Signup'
+						variant='primary'
+						size='large'
+						href='/login'
+						isFullWidth
+					/>
+				</div>
+			</div>
+			<button
+				type='button'
+				className={s['menu-button']}
+				onClick={handleNavToggled}
+			>{navToggled ? 'Close menu' : 'Open menu'}</button>
+		</div>
+	)
 }
 
 export { NavContent }
