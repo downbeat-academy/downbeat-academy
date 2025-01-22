@@ -1,0 +1,27 @@
+.brand path {
+	fill: var(--cds-color-foreground-brand-default);
+}
+
+.high-contrast path {
+	fill: var(--cds-color-foreground-high-contrast);
+}
+
+.dark path {
+	fill: var(--cds-color-foreground-strong);
+}
+
+.blueberry path {
+	fill: var(--cds-color-foreground-interactive-default);
+}
+
+.kale path {
+	fill: var(--cds-color-foreground-success-default);
+}
+
+.pineapple path {
+	fill: var(--cds-color-foreground-warning-default);
+}
+
+.peach path {
+	fill: var(--cds-color-foreground-critical-default);
+}

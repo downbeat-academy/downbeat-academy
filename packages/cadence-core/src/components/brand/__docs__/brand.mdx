@@ -1,0 +1,37 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from './example';
+import * as LogoLockup from './brand.stories';
+
+<Meta of={LogoLockup} title="Brand" />
+
+# Brand
+
+A collection of components that represent various visual and logo elements of Downbeat Academy.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { LogoLockup, LogoSymbol, LogoText } from "cadence-core";
+
+const Example = () => {
+  return (
+    <>
+      <LogoLockup />
+      <LogoSymbol />
+      <LogoText />
+    </>
+  )
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **color** - The color of the logo. Accepts `brand`, `high-contrast`, `dark`, `blueberry`, `kale`, `pineapple`, or `peach`.
+- **width** - The width of the logo. Accepts any number, defaults to `100px`.
+- **className** - An optional class name to apply to the brand elements.
