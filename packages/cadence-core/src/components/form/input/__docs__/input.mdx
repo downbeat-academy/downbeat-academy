@@ -1,0 +1,44 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as Input from "./input.stories.tsx";
+
+<Meta of={Input} title="Input" />
+
+# Input
+
+Use an Input to allow users to input text or data into a form field.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { Input } from "cadence-core";
+
+const Example = () => {
+  return (
+      <Input
+        label='Input label'
+        placeholder='Input placeholder'
+        type='text'
+        value=''
+      />
+  );
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **label** - A string that represents the label of the Input.
+- **placeholder** - A string that represents the placeholder text of the Input.
+- **type** - The type of the Input. Can be one of `text`, `password`, `email`, `number`, `tel`, `url`, `search`, `date`, `time`, `datetime-local`, `month`, `week`, `color`, `file`, `range`, `hidden`, `image`, `reset`, `submit`, `button`.
+- **value** - The value of the Input.
+- **disabled** - A boolean that determines if the Input is disabled.
+- **readOnly** - A boolean that determines if the Input is read-only.
+- **required** - A boolean that determines if the Input is required.
+- **autoComplete** - A string that represents the autocomplete value of the Input.
+- **autoFocus** - A boolean that determines if the Input is autofocused.

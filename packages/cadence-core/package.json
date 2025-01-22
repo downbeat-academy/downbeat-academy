@@ -72,6 +72,7 @@
     "react": "^18.2.0"
   },
   "dependencies": {
+    "@radix-ui/react-switch": "^1.1.2",
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.5.1",
