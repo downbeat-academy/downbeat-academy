@@ -1,0 +1,40 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as FormField from "./form-field.stories.tsx";
+
+<Meta of={FormField} title="Form Field" />
+
+# Form Field
+
+Use a Form Field to collect user input or display information in a form.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { FormField, Input } from "cadence-core";
+
+const Example = () => {
+  return (
+      <FormField
+        orientation='vertical'
+      >
+        <Input
+          label='First Name'
+          placeholder='John'
+        />
+      </FormField>
+  );
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **orientation** - The orientation of the Form Field. Can be one of `vertical` or `horizontal`.
+- **className** - An optional class name to apply to the Form Field.
+- **children** - The children of the Form Field. Should be an array of Input components.

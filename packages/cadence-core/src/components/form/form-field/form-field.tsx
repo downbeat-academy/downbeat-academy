@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import s from './form-field.module.scss'
+import s from './form-field.module.css'
 
 import type { FormFieldProps } from './types'
 
@@ -19,3 +19,4 @@ const FormField = ({
 }
 
 export { FormField }
+export type { FormFieldProps }

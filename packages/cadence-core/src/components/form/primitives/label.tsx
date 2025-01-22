@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import s from './label.module.scss'
+import s from './label.module.css'
 
 import type { LabelProps } from './types'
 

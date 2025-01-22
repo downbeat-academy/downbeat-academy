@@ -5,7 +5,7 @@ import {
 	AlertTriangleOutline,
 	AlertCircleOutline,
 } from 'cadence-icons'
-import s from './validation-message.module.scss'
+import s from './validation-message.module.css'
 
 import type { ValidationMessageProps } from './types'
 

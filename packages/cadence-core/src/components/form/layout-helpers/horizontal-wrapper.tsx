@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import s from './horizontal-wrapper.module.scss'
+import s from './horizontal-wrapper.module.css'
 
 import type { HorizontalWrapperProps } from './types'
 

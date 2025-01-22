@@ -1,7 +1,7 @@
 import React from 'react'
 import * as SwitchBase from '@radix-ui/react-switch';
 import { Check } from 'cadence-icons';
-import s from './switch.module.scss';
+import s from './switch.module.css';
 
 import type { SwitchProps } from './types';
 
