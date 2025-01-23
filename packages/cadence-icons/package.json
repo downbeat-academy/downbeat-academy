@@ -27,10 +27,10 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "default": "./dist/cadence-icons.es.js",
-      "types": "./dist/index.d.ts",
       "import": "./dist/cadence-icons.es.js",
-      "require": "./dist/cadence-icons.umd.js"
+      "require": "./dist/cadence-icons.umd.js",
+      "default": "./dist/cadence-icons.es.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "devDependencies": {
