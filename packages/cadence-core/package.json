@@ -8,8 +8,7 @@
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "storybook": "storybook dev -p 6006 --ci",
-    "build:storybook": "storybook build",
-    "build:storybook-x": "pnpm --filter cadence-icons build && storybook build"
+    "build:storybook": "pnpm --filter cadence-icons build && storybook build"
   },
   "keywords": [],
   "author": {
