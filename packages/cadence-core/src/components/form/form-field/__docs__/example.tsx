@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { FormField, FormFieldProps } from '../form-field'
-import { Input, Label } from '../../index'
+import { Input } from '../../input/input'
+import { Label } from '../../primitives/label'
 
 const Example: FC<FormFieldProps> = ({
   orientation = 'vertical',
