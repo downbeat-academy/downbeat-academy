@@ -3,32 +3,50 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>@storybook/cli - Storybook</title>
+    <title>@storybook/core - Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     
-    <link
-      rel="prefetch"
-      href="./sb-common-assets/nunito-sans-regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="prefetch"
-      href="./sb-common-assets/nunito-sans-bold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+    <style>
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-regular.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-italic.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-bold.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Nunito Sans';
+        font-style: italic;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./sb-common-assets/nunito-sans-bold-italic.woff2') format('woff2');
+      }
+    </style>
 
     <link href="./sb-manager/runtime.js" rel="modulepreload" />
 
     
-    <link href="./sb-addons/storybook-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
+    <link href="./sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
     
     <link href="./sb-addons/onboarding-1/manager-bundle.js" rel="modulepreload" />
     
@@ -48,10 +66,14 @@
     
     <link href="./sb-addons/essentials-outline-9/manager-bundle.js" rel="modulepreload" />
     
-    <link href="./sb-addons/chromatic-com-storybook-10/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/interactions-11/manager-bundle.js" rel="modulepreload" />
-       
+    <link href="./sb-addons/interactions-10/manager-bundle.js" rel="modulepreload" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"> 
 
     <style>
       #storybook-root[hidden] {
@@ -122,7 +144,7 @@
         
       
         
-          window['STORYBOOK_FRAMEWORK'] = "/Users/jorytindall/projects/downbeat-academy/node_modules/.pnpm/@storybook+react-vite@8.1.11_prettier@3.3.2_react-dom@18.3.1_react@18.3.1_rollup@4.18.0_typescript@5.5.3_vite@5.3.3/node_modules/@storybook/react-vite";
+          window['STORYBOOK_FRAMEWORK'] = "/Users/jorytindall/projects/downbeat-academy/node_modules/.pnpm/@storybook+react-vite@8.4.7_@storybook+test@8.4.7_storybook@8.4.7_prettier@3.4.2___react-dom@_lwesnniwnx5f64cv7muo56yd5q/node_modules/@storybook/react-vite";
         
       
     </script>
@@ -132,7 +154,7 @@
       import './sb-manager/globals-runtime.js';
       
       
-        import './sb-addons/storybook-core-server-presets-0/common-manager-bundle.js';
+        import './sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js';
       
         import './sb-addons/onboarding-1/manager-bundle.js';
       
@@ -152,9 +174,7 @@
       
         import './sb-addons/essentials-outline-9/manager-bundle.js';
       
-        import './sb-addons/chromatic-com-storybook-10/manager-bundle.js';
-      
-        import './sb-addons/interactions-11/manager-bundle.js';
+        import './sb-addons/interactions-10/manager-bundle.js';
       
       
       import './sb-manager/runtime.js';
