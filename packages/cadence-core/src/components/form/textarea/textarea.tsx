@@ -28,9 +28,10 @@ const Textarea = ({
 			id={id}
 			rows={rows}
 			className={classes}
-			{...register(name)}
+			{...(register && { ...register(name) })}
 		/>
 	)
 }
 
 export { Textarea }
+export type { TextareaProps } 

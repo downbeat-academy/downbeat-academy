@@ -16,8 +16,8 @@
 
 .switch-thumb {
 	display: block;
-	width: 24px;
-	height: 24px;
+	width: 23px;
+	height: 23px;
 	background-color: var(--cds-color-surface-primary);
 	border-color: var(--cds-color-palette-blackberry-300);
 	border-width: 1px;
@@ -25,11 +25,11 @@
 	border-radius: 9999px;
 	box-shadow: 1px 1px 2px hsla(240, 36%, 22%, 15%);
 	transition: transform 100ms;
-	transform: translateX(-1px) translateY(-1px);
+	transform: translateX(-8px) translateY(-2.25px);
 	will-change: transform;
 
 	&[data-state="checked"] {
-		transform: translateX(23px) translateY(-1px);
+		transform: translateX(17px) translateY(-2.5px);
 		border-color: var(--cds-color-border-primary);
 	}
 }

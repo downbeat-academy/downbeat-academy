@@ -4,7 +4,7 @@ import { Input, InputProps } from '../input'
 const Example: FC<InputProps> = ({
   type = 'text',
   name,
-  placeholder = 'Placeholder text',
+  placeholder = 'Placeholder Text',
   disabled = false,
   readOnly,
   value,
