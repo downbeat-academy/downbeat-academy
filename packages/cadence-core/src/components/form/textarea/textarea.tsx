@@ -34,4 +34,3 @@ const Textarea = ({
 }
 
 export { Textarea }
-export type { TextareaProps } 

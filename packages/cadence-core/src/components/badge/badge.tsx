@@ -39,4 +39,3 @@ const Badge = ({
 }
 
 export { Badge }
-export type { BadgeProps }

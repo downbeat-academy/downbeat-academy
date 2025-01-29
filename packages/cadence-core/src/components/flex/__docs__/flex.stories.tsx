@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import Example from "./example";
 import { Badge } from '../../badge';
-import { Flex } from '../index'
+import { Flex } from '../flex'
 
 const meta: Meta<typeof Example> = {
   title: "Cadence / Components / Flex",

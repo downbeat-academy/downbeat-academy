@@ -15,4 +15,3 @@ const Switch = ({ id }: SwitchProps) => {
 }
 
 export { Switch }
-export type { SwitchProps }

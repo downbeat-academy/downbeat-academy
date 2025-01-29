@@ -19,4 +19,3 @@ const FormField = ({
 }
 
 export { FormField }
-export type { FormFieldProps }

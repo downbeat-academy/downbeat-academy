@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Input, InputProps } from '../input'
+import { Input } from '../input'
+import { InputProps } from '../types'
 
 const Example: FC<InputProps> = ({
   type = 'text',

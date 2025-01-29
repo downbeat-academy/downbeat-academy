@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { Textarea, TextareaProps } from '../textarea'
+import { Textarea } from '../textarea'
+import { TextareaProps } from '../types'
 
 const Example: FC<TextareaProps> = ({
   name,

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Switch, SwitchProps } from '../switch'
+import { Switch } from '../switch'
+import { SwitchProps } from '../types'
 import { FormField } from "../../form-field/form-field";
 import { Label } from "../../primitives/label";
 

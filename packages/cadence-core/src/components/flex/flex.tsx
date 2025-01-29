@@ -38,4 +38,3 @@ const Flex = ({
 }
 
 export { Flex }
-export type { FlexProps }

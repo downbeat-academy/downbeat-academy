@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { FormField, FormFieldProps } from '../form-field'
+import { FormField } from '../form-field'
+import { FormFieldProps } from '../types'
 import { Input } from '../../input/input'
 import { Label } from '../../primitives/label'
 
