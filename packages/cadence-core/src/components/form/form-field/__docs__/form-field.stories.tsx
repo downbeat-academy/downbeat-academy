@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { FormField, FormFieldProps } from '../form-field'
+import { FormField } from '../form-field'
+import type { FormFieldProps } from '../types'
 import { Input } from '../../input/input'
 import { HelperText } from '../../primitives/helper-text'
 import { Label } from '../../primitives/label'
