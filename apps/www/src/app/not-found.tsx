@@ -23,7 +23,7 @@ export default function NotFound() {
 						color="high-contrast"
 						collapse
 					>
-						404 :(
+						404 :&#40;
 					</Text>
 				}
 				subtitle={
