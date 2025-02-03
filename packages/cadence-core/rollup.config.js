@@ -1,4 +1,5 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import preserveDirectives from "rollup-plugin-preserve-directives";
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -27,17 +28,20 @@ export default {
       file: 'dist/index.esm.js',
       format: 'esm',
       globals,
+      preserveModules: true
     },
     {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       globals,
-    }
+      preserveModules: true
+    },
   ],
   plugins: [
     peerDepsExternal(),
     nodeResolve({ extensions, browser: true }),
     commonjs(),
+    preserveDirectives(),
     typescript({
       tsconfig: './tsconfig.json',
       declaration: true,
