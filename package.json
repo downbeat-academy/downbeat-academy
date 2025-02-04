@@ -28,6 +28,8 @@
     "www:cypress": "pnpm --filter=www cypress",
     "cms:dev": "turbo run dev --filter=sanity-cms",
     "cms:build": "turbo run build --filter=sanity-cms",
+    "payload:dev": "turbo run dev --filter=cms-payload",
+    "payload:build": "turbo run build --filter=cms-payload",
     "tokens:build": "turbo run build --filter=cadence-tokens",
     "email:dev": "turbo run dev --filter=email",
     "core:storybook": "turbo run storybook --filter=cadence-core",
