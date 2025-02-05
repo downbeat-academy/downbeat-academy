@@ -13,9 +13,14 @@ workspaces.
 - Built with Next.js and Cadence Design System components and tokens.
 - View at [downbeatacademy.com](https://downbeatacademy.com).
 
-### `sanity-cms`
+### `cms-sanity`
 
 - Instance of Sanity Studio for managing content on `www`
+- This is the in the progress of being deprecated.
+
+### `cms-payload`
+
+- Instance of Payload using Postgres with Supabase
 
 ## Packages
 

@@ -1,0 +1,7 @@
+{
+  "buildCommand": "turbo run build",
+  "devCommand": "turbo run dev",
+  "framework": "sanity-v3",
+  "outputDirectory": "dist",
+  "installCommand": "pnpm install"
+}
