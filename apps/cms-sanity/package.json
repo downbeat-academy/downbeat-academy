@@ -1,5 +1,5 @@
 {
-  "name": "sanity-cms",
+  "name": "cms-sanity",
   "private": true,
   "version": "2.4.0",
   "main": "package.json",
