@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Flex, FlexProps } from '../flex'
+import { Flex } from '../flex'
+import { FlexProps } from '../types'
 
 const Example: FC<FlexProps> = ({
   children,

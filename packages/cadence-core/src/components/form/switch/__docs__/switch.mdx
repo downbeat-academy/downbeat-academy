@@ -1,0 +1,35 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as Switch from "./switch.stories.tsx";
+
+<Meta of={Switch} title="Switch" />
+
+# Switch
+
+Use a Switch to allow users to toggle between two mutually exclusive options.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+
+import { Switch } from "cadence-core";
+
+const Example = () => {
+  return (
+      <Switch
+        value={true}
+      />
+  );
+};
+
+export default Example;
+
+```
+
+## Arguments
+
+- **id** - A string that represents the id of the Switch.

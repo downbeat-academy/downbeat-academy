@@ -1,0 +1,40 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as Textarea from "./textarea.stories.tsx";
+
+<Meta of={Textarea} title="Textarea" />
+
+# Textarea
+
+Use a Textarea to allow users to input multiple lines of text into a form field.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { Textarea } from "cadence-core";
+
+const Example = () => {
+  return (
+      <Textarea
+        label='Textarea label'
+        placeholder='Textarea placeholder'
+        value=''
+      />
+  );
+};
+
+export default Example;
+```
+
+## Arguments
+
+- **label** - A string that represents the label of the Textarea.
+- **placeholder** - A string that represents the placeholder text of the Textarea.
+- **value** - The value of the Textarea.
+- **disabled** - A boolean that determines if the Textarea is disabled.
+- **readOnly** - A boolean that determines if the Textarea is read-only.
+- **required** - A boolean that determines if the Textarea is required.

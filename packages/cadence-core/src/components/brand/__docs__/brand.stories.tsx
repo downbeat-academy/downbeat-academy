@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  LogoLockup,
-  LogoSymbol,
-  LogoText,
-} from '../index';
+import { LogoLockup } from '../logo-lockup';
+import { LogoSymbol } from '../logo-symbol';
+import { LogoText } from '../logo-text';
 import Example from './example';
 
 const meta: Meta<typeof Example> = {

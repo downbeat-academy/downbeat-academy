@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Badge } from '../index'
+import { Badge } from '../badge'
 import Example from "./example";
 
 const meta: Meta<typeof Example> = {
