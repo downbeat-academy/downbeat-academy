@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from '../index'
 import Example from "./example";
 
-const meta: Meta<typeof Example> = {
+const meta: Meta<typeof Badge> = {
   title: "Cadence / Components / Badge",
   component: Badge,
 };
 
 export default meta;
-type Story = StoryObj<typeof Example>;
+type Story = StoryObj<typeof Badge>;
 
 export const Neutral: Story = {
   args: {

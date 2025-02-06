@@ -6,13 +6,13 @@ import {
 } from '../index';
 import Example from './example';
 
-const meta: Meta<typeof Example> = {
+const meta: Meta<typeof LogoLockup> = {
   title: 'Cadence / Components / Brand',
   component: LogoLockup,
 };
 
 export default meta;
-type Story = StoryObj<typeof Example>;
+type Story = StoryObj<typeof LogoLockup>;
 
 export const Lockup: Story = {
   args: {
