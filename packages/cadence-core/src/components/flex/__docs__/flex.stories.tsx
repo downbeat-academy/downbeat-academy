@@ -4,13 +4,13 @@ import Example from "./example";
 import { Badge } from '../../badge';
 import { Flex } from '../index'
 
-const meta: Meta<typeof Example> = {
+const meta: Meta<typeof Flex> = {
   title: "Cadence / Components / Flex",
   component: Flex,
 }
 
 export default meta;
-type Story = StoryObj<typeof Example>;
+type Story = StoryObj<typeof Flex>;
 
 export const Row: Story = {
   args: {
