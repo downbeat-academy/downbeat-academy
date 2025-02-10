@@ -1,5 +1,3 @@
-import type { TextProps } from 'cadence-core'
-
 interface ListItemProps {
 	title?: string
 	description?: string

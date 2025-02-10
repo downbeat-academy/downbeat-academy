@@ -6,4 +6,9 @@ export {
   LogoText,
   type LogoProps
 } from './brand'
-export { Text, type TextProps } from './text'
+export {
+  Text,
+  List,
+  type TextProps,
+  type ListProps
+} from './text'

@@ -41,3 +41,4 @@ const Text = ({
 }
 
 export { Text }
+export type { TextProps }
