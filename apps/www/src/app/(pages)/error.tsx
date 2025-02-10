@@ -1,6 +1,6 @@
 'use client'
 
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { Link } from '@components/link'
 
 import type { Metadata } from 'next'

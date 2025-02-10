@@ -1,5 +1,6 @@
+import React from 'react'
 import classnames from 'classnames'
-import s from './list.module.scss'
+import s from './list.module.css'
 
 import type { ListProps } from './types'
 

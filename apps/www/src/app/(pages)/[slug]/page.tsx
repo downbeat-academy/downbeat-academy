@@ -7,7 +7,7 @@ import { getOgTitle } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { ModuleRenderer } from '@components/module-content'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -31,7 +31,7 @@ export async function generateMetadata(
 				}
 			}
 		)
-		
+
 		const { title } = page.metadata
 		return {
 			title: getOgTitle(title),

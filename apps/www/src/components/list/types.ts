@@ -1,5 +1,3 @@
-import type { TextProps } from '@components/text'
-
 interface ListItemProps {
 	title?: string
 	description?: string

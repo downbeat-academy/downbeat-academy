@@ -4,7 +4,7 @@ import { linkInBioPageQuery } from '@lib/queries/sanity.link-in-bio'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { ListItem } from '@components/list'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { linkResolver } from '@utils/link-resolver'
 
 import type { Metadata } from 'next'

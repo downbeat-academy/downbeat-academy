@@ -1,6 +1,5 @@
-import { Text } from '@components/text'
+import { Text, List } from 'cadence-core'
 import { Link } from '@components/link'
-import { List } from '@components/text'
 import { linkResolver } from '@utils/link-resolver'
 import {
 	Chord,

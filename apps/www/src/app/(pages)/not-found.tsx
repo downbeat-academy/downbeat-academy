@@ -2,7 +2,7 @@ import { Flex } from 'cadence-core'
 import { Link } from '@components/link'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 
 import type { Metadata } from 'next'
 

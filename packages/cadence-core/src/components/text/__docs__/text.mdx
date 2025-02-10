@@ -1,0 +1,35 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as Text from './text.stories.tsx';
+
+<Meta of={Text} title="Text" />
+
+# Text
+
+A component for displaying text with a variety of styles and sizes.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```tsx
+import { Text } from 'cadence-core'
+
+<Text size="body-base" type="productive-body" tag="p" color="primary">
+  Productive Body Base
+</Text>
+```
+
+## Arguments
+
+- **size** - The size of the text. Can be one of `mega`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `body-large`, `body-base`, `body-small`, `body-x-small`.
+- **type** - The type of the text. Can be one of `productive-body`, `productive-headline`, `expressive-body`, `expressive-headline`.
+- **tag** - The HTML tag to use for the text. Can be one of `p`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`.
+- **color** - The color of the text. Can be one of `primary`, `strong`, `faint`, `disabled`, `high-contrast`, `warning`, `critical`, `interactive`, `brand`, `success`.
+- **weight** - The font weight of the text. Can be one of `regular`, `medium`, `semibold`, `bold`.
+- **align** - Text alignment. Can be one of `left`, `center`, `right`, `justify`.
+- **truncate** - Boolean to enable text truncation with ellipsis.
+- **className** - Additional CSS class names to apply to the text component.
+- **children** - The text content to display (React node).
+

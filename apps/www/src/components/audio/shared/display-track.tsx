@@ -1,7 +1,7 @@
 'use client'
 
 import { getSanityUrl } from '@utils/getSanityUrl'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import type { DisplayTrackProps } from './types'
 
 export const DisplayTrack = ({

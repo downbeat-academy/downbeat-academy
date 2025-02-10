@@ -1,6 +1,6 @@
 {
 	"name": "www",
-	"version": "3.9.1",
+	"version": "3.10.0",
 	"private": true,
 	"description": "Primary web UI for Downbeat Academy",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",

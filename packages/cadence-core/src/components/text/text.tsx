@@ -1,5 +1,6 @@
+import React from 'react'
 import classnames from 'classnames'
-import s from './text.module.scss'
+import s from './text.module.css'
 
 import type { TextProps } from './types'
 
@@ -40,3 +41,4 @@ const Text = ({
 }
 
 export { Text }
+export type { TextProps }

@@ -1,4 +1,4 @@
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import {
 	Dialog,
 	DialogContent,

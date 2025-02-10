@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { getSanityUrl } from '@utils/getSanityUrl'
 import { readUserSession } from '@actions/auth/read-user-session'
 import { Link } from '@components/link'

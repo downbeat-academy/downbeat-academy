@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import classnames from 'classnames'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { Avatar, AvatarGroup } from '@components/avatar'
 import { Link } from '@components/link'
 import { Flex } from 'cadence-core'

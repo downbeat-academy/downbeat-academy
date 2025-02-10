@@ -1,7 +1,7 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { handbooksBySlugQuery, handbookPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { RichText, RichTextWrapper } from '@components/rich-text'

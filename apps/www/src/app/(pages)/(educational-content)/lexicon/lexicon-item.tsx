@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { linkResolver } from '@utils/link-resolver'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { Badge, Flex } from 'cadence-core'
 import s from './lexicon-item.module.scss'
 

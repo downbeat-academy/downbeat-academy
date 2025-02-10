@@ -1,5 +1,18 @@
 # www
 
+## 3.10.0
+
+### Minor Changes
+
+- Migrated Text component from `www` to `cadence-core`
+- 28d5e80: Abstracted Brand components to `cadence-core`
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [28d5e80]
+  - cadence-core@1.4.0
+
 ## 3.9.1
 
 ### Patch Changes

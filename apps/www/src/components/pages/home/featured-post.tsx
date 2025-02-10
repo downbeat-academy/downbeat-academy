@@ -5,7 +5,7 @@ import { prettyDate } from '@utils/dateFormat'
 import { Link } from '@components/link'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { Badge, Flex } from 'cadence-core'
 
 export default async function FeaturedPost({ featuredPost }) {
