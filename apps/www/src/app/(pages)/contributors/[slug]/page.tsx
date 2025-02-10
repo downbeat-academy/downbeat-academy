@@ -8,7 +8,7 @@ import { getOgTitle } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { RichText } from '@components/rich-text'
 import * as FeaturedItem from '@components/featured-item'
 import { ListItem } from '@components/list'

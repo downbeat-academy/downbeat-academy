@@ -3,7 +3,7 @@ import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 
 import * as Card from '@components/card'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { Grid } from '@components/grid'
 import { Link } from '@components/link'
 import { Avatar } from '@components/avatar'

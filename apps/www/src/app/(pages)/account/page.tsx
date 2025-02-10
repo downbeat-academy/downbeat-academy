@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { readUserSession } from '@actions/auth/read-user-session'

@@ -3,7 +3,7 @@ import { contributorsPageQuery } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { ContributorsGrid } from '@components/pages/contributors'
 
 import type { Metadata } from 'next'
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 async function getContributors() {
 	const res = sanityClient.fetch(
-		contributorsPageQuery, 
+		contributorsPageQuery,
 		{},
 		{
 			next: {

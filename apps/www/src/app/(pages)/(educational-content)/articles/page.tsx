@@ -4,7 +4,7 @@ import { getOgTitle } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from '@components/text'
+import { Text } from 'cadence-core'
 import { ArticlesPostGrid } from '../../../../components/pages/articles'
 
 import type { Metadata } from 'next'
@@ -23,7 +23,8 @@ async function getArticles() {
 		{
 			next: {
 				revalidate: 60
-		}}
+			}
+		}
 	)
 
 	if (!res) {
