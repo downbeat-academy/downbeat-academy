@@ -18,10 +18,10 @@ const Text = ({
 	dataCy,
 }: TextProps) => {
 	const classes = classnames(
-		s[`type--${type}`],
-		s[`type--${type}-size--${size}`],
-		s[`color--${color}`],
-		s[`background--${background}`],
+		s[`cds-text--${type}`],
+		s[`cds-text--${type}--${size}`],
+		s[`cds-text--color-${color}`],
+		s[`cds-text--background-${background}`],
 		s[align],
 		{
 			[s.collapse]: collapse,

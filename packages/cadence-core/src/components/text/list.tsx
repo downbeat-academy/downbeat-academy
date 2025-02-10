@@ -5,7 +5,11 @@ import s from './list.module.css'
 import type { ListProps } from './types'
 
 const List = ({ children, type, collapse, className }: ListProps) => {
-	const classes = classnames(s.root, { [s.collapse]: collapse }, className)
+	const classes = classnames(
+		s['cds-text__list'],
+		{ [s['cds-text__list--collapse']]: collapse },
+		className
+	)
 
 	switch (type) {
 		case 'ordered':
