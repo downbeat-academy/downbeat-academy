@@ -6,3 +6,4 @@ export {
   LogoText,
   type LogoProps
 } from './brand'
+export { Text, type TextProps } from './text'

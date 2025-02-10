@@ -1,0 +1,9 @@
+.root {
+	text-indent: 1rem;
+	margin-left: 2rem;
+	margin-bottom: 1rem;
+}
+
+.collapse {
+	margin-bottom: 0;
+}
