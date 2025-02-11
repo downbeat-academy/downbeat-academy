@@ -1,0 +1,54 @@
+.grid {
+	display: grid;
+	grid-auto-rows: 1fr;
+	align-items: stretch;
+}
+
+/* Grid columns classes */
+.grid--columns--1 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 1), 1fr));
+}
+
+.grid--columns--2 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 2), 1fr));
+}
+
+.grid--columns--3 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 3), 1fr));
+}
+
+.grid--columns--4 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 4), 1fr));
+}
+
+.grid--columns--5 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 5), 1fr));
+}
+
+.grid--columns--6 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 6), 1fr));
+}
+
+.grid--columns--7 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 7), 1fr));
+}
+
+.grid--columns--8 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 8), 1fr));
+}
+
+.grid--columns--9 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 9), 1fr));
+}
+
+.grid--columns--10 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 10), 1fr));
+}
+
+.grid--columns--11 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 11), 1fr));
+}
+
+.grid--columns--12 {
+	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 12), 1fr));
+}
