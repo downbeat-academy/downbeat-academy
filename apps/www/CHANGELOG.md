@@ -1,5 +1,17 @@
 # www
 
+## 3.11.0
+
+### Minor Changes
+
+- 4ebf7d1: Migrated `Grid` component from a local component to `cadence-core`
+
+### Patch Changes
+
+- Updated dependencies [4ebf7d1]
+- Updated dependencies [85bd2f1]
+  - cadence-core@1.5.0
+
 ## 3.10.0
 
 ### Minor Changes
