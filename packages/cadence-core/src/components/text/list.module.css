@@ -1,9 +1,9 @@
-.cds-text__list {
+.text__list {
 	text-indent: 1rem;
 	margin-left: 2rem;
 	margin-bottom: 1rem;
 }
 
-.cds-text__list--collapse {
+.text__list--collapse {
 	margin-bottom: 0;
 }

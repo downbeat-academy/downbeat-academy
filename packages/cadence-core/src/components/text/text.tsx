@@ -18,14 +18,12 @@ const Text = ({
 	dataCy,
 }: TextProps) => {
 	const classes = classnames(
-		s[`cds-text--${type}`],
-		s[`cds-text--${type}--${size}`],
-		s[`cds-text--color-${color}`],
-		s[`cds-text--background-${background}`],
-		s[align],
-		{
-			[s.collapse]: collapse,
-		},
+		s[`text--${type}`],
+		s[`text--${type}--${size}`],
+		s[`text--color-${color}`],
+		s[`text--background-${background}`],
+		s[`text--align-${align}`],
+		{[s[`text--collapse`]]: collapse,},
 		className
 	)
 
@@ -33,7 +31,6 @@ const Text = ({
 	const Tag = tag
 
 	return (
-		// @ts-ignore
 		<Tag className={classes} data-cy={dataCy}>
 			{children}
 		</Tag>

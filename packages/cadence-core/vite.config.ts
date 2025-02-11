@@ -21,8 +21,7 @@ export default defineConfig({
   plugins: [dts()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
   css: {
     modules: {
-      localsConvention: "camelCase", // Converts CSS class names to camelCase.
-      generateScopedName: "cds-[name]--[hash:base64:5]", // Generates unique class names.
+      generateScopedName: "cds-[local]--[hash:base64:5]", // creates a unique class prefixed by cds
     },
   },
   test: {
