@@ -4,7 +4,7 @@ import { truncateString } from '@utils/truncateString'
 
 import * as Card from '@components/card'
 import { Text } from 'cadence-core'
-import { Grid } from '@components/grid'
+import { Grid } from 'cadence-core'
 import { Link } from '@components/link'
 import { AuthorMetadata } from '@components/author'
 import { prettyDate } from '@utils/dateFormat'

@@ -4,7 +4,7 @@ import { getSanityImageUrl } from '@utils/getSanityImage'
 
 import * as Card from '@components/card'
 import { Text } from 'cadence-core'
-import { Grid } from '@components/grid'
+import { Grid } from 'cadence-core'
 import { Link } from '@components/link'
 import { Avatar } from '@components/avatar'
 import { Badge, Flex } from 'cadence-core'
