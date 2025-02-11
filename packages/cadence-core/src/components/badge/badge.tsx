@@ -12,12 +12,12 @@ const Badge = ({
 	icon,
 	className,
 }: BadgeProps) => {
-	const classes = classnames([
-		s.root,
-		s[size],
-		s[`${style}--${type}`],
+	const classes = classnames(
+		s[`badge`],
+		s[`badge--${size}`],
+		s[`badge--${style}--${type}`],
 		className,
-	])
+	)
 
 	const hasIcon = !!icon
 	const hasText = !!text
