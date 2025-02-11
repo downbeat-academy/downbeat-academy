@@ -18,19 +18,19 @@ const Flex = ({
 	background,
 	wrap,
 }: FlexProps) => {
-	const classes = classnames([
-		s.root,
-		s[`gap--${gap}`],
-		s[`padding--${padding}`],
-		s[`direction--${direction}`],
-		s[`align-items--${alignItems}`],
-		s[`align-content--${alignContent}`],
-		s[`justify-items--${justifyItems}`],
-		s[`justify--${justifyContent}`],
-		s[`background--${background}`],
-		s[wrap ? `wrap` : ''],
+	const classes = classnames(
+		s[`flex`],
+		s[`flex--gap--${gap}`],
+		s[`flex--padding--${padding}`],
+		s[`flex--direction--${direction}`],
+		s[`flex--align-items--${alignItems}`],
+		s[`flex--align-content--${alignContent}`],
+		s[`flex--justify-items--${justifyItems}`],
+		s[`flex--justify--${justifyContent}`],
+		s[`flex--background--${background}`],
+		{[s[`flex--wrap`]]: wrap},
 		className,
-	])
+	)
 
 	const Tag = tag
 
