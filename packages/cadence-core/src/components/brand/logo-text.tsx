@@ -1,6 +1,5 @@
 import React from 'react'
-import classnames from 'classnames'
-import s from './logo.module.css'
+import { getBrandClasses } from './getBrandClasses'
 
 import type { LogoProps } from './types'
 
@@ -9,7 +8,6 @@ const LogoText = ({
 	width = 100,
 	className
 }: LogoProps) => {
-	const classes = classnames([s[color], className])
 
 	return (
 		<svg
@@ -17,7 +15,7 @@ const LogoText = ({
 			height={width * 0.1}
 			viewBox="0 0 1000 100"
 			xmlns="http://www.w3.org/2000/svg"
-			className={classes}
+			className={getBrandClasses(color, className)}
 		>
 			<path d="M26.645 76.9231C49.2988 76.9231 64.4012 63.7363 64.4012 38.4615C64.4012 13.1868 48.7594 0 26.1057 0H0.215698V76.9231H26.645ZM14.7788 13.1868H25.0269C39.59 13.1868 49.8381 19.2308 49.8381 38.4615C49.8381 57.6923 39.59 63.7363 25.0269 63.7363H14.7788V13.1868Z" />
 			<path d="M100.184 78.022C116.365 78.022 127.152 65.9341 127.152 49.4506C127.152 32.967 116.365 20.8791 100.184 20.8791C84.0024 20.8791 73.215 32.967 73.215 49.4506C73.215 65.9341 84.0024 78.022 100.184 78.022ZM99.7522 66.4835C92.2009 66.4835 87.3466 60.2198 87.3466 49.4506C87.3466 38.6813 92.2009 32.4176 99.7522 32.4176H100.615C108.166 32.4176 113.021 38.6813 113.021 49.4506C113.021 60.2198 108.166 66.4835 100.615 66.4835H99.7522Z" />
