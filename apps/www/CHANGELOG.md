@@ -1,5 +1,11 @@
 # www
 
+## 3.12.0
+
+### Minor Changes
+
+- 31c4455: Removed authentication entry points in prep for new authentication service
+
 ## 3.11.0
 
 ### Minor Changes
