@@ -46,7 +46,7 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 
 	return (
 		<header className={classes}>
-			<Banner.Root type="primary">
+			{/* <Banner.Root type="primary">
 				<Banner.Content>
 					<Text
 						tag="p"
@@ -88,7 +88,7 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 						</>
 					)}
 				</Banner.Actions>
-			</Banner.Root>
+			</Banner.Root> */}
 			<NavContent links={navData} />
 		</header>
 	)

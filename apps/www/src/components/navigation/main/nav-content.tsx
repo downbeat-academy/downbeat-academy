@@ -73,7 +73,7 @@ const NavContent = ({ links }) => {
 						{mapLinks}
 					</ul>
 				</nav>
-				<div className={s.actions}>
+				{/* <div className={s.actions}>
 					<Button
 						text='Login / Signup'
 						variant='primary'
@@ -81,7 +81,7 @@ const NavContent = ({ links }) => {
 						href='/login'
 						isFullWidth
 					/>
-				</div>
+				</div> */}
 			</div>
 			<button
 				type='button'
