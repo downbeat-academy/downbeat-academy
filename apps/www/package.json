@@ -50,6 +50,7 @@
 		"cadence-tokens": "workspace:^",
 		"classnames": "^2.5.1",
 		"date-fns": "^4.1.0",
+		"drizzle-orm": "^0.40.0",
 		"eslint": "^9.18.0",
 		"eslint-config-next": "^14.2.6",
 		"fathom-client": "^3.7.2",
@@ -58,6 +59,7 @@
 		"next-sitemap": "^4.2.3",
 		"nuqs": "^2.3.1",
 		"opensheetmusicdisplay": "^1.8.9",
+		"pg": "^8.14.0",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-hook-form": "^7.54.2",
@@ -71,9 +73,11 @@
 	},
 	"devDependencies": {
 		"@types/node": "^22.10.6",
+		"@types/pg": "^8.11.11",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"cypress": "^13.17.0",
+		"drizzle-kit": "^0.30.5",
 		"sass": "^1.83.4",
 		"typescript": "^5.7.3"
 	}
