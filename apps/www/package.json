@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.10.0",
+		"@neondatabase/serverless": "^0.10.4",
 		"@next/bundle-analyzer": "^15.1.4",
 		"@portabletext/react": "^3.2.0",
 		"@radix-ui/react-dialog": "^1.1.4",
