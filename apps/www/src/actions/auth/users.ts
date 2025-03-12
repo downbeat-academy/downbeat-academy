@@ -16,7 +16,6 @@ export async function signIn(formData: FormData) {
     redirect('/dashboard')
   } catch (error) {
     console.error('Sign in error:', error)
-    // Handle error appropriately
   }
 }
 
@@ -34,7 +33,6 @@ export async function signUp(formData: FormData) {
     redirect('/dashboard')
   } catch (error) {
     console.error('Sign up error:', error)
-    // Handle error appropriately
   }
 }
 
