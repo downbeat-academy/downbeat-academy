@@ -1,4 +1,4 @@
-import { db } from '@/lib/db'
+import { db } from '@lib/db/drizzle'
 import { test } from '@/lib/db/schema'
 
 async function getNeonData() {
