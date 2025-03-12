@@ -1,8 +1,7 @@
-import { drizzle } from 'drizzle-orm/node-postgres'
+import { db } from '@/lib/db'
 import { test } from '@/lib/db/schema'
 
 async function getNeonData() {
-  const db = drizzle(process.env.DATABASE_URL)
   const response = await db.select().from(test)
   return response
 }
