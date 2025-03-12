@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { readUserSession } from '@actions/auth/read-user-session'
+import { readUserSession } from '@actions/supabase-auth/read-user-session'
 import { Text } from 'cadence-core'
 import { ResetPasswordForm } from './send-password-reset'
 import s from './reset-password-page.module.scss'

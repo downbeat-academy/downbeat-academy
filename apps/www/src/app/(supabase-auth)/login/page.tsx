@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { readUserSession } from '@actions/auth/read-user-session'
+import { readUserSession } from '@actions/supabase-auth/read-user-session'
 import { Text } from 'cadence-core'
 import * as Tabs from '@components/tabs'
 import { Link } from '@components/link'

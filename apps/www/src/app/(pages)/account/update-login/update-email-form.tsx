@@ -6,7 +6,7 @@ import {
 	updateEmailSchema,
 	TUpdateEmailSchema,
 } from '@lib/types/auth/update-email-schema'
-import { updateEmail } from '@actions/auth/update-email'
+import { updateEmail } from '@actions/supabase-auth/update-email'
 import {
 	Form,
 	FormField,
