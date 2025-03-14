@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers'
 import { createClient } from '@lib/supabase/supabase.server'
-import { readUserSession } from '@actions/auth/read-user-session'
+import { readUserSession } from '@actions/supabase-auth/read-user-session'
 
 export type FormData = {
 	firstName: string

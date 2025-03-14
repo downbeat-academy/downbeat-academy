@@ -15,7 +15,7 @@ import {
 } from '@components/form'
 import { Button, ButtonWrapper } from '@components/button'
 import { useToast } from '@components/toast'
-import { signup } from '@actions/auth/sign-up'
+import { signup } from '@actions/supabase-auth/sign-up'
 import { createContact } from '@actions/email/create-contact'
 
 export function SignUpForm() {

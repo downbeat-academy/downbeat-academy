@@ -4,7 +4,7 @@ import { SectionTitle } from '@components/section-title'
 import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
-import { readUserSession } from '@actions/auth/read-user-session'
+import { readUserSession } from '@actions/supabase-auth/read-user-session'
 import { getProfile } from '@actions/profile/get-profile'
 
 import { UpdateLogin } from './update-login'

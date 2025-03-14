@@ -14,7 +14,7 @@ import {
 	ValidationMessage,
 } from '@components/form'
 import { Button, ButtonWrapper } from '@components/button'
-import { login } from '@actions/auth/login'
+import { login } from '@actions/supabase-auth/login'
 import { useToast } from '@components/toast'
 
 export function LoginForm() {
