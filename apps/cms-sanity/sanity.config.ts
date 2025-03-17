@@ -8,7 +8,6 @@ import {
 } from '@sanity/dashboard'
 import { documentListWidget } from 'sanity-plugin-dashboard-widget-document-list'
 import { media } from 'sanity-plugin-media'
-import { contentGraphView } from 'sanity-plugin-graph-view'
 import { schemaTypes } from './schemas'
 import { deskStructure } from './deskStructure'
 
@@ -51,7 +50,6 @@ export default defineConfig({
 			],
 		}),
 		deskTool({ structure: deskStructure }),
-		contentGraphView({}),
 		media(),
 		visionTool(),
 	],

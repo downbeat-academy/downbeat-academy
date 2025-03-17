@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import { Text } from 'cadence-core'
 import { getSanityUrl } from '@utils/getSanityUrl'
-import { readUserSession } from '@actions/auth/read-user-session'
+import { readUserSession } from '@actions/supabase-auth/read-user-session'
 import { Link } from '@components/link'
 import { Button } from '@components/button'
 

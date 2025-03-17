@@ -6,8 +6,8 @@ import {
 	updatePasswordSchema,
 	TUpdatePasswordSchema,
 } from '@lib/types/auth/update-password-schema'
-import { updatePassword } from '@actions/auth/update-password'
-import { logout } from '@actions/auth/logout'
+import { updatePassword } from '@actions/supabase-auth/update-password'
+import { logout } from '@actions/supabase-auth/logout'
 import {
 	Form,
 	FormField,

@@ -6,7 +6,7 @@ import {
 	resetPasswordSchema,
 	TResetPasswordSchema,
 } from '@lib/types/auth/reset-password-schema'
-import { resetPassword } from '@actions/auth/send-password-reset'
+import { resetPassword } from '@actions/supabase-auth/send-password-reset'
 
 import {
 	Form,
