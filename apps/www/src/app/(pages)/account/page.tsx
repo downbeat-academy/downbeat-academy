@@ -1,4 +1,6 @@
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { auth } from '@/lib/auth/auth'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from 'cadence-core'
@@ -11,22 +13,34 @@ import { UpdateLogin } from './update-login'
 import { ProfileSettings } from './update-profile'
 
 export default async function AccountPage() {
-	const { data: accountData, error } = await readUserSession()
+	const session = await auth.api.getSession({
+		headers: await headers()
+	})
 
-	if (error || !accountData?.user) {
-		redirect('/login')
+	const { session: sessionData, user } = session
+
+	console.log(session)
+
+	if (!sessionData) {
+		redirect('/sign-in')
 	}
 
-	const { data: profileData } = await getProfile()
+	// const { data: accountData, error } = session
+
+	// if (error || !accountData?.user) {
+	// 	redirect('/login')
+	// }
+
+	// const { data: profileData } = await getProfile()
 
 	// console.log(profileData)
 
-	const hasFirstName = profileData[0]?.first_name
-		? profileData[0].first_name
-		: 'Enter your first name'
-	const hasLastName = profileData[0]?.last_name
-		? profileData[0].last_name
-		: 'Enter your last name'
+	// const hasFirstName = profileData[0]?.first_name
+	// 	? profileData[0].first_name
+	// 	: 'Enter your first name'
+	// const hasLastName = profileData[0]?.last_name
+	// 	? profileData[0].last_name
+	// 	: 'Enter your last name'
 
 	return (
 		<SectionContainer>
@@ -49,10 +63,10 @@ export default async function AccountPage() {
 					We&apos;re working on new account features, check back soon to get the
 					latest updates.
 				</Text>
+				{/* <Separator />
+				<UpdateLogin email={accountData.user.email} /> */}
 				<Separator />
-				<UpdateLogin email={accountData.user.email} />
-				<Separator />
-				<ProfileSettings firstName={hasFirstName} lastName={hasLastName} />
+				<ProfileSettings name={user.name} />
 			</Flex>
 		</SectionContainer>
 	)

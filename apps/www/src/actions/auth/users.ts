@@ -1,7 +1,7 @@
 "use server"
 
-import { auth } from '@/lib/auth/auth'
 import { redirect } from 'next/navigation'
+import { auth } from '@/lib/auth/auth'
 
 export async function signIn(formData: FormData) {
   try {
@@ -12,8 +12,8 @@ export async function signIn(formData: FormData) {
       }
     })
     
-    // Redirect to dashboard or home page after successful sign in
-    redirect('/dashboard')
+    // Redirect to current page to trigger a reload
+    redirect('/account')
   } catch (error) {
     console.error('Sign in error:', error)
   }
@@ -29,22 +29,9 @@ export async function signUp(formData: FormData) {
       }
     })
     
-    // Redirect to dashboard or home page after successful sign up
-    redirect('/dashboard')
+    // Redirect to current page to trigger a reload
+    redirect('/account')
   } catch (error) {
     console.error('Sign up error:', error)
-  }
-}
-
-export async function signOut(formData: FormData) {
-  try {
-    await auth.api.signOut({
-      headers: {}
-    })
-    redirect('/')
-  } catch (error) {
-    console.error('Sign out error:', error)
-    // Even if sign out fails, redirect to home page
-    redirect('/')
   }
 }

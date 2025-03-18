@@ -11,12 +11,7 @@ import { Button, ButtonWrapper } from '@components/button'
 
 import { UpdateProfileForm } from './update-profile-form'
 
-interface UpdateProfileProps {
-	firstName: string
-	lastName: string
-}
-
-const ProfileSettings = ({ firstName, lastName }: UpdateProfileProps) => {
+const ProfileSettings = ({ name }: { name: string }) => {
 	return (
 		<Flex direction="column" tag="article" gap="medium">
 			<Text tag="h2" size="h4" type="expressive-headline" collapse>
@@ -24,17 +19,16 @@ const ProfileSettings = ({ firstName, lastName }: UpdateProfileProps) => {
 			</Text>
 			<UpdateProfileForm
 				isReadOnly={true}
-				firstName={firstName}
-				lastName={lastName}
+				name={name}
 			/>
 			<ButtonWrapper>
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant="primary" size="medium" text="Update profile" />
+						<Button variant="primary" size="medium" text="Update name" />
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
-							<DialogTitle>Update profile</DialogTitle>
+							<DialogTitle>Update name</DialogTitle>
 						</DialogHeader>
 						<UpdateProfileForm isReadOnly={false} />
 					</DialogContent>

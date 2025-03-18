@@ -5,8 +5,7 @@ import { createClient } from '@lib/supabase/supabase.server'
 import { readUserSession } from '@actions/supabase-auth/read-user-session'
 
 export type FormData = {
-	firstName: string
-	lastName: string
+	name: string
 }
 
 export async function updateProfile(formData: FormData) {
@@ -19,8 +18,7 @@ export async function updateProfile(formData: FormData) {
 		await supabase
 			.from('profiles')
 			.update({
-				first_name: formData.firstName,
-				last_name: formData.lastName,
+				first_name: formData.name,
 			})
 			.eq('id', data.user.id)
 	} catch (e) {
