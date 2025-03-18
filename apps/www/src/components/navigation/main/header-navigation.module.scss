@@ -35,4 +35,12 @@
 
 .sign-out-button {
 	color: $cds-color-foreground-high-contrast !important;
+
+	&:hover {
+		background: $cds-color-palette-blackberry-600 !important;
+	}
+
+	&:active {
+		background: $cds-color-palette-blackberry-500 !important;
+	}
 }

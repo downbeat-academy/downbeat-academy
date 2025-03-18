@@ -1,7 +1,8 @@
+import { headers } from 'next/headers'
+import { auth } from '@/lib/auth/auth'
 import classnames from 'classnames'
 import { Text } from 'cadence-core'
 import { getSanityUrl } from '@utils/getSanityUrl'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
 import { Link } from '@components/link'
 import { Button } from '@components/button'
 
@@ -15,11 +16,13 @@ const FileDownload = async ({
 	description,
 	file,
 }: FileDownloadProps) => {
+
+	const session = await auth.api.getSession({
+    headers: await headers()
+  })
 	const fileUrl = getSanityUrl(file.asset._ref)
 
 	const classes = classnames([s['file_download--root']])
-
-	const { data } = await readUserSession()
 
 	return (
 		<section className={classes}>
@@ -33,7 +36,7 @@ const FileDownload = async ({
 				<strong>Title: </strong>
 				{title}
 			</Text>
-			{!data?.user ? (
+			{!session ? (
 				<>
 					<FileDownloadForm fileUrl={fileUrl} title={title} />
 					<Text
@@ -53,5 +56,5 @@ const FileDownload = async ({
 		</section>
 	)
 }
-
 export { FileDownload }
+

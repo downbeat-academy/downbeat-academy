@@ -17,6 +17,8 @@ export default function SignOut({
 
   const handleSignOut = async () => {
     await authClient.signOut()
+    // Dispatch auth event to notify header
+    window.dispatchEvent(new Event('auth-event'))
     router.push('/')
   }
 

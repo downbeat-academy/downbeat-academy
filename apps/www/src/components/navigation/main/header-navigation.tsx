@@ -1,5 +1,7 @@
-import { auth } from '@lib/auth/auth'
-import { headers } from 'next/headers'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { authClient } from '@/lib/auth/auth-client'
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
@@ -8,6 +10,7 @@ import * as Banner from '@components/banner'
 import { Text } from 'cadence-core'
 import { Button } from '@components/button'
 import { NavContent } from './nav-content'
+import { useRouter } from 'next/navigation'
 
 import type { HeaderNavigationProps } from './types'
 import SignOut from '@app/(auth)/sign-in/sign-out'
@@ -36,16 +39,48 @@ async function getBannerData() {
 }
 
 // Render the component
-const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
-	const session = await auth.api.getSession({
-    headers: await headers()
-  })
+const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
+	const [session, setSession] = useState<any>(null)
+	const [navData, setNavData] = useState<any>(null)
+	const [bannerData, setBannerData] = useState<any>(null)
+	const router = useRouter()
 
-	const navData = await getNavigationData()
+	useEffect(() => {
+		const initData = async () => {
+			const [nav, banner] = await Promise.all([
+				getNavigationData(),
+				getBannerData()
+			])
+			setNavData(nav)
+			setBannerData(banner)
+		}
 
-	const { title: bannerTitle, headline: bannerHeadline } = await getBannerData()
+		initData()
+
+		// Check session when auth state changes
+		const checkSession = async () => {
+			try {
+				const session = await authClient.getSession()
+				setSession(session)
+				router.refresh()
+			} catch (error) {
+				console.error('Failed to get session:', error)
+				setSession(null)
+			}
+		}
+
+		checkSession()
+
+		// Listen for auth state changes
+		window.addEventListener('auth-event', checkSession)
+		return () => {
+			window.removeEventListener('auth-event', checkSession)
+		}
+	}, [router])
 
 	const classes = classnames(s.root, [className])
+
+	if (!navData || !bannerData) return null
 
 	return (
 		<header className={classes}>
@@ -58,11 +93,11 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 						size="body-small"
 						collapse
 					>
-						{bannerHeadline}
+						{bannerData.headline}
 					</Text>
 				</Banner.Content>
 				<Banner.Actions>
-					{!session ? (
+					{!session?.session ? (
 						<>
 							<Button
 								text="Sign in / Sign up"

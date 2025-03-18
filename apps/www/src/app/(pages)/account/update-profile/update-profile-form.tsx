@@ -21,12 +21,14 @@ import { DialogClose } from '@components/dialog'
 
 interface UpdateProfileFormProps {
 	isReadOnly: boolean
-	name?: any
+	name?: string
+	email?: string
 }
 
 const UpdateProfileForm = ({
 	isReadOnly,
-	name
+	name,
+	email
 }: UpdateProfileFormProps) => {
 	const router = useRouter()
 	const { toast } = useToast()
@@ -43,6 +45,7 @@ const UpdateProfileForm = ({
 		try {
 			const formDataObject = {
 				name: formData.name || '',
+				email: formData.email || '',
 			}
 			await updateProfile(formDataObject)
 			toast({
@@ -75,8 +78,8 @@ const UpdateProfileForm = ({
 				<Label htmlFor="name">Name</Label>
 				<Input
 					type="text"
-					id="firstName"
-					name="firstName"
+					id="name"
+					name="name"
 					register={register}
 					isInvalid={!!errors.name}
 					placeholder={name}
@@ -84,6 +87,21 @@ const UpdateProfileForm = ({
 				/>
 				{errors.name && (
 					<ValidationMessage type="error">{`${errors.name.message}`}</ValidationMessage>
+				)}
+			</FormField>
+			<FormField>
+				<Label htmlFor="email">Email</Label>
+				<Input
+					type="email"
+					id="email"
+					name="email"
+					register={register}
+					isInvalid={!!errors.email}
+					placeholder={email}
+					{...readOnlyProps(email)}
+				/>
+				{errors.email && (
+					<ValidationMessage type="error">{`${errors.email.message}`}</ValidationMessage>
 				)}
 			</FormField>
 			{!isReadOnly && (

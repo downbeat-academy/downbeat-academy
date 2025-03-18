@@ -6,10 +6,7 @@ import { SectionTitle } from '@components/section-title'
 import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
-import { getProfile } from '@actions/profile/get-profile'
 
-import { UpdateLogin } from './update-login'
 import { ProfileSettings } from './update-profile'
 
 export default async function AccountPage() {
@@ -18,8 +15,6 @@ export default async function AccountPage() {
 	})
 
 	const { session: sessionData, user } = session
-
-	console.log(session)
 
 	if (!sessionData) {
 		redirect('/sign-in')
@@ -46,10 +41,8 @@ export default async function AccountPage() {
 					We&apos;re working on new account features, check back soon to get the
 					latest updates.
 				</Text>
-				{/* <Separator />
-				<UpdateLogin email={accountData.user.email} /> */}
 				<Separator />
-				<ProfileSettings name={user.name} />
+				<ProfileSettings name={user.name} email={user.email} />
 			</Flex>
 		</SectionContainer>
 	)

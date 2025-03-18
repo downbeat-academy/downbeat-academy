@@ -9,34 +9,28 @@ import {
 } from '@components/dialog'
 import { Button, ButtonWrapper } from '@components/button'
 
-import { UpdateProfileForm } from './update-profile-form'
+import { UpdateEmailForm } from './update-email-form'
 
-interface ProfileSettingsProps {
-	name: string
-	email: string
-}
-
-const ProfileSettings = ({ name, email }: ProfileSettingsProps) => {
+const EmailSettings = ({ email }: { email: string }) => {
 	return (
 		<Flex direction="column" tag="article" gap="medium">
 			<Text tag="h2" size="h4" type="expressive-headline" collapse>
-				Profile settings
+				Email settings
 			</Text>
-			<UpdateProfileForm
+			<UpdateEmailForm
 				isReadOnly={true}
-				name={name}
 				email={email}
 			/>
 			<ButtonWrapper>
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant="primary" size="medium" text="Update profile" />
+						<Button variant="primary" size="medium" text="Update email" />
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
-							<DialogTitle>Update profile</DialogTitle>
+							<DialogTitle>Update email</DialogTitle>
 						</DialogHeader>
-						<UpdateProfileForm isReadOnly={false} />
+						<UpdateEmailForm isReadOnly={false} />
 					</DialogContent>
 				</Dialog>
 			</ButtonWrapper>
@@ -44,4 +38,4 @@ const ProfileSettings = ({ name, email }: ProfileSettingsProps) => {
 	)
 }
 
-export { ProfileSettings }
+export { EmailSettings } 

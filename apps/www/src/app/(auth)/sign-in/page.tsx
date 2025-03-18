@@ -22,7 +22,7 @@ export default async function SignIn() {
       <div className={s['login--wrapper-inner']}>
         <Tabs.Root defaultValue="Login">
           <Tabs.List>
-            <Tabs.Trigger value="Login">Login</Tabs.Trigger>
+            <Tabs.Trigger value="Login">Sign in</Tabs.Trigger>
             <Tabs.Trigger value="Sign up">Sign up</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="Login" className={s['login--content']}>
