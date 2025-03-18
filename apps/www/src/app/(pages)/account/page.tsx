@@ -25,23 +25,6 @@ export default async function AccountPage() {
 		redirect('/sign-in')
 	}
 
-	// const { data: accountData, error } = session
-
-	// if (error || !accountData?.user) {
-	// 	redirect('/login')
-	// }
-
-	// const { data: profileData } = await getProfile()
-
-	// console.log(profileData)
-
-	// const hasFirstName = profileData[0]?.first_name
-	// 	? profileData[0].first_name
-	// 	: 'Enter your first name'
-	// const hasLastName = profileData[0]?.last_name
-	// 	? profileData[0].last_name
-	// 	: 'Enter your last name'
-
 	return (
 		<SectionContainer>
 			<SectionTitle

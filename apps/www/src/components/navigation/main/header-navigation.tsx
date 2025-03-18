@@ -1,3 +1,5 @@
+import { auth } from '@lib/auth/auth'
+import { headers } from 'next/headers'
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
@@ -5,11 +7,10 @@ import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from 'cadence-core'
 import { Button } from '@components/button'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
-import { logout } from '@actions/supabase-auth/logout'
 import { NavContent } from './nav-content'
 
 import type { HeaderNavigationProps } from './types'
+import SignOut from '@app/(auth)/sign-in/sign-out'
 
 // Fetch the data for the navigation
 async function getNavigationData() {
@@ -36,7 +37,9 @@ async function getBannerData() {
 
 // Render the component
 const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
-	const { data } = await readUserSession()
+	const session = await auth.api.getSession({
+    headers: await headers()
+  })
 
 	const navData = await getNavigationData()
 
@@ -46,7 +49,7 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 
 	return (
 		<header className={classes}>
-			{/* <Banner.Root type="primary">
+			<Banner.Root type="primary">
 				<Banner.Content>
 					<Text
 						tag="p"
@@ -59,26 +62,18 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 					</Text>
 				</Banner.Content>
 				<Banner.Actions>
-					{!data?.user ? (
+					{!session ? (
 						<>
 							<Button
-								text="Login / Sign up"
+								text="Sign in / Sign up"
 								variant="primary"
 								size="small"
-								href="/login"
+								href="/sign-in"
 							/>
 						</>
 					) : (
 						<>
-							<form action={logout}>
-								<Button
-									type="submit"
-									text="Log out"
-									size="small"
-									variant="ghost"
-									className={s[`login-button`]}
-								/>
-							</form>
+							<SignOut className={s['sign-out-button']}/>
 							<Button
 								text="Account"
 								size="small"
@@ -88,7 +83,7 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 						</>
 					)}
 				</Banner.Actions>
-			</Banner.Root> */}
+			</Banner.Root>
 			<NavContent links={navData} />
 		</header>
 	)

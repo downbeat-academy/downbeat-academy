@@ -2,8 +2,17 @@
 
 import { authClient } from "@/lib/auth/auth-client"
 import { useRouter } from "next/navigation"
+import { Button } from "@components/button"
 
-export default function SignOut() {
+interface SignOutProps {
+  size?: 'small' | 'medium' | 'large' | 'x-small',
+  className?: string
+}
+
+export default function SignOut({
+  size = 'small',
+  className,
+}: SignOutProps) {
   const router = useRouter()
 
   const handleSignOut = async () => {
@@ -11,5 +20,13 @@ export default function SignOut() {
     router.push('/')
   }
 
-  return <button onClick={handleSignOut}>Sign Out</button>
+  return (
+    <Button
+      onClick={handleSignOut}
+      text="Sign Out"
+      variant='ghost'
+      className={className}
+      size={size}
+    />
+  )
 }
