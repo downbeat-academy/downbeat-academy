@@ -1,33 +1,76 @@
 'use client'
 
-import { signUp } from "@/actions/auth/users"
+import { signUp } from "@/actions/auth/sign-up"
 import { Button } from "@components/button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpFormSchema, type TSignUpFormSchema } from "@/lib/types/auth/sign-up-form-schema"
+import { useToast } from "@/components/toast"
 import {
   Form,
   FormField,
   Input,
   Label,
-  ValidationMessage
+  ValidationMessage,
+  HelperText
 } from "@/components/form"
+import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+
+const checkPasswordRequirements = (password: string) => {
+  if (!password) return false
+  
+  const hasUpperCase = /[A-Z]/.test(password)
+  const hasLowerCase = /[a-z]/.test(password)
+  const hasNumber = /[0-9]/.test(password)
+  const hasSpecialChar = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~ ]/.test(password)
+  const hasMinLength = password.length >= 8
+
+  return hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasMinLength
+}
 
 export const SignUpForm = () => {
+  const { toast } = useToast()
+  const router = useRouter()
+  const [passwordMeetsRequirements, setPasswordMeetsRequirements] = useState(false)
+  
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting }
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema)
   })
 
+  // Watch password field to check requirements
+  const password = watch("password")
+  useEffect(() => {
+    setPasswordMeetsRequirements(checkPasswordRequirements(password || ''))
+  }, [password])
+
   const onSubmit = async (data: TSignUpFormSchema) => {
-    const formData = new FormData()
-    formData.append('name', data.name)
-    formData.append('email', data.email)
-    formData.append('password', data.password)
-    await signUp(formData)
+    try {
+      const formData = new FormData()
+      formData.append('name', data.name)
+      formData.append('email', data.email)
+      formData.append('password', data.password)
+      await signUp(formData)
+    } catch (error: any) {
+      if (error.message === 'A user with this email already exists') {
+        toast({
+          title: "Account already exists",
+          description: "Please sign in with your existing account or use a different email address.",
+          variant: "error"
+        })
+      } else {
+        toast({
+          title: "Error creating account",
+          description: "Please try again later.",
+          variant: "error"
+        })
+      }
+    }
   }
 
   return (
@@ -60,6 +103,9 @@ export const SignUpForm = () => {
       </FormField>
       <FormField>
         <Label htmlFor="password">Password</Label>
+        <HelperText>
+          Password must be at least 8 characters and include uppercase & lowercase letters, numbers, and special characters.
+        </HelperText>
         <Input
           type="password"
           id="password"
@@ -69,6 +115,9 @@ export const SignUpForm = () => {
         />
         {errors.password && (
           <ValidationMessage type="error">{errors.password.message}</ValidationMessage>
+        )}
+        {!errors.password && passwordMeetsRequirements && (
+          <ValidationMessage type="success">Password meets all requirements</ValidationMessage>
         )}
       </FormField>
       <FormField>

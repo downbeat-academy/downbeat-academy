@@ -82,6 +82,8 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 
 	if (!navData || !bannerData) return null
 
+	// console.log(session.data.session)
+
 	return (
 		<header className={classes}>
 			<Banner.Root type="primary">
@@ -97,7 +99,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 					</Text>
 				</Banner.Content>
 				<Banner.Actions>
-					{!session?.session ? (
+					{!session?.data?.session ? (
 						<>
 							<Button
 								text="Sign in / Sign up"

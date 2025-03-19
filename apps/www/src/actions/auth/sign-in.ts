@@ -24,35 +24,14 @@ export async function signIn(formData: FormData) {
     
     revalidatePath('/')
     redirect('/account')
-  } catch (error) {
+  } catch (error: any) {
     console.error('Sign in error:', error)
+    if (error.body?.code === 'INVALID_CREDENTIALS') {
+      throw new Error('Invalid email or password')
+    }
+    if (error.body?.code === 'USER_NOT_FOUND') {
+      throw new Error('This email is not registered. Please create an account first.')
+    }
     throw error
   }
-}
-
-export async function signUp(formData: FormData) {
-  const email = formData.get('email')?.toString()
-  const password = formData.get('password')?.toString()
-  const name = formData.get('name')?.toString()
-
-  if (!email || !password || !name) {
-    throw new Error('Email, password, and name are required')
-  }
-
-  try {
-    await auth.api.signUpEmail({
-      headers: await headers(),
-      body: {
-        email,
-        password,
-        name,
-      }
-    })
-    
-    revalidatePath('/')
-    redirect('/account')
-  } catch (error) {
-    console.error('Sign up error:', error)
-    throw error
-  }
-}
+} 
