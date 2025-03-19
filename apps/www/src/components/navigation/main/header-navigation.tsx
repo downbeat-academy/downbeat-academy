@@ -7,12 +7,13 @@ import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
 import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
-import { Text } from 'cadence-core'
+import { Text, LogoLockup } from 'cadence-core'
 import { Button } from '@components/button'
 import { NavContent } from './nav-content'
 import { useRouter } from 'next/navigation'
 import { signOut } from '@actions/auth/sign-out'
 import { useFormStatus } from 'react-dom'
+import Link from 'next/link'
 
 import type { HeaderNavigationProps } from './types'
 
@@ -60,16 +61,28 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 	const [session, setSession] = useState<any>(null)
 	const [navData, setNavData] = useState<any>(null)
 	const [bannerData, setBannerData] = useState<any>(null)
+	const [error, setError] = useState<Error | null>(null)
 	const router = useRouter()
 
 	useEffect(() => {
 		const initData = async () => {
-			const [nav, banner] = await Promise.all([
-				getNavigationData(),
-				getBannerData()
-			])
-			setNavData(nav)
-			setBannerData(banner)
+			try {
+				const [nav, banner] = await Promise.all([
+					getNavigationData().catch(error => {
+						console.error('Failed to fetch navigation data:', error)
+						return null
+					}),
+					getBannerData().catch(error => {
+						console.error('Failed to fetch banner data:', error)
+						return null
+					})
+				])
+				setNavData(nav)
+				setBannerData(banner)
+			} catch (error) {
+				console.error('Failed to initialize data:', error)
+				setError(error as Error)
+			}
 		}
 
 		initData()
@@ -97,7 +110,31 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 
 	const classes = classnames(s.root, [className])
 
-	if (!navData || !bannerData) return null
+	// If there's an error loading the navigation, render a minimal header
+	if (error) {
+		return (
+			<header className={classes}>
+				<div className={s.logo}>
+					<Link href="/">
+						<LogoLockup width={180} color='brand' />
+					</Link>
+				</div>
+			</header>
+		)
+	}
+
+	// If data is still loading, render a minimal header
+	if (!navData || !bannerData) {
+		return (
+			<header className={classes}>
+				<div className={s.logo}>
+					<Link href="/">
+						<LogoLockup width={180} color='brand' />
+					</Link>
+				</div>
+			</header>
+		)
+	}
 
 	const handleSignOut = async () => {
 		try {
