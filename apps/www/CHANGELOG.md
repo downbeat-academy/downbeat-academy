@@ -1,5 +1,15 @@
 # www
 
+## 3.12.0
+
+### Minor Changes
+
+- 74aa785: Added support for Drizzle ORM
+- 91f4e72: Add support for Neon Postgres database
+- f136820: Migrated from Supabase auth to better-auth backed by Neon.
+- 31c4455: Removed authentication entry points in prep for new authentication service
+- 1ab7212: Added authentication with `better-auth`
+
 ## 3.11.0
 
 ### Minor Changes
