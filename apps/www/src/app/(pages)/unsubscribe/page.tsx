@@ -1,5 +1,6 @@
 import { UnsubscribeForm } from './unsubscribe-form'
 import { Text } from 'cadence-core'
+import { Suspense } from 'react'
 import s from './unsubscribe.module.scss'
 
 export default function UnsubscribePage() {
@@ -13,7 +14,9 @@ export default function UnsubscribePage() {
 					We&apos;re sorry to see you go. Please enter your email address to
 					unsubscribe from our newsletter.
 				</Text>
-				<UnsubscribeForm />
+				<Suspense fallback={<div>Loading...</div>}>
+					<UnsubscribeForm />
+				</Suspense>
 			</div>
 		</section>
 	)

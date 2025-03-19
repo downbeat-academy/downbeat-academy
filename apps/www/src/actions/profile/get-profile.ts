@@ -1,23 +1,18 @@
-'use server'
+"use server"
 
-import { cookies } from 'next/headers'
-import { createClient } from '@lib/supabase/supabase.server'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
+import { auth } from '@/lib/auth/auth'
+import { headers } from 'next/headers'
 
 export async function getProfile() {
-	const cookieStore = cookies()
-	const supabase = createClient(cookieStore)
+	const session = await auth.api.getSession({
+		headers: await headers()
+	})
 
-	const { data, error } = await readUserSession()
+	if (!session?.session) {
+		throw new Error('Not authenticated')
+	}
 
-	try {
-		const profile = await supabase
-			.from('profiles')
-			.select()
-			.eq('id', data.user.id)
-
-		return profile
-	} catch (e) {
-		throw new Error('Failed to get profile')
+	return {
+		user: session.user
 	}
 }

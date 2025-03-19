@@ -1,32 +1,24 @@
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { auth } from '@/lib/auth/auth'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
-import { getProfile } from '@actions/profile/get-profile'
 
-import { UpdateLogin } from './update-login'
 import { ProfileSettings } from './update-profile'
 
 export default async function AccountPage() {
-	const { data: accountData, error } = await readUserSession()
+	const session = await auth.api.getSession({
+		headers: await headers()
+	})
 
-	if (error || !accountData?.user) {
-		redirect('/login')
+	if (!session?.session) {
+		redirect('/sign-in')
 	}
+	const { session: sessionData, user } = session
 
-	const { data: profileData } = await getProfile()
-
-	// console.log(profileData)
-
-	const hasFirstName = profileData[0]?.first_name
-		? profileData[0].first_name
-		: 'Enter your first name'
-	const hasLastName = profileData[0]?.last_name
-		? profileData[0].last_name
-		: 'Enter your last name'
 
 	return (
 		<SectionContainer>
@@ -50,9 +42,7 @@ export default async function AccountPage() {
 					latest updates.
 				</Text>
 				<Separator />
-				<UpdateLogin email={accountData.user.email} />
-				<Separator />
-				<ProfileSettings firstName={hasFirstName} lastName={hasLastName} />
+				<ProfileSettings name={user.name} email={user.email} />
 			</Flex>
 		</SectionContainer>
 	)

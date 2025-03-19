@@ -1,9 +1,10 @@
 import classnames from 'classnames'
+import { forwardRef } from 'react'
 import s from './input.module.scss'
 
 import type { InputProps } from '../types'
 
-const Input = ({
+const Input = forwardRef<HTMLInputElement, InputProps>(({
 	type = 'text',
 	name,
 	placeholder,
@@ -16,7 +17,7 @@ const Input = ({
 	isInvalid,
 	onChange,
 	...props
-}: InputProps) => {
+}, ref) => {
 	const classes = classnames(
 		s['cds-input--root'],
 		isInvalid ? s['cds-input--is-invalid'] : null,
@@ -33,11 +34,14 @@ const Input = ({
 			value={value}
 			id={id}
 			className={classes}
+			ref={ref}
 			{...(register && { ...register(name) })}
 			onChange={onChange}
 			{...props}
 		/>
 	)
-}
+})
+
+Input.displayName = 'Input'
 
 export { Input }

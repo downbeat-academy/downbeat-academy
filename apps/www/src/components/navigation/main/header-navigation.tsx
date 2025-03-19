@@ -1,3 +1,7 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { authClient } from '@/lib/auth/auth-client'
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
@@ -5,9 +9,10 @@ import s from './header-navigation.module.scss'
 import * as Banner from '@components/banner'
 import { Text } from 'cadence-core'
 import { Button } from '@components/button'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
-import { logout } from '@actions/supabase-auth/logout'
 import { NavContent } from './nav-content'
+import { useRouter } from 'next/navigation'
+import { signOut } from '@actions/auth/sign-out'
+import { useFormStatus } from 'react-dom'
 
 import type { HeaderNavigationProps } from './types'
 
@@ -34,19 +39,81 @@ async function getBannerData() {
 	return res
 }
 
+// Create a client component for the sign-out button
+function SignOutButton() {
+	const { pending } = useFormStatus()
+	
+	return (
+		<Button
+			type="submit"
+			text={pending ? "Signing out..." : "Sign Out"}
+			variant="ghost"
+			size="small"
+			className={s['sign-out-button']}
+			disabled={pending}
+		/>
+	)
+}
+
 // Render the component
-const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
-	const { data } = await readUserSession()
+const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
+	const [session, setSession] = useState<any>(null)
+	const [navData, setNavData] = useState<any>(null)
+	const [bannerData, setBannerData] = useState<any>(null)
+	const router = useRouter()
 
-	const navData = await getNavigationData()
+	useEffect(() => {
+		const initData = async () => {
+			const [nav, banner] = await Promise.all([
+				getNavigationData(),
+				getBannerData()
+			])
+			setNavData(nav)
+			setBannerData(banner)
+		}
 
-	const { title: bannerTitle, headline: bannerHeadline } = await getBannerData()
+		initData()
+
+		// Check session when auth state changes
+		const checkSession = async () => {
+			try {
+				const session = await authClient.getSession()
+				setSession(session)
+				router.refresh()
+			} catch (error) {
+				console.error('Failed to get session:', error)
+				setSession(null)
+			}
+		}
+
+		checkSession()
+
+		// Listen for auth state changes
+		window.addEventListener('auth-event', checkSession)
+		return () => {
+			window.removeEventListener('auth-event', checkSession)
+		}
+	}, [router])
 
 	const classes = classnames(s.root, [className])
 
+	if (!navData || !bannerData) return null
+
+	const handleSignOut = async () => {
+		try {
+			// Update local session state immediately
+			setSession(null)
+			// Trigger the server action
+			await signOut()
+		} catch (error) {
+			// If sign-out fails, recheck the session
+			window.dispatchEvent(new Event('auth-event'))
+		}
+	}
+
 	return (
 		<header className={classes}>
-			{/* <Banner.Root type="primary">
+			<Banner.Root type="primary">
 				<Banner.Content>
 					<Text
 						tag="p"
@@ -55,29 +122,23 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 						size="body-small"
 						collapse
 					>
-						{bannerHeadline}
+						{bannerData.headline}
 					</Text>
 				</Banner.Content>
 				<Banner.Actions>
-					{!data?.user ? (
+					{!session?.data?.session ? (
 						<>
 							<Button
-								text="Login / Sign up"
+								text="Sign in / Sign up"
 								variant="primary"
 								size="small"
-								href="/login"
+								href="/sign-in"
 							/>
 						</>
 					) : (
 						<>
-							<form action={logout}>
-								<Button
-									type="submit"
-									text="Log out"
-									size="small"
-									variant="ghost"
-									className={s[`login-button`]}
-								/>
+							<form action={handleSignOut}>
+								<SignOutButton />
 							</form>
 							<Button
 								text="Account"
@@ -88,7 +149,7 @@ const HeaderNavigation = async ({ className }: HeaderNavigationProps) => {
 						</>
 					)}
 				</Banner.Actions>
-			</Banner.Root> */}
+			</Banner.Root>
 			<NavContent links={navData} />
 		</header>
 	)

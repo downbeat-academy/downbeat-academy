@@ -21,14 +21,14 @@ import { DialogClose } from '@components/dialog'
 
 interface UpdateProfileFormProps {
 	isReadOnly: boolean
-	firstName?: any
-	lastName?: any
+	name?: string
+	email?: string
 }
 
 const UpdateProfileForm = ({
 	isReadOnly,
-	firstName,
-	lastName,
+	name,
+	email
 }: UpdateProfileFormProps) => {
 	const router = useRouter()
 	const { toast } = useToast()
@@ -44,8 +44,8 @@ const UpdateProfileForm = ({
 	const onSubmit = async (formData: TUpdateProfileSchema) => {
 		try {
 			const formDataObject = {
-				firstName: formData.firstName || '',
-				lastName: formData.lastName || '',
+				name: formData.name || '',
+				email: formData.email || '',
 			}
 			await updateProfile(formDataObject)
 			toast({
@@ -75,33 +75,33 @@ const UpdateProfileForm = ({
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)} maxWidth="400px">
 			<FormField>
-				<Label htmlFor="first-name">First name</Label>
+				<Label htmlFor="name">Name</Label>
 				<Input
 					type="text"
-					id="firstName"
-					name="firstName"
+					id="name"
+					name="name"
 					register={register}
-					isInvalid={!!errors.firstName}
-					placeholder={firstName}
-					{...readOnlyProps(firstName)}
+					isInvalid={!!errors.name}
+					placeholder={name}
+					{...readOnlyProps(name)}
 				/>
-				{errors.firstName && (
-					<ValidationMessage type="error">{`${errors.firstName.message}`}</ValidationMessage>
+				{errors.name && (
+					<ValidationMessage type="error">{`${errors.name.message}`}</ValidationMessage>
 				)}
 			</FormField>
 			<FormField>
-				<Label htmlFor="last-name">Last name</Label>
+				<Label htmlFor="email">Email</Label>
 				<Input
-					type="text"
-					id="lastName"
-					name="lastName"
+					type="email"
+					id="email"
+					name="email"
 					register={register}
-					isInvalid={!!errors.lastName}
-					placeholder={lastName}
-					{...readOnlyProps(lastName)}
+					isInvalid={!!errors.email}
+					placeholder={email}
+					{...readOnlyProps(email)}
 				/>
-				{errors.lastName && (
-					<ValidationMessage type="error">{`${errors.lastName.message}`}</ValidationMessage>
+				{errors.email && (
+					<ValidationMessage type="error">{`${errors.email.message}`}</ValidationMessage>
 				)}
 			</FormField>
 			{!isReadOnly && (

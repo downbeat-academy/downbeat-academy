@@ -1,29 +1,27 @@
-'use server'
+"use server"
 
-import { cookies } from 'next/headers'
-import { createClient } from '@lib/supabase/supabase.server'
-import { readUserSession } from '@actions/supabase-auth/read-user-session'
+import { auth } from '@/lib/auth/auth'
+import { headers } from 'next/headers'
 
-export type FormData = {
-	firstName: string
-	lastName: string
-}
+export async function updateProfile(formData: { name: string, email: string }) {
+	const session = await auth.api.getSession({
+		headers: await headers()
+	})
 
-export async function updateProfile(formData: FormData) {
-	const cookieStore = cookies()
-	const supabase = createClient(cookieStore)
-
-	const { data, error } = await readUserSession()
+	if (!session?.session) {
+		throw new Error('Not authenticated')
+	}
 
 	try {
-		await supabase
-			.from('profiles')
-			.update({
-				first_name: formData.firstName,
-				last_name: formData.lastName,
-			})
-			.eq('id', data.user.id)
-	} catch (e) {
-		throw new Error('Failed to update profile')
+		await auth.api.updateUser({
+			body: {
+				name: formData.name,
+				email: formData.email
+			}
+		})
+		return { success: true }
+	} catch (error) {
+		console.error('Failed to update profile:', error)
+		throw error
 	}
 }
