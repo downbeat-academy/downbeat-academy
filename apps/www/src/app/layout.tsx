@@ -1,3 +1,4 @@
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import Fathom from '@lib/fathom'
 import { AppFrame } from '@components/app-frame'
 import { Provider } from './provider'
@@ -12,7 +13,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<Provider>
-					<AppFrame>{children}</AppFrame>
+					<NuqsAdapter>
+						<AppFrame>{children}</AppFrame>
+					</NuqsAdapter>
 				</Provider>
 				<Fathom />
 			</body>

@@ -101,7 +101,7 @@ export const SignInForm = () => {
       </FormField>
       <Button
         type="submit"
-        text={isSubmitting ? "Signing in..." : "Sign In"}
+        text={isSubmitting ? "🎵 Signing in..." : "Sign In"}
         variant="primary"
         disabled={isSubmitting}
       />
