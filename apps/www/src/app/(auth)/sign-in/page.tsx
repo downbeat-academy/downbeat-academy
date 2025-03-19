@@ -4,7 +4,7 @@ import { auth } from "@lib/auth/auth"
 import * as Tabs from '@components/tabs'
 import { Text } from 'cadence-core'
 import { Link } from '@components/link'
-import s from './login.module.scss'
+import s from './sign-in.module.scss'
 import { SignInForm } from "./sign-in-form"
 import { SignUpForm } from "./sign-up-form"
 

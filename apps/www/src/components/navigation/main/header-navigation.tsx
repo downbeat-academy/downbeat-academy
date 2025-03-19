@@ -11,9 +11,10 @@ import { Text } from 'cadence-core'
 import { Button } from '@components/button'
 import { NavContent } from './nav-content'
 import { useRouter } from 'next/navigation'
+import { signOut } from '@actions/auth/sign-out'
+import { useFormStatus } from 'react-dom'
 
 import type { HeaderNavigationProps } from './types'
-import SignOut from '@app/(auth)/sign-in/sign-out'
 
 // Fetch the data for the navigation
 async function getNavigationData() {
@@ -36,6 +37,22 @@ async function getBannerData() {
 	}
 
 	return res
+}
+
+// Create a client component for the sign-out button
+function SignOutButton() {
+	const { pending } = useFormStatus()
+	
+	return (
+		<Button
+			type="submit"
+			text={pending ? "Signing out..." : "Sign Out"}
+			variant="ghost"
+			size="small"
+			className={s['sign-out-button']}
+			disabled={pending}
+		/>
+	)
 }
 
 // Render the component
@@ -82,7 +99,17 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 
 	if (!navData || !bannerData) return null
 
-	// console.log(session.data.session)
+	const handleSignOut = async () => {
+		try {
+			// Update local session state immediately
+			setSession(null)
+			// Trigger the server action
+			await signOut()
+		} catch (error) {
+			// If sign-out fails, recheck the session
+			window.dispatchEvent(new Event('auth-event'))
+		}
+	}
 
 	return (
 		<header className={classes}>
@@ -110,7 +137,9 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 						</>
 					) : (
 						<>
-							<SignOut className={s['sign-out-button']}/>
+							<form action={handleSignOut}>
+								<SignOutButton />
+							</form>
 							<Button
 								text="Account"
 								size="small"

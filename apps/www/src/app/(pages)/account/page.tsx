@@ -14,11 +14,11 @@ export default async function AccountPage() {
 		headers: await headers()
 	})
 
-	const { session: sessionData, user } = session
-
-	if (!sessionData) {
+	if (!session?.session) {
 		redirect('/sign-in')
 	}
+	const { session: sessionData, user } = session
+
 
 	return (
 		<SectionContainer>
