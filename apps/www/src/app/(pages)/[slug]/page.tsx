@@ -13,14 +13,18 @@ import { ModuleRenderer } from '@components/module-content'
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../types/meta'
 
+type PageProps = {
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
 const client = sanityClient
 
 // Generate metadata
-export async function generateMetadata(
-	{ params }: MetaProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+	const params = await props.params
 	const { slug } = params
+
 	try {
 		const page = await client.fetch(
 			pagesBySlugQuery,
@@ -55,9 +59,11 @@ export async function generateStaticParams() {
 }
 
 // Render the page data
-export default async function PageSlugRoute({ params }) {
+export default async function PageSlugRoute(props: PageProps) {
+	const params = await props.params
 	const { slug } = params
-	const preview = draftMode().isEnabled ? { token: readToken } : undefined
+	const draftModeResult = await draftMode()
+	const preview = draftModeResult.isEnabled ? { token: readToken } : undefined
 
 	try {
 		const page = await sanityClient.fetch(pagesBySlugQuery, {

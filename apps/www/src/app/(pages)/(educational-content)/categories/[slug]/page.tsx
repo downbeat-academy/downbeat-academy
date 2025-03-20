@@ -8,15 +8,17 @@ import { SectionTitle } from '@components/section-title'
 import { ListItem } from '@components/list'
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import type { MetaProps } from '../../../../../types/meta'
+
+type PageProps = {
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
 const client = sanityClient
 
 // Generate metadata
-export async function generateMetadata(
-	{ params }: MetaProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+	const params = await props.params
 	const { slug } = params
 
 	try {
@@ -57,7 +59,8 @@ export async function generateStaticParams() {
 }
 
 // Render the category data
-export default async function CategorySlugRoute({ params }) {
+export default async function CategorySlugRoute(props: PageProps) {
+	const params = await props.params
 	const { slug } = params
 
 	try {

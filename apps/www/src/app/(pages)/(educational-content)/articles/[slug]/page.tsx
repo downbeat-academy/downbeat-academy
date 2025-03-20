@@ -15,9 +15,8 @@ import { Link } from '@components/link'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type PageProps = {
-  params: {
-    slug: string;
-  }
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 type ArticleData = {
@@ -47,10 +46,8 @@ type ArticleData = {
 const client = sanityClient
 
 // Generate metadata
-export async function generateMetadata(
-  { params }: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params
   const { slug } = params
 
   try {
@@ -84,7 +81,8 @@ export async function generateStaticParams() {
 }
 
 // Render the article data
-export default async function ArticleSlugRoute({ params }: PageProps) {
+export default async function ArticleSlugRoute(props: PageProps) {
+  const params = await props.params
   const { slug } = params
 
   try {
