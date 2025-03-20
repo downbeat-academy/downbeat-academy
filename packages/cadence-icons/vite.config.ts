@@ -8,7 +8,10 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 export default defineConfig({
 	plugins: [
-		react(),
+		react({
+			jsxRuntime: 'automatic',
+			jsxImportSource: 'react',
+		}),
 		tsConfigPaths(),
 		dts({
 			insertTypesEntry: true,
@@ -17,21 +20,29 @@ export default defineConfig({
 		cssInjectedByJsPlugin(),
 	],
 	build: {
+		target: 'esnext',
 		lib: {
 			entry: path.resolve(__dirname, './src/components/index.ts'),
 			name: 'CadenceIcons',
-			formats: ['es', 'umd'],
+			formats: ['es'],
 			fileName: (format) => `cadence-icons.${format}.js`,
 		},
 		rollupOptions: {
-			external: ['react', 'react-dom'],
+			external: ['react', 'react-dom', 'react/jsx-runtime'],
 			output: {
 				globals: {
 					react: 'React',
-					'react-dom': 'ReactDom',
+					'react-dom': 'ReactDOM',
+					'react/jsx-runtime': 'jsx'
 				},
+				format: 'es',
+				preserveModules: true,
+				preserveModulesRoot: 'src',
+				exports: 'named'
 			},
 		},
+		sourcemap: true,
+		minify: false
 	},
 	resolve: {
 		alias: {

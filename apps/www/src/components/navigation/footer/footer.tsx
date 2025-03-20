@@ -1,3 +1,5 @@
+'use client'
+
 import classnames from 'classnames'
 import { Twitter, Facebook, Tiktok, Youtube, Instagram } from 'cadence-icons'
 import { Flex, LogoSymbol } from 'cadence-core'
@@ -7,9 +9,8 @@ import s from './footer.module.scss'
 
 import type { FooterProps } from './types'
 
-const Footer = ({ className }: FooterProps) => {
-	const classes = classnames(s['footer--root'], [className])
-
+// Client-side only social links section
+const SocialLinks = () => {
 	const socialLinks = [
 		{
 			name: 'Facebook',
@@ -37,6 +38,22 @@ const Footer = ({ className }: FooterProps) => {
 			icon: <Youtube color="#fff" width={24} />,
 		},
 	]
+
+	return (
+		<section className={s[`social-links`]}>
+			<ul>
+				{socialLinks.map((link) => (
+					<li key={link.name}>
+						<Link href={link.url}>{link.icon}</Link>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+}
+
+const Footer = ({ className }: FooterProps) => {
+	const classes = classnames(s['footer--root'], [className])
 
 	const footerLinks = [
 		{
@@ -100,17 +117,7 @@ const Footer = ({ className }: FooterProps) => {
 					<LogoSymbol color="high-contrast" width={64} aria-label="Home link" />
 				</Link>
 			</section>
-			<section className={s[`social-links`]}>
-				<ul>
-					{socialLinks.map((link) => {
-						return (
-							<li key={link.name}>
-								<Link href={link.url}>{link.icon}</Link>
-							</li>
-						)
-					})}
-				</ul>
-			</section>
+			<SocialLinks />
 			<Flex tag="nav" direction="row" gap="3x-large">
 				{footerLinks.map((title) => {
 					return (
