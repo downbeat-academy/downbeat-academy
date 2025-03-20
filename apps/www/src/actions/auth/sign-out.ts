@@ -8,7 +8,7 @@ import { headers } from 'next/headers'
 export async function signOut() {
   try {
     await auth.api.signOut({
-      headers: headers()
+      headers: await headers()
     })
     
     revalidatePath('/')
