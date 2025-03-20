@@ -18,13 +18,16 @@ import { Flex } from 'cadence-core'
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../types/meta'
 
+type PageProps = {
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
 const client = sanityClient
 
 // Generate metadata
-export async function generateMetadata(
-	{ params }: MetaProps,
-	parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+	const params = await props.params
 	const { slug } = params
 
 	try {
@@ -61,9 +64,11 @@ export async function generateStaticParams() {
 }
 
 // Render the page data
-export default async function ContributorSlugRoute({ params }) {
+export default async function ContributorSlugRoute(props: PageProps) {
+	const params = await props.params
 	const { slug } = params
-	const preview = draftMode().isEnabled ? { token: readToken } : undefined
+	const draftModeResult = await draftMode()
+	const preview = draftModeResult.isEnabled ? { token: readToken } : undefined
 
 	try {
 		const contributor = await sanityClient.fetch(

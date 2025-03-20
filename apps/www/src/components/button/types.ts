@@ -3,7 +3,8 @@ import NextLink from 'next/link'
 
 type NativeButtonProps = JSX.IntrinsicElements['button']
 
-type PickedNativeButtonProps = Pick<
+// Make most native button props optional
+type PickedNativeButtonProps = Partial<Pick<
 	NativeButtonProps,
 	| 'aria-controls'
 	| 'aria-describedby'
@@ -17,7 +18,7 @@ type PickedNativeButtonProps = Pick<
 	| 'name'
 	| 'onClick'
 	| 'type'
->
+>>
 
 interface ButtonProps extends PickedNativeButtonProps {
 	className?: string

@@ -1,28 +1,32 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
-import { lexiconPaths, lexiconsBySlugQuery } from '@lib/queries'
+import { lexiconsBySlugQuery, lexiconPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 import { formatTime } from '@utils/format-time'
 import { Text } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { RichText } from '@components/rich-text'
+import { RichText, RichTextWrapper } from '@components/rich-text'
 import { Badge, Flex } from 'cadence-core'
 import { MusicNotation } from '@components/music-notation'
 import { AudioPlayer } from '@components/audio'
 
 import s from './lexicon-page.module.scss'
+import type { Metadata, ResolvingMetadata } from 'next'
+
+type PageProps = {
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
 
 const client = sanityClient
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { id: string; slug: string }
-}) {
+// Generate metadata
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+	const params = await props.params
 	const { slug } = params
 
 	try {
-		const lexicon = await sanityClient.fetch(
+		const lexicon = await client.fetch(
 			lexiconsBySlugQuery,
 			{ slug },
 			{
@@ -34,8 +38,7 @@ export async function generateMetadata({
 
 		return {
 			title: getOgTitle(
-				`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${formatTime(lexicon.timestamp).totalTime
-				}`
+				`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${formatTime(lexicon.timestamp).totalTime}`
 			),
 			description: lexicon.excerpt,
 		}
@@ -45,6 +48,7 @@ export async function generateMetadata({
 	}
 }
 
+// Generate static params
 export async function generateStaticParams() {
 	try {
 		const slugs = await sanityClient.fetch(
@@ -59,102 +63,118 @@ export async function generateStaticParams() {
 
 		return slugs.map((slug) => ({ slug }))
 	} catch (error) {
-		{
-			console.error(error)
-			throw error
-		}
+		console.error(error)
+		throw error
 	}
 }
 
-export default async function LexiconSlugRoute({ params }) {
+// Render the lexicon data
+export default async function LexiconSlugRoute(props: PageProps) {
+	const params = await props.params
 	const { slug } = params
-	const lexicon = await client.fetch(lexiconsBySlugQuery, { slug })
-	const {
-		artist,
-		album,
-		track,
-		timestamp,
-		style,
-		length,
-		chordProgression,
-		description,
-		excerpt,
-		audio,
-	} = lexicon
 
-	const lexiconMetadata = [
-		{
-			title: 'Artist',
-			value: artist,
-		},
-		{
-			title: 'Album',
-			value: album,
-		},
-		{
-			title: 'Track',
-			value: track,
-		},
-		{
-			title: 'Timestamp',
-			value: formatTime(timestamp).totalTime,
-		},
-		{
-			title: 'Style',
-			value: style,
-		},
-		{
-			title: 'Length',
-			value: length,
-		},
-		{
-			title: 'Chord Progression',
-			value: chordProgression,
-		},
-	]
-
-	const renderMetadata = lexiconMetadata.map((item) => {
-		return (
-			<Flex
-				direction="column"
-				alignItems="start"
-				gap="2x-small"
-				key={item.value}
-			>
-				<Text
-					tag="p"
-					type="productive-body"
-					size="body-base"
-					color="primary"
-					collapse
-				>
-					{item.title}:
-				</Text>
-				<Badge text={item.value} type="neutral" size="large" />
-			</Flex>
+	try {
+		const lexicon = await sanityClient.fetch(
+			lexiconsBySlugQuery,
+			{ slug },
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
 		)
-	})
 
-	return (
-		<>
-			<SectionContainer>
-				<SectionTitle background="primary">
-					<Flex direction="row" gap="large" justifyContent="space-between" wrap>
-						{renderMetadata}
-					</Flex>
-				</SectionTitle>
-				<section className={s.excerpt}>
-					<Flex
-						direction="column"
-						gap="medium"
-						className={s['excerpt-content']}
+		const lexiconMetadata = [
+			{
+				title: 'Artist',
+				value: lexicon.artist,
+			},
+			{
+				title: 'Album',
+				value: lexicon.album,
+			},
+			{
+				title: 'Track',
+				value: lexicon.track,
+			},
+			{
+				title: 'Timestamp',
+				value: formatTime(lexicon.timestamp).totalTime,
+			},
+			{
+				title: 'Style',
+				value: lexicon.style,
+			},
+			{
+				title: 'Length',
+				value: lexicon.length,
+			},
+			{
+				title: 'Chord Progression',
+				value: lexicon.chordProgression,
+			},
+		]
+
+		const renderMetadata = lexiconMetadata.map((item) => {
+			return (
+				<Flex
+					direction="column"
+					alignItems="start"
+					gap="2x-small"
+					key={item.value}
+				>
+					<Text
+						tag="p"
+						type="productive-body"
+						size="body-base"
+						color="primary"
+						collapse
 					>
-						<RichText value={description.content} />
-						<AudioPlayer tracks={audio} showTitle={false} showArtist={false} />
-						<MusicNotation files={excerpt.files} collapse />
-					</Flex>
-				</section>
-			</SectionContainer>
-		</>
-	)
+						{item.title}:
+					</Text>
+					<Badge text={item.value} type="neutral" size="large" />
+				</Flex>
+			)
+		})
+
+		return (
+			<>
+				<SectionContainer>
+					<SectionTitle
+						background="primary"
+						title={
+							<Text
+								tag="h1"
+								type="expressive-headline"
+								size="h1"
+								color="high-contrast"
+								collapse
+							>
+								{lexicon.title}
+							</Text>
+						}
+					/>
+					<section className={s.excerpt}>
+						<Flex
+							direction="column"
+							gap="medium"
+							className={s['excerpt-content']}
+						>
+							<RichText value={lexicon.content.content} />
+							<AudioPlayer tracks={lexicon.audio} showTitle={false} showArtist={false} />
+							<MusicNotation files={lexicon.excerpt.files} collapse />
+						</Flex>
+					</section>
+					<SectionTitle background="primary">
+						<Flex direction="row" gap="large" justifyContent="space-between" wrap>
+							{renderMetadata}
+						</Flex>
+					</SectionTitle>
+				</SectionContainer>
+			</>
+		)
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }

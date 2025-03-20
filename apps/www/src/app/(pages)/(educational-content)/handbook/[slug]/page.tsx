@@ -11,13 +11,16 @@ import s from './handbook-page.module.scss'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 
+type PageProps = {
+	params: Promise<{ slug: string }>;
+	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
 const client = sanityClient
 
 // Generate metadata
-export async function generateMetadata(
-	{ params }: { params: any },
-	parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+	const params = await props.params
 	const { slug } = params
 
 	try {
@@ -61,44 +64,56 @@ export async function generateStaticParams() {
 }
 
 // Render the handbook data
-export default async function HandbookSlugRoute({ params }) {
+export default async function HandbookSlugRoute(props: PageProps) {
+	const params = await props.params
 	const { slug } = params
 
-	const handbook = await client.fetch(handbooksBySlugQuery, {
-		slug,
-	})
+	try {
+		const handbook = await sanityClient.fetch(
+			handbooksBySlugQuery,
+			{ slug },
+			{
+				next: {
+					revalidate: 60,
+				}
+			}
+		)
 
-	return (
-		<>
-			<SectionContainer>
-				<SectionTitle
-					background="primary"
-					title={
-						<Text
-							tag="h1"
-							type="expressive-headline"
-							size="h1"
-							color="brand"
-							collapse
-						>
-							{handbook.title}
+		return (
+			<>
+				<SectionContainer>
+					<SectionTitle
+						background="primary"
+						title={
+							<Text
+								tag="h1"
+								type="expressive-headline"
+								size="h1"
+								color="high-contrast"
+								collapse
+							>
+								{handbook.title}
+							</Text>
+						}
+					/>
+					<aside className={s.categories}>
+						<Text tag="p" type="expressive-body" size="body-base" collapse>
+							Categories:
 						</Text>
-					}
-				/>
-				<aside className={s.categories}>
-					<Text tag="p" type="expressive-body" size="body-base" collapse>
-						Categories:
-					</Text>
-					{handbook.categories.map((category) => (
-						<Link key={category.title} href={`/category/${category.slug}`}>
-							<Badge text={category.title} />
-						</Link>
-					))}
-				</aside>
-				<RichTextWrapper className={s['rich-text']}>
-					<RichText value={handbook.content.content} />
-				</RichTextWrapper>
-			</SectionContainer>
-		</>
-	)
+						{handbook.categories.map((category) => (
+							<Link key={category.title} href={`/category/${category.slug}`}>
+								<Badge text={category.title} />
+							</Link>
+						))}
+					</aside>
+					<RichTextWrapper className={s['rich-text']}>
+						<RichText value={handbook.content.content} />
+					</RichTextWrapper>
+				</SectionContainer>
+			</>
+		)
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }

@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { headers } from "next/headers"
 import { auth } from "@lib/auth/auth"
@@ -7,6 +8,11 @@ import { Link } from '@components/link'
 import s from './sign-in.module.scss'
 import { SignInForm } from "./sign-in-form"
 import { SignUpForm } from "./sign-up-form"
+
+export const metadata: Metadata = {
+    title: 'Sign in 🎵 Downbeat Academy',
+    description: 'Sign in to your Downbeat Academy account or create a new account to access music education resources and lessons.'
+}
 
 export default async function SignIn() {
   const session = await auth.api.getSession({

@@ -14,7 +14,7 @@ import {
   ValidationMessage
 } from "@/components/form"
 import { useRouter } from "next/navigation"
-import { ToastAction } from "@/components/toast"
+import { Button as ToastButton } from "@components/button"
 
 const signInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -53,19 +53,18 @@ export const SignInForm = () => {
           description: "This email is not registered. Would you like to create an account?",
           variant: "error",
           action: (
-            <ToastAction 
+            <ToastButton
+              text="Sign up"
+              variant="ghost"
+              size="small"
               onClick={() => router.push('/sign-up')}
-              altText="Create an account"
-            >
-              Sign up
-            </ToastAction>
+              type="button"
+              id="sign-up-toast-button"
+              name="sign-up-toast"
+              form="sign-up-toast-form"
+              aria-label="Create a new account"
+            />
           )
-        })
-      } else {
-        toast({
-          title: "Error signing in",
-          description: "Please try again later.",
-          variant: "error"
         })
       }
     }
@@ -104,6 +103,10 @@ export const SignInForm = () => {
         text={isSubmitting ? "🎵 Signing in..." : "Sign In"}
         variant="primary"
         disabled={isSubmitting}
+        id="sign-in-button"
+        name="sign-in"
+        form="sign-in-form"
+        aria-label="Sign in to your account"
       />
     </Form>
   )
