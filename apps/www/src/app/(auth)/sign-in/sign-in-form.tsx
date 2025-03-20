@@ -66,12 +66,6 @@ export const SignInForm = () => {
             />
           )
         })
-      } else {
-        toast({
-          title: "Error signing in",
-          description: "Please try again later.",
-          variant: "error"
-        })
       }
     }
   }

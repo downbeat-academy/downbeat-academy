@@ -2,7 +2,6 @@
 
 import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
-import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 
 export async function signIn(formData: FormData) {
@@ -22,8 +21,6 @@ export async function signIn(formData: FormData) {
       }
     })
     
-    revalidatePath('/')
-    redirect('/account')
   } catch (error: any) {
     console.error('Sign in error:', error)
     if (error.body?.code === 'INVALID_CREDENTIALS') {
@@ -34,4 +31,7 @@ export async function signIn(formData: FormData) {
     }
     throw error
   }
+
+  // Redirect to account page after successful sign in
+  redirect('/account')
 } 
