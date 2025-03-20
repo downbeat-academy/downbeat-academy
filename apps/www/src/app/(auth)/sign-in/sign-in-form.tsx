@@ -58,6 +58,11 @@ export const SignInForm = () => {
               variant="ghost"
               size="small"
               onClick={() => router.push('/sign-up')}
+              type="button"
+              id="sign-up-toast-button"
+              name="sign-up-toast"
+              form="sign-up-toast-form"
+              aria-label="Create a new account"
             />
           )
         })
