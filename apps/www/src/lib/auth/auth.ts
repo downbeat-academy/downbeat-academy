@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { resend } from "@lib/email/resend";
+import { Resend } from 'resend';
 import { db } from "@lib/db/drizzle";
 import { schema } from "@/lib/db/schema";
 import { nextCookies } from "better-auth/next-js";
@@ -22,6 +22,7 @@ export const auth = betterAuth({
     redirectAfterVerification: '/',
     sendVerificationEmail: async ({ user, url, token }, request) => {
       try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
         const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(/\/$/, '');
         const verifyEmailPath = '/api/auth';
         const fullUrl = `${baseUrl}${verifyEmailPath}${url}`;
