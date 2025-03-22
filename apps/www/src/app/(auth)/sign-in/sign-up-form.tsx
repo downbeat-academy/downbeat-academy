@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpFormSchema, type TSignUpFormSchema } from "@/lib/types/auth/sign-up-form-schema"
 import { useToast } from "@/components/toast"
+import { createContact } from "@/actions/email/create-contact"
 import {
   Form,
   FormField,
@@ -38,6 +39,7 @@ export const SignUpForm = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isSubmitting }
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema)
@@ -55,7 +57,27 @@ export const SignUpForm = () => {
       formData.append('name', data.name)
       formData.append('email', data.email)
       formData.append('password', data.password)
-      await signUp(formData)
+      const result = await signUp(formData)
+      
+      if (result.success) {
+        try {
+          await createContact({ 
+            email: data.email,
+            firstName: data.name.split(' ')[0],
+            lastName: data.name.split(' ').slice(1).join(' ')
+          })
+          console.log('Successfully added contact to Resend:', data.email)
+        } catch (error) {
+          console.error('Failed to add contact to Resend:', error)
+        }
+
+        reset()
+        toast({
+          title: "Account created",
+          description: `We've sent a verification link to ${result.email}. Please check your inbox and click the link to verify your account.`,
+          variant: "success"
+        })
+      }
     } catch (error: any) {
       if (error.message === 'A user with this email already exists') {
         toast({
@@ -81,7 +103,7 @@ export const SignUpForm = () => {
           type="text"
           id="name"
           {...register('name')}
-          placeholder="Enter your full name"
+          placeholder="John Coltrane"
           isInvalid={!!errors.name}
         />
         {errors.name && (
@@ -94,7 +116,7 @@ export const SignUpForm = () => {
           type="email"
           id="email"
           {...register('email')}
-          placeholder="Enter your email"
+          placeholder="john@bluenote.com"
           isInvalid={!!errors.email}
         />
         {errors.email && (

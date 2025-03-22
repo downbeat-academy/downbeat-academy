@@ -1,6 +1,5 @@
 "use server"
 
-import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
 import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
@@ -25,7 +24,7 @@ export async function signUp(formData: FormData) {
     })
     
     revalidatePath('/')
-    redirect('/account')
+    return { success: true, email }
   } catch (error: any) {
     console.error('Sign up error:', error)
     if (error.body?.code === 'USER_ALREADY_EXISTS') {
