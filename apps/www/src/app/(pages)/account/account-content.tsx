@@ -6,6 +6,7 @@ import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { ProfileSettings } from './update-profile'
+import { PasswordSettings } from './update-password'
 
 interface AccountContentProps {
   user: {
@@ -33,11 +34,12 @@ export function AccountContent({ user }: AccountContentProps) {
           color="primary"
           collapse
         >
-          We&apos;re working on new account features, check back soon to get the
-          latest updates.
+          Manage your account settings and preferences.
         </Text>
         <Separator />
         <ProfileSettings name={user.name} email={user.email} />
+        <Separator />
+        <PasswordSettings />
       </Flex>
     </SectionContainer>
   )
