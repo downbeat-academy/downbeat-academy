@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpFormSchema, type TSignUpFormSchema } from "@/lib/types/auth/sign-up-form-schema"
 import { useToast } from "@/components/toast"
+import { createContact } from "@/actions/email/create-contact"
 import {
   Form,
   FormField,
@@ -59,7 +60,18 @@ export const SignUpForm = () => {
       const result = await signUp(formData)
       
       if (result.success) {
-        reset() // Reset form after successful submission
+        try {
+          await createContact({ 
+            email: data.email,
+            firstName: data.name.split(' ')[0],
+            lastName: data.name.split(' ').slice(1).join(' ')
+          })
+          console.log('Successfully added contact to Resend:', data.email)
+        } catch (error) {
+          console.error('Failed to add contact to Resend:', error)
+        }
+
+        reset()
         toast({
           title: "Account created",
           description: `We've sent a verification link to ${result.email}. Please check your inbox and click the link to verify your account.`,
