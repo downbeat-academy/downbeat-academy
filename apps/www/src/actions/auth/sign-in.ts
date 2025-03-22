@@ -28,6 +28,9 @@ export async function signIn(formData: FormData) {
     if (error.body?.code === 'USER_NOT_FOUND') {
       throw new Error('This email is not registered. Please create an account first.')
     }
+    if (error.body?.code === 'EMAIL_NOT_VERIFIED') {
+      throw new Error('Please verify your email address.')
+    }
     throw error
   }
 

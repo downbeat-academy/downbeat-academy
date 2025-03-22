@@ -61,6 +61,12 @@ export const SignInForm = () => {
             </ToastAction>
           )
         })
+      } else if (error.message === 'Please verify your email address.') {
+        toast({
+          title: "Email not verified",
+          description: "Please verify your email address.",
+          variant: "error"
+        })
       }
     }
   }
@@ -73,7 +79,7 @@ export const SignInForm = () => {
           type="email"
           id="email"
           {...register('email')}
-          placeholder="Enter your email"
+          placeholder="john@coltrane.com"
           isInvalid={!!errors.email}
         />
         {errors.email && (

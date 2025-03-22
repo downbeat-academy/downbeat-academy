@@ -6,7 +6,6 @@ import { SectionTitle } from '@components/section-title'
 import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
-
 import { ProfileSettings } from './update-profile'
 
 export default async function AccountPage() {
@@ -18,7 +17,6 @@ export default async function AccountPage() {
 		redirect('/sign-in')
 	}
 	const { session: sessionData, user } = session
-
 
 	return (
 		<SectionContainer>

@@ -38,6 +38,7 @@ export const SignUpForm = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isSubmitting }
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema)
@@ -55,7 +56,16 @@ export const SignUpForm = () => {
       formData.append('name', data.name)
       formData.append('email', data.email)
       formData.append('password', data.password)
-      await signUp(formData)
+      const result = await signUp(formData)
+      
+      if (result.success) {
+        reset() // Reset form after successful submission
+        toast({
+          title: "Account created",
+          description: `We've sent a verification link to ${result.email}. Please check your inbox and click the link to verify your account.`,
+          variant: "success"
+        })
+      }
     } catch (error: any) {
       if (error.message === 'A user with this email already exists') {
         toast({
@@ -81,7 +91,7 @@ export const SignUpForm = () => {
           type="text"
           id="name"
           {...register('name')}
-          placeholder="Enter your full name"
+          placeholder="John Coltrane"
           isInvalid={!!errors.name}
         />
         {errors.name && (
@@ -94,7 +104,7 @@ export const SignUpForm = () => {
           type="email"
           id="email"
           {...register('email')}
-          placeholder="Enter your email"
+          placeholder="john@bluenote.com"
           isInvalid={!!errors.email}
         />
         {errors.email && (
