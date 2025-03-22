@@ -1,5 +1,11 @@
 # email
 
+## 1.4.0
+
+### Minor Changes
+
+- 8a5d081: Added email authentication to the `better-auth` configuration, and added a React email template.
+
 ## 1.3.0
 
 ### Minor Changes
