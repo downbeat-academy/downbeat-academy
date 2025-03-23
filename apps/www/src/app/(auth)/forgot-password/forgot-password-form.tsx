@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { useToast } from "@/components/toast"
+import { useToast } from "@components/toast"
 import { Button } from "@components/button"
 import {
   Form,
@@ -18,19 +18,19 @@ const forgotPasswordSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
 })
 
-type TForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>
+type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>
 
-export const ForgotPasswordForm = () => {
+export function ForgotPasswordForm() {
   const { toast } = useToast()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<TForgotPasswordSchema>({
+  } = useForm<ForgotPasswordSchema>({
     resolver: zodResolver(forgotPasswordSchema)
   })
 
-  const onSubmit = async (data: TForgotPasswordSchema) => {
+  const onSubmit = async (data: ForgotPasswordSchema) => {
     try {
       const result = await forgotPasswordAction(data.email)
       

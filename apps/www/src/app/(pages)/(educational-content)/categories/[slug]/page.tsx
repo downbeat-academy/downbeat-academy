@@ -71,8 +71,6 @@ export default async function CategorySlugRoute({ params }) {
 			}
 		)
 
-		console.log('Category data:', JSON.stringify(category, null, 2))
-
 		if (!category?.references || category.references.length === 0) {
 			return (
 				<SectionContainer>

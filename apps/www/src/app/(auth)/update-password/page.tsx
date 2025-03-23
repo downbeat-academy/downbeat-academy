@@ -3,14 +3,13 @@
 import { UpdatePasswordForm } from '@/app/(auth)/update-password/update-password-form'
 import { Text } from 'cadence-core'
 import { Link } from '@components/link'
+import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import s from './update-password.module.scss'
 
-export default function UpdatePasswordPage({
-  searchParams
-}: {
-  searchParams: { [key: string]: string | string[] | undefined }
-}) {
-  const token = searchParams.token as string
+function UpdatePasswordContent() {
+  const searchParams = useSearchParams()
+  const token = searchParams.get('token')
 
   // If there's no token, we'll handle the redirect in the form
   if (!token) {
@@ -30,5 +29,13 @@ export default function UpdatePasswordPage({
       </div>
       <Link href="/sign-in">Back to sign in</Link>
     </section>
+  )
+}
+
+export default function UpdatePasswordPage() {
+  return (
+    <Suspense>
+      <UpdatePasswordContent />
+    </Suspense>
   )
 } 
