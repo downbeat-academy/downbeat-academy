@@ -1,23 +1,24 @@
 'use server'
 
-import { auth } from "@/lib/auth/auth";
+import { auth } from "@/lib/auth/auth"
 
-/**
- * Resets the user's password using a valid reset token
- */
-export async function resetPasswordAction(token: string, newPassword: string) {
+interface ResetPasswordParams {
+  newPassword: string
+  token: string
+}
+
+export async function resetPasswordAction({ newPassword, token }: ResetPasswordParams) {
   try {
-    await auth.handler(new Request('http://localhost/api/auth/reset-password', {
-      method: 'POST',
-      body: JSON.stringify({
-        token,
+    await auth.api.resetPassword({
+      body: {
         newPassword,
-      })
-    }));
+        token
+      }
+    })
 
-    return { success: true };
-  } catch (error) {
-    console.error('Failed to reset password:', error);
-    return { error: 'Failed to reset password' };
+    return { success: true }
+  } catch (error: any) {
+    console.error('Failed to reset password:', error)
+    return { error: error.message || 'Failed to reset password. Please try again.' }
   }
 } 

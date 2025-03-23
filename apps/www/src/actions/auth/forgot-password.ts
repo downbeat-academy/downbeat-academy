@@ -4,14 +4,12 @@ import { auth } from "@/lib/auth/auth";
 
 export async function forgotPasswordAction(email: string) {
   try {
-    // Send the request to the correct endpoint
-    await auth.handler(new Request(`/api/auth/forgot-password`, {
-      method: 'POST',
-      body: JSON.stringify({
+    await auth.api.forgetPassword({
+      body: {
         email,
-        redirectTo: '/reset-password',
-      })
-    }));
+        redirectTo: '/account/update-password'
+      }
+    });
 
     return { success: true };
   } catch (error: any) {

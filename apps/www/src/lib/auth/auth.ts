@@ -16,11 +16,13 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: true,
     requireEmailVerification: true,
+    resetPasswordPath: '/update-password',
+    forgetPasswordPath: '/api/auth/forget-password',
     sendResetPassword: async ({ user, url, token }, request) => {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(/\/$/, '');
-        const fullUrl = `${baseUrl}${url}`;
+        const fullUrl = `${baseUrl}/update-password?token=${token}`;
         
         const { data } = await resend.emails.send({
           from: "Downbeat Academy <hello@email.downbeatacademy.com>",

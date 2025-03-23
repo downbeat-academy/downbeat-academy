@@ -6,7 +6,7 @@ import { Text } from 'cadence-core'
 import { Flex } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { ProfileSettings } from './update-profile'
-import { PasswordSettings } from './update-password'
+import { PasswordSettings } from './update-password/page'
 
 interface AccountContentProps {
   user: {

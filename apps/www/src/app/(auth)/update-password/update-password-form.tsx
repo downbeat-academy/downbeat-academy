@@ -6,13 +6,10 @@ import { z } from 'zod'
 import { Button } from '@components/button'
 import { Form, FormField, Input, Label, ValidationMessage } from '@components/form'
 import { useToast } from '@components/toast'
-import { updatePasswordAction } from '@/actions/auth/update-password'
-import { useEffect, useState } from 'react'
-import { auth } from '@/lib/auth/auth'
-import { headers } from 'next/headers'
+import { useRouter } from 'next/navigation'
+import { resetPasswordAction } from '@/actions/auth/reset-password'
 
-const updatePasswordSchema = z.object({
-  currentPassword: z.string().optional(),
+const passwordSchema = z.object({
   newPassword: z.string()
     .min(8, 'Password must be at least 8 characters')
     .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
@@ -24,46 +21,35 @@ const updatePasswordSchema = z.object({
   path: ["confirmPassword"]
 })
 
-type UpdatePasswordSchema = z.infer<typeof updatePasswordSchema>
+type PasswordFormData = z.infer<typeof passwordSchema>
 
-export function UpdatePasswordForm() {
+interface UpdatePasswordFormProps {
+  token: string
+}
+
+export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
   const { toast } = useToast()
-  const [hasPassword, setHasPassword] = useState<boolean | null>(null)
+  const router = useRouter()
   
-  useEffect(() => {
-    const checkPassword = async () => {
-      try {
-        const result = await updatePasswordAction({
-          newPassword: 'temp-check-only'
-        })
-        setHasPassword(!result.error || result.error !== 'No password set for this account')
-      } catch (error) {
-        console.error('Failed to check password status:', error)
-      }
-    }
-    
-    checkPassword()
-  }, [])
-
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset
-  } = useForm<UpdatePasswordSchema>({
-    resolver: zodResolver(updatePasswordSchema)
+  } = useForm<PasswordFormData>({
+    resolver: zodResolver(passwordSchema)
   })
 
-  const onSubmit = async (data: UpdatePasswordSchema) => {
+  const onSubmit = async (data: PasswordFormData) => {
     try {
-      const result = await updatePasswordAction({
-        currentPassword: data.currentPassword,
+      const result = await resetPasswordAction({
+        token,
         newPassword: data.newPassword
       })
-      
+
       if (result.error) {
         toast({
-          title: 'Failed to update password',
+          title: 'Error',
           description: result.error,
           variant: 'error'
         })
@@ -71,41 +57,22 @@ export function UpdatePasswordForm() {
       }
 
       toast({
-        title: 'Password updated',
-        description: 'Your password has been successfully updated.',
+        title: 'Password reset successful',
+        description: 'Your password has been reset. You can now sign in with your new password.',
         variant: 'success'
       })
-      reset()
+      router.push('/sign-in')
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.message || 'Failed to update password. Please try again.',
+        description: error.message || 'Failed to reset password. Please try again.',
         variant: 'error'
       })
     }
   }
 
-  if (hasPassword === null) {
-    return null // Loading state
-  }
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {hasPassword && (
-        <FormField>
-          <Label htmlFor="currentPassword">Current Password</Label>
-          <Input
-            type="password"
-            id="currentPassword"
-            {...register('currentPassword')}
-            placeholder="Enter your current password"
-            isInvalid={!!errors.currentPassword}
-          />
-          {errors.currentPassword && (
-            <ValidationMessage type="error">{errors.currentPassword.message}</ValidationMessage>
-          )}
-        </FormField>
-      )}
       <FormField>
         <Label htmlFor="newPassword">New Password</Label>
         <Input
@@ -134,7 +101,7 @@ export function UpdatePasswordForm() {
       </FormField>
       <Button
         type="submit"
-        text={isSubmitting ? "Updating..." : "Update Password"}
+        text={isSubmitting ? "Resetting..." : "Reset Password"}
         variant="primary"
         disabled={isSubmitting}
       />
