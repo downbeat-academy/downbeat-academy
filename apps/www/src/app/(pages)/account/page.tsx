@@ -3,10 +3,10 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from 'cadence-core'
-import { Flex } from 'cadence-core'
+import { Text, Flex, Badge } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { ProfileSettings } from './update-profile'
+import { showAdminRole } from './show-admin-role'
 
 export default async function AccountPage() {
 	const session = await auth.api.getSession({
@@ -22,9 +22,12 @@ export default async function AccountPage() {
 		<SectionContainer>
 			<SectionTitle
 				title={
-					<Text type="expressive-headline" size="h1" color="brand" collapse>
-						Account
-					</Text>
+					<Flex alignItems="center" gap="medium" direction="row">
+						<Text type="expressive-headline" size="h1" color="brand" collapse>
+							Account
+						</Text>
+						{showAdminRole(user)}
+					</Flex>
 				}
 				background="primary"
 			/>

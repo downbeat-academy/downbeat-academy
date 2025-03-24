@@ -1,9 +1,13 @@
 import { betterAuth } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { admin } from 'better-auth/plugins';
 import { Resend } from 'resend';
 import { db } from "@lib/db/drizzle";
 import { schema } from "@/lib/db/schema";
-import { nextCookies } from "better-auth/next-js";
+import { ac, admin as adminRole, educator, student, superAdmin } from "@/lib/auth/permissions";
+
+// Email templates
 import VerifyEmail from "../../../../../packages/email/emails/verify-email";
 import ResetPasswordEmail from "../../../../../packages/email/emails/reset-password";
 
@@ -49,7 +53,7 @@ export const auth = betterAuth({
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(/\/$/, '');
-        const fullUrl = `${baseUrl}${url}`;
+        const fullUrl = `${baseUrl}/api/auth${url}`;
         
         const { data } = await resend.emails.send({
           from: "Downbeat Academy <hello@email.downbeatacademy.com>",
@@ -68,6 +72,18 @@ export const auth = betterAuth({
       }
     },
   },
-  // nextCookies must be the last plugin in the array.
-  plugins: [nextCookies()]
+  plugins: [
+    admin({
+      ac: ac,
+      roles: {
+        student,
+        educator,
+        admin: adminRole,
+        superAdmin
+      },
+      defaultRole: 'student',
+    }),
+    // nextCookies must be the last plugin in the array.
+    nextCookies()
+  ]
 });
