@@ -3,8 +3,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
-import { Text } from 'cadence-core'
-import { Flex } from 'cadence-core'
+import { Text, Flex, Badge } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { ProfileSettings } from './update-profile'
 
@@ -18,13 +17,27 @@ export default async function AccountPage() {
 	}
 	const { session: sessionData, user } = session
 
+	const showAdminRole = () => {
+		switch (user.role) {
+			case 'admin':
+				return <Badge type='info' size='large' text='👑 Admin' />;
+			case 'superAdmin':
+				return <Badge type='info' size='large' text='🚀 Super Admin' />;
+			default:
+				return null;
+		}
+	}
+
 	return (
 		<SectionContainer>
 			<SectionTitle
 				title={
-					<Text type="expressive-headline" size="h1" color="brand" collapse>
-						Account
-					</Text>
+					<Flex alignItems="center" gap="medium" direction="row">
+						<Text type="expressive-headline" size="h1" color="brand" collapse>
+							Account
+						</Text>
+						{showAdminRole()}
+					</Flex>
 				}
 				background="primary"
 			/>
