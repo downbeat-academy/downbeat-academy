@@ -1,5 +1,13 @@
 # www
 
+## 3.13.0
+
+### Minor Changes
+
+- b001b28: Add suppoert for authorization and user roles in the authentication service
+- 8a5d081: Added email authentication to the `better-auth` configuration, and added a React email template.
+- 3793fa9: Add support for password reset with better-auth and Resend, created a new email template for password reset emails.
+
 ## 3.12.0
 
 ### Minor Changes

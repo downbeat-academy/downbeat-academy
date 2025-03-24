@@ -1,5 +1,12 @@
 # email
 
+## 1.4.0
+
+### Minor Changes
+
+- 8a5d081: Added email authentication to the `better-auth` configuration, and added a React email template.
+- 3793fa9: Add support for password reset with better-auth and Resend, created a new email template for password reset emails.
+
 ## 1.3.0
 
 ### Minor Changes
