@@ -53,7 +53,7 @@ export const auth = betterAuth({
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(/\/$/, '');
-        const fullUrl = `${baseUrl}${url}`;
+        const fullUrl = `${baseUrl}/api/auth${url}`;
         
         const { data } = await resend.emails.send({
           from: "Downbeat Academy <hello@email.downbeatacademy.com>",
