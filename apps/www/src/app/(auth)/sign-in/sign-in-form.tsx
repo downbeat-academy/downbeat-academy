@@ -1,6 +1,6 @@
 'use client'
 
-import { signIn } from "@/actions/auth/sign-in"
+import { signIn } from "@/actions/auth"
 import { Button } from "@components/button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -11,10 +11,12 @@ import {
   FormField,
   Input,
   Label,
-  ValidationMessage
+  ValidationMessage,
+  HelperText
 } from "@/components/form"
 import { useRouter } from "next/navigation"
 import { ToastAction } from "@/components/toast"
+import { Link } from '@components/link'
 
 const signInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -105,6 +107,9 @@ export const SignInForm = () => {
         variant="primary"
         disabled={isSubmitting}
       />
+      <Link href="/forgot-password">
+        Forgot your password?
+      </Link>
     </Form>
   )
 }

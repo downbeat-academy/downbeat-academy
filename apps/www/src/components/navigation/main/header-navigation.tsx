@@ -11,7 +11,7 @@ import { Text, LogoLockup } from 'cadence-core'
 import { Button } from '@components/button'
 import { NavContent } from './nav-content'
 import { useRouter } from 'next/navigation'
-import { signOut } from '@actions/auth/sign-out'
+import { signOut } from '@/actions/auth'
 import { useFormStatus } from 'react-dom'
 import Link from 'next/link'
 

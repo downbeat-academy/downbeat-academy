@@ -5,6 +5,7 @@ import { db } from "@lib/db/drizzle";
 import { schema } from "@/lib/db/schema";
 import { nextCookies } from "better-auth/next-js";
 import VerifyEmail from "../../../../../packages/email/emails/verify-email";
+import ResetPasswordEmail from "../../../../../packages/email/emails/reset-password";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -15,6 +16,30 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: true,
     requireEmailVerification: true,
+    resetPasswordPath: '/update-password',
+    forgetPasswordPath: '/api/auth/forget-password',
+    sendResetPassword: async ({ user, url, token }, request) => {
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(/\/$/, '');
+        const fullUrl = `${baseUrl}/update-password?token=${token}`;
+        
+        const { data } = await resend.emails.send({
+          from: "Downbeat Academy <hello@email.downbeatacademy.com>",
+          to: user.email,
+          subject: "🎵 Reset your Downbeat Academy password",
+          react: ResetPasswordEmail({ 
+            name: user.name,
+            resetUrl: fullUrl
+          })
+        });
+
+        console.log('Password reset email sent:', data);
+      } catch (error) {
+        console.error('Failed to send password reset email:', error);
+        throw error;
+      }
+    },
   },
   emailVerification: {
     sendOnSignUp: true,
@@ -24,8 +49,7 @@ export const auth = betterAuth({
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(/\/$/, '');
-        const verifyEmailPath = '/api/auth';
-        const fullUrl = `${baseUrl}${verifyEmailPath}${url}`;
+        const fullUrl = `${baseUrl}${url}`;
         
         const { data } = await resend.emails.send({
           from: "Downbeat Academy <hello@email.downbeatacademy.com>",
