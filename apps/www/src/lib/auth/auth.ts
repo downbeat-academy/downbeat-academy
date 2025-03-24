@@ -1,9 +1,12 @@
 import { betterAuth } from "better-auth";
+import { nextCookies } from "better-auth/next-js";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { admin } from 'better-auth/plugins';
 import { Resend } from 'resend';
 import { db } from "@lib/db/drizzle";
 import { schema } from "@/lib/db/schema";
-import { nextCookies } from "better-auth/next-js";
+
+// Email templates
 import VerifyEmail from "../../../../../packages/email/emails/verify-email";
 import ResetPasswordEmail from "../../../../../packages/email/emails/reset-password";
 
@@ -68,6 +71,9 @@ export const auth = betterAuth({
       }
     },
   },
-  // nextCookies must be the last plugin in the array.
-  plugins: [nextCookies()]
+  plugins: [
+    admin(),
+    // nextCookies must be the last plugin in the array.
+    nextCookies()
+  ]
 });
