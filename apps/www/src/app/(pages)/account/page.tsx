@@ -6,6 +6,7 @@ import { SectionTitle } from '@components/section-title'
 import { Text, Flex, Badge } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { ProfileSettings } from './update-profile'
+import { showAdminRole } from './show-admin-role'
 
 export default async function AccountPage() {
 	const session = await auth.api.getSession({
@@ -17,17 +18,6 @@ export default async function AccountPage() {
 	}
 	const { session: sessionData, user } = session
 
-	const showAdminRole = () => {
-		switch (user.role) {
-			case 'admin':
-				return <Badge type='info' size='large' text='👑 Admin' />;
-			case 'superAdmin':
-				return <Badge type='info' size='large' text='🚀 Super Admin' />;
-			default:
-				return null;
-		}
-	}
-
 	return (
 		<SectionContainer>
 			<SectionTitle
@@ -36,7 +26,7 @@ export default async function AccountPage() {
 						<Text type="expressive-headline" size="h1" color="brand" collapse>
 							Account
 						</Text>
-						{showAdminRole()}
+						{showAdminRole(user)}
 					</Flex>
 				}
 				background="primary"
