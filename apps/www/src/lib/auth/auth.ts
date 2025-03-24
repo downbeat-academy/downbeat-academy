@@ -5,6 +5,7 @@ import { admin } from 'better-auth/plugins';
 import { Resend } from 'resend';
 import { db } from "@lib/db/drizzle";
 import { schema } from "@/lib/db/schema";
+import { ac, admin as adminRole, educator, student, superAdmin } from "@/lib/auth/permissions";
 
 // Email templates
 import VerifyEmail from "../../../../../packages/email/emails/verify-email";
@@ -72,7 +73,16 @@ export const auth = betterAuth({
     },
   },
   plugins: [
-    admin(),
+    admin({
+      ac: ac,
+      roles: {
+        student,
+        educator,
+        admin: adminRole,
+        superAdmin
+      },
+      defaultRole: 'student',
+    }),
     // nextCookies must be the last plugin in the array.
     nextCookies()
   ]
