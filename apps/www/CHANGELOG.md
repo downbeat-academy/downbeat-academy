@@ -1,5 +1,11 @@
 # www
 
+## 3.14.0
+
+### Minor Changes
+
+- d4e50e1: Added basic setup and database schema for organizations
+
 ## 3.13.0
 
 ### Minor Changes
