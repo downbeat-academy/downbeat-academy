@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { admin } from 'better-auth/plugins';
+import { admin, organization } from 'better-auth/plugins';
 import { Resend } from 'resend';
 import { db } from "@lib/db/drizzle";
 import { schema } from "@/lib/db/schema";
@@ -83,6 +83,7 @@ export const auth = betterAuth({
       },
       defaultRole: 'student',
     }),
+    organization(),
     // nextCookies must be the last plugin in the array.
     nextCookies()
   ]
