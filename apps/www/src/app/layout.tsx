@@ -2,7 +2,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import Fathom from '@lib/fathom'
 import { AppFrame } from '@components/app-frame'
 import { Provider } from './provider'
-import '@styles/index.scss'
+import './globals.css'
 
 export default function RootLayout({
 	children,

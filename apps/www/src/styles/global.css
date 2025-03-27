@@ -1,0 +1,78 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  font-family: var(--cds-typography-font-family-expressive-body);
+  color: var(--cds-color-foreground-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  font-style: normal;
+}
+
+/* Noto music */
+@font-face {
+  font-family: 'Noto Music';
+  src:
+    local('Noto Music'),
+    url('/fonts/noto-music/NotoMusic-Regular.ttf') format('truetype');
+}
+
+/* Utility classes for padding */
+.padding--none {
+  padding: 0;
+}
+
+.padding--2x-small {
+  padding: var(--cds-scale-2x-small);
+}
+
+.padding--x-small {
+  padding: var(--cds-scale-x-small);
+}
+
+.padding--small {
+  padding: var(--cds-scale-small);
+}
+
+.padding--medium {
+  padding: var(--cds-scale-base);
+}
+
+.padding--large {
+  padding: var(--cds-scale-large);
+}
+
+.padding--x-large {
+  padding: var(--cds-scale-x-large);
+}
+
+.padding--2x-large {
+  padding: var(--cds-scale-2x-large);
+}
+
+.padding--3x-large {
+  padding: var(--cds-scale-3x-large);
+} 

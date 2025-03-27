@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './button-wrapper.module.scss'
+import s from './button-wrapper.module.css'
 
 import type { ButtonWrapperProps } from './types'
 
