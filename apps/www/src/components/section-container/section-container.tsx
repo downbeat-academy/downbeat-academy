@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './section-container.module.scss'
+import s from './section-container.module.css'
 
 import type { SectionContainerProps } from './types'
 

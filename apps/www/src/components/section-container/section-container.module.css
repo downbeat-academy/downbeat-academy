@@ -1,0 +1,82 @@
+.root {
+  border-radius: var(--cds-radii-soft);
+  outline-width: 1px;
+  outline-style: solid;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background */
+.background--primary {
+  background: var(--cds-color-surface-primary);
+}
+
+.background--faint {
+  background: var(--cds-color-surface-faint);
+}
+
+.background--high-contrast {
+  background: var(--cds-color-surface-high-contrast);
+}
+
+.background--brand {
+  background: var(--cds-color-surface-brand);
+}
+
+.background--interactive {
+  background: var(--cds-color-surface-interactive);
+}
+
+.background--success {
+  background: var(--cds-color-surface-success);
+}
+
+.background--warning {
+  background: var(--cds-color-surface-warning);
+}
+
+.background--critical {
+  background: var(--cds-color-surface-critical);
+}
+
+/* Border color */
+.border-color--primary,
+.border-color--primary > *:not(:last-child) {
+  outline-color: var(--cds-color-border-primary);
+}
+
+.border-color--faint,
+.border-color--faint > *:not(:last-child) {
+  outline-color: var(--cds-color-border-faint);
+}
+
+.border-color--brand,
+.border-color--brand > *:not(:last-child) {
+  outline-color: var(--cds-color-border-brand);
+}
+
+.border-color--interactive,
+.border-color--interactive > *:not(:last-child) {
+  outline-color: var(--cds-color-border-interactive);
+}
+
+.border-color--success,
+.border-color--success > *:not(:last-child) {
+  outline-color: var(--cds-color-border-success);
+}
+
+.border-color--warning,
+.border-color--warning > *:not(:last-child) {
+  outline-color: var(--cds-color-border-warning);
+}
+
+.border-color--critical,
+.border-color--critical > *:not(:last-child) {
+  outline-color: var(--cds-color-border-critical);
+}
+
+.border-color--high-contrast,
+.border-color--high-contrast > *:not(:last-child) {
+  outline-color: var(--cds-color-border-high-contrast);
+} 
