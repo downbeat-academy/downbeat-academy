@@ -1,0 +1,27 @@
+.sidebar--root {
+  padding: 1rem;
+  background: lightgreen;
+}
+
+/* Commented out styles preserved for reference */
+/* 
+.sidebar--position-left {
+  grid-area: sidebar-left;
+}
+
+.sidebar--position-right {
+  grid-area: sidebar-right;
+}
+
+.sidebar--size-small {
+  grid-column: 2;
+}
+
+.sidebar--size-medium {
+  grid-column: 3;
+}
+
+.sidebar--size-large {
+  grid-column: 4;
+}
+*/ 
