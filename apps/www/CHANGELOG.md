@@ -1,5 +1,15 @@
 # www
 
+## 3.15.0
+
+### Minor Changes
+
+- 22e0094: Migrated from Sass to vanilla CSS
+
+### Patch Changes
+
+- 4d412ce: Fixed overscroll on the mobile nav and added in the authentication entry point
+
 ## 3.14.0
 
 ### Minor Changes
