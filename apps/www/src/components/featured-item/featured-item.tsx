@@ -1,4 +1,4 @@
-import s from './featured-item.module.scss'
+import s from './featured-item.module.css'
 
 import type { FeaturedItemProps } from './types'
 

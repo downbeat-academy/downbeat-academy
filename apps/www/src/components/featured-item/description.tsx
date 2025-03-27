@@ -1,5 +1,5 @@
 import { Flex } from 'cadence-core'
-import s from './authors.module.scss'
+import s from './authors.module.css'
 
 import type { FeaturedItemDescriptionProps } from './types'
 
