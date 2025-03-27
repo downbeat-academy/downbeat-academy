@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './wrapper.module.scss'
+import s from './wrapper.module.css'
 
 import type { RichTextWrapperProps } from './types'
 
