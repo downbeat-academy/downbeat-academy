@@ -1,6 +1,6 @@
 import { RichText } from '@components/rich-text'
 import { ModuleItem } from '@components/module-content'
-import s from './module-renderer.module.scss'
+import s from './module-renderer.module.css'
 
 const ModuleRenderer = ({ modules }) => {
 	const renderModules = modules.map((m) => {
