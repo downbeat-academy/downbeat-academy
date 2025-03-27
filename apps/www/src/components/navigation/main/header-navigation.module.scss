@@ -1,11 +1,15 @@
 .root {
 	grid-area: header;
+	position: relative;
 	border-radius: 0;
 	border: 1px solid $cds-color-border-faint;
-	overflow: hidden;
+	overflow: visible;
 	margin: 0;
+	background: $cds-color-surface-primary;
+	border-width: 0 0 1px 0;
 
 	@media (min-width: 768px) {
+		border-width: 0 1px 1px 1px;
 		border-radius: 0 0 $cds-radii-x-soft $cds-radii-x-soft;
 		margin: 0 $cds-scale-x-large;
 	}
