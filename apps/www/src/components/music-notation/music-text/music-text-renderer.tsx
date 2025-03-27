@@ -7,7 +7,7 @@ import {
 	RhythmicValue,
 	MusicSymbol,
 } from '@components/music-notation'
-import s from '../inline-highlight.module.scss'
+import s from '../inline-highlight.module.css'
 
 import type { MusicTextRendererProps } from './types'
 
