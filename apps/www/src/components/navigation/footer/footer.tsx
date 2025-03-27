@@ -3,7 +3,7 @@ import { Twitter, Facebook, Tiktok, Youtube, Instagram } from 'cadence-icons'
 import { Flex, LogoSymbol } from 'cadence-core'
 import { Link } from '@components/link'
 import { Text } from 'cadence-core'
-import s from './footer.module.scss'
+import s from './footer.module.css'
 
 import type { FooterProps } from './types'
 

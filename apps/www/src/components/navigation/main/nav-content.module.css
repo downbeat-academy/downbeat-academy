@@ -1,0 +1,110 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--cds-scale-base) var(--cds-scale-x-large);
+  background: var(--cds-color-surface-primary);
+  top: 0;
+  z-index: 100;
+  transition: box-shadow 0.2s ease-in-out;
+  width: 100%;
+  border-radius: 0 0 var(--cds-radii-x-soft) var(--cds-radii-x-soft);
+}
+
+.root.scrolled {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links-wrapper {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .nav-links-wrapper {
+    display: none;
+  }
+
+  .nav-links-wrapper--nav-toggled {
+    position: fixed;
+    width: 100vmin;
+    height: calc(100dvh - 105.42px);
+    top: 105.42px;
+    left: 0;
+    z-index: 100;
+    background: var(--cds-color-surface-primary);
+    padding: var(--cds-scale-2x-large);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: var(--cds-scale-base);
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    flex-direction: column;
+  }
+}
+
+.link-item {
+  font-family: var(--cds-typography-font-family-productive-body);
+  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  list-style: none;
+  color: var(--cds-color-foreground-strong);
+}
+
+@media (max-width: 900px) {
+  .link-item {
+    font-size: var(--cds-typography-font-size-fixed-productive-x-large);
+  }
+}
+
+.link-item > a {
+  text-decoration: none;
+}
+
+.link-item > a:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cds-scale-base);
+    margin-top: auto;
+    padding-top: var(--cds-scale-2x-large);
+  }
+}
+
+.sign-out-button {
+  width: 100%;
+  text-align: left;
+}
+
+/* Menu button */
+.menu-button {
+  display: inline-block;
+  background: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: var(--cds-color-foreground-brand-default);
+  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  border: none;
+}
+
+@media (min-width: 900px) {
+  .menu-button {
+    display: none;
+  }
+} 

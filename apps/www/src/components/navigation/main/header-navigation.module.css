@@ -1,0 +1,55 @@
+.root {
+  grid-area: header;
+  position: relative;
+  border-radius: 0;
+  border: 1px solid var(--cds-color-border-faint);
+  overflow: visible;
+  margin: 0;
+  background: var(--cds-color-surface-primary);
+  border-width: 0 0 1px 0;
+}
+
+@media (min-width: 768px) {
+  .root {
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 var(--cds-radii-x-soft) var(--cds-radii-x-soft);
+    margin: 0 var(--cds-scale-x-large);
+  }
+}
+
+@media (min-width: 1000px) {
+  .root {
+    margin: 0 var(--cds-scale-2x-large);
+  }
+}
+
+@media (min-width: 1200px) {
+  .root {
+    margin: 0 var(--cds-scale-3x-large);
+  }
+}
+
+/* Component overrides */
+.login-button {
+  color: var(--cds-color-foreground-high-contrast) !important;
+}
+
+.login-button:hover {
+  background: var(--cds-color-palette-blackberry-600) !important;
+}
+
+.login-button:active {
+  background: var(--cds-color-palette-blackberry-500) !important;
+}
+
+.sign-out-button {
+  color: var(--cds-color-foreground-high-contrast) !important;
+}
+
+.sign-out-button:hover {
+  background: var(--cds-color-palette-blackberry-600) !important;
+}
+
+.sign-out-button:active {
+  background: var(--cds-color-palette-blackberry-500) !important;
+} 
