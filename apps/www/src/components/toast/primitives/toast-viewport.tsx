@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import * as ToastPrimitives from '@radix-ui/react-toast'
-import s from '../toast.module.scss'
+import s from '../toast.module.css'
 
 const ToastViewport = forwardRef<
 	React.ElementRef<typeof ToastPrimitives.Viewport>,

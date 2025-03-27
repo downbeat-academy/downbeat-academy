@@ -3,6 +3,8 @@
 /* Import styles from packages */
 @import '../../node_modules/cadence-tokens/dist/web/tokens.css';
 @import '../../node_modules/cadence-core/dist/cadence-core.min.css';
+@import '../../node_modules/typeface-favorit';
+@import '../../node_modules/typeface-tiempos-text';
 
 /* Import global styles */
 @import './global.css'; 
