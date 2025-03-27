@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import s from './table.module.scss'
+import s from './table.module.css'
 
 interface TableProps {
 	backgroundColor?: 'none' | 'primary'

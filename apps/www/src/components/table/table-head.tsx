@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import s from './table-head.module.scss'
+import s from './table-head.module.css'
 
 interface TableHeadProps {
 	alignment?: 'start' | 'end'
