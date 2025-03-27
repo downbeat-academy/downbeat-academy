@@ -216,7 +216,7 @@ importers:
         version: 3.7.2
       next:
         specifier: 14.2.6
-        version: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+        version: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
       next-sanity:
         specifier: ^9.8.36
         version: 9.9.3(@sanity/client@6.28.3)(@sanity/icons@3.7.0)(@sanity/types@3.79.0)(@sanity/ui@2.15.6)(next@14.2.6)(react-dom@18.3.1)(react-is@18.3.1)(react@18.3.1)(sanity@3.79.0)(styled-components@6.1.15)
@@ -281,9 +281,6 @@ importers:
       drizzle-kit:
         specifier: ^0.30.5
         version: 0.30.5
-      sass:
-        specifier: ^1.83.4
-        version: 1.85.1
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -9229,7 +9226,7 @@ packages:
       '@sanity/client': 6.28.3(debug@4.4.0)
       '@sanity/comlink': 3.0.1
       '@sanity/presentation-comlink': 1.0.10(@sanity/client@6.28.3)(@sanity/types@3.79.0)
-      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
       use-effect-event: 1.0.2(react@18.3.1)
     transitivePeerDependencies:
@@ -9616,7 +9613,7 @@ packages:
       '@sanity/visual-editing-csm': 2.0.8(@sanity/client@6.28.3)(@sanity/types@3.79.0)
       '@vercel/stega': 0.1.2
       get-random-values-esm: 1.0.2
-      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
       react-compiler-runtime: 19.0.0-beta-e1e972c-20250221(react@18.3.1)
       react-dom: 18.3.1(react@18.3.1)
@@ -9811,7 +9808,7 @@ packages:
       '@sentry/vercel-edge': 8.55.0
       '@sentry/webpack-plugin': 2.22.7(webpack@5.98.0)
       chalk: 3.0.0
-      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
       resolve: 1.22.8
       rollup: 3.29.5
       stacktrace-parser: 0.1.11
@@ -11664,7 +11661,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 6.2.2(@types/node@22.13.10)(sass@1.85.1)
+      vite: 6.2.2(@types/node@22.13.10)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -18579,9 +18576,9 @@ packages:
       '@sanity/visual-editing': 2.13.10(@sanity/client@6.28.3)(@sanity/types@3.79.0)(next@14.2.6)(react-dom@18.3.1)(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.15)
       groq: 3.79.0
       history: 5.3.0
-      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
-      sanity: 3.79.0(@types/node@22.13.10)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)(styled-components@6.1.15)(typescript@5.7.3)
+      sanity: 3.79.0(@types/node@22.13.10)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)(styled-components@6.1.15)(typescript@5.7.3)
       styled-components: 6.1.15(react-dom@18.3.1)(react@18.3.1)
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -18605,7 +18602,7 @@ packages:
       '@next/env': 13.5.8
       fast-glob: 3.3.3
       minimist: 1.2.8
-      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
     dev: false
 
   /next@14.2.24(@babel/core@7.26.10)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1):
@@ -18651,7 +18648,7 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /next@14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1):
+  /next@14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-57Su7RqXs5CBKKKOagt8gPhMM3CpjgbeQhrtei2KLAA1vTNm7jfKS+uDARkSW8ZETUflDCBIsUKGSyQdRs4U4g==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -18678,7 +18675,6 @@ packages:
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      sass: 1.85.1
       styled-jsx: 5.1.1(@babel/core@7.26.10)(react@18.3.1)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.6
@@ -19053,7 +19049,7 @@ packages:
         optional: true
     dependencies:
       mitt: 3.0.1
-      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)
+      next: 14.2.6(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
     dev: false
 
@@ -22076,7 +22072,7 @@ packages:
       - supports-color
     dev: false
 
-  /sanity@3.79.0(@types/node@22.13.10)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)(sass@1.85.1)(styled-components@6.1.15)(typescript@5.7.3):
+  /sanity@3.79.0(@types/node@22.13.10)(@types/react@18.3.18)(react-dom@18.3.1)(react@18.3.1)(styled-components@6.1.15)(typescript@5.7.3):
     resolution: {integrity: sha512-xUcBUVPp58a3CmF4AwNUm8IVg5HEgsdDmRj3IB+nrHTa3YNP7cJVyod1H2RiJOZJLYpXhVCXcBCG0Akt+EGScg==}
     engines: {node: '>=18'}
     hasBin: true
@@ -22212,7 +22208,7 @@ packages:
       use-sync-external-store: 1.4.0(react@18.3.1)
       uuid: 11.1.0
       valibot: 0.31.1
-      vite: 6.2.2(@types/node@22.13.10)(sass@1.85.1)
+      vite: 6.2.2(@types/node@22.13.10)
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -22374,7 +22370,7 @@ packages:
       use-sync-external-store: 1.4.0(react@18.3.1)
       uuid: 11.1.0
       valibot: 0.31.1
-      vite: 6.2.2(@types/node@22.13.10)(sass@1.85.1)
+      vite: 6.2.2(@types/node@22.13.10)
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
@@ -24700,7 +24696,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vite@6.2.2(@types/node@22.13.10)(sass@1.85.1):
+  /vite@6.2.2(@types/node@22.13.10):
     resolution: {integrity: sha512-yW7PeMM+LkDzc7CgJuRLMW2Jz0FxMOsVJ8Lv3gpgW9WLcb9cTW+121UEr1hvmfR7w3SegR5ItvYyzVz1vxNJgQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -24744,7 +24740,6 @@ packages:
       esbuild: 0.25.1
       postcss: 8.5.3
       rollup: 4.35.0
-      sass: 1.85.1
     optionalDependencies:
       fsevents: 2.3.3
     dev: false
