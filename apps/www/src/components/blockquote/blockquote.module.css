@@ -1,0 +1,15 @@
+.root {
+  background: var(--cds-color-palette-blueberry-50);
+  padding: var(--cds-scale-2x-large);
+  border: 1px solid var(--cds-color-border-interactive);
+  border-radius: var(--cds-radii-soft);
+  margin: var(--cds-scale-2x-large) 0;
+}
+
+.root * {
+  color: var(--cds-color-palette-blueberry-700);
+}
+
+.collapse {
+  margin: 0 0;
+} 

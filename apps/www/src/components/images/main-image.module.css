@@ -1,0 +1,30 @@
+.root {
+  position: relative;
+  display: block;
+  min-height: 400px;
+  margin: var(--cds-scale-2x-large) 0;
+  outline: 1px solid var(--cds-color-border-primary);
+  border-radius: var(--cds-radii-soft);
+  overflow: hidden;
+}
+
+.root img {
+  position: relative;
+  object-fit: cover;
+}
+
+.collapse {
+  margin: 0 0;
+}
+
+/* Caption Wrapper */
+.caption-wrapper {
+  position: absolute;
+  bottom: 0;
+  padding: var(--cds-scale-x-small);
+  border-bottom-left-radius: var(--cds-radii-soft);
+  border-top-right-radius: var(--cds-radii-medium);
+  outline: 1px solid var(--cds-color-border-primary);
+  background: var(--cds-color-surface-primary);
+  max-width: 90%;
+} 

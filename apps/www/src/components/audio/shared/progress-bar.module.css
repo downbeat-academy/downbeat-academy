@@ -1,0 +1,124 @@
+.progress {
+  display: flex;
+  flex-direction: row;
+  gap: var(--cds-scale-base);
+  align-items: center;
+}
+
+/* Target both progress bar and volume slider */
+.progress-bar,
+.volume-slider {
+  --range-progress: 0%;
+  --track-height: 4px;
+  --thumb-size: 20px;
+
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  background: var(--cds-color-palette-blackberry-50);
+  height: var(--track-height);
+  border-radius: 2px;
+  cursor: pointer;
+  margin: 8px 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.progress-bar {
+  width: 100%;
+}
+
+.volume-slider {
+  width: 100px; /* Adjust this value as needed */
+}
+
+/* Input range - Firefox */
+.progress-bar::-moz-range-track,
+.volume-slider::-moz-range-track {
+  position: relative;
+  background: var(--cds-color-palette-blackberry-50);
+  width: 100%;
+  height: var(--track-height);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Played progress length - Chrome & Safari */
+.progress-bar::before,
+.volume-slider::before {
+  content: '';
+  height: var(--track-height);
+  background: var(--cds-color-palette-violet-300);
+  width: var(--range-progress);
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Played progress length - Firefox */
+.progress-bar::-moz-range-progress,
+.volume-slider::-moz-range-progress {
+  background: var(--cds-color-palette-violet-300);
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  height: var(--track-height);
+}
+
+/* slider thumb - chrome and safari */
+.progress-bar::-webkit-slider-thumb,
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  border: none;
+  background-color: var(--cds-color-palette-blueberry-500);
+  cursor: ew-resize;
+  position: relative;
+  margin-top: -2px;
+  z-index: 2;
+}
+
+.progress-bar::-webkit-slider-thumb:hover,
+.volume-slider::-webkit-slider-thumb:hover {
+  background-color: var(--cds-color-palette-blueberry-600);
+}
+
+/* dragging thumb - chrome and safari */
+.progress-bar:active::-webkit-slider-thumb,
+.volume-slider:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+/* slider thumb - firefox */
+.progress-bar::-moz-range-thumb,
+.volume-slider::-moz-range-thumb {
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  border-radius: 50%;
+  background: var(--cds-color-palette-violet-400);
+  cursor: pointer;
+  border: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.progress-bar::-moz-range-thumb:hover,
+.volume-slider::-moz-range-thumb:hover {
+  background-color: var(--cds-color-palette-violet-500);
+}
+
+/* dragging thumb - firefox */
+.progress-bar:active::-moz-range-thumb,
+.volume-slider:active::-moz-range-thumb {
+  transform: scale(1.2);
+}
+
+/* Fix border radius when at max value */
+.progress-bar[value="100"]::before,
+.volume-slider[value="100"]::before {
+  border-radius: 4px;
+} 

@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.border-color--primary {
+  outline-color: var(--cds-color-border-primary);
+  outline-width: 1px;
+  outline-style: solid;
+}
+
+.border-color--faint {
+  outline-color: var(--cds-color-border-faint);
+  outline-width: 1px;
+  outline-style: solid;
+}
+
+.border-color--none {
+  outline-color: none;
+} 

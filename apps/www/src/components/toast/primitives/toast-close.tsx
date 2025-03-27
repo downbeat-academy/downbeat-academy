@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { X } from 'cadence-icons'
 import * as ToastPrimitives from '@radix-ui/react-toast'
-import s from '../toast.module.scss'
+import s from '../toast.module.css'
 
 const ToastClose = forwardRef<
 	React.ElementRef<typeof ToastPrimitives.Close>,

@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import classnames from 'classnames'
-import s from './link.module.scss'
+import s from './link.module.css'
 
 import type { LinkProps } from './types'
 

@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { Flex } from 'cadence-core'
 import { Text } from 'cadence-core'
 import { Link } from '@components/link'
-import s from './blockquote.module.scss'
+import s from './blockquote.module.css'
 
 import type { BlockquoteProps } from './types'
 

@@ -1,5 +1,5 @@
 import { Text } from 'cadence-core'
-import s from './progress-bar.module.scss'
+import s from './progress-bar.module.css'
 
 export const ProgressBar = ({
 	progressBarRef,

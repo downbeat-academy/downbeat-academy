@@ -1,0 +1,111 @@
+/* Content */
+.content {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-scale-base);
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+  background: var(--cds-color-surface-primary);
+  padding: var(--cds-scale-2x-large);
+  z-index: 50;
+  max-width: 450px;
+  max-height: 85vh;
+  transform: translate(-50%, -50%);
+  border-radius: var(--cds-radii-medium);
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  width: 90vw;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--cds-color-border-primary);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  width: 100vw;
+  inset: 0;
+}
+
+/* Header */
+.header {
+  margin: 0;
+}
+
+/* Title */
+.title {
+  font-size: var(--cds-typography-font-size-fixed-productive-2x-large);
+  font-family: var(--cds-typography-font-family-productive-headline);
+  color: var(--cds-color-foreground-strong);
+  line-height: var(--cds-typography-line-height-productive-headline);
+  margin: 0;
+}
+
+/* Description */
+.description {
+  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  font-family: var(--cds-typography-font-family-productive-body);
+  color: var(--cds-color-foreground-primary);
+  line-height: var(--cds-typography-line-height-productive-body);
+}
+
+/* Footer */
+.footer {
+  margin: 0;
+}
+
+/* Close */
+.close {
+  position: absolute;
+  top: var(--cds-scale-base);
+  right: var(--cds-scale-base);
+  height: var(--cds-scale-x-large);
+  width: var(--cds-scale-x-large);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background: var(--cds-color-palette-blackberry-100);
+  color: var(--cds-color-palette-blackberry-500);
+  border-radius: var(--cds-radii-hard);
+  border: 1px solid var(--cds-color-palette-blackberry-300);
+  padding: 2px;
+  transition: var(--cds-transition-02);
+}
+
+.close:hover {
+  background: var(--cds-color-palette-blackberry-200);
+}
+
+.close:active {
+  background: var(--cds-color-palette-blackberry-300);
+}
+
+/* Animations */
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -25%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+} 

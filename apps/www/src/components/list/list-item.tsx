@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './list-item.module.scss'
+import s from './list-item.module.css'
 import { Link } from '@components/link'
 import { Text } from 'cadence-core'
 

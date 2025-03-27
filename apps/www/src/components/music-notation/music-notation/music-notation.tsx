@@ -7,7 +7,7 @@ import { Text } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { OpenSheetMusicDisplay } from './open-sheet-music-display'
-import s from './music-notation.module.scss'
+import s from './music-notation.module.css'
 
 import type { MusicNotationProps } from './types'
 

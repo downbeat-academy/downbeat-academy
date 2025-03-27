@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './banner.module.scss'
+import s from './banner.module.css'
 
 import type { BannerProps } from './types'
 

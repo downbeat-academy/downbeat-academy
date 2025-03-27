@@ -1,0 +1,9 @@
+.contact-form {
+  display: flex;
+  justify-content: center;
+  padding: var(--cds-scale-2x-large);
+}
+
+.contact-form form {
+  width: 600px;
+} 

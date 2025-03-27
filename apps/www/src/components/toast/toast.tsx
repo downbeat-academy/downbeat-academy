@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ToastPrimitives from '@radix-ui/react-toast'
 import classnames from 'classnames'
-import s from './toast.module.scss'
+import s from './toast.module.css'
 
 type ToastVariant = 'default' | 'success' | 'error' | 'warning'
 type ToastDirection = 'from-right' | 'from-bottom'

@@ -5,7 +5,7 @@ import { Text } from 'cadence-core'
 import { Link } from '@components/link'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
-import s from './update-password.module.scss'
+import s from './update-password.module.css'
 
 function UpdatePasswordContent() {
   const searchParams = useSearchParams()

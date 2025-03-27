@@ -1,11 +1,11 @@
 import { Flex } from 'cadence-core'
-import s from './authors.module.scss'
+import s from './authors.module.css'
 
 import type { FeaturedItemDescriptionProps } from './types'
 
 const FeaturedItemDescription = ({ children }) => {
 	return (
-		<Flex tag="div" className={s.root}>
+		<Flex tag="div" className={s.root} padding='3x-large'>
 			{children}
 		</Flex>
 	)

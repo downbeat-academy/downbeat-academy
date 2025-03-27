@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { linkResolver } from '@utils/link-resolver'
 import { Text } from 'cadence-core'
 import { Badge, Flex } from 'cadence-core'
-import s from './lexicon-item.module.scss'
+import s from './lexicon-item.module.css'
 
 const LexiconItem = ({ title, url, album, track, timestamp }) => {
 	return (

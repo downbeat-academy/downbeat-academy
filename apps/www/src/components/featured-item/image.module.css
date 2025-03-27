@@ -1,0 +1,11 @@
+.root {
+  grid-area: image;
+  position: relative;
+  min-height: 200px;
+  outline: 1px solid var(--cds-color-border-primary);
+}
+
+.root a img,
+.root img {
+  object-fit: cover;
+} 

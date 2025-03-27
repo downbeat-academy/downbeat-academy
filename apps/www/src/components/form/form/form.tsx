@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './form.module.scss'
+import s from './form.module.css'
 
 import type { FormProps } from '../types'
 

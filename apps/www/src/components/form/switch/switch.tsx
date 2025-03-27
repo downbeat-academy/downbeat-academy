@@ -1,6 +1,6 @@
 import * as SwitchBase from '@radix-ui/react-switch';
 import { Check } from 'cadence-icons';
-import s from './switch.module.scss';
+import s from './switch.module.css';
 
 const Switch = ({ id }) => {
   return (

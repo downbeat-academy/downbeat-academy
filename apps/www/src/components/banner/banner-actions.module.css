@@ -1,0 +1,11 @@
+.banner-actions--wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: var(--cds-scale-base);
+}
+
+@media (max-width: 600px) {
+  .banner-actions--wrapper {
+    display: none;
+  }
+} 

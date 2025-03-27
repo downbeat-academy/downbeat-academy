@@ -7,7 +7,7 @@ import { SectionTitle } from '@components/section-title'
 import { RichText, RichTextWrapper } from '@components/rich-text'
 import { Badge } from 'cadence-core'
 import { Link } from '@components/link'
-import s from './handbook-page.module.scss'
+import s from './handbook-page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 

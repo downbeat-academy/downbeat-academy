@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 
 import type { AppFrameProps } from './types'
-import s from './app-frame.module.scss'
+import s from './app-frame.module.css'
 
 const AppFrame = ({ children }: AppFrameProps) => {
 	const classes = classnames(s['app-frame--root'])

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { PlayerButton } from './player-button'
 import type { ControlsProps } from './types'
-import s from './controls.module.scss'
+import s from './controls.module.css'
 
 const Controls = ({
 	audioRef,

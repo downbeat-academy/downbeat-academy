@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef } from 'react'
 import Link from 'next/link'
 import classnames from 'classnames'
-import s from './button.module.scss'
+import s from './button.module.css'
 
 import type { ButtonProps } from './types'
 

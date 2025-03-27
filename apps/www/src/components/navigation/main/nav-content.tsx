@@ -6,7 +6,7 @@ import classnames from 'classnames'
 import { LogoLockup } from 'cadence-core'
 import { Button } from '@components/button'
 import { Link } from '@components/link'
-import s from './nav-content.module.scss'
+import s from './nav-content.module.css'
 import { signOut } from '@/actions/auth'
 import { useFormStatus } from 'react-dom'
 

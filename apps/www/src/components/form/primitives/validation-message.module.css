@@ -1,0 +1,26 @@
+.cds-validation-message--root {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--cds-scale-2x-small);
+  font-size: var(--cds-typography-font-size-fixed-productive-small);
+  font-family: var(--cds-typography-font-family-productive-body);
+  font-weight: 600;
+}
+
+.cds-validation-message--type-success {
+  color: var(--cds-color-foreground-success-default);
+}
+
+.cds-validation-message--type-warning {
+  color: var(--cds-color-foreground-warning-default);
+}
+
+.cds-validation-message--type-error {
+  color: var(--cds-color-foreground-critical-default);
+}
+
+/* Icon wrapper */
+.cds-validation-message--icon {
+  padding: 2px;
+} 

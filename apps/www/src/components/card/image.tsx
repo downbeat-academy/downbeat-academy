@@ -1,6 +1,6 @@
 import Img from 'next/image'
 import { Link } from '@components/link'
-import s from './image.module.scss'
+import s from './image.module.css'
 
 import type { CardImageProps } from './types'
 

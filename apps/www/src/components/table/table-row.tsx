@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import s from './table-row.module.scss'
+import s from './table-row.module.css'
 
 interface TableRowProps {
 	isHeader?: boolean

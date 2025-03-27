@@ -7,7 +7,7 @@ import { Link } from '@components/link'
 import { Button } from '@components/button'
 
 import { FileDownloadForm } from './file-download-form'
-import s from './file-download.module.scss'
+import s from './file-download.module.css'
 
 import type { FileDownloadProps } from './types'
 

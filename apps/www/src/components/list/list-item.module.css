@@ -1,0 +1,8 @@
+.root {
+  background: var(--cds-color-surface-primary);
+  padding: var(--cds-scale-large) var(--cds-scale-x-large);
+  outline: 1px solid var(--cds-color-border-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-scale-base);
+} 

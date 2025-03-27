@@ -1,0 +1,4 @@
+.root {
+  grid-area: title;
+  outline: 1px solid var(--cds-color-border-primary);
+} 

@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { Flex } from 'cadence-core'
-import s from './title.module.scss'
+import s from './title.module.css'
 
 import type { FeaturedItemTitleProps } from './types'
 
@@ -16,6 +16,7 @@ const FeaturedItemTitle = ({
 			// @ts-ignore
 			background={background}
 			gap="x-large"
+			padding='3x-large'
 			className={classes}
 		>
 			{children}

@@ -1,0 +1,4 @@
+.wrapper {
+  max-width: 600px;
+  padding: var(--cds-scale-x-large);
+} 

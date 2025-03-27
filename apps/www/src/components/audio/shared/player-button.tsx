@@ -10,7 +10,7 @@ import {
 	VolumeQuiet,
 } from 'cadence-icons'
 import classnames from 'classnames'
-import s from './player-button.module.scss'
+import s from './player-button.module.css'
 
 import type { PlayerButtonProps } from './types'
 

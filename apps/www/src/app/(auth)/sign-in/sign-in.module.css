@@ -1,0 +1,25 @@
+.login--wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  gap: var(--cds-scale-base);
+}
+
+.login--wrapper-inner {
+  max-width: 600px;
+  background: var(--cds-color-surface-primary);
+  border: 1px solid var(--cds-color-border-primary);
+  border-radius: var(--cds-radii-soft);
+}
+
+.login--content {
+  padding: var(--cds-scale-base);
+}
+
+@media (min-width: 768px) {
+  .login--content {
+    padding: var(--cds-scale-2x-large);
+  }
+} 

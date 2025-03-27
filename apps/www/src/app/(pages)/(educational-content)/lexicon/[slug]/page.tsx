@@ -10,7 +10,7 @@ import { Badge, Flex } from 'cadence-core'
 import { MusicNotation } from '@components/music-notation'
 import { AudioPlayer } from '@components/audio'
 
-import s from './lexicon-page.module.scss'
+import s from './lexicon-page.module.css'
 
 const client = sanityClient
 

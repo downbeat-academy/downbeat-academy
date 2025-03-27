@@ -1,0 +1,21 @@
+.unsubscribe--wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 75dvh;
+}
+
+.unsubscribe--wrapper-inner {
+  width: 600px;
+  background: var(--cds-color-surface-primary);
+  border: 1px solid var(--cds-color-border-primary);
+  border-radius: var(--cds-radii-soft);
+  padding: var(--cds-scale-base);
+}
+
+@media (min-width: 768px) {
+  .unsubscribe--wrapper-inner {
+    padding: var(--cds-scale-2x-large);
+  }
+} 

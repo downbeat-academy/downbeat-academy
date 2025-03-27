@@ -1,0 +1,20 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: var(--cds-color-surface-primary);
+  padding: var(--cds-scale-base) var(--cds-scale-large);
+  gap: var(--cds-scale-x-small);
+}
+
+.root:hover {
+  background: var(--cds-color-surface-faint);
+}
+
+.root:hover > h2 {
+  color: var(--cds-color-foreground-interactive-hover);
+}
+
+.root:not(:last-child) {
+  border-bottom: 1px solid var(--cds-color-border-primary);
+} 

@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+}
+
+/* Direction */
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+/* Gap */
+.none {
+  gap: 0;
+}
+
+.small {
+  gap: var(--cds-scale-small);
+}
+
+.medium {
+  gap: var(--cds-scale-base);
+}
+
+.large {
+  gap: var(--cds-scale-large);
+}
+
+.wrap {
+  flex-wrap: wrap;
+} 

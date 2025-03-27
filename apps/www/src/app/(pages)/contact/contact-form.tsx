@@ -17,7 +17,7 @@ import {
 import { Button } from '@components/button'
 import { useToast } from '@components/toast'
 import { sendEmail } from '@actions/email/send-email'
-import s from './contact-form.module.scss'
+import s from './contact-form.module.css'
 
 export function ContactForm() {
 	const { toast } = useToast()

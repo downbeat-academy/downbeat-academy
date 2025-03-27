@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './sidebar.module.scss'
+import s from './sidebar.module.css'
 
 import type { SidebarProps } from './types'
 

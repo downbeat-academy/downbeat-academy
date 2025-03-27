@@ -1,0 +1,7 @@
+.cds-textarea--root {
+  font-family: var(--cds-typography-font-family-productive-body);
+  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  border-radius: var(--cds-radii-medium);
+  border: 1px solid var(--cds-color-border-primary);
+  padding: var(--cds-scale-small);
+} 

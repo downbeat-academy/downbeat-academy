@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './helper-text.module.scss'
+import s from './helper-text.module.css'
 
 import type { HelperTextProps } from '../types'
 

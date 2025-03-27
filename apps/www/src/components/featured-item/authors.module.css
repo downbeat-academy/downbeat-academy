@@ -1,0 +1,6 @@
+.root {
+  grid-area: description;
+  padding: var(--cds-scale-3x-large);
+  background: var(--cds-color-surface-primary);
+  outline: 1px solid var(--cds-color-border-primary);
+} 

@@ -78,7 +78,6 @@
 		"@types/react-dom": "^18.3.1",
 		"cypress": "^13.17.0",
 		"drizzle-kit": "^0.30.5",
-		"sass": "^1.83.4",
 		"typescript": "^5.7.3"
 	}
 }

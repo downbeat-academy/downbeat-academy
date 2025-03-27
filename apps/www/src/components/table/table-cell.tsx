@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classnames from 'classnames'
-import s from './table-cell.module.scss'
+import s from './table-cell.module.css'
 
 interface TableCellProps {
 	alignment?: 'start' | 'end'

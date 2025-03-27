@@ -1,0 +1,11 @@
+.root {
+  margin-bottom: var(--cds-scale-2x-large);
+}
+
+.content {
+  background: var(--cds-color-surface-primary);
+}
+
+.collapse {
+  margin-bottom: 0;
+} 

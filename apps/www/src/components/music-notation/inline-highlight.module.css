@@ -1,0 +1,17 @@
+.root {
+  font-family: var(--cds-typography-font-family-mono);
+  font-weight: bold;
+  background: var(--cds-color-palette-blueberry-50);
+  color: var(--cds-color-palette-blueberry-600);
+  border: 1px solid var(--cds-color-palette-blueberry-300);
+  border-radius: var(--cds-radii-medium);
+  padding: 0 var(--cds-scale-2x-small);
+  line-height: 1.3;
+  display: inline-flex;
+  margin: 0 var(--cds-scale-3x-small);
+}
+
+.root sup {
+  font-size: 0.75rem;
+  font-family: var(--cds-typography-font-family-music-notation);
+} 

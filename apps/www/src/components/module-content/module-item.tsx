@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './module-item.module.scss'
+import s from './module-item.module.css'
 
 import type { ModuleItemProps } from './types'
 

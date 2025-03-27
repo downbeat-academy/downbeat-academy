@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from '../hover-card.module.scss'
+import s from '../hover-card.module.css'
 
 type HoverCardMainProps = {
 	children: React.ReactNode

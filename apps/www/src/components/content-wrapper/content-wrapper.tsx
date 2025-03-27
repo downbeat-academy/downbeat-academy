@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './content-wrapper.module.scss'
+import s from './content-wrapper.module.css'
 
 import type { ContentWrapperProps } from './types'
 
