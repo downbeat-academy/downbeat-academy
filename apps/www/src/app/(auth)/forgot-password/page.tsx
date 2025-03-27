@@ -5,7 +5,7 @@ import { auth } from "@lib/auth/auth"
 import { Text } from 'cadence-core'
 import { Link } from '@components/link'
 import { ForgotPasswordForm } from "./forgot-password-form"
-import s from './forgot-password.module.scss'
+import s from './forgot-password.module.css'
 
 export const metadata: Metadata = {
   title: 'Reset Password 🎵 Downbeat Academy',

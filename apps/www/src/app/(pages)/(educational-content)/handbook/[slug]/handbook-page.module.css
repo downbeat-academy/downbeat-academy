@@ -1,0 +1,13 @@
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cds-scale-x-small);
+  padding: var(--cds-scale-base);
+  border-bottom: 1px solid var(--cds-color-border-primary);
+}
+
+.rich-text {
+  padding: var(--cds-scale-base) 0;
+} 
