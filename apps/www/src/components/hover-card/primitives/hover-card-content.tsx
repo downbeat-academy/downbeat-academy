@@ -2,7 +2,7 @@
 
 import { forwardRef } from 'react'
 import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
-import s from '../hover-card.module.scss'
+import s from '../hover-card.module.css'
 
 const HoverCardContent = forwardRef<
 	React.ElementRef<typeof HoverCardPrimitive.Content>,
