@@ -28,8 +28,8 @@ function SignOutButton() {
 
 const NavContent = ({ links, session }) => {
 	const route = usePathname()
-
 	const [navToggled, setNavToggled] = useState(false)
+	const [isScrolled, setIsScrolled] = useState(false)
 
 	const handleNavToggled = () => {
 		setNavToggled(!navToggled)
@@ -42,6 +42,16 @@ const NavContent = ({ links, session }) => {
 			window.dispatchEvent(new Event('auth-event'))
 		}
 	}
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollPosition = window.scrollY
+			setIsScrolled(scrollPosition > 0)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
 
 	useEffect(() => {
 		if (navToggled) {
@@ -97,8 +107,12 @@ const NavContent = ({ links, session }) => {
 		[navToggled ? s['nav-links-wrapper--nav-toggled'] : s['nav-links-wrapper']],
 	])
 
+	const rootClasses = classnames(s.root, {
+		[s.scrolled]: isScrolled
+	})
+
 	return (
-		<div className={s.root}>
+		<div className={rootClasses}>
 			<div className={s.logo}>
 				<Link href="/">
 					<LogoLockup width={180} color='brand' />
