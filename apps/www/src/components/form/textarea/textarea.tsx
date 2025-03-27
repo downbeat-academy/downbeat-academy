@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './textarea.module.scss'
+import s from './textarea.module.css'
 
 import type { TextareaProps } from '../types'
 

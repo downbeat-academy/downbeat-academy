@@ -1,6 +1,6 @@
 import classnames from 'classnames'
 import { forwardRef } from 'react'
-import s from './input.module.scss'
+import s from './input.module.css'
 
 import type { InputProps } from '../types'
 
