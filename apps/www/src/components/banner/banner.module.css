@@ -1,0 +1,16 @@
+.banner--root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--cds-scale-base);
+  background: var(--cds-color-surface-high-contrast);
+  color: var(--cds-color-foreground-high-contrast);
+  padding: var(--cds-scale-x-small) var(--cds-scale-x-large);
+}
+
+@media (max-width: 600px) {
+  .banner--root {
+    flex-direction: column;
+  }
+} 

@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './banner-actions.module.scss'
+import s from './banner-actions.module.css'
 
 const BannerActions = ({ children }: { children: React.ReactNode }) => {
 	const classes = classnames([s[`banner-actions--wrapper`]])

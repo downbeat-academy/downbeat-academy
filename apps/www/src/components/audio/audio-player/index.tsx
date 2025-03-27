@@ -5,7 +5,7 @@ import { Controls } from '../shared/controls'
 import { DisplayTrack } from '../shared/display-track'
 import { ProgressBar } from '../shared/progress-bar'
 
-import s from './audio-player.module.scss'
+import s from './audio-player.module.css'
 
 interface AudioPlayerProps {
 	tracks: any[]
