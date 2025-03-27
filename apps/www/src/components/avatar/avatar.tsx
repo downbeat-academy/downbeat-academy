@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import BoringAvatar from 'boring-avatars'
 import classnames from 'classnames'
-import s from './avatar.module.scss'
+import s from './avatar.module.css'
 
 import type { AvatarProps } from './types'
 

@@ -6,7 +6,6 @@ import { Link } from '@components/link'
 import { Flex } from 'cadence-core'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/link-resolver'
-import s from './author-metadata.module.scss'
 
 import type { AuthorMetadataProps } from './types'
 
@@ -17,7 +16,7 @@ const AuthorMetadata = ({
 	className,
 	date,
 }: AuthorMetadataProps) => {
-	const classes = classnames(s.root, className)
+	const classes = classnames(className)
 
 	const mapAuthorImages = authors.map((authorImage) => {
 		return (

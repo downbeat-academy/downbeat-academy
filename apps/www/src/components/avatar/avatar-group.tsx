@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './avatar-group.module.scss'
+import s from './avatar-group.module.css'
 
 import type { AvatarGroupProps } from './types'
 
