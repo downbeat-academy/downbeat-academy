@@ -2,7 +2,7 @@ import Img from 'next/image'
 import classnames from 'classnames'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { Text } from 'cadence-core'
-import s from './main-image.module.scss'
+import s from './main-image.module.css'
 
 import type { MainImageProps } from './types'
 
