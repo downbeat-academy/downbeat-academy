@@ -1,0 +1,24 @@
+.content-wrapper--root {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  margin: 0 var(--cds-scale-base);
+}
+
+@media (min-width: 768px) {
+  .content-wrapper--root {
+    margin: 0 var(--cds-scale-x-large);
+  }
+}
+
+@media (min-width: 1000px) {
+  .content-wrapper--root {
+    margin: 0 var(--cds-scale-2x-large);
+  }
+}
+
+@media (min-width: 1200px) {
+  .content-wrapper--root {
+    margin: 0 var(--cds-scale-3x-large);
+  }
+} 
