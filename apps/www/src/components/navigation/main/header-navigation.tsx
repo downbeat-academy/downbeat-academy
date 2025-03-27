@@ -187,7 +187,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 					)}
 				</Banner.Actions>
 			</Banner.Root>
-			<NavContent links={navData} />
+			<NavContent links={navData} session={session} />
 		</header>
 	)
 }
