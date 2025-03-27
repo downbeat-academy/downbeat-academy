@@ -5,7 +5,7 @@ import type { FeaturedItemDescriptionProps } from './types'
 
 const FeaturedItemDescription = ({ children }) => {
 	return (
-		<Flex tag="div" className={s.root}>
+		<Flex tag="div" className={s.root} padding='3x-large'>
 			{children}
 		</Flex>
 	)

@@ -16,6 +16,7 @@ const FeaturedItemTitle = ({
 			// @ts-ignore
 			background={background}
 			gap="x-large"
+			padding='3x-large'
 			className={classes}
 		>
 			{children}

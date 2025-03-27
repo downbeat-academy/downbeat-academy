@@ -1,5 +1,4 @@
 .root {
   grid-area: title;
-  padding: var(--cds-scale-3x-large);
   outline: 1px solid var(--cds-color-border-primary);
 } 
