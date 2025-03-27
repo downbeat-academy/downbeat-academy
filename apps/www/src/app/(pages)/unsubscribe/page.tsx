@@ -1,7 +1,7 @@
 import { UnsubscribeForm } from './unsubscribe-form'
 import { Text } from 'cadence-core'
 import { Suspense } from 'react'
-import s from './unsubscribe.module.scss'
+import s from './unsubscribe.module.css'
 
 export default function UnsubscribePage() {
 	return (
