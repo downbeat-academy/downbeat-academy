@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import s from '../dialog.module.scss'
+import s from '../dialog.module.css'
 
 const DialogTitle = forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Title>,

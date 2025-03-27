@@ -1,4 +1,4 @@
-import s from '../dialog.module.scss'
+import s from '../dialog.module.css'
 
 const DialogFooter = ({
 	className,

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { X } from 'cadence-icons'
-import s from '../dialog.module.scss'
+import s from '../dialog.module.css'
 
 import { DialogPortal } from '../dialog'
 import { DialogOverlay } from './overlay'
