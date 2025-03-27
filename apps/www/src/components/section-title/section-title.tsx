@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import s from './section-title.module.scss'
+import s from './section-title.module.css'
 
 import type { SectionTitleProps } from './types'
 
