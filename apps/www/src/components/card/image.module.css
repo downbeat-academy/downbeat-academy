@@ -1,0 +1,8 @@
+.root {
+  position: relative;
+  flex-basis: 250px;
+}
+
+.root a img {
+  object-fit: cover;
+} 
