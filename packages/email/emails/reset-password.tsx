@@ -1,6 +1,5 @@
 import {
   Body,
-  Button,
   Container,
   Head,
   Heading,
@@ -12,6 +11,7 @@ import {
   Text,
 } from '@react-email/components';
 import * as React from 'react';
+import { Button } from '../components/button';
 
 interface ResetPasswordEmailProps {
   name?: string;
@@ -34,7 +34,11 @@ export default function ResetPasswordEmail({
             We received a request to reset your password for your Downbeat Academy account. Click the button below to choose a new password:
           </Text>
           <Section style={buttonContainer}>
-            <Button style={button} href={resetUrl}>
+            <Button 
+              href={resetUrl}
+              type="primary"
+              size="medium"
+            >
               Reset Password
             </Button>
           </Section>
@@ -82,18 +86,6 @@ const text = {
 
 const buttonContainer = {
   margin: '24px 0',
-};
-
-const button = {
-  backgroundColor: '#000000',
-  borderRadius: '3px',
-  color: '#fff',
-  fontSize: '14px',
-  fontWeight: '600',
-  lineHeight: '100%',
-  textDecoration: 'none',
-  textAlign: 'center' as const,
-  padding: '12px 24px',
 };
 
 const hr = {

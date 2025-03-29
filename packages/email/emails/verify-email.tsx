@@ -9,8 +9,8 @@ import {
   Text,
   Link,
   Hr,
-  Button,
 } from '@react-email/components'
+import { Button } from '../components/button'
 
 type VerifyEmailProps = {
   name: string
@@ -34,19 +34,8 @@ const VerifyEmail = ({ name, verificationUrl }: VerifyEmailProps) => {
           </Text>
           <Button 
             href={verificationUrl}
-            style={{
-              backgroundColor: '#4F46E5',
-              borderRadius: '6px',
-              color: '#ffffff',
-              display: 'inline-block',
-              fontSize: '16px',
-              fontWeight: '600',
-              lineHeight: '100%',
-              padding: '12px 24px',
-              textDecoration: 'none',
-              textAlign: 'center',
-              margin: '24px 0',
-            }}
+            type="primary"
+            size="medium"
           >
             Verify Email Address
           </Button>
