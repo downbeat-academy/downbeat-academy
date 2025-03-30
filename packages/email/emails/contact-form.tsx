@@ -10,6 +10,7 @@ import { Text } from '../components/text'
 import { Heading } from '../components/heading'
 import { Body } from '../components/body'
 import { Container } from '../components/container'
+import { Link } from '../components/link'
 
 type ContactFormEmailProps = {
 	name: string
@@ -31,10 +32,11 @@ const ContactFormEmail = ({ name, email, message }: ContactFormEmailProps) => {
 					</Heading>
 					<Text size="base" color="primary">
 						<strong>
-							<a href={`mailto:${email}`} style={{ color: '#2723d8', textDecoration: 'none' }}>
+							<Link href={`mailto:${email}`} color="brand">
 								{name}
-							</a>{' '}</strong>
+							</Link>{' '}
 							sent you a message through the Downbeat Academy contact form.
+						</strong>
 					</Text>
 					<Section style={messageContainer}>
 						<Text size="base" color="primary">

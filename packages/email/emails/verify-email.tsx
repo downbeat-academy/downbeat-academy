@@ -3,14 +3,15 @@ import {
   Head,
   Html,
   Preview,
-  Link,
   Hr,
+  Section,
 } from '@react-email/components'
 import { Button } from '../components/button'
 import { Text } from '../components/text'
 import { Heading } from '../components/heading'
 import { Body } from '../components/body'
 import { Container } from '../components/container'
+import { Link } from '../components/link'
 
 type VerifyEmailProps = {
   name: string
@@ -32,29 +33,40 @@ const VerifyEmail = ({ name, verificationUrl }: VerifyEmailProps) => {
           <Text size="base" color="primary">
             Hi {name}, thanks for signing up! Please verify your email address to get started.
           </Text>
-          <Button 
-            href={verificationUrl}
-            type="primary"
-            size="medium"
-          >
-            Verify Email Address
-          </Button>
+          <Section style={buttonContainer}>
+            <Button 
+              href={verificationUrl}
+              type="primary"
+              size="medium"
+            >
+              Verify Email Address
+            </Button>
+          </Section>
           <Text size="base" color="primary">
             Or copy and paste this link into your browser:
           </Text>
-          <Text size="base" color="brand" style={{ wordBreak: 'break-all' }}>
-            <Link href={verificationUrl} style={{ color: '#2723d8', textDecoration: 'underline' }}>
+          <Text size="base" style={{ wordBreak: 'break-all' }}>
+            <Link href={verificationUrl} color="brand">
               {verificationUrl}
             </Link>
           </Text>
-          <Hr style={{ margin: '24px 0', borderColor: '#323a5c' }} />
+          <Hr style={hr} />
           <Text size="sm" color="muted">
-            This link will expire in 24 hours. If you didn't sign up for Downbeat Academy, you can safely ignore this email.
+            Downbeat Academy - Music Education for Everyone
           </Text>
         </Container>
       </Body>
     </Html>
   )
 }
+
+const buttonContainer = {
+  margin: '24px 0',
+};
+
+const hr = {
+  borderColor: '#323a5c',
+  margin: '20px 0',
+};
 
 export default VerifyEmail 
