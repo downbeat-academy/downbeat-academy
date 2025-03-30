@@ -28,7 +28,7 @@ export default function ResetPasswordEmail({
       <Preview>Reset your Downbeat Academy password</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading level="h1" color="primary">
+          <Heading level="h1" color="brand">
             Reset Your Password
           </Heading>
           <Text size="base" color="primary">

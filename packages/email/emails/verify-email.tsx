@@ -26,7 +26,7 @@ const VerifyEmail = ({ name, verificationUrl }: VerifyEmailProps) => {
       <Preview>{previewText}</Preview>
       <Body style={{ backgroundColor: '#ffffff', margin: '0 auto' }}>
         <Container style={{ padding: '20px', margin: '0 auto' }}>
-          <Heading level="h1" color="primary">
+          <Heading level="h1" color="brand">
             Welcome to Downbeat Academy!
           </Heading>
           <Text size="base" color="primary">

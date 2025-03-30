@@ -25,7 +25,7 @@ const ContactFormEmail = ({ name, email, message }: ContactFormEmailProps) => {
 			<Preview>{previewText}</Preview>
 			<Body style={{ backgroundColor: '#ffffff', margin: '0 auto' }}>
 				<Container style={{ padding: '20px', margin: '0 auto' }}>
-					<Heading level="h1" color="primary">
+					<Heading level="h1" color="brand">
 						Downbeat Academy contact form submission
 					</Heading>
 					<Hr style={{ margin: '24px 0', borderColor: '#E5E7EB' }} />
