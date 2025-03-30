@@ -6,11 +6,13 @@ import {
 	Hr,
 	Section,
 } from '@react-email/components'
-import { Text } from '../components/text'
-import { Heading } from '../components/heading'
-import { Body } from '../components/body'
-import { Container } from '../components/container'
-import { Link } from '../components/link'
+import {
+	Body,
+	Container,
+	Heading,
+	Link,
+	Text,
+} from '../components'
 
 type FileDownloadProps = {
 	file: string

@@ -26,8 +26,8 @@ export type ContainerPadding =
 
 const baseStyles = {
   margin: '0 auto',
-  padding: '24px',
   borderRadius: '4px',
+  width: '100%',
 }
 
 const paddingStyles = {
@@ -38,10 +38,10 @@ const paddingStyles = {
     padding: '16px',
   },
   medium: {
-    padding: '24px',
+    padding: '20px',
   },
   large: {
-    padding: '32px',
+    padding: '24px',
   },
 }
 

@@ -6,12 +6,14 @@ import {
   Hr,
   Section,
 } from '@react-email/components'
-import { Button } from '../components/button'
-import { Text } from '../components/text'
-import { Heading } from '../components/heading'
-import { Body } from '../components/body'
-import { Container } from '../components/container'
-import { Link } from '../components/link'
+import {
+  Body,
+  Button,
+  Container,
+  Heading,
+  Link,
+  Text,
+} from '../components'
 
 type VerifyEmailProps = {
   name: string
