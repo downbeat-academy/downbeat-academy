@@ -1,7 +1,5 @@
 import * as React from 'react'
 import {
-  Body,
-  Container,
   Head,
   Html,
   Preview,
@@ -11,6 +9,8 @@ import {
 import { Button } from '../components/button'
 import { Text } from '../components/text'
 import { Heading } from '../components/heading'
+import { Body } from '../components/body'
+import { Container } from '../components/container'
 
 type VerifyEmailProps = {
   name: string
@@ -24,8 +24,8 @@ const VerifyEmail = ({ name, verificationUrl }: VerifyEmailProps) => {
     <Html>
       <Head />
       <Preview>{previewText}</Preview>
-      <Body style={{ backgroundColor: '#ffffff', margin: '0 auto' }}>
-        <Container style={{ padding: '20px', margin: '0 auto' }}>
+      <Body>
+        <Container background="primary" borderColor="primary" padding="medium">
           <Heading level="h1" color="brand">
             Welcome to Downbeat Academy!
           </Heading>
@@ -43,11 +43,11 @@ const VerifyEmail = ({ name, verificationUrl }: VerifyEmailProps) => {
             Or copy and paste this link into your browser:
           </Text>
           <Text size="base" color="brand" style={{ wordBreak: 'break-all' }}>
-            <Link href={verificationUrl} style={{ color: '#4F46E5', textDecoration: 'underline' }}>
+            <Link href={verificationUrl} style={{ color: '#2723d8', textDecoration: 'underline' }}>
               {verificationUrl}
             </Link>
           </Text>
-          <Hr style={{ margin: '24px 0', borderColor: '#E5E7EB' }} />
+          <Hr style={{ margin: '24px 0', borderColor: '#323a5c' }} />
           <Text size="sm" color="muted">
             This link will expire in 24 hours. If you didn't sign up for Downbeat Academy, you can safely ignore this email.
           </Text>

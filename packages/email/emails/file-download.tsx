@@ -1,7 +1,5 @@
 import * as React from 'react'
 import {
-	Body,
-	Container,
 	Head,
 	Html,
 	Preview,
@@ -9,6 +7,8 @@ import {
 } from '@react-email/components'
 import { Text } from '../components/text'
 import { Heading } from '../components/heading'
+import { Body } from '../components/body'
+import { Container } from '../components/container'
 
 type FileDownloadProps = {
 	file: string
@@ -22,15 +22,15 @@ const FileDownload = ({ file, title }: FileDownloadProps) => {
 		<Html>
 			<Head />
 			<Preview>{previewText}</Preview>
-			<Body style={{ backgroundColor: '#ffffff', margin: '0 auto' }}>
-				<Container style={{ padding: '20px', margin: '0 auto' }}>
+			<Body>
+				<Container background="primary" borderColor="primary" padding="medium">
 					<Heading level="h1" color="brand">
 						Your download is here!
 					</Heading>
-					<Hr style={{ margin: '24px 0', borderColor: '#E5E7EB' }} />
+					<Hr style={{ margin: '24px 0', borderColor: '#323a5c' }} />
 					<Text size="base" color="primary">
 						<strong>
-							<a href={file} download style={{ color: '#4F46E5', textDecoration: 'none' }}>
+							<a href={file} download style={{ color: '#2723d8', textDecoration: 'none' }}>
 								{title}
 							</a>
 						</strong>

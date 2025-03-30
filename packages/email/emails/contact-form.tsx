@@ -1,14 +1,15 @@
 import * as React from 'react'
 import {
-	Body,
-	Container,
 	Head,
 	Html,
 	Preview,
 	Hr,
+	Section,
 } from '@react-email/components'
 import { Text } from '../components/text'
 import { Heading } from '../components/heading'
+import { Body } from '../components/body'
+import { Container } from '../components/container'
 
 type ContactFormEmailProps = {
 	name: string
@@ -23,30 +24,43 @@ const ContactFormEmail = ({ name, email, message }: ContactFormEmailProps) => {
 		<Html>
 			<Head />
 			<Preview>{previewText}</Preview>
-			<Body style={{ backgroundColor: '#ffffff', margin: '0 auto' }}>
-				<Container style={{ padding: '20px', margin: '0 auto' }}>
+			<Body>
+				<Container background="primary" borderColor="primary" padding="medium">
 					<Heading level="h1" color="brand">
 						Downbeat Academy contact form submission
 					</Heading>
-					<Hr style={{ margin: '24px 0', borderColor: '#E5E7EB' }} />
 					<Text size="base" color="primary">
 						<strong>
-							<a href={`mailto:${email}`} style={{ color: '#4F46E5', textDecoration: 'none' }}>
+							<a href={`mailto:${email}`} style={{ color: '#2723d8', textDecoration: 'none' }}>
 								{name}
-							</a>{' '}
+							</a>{' '}</strong>
 							sent you a message through the Downbeat Academy contact form.
-						</strong>
 					</Text>
-					<Text size="base" color="primary">
-						<strong>Message:</strong>
-					</Text>
-					<Text size="base" color="primary" style={{ whiteSpace: 'pre-wrap' }}>
-						{message}
+					<Section style={messageContainer}>
+						<Text size="base" color="primary">
+							<strong>Message:</strong>
+						</Text>
+						<Text size="base" color="primary" style={{ whiteSpace: 'pre-wrap' }}>
+							{message}
+						</Text>
+					</Section>
+					<Hr style={hr} />
+					<Text size="sm" color="muted">
+						Downbeat Academy - Music Education for Everyone
 					</Text>
 				</Container>
 			</Body>
 		</Html>
 	)
+}
+
+const messageContainer = {
+	margin: '24px 0',
+}
+
+const hr = {
+	borderColor: '#323a5c',
+	margin: '20px 0',
 }
 
 export default ContactFormEmail
