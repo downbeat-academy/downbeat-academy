@@ -1,15 +1,18 @@
 import * as React from 'react'
 import {
-	Body,
-	Container,
 	Head,
-	Heading,
 	Html,
 	Preview,
-	Text,
-	Link,
 	Hr,
+	Section,
 } from '@react-email/components'
+import {
+	Body,
+	Container,
+	Heading,
+	Link,
+	Text,
+} from '../components'
 
 type ContactFormEmailProps = {
 	name: string
@@ -25,23 +28,43 @@ const ContactFormEmail = ({ name, email, message }: ContactFormEmailProps) => {
 			<Head />
 			<Preview>{previewText}</Preview>
 			<Body>
-				<Container>
-					<Heading as="h1">Downbeat Academy contact form submission</Heading>
-					<Hr />
-					<Text>
+				<Container background="primary" borderColor="primary" padding="medium">
+					<Heading level="h1" color="brand">
+						Downbeat Academy contact form submission
+					</Heading>
+					<Text size="base" color="primary">
 						<strong>
-							<Link href={`mailto:${email}`}>{name}</Link> sent you a message
-							through the Downbeat Academy contact form.
+							<Link href={`mailto:${email}`} color="brand">
+								{name}
+							</Link>{' '}
+							sent you a message through the Downbeat Academy contact form.
 						</strong>
 					</Text>
-					<Text>
-						<strong>Message:</strong>
+					<Section style={messageContainer}>
+						<Text size="base" color="primary">
+							<strong>Message:</strong>
+						</Text>
+						<Text size="base" color="primary" style={{ whiteSpace: 'pre-wrap' }}>
+							{message}
+						</Text>
+					</Section>
+					<Hr style={hr} />
+					<Text size="sm" color="muted">
+						Downbeat Academy - Music Education for Everyone
 					</Text>
-					<Text>{message}</Text>
 				</Container>
 			</Body>
 		</Html>
 	)
+}
+
+const messageContainer = {
+	margin: '24px 0',
+}
+
+const hr = {
+	borderColor: '#323a5c',
+	margin: '20px 0',
 }
 
 export default ContactFormEmail

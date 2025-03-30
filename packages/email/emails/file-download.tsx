@@ -1,15 +1,18 @@
 import * as React from 'react'
 import {
-	Body,
-	Container,
 	Head,
-	Heading,
 	Html,
 	Preview,
-	Text,
-	Link,
 	Hr,
+	Section,
 } from '@react-email/components'
+import {
+	Body,
+	Container,
+	Heading,
+	Link,
+	Text,
+} from '../components'
 
 type FileDownloadProps = {
 	file: string
@@ -24,20 +27,30 @@ const FileDownload = ({ file, title }: FileDownloadProps) => {
 			<Head />
 			<Preview>{previewText}</Preview>
 			<Body>
-				<Container>
-					<Heading as="h1">Your download is here!</Heading>
-					<Hr />
-					<Text>
+				<Container background="primary" borderColor="primary" padding="medium">
+					<Heading level="h1" color="brand">
+						Your download is here!
+					</Heading>
+					<Text size="base" color="primary">
 						<strong>
-							<Link href={file} download>
+							<Link href={file} color="brand" download>
 								{title}
 							</Link>
 						</strong>
+					</Text>
+					<Hr style={hr} />
+					<Text size="sm" color="muted">
+						Downbeat Academy - Music Education for Everyone
 					</Text>
 				</Container>
 			</Body>
 		</Html>
 	)
+}
+
+const hr = {
+	borderColor: '#323a5c',
+	margin: '20px 0',
 }
 
 export default FileDownload

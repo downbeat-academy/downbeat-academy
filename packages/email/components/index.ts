@@ -1,0 +1,6 @@
+export { Body } from './body'
+export { Button } from './button'
+export { Container } from './container'
+export { Heading } from './heading'
+export { Link } from './link'
+export { Text } from './text' 
