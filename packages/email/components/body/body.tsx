@@ -13,15 +13,6 @@ export const Body = ({
 }: BodyProps) => {
   return (
     <>
-      <style>
-        {`
-          @media only screen and (max-width: 600px) {
-            .responsive-body {
-              padding: 12px !important;
-            }
-          }
-        `}
-      </style>
       <ReactEmailBody
         style={{
           ...getBodyStyles(),

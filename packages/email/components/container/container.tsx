@@ -19,27 +19,6 @@ export const Container = ({
 }: ContainerProps) => {
   return (
     <>
-      <style>
-        {`
-          @media only screen and (max-width: 600px) {
-            .responsive-container {
-              padding: var(--mobile-padding) !important;
-            }
-            .responsive-container.padding-none {
-              padding: 0 !important;
-            }
-            .responsive-container.padding-small {
-              --mobile-padding: 12px;
-            }
-            .responsive-container.padding-medium {
-              --mobile-padding: 14px;
-            }
-            .responsive-container.padding-large {
-              --mobile-padding: 16px;
-            }
-          }
-        `}
-      </style>
       <ReactEmailContainer
         style={{
           ...getContainerStyles(background, borderColor, padding),
