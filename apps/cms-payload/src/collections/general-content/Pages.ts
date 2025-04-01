@@ -1,7 +1,8 @@
-import { Metadata } from '../fields/Metadata'
-import { Blocks } from '../fields/Blocks'
+import { Metadata } from '../../fields/Metadata'
+import { Blocks } from '../../fields/Blocks'
 
 import type { CollectionConfig } from 'payload'
+import { slugField } from '@/fields/slug'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -30,7 +31,8 @@ export const Pages: CollectionConfig = {
             Blocks
           ]
         },
-      ]
+      ],
     },
-  ]
+    ...slugField()
+  ],
 }
