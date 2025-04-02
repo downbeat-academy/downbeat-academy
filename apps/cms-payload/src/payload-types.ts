@@ -371,7 +371,6 @@ export interface Instrument {
 export interface Person {
   id: number;
   name: string;
-  slug: string;
   socialLinks?:
     | {
         socialLink?: {
@@ -393,14 +392,29 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
-  image?: (number | null) | Media;
-  avatar?: (number | null) | Media;
-  instruments?:
-    | {
-        instrument?: (number | Instrument)[] | null;
-        id?: string | null;
-      }[]
-    | null;
+  metadata?: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title?: string | null;
+    /**
+     * Automatically generated from the title if left empty
+     */
+    slug?: string | null;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description?: string | null;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   blocks?:
     | {
         content?: {
@@ -660,7 +674,6 @@ export interface InstrumentsSelect<T extends boolean = true> {
  */
 export interface PeopleSelect<T extends boolean = true> {
   name?: T;
-  slug?: T;
   socialLinks?:
     | T
     | {
@@ -672,13 +685,15 @@ export interface PeopleSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  image?: T;
-  avatar?: T;
-  instruments?:
+  metadata?:
     | T
     | {
-        instrument?: T;
-        id?: T;
+        title?: T;
+        slug?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
       };
   blocks?:
     | T
