@@ -132,30 +132,11 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  title?: string | null;
-  metadata?: {
-    /**
-     * Meta title (open graph) for SEO
-     */
-    title?: string | null;
-    /**
-     * Automatically generated from the title if left empty
-     */
-    slug?: string | null;
-    /**
-     * Meta description (open graph) for SEO
-     */
-    description?: string | null;
-    ogImage?: (number | null) | Media;
-    /**
-     * If checked, the page will not be indexed by search engines
-     */
-    noindex?: boolean | null;
-    /**
-     * If checked, the page will not be followed by search engines
-     */
-    nofollow?: boolean | null;
-  };
+  title: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
   blocks?:
     | {
         content?: {
@@ -178,6 +159,25 @@ export interface Page {
         blockType: 'richText';
       }[]
     | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -207,6 +207,10 @@ export interface Media {
 export interface Article {
   id: number;
   title?: string | null;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
   blocks?:
     | {
         content?: {
@@ -229,6 +233,25 @@ export interface Article {
         blockType: 'richText';
       }[]
     | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -239,19 +262,15 @@ export interface Article {
 export interface Category {
   id: number;
   title: string;
-  metadata?: {
+  metadata: {
     /**
      * Meta title (open graph) for SEO
      */
-    title?: string | null;
-    /**
-     * Automatically generated from the title if left empty
-     */
-    slug?: string | null;
+    title: string;
     /**
      * Meta description (open graph) for SEO
      */
-    description?: string | null;
+    description: string;
     ogImage?: (number | null) | Media;
     /**
      * If checked, the page will not be indexed by search engines
@@ -272,19 +291,15 @@ export interface Category {
 export interface Difficulty {
   id: number;
   title: string;
-  metadata?: {
+  metadata: {
     /**
      * Meta title (open graph) for SEO
      */
-    title?: string | null;
-    /**
-     * Automatically generated from the title if left empty
-     */
-    slug?: string | null;
+    title: string;
     /**
      * Meta description (open graph) for SEO
      */
-    description?: string | null;
+    description: string;
     ogImage?: (number | null) | Media;
     /**
      * If checked, the page will not be indexed by search engines
@@ -305,19 +320,15 @@ export interface Difficulty {
 export interface Genre {
   id: number;
   title: string;
-  metadata?: {
+  metadata: {
     /**
      * Meta title (open graph) for SEO
      */
-    title?: string | null;
-    /**
-     * Automatically generated from the title if left empty
-     */
-    slug?: string | null;
+    title: string;
     /**
      * Meta description (open graph) for SEO
      */
-    description?: string | null;
+    description: string;
     ogImage?: (number | null) | Media;
     /**
      * If checked, the page will not be indexed by search engines
@@ -338,19 +349,15 @@ export interface Genre {
 export interface Instrument {
   id: number;
   title: string;
-  metadata?: {
+  metadata: {
     /**
      * Meta title (open graph) for SEO
      */
-    title?: string | null;
-    /**
-     * Automatically generated from the title if left empty
-     */
-    slug?: string | null;
+    title: string;
     /**
      * Meta description (open graph) for SEO
      */
-    description?: string | null;
+    description: string;
     ogImage?: (number | null) | Media;
     /**
      * If checked, the page will not be indexed by search engines
@@ -371,6 +378,10 @@ export interface Instrument {
 export interface Person {
   id: number;
   name: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
   socialLinks?:
     | {
         socialLink?: {
@@ -392,19 +403,17 @@ export interface Person {
         id?: string | null;
       }[]
     | null;
-  metadata?: {
+  image?: (number | null) | Media;
+  avatar?: (number | null) | Media;
+  metadata: {
     /**
      * Meta title (open graph) for SEO
      */
-    title?: string | null;
-    /**
-     * Automatically generated from the title if left empty
-     */
-    slug?: string | null;
+    title: string;
     /**
      * Meta description (open graph) for SEO
      */
-    description?: string | null;
+    description: string;
     ogImage?: (number | null) | Media;
     /**
      * If checked, the page will not be indexed by search engines
@@ -548,16 +557,7 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
-  metadata?:
-    | T
-    | {
-        title?: T;
-        slug?: T;
-        description?: T;
-        ogImage?: T;
-        noindex?: T;
-        nofollow?: T;
-      };
+  slug?: T;
   blocks?:
     | T
     | {
@@ -568,6 +568,15 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -578,6 +587,7 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface ArticlesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   blocks?:
     | T
     | {
@@ -588,6 +598,15 @@ export interface ArticlesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -602,7 +621,6 @@ export interface CategoriesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        slug?: T;
         description?: T;
         ogImage?: T;
         noindex?: T;
@@ -621,7 +639,6 @@ export interface DifficultiesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        slug?: T;
         description?: T;
         ogImage?: T;
         noindex?: T;
@@ -640,7 +657,6 @@ export interface GenresSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        slug?: T;
         description?: T;
         ogImage?: T;
         noindex?: T;
@@ -659,7 +675,6 @@ export interface InstrumentsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        slug?: T;
         description?: T;
         ogImage?: T;
         noindex?: T;
@@ -674,6 +689,7 @@ export interface InstrumentsSelect<T extends boolean = true> {
  */
 export interface PeopleSelect<T extends boolean = true> {
   name?: T;
+  slug?: T;
   socialLinks?:
     | T
     | {
@@ -685,11 +701,12 @@ export interface PeopleSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  image?: T;
+  avatar?: T;
   metadata?:
     | T
     | {
         title?: T;
-        slug?: T;
         description?: T;
         ogImage?: T;
         noindex?: T;

@@ -4,6 +4,7 @@ export const Slug: Field = {
   name: 'slug',
   type: 'text',
   label: 'Slug',
+  required: true,
   admin: {
     position: 'sidebar',
     description: 'Automatically generated from the title if left empty',

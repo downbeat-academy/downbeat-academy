@@ -1,26 +1,23 @@
 import type { Field } from 'payload'
-import { Slug } from './slug'
+
 export const Metadata: Field = {
   name: 'metadata',
   type: 'group',
-  label: 'Metadata',
-  admin: {
-
-  },
   fields: [
     {
       name: 'title',
       type: 'text',
       label: 'Title',
+      required: true,
       admin: {
         description: 'Meta title (open graph) for SEO'
       }
     },
-    Slug,
     {
       name: 'description',
       type: 'textarea',
       label: 'Description',
+      required: true,
       admin: {
         description: 'Meta description (open graph) for SEO'
       }

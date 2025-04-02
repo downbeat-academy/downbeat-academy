@@ -1,5 +1,6 @@
-import { Metadata } from '../../fields/Metadata'
-import { Blocks } from '../../fields/Blocks'
+import { Metadata } from '@/fields/Metadata'
+import { Blocks } from '@/fields/Blocks'
+import { Slug } from '@/fields/Slug'
 
 import type { CollectionConfig } from 'payload'
 
@@ -14,7 +15,7 @@ export const Articles: CollectionConfig = {
             type: 'tabs',
             tabs: [
                 {
-                    label: 'Metadata',
+                    label: 'Article Metadata',
                     fields: [
                         {
                             name: 'title',
@@ -22,7 +23,7 @@ export const Articles: CollectionConfig = {
                             label: 'Title',
                             validate: (value: string | undefined | null) => Boolean(value) || 'This field is required.',
                         },
-                        
+                        Slug,                        
                     ]
                 },
                 {
@@ -30,7 +31,13 @@ export const Articles: CollectionConfig = {
                     fields: [
                         Blocks
                     ]
-                    },
+                },
+                {
+                    label: 'SEO',
+                    fields: [
+                        Metadata,
+                    ]
+                }
             ]
         }
     ]
