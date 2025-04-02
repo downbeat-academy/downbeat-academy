@@ -1,14 +1,19 @@
 import type { Field } from 'payload'
-
+import { Slug } from './slug'
 export const Metadata: Field = {
   name: 'metadata',
   type: 'group',
+  label: 'Metadata',
+  admin: {
+
+  },
   fields: [
     {
-      name: 'metaTitle',
+      name: 'title',
       type: 'text',
-      label: 'Meta Title',
+      label: 'Title',
     },
+    Slug,
     {
       name: 'description',
       type: 'textarea',
@@ -21,19 +26,14 @@ export const Metadata: Field = {
       label: 'Open Graph Image',
     },
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'noindex',
-          type: 'checkbox',
-          label: 'No Index',
-        },
-        {
-          name: 'nofollow',
-          type: 'checkbox',
-          label: 'No Follow',
-        },
-      ]
-    }
+      name: 'noindex',
+      type: 'checkbox',
+      label: 'No Index',
+    },
+    {
+      name: 'nofollow',
+      type: 'checkbox',
+      label: 'No Follow',
+    },
   ],
 }

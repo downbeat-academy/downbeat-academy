@@ -1,3 +1,5 @@
+import { Metadata } from '../../fields/Metadata'
+
 import type { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
@@ -14,12 +16,13 @@ export const Categories: CollectionConfig = {
       required: true,
       unique: true,
     },
-    {
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
-      unique: true,
-      required: true,
-    }
+    Metadata,
+    // {
+    //   name: 'slug',
+    //   label: 'Slug',
+    //   type: 'text',
+    //   unique: true,
+    //   required: true,
+    // }
   ],
 }

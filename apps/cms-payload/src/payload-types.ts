@@ -134,7 +134,11 @@ export interface Page {
   id: number;
   title?: string | null;
   metadata?: {
-    metaTitle?: string | null;
+    title?: string | null;
+    /**
+     * Automatically generated from the title if left empty
+     */
+    slug?: string | null;
     description?: string | null;
     ogImage?: (number | null) | Media;
     noindex?: boolean | null;
@@ -223,7 +227,17 @@ export interface Article {
 export interface Category {
   id: number;
   title: string;
-  slug: string;
+  metadata?: {
+    title?: string | null;
+    /**
+     * Automatically generated from the title if left empty
+     */
+    slug?: string | null;
+    description?: string | null;
+    ogImage?: (number | null) | Media;
+    noindex?: boolean | null;
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -433,7 +447,8 @@ export interface PagesSelect<T extends boolean = true> {
   metadata?:
     | T
     | {
-        metaTitle?: T;
+        title?: T;
+        slug?: T;
         description?: T;
         ogImage?: T;
         noindex?: T;
@@ -479,7 +494,16 @@ export interface ArticlesSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        slug?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
