@@ -12,12 +12,18 @@ export const Metadata: Field = {
       name: 'title',
       type: 'text',
       label: 'Title',
+      admin: {
+        description: 'Meta title (open graph) for SEO'
+      }
     },
     Slug,
     {
       name: 'description',
       type: 'textarea',
       label: 'Description',
+      admin: {
+        description: 'Meta description (open graph) for SEO'
+      }
     },
     {
       name: 'ogImage',
@@ -29,11 +35,17 @@ export const Metadata: Field = {
       name: 'noindex',
       type: 'checkbox',
       label: 'No Index',
+      admin: {
+        description: 'If checked, the page will not be indexed by search engines'
+      }
     },
     {
       name: 'nofollow',
       type: 'checkbox',
       label: 'No Follow',
+      admin: {
+        description: 'If checked, the page will not be followed by search engines'
+      }
     },
   ],
 }

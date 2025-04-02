@@ -17,12 +17,5 @@ export const Categories: CollectionConfig = {
       unique: true,
     },
     Metadata,
-    // {
-    //   name: 'slug',
-    //   label: 'Slug',
-    //   type: 'text',
-    //   unique: true,
-    //   required: true,
-    // }
   ],
 }

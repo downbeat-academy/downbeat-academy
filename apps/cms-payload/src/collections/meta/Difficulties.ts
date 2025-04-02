@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { Metadata } from '../../fields/Metadata'
 
 export const Difficulties: CollectionConfig = {
   slug: 'difficulties',
@@ -13,12 +14,6 @@ export const Difficulties: CollectionConfig = {
         label: 'Title',
         required: true,
     },
-    {
-        name: 'slug',
-        label: 'Slug',
-        type: 'text',
-        unique: true,
-        required: true,
-    }
+    Metadata
   ],
 }

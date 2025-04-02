@@ -134,14 +134,26 @@ export interface Page {
   id: number;
   title?: string | null;
   metadata?: {
+    /**
+     * Meta title (open graph) for SEO
+     */
     title?: string | null;
     /**
      * Automatically generated from the title if left empty
      */
     slug?: string | null;
+    /**
+     * Meta description (open graph) for SEO
+     */
     description?: string | null;
     ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
     noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
     nofollow?: boolean | null;
   };
   blocks?:
@@ -228,14 +240,26 @@ export interface Category {
   id: number;
   title: string;
   metadata?: {
+    /**
+     * Meta title (open graph) for SEO
+     */
     title?: string | null;
     /**
      * Automatically generated from the title if left empty
      */
     slug?: string | null;
+    /**
+     * Meta description (open graph) for SEO
+     */
     description?: string | null;
     ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
     noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
     nofollow?: boolean | null;
   };
   updatedAt: string;
@@ -248,7 +272,29 @@ export interface Category {
 export interface Difficulty {
   id: number;
   title: string;
-  slug: string;
+  metadata?: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title?: string | null;
+    /**
+     * Automatically generated from the title if left empty
+     */
+    slug?: string | null;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description?: string | null;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -259,7 +305,29 @@ export interface Difficulty {
 export interface Genre {
   id: number;
   title: string;
-  slug: string;
+  metadata?: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title?: string | null;
+    /**
+     * Automatically generated from the title if left empty
+     */
+    slug?: string | null;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description?: string | null;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -270,7 +338,29 @@ export interface Genre {
 export interface Instrument {
   id: number;
   title: string;
-  slug: string;
+  metadata?: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title?: string | null;
+    /**
+     * Automatically generated from the title if left empty
+     */
+    slug?: string | null;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description?: string | null;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -513,7 +603,16 @@ export interface CategoriesSelect<T extends boolean = true> {
  */
 export interface DifficultiesSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        slug?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -523,7 +622,16 @@ export interface DifficultiesSelect<T extends boolean = true> {
  */
 export interface GenresSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        slug?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -533,7 +641,16 @@ export interface GenresSelect<T extends boolean = true> {
  */
 export interface InstrumentsSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        slug?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
