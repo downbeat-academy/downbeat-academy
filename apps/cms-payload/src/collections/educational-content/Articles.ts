@@ -7,6 +7,7 @@ export const Articles: CollectionConfig = {
     slug: 'articles',
     admin: {
         group: 'Educational Content',
+        useAsTitle: 'title',
     },
     fields: [
         {
@@ -27,9 +28,9 @@ export const Articles: CollectionConfig = {
                 {
                     label: 'Content',
                     fields: [
-                      Blocks
+                        Blocks
                     ]
-                  },
+                    },
             ]
         }
     ]
