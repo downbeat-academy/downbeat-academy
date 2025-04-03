@@ -97,8 +97,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    footer: Footer;
+  };
+  globalsSelect: {
+    footer: FooterSelect<false> | FooterSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -790,6 +794,102 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  categories?:
+    | {
+        category?: {
+          title?: string | null;
+          links?:
+            | {
+                link?: {
+                  location?: ('internal' | 'customInternal' | 'external' | 'email' | 'phone') | null;
+                  text?: string | null;
+                  newTab?: boolean | null;
+                  internalLink?:
+                    | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'articles';
+                        value: number | Article;
+                      } | null)
+                    | ({
+                        relationTo: 'categories';
+                        value: number | Category;
+                      } | null)
+                    | ({
+                        relationTo: 'difficulties';
+                        value: number | Difficulty;
+                      } | null)
+                    | ({
+                        relationTo: 'genres';
+                        value: number | Genre;
+                      } | null)
+                    | ({
+                        relationTo: 'instruments';
+                        value: number | Instrument;
+                      } | null)
+                    | ({
+                        relationTo: 'people';
+                        value: number | Person;
+                      } | null);
+                  url?: string | null;
+                  internalPath?: string | null;
+                  phoneNumber?: string | null;
+                  emailAddress?: string | null;
+                };
+                id?: string | null;
+              }[]
+            | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  categories?:
+    | T
+    | {
+        category?:
+          | T
+          | {
+              title?: T;
+              links?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          location?: T;
+                          text?: T;
+                          newTab?: T;
+                          internalLink?: T;
+                          url?: T;
+                          internalPath?: T;
+                          phoneNumber?: T;
+                          emailAddress?: T;
+                        };
+                    id?: T;
+                  };
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
