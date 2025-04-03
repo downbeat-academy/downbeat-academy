@@ -317,28 +317,21 @@ export interface Article {
    */
   updatedDate?: string | null;
   excerpt?: string | null;
-  blocks?:
-    | {
-        content?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
-    | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -765,17 +758,7 @@ export interface ArticlesSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  blocks?:
-    | T
-    | {
-        richText?:
-          | T
-          | {
-              content?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
+  richText?: T;
   metadata?:
     | T
     | {

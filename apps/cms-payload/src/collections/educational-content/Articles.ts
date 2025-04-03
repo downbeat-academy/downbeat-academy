@@ -3,6 +3,7 @@ import { Blocks } from '@/fields/Blocks'
 import { Slug } from '@/fields/Slug'
 import { ContentMetadata } from '@/fields/ContentMetadata'
 import type { CollectionConfig } from 'payload'
+import { RichText } from '@/fields/RichText'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -26,7 +27,7 @@ export const Articles: CollectionConfig = {
                 Boolean(value) || 'This field is required.',
               admin: {
                 description: 'The title of the article.',
-              }
+              },
             },
             Slug,
             {
@@ -41,7 +42,7 @@ export const Articles: CollectionConfig = {
                   name: 'author',
                   type: 'relationship',
                   relationTo: 'people',
-                }
+                },
               ],
             },
             ContentMetadata,
@@ -58,7 +59,7 @@ export const Articles: CollectionConfig = {
               label: 'Updated Date',
               admin: {
                 description: 'Leave blank if the article has not been updated.',
-              }
+              },
             },
           ],
         },
@@ -66,12 +67,12 @@ export const Articles: CollectionConfig = {
           label: 'Content',
           fields: [
             {
-                name: 'excerpt',
-                type: 'textarea',
-                label: 'Excerpt',
+              name: 'excerpt',
+              type: 'textarea',
+              label: 'Excerpt',
             },
-            Blocks
-            ],
+            RichText,
+          ],
         },
         {
           label: 'SEO',
