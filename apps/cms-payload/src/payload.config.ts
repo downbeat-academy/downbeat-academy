@@ -10,6 +10,7 @@ import sharp from 'sharp'
 // Globals
 import { Footer } from '@/globals/Footer'
 import { SiteSettings } from '@/globals/SiteSettings'
+import { Navigation } from './globals/Navigation'
 
 // Collections
 import { Users } from '@/collections/payload-collections/Users'
@@ -22,7 +23,8 @@ import { Difficulties } from '@/collections/meta/Difficulties'
 import { Genres } from '@/collections/meta/Genres'
 import { Instruments } from '@/collections/meta/Instruments'
 import { People } from '@/collections/meta/People'
-import { Navigation } from './globals/Navigation'
+import { Resources } from '@/collections/educational-content/Resources'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -44,6 +46,7 @@ export default buildConfig({
     People,
     Users,
     Media,
+    Resources,
   ],
   globals: [Footer, SiteSettings, Navigation],
   editor: lexicalEditor(),

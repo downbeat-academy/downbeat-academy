@@ -5,8 +5,8 @@ import { RichText } from '@/fields/RichText'
 
 import type { CollectionConfig } from 'payload'
 
-export const Articles: CollectionConfig = {
-  slug: 'articles',
+export const Resources: CollectionConfig = {
+  slug: 'resources',
   admin: {
     group: 'Educational Content',
     useAsTitle: 'title',
@@ -16,7 +16,7 @@ export const Articles: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Article Metadata',
+          label: 'Resource Metadata',
           fields: [
             {
               name: 'title',
@@ -25,9 +25,6 @@ export const Articles: CollectionConfig = {
               required: true,
               validate: (value: string | undefined | null) =>
                 Boolean(value) || 'This field is required.',
-              admin: {
-                description: 'The title of the article.',
-              },
             },
             Slug,
             {
@@ -35,7 +32,7 @@ export const Articles: CollectionConfig = {
               type: 'array',
               label: 'Authors',
               admin: {
-                description: 'Author, or authors, of the article.',
+                description: 'Author, or authors, of the resource.',
               },
               fields: [
                 {
@@ -58,7 +55,7 @@ export const Articles: CollectionConfig = {
               type: 'date',
               label: 'Updated Date',
               admin: {
-                description: 'Leave blank if the article has not been updated.',
+                description: 'Leave blank if the resource has not been updated.',
               },
             },
           ],
