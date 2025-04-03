@@ -45,7 +45,7 @@ export const SocialLink: Field = {
         {
           label: 'Website',
           value: 'website',
-        }
+        },
       ],
     },
     {
@@ -59,7 +59,7 @@ export const SocialLink: Field = {
           if (!value.startsWith('http://') && !value.startsWith('https://')) {
             return 'URL must start with http:// or https://'
           }
-          
+
           try {
             new URL(value)
             return true
@@ -68,7 +68,7 @@ export const SocialLink: Field = {
           }
         }
         return true
-      }
-    }
-  ]
+      },
+    },
+  ],
 }

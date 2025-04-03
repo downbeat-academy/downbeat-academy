@@ -9,11 +9,11 @@ export const Difficulties: CollectionConfig = {
   },
   fields: [
     {
-        type: 'text',
-        name: 'title',
-        label: 'Title',
-        required: true,
+      type: 'text',
+      name: 'title',
+      label: 'Title',
+      required: true,
     },
-    Metadata
+    Metadata,
   ],
 }

@@ -19,7 +19,7 @@ export const Slug: Field = {
             .replace(/ /g, '-')
             .replace(/[^\w-]+/g, '')
         }
-        
+
         // Otherwise, generate from title
         const title = data?.title || originalDoc?.title
         if (typeof title === 'string') {
@@ -28,7 +28,7 @@ export const Slug: Field = {
             .replace(/ /g, '-')
             .replace(/[^\w-]+/g, '')
         }
-        
+
         return value
       },
     ],

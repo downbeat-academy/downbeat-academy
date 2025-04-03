@@ -22,23 +22,20 @@ export const Pages: CollectionConfig = {
               type: 'text',
               label: 'Title',
               required: true,
-              validate: (value: string | undefined | null) => Boolean(value) || 'This field is required.',
+              validate: (value: string | undefined | null) =>
+                Boolean(value) || 'This field is required.',
             },
             Slug,
-          ]
+          ],
         },
         {
           label: 'Content',
-          fields: [
-            Blocks
-          ]
+          fields: [Blocks],
         },
         {
           label: 'SEO',
-          fields: [
-            Metadata,
-          ]
-        }
+          fields: [Metadata],
+        },
       ],
     },
   ],

@@ -67,6 +67,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    'error-pages': ErrorPage;
     articles: Article;
     categories: Category;
     difficulties: Difficulty;
@@ -82,6 +83,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    'error-pages': ErrorPagesSelect<false> | ErrorPagesSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     difficulties: DifficultiesSelect<false> | DifficultiesSelect<true>;
@@ -100,10 +102,12 @@ export interface Config {
   globals: {
     footer: Footer;
     'site-settings': SiteSetting;
+    navigation: Navigation;
   };
   globalsSelect: {
     footer: FooterSelect<false> | FooterSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
   locale: null;
   user: User & {
@@ -208,15 +212,31 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "articles".
+ * via the `definition` "error-pages".
  */
-export interface Article {
+export interface ErrorPage {
   id: number;
-  title?: string | null;
-  /**
-   * Automatically generated from the title if left empty
-   */
-  slug: string;
+  errorType?: ('404' | '500') | null;
+  title: string;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   blocks?:
     | {
         content?: {
@@ -239,122 +259,77 @@ export interface Article {
         blockType: 'richText';
       }[]
     | null;
-  metadata: {
-    /**
-     * Meta title (open graph) for SEO
-     */
-    title: string;
-    /**
-     * Meta description (open graph) for SEO
-     */
-    description: string;
-    ogImage?: (number | null) | Media;
-    /**
-     * If checked, the page will not be indexed by search engines
-     */
-    noindex?: boolean | null;
-    /**
-     * If checked, the page will not be followed by search engines
-     */
-    nofollow?: boolean | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
+ * via the `definition` "articles".
  */
-export interface Category {
+export interface Article {
   id: number;
   title: string;
-  metadata: {
-    /**
-     * Meta title (open graph) for SEO
-     */
-    title: string;
-    /**
-     * Meta description (open graph) for SEO
-     */
-    description: string;
-    ogImage?: (number | null) | Media;
-    /**
-     * If checked, the page will not be indexed by search engines
-     */
-    noindex?: boolean | null;
-    /**
-     * If checked, the page will not be followed by search engines
-     */
-    nofollow?: boolean | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "difficulties".
- */
-export interface Difficulty {
-  id: number;
-  title: string;
-  metadata: {
-    /**
-     * Meta title (open graph) for SEO
-     */
-    title: string;
-    /**
-     * Meta description (open graph) for SEO
-     */
-    description: string;
-    ogImage?: (number | null) | Media;
-    /**
-     * If checked, the page will not be indexed by search engines
-     */
-    noindex?: boolean | null;
-    /**
-     * If checked, the page will not be followed by search engines
-     */
-    nofollow?: boolean | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "genres".
- */
-export interface Genre {
-  id: number;
-  title: string;
-  metadata: {
-    /**
-     * Meta title (open graph) for SEO
-     */
-    title: string;
-    /**
-     * Meta description (open graph) for SEO
-     */
-    description: string;
-    ogImage?: (number | null) | Media;
-    /**
-     * If checked, the page will not be indexed by search engines
-     */
-    noindex?: boolean | null;
-    /**
-     * If checked, the page will not be followed by search engines
-     */
-    nofollow?: boolean | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "instruments".
- */
-export interface Instrument {
-  id: number;
-  title: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  authors?:
+    | {
+        author?: (number | null) | Person;
+        id?: string | null;
+      }[]
+    | null;
+  categories?:
+    | {
+        category?: (number | null) | Category;
+        id?: string | null;
+      }[]
+    | null;
+  genres?:
+    | {
+        genre?: (number | null) | Genre;
+        id?: string | null;
+      }[]
+    | null;
+  difficulties?:
+    | {
+        difficulty?: (number | null) | Difficulty;
+        id?: string | null;
+      }[]
+    | null;
+  instruments?:
+    | {
+        instrument?: (number | null) | Instrument;
+        id?: string | null;
+      }[]
+    | null;
+  publishedDate: string;
+  /**
+   * Leave blank if the article has not been updated.
+   */
+  updatedDate?: string | null;
+  blocks?:
+    | {
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -457,6 +432,122 @@ export interface Person {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  title: string;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "genres".
+ */
+export interface Genre {
+  id: number;
+  title: string;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "difficulties".
+ */
+export interface Difficulty {
+  id: number;
+  title: string;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "instruments".
+ */
+export interface Instrument {
+  id: number;
+  title: string;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -482,6 +573,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'error-pages';
+        value: number | ErrorPage;
       } | null)
     | ({
         relationTo: 'articles';
@@ -589,11 +684,73 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "error-pages_select".
+ */
+export interface ErrorPagesSelect<T extends boolean = true> {
+  errorType?: T;
+  title?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              content?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  authors?:
+    | T
+    | {
+        author?: T;
+        id?: T;
+      };
+  categories?:
+    | T
+    | {
+        category?: T;
+        id?: T;
+      };
+  genres?:
+    | T
+    | {
+        genre?: T;
+        id?: T;
+      };
+  difficulties?:
+    | T
+    | {
+        difficulty?: T;
+        id?: T;
+      };
+  instruments?:
+    | T
+    | {
+        instrument?: T;
+        id?: T;
+      };
+  publishedDate?: T;
+  updatedDate?: T;
   blocks?:
     | T
     | {
@@ -892,6 +1049,58 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  links?:
+    | {
+        link?: {
+          location?: ('internal' | 'customInternal' | 'external' | 'email' | 'phone') | null;
+          text?: string | null;
+          newTab?: boolean | null;
+          internalLink?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'articles';
+                value: number | Article;
+              } | null)
+            | ({
+                relationTo: 'categories';
+                value: number | Category;
+              } | null)
+            | ({
+                relationTo: 'difficulties';
+                value: number | Difficulty;
+              } | null)
+            | ({
+                relationTo: 'genres';
+                value: number | Genre;
+              } | null)
+            | ({
+                relationTo: 'instruments';
+                value: number | Instrument;
+              } | null)
+            | ({
+                relationTo: 'people';
+                value: number | Person;
+              } | null);
+          url?: string | null;
+          internalPath?: string | null;
+          phoneNumber?: string | null;
+          emailAddress?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
@@ -942,6 +1151,32 @@ export interface SiteSettingsSelect<T extends boolean = true> {
           | {
               platform?: T;
               url?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              location?: T;
+              text?: T;
+              newTab?: T;
+              internalLink?: T;
+              url?: T;
+              internalPath?: T;
+              phoneNumber?: T;
+              emailAddress?: T;
             };
         id?: T;
       };

@@ -24,7 +24,7 @@ export const Footer: GlobalConfig = {
               label: 'Links',
               fields: [Link],
             },
-          ]
+          ],
         },
       ],
     },

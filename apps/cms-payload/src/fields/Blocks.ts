@@ -13,6 +13,6 @@ export const Blocks: Field = {
           type: 'richText',
         },
       ],
-    }
-  ]
+    },
+  ],
 }

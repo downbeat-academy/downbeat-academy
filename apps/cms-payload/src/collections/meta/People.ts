@@ -29,9 +29,7 @@ export const People: CollectionConfig = {
             {
               type: 'array',
               name: 'socialLinks',
-              fields: [
-                SocialLink,
-              ]
+              fields: [SocialLink],
             },
             {
               type: 'upload',
@@ -48,12 +46,9 @@ export const People: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [
-            Blocks,
-          ]
-        }
-      ]
-    }
-  ]
+          fields: [Blocks],
+        },
+      ],
+    },
+  ],
 }
-  

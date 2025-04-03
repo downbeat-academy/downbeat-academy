@@ -15,13 +15,14 @@ import { SiteSettings } from '@/globals/SiteSettings'
 import { Users } from '@/collections/payload-collections/Users'
 import { Media } from '@/collections/payload-collections/Media'
 import { Pages } from '@/collections/general-content/Pages'
+import { ErrorPages } from './collections/general-content/ErrorPages'
 import { Articles } from '@/collections/educational-content/Articles'
 import { Categories } from '@/collections/meta/Categories'
 import { Difficulties } from '@/collections/meta/Difficulties'
 import { Genres } from '@/collections/meta/Genres'
 import { Instruments } from '@/collections/meta/Instruments'
 import { People } from '@/collections/meta/People'
-
+import { Navigation } from './globals/Navigation'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -34,6 +35,7 @@ export default buildConfig({
   },
   collections: [
     Pages,
+    ErrorPages,
     Articles,
     Categories,
     Difficulties,
@@ -43,10 +45,7 @@ export default buildConfig({
     Users,
     Media,
   ],
-  globals: [
-    Footer,
-    SiteSettings,
-  ],
+  globals: [Footer, SiteSettings, Navigation],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

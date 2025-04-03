@@ -10,8 +10,8 @@ export const Metadata: Field = {
       label: 'Title',
       required: true,
       admin: {
-        description: 'Meta title (open graph) for SEO'
-      }
+        description: 'Meta title (open graph) for SEO',
+      },
     },
     {
       name: 'description',
@@ -19,8 +19,8 @@ export const Metadata: Field = {
       label: 'Description',
       required: true,
       admin: {
-        description: 'Meta description (open graph) for SEO'
-      }
+        description: 'Meta description (open graph) for SEO',
+      },
     },
     {
       name: 'ogImage',
@@ -33,16 +33,16 @@ export const Metadata: Field = {
       type: 'checkbox',
       label: 'No Index',
       admin: {
-        description: 'If checked, the page will not be indexed by search engines'
-      }
+        description: 'If checked, the page will not be indexed by search engines',
+      },
     },
     {
       name: 'nofollow',
       type: 'checkbox',
       label: 'No Follow',
       admin: {
-        description: 'If checked, the page will not be followed by search engines'
-      }
+        description: 'If checked, the page will not be followed by search engines',
+      },
     },
   ],
 }

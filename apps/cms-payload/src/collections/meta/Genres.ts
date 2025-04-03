@@ -9,12 +9,12 @@ export const Genres: CollectionConfig = {
   },
   fields: [
     {
-        type: 'text',
-        name: 'title',
-        label: 'Title',
-        required: true,
-        unique: true,
+      type: 'text',
+      name: 'title',
+      label: 'Title',
+      required: true,
+      unique: true,
     },
-    Metadata
+    Metadata,
   ],
 }
