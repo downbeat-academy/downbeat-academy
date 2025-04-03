@@ -268,46 +268,55 @@ export interface ErrorPage {
  */
 export interface Article {
   id: number;
+  /**
+   * The title of the article.
+   */
   title: string;
   /**
    * Automatically generated from the title if left empty
    */
   slug: string;
+  /**
+   * Author, or authors, of the article.
+   */
   authors?:
     | {
         author?: (number | null) | Person;
         id?: string | null;
       }[]
     | null;
-  categories?:
-    | {
-        category?: (number | null) | Category;
-        id?: string | null;
-      }[]
-    | null;
-  genres?:
-    | {
-        genre?: (number | null) | Genre;
-        id?: string | null;
-      }[]
-    | null;
-  difficulties?:
-    | {
-        difficulty?: (number | null) | Difficulty;
-        id?: string | null;
-      }[]
-    | null;
-  instruments?:
-    | {
-        instrument?: (number | null) | Instrument;
-        id?: string | null;
-      }[]
-    | null;
+  contentMetadata?: {
+    categories?:
+      | {
+          category?: (number | null) | Category;
+          id?: string | null;
+        }[]
+      | null;
+    genres?:
+      | {
+          genre?: (number | null) | Genre;
+          id?: string | null;
+        }[]
+      | null;
+    difficulties?:
+      | {
+          difficulty?: (number | null) | Difficulty;
+          id?: string | null;
+        }[]
+      | null;
+    instruments?:
+      | {
+          instrument?: (number | null) | Instrument;
+          id?: string | null;
+        }[]
+      | null;
+  };
   publishedDate: string;
   /**
    * Leave blank if the article has not been updated.
    */
   updatedDate?: string | null;
+  excerpt?: string | null;
   blocks?:
     | {
         content?: {
@@ -725,32 +734,37 @@ export interface ArticlesSelect<T extends boolean = true> {
         author?: T;
         id?: T;
       };
-  categories?:
+  contentMetadata?:
     | T
     | {
-        category?: T;
-        id?: T;
-      };
-  genres?:
-    | T
-    | {
-        genre?: T;
-        id?: T;
-      };
-  difficulties?:
-    | T
-    | {
-        difficulty?: T;
-        id?: T;
-      };
-  instruments?:
-    | T
-    | {
-        instrument?: T;
-        id?: T;
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        genres?:
+          | T
+          | {
+              genre?: T;
+              id?: T;
+            };
+        difficulties?:
+          | T
+          | {
+              difficulty?: T;
+              id?: T;
+            };
+        instruments?:
+          | T
+          | {
+              instrument?: T;
+              id?: T;
+            };
       };
   publishedDate?: T;
   updatedDate?: T;
+  excerpt?: T;
   blocks?:
     | T
     | {

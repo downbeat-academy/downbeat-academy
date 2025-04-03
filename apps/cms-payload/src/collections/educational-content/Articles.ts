@@ -1,7 +1,7 @@
 import { Metadata } from '@/fields/Metadata'
 import { Blocks } from '@/fields/Blocks'
 import { Slug } from '@/fields/Slug'
-
+import { ContentMetadata } from '@/fields/ContentMetadata'
 import type { CollectionConfig } from 'payload'
 
 export const Articles: CollectionConfig = {
@@ -24,12 +24,18 @@ export const Articles: CollectionConfig = {
               required: true,
               validate: (value: string | undefined | null) =>
                 Boolean(value) || 'This field is required.',
+              admin: {
+                description: 'The title of the article.',
+              }
             },
             Slug,
             {
               name: 'authors',
               type: 'array',
               label: 'Authors',
+              admin: {
+                description: 'Author, or authors, of the article.',
+              },
               fields: [
                 {
                   name: 'author',
@@ -38,59 +44,13 @@ export const Articles: CollectionConfig = {
                 }
               ],
             },
-            {
-                name: 'categories',
-                type: 'array',
-                label: 'Categories',
-                fields: [
-                    {
-                        name: 'category',
-                        type: 'relationship',
-                        relationTo: 'categories',
-                    }
-                ],
-            },
-            {
-                name: 'genres',
-                type: 'array',
-                label: 'Genres',
-                fields: [
-                    {
-                        name: 'genre',
-                        type: 'relationship',
-                        relationTo: 'genres',
-                    }
-                ],
-            },
-            {
-                name: 'difficulties',
-                type: 'array',
-                label: 'Difficulties',
-                fields: [
-                    {
-                        name: 'difficulty',
-                        type: 'relationship',
-                        relationTo: 'difficulties',
-                    }   
-                ],
-            },
-            {
-                name: 'instruments',
-                type: 'array',
-                label: 'Instruments',
-                fields: [
-                    {
-                        name: 'instrument',
-                        type: 'relationship',
-                        relationTo: 'instruments',
-                    }
-                ],
-            },
+            ContentMetadata,
             {
               name: 'publishedDate',
               type: 'date',
               label: 'Published Date',
               required: true,
+              defaultValue: new Date(),
             },
             {
               name: 'updatedDate',
@@ -104,7 +64,14 @@ export const Articles: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [Blocks],
+          fields: [
+            {
+                name: 'excerpt',
+                type: 'textarea',
+                label: 'Excerpt',
+            },
+            Blocks
+            ],
         },
         {
           label: 'SEO',
