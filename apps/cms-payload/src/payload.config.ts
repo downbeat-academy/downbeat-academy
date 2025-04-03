@@ -9,6 +9,7 @@ import sharp from 'sharp'
 
 // Globals
 import { Footer } from '@/globals/Footer'
+import { SiteSettings } from '@/globals/SiteSettings'
 
 // Collections
 import { Users } from '@/collections/payload-collections/Users'
@@ -44,6 +45,7 @@ export default buildConfig({
   ],
   globals: [
     Footer,
+    SiteSettings,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
