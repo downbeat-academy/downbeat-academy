@@ -82,6 +82,9 @@ export interface Config {
     handbook: Handbook;
     snippets: Snippet;
     podcasts: Podcast;
+    lesson: Lesson;
+    course: Course;
+    curricula: Curriculum;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -104,6 +107,9 @@ export interface Config {
     handbook: HandbookSelect<false> | HandbookSelect<true>;
     snippets: SnippetsSelect<false> | SnippetsSelect<true>;
     podcasts: PodcastsSelect<false> | PodcastsSelect<true>;
+    lesson: LessonSelect<false> | LessonSelect<true>;
+    course: CourseSelect<false> | CourseSelect<true>;
+    curricula: CurriculaSelect<false> | CurriculaSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -1040,6 +1046,135 @@ export interface Podcast {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lesson".
+ */
+export interface Lesson {
+  id: number;
+  title: string;
+  description?: string | null;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "course".
+ */
+export interface Course {
+  id: number;
+  title: string;
+  description?: string | null;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  lessons?:
+    | {
+        lesson?: (number | Lesson)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "curricula".
+ */
+export interface Curriculum {
+  id: number;
+  title: string;
+  description?: string | null;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  courses?:
+    | {
+        course?: (number | Course)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -1108,6 +1243,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'podcasts';
         value: number | Podcast;
+      } | null)
+    | ({
+        relationTo: 'lesson';
+        value: number | Lesson;
+      } | null)
+    | ({
+        relationTo: 'course';
+        value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'curricula';
+        value: number | Curriculum;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1722,6 +1869,79 @@ export interface PodcastsSelect<T extends boolean = true> {
   description?: T;
   audio?: T;
   richText?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lesson_select".
+ */
+export interface LessonSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  slug?: T;
+  richText?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "course_select".
+ */
+export interface CourseSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  slug?: T;
+  lessons?:
+    | T
+    | {
+        lesson?: T;
+        id?: T;
+      };
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "curricula_select".
+ */
+export interface CurriculaSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  slug?: T;
+  courses?:
+    | T
+    | {
+        course?: T;
+        id?: T;
+      };
   metadata?:
     | T
     | {

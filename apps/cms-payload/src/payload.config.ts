@@ -2,6 +2,7 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+// import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -26,11 +27,14 @@ import { Lexicon } from '@/collections/educational-content/Lexicon'
 import { Handbook } from '@/collections/educational-content/Handbook'
 import { Snippets } from '@/collections/educational-content/Snippets'
 import { Podcasts } from '@/collections/educational-content/Podcasts'
+import { Lesson } from '@/collections/educational-content/Lesson'
 
 // Payload Collections
 import { Users } from '@/collections/payload-collections/Users'
 import { Media } from '@/collections/payload-collections/Media'
 import { NotationFiles } from '@/collections/payload-collections/NotationFiles'
+import { Course } from './collections/educational-content/Course'
+import { Curricula } from './collections/educational-content/Curricula'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -59,6 +63,9 @@ export default buildConfig({
     Handbook,
     Snippets,
     Podcasts,
+    Lesson,
+    Course,
+    Curricula,
   ],
   globals: [Footer, SiteSettings, Navigation],
   editor: lexicalEditor(),
@@ -74,6 +81,13 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    // vercelBlobStorage({
+    //   enabled: true,
+    //   collections: {
+    //     media: true,
+    //     'notation-files': true,
+    //   },
+    //   token: process.env.BLOB_READ_WRITE_TOKEN,
+    // }),
   ],
 })
