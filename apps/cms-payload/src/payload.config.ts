@@ -27,6 +27,7 @@ import { Lexicons } from '@/collections/educational-content/Lexicons'
 import { Handbooks } from '@/collections/educational-content/Handbooks'
 import { Snippets } from '@/collections/educational-content/Snippets'
 import { Podcasts } from '@/collections/educational-content/Podcasts'
+import { LandingPages } from '@/collections/marketing/LandingPages'
 
 // Payload Collections
 import { Users } from '@/collections/payload-collections/Users'
@@ -66,6 +67,7 @@ export default buildConfig({
     Lessons,
     Courses,
     Curricula,
+    LandingPages,
   ],
   globals: [Footer, SiteSettings, Navigation],
   editor: lexicalEditor(),
