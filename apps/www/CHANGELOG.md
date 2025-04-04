@@ -1,5 +1,16 @@
 # www
 
+## 3.15.0
+
+### Minor Changes
+
+- 4bf67e4: Refactored the db connection pooling, added a test page for querying the Payload db.
+- 22e0094: Migrated from Sass to vanilla CSS
+
+### Patch Changes
+
+- 4d412ce: Fixed overscroll on the mobile nav and added in the authentication entry point
+
 ## 3.14.0
 
 ### Minor Changes
