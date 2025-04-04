@@ -1,5 +1,11 @@
 # email
 
+## 1.5.0
+
+### Minor Changes
+
+- 008a9bc: Added custom components adhereing with brand and cadence styles.
+
 ## 1.4.0
 
 ### Minor Changes
