@@ -4,8 +4,8 @@ import { ContentMetadata } from '@/fields/ContentMetadata'
 
 import type { CollectionConfig } from 'payload'
 
-export const Lexicon: CollectionConfig = {
-  slug: 'lexicon',
+export const Lexicons: CollectionConfig = {
+  slug: 'lexicons',
   admin: {
     group: 'Educational Content',
     useAsTitle: 'artist',

@@ -78,12 +78,12 @@ export interface Config {
     media: Media;
     resources: Resource;
     'notation-files': NotationFile;
-    lexicon: Lexicon;
-    handbook: Handbook;
+    lexicons: Lexicon;
+    handbooks: Handbook;
     snippets: Snippet;
     podcasts: Podcast;
-    lesson: Lesson;
-    course: Course;
+    lessons: Lesson;
+    courses: Course;
     curricula: Curriculum;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -103,12 +103,12 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     resources: ResourcesSelect<false> | ResourcesSelect<true>;
     'notation-files': NotationFilesSelect<false> | NotationFilesSelect<true>;
-    lexicon: LexiconSelect<false> | LexiconSelect<true>;
-    handbook: HandbookSelect<false> | HandbookSelect<true>;
+    lexicons: LexiconsSelect<false> | LexiconsSelect<true>;
+    handbooks: HandbooksSelect<false> | HandbooksSelect<true>;
     snippets: SnippetsSelect<false> | SnippetsSelect<true>;
     podcasts: PodcastsSelect<false> | PodcastsSelect<true>;
-    lesson: LessonSelect<false> | LessonSelect<true>;
-    course: CourseSelect<false> | CourseSelect<true>;
+    lessons: LessonsSelect<false> | LessonsSelect<true>;
+    courses: CoursesSelect<false> | CoursesSelect<true>;
     curricula: CurriculaSelect<false> | CurriculaSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -692,7 +692,7 @@ export interface NotationFile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lexicon".
+ * via the `definition` "lexicons".
  */
 export interface Lexicon {
   id: number;
@@ -792,7 +792,7 @@ export interface Lexicon {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "handbook".
+ * via the `definition` "handbooks".
  */
 export interface Handbook {
   id: number;
@@ -1046,7 +1046,7 @@ export interface Podcast {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lesson".
+ * via the `definition` "lessons".
  */
 export interface Lesson {
   id: number;
@@ -1095,7 +1095,7 @@ export interface Lesson {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "course".
+ * via the `definition` "courses".
  */
 export interface Course {
   id: number;
@@ -1107,7 +1107,7 @@ export interface Course {
   slug: string;
   lessons?:
     | {
-        lesson?: (number | Lesson)[] | null;
+        lessons?: (number | Lesson)[] | null;
         id?: string | null;
       }[]
     | null;
@@ -1147,7 +1147,7 @@ export interface Curriculum {
   slug: string;
   courses?:
     | {
-        course?: (number | Course)[] | null;
+        courses?: (number | Course)[] | null;
         id?: string | null;
       }[]
     | null;
@@ -1229,11 +1229,11 @@ export interface PayloadLockedDocument {
         value: number | NotationFile;
       } | null)
     | ({
-        relationTo: 'lexicon';
+        relationTo: 'lexicons';
         value: number | Lexicon;
       } | null)
     | ({
-        relationTo: 'handbook';
+        relationTo: 'handbooks';
         value: number | Handbook;
       } | null)
     | ({
@@ -1245,11 +1245,11 @@ export interface PayloadLockedDocument {
         value: number | Podcast;
       } | null)
     | ({
-        relationTo: 'lesson';
+        relationTo: 'lessons';
         value: number | Lesson;
       } | null)
     | ({
-        relationTo: 'course';
+        relationTo: 'courses';
         value: number | Course;
       } | null)
     | ({
@@ -1639,9 +1639,9 @@ export interface NotationFilesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lexicon_select".
+ * via the `definition` "lexicons_select".
  */
-export interface LexiconSelect<T extends boolean = true> {
+export interface LexiconsSelect<T extends boolean = true> {
   artist?: T;
   track?: T;
   album?: T;
@@ -1707,9 +1707,9 @@ export interface LexiconSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "handbook_select".
+ * via the `definition` "handbooks_select".
  */
-export interface HandbookSelect<T extends boolean = true> {
+export interface HandbooksSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   authors?:
@@ -1883,9 +1883,9 @@ export interface PodcastsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "lesson_select".
+ * via the `definition` "lessons_select".
  */
-export interface LessonSelect<T extends boolean = true> {
+export interface LessonsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   slug?: T;
@@ -1904,16 +1904,16 @@ export interface LessonSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "course_select".
+ * via the `definition` "courses_select".
  */
-export interface CourseSelect<T extends boolean = true> {
+export interface CoursesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   slug?: T;
   lessons?:
     | T
     | {
-        lesson?: T;
+        lessons?: T;
         id?: T;
       };
   metadata?:
@@ -1939,7 +1939,7 @@ export interface CurriculaSelect<T extends boolean = true> {
   courses?:
     | T
     | {
-        course?: T;
+        courses?: T;
         id?: T;
       };
   metadata?:

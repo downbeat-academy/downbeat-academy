@@ -23,17 +23,17 @@ import { Genres } from '@/collections/meta/Genres'
 import { Instruments } from '@/collections/meta/Instruments'
 import { People } from '@/collections/meta/People'
 import { Resources } from '@/collections/educational-content/Resources'
-import { Lexicon } from '@/collections/educational-content/Lexicon'
-import { Handbook } from '@/collections/educational-content/Handbook'
+import { Lexicons } from '@/collections/educational-content/Lexicons'
+import { Handbooks } from '@/collections/educational-content/Handbooks'
 import { Snippets } from '@/collections/educational-content/Snippets'
 import { Podcasts } from '@/collections/educational-content/Podcasts'
-import { Lesson } from '@/collections/educational-content/Lesson'
 
 // Payload Collections
 import { Users } from '@/collections/payload-collections/Users'
 import { Media } from '@/collections/payload-collections/Media'
 import { NotationFiles } from '@/collections/payload-collections/NotationFiles'
-import { Course } from './collections/educational-content/Course'
+import { Lessons } from '@/collections/educational-content/Lessons'
+import { Courses } from './collections/educational-content/Courses'
 import { Curricula } from './collections/educational-content/Curricula'
 
 const filename = fileURLToPath(import.meta.url)
@@ -59,12 +59,12 @@ export default buildConfig({
     Media,
     Resources,
     NotationFiles,
-    Lexicon,
-    Handbook,
+    Lexicons,
+    Handbooks,
     Snippets,
     Podcasts,
-    Lesson,
-    Course,
+    Lessons,
+    Courses,
     Curricula,
   ],
   globals: [Footer, SiteSettings, Navigation],

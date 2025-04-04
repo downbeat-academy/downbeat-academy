@@ -5,8 +5,8 @@ import { RichText } from '@/fields/RichText'
 
 import type { CollectionConfig } from 'payload'
 
-export const Handbook: CollectionConfig = {
-  slug: 'handbook',
+export const Handbooks: CollectionConfig = {
+  slug: 'handbooks',
   admin: {
     group: 'Educational Content',
     useAsTitle: 'title',

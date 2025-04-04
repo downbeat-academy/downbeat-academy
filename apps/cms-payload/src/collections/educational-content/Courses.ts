@@ -3,8 +3,8 @@ import { Slug } from '@/fields/Slug'
 
 import type { CollectionConfig } from 'payload'
 
-export const Course: CollectionConfig = {
-  slug: 'course',
+export const Courses: CollectionConfig = {
+  slug: 'courses',
   admin: {
     group: 'Educational Content',
     useAsTitle: 'title',
@@ -38,9 +38,9 @@ export const Course: CollectionConfig = {
               type: 'array',
               fields: [
                 {
-                  name: 'lesson',
+                  name: 'lessons',
                   type: 'relationship',
-                  relationTo: 'lesson',
+                  relationTo: 'lessons',
                   hasMany: true,
                 },
               ],

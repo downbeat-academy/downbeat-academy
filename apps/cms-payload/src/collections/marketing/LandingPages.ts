@@ -1,13 +1,13 @@
 import { Metadata } from '@/fields/Metadata'
-import { RichText } from '@/fields/RichText'
 import { Slug } from '@/fields/Slug'
+import { Blocks } from '@/fields/Blocks'
 
 import type { CollectionConfig } from 'payload'
 
-export const Lesson: CollectionConfig = {
-  slug: 'lesson',
+export const LandingPages: CollectionConfig = {
+  slug: 'landing-pages',
   admin: {
-    group: 'Educational Content',
+    group: 'Marketing',
     useAsTitle: 'title',
   },
   fields: [
@@ -15,25 +15,19 @@ export const Lesson: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Lesson Metadata',
+          label: 'Landing Page Metadata',
           fields: [
             {
               name: 'title',
               type: 'text',
               label: 'Title',
-              required: true,
-            },
-            {
-              name: 'description',
-              type: 'text',
-              label: 'Description',
             },
             Slug,
           ],
         },
         {
           label: 'Content',
-          fields: [RichText],
+          fields: [Blocks],
         },
         {
           label: 'SEO',

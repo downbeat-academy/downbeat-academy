@@ -1,10 +1,11 @@
 import { Metadata } from '@/fields/Metadata'
+import { RichText } from '@/fields/RichText'
 import { Slug } from '@/fields/Slug'
 
 import type { CollectionConfig } from 'payload'
 
-export const Curricula: CollectionConfig = {
-  slug: 'curricula',
+export const Lessons: CollectionConfig = {
+  slug: 'lessons',
   admin: {
     group: 'Educational Content',
     useAsTitle: 'title',
@@ -14,7 +15,7 @@ export const Curricula: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Curriculum Metadata',
+          label: 'Lesson Metadata',
           fields: [
             {
               name: 'title',
@@ -32,20 +33,7 @@ export const Curricula: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [
-            {
-              name: 'courses',
-              type: 'array',
-              fields: [
-                {
-                  name: 'courses',
-                  type: 'relationship',
-                  relationTo: 'courses',
-                  hasMany: true,
-                },
-              ],
-            },
-          ],
+          fields: [RichText],
         },
         {
           label: 'SEO',
