@@ -1,6 +1,13 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
+import { Pool } from 'pg'
 
-// Define the database connection to Neon.
-const db = drizzle(process.env.DATABASE_URL)
+const authPool = new Pool({
+	connectionString: process.env.DATABASE_URL,
+})
 
-export { db }
+const cmsPool = new Pool({
+	connectionString: process.env.DATABASE_URL_CMS,
+})
+
+export const authDb = drizzle(authPool)
+export const cmsDb = drizzle(cmsPool)
