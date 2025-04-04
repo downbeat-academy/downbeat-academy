@@ -5,14 +5,22 @@ export const Metadata: Field = {
   type: 'group',
   fields: [
     {
-      name: 'metaTitle',
+      name: 'title',
       type: 'text',
-      label: 'Meta Title',
+      label: 'Title',
+      required: true,
+      admin: {
+        description: 'Meta title (open graph) for SEO',
+      },
     },
     {
       name: 'description',
       type: 'textarea',
       label: 'Description',
+      required: true,
+      admin: {
+        description: 'Meta description (open graph) for SEO',
+      },
     },
     {
       name: 'ogImage',
@@ -21,19 +29,20 @@ export const Metadata: Field = {
       label: 'Open Graph Image',
     },
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'noindex',
-          type: 'checkbox',
-          label: 'No Index',
-        },
-        {
-          name: 'nofollow',
-          type: 'checkbox',
-          label: 'No Follow',
-        },
-      ]
-    }
+      name: 'noindex',
+      type: 'checkbox',
+      label: 'No Index',
+      admin: {
+        description: 'If checked, the page will not be indexed by search engines',
+      },
+    },
+    {
+      name: 'nofollow',
+      type: 'checkbox',
+      label: 'No Follow',
+      admin: {
+        description: 'If checked, the page will not be followed by search engines',
+      },
+    },
   ],
 }
