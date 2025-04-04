@@ -23,6 +23,9 @@ importers:
       '@payloadcms/db-postgres':
         specifier: latest
         version: 3.28.1(@types/react@18.3.18)(payload@3.28.1)(react@18.3.1)
+      '@payloadcms/email-resend':
+        specifier: ^3.32.0
+        version: 3.32.0(payload@3.28.1)
       '@payloadcms/next':
         specifier: latest
         version: 3.28.1(@types/react@18.3.18)(graphql@16.10.0)(monaco-editor@0.52.2)(next@15.1.5)(payload@3.28.1)(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)
@@ -7014,6 +7017,15 @@ packages:
       payload: 3.28.1
     dependencies:
       nodemailer: 6.9.16
+      payload: 3.28.1(graphql@16.10.0)(typescript@5.7.3)
+    dev: false
+
+  /@payloadcms/email-resend@3.32.0(payload@3.28.1):
+    resolution: {integrity: sha512-pbPNmdAg8l84Uw9QQUpmIiLk2Cliu1tEed3h6fBZGQ+/z5M6onnu7Qc7zp7E7rq9yUWusM/dk3c04fUd+T3oLA==}
+    engines: {node: ^18.20.2 || >=20.9.0}
+    peerDependencies:
+      payload: 3.32.0
+    dependencies:
       payload: 3.28.1(graphql@16.10.0)(typescript@5.7.3)
     dev: false
 
