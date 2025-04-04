@@ -18,6 +18,9 @@ import VerifyEmail from '../../../../../packages/email/emails/verify-email'
 import ResetPasswordEmail from '../../../../../packages/email/emails/reset-password'
 
 export const auth = betterAuth({
+	appName: 'Downbeat Academy',
+	secret: process.env.BETTER_AUTH_SECRET,
+	baseUrl: process.env.NEXT_PUBLIC_PROJECT_URL,
 	database: drizzleAdapter(authDb, {
 		provider: 'pg',
 		schema: authSchema,
