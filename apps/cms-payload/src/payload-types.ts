@@ -76,6 +76,12 @@ export interface Config {
     people: Person;
     users: User;
     media: Media;
+    resources: Resource;
+    'notation-files': NotationFile;
+    lexicon: Lexicon;
+    handbook: Handbook;
+    snippets: Snippet;
+    podcasts: Podcast;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -92,6 +98,12 @@ export interface Config {
     people: PeopleSelect<false> | PeopleSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    resources: ResourcesSelect<false> | ResourcesSelect<true>;
+    'notation-files': NotationFilesSelect<false> | NotationFilesSelect<true>;
+    lexicon: LexiconSelect<false> | LexiconSelect<true>;
+    handbook: HandbookSelect<false> | HandbookSelect<true>;
+    snippets: SnippetsSelect<false> | SnippetsSelect<true>;
+    podcasts: PodcastsSelect<false> | PodcastsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -567,6 +579,467 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources".
+ */
+export interface Resource {
+  id: number;
+  title: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  /**
+   * Author, or authors, of the resource.
+   */
+  authors?:
+    | {
+        author?: (number | null) | Person;
+        id?: string | null;
+      }[]
+    | null;
+  contentMetadata?: {
+    categories?:
+      | {
+          category?: (number | null) | Category;
+          id?: string | null;
+        }[]
+      | null;
+    genres?:
+      | {
+          genre?: (number | null) | Genre;
+          id?: string | null;
+        }[]
+      | null;
+    difficulties?:
+      | {
+          difficulty?: (number | null) | Difficulty;
+          id?: string | null;
+        }[]
+      | null;
+    instruments?:
+      | {
+          instrument?: (number | null) | Instrument;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  publishedDate: string;
+  /**
+   * Leave blank if the resource has not been updated.
+   */
+  updatedDate?: string | null;
+  excerpt?: string | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notation-files".
+ */
+export interface NotationFile {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lexicon".
+ */
+export interface Lexicon {
+  id: number;
+  artist: string;
+  track?: string | null;
+  album?: string | null;
+  year?: string | null;
+  /**
+   * Enter the timestamp of the track in seconds
+   */
+  timestamp?: number | null;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  style?:
+    | (
+        | 'early-jazz'
+        | 'swing'
+        | 'bebop'
+        | 'cool-jazz'
+        | 'hard-bop'
+        | 'modal-jazz'
+        | 'free-jazz'
+        | 'fusion'
+        | 'smooth-jazz'
+        | 'post-bop'
+        | 'neo-soul'
+        | 'contemporary'
+        | 'other'
+      )
+    | null;
+  length?: ('one-bar' | 'two-bars' | 'four-bars' | 'eight-bars' | 'other') | null;
+  harmony?: ('ii-v-i' | 'iii-vi-ii-v-i' | 'i-iv-ii-v-i' | 'blues' | 'modal' | 'coltrane-changes' | 'other') | null;
+  contentMetadata?: {
+    categories?:
+      | {
+          category?: (number | null) | Category;
+          id?: string | null;
+        }[]
+      | null;
+    genres?:
+      | {
+          genre?: (number | null) | Genre;
+          id?: string | null;
+        }[]
+      | null;
+    difficulties?:
+      | {
+          difficulty?: (number | null) | Difficulty;
+          id?: string | null;
+        }[]
+      | null;
+    instruments?:
+      | {
+          instrument?: (number | null) | Instrument;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  excerpt: {
+    title: string;
+    description?: string | null;
+    /**
+     * Upload an audio file for the excerpt
+     */
+    audio?: (number | null) | Media;
+    notationFiles?:
+      | {
+          key?: ('c' | 'bb' | 'eb' | 'f' | 'g' | 'bass-clef') | null;
+          file?: (number | null) | NotationFile;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "handbook".
+ */
+export interface Handbook {
+  id: number;
+  title: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  authors?:
+    | {
+        author?: (number | null) | Person;
+        id?: string | null;
+      }[]
+    | null;
+  contentMetadata?: {
+    categories?:
+      | {
+          category?: (number | null) | Category;
+          id?: string | null;
+        }[]
+      | null;
+    genres?:
+      | {
+          genre?: (number | null) | Genre;
+          id?: string | null;
+        }[]
+      | null;
+    difficulties?:
+      | {
+          difficulty?: (number | null) | Difficulty;
+          id?: string | null;
+        }[]
+      | null;
+    instruments?:
+      | {
+          instrument?: (number | null) | Instrument;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  publishedDate: string;
+  updatedDate?: string | null;
+  excerpt?: string | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "snippets".
+ */
+export interface Snippet {
+  id: number;
+  title: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  authors?:
+    | {
+        author?: (number | null) | Person;
+        id?: string | null;
+      }[]
+    | null;
+  contentMetadata?: {
+    categories?:
+      | {
+          category?: (number | null) | Category;
+          id?: string | null;
+        }[]
+      | null;
+    genres?:
+      | {
+          genre?: (number | null) | Genre;
+          id?: string | null;
+        }[]
+      | null;
+    difficulties?:
+      | {
+          difficulty?: (number | null) | Difficulty;
+          id?: string | null;
+        }[]
+      | null;
+    instruments?:
+      | {
+          instrument?: (number | null) | Instrument;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  publishedDate: string;
+  updatedDate?: string | null;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "podcasts".
+ */
+export interface Podcast {
+  id: number;
+  title: string;
+  /**
+   * Automatically generated from the title if left empty
+   */
+  slug: string;
+  hosts?:
+    | {
+        host?: (number | null) | Person;
+        id?: string | null;
+      }[]
+    | null;
+  guesets?:
+    | {
+        guest?: (number | null) | Person;
+        id?: string | null;
+      }[]
+    | null;
+  contentMetadata?: {
+    categories?:
+      | {
+          category?: (number | null) | Category;
+          id?: string | null;
+        }[]
+      | null;
+    genres?:
+      | {
+          genre?: (number | null) | Genre;
+          id?: string | null;
+        }[]
+      | null;
+    difficulties?:
+      | {
+          difficulty?: (number | null) | Difficulty;
+          id?: string | null;
+        }[]
+      | null;
+    instruments?:
+      | {
+          instrument?: (number | null) | Instrument;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  publishedDate: string;
+  description?: string | null;
+  audio?: (number | null) | Media;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -611,6 +1084,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'notation-files';
+        value: number | NotationFile;
+      } | null)
+    | ({
+        relationTo: 'lexicon';
+        value: number | Lexicon;
+      } | null)
+    | ({
+        relationTo: 'handbook';
+        value: number | Handbook;
+      } | null)
+    | ({
+        relationTo: 'snippets';
+        value: number | Snippet;
+      } | null)
+    | ({
+        relationTo: 'podcasts';
+        value: number | Podcast;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -918,6 +1415,324 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resources_select".
+ */
+export interface ResourcesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  authors?:
+    | T
+    | {
+        author?: T;
+        id?: T;
+      };
+  contentMetadata?:
+    | T
+    | {
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        genres?:
+          | T
+          | {
+              genre?: T;
+              id?: T;
+            };
+        difficulties?:
+          | T
+          | {
+              difficulty?: T;
+              id?: T;
+            };
+        instruments?:
+          | T
+          | {
+              instrument?: T;
+              id?: T;
+            };
+      };
+  publishedDate?: T;
+  updatedDate?: T;
+  excerpt?: T;
+  richText?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notation-files_select".
+ */
+export interface NotationFilesSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "lexicon_select".
+ */
+export interface LexiconSelect<T extends boolean = true> {
+  artist?: T;
+  track?: T;
+  album?: T;
+  year?: T;
+  timestamp?: T;
+  slug?: T;
+  style?: T;
+  length?: T;
+  harmony?: T;
+  contentMetadata?:
+    | T
+    | {
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        genres?:
+          | T
+          | {
+              genre?: T;
+              id?: T;
+            };
+        difficulties?:
+          | T
+          | {
+              difficulty?: T;
+              id?: T;
+            };
+        instruments?:
+          | T
+          | {
+              instrument?: T;
+              id?: T;
+            };
+      };
+  excerpt?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        audio?: T;
+        notationFiles?:
+          | T
+          | {
+              key?: T;
+              file?: T;
+              id?: T;
+            };
+      };
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "handbook_select".
+ */
+export interface HandbookSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  authors?:
+    | T
+    | {
+        author?: T;
+        id?: T;
+      };
+  contentMetadata?:
+    | T
+    | {
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        genres?:
+          | T
+          | {
+              genre?: T;
+              id?: T;
+            };
+        difficulties?:
+          | T
+          | {
+              difficulty?: T;
+              id?: T;
+            };
+        instruments?:
+          | T
+          | {
+              instrument?: T;
+              id?: T;
+            };
+      };
+  publishedDate?: T;
+  updatedDate?: T;
+  excerpt?: T;
+  richText?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "snippets_select".
+ */
+export interface SnippetsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  authors?:
+    | T
+    | {
+        author?: T;
+        id?: T;
+      };
+  contentMetadata?:
+    | T
+    | {
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        genres?:
+          | T
+          | {
+              genre?: T;
+              id?: T;
+            };
+        difficulties?:
+          | T
+          | {
+              difficulty?: T;
+              id?: T;
+            };
+        instruments?:
+          | T
+          | {
+              instrument?: T;
+              id?: T;
+            };
+      };
+  publishedDate?: T;
+  updatedDate?: T;
+  richText?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "podcasts_select".
+ */
+export interface PodcastsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  hosts?:
+    | T
+    | {
+        host?: T;
+        id?: T;
+      };
+  guesets?:
+    | T
+    | {
+        guest?: T;
+        id?: T;
+      };
+  contentMetadata?:
+    | T
+    | {
+        categories?:
+          | T
+          | {
+              category?: T;
+              id?: T;
+            };
+        genres?:
+          | T
+          | {
+              genre?: T;
+              id?: T;
+            };
+        difficulties?:
+          | T
+          | {
+              difficulty?: T;
+              id?: T;
+            };
+        instruments?:
+          | T
+          | {
+              instrument?: T;
+              id?: T;
+            };
+      };
+  publishedDate?: T;
+  description?: T;
+  audio?: T;
+  richText?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
