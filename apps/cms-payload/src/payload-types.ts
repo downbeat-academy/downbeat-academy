@@ -177,6 +177,7 @@ export interface Page {
    * Automatically generated from the title if left empty
    */
   slug: string;
+  excerpt?: string | null;
   blocks?:
     | {
         richText?: {
@@ -656,21 +657,28 @@ export interface Resource {
    */
   updatedDate?: string | null;
   excerpt?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -859,21 +867,28 @@ export interface Handbook {
   publishedDate: string;
   updatedDate?: string | null;
   excerpt?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -942,21 +957,28 @@ export interface Snippet {
   };
   publishedDate: string;
   updatedDate?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -1032,21 +1054,28 @@ export interface Podcast {
   publishedDate: string;
   description?: string | null;
   audio?: (number | null) | Media;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -1082,21 +1111,28 @@ export interface Lesson {
    * Automatically generated from the title if left empty
    */
   slug: string;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -1569,6 +1605,7 @@ export interface PayloadMigration {
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  excerpt?: T;
   blocks?:
     | T
     | {
@@ -1883,7 +1920,17 @@ export interface ResourcesSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -2027,7 +2074,17 @@ export interface HandbooksSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -2084,7 +2141,17 @@ export interface SnippetsSelect<T extends boolean = true> {
       };
   publishedDate?: T;
   updatedDate?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -2148,7 +2215,17 @@ export interface PodcastsSelect<T extends boolean = true> {
   publishedDate?: T;
   description?: T;
   audio?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -2170,7 +2247,17 @@ export interface LessonsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   slug?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {

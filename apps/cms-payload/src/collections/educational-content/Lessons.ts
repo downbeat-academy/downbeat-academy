@@ -1,5 +1,5 @@
 import { Metadata } from '@/fields/Metadata'
-import { RichText } from '@/fields/rich-text'
+import { Blocks } from '@/blocks'
 import { Slug } from '@/fields/Slug'
 
 import type { CollectionConfig } from 'payload'
@@ -40,7 +40,7 @@ export const Lessons: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [RichText],
+          fields: [Blocks],
         },
         {
           label: 'SEO',

@@ -37,7 +37,14 @@ export const Pages: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [Blocks],
+          fields: [
+            {
+              name: 'excerpt',
+              type: 'textarea',
+              label: 'Excerpt',
+            },
+            Blocks,
+          ],
         },
         {
           label: 'SEO',

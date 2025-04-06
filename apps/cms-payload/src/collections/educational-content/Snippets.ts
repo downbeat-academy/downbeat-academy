@@ -1,7 +1,7 @@
 import { Metadata } from '@/fields/Metadata'
 import { Slug } from '@/fields/Slug'
 import { ContentMetadata } from '@/fields/ContentMetadata'
-import { RichText } from '@/fields/rich-text'
+import { Blocks } from '@/blocks'
 import type { CollectionConfig } from 'payload'
 
 export const Snippets: CollectionConfig = {
@@ -60,7 +60,7 @@ export const Snippets: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [RichText],
+          fields: [Blocks],
         },
         {
           label: 'SEO',
