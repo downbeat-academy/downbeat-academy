@@ -2629,6 +2629,37 @@ export interface TaskSchedulePublish {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineChordBlock".
+ */
+export interface InlineChordBlock {
+  root?: string | null;
+  quality?:
+    | (
+        | 'major'
+        | 'major7'
+        | 'major6'
+        | 'dominant7'
+        | 'minor'
+        | 'minor7'
+        | 'minMaj7'
+        | 'dim'
+        | 'dim7'
+        | 'halfDim7'
+        | 'sus4'
+        | 'aug'
+        | 'aug7'
+      )
+    | null;
+  extension?:
+    | ('flat9' | 'flat5' | 'sharp5' | 'flat13' | 'sharp9' | 'sharp11' | 'sharp9flat9' | 'sixNine' | 'altered')
+    | null;
+  alternateBass?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inlineChord';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
