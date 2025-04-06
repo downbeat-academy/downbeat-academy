@@ -9,6 +9,10 @@ export const Curricula: CollectionConfig = {
     group: 'Educational Content',
     useAsTitle: 'title',
   },
+  labels: {
+    singular: 'Curriculum',
+    plural: 'Curricula',
+  },
   versions: {
     drafts: {
       validate: true,

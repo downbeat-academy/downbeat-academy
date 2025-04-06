@@ -179,7 +179,7 @@ export interface Page {
   slug: string;
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -270,7 +270,7 @@ export interface ErrorPage {
   };
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -348,21 +348,28 @@ export interface Article {
    */
   updatedDate?: string | null;
   excerpt?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -441,7 +448,7 @@ export interface Person {
   };
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1208,7 +1215,7 @@ export interface LandingPage {
   slug: string;
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1568,7 +1575,7 @@ export interface PagesSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -1608,7 +1615,7 @@ export interface ErrorPagesSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -1660,7 +1667,17 @@ export interface ArticlesSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1781,7 +1798,7 @@ export interface PeopleSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -2234,7 +2251,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -2656,7 +2673,22 @@ export interface InlineChordBlock {
   alternateBass?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'inlineChord';
+  blockType: 'inline-chord';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineMusicTextBlock".
+ */
+export interface InlineMusicTextBlock {
+  options?:
+    | {
+        accidental?: ('flat' | 'sharp' | 'double-flat' | 'double-sharp' | 'natural') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inline-music-text';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

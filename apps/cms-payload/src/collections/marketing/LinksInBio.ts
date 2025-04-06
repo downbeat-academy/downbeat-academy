@@ -8,6 +8,10 @@ export const LinksInBio: CollectionConfig = {
     useAsTitle: 'title',
     group: 'Marketing',
   },
+  labels: {
+    singular: 'Link in Bio',
+    plural: 'Links in Bio',
+  },
   versions: {
     drafts: {
       validate: true,

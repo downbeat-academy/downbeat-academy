@@ -1,6 +1,6 @@
 import { lexicalEditor, HeadingFeature, BlocksFeature } from '@payloadcms/richtext-lexical'
 import type { Field } from 'payload'
-import { InlineChord } from '../music-notation/InlineChord'
+import { InlineChord, InlineMusicText } from '@/blocks/music-notation'
 
 export const RichText: Field = {
   name: 'richText',
@@ -18,7 +18,7 @@ export const RichText: Field = {
       }),
       BlocksFeature({
         blocks: [],
-        inlineBlocks: [InlineChord],
+        inlineBlocks: [InlineChord, InlineMusicText],
       }),
     ],
   }),

@@ -1,5 +1,5 @@
 import { Metadata } from '@/fields/Metadata'
-import { Blocks } from '@/fields/Blocks'
+import { Blocks } from '@/blocks'
 import { Slug } from '@/fields/Slug'
 
 import type { CollectionConfig } from 'payload'

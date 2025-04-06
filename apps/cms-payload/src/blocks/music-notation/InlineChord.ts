@@ -1,12 +1,11 @@
 import type { Block } from 'payload'
 
 export const InlineChord: Block = {
-  slug: 'inlineChord',
+  slug: 'inline-chord',
   interfaceName: 'InlineChordBlock',
-  admin: {
-    components: {
-      Label: './components/InlineChordLabel',
-    },
+  labels: {
+    singular: 'Inline Chord',
+    plural: 'Inline Chords',
   },
   fields: [
     {
