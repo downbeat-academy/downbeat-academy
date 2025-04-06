@@ -10,6 +10,13 @@ export const LandingPages: CollectionConfig = {
     group: 'Marketing',
     useAsTitle: 'title',
   },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
+  },
   fields: [
     {
       type: 'tabs',

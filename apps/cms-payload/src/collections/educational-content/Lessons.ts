@@ -10,6 +10,13 @@ export const Lessons: CollectionConfig = {
     group: 'Educational Content',
     useAsTitle: 'title',
   },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
+  },
   fields: [
     {
       type: 'tabs',

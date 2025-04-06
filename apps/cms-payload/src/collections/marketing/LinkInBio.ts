@@ -4,6 +4,13 @@ import type { CollectionConfig } from 'payload'
 
 export const LinkInBio: CollectionConfig = {
   slug: 'link-in-bio',
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
+  },
   fields: [
     {
       type: 'tabs',

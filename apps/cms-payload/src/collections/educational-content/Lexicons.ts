@@ -10,6 +10,13 @@ export const Lexicons: CollectionConfig = {
     group: 'Educational Content',
     useAsTitle: 'artist',
   },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
+  },
   fields: [
     {
       type: 'tabs',

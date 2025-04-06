@@ -11,6 +11,13 @@ export const Podcasts: CollectionConfig = {
     group: 'Educational Content',
     useAsTitle: 'title',
   },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
+  },
   fields: [
     {
       type: 'tabs',
