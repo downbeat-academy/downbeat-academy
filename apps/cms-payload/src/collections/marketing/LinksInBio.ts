@@ -4,6 +4,10 @@ import type { CollectionConfig } from 'payload'
 
 export const LinksInBio: CollectionConfig = {
   slug: 'links-in-bio',
+  admin: {
+    useAsTitle: 'title',
+    group: 'Marketing',
+  },
   versions: {
     drafts: {
       validate: true,

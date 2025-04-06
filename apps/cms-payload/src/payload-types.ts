@@ -86,6 +86,7 @@ export interface Config {
     courses: Course;
     curricula: Curriculum;
     'landing-pages': LandingPage;
+    'links-in-bio': LinksInBio;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -113,6 +114,7 @@ export interface Config {
     courses: CoursesSelect<false> | CoursesSelect<true>;
     curricula: CurriculaSelect<false> | CurriculaSelect<true>;
     'landing-pages': LandingPagesSelect<false> | LandingPagesSelect<true>;
+    'links-in-bio': LinksInBioSelect<false> | LinksInBioSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -1251,6 +1253,81 @@ export interface LandingPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links-in-bio".
+ */
+export interface LinksInBio {
+  id: number;
+  title?: string | null;
+  reference?:
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'curricula';
+        value: number | Curriculum;
+      } | null)
+    | ({
+        relationTo: 'handbooks';
+        value: number | Handbook;
+      } | null)
+    | ({
+        relationTo: 'lessons';
+        value: number | Lesson;
+      } | null)
+    | ({
+        relationTo: 'lexicons';
+        value: number | Lexicon;
+      } | null)
+    | ({
+        relationTo: 'podcasts';
+        value: number | Podcast;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'snippets';
+        value: number | Snippet;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'landing-pages';
+        value: number | LandingPage;
+      } | null);
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
 export interface PayloadJob {
@@ -1427,6 +1504,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'landing-pages';
         value: number | LandingPage;
+      } | null)
+    | ({
+        relationTo: 'links-in-bio';
+        value: number | LinksInBio;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -2173,6 +2254,26 @@ export interface LandingPagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links-in-bio_select".
+ */
+export interface LinksInBioSelect<T extends boolean = true> {
+  title?: T;
+  reference?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs_select".
  */
 export interface PayloadJobsSelect<T extends boolean = true> {
@@ -2516,6 +2617,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'landing-pages';
           value: number | LandingPage;
+        } | null)
+      | ({
+          relationTo: 'links-in-bio';
+          value: number | LinksInBio;
         } | null);
     global?: string | null;
     user?: (number | null) | User;
