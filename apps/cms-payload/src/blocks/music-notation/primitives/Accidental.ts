@@ -3,6 +3,7 @@ import { Field } from 'payload'
 export const Accidental: Field = {
   name: 'accidental',
   type: 'select',
+  label: 'Accidental',
   options: [
     { label: `Flat (♭)`, value: `flat` },
     { label: `Sharp (♯)`, value: `sharp` },
