@@ -2,8 +2,8 @@ import { Metadata } from '@/fields/Metadata'
 
 import type { CollectionConfig } from 'payload'
 
-export const LinkInBio: CollectionConfig = {
-  slug: 'link-in-bio',
+export const LinksInBio: CollectionConfig = {
+  slug: 'links-in-bio',
   versions: {
     drafts: {
       validate: true,
