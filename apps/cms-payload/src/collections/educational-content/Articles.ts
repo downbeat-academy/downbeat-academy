@@ -1,7 +1,7 @@
 import { Metadata } from '@/fields/Metadata'
 import { Slug } from '@/fields/Slug'
 import { ContentMetadata } from '@/fields/ContentMetadata'
-import { RichText } from '@/fields/RichText'
+import { RichText } from '@/fields/rich-text'
 
 import type { CollectionConfig } from 'payload'
 
