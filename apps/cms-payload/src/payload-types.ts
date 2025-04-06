@@ -2699,6 +2699,53 @@ export interface InlineMusicTextBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineReferenceBlock".
+ */
+export interface InlineReferenceBlock {
+  text: string;
+  reference:
+    | {
+        relationTo: 'articles';
+        value: number | Article;
+      }
+    | {
+        relationTo: 'courses';
+        value: number | Course;
+      }
+    | {
+        relationTo: 'curricula';
+        value: number | Curriculum;
+      }
+    | {
+        relationTo: 'handbooks';
+        value: number | Handbook;
+      }
+    | {
+        relationTo: 'lessons';
+        value: number | Lesson;
+      }
+    | {
+        relationTo: 'lexicons';
+        value: number | Lexicon;
+      }
+    | {
+        relationTo: 'podcasts';
+        value: number | Podcast;
+      }
+    | {
+        relationTo: 'resources';
+        value: number | Resource;
+      }
+    | {
+        relationTo: 'snippets';
+        value: number | Snippet;
+      };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inline-reference';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
