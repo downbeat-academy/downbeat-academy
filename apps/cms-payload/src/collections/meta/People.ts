@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { Blocks } from '../../fields/Blocks'
+import { Blocks } from '../../blocks'
 import { SocialLink } from '../../fields/SocialLink'
 import { Metadata } from '../../fields/Metadata'
 import { Slug } from '../../fields/Slug'

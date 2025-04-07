@@ -8,6 +8,10 @@ export const Categories: CollectionConfig = {
     group: 'Meta',
     useAsTitle: 'title',
   },
+  labels: {
+    singular: 'Category',
+    plural: 'Categories',
+  },
   fields: [
     {
       type: 'text',

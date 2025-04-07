@@ -1,7 +1,7 @@
 import { Metadata } from '@/fields/Metadata'
 import { Slug } from '@/fields/Slug'
 import { ContentMetadata } from '@/fields/ContentMetadata'
-import { RichText } from '@/fields/RichText'
+import { Blocks } from '@/blocks'
 
 import type { CollectionConfig } from 'payload'
 
@@ -10,6 +10,13 @@ export const Handbooks: CollectionConfig = {
   admin: {
     group: 'Educational Content',
     useAsTitle: 'title',
+  },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
   },
   fields: [
     {
@@ -59,7 +66,7 @@ export const Handbooks: CollectionConfig = {
               label: 'Excerpt',
               type: 'textarea',
             },
-            RichText,
+            Blocks,
           ],
         },
         {

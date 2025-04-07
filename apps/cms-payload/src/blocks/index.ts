@@ -1,4 +1,5 @@
 import type { Field } from 'payload'
+import { RichText } from '@/fields/rich-text'
 
 export const Blocks: Field = {
   name: 'blocks',
@@ -6,13 +7,7 @@ export const Blocks: Field = {
   blocks: [
     {
       slug: 'richText',
-      fields: [
-        {
-          name: 'content',
-          label: 'Content',
-          type: 'richText',
-        },
-      ],
+      fields: [RichText],
     },
   ],
 }

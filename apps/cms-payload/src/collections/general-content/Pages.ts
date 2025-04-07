@@ -1,5 +1,5 @@
 import { Metadata } from '@/fields/Metadata'
-import { Blocks } from '@/fields/Blocks'
+import { Blocks } from '@/blocks'
 import { Slug } from '@/fields/Slug'
 
 import type { CollectionConfig } from 'payload'
@@ -9,6 +9,13 @@ export const Pages: CollectionConfig = {
   admin: {
     group: 'General Content',
     useAsTitle: 'title',
+  },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
   },
   fields: [
     {
@@ -30,7 +37,14 @@ export const Pages: CollectionConfig = {
         },
         {
           label: 'Content',
-          fields: [Blocks],
+          fields: [
+            {
+              name: 'excerpt',
+              type: 'textarea',
+              label: 'Excerpt',
+            },
+            Blocks,
+          ],
         },
         {
           label: 'SEO',

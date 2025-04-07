@@ -9,6 +9,17 @@ export const Curricula: CollectionConfig = {
     group: 'Educational Content',
     useAsTitle: 'title',
   },
+  labels: {
+    singular: 'Curriculum',
+    plural: 'Curricula',
+  },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
+  },
   fields: [
     {
       type: 'tabs',

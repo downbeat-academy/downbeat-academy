@@ -1,6 +1,6 @@
 import { Metadata } from '@/fields/Metadata'
 import { Slug } from '@/fields/Slug'
-import { Blocks } from '@/fields/Blocks'
+import { Blocks } from '@/blocks'
 
 import type { CollectionConfig } from 'payload'
 
@@ -9,6 +9,13 @@ export const LandingPages: CollectionConfig = {
   admin: {
     group: 'Marketing',
     useAsTitle: 'title',
+  },
+  versions: {
+    drafts: {
+      validate: true,
+      autosave: true,
+      schedulePublish: true,
+    },
   },
   fields: [
     {

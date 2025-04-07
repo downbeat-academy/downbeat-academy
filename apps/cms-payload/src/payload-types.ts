@@ -86,6 +86,8 @@ export interface Config {
     courses: Course;
     curricula: Curriculum;
     'landing-pages': LandingPage;
+    'links-in-bio': LinksInBio;
+    'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -112,6 +114,8 @@ export interface Config {
     courses: CoursesSelect<false> | CoursesSelect<true>;
     curricula: CurriculaSelect<false> | CurriculaSelect<true>;
     'landing-pages': LandingPagesSelect<false> | LandingPagesSelect<true>;
+    'links-in-bio': LinksInBioSelect<false> | LinksInBioSelect<true>;
+    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -134,7 +138,13 @@ export interface Config {
     collection: 'users';
   };
   jobs: {
-    tasks: unknown;
+    tasks: {
+      schedulePublish: TaskSchedulePublish;
+      inline: {
+        input: unknown;
+        output: unknown;
+      };
+    };
     workflows: unknown;
   };
 }
@@ -167,9 +177,10 @@ export interface Page {
    * Automatically generated from the title if left empty
    */
   slug: string;
+  excerpt?: string | null;
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -210,6 +221,7 @@ export interface Page {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -259,7 +271,7 @@ export interface ErrorPage {
   };
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -337,21 +349,28 @@ export interface Article {
    */
   updatedDate?: string | null;
   excerpt?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -373,6 +392,7 @@ export interface Article {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -429,7 +449,7 @@ export interface Person {
   };
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -637,21 +657,28 @@ export interface Resource {
    */
   updatedDate?: string | null;
   excerpt?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -673,6 +700,7 @@ export interface Resource {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -791,6 +819,7 @@ export interface Lexicon {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -838,21 +867,28 @@ export interface Handbook {
   publishedDate: string;
   updatedDate?: string | null;
   excerpt?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -874,6 +910,7 @@ export interface Handbook {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -920,21 +957,28 @@ export interface Snippet {
   };
   publishedDate: string;
   updatedDate?: string | null;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -956,6 +1000,7 @@ export interface Snippet {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1009,21 +1054,28 @@ export interface Podcast {
   publishedDate: string;
   description?: string | null;
   audio?: (number | null) | Media;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -1045,6 +1097,7 @@ export interface Podcast {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1058,21 +1111,28 @@ export interface Lesson {
    * Automatically generated from the title if left empty
    */
   slug: string;
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  blocks?:
+    | {
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'richText';
+      }[]
+    | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -1094,6 +1154,7 @@ export interface Lesson {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1134,6 +1195,7 @@ export interface Course {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1174,6 +1236,7 @@ export interface Curriculum {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1188,7 +1251,7 @@ export interface LandingPage {
   slug: string;
   blocks?:
     | {
-        content?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1227,6 +1290,174 @@ export interface LandingPage {
      */
     nofollow?: boolean | null;
   };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links-in-bio".
+ */
+export interface LinksInBio {
+  id: number;
+  title?: string | null;
+  reference?:
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'curricula';
+        value: number | Curriculum;
+      } | null)
+    | ({
+        relationTo: 'handbooks';
+        value: number | Handbook;
+      } | null)
+    | ({
+        relationTo: 'lessons';
+        value: number | Lesson;
+      } | null)
+    | ({
+        relationTo: 'lexicons';
+        value: number | Lexicon;
+      } | null)
+    | ({
+        relationTo: 'podcasts';
+        value: number | Podcast;
+      } | null)
+    | ({
+        relationTo: 'resources';
+        value: number | Resource;
+      } | null)
+    | ({
+        relationTo: 'snippets';
+        value: number | Snippet;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'landing-pages';
+        value: number | LandingPage;
+      } | null);
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs".
+ */
+export interface PayloadJob {
+  id: number;
+  /**
+   * Input data provided to the job
+   */
+  input?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  taskStatus?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  completedAt?: string | null;
+  totalTried?: number | null;
+  /**
+   * If hasError is true this job will not be retried
+   */
+  hasError?: boolean | null;
+  /**
+   * If hasError is true, this is the error that caused it
+   */
+  error?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Task execution log
+   */
+  log?:
+    | {
+        executedAt: string;
+        completedAt: string;
+        taskSlug: 'inline' | 'schedulePublish';
+        taskID: string;
+        input?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        output?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        state: 'failed' | 'succeeded';
+        error?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  taskSlug?: ('inline' | 'schedulePublish') | null;
+  queue?: string | null;
+  waitUntil?: string | null;
+  processing?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1316,6 +1547,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'landing-pages';
         value: number | LandingPage;
+      } | null)
+    | ({
+        relationTo: 'links-in-bio';
+        value: number | LinksInBio;
+      } | null)
+    | ({
+        relationTo: 'payload-jobs';
+        value: number | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1366,13 +1605,14 @@ export interface PayloadMigration {
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  excerpt?: T;
   blocks?:
     | T
     | {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -1388,6 +1628,7 @@ export interface PagesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1411,7 +1652,7 @@ export interface ErrorPagesSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -1463,7 +1704,17 @@ export interface ArticlesSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1475,6 +1726,7 @@ export interface ArticlesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1583,7 +1835,7 @@ export interface PeopleSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -1668,7 +1920,17 @@ export interface ResourcesSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1680,6 +1942,7 @@ export interface ResourcesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1765,6 +2028,7 @@ export interface LexiconsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1810,7 +2074,17 @@ export interface HandbooksSelect<T extends boolean = true> {
   publishedDate?: T;
   updatedDate?: T;
   excerpt?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1822,6 +2096,7 @@ export interface HandbooksSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1866,7 +2141,17 @@ export interface SnippetsSelect<T extends boolean = true> {
       };
   publishedDate?: T;
   updatedDate?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1878,6 +2163,7 @@ export interface SnippetsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1929,7 +2215,17 @@ export interface PodcastsSelect<T extends boolean = true> {
   publishedDate?: T;
   description?: T;
   audio?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1941,6 +2237,7 @@ export interface PodcastsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1950,7 +2247,17 @@ export interface LessonsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   slug?: T;
-  richText?: T;
+  blocks?:
+    | T
+    | {
+        richText?:
+          | T
+          | {
+              richText?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   metadata?:
     | T
     | {
@@ -1962,6 +2269,7 @@ export interface LessonsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1988,6 +2296,7 @@ export interface CoursesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2014,6 +2323,7 @@ export interface CurriculaSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2028,7 +2338,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
         richText?:
           | T
           | {
-              content?: T;
+              richText?: T;
               id?: T;
               blockName?: T;
             };
@@ -2042,6 +2352,58 @@ export interface LandingPagesSelect<T extends boolean = true> {
         noindex?: T;
         nofollow?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links-in-bio_select".
+ */
+export interface LinksInBioSelect<T extends boolean = true> {
+  title?: T;
+  reference?: T;
+  metadata?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        ogImage?: T;
+        noindex?: T;
+        nofollow?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs_select".
+ */
+export interface PayloadJobsSelect<T extends boolean = true> {
+  input?: T;
+  taskStatus?: T;
+  completedAt?: T;
+  totalTried?: T;
+  hasError?: T;
+  error?: T;
+  log?:
+    | T
+    | {
+        executedAt?: T;
+        completedAt?: T;
+        taskSlug?: T;
+        taskID?: T;
+        input?: T;
+        output?: T;
+        state?: T;
+        error?: T;
+        id?: T;
+      };
+  taskSlug?: T;
+  queue?: T;
+  waitUntil?: T;
+  processing?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2306,6 +2668,183 @@ export interface NavigationSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskSchedulePublish".
+ */
+export interface TaskSchedulePublish {
+  input: {
+    type?: ('publish' | 'unpublish') | null;
+    locale?: string | null;
+    doc?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'articles';
+          value: number | Article;
+        } | null)
+      | ({
+          relationTo: 'resources';
+          value: number | Resource;
+        } | null)
+      | ({
+          relationTo: 'lexicons';
+          value: number | Lexicon;
+        } | null)
+      | ({
+          relationTo: 'handbooks';
+          value: number | Handbook;
+        } | null)
+      | ({
+          relationTo: 'snippets';
+          value: number | Snippet;
+        } | null)
+      | ({
+          relationTo: 'podcasts';
+          value: number | Podcast;
+        } | null)
+      | ({
+          relationTo: 'lessons';
+          value: number | Lesson;
+        } | null)
+      | ({
+          relationTo: 'courses';
+          value: number | Course;
+        } | null)
+      | ({
+          relationTo: 'curricula';
+          value: number | Curriculum;
+        } | null)
+      | ({
+          relationTo: 'landing-pages';
+          value: number | LandingPage;
+        } | null)
+      | ({
+          relationTo: 'links-in-bio';
+          value: number | LinksInBio;
+        } | null);
+    global?: string | null;
+    user?: (number | null) | User;
+  };
+  output?: unknown;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineChordBlock".
+ */
+export interface InlineChordBlock {
+  root?: string | null;
+  quality?:
+    | (
+        | 'major'
+        | 'major7'
+        | 'major6'
+        | 'dominant7'
+        | 'minor'
+        | 'minor7'
+        | 'minMaj7'
+        | 'dim'
+        | 'dim7'
+        | 'halfDim7'
+        | 'sus4'
+        | 'aug'
+        | 'aug7'
+      )
+    | null;
+  extension?:
+    | ('flat9' | 'flat5' | 'sharp5' | 'flat13' | 'sharp9' | 'sharp11' | 'sharp9flat9' | 'sixNine' | 'altered')
+    | null;
+  alternateBass?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inline-chord';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineMusicTextBlock".
+ */
+export interface InlineMusicTextBlock {
+  options?:
+    | {
+        type: 'clef' | 'accidental' | 'barValue' | 'musicSymbol' | 'rhythmicValue' | 'text';
+        clef?: {
+          clef?: ('treble-clef' | 'alto-clef' | 'bass-clef' | 'drum-clef') | null;
+        };
+        accidental?: {
+          accidental?: ('flat' | 'sharp' | 'double-flat' | 'double-sharp' | 'natural') | null;
+        };
+        barValue?: {
+          barValue?:
+            | ('single' | 'double' | 'final' | 'final-reverse' | 'dashed' | 'repeat-left' | 'repeat-right')
+            | null;
+        };
+        musicSymbol?: {
+          musicSymbol?: ('dal-segno' | 'da-capo' | 'segno' | 'fermata' | 'breath-mark' | 'caesura' | 'code') | null;
+        };
+        rhythmicValue?: {
+          rhythmicValue?:
+            | ('whole-note' | 'half-note' | 'quarter-note' | 'eighth-note' | 'sixteenth-note' | 'thirty-second-note')
+            | null;
+        };
+        text?: {
+          text?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inline-music-text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InlineReferenceBlock".
+ */
+export interface InlineReferenceBlock {
+  text: string;
+  reference:
+    | {
+        relationTo: 'articles';
+        value: number | Article;
+      }
+    | {
+        relationTo: 'courses';
+        value: number | Course;
+      }
+    | {
+        relationTo: 'curricula';
+        value: number | Curriculum;
+      }
+    | {
+        relationTo: 'handbooks';
+        value: number | Handbook;
+      }
+    | {
+        relationTo: 'lessons';
+        value: number | Lesson;
+      }
+    | {
+        relationTo: 'lexicons';
+        value: number | Lexicon;
+      }
+    | {
+        relationTo: 'podcasts';
+        value: number | Podcast;
+      }
+    | {
+        relationTo: 'resources';
+        value: number | Resource;
+      }
+    | {
+        relationTo: 'snippets';
+        value: number | Snippet;
+      };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'inline-reference';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
