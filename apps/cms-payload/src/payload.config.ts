@@ -39,7 +39,7 @@ import { Courses } from './collections/educational-content/Courses'
 import { Users } from '@/collections/payload-collections/Users'
 import { Media } from '@/collections/payload-collections/Media'
 import { NotationFiles } from '@/collections/payload-collections/NotationFiles'
-import { AudioUpload } from '@/collections/payload-collections/AudioUpload'
+import { AudioUpload } from '@/collections/payload-collections/AudioFiles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
