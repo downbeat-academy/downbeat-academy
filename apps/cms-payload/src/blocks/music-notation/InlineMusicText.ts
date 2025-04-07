@@ -20,7 +20,87 @@ export const InlineMusicText: Block = {
       name: 'options',
       label: 'Options',
       type: 'array',
-      fields: [Clef, Accidental, BarValue, MusicSymbol, RhythmicValue, Text],
+      fields: [
+        {
+          name: 'type',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'Clef', value: 'clef' },
+            { label: 'Accidental', value: 'accidental' },
+            { label: 'Bar Value', value: 'barValue' },
+            { label: 'Music Symbol', value: 'musicSymbol' },
+            { label: 'Rhythmic Value', value: 'rhythmicValue' },
+            { label: 'Text', value: 'text' },
+          ],
+        },
+        {
+          name: 'value',
+          type: 'group',
+          fields: [
+            {
+              name: 'clef',
+              type: 'group',
+              admin: {
+                condition: (data, siblingData) => {
+                  return siblingData?.type === 'clef' ? true : false
+                },
+              },
+              fields: [Clef],
+            },
+            {
+              name: 'accidental',
+              type: 'group',
+              admin: {
+                condition: (data, siblingData) => {
+                  return siblingData?.type === 'accidental' ? true : false
+                },
+              },
+              fields: [Accidental],
+            },
+            {
+              name: 'barValue',
+              type: 'group',
+              admin: {
+                condition: (data, siblingData) => {
+                  return siblingData?.type === 'barValue' ? true : false
+                },
+              },
+              fields: [BarValue],
+            },
+            {
+              name: 'musicSymbol',
+              type: 'group',
+              admin: {
+                condition: (data, siblingData) => {
+                  return siblingData?.type === 'musicSymbol' ? true : false
+                },
+              },
+              fields: [MusicSymbol],
+            },
+            {
+              name: 'rhythmicValue',
+              type: 'group',
+              admin: {
+                condition: (data, siblingData) => {
+                  return siblingData?.type === 'rhythmicValue' ? true : false
+                },
+              },
+              fields: [RhythmicValue],
+            },
+            {
+              name: 'text',
+              type: 'group',
+              admin: {
+                condition: (data, siblingData) => {
+                  return siblingData?.type === 'text' ? true : false
+                },
+              },
+              fields: [Text],
+            },
+          ],
+        },
+      ],
     },
   ],
 }

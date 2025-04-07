@@ -2769,14 +2769,31 @@ export interface InlineChordBlock {
 export interface InlineMusicTextBlock {
   options?:
     | {
-        clef?: ('treble-clef' | 'alto-clef' | 'bass-clef' | 'drum-clef') | null;
-        accidental?: ('flat' | 'sharp' | 'double-flat' | 'double-sharp' | 'natural') | null;
-        barValue?: ('single' | 'double' | 'final' | 'final-reverse' | 'dashed' | 'repeat-left' | 'repeat-right') | null;
-        musicSymbol?: ('dal-segno' | 'da-capo' | 'segno' | 'fermata' | 'breath-mark' | 'caesura' | 'code') | null;
-        rhythmicValue?:
-          | ('whole-note' | 'half-note' | 'quarter-note' | 'eighth-note' | 'sixteenth-note' | 'thirty-second-note')
-          | null;
-        text?: string | null;
+        type: 'clef' | 'accidental' | 'barValue' | 'musicSymbol' | 'rhythmicValue' | 'text';
+        value?: {
+          clef?: {
+            clef?: ('treble-clef' | 'alto-clef' | 'bass-clef' | 'drum-clef') | null;
+          };
+          accidental?: {
+            accidental?: ('flat' | 'sharp' | 'double-flat' | 'double-sharp' | 'natural') | null;
+          };
+          barValue?: {
+            barValue?:
+              | ('single' | 'double' | 'final' | 'final-reverse' | 'dashed' | 'repeat-left' | 'repeat-right')
+              | null;
+          };
+          musicSymbol?: {
+            musicSymbol?: ('dal-segno' | 'da-capo' | 'segno' | 'fermata' | 'breath-mark' | 'caesura' | 'code') | null;
+          };
+          rhythmicValue?: {
+            rhythmicValue?:
+              | ('whole-note' | 'half-note' | 'quarter-note' | 'eighth-note' | 'sixteenth-note' | 'thirty-second-note')
+              | null;
+          };
+          text?: {
+            text?: string | null;
+          };
+        };
         id?: string | null;
       }[]
     | null;
