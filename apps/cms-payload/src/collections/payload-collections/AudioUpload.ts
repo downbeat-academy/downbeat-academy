@@ -18,6 +18,6 @@ export const AudioUpload: CollectionConfig = {
     },
   ],
   upload: {
-    mimeTypes: ['.mp3', '.m4a', '.ogg', '.wav'],
+    mimeTypes: ['audio/mp3', 'audio/m4a', 'audio/ogg', 'audio/wav'],
   },
 }
