@@ -35,70 +35,70 @@ export const InlineMusicText: Block = {
           ],
         },
         {
-          name: 'value',
+          name: 'clef',
           type: 'group',
-          fields: [
-            {
-              name: 'clef',
-              type: 'group',
-              admin: {
-                condition: (data, siblingData) => {
-                  return siblingData?.type === 'clef' ? true : false
-                },
-              },
-              fields: [Clef],
+          label: false,
+          admin: {
+            condition: (data, siblingData) => {
+              return siblingData?.type === 'clef' ? true : false
             },
-            {
-              name: 'accidental',
-              type: 'group',
-              admin: {
-                condition: (data, siblingData) => {
-                  return siblingData?.type === 'accidental' ? true : false
-                },
-              },
-              fields: [Accidental],
+          },
+          fields: [Clef],
+        },
+        {
+          name: 'accidental',
+          type: 'group',
+          label: false,
+          admin: {
+            condition: (data, siblingData) => {
+              return siblingData?.type === 'accidental' ? true : false
             },
-            {
-              name: 'barValue',
-              type: 'group',
-              admin: {
-                condition: (data, siblingData) => {
-                  return siblingData?.type === 'barValue' ? true : false
-                },
-              },
-              fields: [BarValue],
+          },
+          fields: [Accidental],
+        },
+        {
+          name: 'barValue',
+          type: 'group',
+          label: false,
+          admin: {
+            condition: (data, siblingData) => {
+              return siblingData?.type === 'barValue' ? true : false
             },
-            {
-              name: 'musicSymbol',
-              type: 'group',
-              admin: {
-                condition: (data, siblingData) => {
-                  return siblingData?.type === 'musicSymbol' ? true : false
-                },
-              },
-              fields: [MusicSymbol],
+          },
+          fields: [BarValue],
+        },
+        {
+          name: 'musicSymbol',
+          type: 'group',
+          label: false,
+          admin: {
+            condition: (data, siblingData) => {
+              return siblingData?.type === 'musicSymbol' ? true : false
             },
-            {
-              name: 'rhythmicValue',
-              type: 'group',
-              admin: {
-                condition: (data, siblingData) => {
-                  return siblingData?.type === 'rhythmicValue' ? true : false
-                },
-              },
-              fields: [RhythmicValue],
+          },
+          fields: [MusicSymbol],
+        },
+        {
+          name: 'rhythmicValue',
+          type: 'group',
+          label: false,
+          admin: {
+            condition: (data, siblingData) => {
+              return siblingData?.type === 'rhythmicValue' ? true : false
             },
-            {
-              name: 'text',
-              type: 'group',
-              admin: {
-                condition: (data, siblingData) => {
-                  return siblingData?.type === 'text' ? true : false
-                },
-              },
-              fields: [Text],
+          },
+          fields: [RhythmicValue],
+        },
+        {
+          name: 'text',
+          type: 'group',
+          label: false,
+          admin: {
+            condition: (data, siblingData) => {
+              return siblingData?.type === 'text' ? true : false
             },
-          ],
+          },
+          fields: [Text],
         },
       ],
     },
