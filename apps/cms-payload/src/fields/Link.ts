@@ -1,4 +1,5 @@
 import type { Field } from 'payload'
+import { Url } from '@/fields/Url'
 
 export const Link: Field = {
   name: 'link',

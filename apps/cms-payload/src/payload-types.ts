@@ -179,26 +179,29 @@ export interface Page {
   slug: string;
   excerpt?: string | null;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -222,6 +225,29 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlockquoteBlock".
+ */
+export interface BlockquoteBlock {
+  /**
+   * The quote to display.
+   */
+  quote: string;
+  /**
+   * (Optional) Attribution for the quote.
+   */
+  attribution?: string | null;
+  /**
+   * A URL that links to a resource.
+   */
+  url?: {
+    value?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blockquote';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -270,26 +296,29 @@ export interface ErrorPage {
     nofollow?: boolean | null;
   };
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -350,26 +379,29 @@ export interface Article {
   updatedDate?: string | null;
   excerpt?: string | null;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -448,26 +480,29 @@ export interface Person {
     nofollow?: boolean | null;
   };
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -658,26 +693,29 @@ export interface Resource {
   updatedDate?: string | null;
   excerpt?: string | null;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -868,26 +906,29 @@ export interface Handbook {
   updatedDate?: string | null;
   excerpt?: string | null;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -958,26 +999,29 @@ export interface Snippet {
   publishedDate: string;
   updatedDate?: string | null;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -1055,26 +1099,29 @@ export interface Podcast {
   description?: string | null;
   audio?: (number | null) | Media;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -1112,26 +1159,29 @@ export interface Lesson {
    */
   slug: string;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -1250,26 +1300,29 @@ export interface LandingPage {
    */
   slug: string;
   blocks?:
-    | {
-        richText?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
+    | (
+        | {
+            richText?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
               [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'richText';
-      }[]
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'richText';
+          }
+        | BlockquoteBlock
+      )[]
     | null;
   metadata: {
     /**
@@ -1616,6 +1669,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -1629,6 +1683,21 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlockquoteBlock_select".
+ */
+export interface BlockquoteBlockSelect<T extends boolean = true> {
+  quote?: T;
+  attribution?: T;
+  url?:
+    | T
+    | {
+        value?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1656,6 +1725,7 @@ export interface ErrorPagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1714,6 +1784,7 @@ export interface ArticlesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -1839,6 +1910,7 @@ export interface PeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1930,6 +2002,7 @@ export interface ResourcesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2084,6 +2157,7 @@ export interface HandbooksSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2151,6 +2225,7 @@ export interface SnippetsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2225,6 +2300,7 @@ export interface PodcastsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2257,6 +2333,7 @@ export interface LessonsSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2342,6 +2419,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        blockquote?: T | BlockquoteBlockSelect<T>;
       };
   metadata?:
     | T
