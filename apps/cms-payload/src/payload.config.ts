@@ -30,6 +30,7 @@ import { Snippets } from '@/collections/educational-content/Snippets'
 import { Podcasts } from '@/collections/educational-content/Podcasts'
 import { LandingPages } from '@/collections/marketing/LandingPages'
 import { LinksInBio } from '@/collections/marketing/LinksInBio'
+import { Documents } from '@/collections/payload-collections/Documents'
 
 // Payload Collections
 import { Users } from '@/collections/payload-collections/Users'
@@ -71,6 +72,7 @@ export default buildConfig({
     Curricula,
     LandingPages,
     LinksInBio,
+    Documents,
   ],
   globals: [Footer, SiteSettings, Navigation],
   editor: lexicalEditor(),
