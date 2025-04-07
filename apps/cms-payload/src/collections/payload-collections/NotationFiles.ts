@@ -7,6 +7,11 @@ export const NotationFiles: CollectionConfig = {
   },
   fields: [
     {
+      name: 'title',
+      type: 'text',
+      label: 'Title',
+    },
+    {
       name: 'filename',
       label: 'Filename',
       type: 'text',
