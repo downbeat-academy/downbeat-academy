@@ -201,6 +201,7 @@ export interface Page {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -248,6 +249,56 @@ export interface BlockquoteBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'blockquote';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MusicNotationBlock".
+ */
+export interface MusicNotationBlock {
+  /**
+   * Title of the notation snippet.
+   */
+  title: string;
+  /**
+   * A brief description of the notation snippet.
+   */
+  description?: string | null;
+  /**
+   * Upload multiple MusicXML files in different keys
+   */
+  files?:
+    | {
+        /**
+         * Upload a MusicXML file.
+         */
+        file?: (number | null) | NotationFile;
+        label?: ('concert-c' | 'bass-clef' | 'b-flat' | 'e-flat' | 'concert-g' | 'concert-f' | 'custom') | null;
+        customLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'musicNotation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "notation-files".
+ */
+export interface NotationFile {
+  id: number;
+  title?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -318,6 +369,7 @@ export interface ErrorPage {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   updatedAt: string;
@@ -401,6 +453,7 @@ export interface Article {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -502,6 +555,7 @@ export interface Person {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   updatedAt: string;
@@ -715,6 +769,7 @@ export interface Resource {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -739,24 +794,6 @@ export interface Resource {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "notation-files".
- */
-export interface NotationFile {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -928,6 +965,7 @@ export interface Handbook {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -1021,6 +1059,7 @@ export interface Snippet {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -1121,6 +1160,7 @@ export interface Podcast {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -1181,6 +1221,7 @@ export interface Lesson {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -1322,6 +1363,7 @@ export interface LandingPage {
             blockType: 'richText';
           }
         | BlockquoteBlock
+        | MusicNotationBlock
       )[]
     | null;
   metadata: {
@@ -1670,6 +1712,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -1701,6 +1744,24 @@ export interface BlockquoteBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MusicNotationBlock_select".
+ */
+export interface MusicNotationBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  files?:
+    | T
+    | {
+        file?: T;
+        label?: T;
+        customLabel?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "error-pages_select".
  */
 export interface ErrorPagesSelect<T extends boolean = true> {
@@ -1726,6 +1787,7 @@ export interface ErrorPagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1785,6 +1847,7 @@ export interface ArticlesSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -1911,6 +1974,7 @@ export interface PeopleSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -2003,6 +2067,7 @@ export interface ResourcesSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2022,6 +2087,7 @@ export interface ResourcesSelect<T extends boolean = true> {
  * via the `definition` "notation-files_select".
  */
 export interface NotationFilesSelect<T extends boolean = true> {
+  title?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2158,6 +2224,7 @@ export interface HandbooksSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2226,6 +2293,7 @@ export interface SnippetsSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2301,6 +2369,7 @@ export interface PodcastsSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2334,6 +2403,7 @@ export interface LessonsSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2420,6 +2490,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
+        musicNotation?: T | MusicNotationBlockSelect<T>;
       };
   metadata?:
     | T
