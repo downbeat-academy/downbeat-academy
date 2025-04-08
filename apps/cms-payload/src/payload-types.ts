@@ -87,6 +87,7 @@ export interface Config {
     curricula: Curriculum;
     'landing-pages': LandingPage;
     'links-in-bio': LinksInBio;
+    documents: Document;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -115,6 +116,7 @@ export interface Config {
     curricula: CurriculaSelect<false> | CurriculaSelect<true>;
     'landing-pages': LandingPagesSelect<false> | LandingPagesSelect<true>;
     'links-in-bio': LinksInBioSelect<false> | LinksInBioSelect<true>;
+    documents: DocumentsSelect<false> | DocumentsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -202,6 +204,7 @@ export interface Page {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -302,6 +305,41 @@ export interface NotationFile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FileDownloadBlock".
+ */
+export interface FileDownloadBlock {
+  title: string;
+  description?: string | null;
+  /**
+   * Upload a file to be downloaded by the user.
+   */
+  file?: (number | null) | Document;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'file-download';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  title?: string | null;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
@@ -370,6 +408,7 @@ export interface ErrorPage {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   updatedAt: string;
@@ -454,6 +493,7 @@ export interface Article {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -556,6 +596,7 @@ export interface Person {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   updatedAt: string;
@@ -770,6 +811,7 @@ export interface Resource {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -966,6 +1008,7 @@ export interface Handbook {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -1060,6 +1103,7 @@ export interface Snippet {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -1161,6 +1205,7 @@ export interface Podcast {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -1222,6 +1267,7 @@ export interface Lesson {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -1364,6 +1410,7 @@ export interface LandingPage {
           }
         | BlockquoteBlock
         | MusicNotationBlock
+        | FileDownloadBlock
       )[]
     | null;
   metadata: {
@@ -1648,6 +1695,10 @@ export interface PayloadLockedDocument {
         value: number | LinksInBio;
       } | null)
     | ({
+        relationTo: 'documents';
+        value: number | Document;
+      } | null)
+    | ({
         relationTo: 'payload-jobs';
         value: number | PayloadJob;
       } | null);
@@ -1713,6 +1764,7 @@ export interface PagesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -1762,6 +1814,17 @@ export interface MusicNotationBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FileDownloadBlock_select".
+ */
+export interface FileDownloadBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  file?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "error-pages_select".
  */
 export interface ErrorPagesSelect<T extends boolean = true> {
@@ -1788,6 +1851,7 @@ export interface ErrorPagesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1848,6 +1912,7 @@ export interface ArticlesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -1975,6 +2040,7 @@ export interface PeopleSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -2068,6 +2134,7 @@ export interface ResourcesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2225,6 +2292,7 @@ export interface HandbooksSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2294,6 +2362,7 @@ export interface SnippetsSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2370,6 +2439,7 @@ export interface PodcastsSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2404,6 +2474,7 @@ export interface LessonsSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2491,6 +2562,7 @@ export interface LandingPagesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
+        'file-download'?: T | FileDownloadBlockSelect<T>;
       };
   metadata?:
     | T
@@ -2524,6 +2596,25 @@ export interface LinksInBioSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents_select".
+ */
+export interface DocumentsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

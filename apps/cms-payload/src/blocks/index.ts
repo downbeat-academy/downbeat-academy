@@ -4,6 +4,7 @@ import type { Field } from 'payload'
 import { RichText } from '@/fields/rich-text'
 import { Blockquote } from '@/blocks/Blockquote'
 import { MusicNotation } from '@/blocks/music-notation/MusicNotation'
+import { FileDownload } from '@/blocks/FileDownload'
 
 export const Blocks: Field = {
   name: 'blocks',
@@ -18,5 +19,6 @@ export const Blocks: Field = {
     },
     Blockquote,
     MusicNotation,
+    FileDownload,
   ],
 }
