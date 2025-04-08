@@ -31,14 +31,15 @@ import { Podcasts } from '@/collections/educational-content/Podcasts'
 import { LandingPages } from '@/collections/marketing/LandingPages'
 import { LinksInBio } from '@/collections/marketing/LinksInBio'
 import { Documents } from '@/collections/payload-collections/Documents'
+import { Curricula } from './collections/educational-content/Curricula'
+import { Lessons } from '@/collections/educational-content/Lessons'
+import { Courses } from './collections/educational-content/Courses'
 
 // Payload Collections
 import { Users } from '@/collections/payload-collections/Users'
 import { Media } from '@/collections/payload-collections/Media'
 import { NotationFiles } from '@/collections/payload-collections/NotationFiles'
-import { Lessons } from '@/collections/educational-content/Lessons'
-import { Courses } from './collections/educational-content/Courses'
-import { Curricula } from './collections/educational-content/Curricula'
+import { AudioUpload } from '@/collections/payload-collections/AudioFiles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -63,6 +64,7 @@ export default buildConfig({
     Media,
     Resources,
     NotationFiles,
+    AudioUpload,
     Lexicons,
     Handbooks,
     Snippets,
