@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
-export const AudioUpload: CollectionConfig = {
-  slug: 'audio-upload',
+export const NotationFiles: CollectionConfig = {
+  slug: 'notation-files',
+  admin: {
+    group: 'Assets',
+  },
   access: {
     read: () => true,
   },
@@ -18,6 +21,6 @@ export const AudioUpload: CollectionConfig = {
     },
   ],
   upload: {
-    mimeTypes: ['audio/mp3', 'audio/m4a', 'audio/ogg', 'audio/wav'],
+    mimeTypes: ['.musicxml', '.mxl', '.xml'],
   },
 }
