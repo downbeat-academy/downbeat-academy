@@ -206,11 +206,8 @@ export interface Page {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -311,7 +308,6 @@ export interface NotationFile {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "FileDownloadBlock".
  */
 export interface FileDownloadBlock {
@@ -333,7 +329,20 @@ export interface Document {
   id: number;
   title?: string | null;
   description?: string | null;
-=======
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AudioBlock".
  */
 export interface AudioBlock {
@@ -356,7 +365,6 @@ export interface AudioBlock {
 export interface AudioUpload {
   id: number;
   title?: string | null;
->>>>>>> 8396e54 (Added audio block)
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -439,11 +447,8 @@ export interface ErrorPage {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   updatedAt: string;
@@ -528,11 +533,8 @@ export interface Article {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -635,11 +637,8 @@ export interface Person {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   updatedAt: string;
@@ -854,11 +853,8 @@ export interface Resource {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -1055,11 +1051,8 @@ export interface Handbook {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -1154,11 +1147,8 @@ export interface Snippet {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -1260,11 +1250,8 @@ export interface Podcast {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -1326,11 +1313,8 @@ export interface Lesson {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -1473,11 +1457,8 @@ export interface LandingPage {
           }
         | BlockquoteBlock
         | MusicNotationBlock
-<<<<<<< HEAD
         | FileDownloadBlock
-=======
         | AudioBlock
->>>>>>> 8396e54 (Added audio block)
       )[]
     | null;
   metadata: {
@@ -1835,11 +1816,8 @@ export interface PagesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -1889,14 +1867,17 @@ export interface MusicNotationBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "FileDownloadBlock_select".
  */
 export interface FileDownloadBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   file?: T;
-=======
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "AudioBlock_select".
  */
 export interface AudioBlockSelect<T extends boolean = true> {
@@ -1905,7 +1886,6 @@ export interface AudioBlockSelect<T extends boolean = true> {
   description?: T;
   file?: T;
   download?: T;
->>>>>>> 8396e54 (Added audio block)
   id?: T;
   blockName?: T;
 }
@@ -1937,11 +1917,8 @@ export interface ErrorPagesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   updatedAt?: T;
   createdAt?: T;
@@ -2002,11 +1979,8 @@ export interface ArticlesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -2134,11 +2108,8 @@ export interface PeopleSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   updatedAt?: T;
   createdAt?: T;
@@ -2232,11 +2203,8 @@ export interface ResourcesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -2412,11 +2380,8 @@ export interface HandbooksSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -2486,11 +2451,8 @@ export interface SnippetsSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -2567,11 +2529,8 @@ export interface PodcastsSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -2606,11 +2565,8 @@ export interface LessonsSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
@@ -2698,11 +2654,8 @@ export interface LandingPagesSelect<T extends boolean = true> {
             };
         blockquote?: T | BlockquoteBlockSelect<T>;
         musicNotation?: T | MusicNotationBlockSelect<T>;
-<<<<<<< HEAD
         'file-download'?: T | FileDownloadBlockSelect<T>;
-=======
         audio?: T | AudioBlockSelect<T>;
->>>>>>> 8396e54 (Added audio block)
       };
   metadata?:
     | T
