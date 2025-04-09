@@ -15,12 +15,12 @@ export const NotationFiles: CollectionConfig = {
       label: 'Title',
     },
     {
-      name: 'filename',
-      label: 'Filename',
-      type: 'text',
+      name: 'description',
+      type: 'textarea',
+      label: 'Description',
     },
   ],
   upload: {
-    mimeTypes: ['.musicxml', '.mxl', '.xml'],
+    mimeTypes: ['application/vnd.recordare.musicxml+xml', 'audio/midi', 'audio/x-midi'],
   },
 }

@@ -20,5 +20,14 @@ export const Documents: CollectionConfig = {
       label: 'Description',
     },
   ],
-  upload: true,
+  upload: {
+    mimeTypes: [
+      'application/pdf',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ],
+  },
 }
