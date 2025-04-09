@@ -3,6 +3,7 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { resendAdapter } from '@payloadcms/email-resend'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -105,6 +106,20 @@ export default buildConfig({
         documents: true,
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+    redirectsPlugin({
+      collections: [
+        'pages',
+        'error-pages',
+        'articles',
+        'categories',
+        'difficulties',
+        'genres',
+        'instruments',
+        'people',
+        'users',
+        'resources',
+      ],
     }),
   ],
 })

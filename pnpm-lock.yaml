@@ -32,6 +32,9 @@ importers:
       '@payloadcms/payload-cloud':
         specifier: 3.32.0
         version: 3.32.0(payload@3.33.0)
+      '@payloadcms/plugin-redirects':
+        specifier: 3.32.0
+        version: 3.32.0(payload@3.33.0)
       '@payloadcms/richtext-lexical':
         specifier: 3.32.0
         version: 3.32.0(@faceless-ui/modal@3.0.0-beta.2)(@faceless-ui/scroll-info@2.0.0)(@payloadcms/next@3.32.0)(@types/react@18.3.20)(monaco-editor@0.52.2)(next@15.1.5)(payload@3.33.0)(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)(yjs@13.6.24)
@@ -7065,6 +7068,14 @@ packages:
       - typescript
     dev: false
 
+  /@payloadcms/plugin-redirects@3.32.0(payload@3.33.0):
+    resolution: {integrity: sha512-I/AJbGRvZseQqYG3oHO4mBReaagng1xrRS/WSZHS5ynDcQjwQHKxr8luY8lzZB1/z/B6eXBpU50RBMPQ5TD+qQ==}
+    peerDependencies:
+      payload: 3.32.0
+    dependencies:
+      payload: 3.33.0(graphql@16.10.0)(typescript@5.7.3)
+    dev: false
+
   /@payloadcms/richtext-lexical@3.32.0(@faceless-ui/modal@3.0.0-beta.2)(@faceless-ui/scroll-info@2.0.0)(@payloadcms/next@3.32.0)(@types/react@18.3.20)(monaco-editor@0.52.2)(next@15.1.5)(payload@3.33.0)(react-dom@18.3.1)(react@18.3.1)(typescript@5.7.3)(yjs@13.6.24):
     resolution: {integrity: sha512-wO7h6vf5RrLiy9AAre2SEzmVZRV4KI1eTbYxgz9Y1O7zbxycxBcstkCBzJam3l7wxODfHjMGx82hnOi6mjZxlg==}
     engines: {node: ^18.20.2 || >=20.9.0}
@@ -12103,6 +12114,7 @@ packages:
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
+    requiresBuild: true
     dependencies:
       debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
