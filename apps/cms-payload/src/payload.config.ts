@@ -1,15 +1,14 @@
-// storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { resendAdapter } from '@payloadcms/email-resend'
-// import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-// Globals
+// Global Collections
 import { Footer } from '@/globals/Footer'
 import { SiteSettings } from '@/globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
@@ -30,16 +29,18 @@ import { Snippets } from '@/collections/educational-content/Snippets'
 import { Podcasts } from '@/collections/educational-content/Podcasts'
 import { LandingPages } from '@/collections/marketing/LandingPages'
 import { LinksInBio } from '@/collections/marketing/LinksInBio'
-import { Documents } from '@/collections/payload-collections/Documents'
 import { Curricula } from './collections/educational-content/Curricula'
 import { Lessons } from '@/collections/educational-content/Lessons'
 import { Courses } from './collections/educational-content/Courses'
 
+// Asset Collections
+import { Media } from '@/collections/assets/Media'
+import { NotationFiles } from '@/collections/assets/NotationFiles'
+import { AudioUpload } from '@/collections/assets/AudioFiles'
+import { Documents } from '@/collections/assets/Documents'
+
 // Payload Collections
 import { Users } from '@/collections/payload-collections/Users'
-import { Media } from '@/collections/payload-collections/Media'
-import { NotationFiles } from '@/collections/payload-collections/NotationFiles'
-import { AudioUpload } from '@/collections/payload-collections/AudioFiles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -95,13 +96,15 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    // vercelBlobStorage({
-    //   enabled: true,
-    //   collections: {
-    //     media: true,
-    //     'notation-files': true,
-    //   },
-    //   token: process.env.BLOB_READ_WRITE_TOKEN,
-    // }),
+    vercelBlobStorage({
+      enabled: true,
+      collections: {
+        media: true,
+        'notation-files': true,
+        'audio-upload': true,
+        documents: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
 })

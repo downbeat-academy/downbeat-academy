@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Documents: CollectionConfig = {
   slug: 'documents',
+  admin: {
+    group: 'Assets',
+  },
   access: {
     read: () => true,
   },
@@ -17,5 +20,14 @@ export const Documents: CollectionConfig = {
       label: 'Description',
     },
   ],
-  upload: true,
+  upload: {
+    mimeTypes: [
+      'application/pdf',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ],
+  },
 }

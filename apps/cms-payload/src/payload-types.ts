@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -294,6 +295,7 @@ export interface MusicNotationBlock {
 export interface NotationFile {
   id: number;
   title?: string | null;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -365,6 +367,7 @@ export interface AudioBlock {
 export interface AudioUpload {
   id: number;
   title?: string | null;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -384,6 +387,7 @@ export interface AudioUpload {
 export interface Media {
   id: number;
   alt: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -2135,6 +2139,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2225,6 +2230,7 @@ export interface ResourcesSelect<T extends boolean = true> {
  */
 export interface NotationFilesSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2243,6 +2249,7 @@ export interface NotationFilesSelect<T extends boolean = true> {
  */
 export interface AudioUploadSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
