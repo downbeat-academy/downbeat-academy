@@ -22,5 +22,15 @@ export const Blocks: Field = {
     MusicNotation,
     FileDownload,
     Audio,
+    {
+      slug: 'form',
+      fields: [
+        {
+          name: 'form',
+          type: 'relationship',
+          relationTo: 'forms',
+        },
+      ],
+    },
   ],
 }
