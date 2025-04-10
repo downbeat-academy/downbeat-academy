@@ -1,6 +1,6 @@
 import { neon } from '@neondatabase/serverless'
 // import { drizzle } from 'drizzle-orm/neon-http'
-import { drizzle } from 'drizzle-orm/neon-http'
+import { drizzle } from 'drizzle-orm/node-postgres'
 
 export const createDbClient = (connectionString: string | undefined) => {
 	// Debug
