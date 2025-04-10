@@ -2,16 +2,16 @@ import { neon } from '@neondatabase/serverless'
 // import { drizzle } from 'drizzle-orm/neon-http'
 import { drizzle } from 'drizzle-orm/node-postgres'
 
-export const createDbClient = (connectionString: string | undefined) => {
-	// Debug
-	console.log('connection string: ', connectionString)
+// export const createDbClient = (connectionString: string | undefined) => {
+// 	// Debug
+// 	console.log('connection string: ', connectionString)
 
-	if (!connectionString) {
-		throw new Error('Database connection string is not defined')
-	}
-	const connection = drizzle(connectionString)
-	return connection
-}
+// 	if (!connectionString) {
+// 		throw new Error('Database connection string is not defined')
+// 	}
+// 	const connection = drizzle(connectionString)
+// 	return connection
+// }
 
 // export function createDbClient(connectionString: string | undefined) {
 // 	if (!connectionString) {
@@ -39,5 +39,5 @@ export const createDbClient = (connectionString: string | undefined) => {
 // 	return cmsDbInstance
 // }
 
-export const authDb = createDbClient(process.env.DATABASE_URL_AUTH)
-export const cmsDb = createDbClient(process.env.DATABASE_URL_CMS)
+export const authDb = drizzle(process.env.DATABASE_URL_AUTH)
+export const cmsDb = drizzle(process.env.DATABASE_URL_CMS)
