@@ -791,6 +791,7 @@ export interface Person {
                 | 'twitch'
                 | 'soundcloud'
                 | 'spotify'
+                | 'linkedin'
                 | 'website'
               )
             | null;
@@ -3429,6 +3430,7 @@ export interface SiteSetting {
                 | 'twitch'
                 | 'soundcloud'
                 | 'spotify'
+                | 'linkedin'
                 | 'website'
               )
             | null;

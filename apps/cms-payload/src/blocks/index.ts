@@ -11,7 +11,7 @@ export const Blocks: Field = {
   name: 'blocks',
   type: 'blocks',
   admin: {
-    initCollapsed: true,
+    initCollapsed: false,
   },
   blocks: [
     {
