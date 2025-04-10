@@ -10,8 +10,5 @@ export function createDbClient(connectionString: string) {
 }
 
 // Create database clients
-export const authDb = createDbClient(process.env.DATABASE_URL)
+export const authDb = createDbClient(process.env.DATABASE_URL_AUTH)
 export const cmsDb = createDbClient(process.env.DATABASE_URL_CMS)
-
-// For backward compatibility
-export default authDb
