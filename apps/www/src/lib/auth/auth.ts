@@ -3,7 +3,7 @@ import { nextCookies } from 'better-auth/next-js'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, organization } from 'better-auth/plugins'
 import { Resend } from 'resend'
-import { getAuthDb } from '@/lib/db/drizzle'
+import { authDb } from '@/lib/db/drizzle'
 import { authSchema } from '@/lib/db/schema'
 import {
 	ac,
@@ -22,7 +22,7 @@ export function createAuth() {
 		appName: 'Downbeat Academy',
 		secret: process.env.BETTER_AUTH_SECRET,
 		baseUrl: process.env.NEXT_PUBLIC_PROJECT_URL,
-		database: drizzleAdapter(getAuthDb(), {
+		database: drizzleAdapter(authDb, {
 			provider: 'pg',
 			schema: authSchema,
 		}),
