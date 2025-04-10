@@ -3,7 +3,7 @@ import { drizzle } from 'drizzle-orm/neon-http'
 
 export function createDbClient(connectionString: string) {
 	if (!connectionString) {
-		throw new Error('DATABASE_URL is not defined')
+		throw new Error('Database connection string is not defined')
 	}
 	const sql = neon(connectionString)
 	return drizzle(sql)
