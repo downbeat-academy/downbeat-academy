@@ -3,6 +3,9 @@ import { neon } from '@neondatabase/serverless'
 import { drizzle } from 'drizzle-orm/neon-http'
 
 export const createDbClient = (connectionString: string | undefined) => {
+	// Debug
+	console.log('connection string: ', connectionString)
+
 	if (!connectionString) {
 		throw new Error('Database connection string is not defined')
 	}
