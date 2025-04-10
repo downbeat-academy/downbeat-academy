@@ -41,6 +41,13 @@ export const People: CollectionConfig = {
               name: 'avatar',
               relationTo: 'media',
             },
+            {
+              type: 'relationship',
+              label: 'Instrument',
+              name: 'instrument',
+              relationTo: 'instruments',
+              hasMany: true,
+            },
             Metadata,
           ],
         },
