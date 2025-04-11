@@ -308,6 +308,7 @@ export interface NotationFile {
   id: number;
   title?: string | null;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -343,6 +344,7 @@ export interface Document {
   id: number;
   title?: string | null;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -380,6 +382,7 @@ export interface AudioUpload {
   id: number;
   title?: string | null;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -579,6 +582,7 @@ export interface Media {
   id: number;
   alt: string;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -2500,6 +2504,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2598,6 +2603,7 @@ export interface ResourcesSelect<T extends boolean = true> {
 export interface NotationFilesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2617,6 +2623,7 @@ export interface NotationFilesSelect<T extends boolean = true> {
 export interface AudioUploadSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -3106,6 +3113,7 @@ export interface LinksInBioSelect<T extends boolean = true> {
 export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

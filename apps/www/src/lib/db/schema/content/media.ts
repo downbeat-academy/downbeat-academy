@@ -16,7 +16,6 @@ export const media = pgTable('media', {
 	updatedAt: timestamp('updated_at').notNull(),
 	createdAt: timestamp('created_at').notNull(),
 	url: text('url'),
-	// thumbnailURL: text('thumbnail_url'),
 	filename: text('filename'),
 	mimeType: text('mime_type'),
 	filesize: integer('filesize'),
