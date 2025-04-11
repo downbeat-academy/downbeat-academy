@@ -43,6 +43,10 @@ export const SocialLink: Field = {
           value: 'spotify',
         },
         {
+          label: 'LinkedIn',
+          value: 'linkedin',
+        },
+        {
           label: 'Website',
           value: 'website',
         },
