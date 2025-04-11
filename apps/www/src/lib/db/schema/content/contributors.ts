@@ -8,6 +8,7 @@ import {
 } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { socialPlatforms } from './fields/social-links'
+import { media } from './media'
 
 export const socialPlatformEnum = pgEnum(
 	'enum_people_social_links_platform',
@@ -22,6 +23,8 @@ export const people = pgTable('people', {
 	metadataDescription: varchar('metadata_description').notNull(),
 	metadataNoindex: boolean('metadata_noindex'),
 	metadataNofollow: boolean('metadata_nofollow'),
+	imageId: integer('image_id').references(() => media.id),
+	avatarId: integer('avatar_id').references(() => media.id),
 })
 
 export const peopleSocialLinks = pgTable('people_social_links', {
@@ -34,8 +37,16 @@ export const peopleSocialLinks = pgTable('people_social_links', {
 	url: varchar('social_link_url').notNull(),
 })
 
-export const peopleRelations = relations(people, ({ many }) => ({
+export const peopleRelations = relations(people, ({ many, one }) => ({
 	socialLinks: many(peopleSocialLinks),
+	image: one(media, {
+		fields: [people.imageId],
+		references: [media.id],
+	}),
+	avatar: one(media, {
+		fields: [people.avatarId],
+		references: [media.id],
+	}),
 }))
 
 export const peopleSocialLinksRelations = relations(

@@ -7,4 +7,5 @@ export const socialPlatforms = [
 	'linkedin',
 	'website',
 ] as const
+
 export type SocialPlatform = (typeof socialPlatforms)[number]
