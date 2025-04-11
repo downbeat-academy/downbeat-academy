@@ -34,7 +34,6 @@ export const metadata: Metadata = {
 
 export default async function ContributorsPage() {
 	const contributors = await getContributorsData()
-	console.log(contributors)
 
 	return (
 		<>

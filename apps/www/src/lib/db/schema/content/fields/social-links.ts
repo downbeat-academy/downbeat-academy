@@ -8,8 +8,3 @@ export const socialPlatforms = [
 	'website',
 ] as const
 export type SocialPlatform = (typeof socialPlatforms)[number]
-
-export type SocialLink = {
-	platform: SocialPlatform
-	url: string
-}
