@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function ContributorsPage() {
 	const contributors = await getContributorsData()
+	console.log(contributors)
 
 	// Transform the data to match the new interface
 	const transformedContributors = contributors.map((contributor) => ({
