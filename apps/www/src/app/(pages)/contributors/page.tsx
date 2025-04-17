@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default async function ContributorsPage() {
 	const contributors = await getContributorsData()
-	console.log(contributors)
+	console.log(contributors[0].instruments)
 
 	// Transform the data to match the new interface
 	const transformedContributors = contributors.map((contributor) => ({
@@ -21,7 +21,7 @@ export default async function ContributorsPage() {
 		name: contributor.name,
 		slug: contributor.slug,
 		avatar: contributor.avatar,
-		instruments: [], // TODO: Add instruments to the database schema
+		instruments: contributor.instruments.map((instrument) => instrument.name),
 	}))
 
 	return (

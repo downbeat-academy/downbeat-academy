@@ -1,27 +1,34 @@
 'use server'
 
 import { cmsDb } from '@/lib/db/drizzle'
-import { people, peopleSocialLinks } from '@/lib/db/schema/content/contributors'
+import {
+	people,
+	peopleSocialLinks,
+	peopleInstruments,
+} from '@/lib/db/schema/content/contributors'
+import { instrument } from '@/lib/db/schema/content/instrument'
 import { media } from '@/lib/db/schema/content/media'
 import { eq, inArray } from 'drizzle-orm'
 import { getBlobImageUrl } from '@/lib/utils/getBlobImageUrl'
 
 export async function getContributorsData() {
 	try {
-		// const contributorsData = await cmsDb.query.people.findMany({
-		// 	with: {
-		// 		socialLinks: true,
-		// 	},
-		// })
-
-		// return contributorsData
-
 		const peopleData = await cmsDb.select().from(people).orderBy(people.id)
 
 		const socialLinks = await cmsDb
 			.select()
 			.from(peopleSocialLinks)
 			.orderBy(peopleSocialLinks.parentId, peopleSocialLinks.order)
+
+		// Fetch instruments for each person
+		const instrumentsData = await cmsDb
+			.select({
+				personId: peopleInstruments.parentId,
+				instrument: instrument,
+			})
+			.from(peopleInstruments)
+			.leftJoin(instrument, eq(peopleInstruments.instrumentId, instrument.id))
+			.orderBy(peopleInstruments.parentId)
 
 		// Get image IDs to fetch
 		const imageIds = peopleData
@@ -63,6 +70,9 @@ export async function getContributorsData() {
 			avatar: person.avatarId
 				? processedMediaData.find((img) => img.id === person.avatarId) || null
 				: null,
+			instruments: instrumentsData
+				.filter((rel) => rel.personId === person.id)
+				.map((rel) => rel.instrument),
 		}))
 
 		return contributorsWithData

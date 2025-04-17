@@ -30,17 +30,17 @@ export const people = pgTable('people', {
 })
 
 export const peopleInstruments = pgTable(
-	'people_instruments',
+	'people_rels',
 	{
-		personId: integer('person_id')
+		parentId: integer('parent_id')
 			.notNull()
 			.references(() => people.id),
-		instrumentId: integer('instrument_id')
+		instrumentId: integer('instruments_id')
 			.notNull()
 			.references(() => instrument.id),
 	},
 	(t) => ({
-		pk: primaryKey({ columns: [t.personId, t.instrumentId] }),
+		pk: primaryKey({ columns: [t.parentId, t.instrumentId] }),
 	})
 )
 
@@ -71,7 +71,7 @@ export const peopleInstrumentsRelations = relations(
 	peopleInstruments,
 	({ one }) => ({
 		person: one(people, {
-			fields: [peopleInstruments.personId],
+			fields: [peopleInstruments.parentId],
 			references: [people.id],
 		}),
 		instrument: one(instrument, {
