@@ -101,10 +101,18 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true,
       collections: {
-        media: true,
-        'notation-files': true,
-        'audio-upload': true,
-        documents: true,
+        media: {
+          prefix: 'media',
+        },
+        'notation-files': {
+          prefix: 'notation',
+        },
+        'audio-upload': {
+          prefix: 'audio',
+        },
+        documents: {
+          prefix: 'documents',
+        },
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),

@@ -308,6 +308,7 @@ export interface NotationFile {
   id: number;
   title?: string | null;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -343,6 +344,7 @@ export interface Document {
   id: number;
   title?: string | null;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -380,6 +382,7 @@ export interface AudioUpload {
   id: number;
   title?: string | null;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -579,6 +582,7 @@ export interface Media {
   id: number;
   alt: string;
   description?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -791,6 +795,7 @@ export interface Person {
                 | 'twitch'
                 | 'soundcloud'
                 | 'spotify'
+                | 'linkedin'
                 | 'website'
               )
             | null;
@@ -801,6 +806,7 @@ export interface Person {
     | null;
   image?: (number | null) | Media;
   avatar?: (number | null) | Media;
+  instrument?: (number | Instrument)[] | null;
   metadata: {
     /**
      * Meta title (open graph) for SEO
@@ -854,6 +860,35 @@ export interface Person {
           }
       )[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "instruments".
+ */
+export interface Instrument {
+  id: number;
+  title: string;
+  metadata: {
+    /**
+     * Meta title (open graph) for SEO
+     */
+    title: string;
+    /**
+     * Meta description (open graph) for SEO
+     */
+    description: string;
+    ogImage?: (number | null) | Media;
+    /**
+     * If checked, the page will not be indexed by search engines
+     */
+    noindex?: boolean | null;
+    /**
+     * If checked, the page will not be followed by search engines
+     */
+    nofollow?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -920,35 +955,6 @@ export interface Genre {
  * via the `definition` "difficulties".
  */
 export interface Difficulty {
-  id: number;
-  title: string;
-  metadata: {
-    /**
-     * Meta title (open graph) for SEO
-     */
-    title: string;
-    /**
-     * Meta description (open graph) for SEO
-     */
-    description: string;
-    ogImage?: (number | null) | Media;
-    /**
-     * If checked, the page will not be indexed by search engines
-     */
-    noindex?: boolean | null;
-    /**
-     * If checked, the page will not be followed by search engines
-     */
-    nofollow?: boolean | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "instruments".
- */
-export interface Instrument {
   id: number;
   title: string;
   metadata: {
@@ -2441,6 +2447,7 @@ export interface PeopleSelect<T extends boolean = true> {
       };
   image?: T;
   avatar?: T;
+  instrument?: T;
   metadata?:
     | T
     | {
@@ -2497,6 +2504,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2595,6 +2603,7 @@ export interface ResourcesSelect<T extends boolean = true> {
 export interface NotationFilesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -2614,6 +2623,7 @@ export interface NotationFilesSelect<T extends boolean = true> {
 export interface AudioUploadSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -3103,6 +3113,7 @@ export interface LinksInBioSelect<T extends boolean = true> {
 export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -3427,6 +3438,7 @@ export interface SiteSetting {
                 | 'twitch'
                 | 'soundcloud'
                 | 'spotify'
+                | 'linkedin'
                 | 'website'
               )
             | null;
