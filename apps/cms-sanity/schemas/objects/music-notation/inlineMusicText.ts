@@ -23,16 +23,29 @@ export default {
 	],
 	preview: {
 		select: {
-			option1: 'options.0.options',
-			option2: 'options.1.options',
-			option3: 'options.2.options',
+			options: 'options',
 		},
-		prepare: ({ option1, option2, option3 }: any) => {
-			const options = [option1, option2, option3]
-			const title = options.length > 0 ? options.join(' ') : ''
-			console.log(option1)
+		prepare: ({ options = [] }) => {
+			const getOptionValue = (option: any) => {
+				if (!option) return ''
+
+				switch (option._type) {
+					case 'accidental':
+					case 'rhythmicValue':
+					case 'clef':
+					case 'barValue':
+					case 'musicSymbol':
+						return option.options || ''
+					case 'musicText':
+						return option.musicText || ''
+					default:
+						return ''
+				}
+			}
+
+			const values = options.map(getOptionValue).filter(Boolean)
 			return {
-				title,
+				title: values.join(' ') || 'Empty music text',
 			}
 		},
 	},
