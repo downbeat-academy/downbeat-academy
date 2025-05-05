@@ -67,16 +67,24 @@ export default {
 	preview: {
 		select: {
 			root: 'root',
-			type: 'type',
 			quality: 'quality',
 			extension: 'extension',
+			alternateBass: 'alternateBass',
 		},
 		prepare(selection: any) {
-			const { root, quality, extension } = selection
+			const { root, quality, extension, alternateBass } = selection
+			const parts = [root, quality]
+
+			if (extension) {
+				parts.push(extension)
+			}
+
+			if (alternateBass) {
+				parts.push(`/${alternateBass}`)
+			}
+
 			return {
-				title: `${root && root} ${quality && quality} ${
-					extension && extension
-				}`,
+				title: parts.filter(Boolean).join(' '),
 			}
 		},
 	},
