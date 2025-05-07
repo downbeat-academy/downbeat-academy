@@ -6,6 +6,8 @@ import { SectionTitle } from '@components/section-title'
 import { ListItem } from '@components/list'
 import { Text } from 'cadence-core'
 import { linkResolver } from '@utils/link-resolver'
+import { prettyDate } from '@utils/dateFormat'
+import { getOgTitle } from '@utils/metaHelpers'
 
 import type { Metadata } from 'next'
 
@@ -13,7 +15,7 @@ const client = sanityClient
 
 // Generate metadata
 export const metadata: Metadata = {
-	title: 'Link in Bio | Downbeat Academy',
+	title: getOgTitle('Link in Bio'),
 	description:
 		'Find all the links mentioned in our social media profiles here.',
 }
@@ -27,7 +29,7 @@ export default async function LinkInBioPage({ params }) {
 			{
 				next: {
 					revalidate: 60,
-				}
+				},
 			}
 		)
 		if (!links) {
@@ -41,6 +43,7 @@ export default async function LinkInBioPage({ params }) {
 					title={link.title}
 					description={link.description}
 					url={linkResolver(link.link.slug, link.link._type)}
+					date={prettyDate(link.date)}
 				/>
 			)
 		})

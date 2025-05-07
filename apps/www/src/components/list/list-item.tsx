@@ -1,11 +1,18 @@
 import classnames from 'classnames'
 import s from './list-item.module.css'
 import { Link } from '@components/link'
-import { Text } from 'cadence-core'
+import { Text, Badge } from 'cadence-core'
 
 import type { ListItemProps } from './types'
 
-const ListItem = ({ title, description, url, className }: ListItemProps) => {
+const ListItem = ({
+	title,
+	description,
+	date,
+	url,
+	className,
+	children,
+}: ListItemProps) => {
 	const classes = classnames(s.root, className)
 
 	return (
@@ -21,11 +28,13 @@ const ListItem = ({ title, description, url, className }: ListItemProps) => {
 					{title}
 				</Link>
 			</Text>
+			{date && <Badge size="small" type="neutral" text={date} />}
 			{description && (
 				<Text tag="p" size="body-base" type="expressive-body" collapse>
 					{description}
 				</Text>
 			)}
+			{children}
 		</article>
 	)
 }
