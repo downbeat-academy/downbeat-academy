@@ -42,23 +42,31 @@ const OpenSheetMusicDisplay = ({
 	const osmdOptions = {
 		autoResize,
 		engravingRules: {
-			defaultFontFamily: 'Arial',
+			SpacingBetweenStaffLines: 10, // Default is 8
+			SpacingBetweenStaffLinesChordSymbols: 20, // Default is 8
+			ChordSymbolTextHeight: 4,
+			ChordSymbolYOffset: 20, // Add vertical offset for chord symbols
+			ChordSymbolYPadding: 20, // Add padding around chord symbols
 		},
 		backend,
+		colorStemsLikeNoteheads: true,
 		drawingParameters,
 		drawTitle,
 		drawSubtitle,
 		drawComposer,
 		drawLyricist,
-		drawLyrics,
 		drawCredits,
 		drawPartNames,
 		drawMetronomeMarks,
 		drawTimeSignatures,
 		drawMeasureNumbers,
 		drawMeasureNumbersOnlyAtSystemStart,
+		drawLyrics,
 		measureNumberInterval,
+		// Set defaults
 		defaultColorMusic: '#030923',
+		defaultColorNotehead: '#030923',
+		defaultFontFamily: 'Tiempos Text',
 	}
 
 	// Cleanup function
