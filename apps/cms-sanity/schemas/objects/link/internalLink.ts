@@ -30,6 +30,7 @@ export default {
 				{ type: 'podcast' },
 				{ type: 'resource' },
 				{ type: 'snippet' },
+				{ type: 'lexicon' },
 			],
 		},
 	],
