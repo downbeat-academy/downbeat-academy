@@ -90,21 +90,43 @@ const OpenSheetMusicDisplay = ({
 
 				// Set up transposition calculator
 				osmdInstance.TransposeCalculator = new TransposeCalculator()
+
+				// Load the file and wait for it to complete
 				await osmdInstance.load(file)
+
+				// Ensure the file is loaded before proceeding
+				if (!osmdInstance.Sheet) {
+					throw new Error('Failed to load MusicXML file')
+				}
 
 				// Add small delay to ensure container is ready
 				timeoutId = setTimeout(async () => {
 					if (mounted && osmd.current) {
-						// Apply transposition if needed
-						if (transpose !== 0 && osmd.current.Sheet) {
-							osmd.current.Sheet.Transpose = transpose
-							osmd.current.updateGraphic()
-						}
+						try {
+							// Apply transposition if needed
+							if (transpose !== 0 && osmd.current.Sheet) {
+								osmd.current.Sheet.Transpose = transpose
+								osmd.current.updateGraphic()
+							}
 
-						await osmd.current.render()
-						initialRenderComplete.current = true
-						setError(null)
-						onRenderComplete?.()
+							// Ensure we have a valid sheet before rendering
+							if (osmd.current.Sheet) {
+								await osmd.current.render()
+								initialRenderComplete.current = true
+								setError(null)
+								onRenderComplete?.()
+							} else {
+								throw new Error('Sheet not available for rendering')
+							}
+						} catch (renderError) {
+							console.error('Render error:', renderError)
+							setError(
+								renderError instanceof Error
+									? renderError.message
+									: 'Failed to render music sheet'
+							)
+							onRenderComplete?.()
+						}
 					}
 				}, 100)
 			} catch (err) {
