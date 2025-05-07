@@ -5,7 +5,10 @@ export default function NotationTest() {
 	return (
 		<>
 			<Text>Uncompressed MusicXML</Text>
-			<OpenSheetMusicDisplay file="/notation-test-flute.musicxml" />
+			<OpenSheetMusicDisplay
+				file="/notation-test-flute.musicxml"
+				transpose={5}
+			/>
 		</>
 	)
 }

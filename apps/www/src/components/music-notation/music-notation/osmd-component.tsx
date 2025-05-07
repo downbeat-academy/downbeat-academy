@@ -1,12 +1,16 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { OpenSheetMusicDisplay as OSMD } from 'opensheetmusicdisplay'
+import {
+	OpenSheetMusicDisplay as OSMD,
+	TransposeCalculator,
+} from 'opensheetmusicdisplay'
 import type { OpenSheetMusicDisplayProps } from './types'
 
 interface ExtendedOpenSheetMusicDisplayProps
 	extends OpenSheetMusicDisplayProps {
 	onRenderComplete?: () => void
+	transpose?: number
 }
 
 const OpenSheetMusicDisplay = ({
@@ -28,6 +32,7 @@ const OpenSheetMusicDisplay = ({
 	measureNumberInterval = 5,
 	className,
 	onRenderComplete,
+	transpose = 0,
 }: ExtendedOpenSheetMusicDisplayProps) => {
 	const [error, setError] = useState<string | null>(null)
 	const divRef = useRef<HTMLDivElement>(null)
@@ -83,11 +88,19 @@ const OpenSheetMusicDisplay = ({
 				const osmdInstance = new OSMD(divRef.current, osmdOptions)
 				osmd.current = osmdInstance
 
+				// Set up transposition calculator
+				osmdInstance.TransposeCalculator = new TransposeCalculator()
 				await osmdInstance.load(file)
 
 				// Add small delay to ensure container is ready
 				timeoutId = setTimeout(async () => {
 					if (mounted && osmd.current) {
+						// Apply transposition if needed
+						if (transpose !== 0 && osmd.current.Sheet) {
+							osmd.current.Sheet.Transpose = transpose
+							osmd.current.updateGraphic()
+						}
+
 						await osmd.current.render()
 						initialRenderComplete.current = true
 						setError(null)
@@ -114,7 +127,7 @@ const OpenSheetMusicDisplay = ({
 			}
 			cleanup()
 		}
-	}, [file, JSON.stringify(osmdOptions), onRenderComplete])
+	}, [file, JSON.stringify(osmdOptions), onRenderComplete, transpose])
 
 	// Handle window resize
 	useEffect(() => {
@@ -127,6 +140,23 @@ const OpenSheetMusicDisplay = ({
 		window.addEventListener('resize', handleResize)
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
+
+	// Handle transposition changes
+	useEffect(() => {
+		if (osmd.current && initialRenderComplete.current && transpose !== 0) {
+			try {
+				if (osmd.current.Sheet) {
+					osmd.current.Sheet.Transpose = transpose
+					osmd.current.updateGraphic()
+					osmd.current.render()
+				} else {
+					console.warn('OSMD Sheet is not available for transposition')
+				}
+			} catch (err) {
+				console.error('Error during transposition:', err)
+			}
+		}
+	}, [transpose])
 
 	if (error) {
 		return <div>Error: {error}</div>
