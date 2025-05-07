@@ -15,6 +15,14 @@ export default {
 			],
 		},
 		{
+			name: 'date',
+			title: 'Date',
+			type: 'datetime',
+			validation: (Rule: any) => [
+				Rule.required().error('The link needs a date.'),
+			],
+		},
+		{
 			name: 'description',
 			title: 'Description',
 			type: 'text',

@@ -6,6 +6,5 @@ export const sanityClient = createClient({
 	apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2022-11-15',
 	useCdn: false,
 	perspective: 'published',
-	withCredentials: true,
 	token: process.env.SANITY_API_TOKEN,
 })
