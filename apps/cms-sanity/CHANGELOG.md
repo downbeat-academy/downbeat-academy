@@ -1,5 +1,15 @@
 # sanity-cms
 
+## 2.5.0
+
+### Minor Changes
+
+- 562b40d: Further configuration and cleanup.
+
+### Patch Changes
+
+- 3a6e8a8: Fixed previews for inlineMusicText and inlineChord
+
 ## 2.4.0
 
 ### Minor Changes

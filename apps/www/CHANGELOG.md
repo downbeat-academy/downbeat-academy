@@ -1,5 +1,15 @@
 # www
 
+## 4.1.0
+
+### Minor Changes
+
+- 562b40d: Further configuration and cleanup.
+
+### Patch Changes
+
+- 7fc1762: Bug fix for database connections
+
 ## 3.15.0
 
 ### Minor Changes
