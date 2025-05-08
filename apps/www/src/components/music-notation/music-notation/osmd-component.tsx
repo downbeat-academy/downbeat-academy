@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import {
+	EngravingRules,
 	OpenSheetMusicDisplay as OSMD,
 	TransposeCalculator,
 } from 'opensheetmusicdisplay'
@@ -25,11 +26,11 @@ const OpenSheetMusicDisplay = ({
 	drawPartNames = false,
 	drawMetronomeMarks = false,
 	drawTimeSignatures = true,
-	drawMeasureNumbers = false,
+	drawMeasureNumbers = true,
 	drawMeasureNumbersOnlyAtSystemStart = false,
+	measureNumberInterval = 5,
 	drawLyrics = false,
 	file,
-	measureNumberInterval = 5,
 	className,
 	onRenderComplete,
 	transpose = 0,
@@ -41,13 +42,6 @@ const OpenSheetMusicDisplay = ({
 
 	const osmdOptions = {
 		autoResize,
-		engravingRules: {
-			SpacingBetweenStaffLines: 10, // Default is 8
-			SpacingBetweenStaffLinesChordSymbols: 20, // Default is 8
-			ChordSymbolTextHeight: 4,
-			ChordSymbolYOffset: 20, // Add vertical offset for chord symbols
-			ChordSymbolYPadding: 20, // Add padding around chord symbols
-		},
 		backend,
 		colorStemsLikeNoteheads: true,
 		drawingParameters,
@@ -63,10 +57,22 @@ const OpenSheetMusicDisplay = ({
 		drawMeasureNumbersOnlyAtSystemStart,
 		drawLyrics,
 		measureNumberInterval,
+		useXMLMeasureNumbers: true,
 		// Set defaults
 		defaultColorMusic: '#030923',
 		defaultColorNotehead: '#030923',
 		defaultFontFamily: 'Tiempos Text',
+		// Still can't get engraving rules to work :(
+		// EngravingRules: {
+		// 	ChordSymbolYOffset: 100,
+		// 	ChordSymbolYPadding: 100,
+		// 	ChordSymbolYAlignment: true,
+		// 	ChordSymbolYAlignmentScope: 'staffline',
+		// 	ChordSymbolTextHeight: 4,
+		// 	SpacingBetweenTextLines: 30,
+		// 	StaffHeight: 12,
+		// 	MinSkyBottomDistBetweenStaves: 20,
+		// },
 	}
 
 	// Cleanup function
@@ -92,7 +98,7 @@ const OpenSheetMusicDisplay = ({
 			try {
 				cleanup() // Clean up before creating new instance
 
-				// Create new instance
+				// Create new instance with initial options
 				const osmdInstance = new OSMD(divRef.current, osmdOptions)
 				osmd.current = osmdInstance
 
@@ -101,11 +107,6 @@ const OpenSheetMusicDisplay = ({
 
 				// Load the file and wait for it to complete
 				await osmdInstance.load(file)
-
-				// Ensure the file is loaded before proceeding
-				if (!osmdInstance.Sheet) {
-					throw new Error('Failed to load MusicXML file')
-				}
 
 				// Add small delay to ensure container is ready
 				timeoutId = setTimeout(async () => {
@@ -117,15 +118,10 @@ const OpenSheetMusicDisplay = ({
 								osmd.current.updateGraphic()
 							}
 
-							// Ensure we have a valid sheet before rendering
-							if (osmd.current.Sheet) {
-								await osmd.current.render()
-								initialRenderComplete.current = true
-								setError(null)
-								onRenderComplete?.()
-							} else {
-								throw new Error('Sheet not available for rendering')
-							}
+							await osmd.current.render()
+							initialRenderComplete.current = true
+							setError(null)
+							onRenderComplete?.()
 						} catch (renderError) {
 							console.error('Render error:', renderError)
 							setError(
