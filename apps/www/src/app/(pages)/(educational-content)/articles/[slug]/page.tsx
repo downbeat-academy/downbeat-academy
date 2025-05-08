@@ -11,148 +11,155 @@ import { AuthorMetadata } from '@components/author'
 import { RichText, RichTextWrapper } from '@components/rich-text'
 import { Badge, Flex } from 'cadence-core'
 import { Link } from '@components/link'
+import { NewsletterSignup } from '@components/newsletter-signup'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type PageProps = {
-  params: {
-    slug: string;
-  }
+	params: {
+		slug: string
+	}
 }
 
 type ArticleData = {
-  metadata: {
-    title: string;
-    description: string;
-  };
-  title: string;
-  excerpt: string;
-  featuredImage: {
-    image: {
-      asset: any; // Replace 'any' with proper Sanity image type
-    };
-    alternativeText: string;
-  };
-  authors: any[]; // Replace with proper author type
-  date: string;
-  categories: Array<{
-    title: string;
-    slug: string;
-  }>;
-  content: {
-    content: any; // Replace with proper content type
-  };
+	metadata: {
+		title: string
+		description: string
+	}
+	title: string
+	excerpt: string
+	featuredImage: {
+		image: {
+			asset: any // Replace 'any' with proper Sanity image type
+		}
+		alternativeText: string
+	}
+	authors: any[] // Replace with proper author type
+	date: string
+	categories: Array<{
+		title: string
+		slug: string
+	}>
+	content: {
+		content: any // Replace with proper content type
+	}
 }
 
 const client = sanityClient
 
 // Generate metadata
 export async function generateMetadata(
-  { params }: PageProps,
-  parent: ResolvingMetadata
+	{ params }: PageProps,
+	parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params
+	const { slug } = params
 
-  try {
-    const article = await client.fetch<ArticleData>(articlesBySlugQuery,
-      { slug },
-      { next: { revalidate: 60 } }
-    )
+	try {
+		const article = await client.fetch<ArticleData>(
+			articlesBySlugQuery,
+			{ slug },
+			{ next: { revalidate: 60 } }
+		)
 
-    return {
-      title: getOgTitle(article.metadata.title),
-      description: article.metadata.description,
-    }
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
+		return {
+			title: getOgTitle(article.metadata.title),
+			description: article.metadata.description,
+		}
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }
 
 // Generate static params
 export async function generateStaticParams() {
-  try {
-    const slugs = await sanityClient.fetch(articlePaths,
-      {},
-      { next: { revalidate: 60 } }
-    )
-    return slugs.map((slug: string) => ({ slug }))
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
+	try {
+		const slugs = await sanityClient.fetch(
+			articlePaths,
+			{},
+			{ next: { revalidate: 60 } }
+		)
+		return slugs.map((slug: string) => ({ slug }))
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }
 
 // Render the article data
 export default async function ArticleSlugRoute({ params }: PageProps) {
-  const { slug } = params
+	const { slug } = params
 
-  try {
-    const article = await sanityClient.fetch<ArticleData>(
-      articlesBySlugQuery,
-      { slug },
-      { next: { revalidate: 60 } }
-    )
+	try {
+		const article = await sanityClient.fetch<ArticleData>(
+			articlesBySlugQuery,
+			{ slug },
+			{ next: { revalidate: 60 } }
+		)
 
-    // Rest of your component code remains the same
-    const renderCategories = article.categories.map((category) => {
-      return (
-        <Link
-          href={linkResolver(category.slug, 'category')}
-          key={category.title}
-        >
-          <Badge type="neutral" style="filled" text={category.title} />
-        </Link>
-      )
-    })
+		// Rest of your component code remains the same
+		const renderCategories = article.categories.map((category) => {
+			return (
+				<Link
+					href={linkResolver(category.slug, 'category')}
+					key={category.title}
+				>
+					<Badge type="neutral" style="filled" text={category.title} />
+				</Link>
+			)
+		})
 
-    return (
-      <>
-        <SectionContainer>
-          <FeaturedItem.Root>
-            <FeaturedItem.Title>
-              <Text
-                tag="h1"
-                type="expressive-headline"
-                size="h1"
-                color="high-contrast"
-                collapse
-              >
-                {article.title}
-              </Text>
-              <Text
-                tag="p"
-                type="expressive-body"
-                size="body-large"
-                color="high-contrast"
-                collapse
-              >
-                {article.excerpt}
-              </Text>
-            </FeaturedItem.Title>
-            <FeaturedItem.Image
-              image={getSanityImageUrl(article.featuredImage.image.asset).url()}
-              alt={article.featuredImage.alternativeText}
-            />
-            <FeaturedItem.Description>
-              <AuthorMetadata
-                authors={article.authors}
-                date={prettyDate(article.date)}
-              >
-                <Flex tag="div" direction="row" gap="medium">
-                  {renderCategories}
-                </Flex>
-              </AuthorMetadata>
-            </FeaturedItem.Description>
-          </FeaturedItem.Root>
-        </SectionContainer>
-        <RichTextWrapper>
-          <RichText value={article.content.content} />
-        </RichTextWrapper>
-      </>
-    )
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
+		return (
+			<>
+				<SectionContainer>
+					<FeaturedItem.Root>
+						<FeaturedItem.Title>
+							<Text
+								tag="h1"
+								type="expressive-headline"
+								size="h1"
+								color="high-contrast"
+								collapse
+							>
+								{article.title}
+							</Text>
+							<Text
+								tag="p"
+								type="expressive-body"
+								size="body-large"
+								color="high-contrast"
+								collapse
+							>
+								{article.excerpt}
+							</Text>
+						</FeaturedItem.Title>
+						<FeaturedItem.Image
+							image={getSanityImageUrl(article.featuredImage.image.asset).url()}
+							alt={article.featuredImage.alternativeText}
+						/>
+						<FeaturedItem.Description>
+							<AuthorMetadata
+								authors={article.authors}
+								date={prettyDate(article.date)}
+							>
+								<Flex tag="div" direction="row" gap="medium">
+									{renderCategories}
+								</Flex>
+							</AuthorMetadata>
+						</FeaturedItem.Description>
+					</FeaturedItem.Root>
+				</SectionContainer>
+				<RichTextWrapper>
+					<RichText value={article.content.content} />
+				</RichTextWrapper>
+				<NewsletterSignup
+					title="Enjoy this article?"
+					description="Get new and interesting articles directly in your inbox. Generally every few weeks or once a month."
+				/>
+			</>
+		)
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
 }
