@@ -1,5 +1,12 @@
 # www
 
+## 4.2.0
+
+### Minor Changes
+
+- 594cf0e: Added newsletter subscription component.
+- 81e5fc2: Cleaning up the notation component.
+
 ## 4.1.0
 
 ### Minor Changes
