@@ -1,0 +1,11 @@
+.content {
+	position: relative;
+	width: 100%;
+}
+
+/* Hide table of contents on mobile */
+@media (max-width: 768px) {
+	.content {
+		flex-direction: column;
+	}
+}

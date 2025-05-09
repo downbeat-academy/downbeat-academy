@@ -4,14 +4,16 @@ import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/link-resolver'
 import { getOgTitle } from '@utils/metaHelpers'
-import { Text } from 'cadence-core'
+import { Text, Flex } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { RichText, RichTextWrapper } from '@components/rich-text'
-import { Badge, Flex } from 'cadence-core'
+import { Badge } from 'cadence-core'
 import { Link } from '@components/link'
 import { NewsletterSignup } from '@components/newsletter-signup'
+import { TableOfContents } from '@components/table-of-contents'
+import s from './page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 
@@ -149,9 +151,12 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>
-				<RichTextWrapper>
-					<RichText value={article.content.content} />
-				</RichTextWrapper>
+				<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
+					<RichTextWrapper>
+						<RichText value={article.content.content} />
+					</RichTextWrapper>
+					<TableOfContents content={article.content.content} />
+				</Flex>
 				<NewsletterSignup
 					title="Enjoy this article?"
 					description="Get new and interesting articles directly in your inbox. Generally every few weeks or once a month."
