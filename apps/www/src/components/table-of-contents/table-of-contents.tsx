@@ -28,6 +28,22 @@ const TableOfContents = ({
 	const [activeId, setActiveId] = useState<string>('')
 	const [isExpanded, setIsExpanded] = useState(true)
 
+	// Set initial expanded state based on viewport width
+	useEffect(() => {
+		const handleResize = () => {
+			setIsExpanded(window.innerWidth > 1200)
+		}
+
+		// Set initial state
+		handleResize()
+
+		// Add resize listener
+		window.addEventListener('resize', handleResize)
+
+		// Cleanup
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
 	// Extract headings from Portable Text content
 	useEffect(() => {
 		const extractTextFromChildren = (children: any[]): string => {
@@ -90,6 +106,7 @@ const TableOfContents = ({
 
 	const classes = classnames(s.root, className, {
 		[s.collapsed]: !isExpanded,
+		[s.expanded]: isExpanded,
 	})
 
 	return (
@@ -130,6 +147,10 @@ const TableOfContents = ({
 									document.getElementById(heading.id)?.scrollIntoView({
 										behavior: 'smooth',
 									})
+									// Close the bottom sheet after clicking a link on mobile
+									if (window.innerWidth <= 1200) {
+										setIsExpanded(false)
+									}
 								}}
 							>
 								<Text
