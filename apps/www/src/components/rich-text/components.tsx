@@ -10,36 +10,86 @@ import { Blockquote } from '@components/blockquote'
 import { MainImage } from '@components/images'
 import { FileDownload } from '@components/file-download'
 import { HandbookReference } from '@components/handbook-reference'
+import { slugify } from '@utils/slugify'
+
+// Generate an ID for the heading based on it's children content.
+const getHeadingId = (children: any) => {
+	if (typeof children === 'string') return slugify([children])
+	if (Array.isArray(children)) {
+		return slugify(
+			children.map((child) =>
+				typeof child === 'string' ? child : child.props?.children || ''
+			)
+		)
+	}
+	return slugify([children?.props?.children || ''])
+}
 
 const Components = {
 	block: {
 		h1: ({ children }) => (
-			<Text tag="h1" size="h1" type="expressive-headline" color="primary">
+			<Text
+				tag="h1"
+				size="h1"
+				type="expressive-headline"
+				color="primary"
+				id={getHeadingId(children)}
+			>
 				{children}
 			</Text>
 		),
 		h2: ({ children }) => (
-			<Text tag="h2" size="h2" type="expressive-headline" color="primary">
+			<Text
+				tag="h2"
+				size="h2"
+				type="expressive-headline"
+				color="primary"
+				id={getHeadingId(children)}
+			>
 				{children}
 			</Text>
 		),
 		h3: ({ children }) => (
-			<Text tag="h3" size="h3" type="expressive-headline" color="primary">
+			<Text
+				tag="h3"
+				size="h3"
+				type="expressive-headline"
+				color="primary"
+				id={getHeadingId(children)}
+			>
 				{children}
 			</Text>
 		),
 		h4: ({ children }) => (
-			<Text tag="h4" size="h4" type="expressive-headline" color="primary">
+			<Text
+				tag="h4"
+				size="h4"
+				type="expressive-headline"
+				color="primary"
+				id={getHeadingId(children)}
+			>
 				{children}
 			</Text>
 		),
 		h5: ({ children }) => (
-			<Text tag="h5" size="h5" type="expressive-headline" color="primary">
+			<Text
+				tag="h5"
+				size="h5"
+				type="expressive-headline"
+				color="primary"
+				id={getHeadingId(children)}
+			>
 				{children}
 			</Text>
 		),
 		h6: ({ children }) => (
-			<Text tag="h6" size="h6" type="expressive-headline" color="primary">
+			<Text
+				tag="h6"
+				size="h6"
+				type="expressive-headline"
+				color="primary"
+				id={getHeadingId(children)}
+			>
 				{children}
 			</Text>
 		),

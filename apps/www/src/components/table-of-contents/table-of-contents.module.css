@@ -1,0 +1,130 @@
+.root {
+	position: sticky;
+	top: var(--cds-scale-2x-large);
+	right: 0;
+	max-height: fit-content;
+	overflow-y: auto;
+	padding: var(--cds-scale-large);
+	border-left: 1px solid var(--cds-color-palette-blackberry-200);
+	display: flex;
+	flex-direction: column;
+	gap: var(--cds-scale-large);
+	z-index: 10;
+	width: 300px;
+}
+
+.collapsed {
+	gap: 0;
+}
+
+.titleButton {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.expandIcon {
+	font-size: 1.5rem;
+	line-height: 1;
+	color: var(--cds-color-foreground-primary);
+	transition: transform 0.2s ease;
+}
+
+.content {
+	transition:
+		max-height 0.3s ease,
+		opacity 0.3s ease;
+	max-height: 1000px;
+	opacity: 1;
+	overflow: hidden;
+}
+
+.collapsed .content {
+	max-height: 0;
+	opacity: 0;
+}
+
+.list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.item {
+	margin-bottom: var(--cds-scale-small);
+	width: 100%;
+}
+
+.item:last-child {
+	margin-bottom: 0;
+}
+
+.link {
+	display: block;
+	text-decoration: none;
+	transition: color 0.2s ease;
+	width: 100%;
+}
+
+.link:hover span {
+	color: var(--cds-color-foreground-interactive-hover);
+}
+
+.active .link {
+	color: var(--cds-color-foreground-interactive-default);
+	text-decoration: underline;
+}
+
+/* Indentation for different heading levels */
+.level-3 {
+	padding-left: var(--cds-scale-base);
+}
+
+.level-4 {
+	padding-left: var(--cds-scale-large);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+	.root {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: auto;
+		width: 100%;
+		background: var(--cds-color-surface-primary);
+		border-left: none;
+		border-top: 1px solid var(--cds-color-palette-blackberry-200);
+		padding: var(--cds-scale-base);
+		transform: translateY(calc(100% - 60px));
+		transition: transform 0.3s ease;
+		max-height: 100vh;
+	}
+
+	.root.expanded {
+		transform: translateY(0);
+		height: 80vh;
+		overflow-y: auto;
+		box-shadow: 0 -8px 24px -4px rgba(0, 0, 0, 0.1);
+	}
+
+	.content {
+		overflow-y: auto;
+		max-height: calc(80vh - 60px);
+	}
+
+	.titleButton {
+		padding: var(--cds-scale-2x-small);
+		position: sticky;
+		top: 0;
+		background: var(--cds-color-surface-primary);
+		z-index: 1;
+	}
+}
