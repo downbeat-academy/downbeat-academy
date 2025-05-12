@@ -26,6 +26,7 @@ const TableOfContents = ({
 }: TableOfContentsProps) => {
 	const [headings, setHeadings] = useState<Heading[]>([])
 	const [activeId, setActiveId] = useState<string>('')
+	const [isExpanded, setIsExpanded] = useState(true)
 
 	// Extract headings from Portable Text content
 	useEffect(() => {
@@ -71,7 +72,10 @@ const TableOfContents = ({
 					}
 				})
 			},
-			{ rootMargin: '-20% 0px -80% 0px' }
+			{
+				rootMargin: '-20% 0px -80% 0px',
+				threshold: [0, 1],
+			}
 		)
 
 		headings.forEach((heading) => {
@@ -84,11 +88,17 @@ const TableOfContents = ({
 
 	if (headings.length === 0) return null
 
-	const classes = classnames(s.root, className)
+	const classes = classnames(s.root, className, {
+		[s.collapsed]: !isExpanded,
+	})
 
 	return (
 		<nav className={classes} aria-label="Table of contents">
-			{title ? (
+			<button
+				className={s.titleButton}
+				onClick={() => setIsExpanded(!isExpanded)}
+				aria-expanded={isExpanded}
+			>
 				<Text
 					tag="h2"
 					type="productive-headline"
@@ -98,40 +108,44 @@ const TableOfContents = ({
 				>
 					{title}
 				</Text>
-			) : null}
-			<ul className={s.list}>
-				{headings.map((heading) => (
-					<li
-						key={heading.id}
-						className={classnames(s.item, {
-							[s.active]: activeId === heading.id,
-							[s[`level-${heading.level}`]]: true,
-						})}
-					>
-						<Link
-							href={`#${heading.id}`}
-							type="primary"
-							className={s.link}
-							onClick={(e) => {
-								e.preventDefault()
-								document.getElementById(heading.id)?.scrollIntoView({
-									behavior: 'smooth',
-								})
-							}}
+				<span className={s.expandIcon}>{isExpanded ? '−' : '+'}</span>
+			</button>
+			<div className={s.content}>
+				<ul className={s.list}>
+					{headings.map((heading) => (
+						<li
+							key={heading.id}
+							className={classnames(s.item, {
+								[s.active]: activeId === heading.id,
+								[s[`level-${heading.level}`]]: true,
+							})}
 						>
-							<Text
-								tag="span"
-								type="productive-body"
-								size="body-base"
-								color={activeId === heading.id ? 'interactive' : 'primary'}
-								collapse
+							<Link
+								href={`#${heading.id}`}
+								type="primary"
+								className={s.link}
+								onClick={(e) => {
+									e.preventDefault()
+									setActiveId(heading.id)
+									document.getElementById(heading.id)?.scrollIntoView({
+										behavior: 'smooth',
+									})
+								}}
 							>
-								{heading.text}
-							</Text>
-						</Link>
-					</li>
-				))}
-			</ul>
+								<Text
+									tag="span"
+									type="productive-body"
+									size="body-base"
+									color={activeId === heading.id ? 'interactive' : 'primary'}
+									collapse
+								>
+									{heading.text}
+								</Text>
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
 		</nav>
 	)
 }

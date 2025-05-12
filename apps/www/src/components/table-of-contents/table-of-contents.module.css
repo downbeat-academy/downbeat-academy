@@ -2,18 +2,53 @@
 	position: sticky;
 	top: var(--cds-scale-2x-large);
 	right: 0;
-	/* max-height: calc(100vh - var(--cds-scale-4x-large)); */
 	max-height: fit-content;
 	overflow-y: auto;
 	padding: var(--cds-scale-large);
-	background: var(--cds-color-surface-primary);
+	/* background: var(--cds-color-surface-primary);
 	border-radius: var(--cds-radii-medium);
-	border: 1px solid var(--cds-color-border-primary);
+	border: 1px solid var(--cds-color-border-primary); */
+	border-left: 1px solid var(--cds-color-palette-blackberry-200);
 	display: flex;
 	flex-direction: column;
 	gap: var(--cds-scale-large);
-	/* width: max-content; */
 	z-index: 10;
+}
+
+.collapsed {
+	gap: 0;
+}
+
+.titleButton {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.expandIcon {
+	font-size: 1.5rem;
+	line-height: 1;
+	color: var(--cds-color-foreground-primary);
+	transition: transform 0.2s ease;
+}
+
+.content {
+	transition:
+		max-height 0.3s ease,
+		opacity 0.3s ease;
+	max-height: 1000px;
+	opacity: 1;
+	overflow: hidden;
+}
+
+.collapsed .content {
+	max-height: 0;
+	opacity: 0;
 }
 
 .list {
