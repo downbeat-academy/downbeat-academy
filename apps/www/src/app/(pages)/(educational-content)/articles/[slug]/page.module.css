@@ -1,11 +1,14 @@
 .content {
 	position: relative;
 	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: var(--cds-scale-2x-large);
 }
 
 /* Hide table of contents on mobile */
 @media (max-width: 768px) {
 	.content {
-		flex-direction: column;
+		grid-template-columns: 1fr;
 	}
 }

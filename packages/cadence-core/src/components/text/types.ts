@@ -45,6 +45,7 @@ interface TextProps extends Omit<HTMLAttributes<HTMLOrSVGElement>, 'children'> {
 	collapse?: boolean
 	dataCy?: string
 	className?: string
+	id?: string,
 }
 
 interface ListProps extends Omit<HTMLAttributes<HTMLOrSVGElement>, 'children'> {

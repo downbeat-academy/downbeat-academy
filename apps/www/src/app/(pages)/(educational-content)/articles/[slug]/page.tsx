@@ -155,7 +155,10 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 					<RichTextWrapper>
 						<RichText value={article.content.content} />
 					</RichTextWrapper>
-					<TableOfContents content={article.content.content} />
+					<TableOfContents
+						content={article.content.content}
+						title="On this page"
+					/>
 				</Flex>
 				<NewsletterSignup
 					title="Enjoy this article?"

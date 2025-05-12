@@ -16,6 +16,7 @@ const Text = ({
 	tag = 'div',
 	type = 'productive-body',
 	dataCy,
+	id,
 }: TextProps) => {
 	const classes = classnames(
 		s[`text--${type}`],
@@ -31,7 +32,7 @@ const Text = ({
 	const Tag = tag
 
 	return (
-		<Tag className={classes} data-cy={dataCy}>
+		<Tag className={classes} id={id} data-cy={dataCy}>
 			{children}
 		</Tag>
 	)
