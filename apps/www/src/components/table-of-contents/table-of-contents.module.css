@@ -105,6 +105,7 @@
 		padding: var(--cds-scale-base);
 		transform: translateY(calc(100% - 60px));
 		transition: transform 0.3s ease;
+		max-height: 100vh;
 	}
 
 	.root.expanded {
@@ -114,11 +115,16 @@
 		box-shadow: 0 -8px 24px -4px rgba(0, 0, 0, 0.1);
 	}
 
-	.titleButton {
-		padding: var(--cds-scale-2x-small);
+	.content {
+		overflow-y: auto;
+		max-height: calc(80vh - 60px);
 	}
 
-	.content {
-		padding: var(--cds-scale-base);
+	.titleButton {
+		padding: var(--cds-scale-2x-small);
+		position: sticky;
+		top: 0;
+		background: var(--cds-color-surface-primary);
+		z-index: 1;
 	}
 }
