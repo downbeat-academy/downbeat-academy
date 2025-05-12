@@ -154,16 +154,16 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 				<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
 					<RichTextWrapper>
 						<RichText value={article.content.content} />
+						<NewsletterSignup
+							title="Enjoy this article?"
+							description="Get new and interesting articles directly in your inbox. Generally every few weeks or once a month."
+						/>
 					</RichTextWrapper>
 					<TableOfContents
 						content={article.content.content}
 						title="On this page"
 					/>
 				</Flex>
-				<NewsletterSignup
-					title="Enjoy this article?"
-					description="Get new and interesting articles directly in your inbox. Generally every few weeks or once a month."
-				/>
 			</>
 		)
 	} catch (error) {
