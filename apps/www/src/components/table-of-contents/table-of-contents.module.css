@@ -111,11 +111,10 @@
 		transform: translateY(0);
 		height: 80vh;
 		overflow-y: auto;
+		box-shadow: 0 -8px 24px -4px rgba(0, 0, 0, 0.1);
 	}
 
 	.titleButton {
-		/* height: 60px; */
-		/* background: var(--cds-color-background-primary); */
 		padding: var(--cds-scale-2x-small);
 	}
 
