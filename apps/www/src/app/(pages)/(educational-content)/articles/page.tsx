@@ -9,8 +9,7 @@ import { ArticlesPostGrid } from '../../../../components/pages/articles'
 
 import type { Metadata } from 'next'
 
-// Revalidate the page every 60 seconds
-export const revalidate = 60
+const client = sanityClient
 
 export const metadata: Metadata = {
 	title: getOgTitle('Articles'),
@@ -18,20 +17,21 @@ export const metadata: Metadata = {
 }
 
 async function getArticles() {
-	const res = sanityClient.fetch(articlesPageQuery,
-		{},
-		{
-			next: {
-				revalidate: 60
+	try {
+		const res = await client.fetch(
+			articlesPageQuery,
+			{},
+			{
+				next: {
+					revalidate: 60,
+				},
 			}
-		}
-	)
-
-	if (!res) {
-		throw new Error('Failed to fetch data.')
+		)
+		return res
+	} catch (error) {
+		console.error(error)
+		throw error
 	}
-
-	return res
 }
 
 export default async function ArticlesPage() {
