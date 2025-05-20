@@ -28,7 +28,7 @@ interface UpdateProfileFormProps {
 const UpdateProfileForm = ({
 	isReadOnly,
 	name,
-	email
+	email,
 }: UpdateProfileFormProps) => {
 	const router = useRouter()
 	const { toast } = useToast()
@@ -39,13 +39,15 @@ const UpdateProfileForm = ({
 		formState: { errors, isSubmitting },
 	} = useForm<TUpdateProfileSchema>({
 		resolver: zodResolver(updateProfileSchema),
+		defaultValues: {
+			name: name || '',
+		},
 	})
 
 	const onSubmit = async (formData: TUpdateProfileSchema) => {
 		try {
 			const formDataObject = {
 				name: formData.name || '',
-				email: formData.email || '',
 			}
 			await updateProfile(formDataObject)
 			toast({
@@ -54,12 +56,11 @@ const UpdateProfileForm = ({
 			})
 			router.refresh()
 		} catch (e) {
-			console.log(e)
+			console.error('Failed to update profile:', e)
 			toast({
 				title: 'Failed to update profile',
 				variant: 'error',
 			})
-			throw new Error('Failed to update profile')
 		}
 	}
 
@@ -95,14 +96,10 @@ const UpdateProfileForm = ({
 					type="email"
 					id="email"
 					name="email"
-					register={register}
-					isInvalid={!!errors.email}
+					isInvalid={false}
 					placeholder={email}
-					{...readOnlyProps(email)}
+					disabled={true}
 				/>
-				{errors.email && (
-					<ValidationMessage type="error">{`${errors.email.message}`}</ValidationMessage>
-				)}
 			</FormField>
 			{!isReadOnly && (
 				<ButtonWrapper>

@@ -28,7 +28,7 @@ export async function generateMetadata(
 			{
 				next: {
 					revalidate: 60,
-				}
+				},
 			}
 		)
 

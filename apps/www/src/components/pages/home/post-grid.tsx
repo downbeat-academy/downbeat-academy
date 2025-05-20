@@ -24,9 +24,11 @@ export default async function HomePostGrid({ posts }) {
 							{post.title}
 						</Text>
 					</Link>
-					<Text type="expressive-body" size="body-small" collapse>
-						{truncateString(post.excerpt, 180)}
-					</Text>
+					{post.excerpt && (
+						<Text type="expressive-body" size="body-small" collapse>
+							{truncateString(post.excerpt, 180)}
+						</Text>
+					)}
 					<AuthorMetadata
 						authors={post.authors}
 						avatarSize="small"

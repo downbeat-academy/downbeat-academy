@@ -8,22 +8,24 @@ import { Text } from 'cadence-core'
 
 import type { Metadata } from 'next'
 
+const client = sanityClient
+
 async function getHomepageData() {
-	const res = sanityClient.fetch(
-		homepagePostsQuery,
-		{},
-		{
-			next: {
-				revalidate: 60,
-			},
-		}
-	)
-
-	if (!res) {
-		throw new Error('Failed to fetch data.')
+	try {
+		const res = await client.fetch(
+			homepagePostsQuery,
+			{},
+			{
+				next: {
+					revalidate: 60,
+				},
+			}
+		)
+		return res
+	} catch (error) {
+		console.error(error)
+		throw error
 	}
-
-	return res
 }
 
 // Render metadata

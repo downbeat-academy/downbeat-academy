@@ -22,11 +22,7 @@ const ProfileSettings = ({ name, email }: ProfileSettingsProps) => {
 			<Text tag="h2" size="h4" type="expressive-headline" collapse>
 				Profile settings
 			</Text>
-			<UpdateProfileForm
-				isReadOnly={true}
-				name={name}
-				email={email}
-			/>
+			<UpdateProfileForm isReadOnly={true} name={name} email={email} />
 			<ButtonWrapper>
 				<Dialog>
 					<DialogTrigger asChild>
@@ -36,7 +32,7 @@ const ProfileSettings = ({ name, email }: ProfileSettingsProps) => {
 						<DialogHeader>
 							<DialogTitle>Update profile</DialogTitle>
 						</DialogHeader>
-						<UpdateProfileForm isReadOnly={false} />
+						<UpdateProfileForm isReadOnly={false} email={email} />
 					</DialogContent>
 				</Dialog>
 			</ButtonWrapper>
