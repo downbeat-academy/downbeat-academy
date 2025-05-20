@@ -1,11 +1,14 @@
-"use server"
+'use server'
 
 import { auth } from '@/lib/auth/auth'
 import { headers } from 'next/headers'
 
-export async function updateProfile(formData: { name: string, email: string }) {
+export async function updateProfile(formData: {
+	name: string
+	email?: string
+}) {
 	const session = await auth.api.getSession({
-		headers: await headers()
+		headers: await headers(),
 	})
 
 	if (!session?.session) {
@@ -14,10 +17,10 @@ export async function updateProfile(formData: { name: string, email: string }) {
 
 	try {
 		await auth.api.updateUser({
+			headers: await headers(),
 			body: {
 				name: formData.name,
-				email: formData.email
-			}
+			},
 		})
 		return { success: true }
 	} catch (error) {
