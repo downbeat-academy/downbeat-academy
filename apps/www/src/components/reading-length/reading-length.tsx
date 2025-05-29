@@ -16,7 +16,7 @@ export const ReadingLength = ({
 	className,
 }: ReadingLengthProps) => {
 	const minutes = calculateReadingLength(content)
-	const readingTime = `${minutes} min read`
+	const readingTime = `${minutes} minute read`
 	const displayText = `${preContent || ''}${readingTime}${postContent || ''}`
 
 	return (
@@ -24,9 +24,10 @@ export const ReadingLength = ({
 			type="expressive-body"
 			size="body-base"
 			color="primary"
+			collapse
 			className={className}
 		>
-			{displayText}
+			<em>{displayText}</em>
 		</Text>
 	)
 }

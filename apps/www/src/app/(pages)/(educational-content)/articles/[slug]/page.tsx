@@ -152,14 +152,14 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 									{renderCategories}
 								</Flex>
 							</AuthorMetadata>
+							<ReadingLength
+								content={article.content.content}
+								preContent="Around a "
+							/>
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>
 				<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
-					{/* <ReadingLength
-						content={article.content.content}
-						preContent="Approximately a "
-					/> */}
 					<RichTextWrapper>
 						<RichText value={article.content.content} />
 						<NewsletterSignup
