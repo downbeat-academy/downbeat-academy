@@ -1,5 +1,20 @@
 # www
 
+## 4.2.0
+
+### Minor Changes
+
+- 594cf0e: Added newsletter subscription component.
+- 81e5fc2: Cleaning up the notation component.
+- 0866f6d: Added a table of contents component and some updates to the text components to support and ID'
+- e0aea36: Added a reading length calculator and dependent components
+
+### Patch Changes
+
+- d2134d0: Fixed a bug in the update-profile form and refactored how article and homepage data are fetched to correctly revalidate it.
+- Updated dependencies [0866f6d]
+  - cadence-core@1.6.0
+
 ## 4.1.0
 
 ### Minor Changes
