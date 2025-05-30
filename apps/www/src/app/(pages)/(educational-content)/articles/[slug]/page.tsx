@@ -15,6 +15,7 @@ import { NewsletterSignup } from '@components/newsletter-signup'
 import { TableOfContents } from '@components/table-of-contents'
 import { ReadingLength } from '@components/reading-length'
 import { createAudioStreamFromText } from '@/components/text-to-speech/text-to-speech'
+import { extractPlainText } from '@/components/rich-text/create-text'
 import s from './page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -101,6 +102,11 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 			{ next: { revalidate: 60 } }
 		)
 
+		// Functions to create audio from text
+		// const plainText = extractPlainText(article.content.content)
+		// const audioBuffer = await createAudioStreamFromText(plainText)
+		// const audioUrl = `data:audio/mp3;base64,${audioBuffer.toString('base64')}`
+
 		// Rest of your component code remains the same
 		const renderCategories = article.categories.map((category) => {
 			return (
@@ -113,10 +119,6 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 			)
 		})
 
-		const testContent = await createAudioStreamFromText(
-			'Lorem ipsum dolor sit amet.'
-		)
-		const audioUrl = `data:audio/mp3;base64,${testContent.toString('base64')}`
 		return (
 			<>
 				<SectionContainer>
@@ -158,7 +160,7 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 								content={article.content.content}
 								preContent="Around a "
 							/>
-							<audio src={audioUrl} controls />
+							{/* <audio src={audioUrl} controls /> */}
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>
