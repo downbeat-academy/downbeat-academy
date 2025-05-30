@@ -7,6 +7,7 @@ import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { Text } from 'cadence-core'
 import { Badge, Flex } from 'cadence-core'
+import { ReadingLength } from '@components/reading-length'
 
 export default async function FeaturedPost({ featuredPost }) {
 	// Render the categories of the featured post as badges
@@ -53,6 +54,10 @@ export default async function FeaturedPost({ featuredPost }) {
 					<Flex tag="div" direction="row" gap="medium">
 						{renderCategories}
 					</Flex>
+					<ReadingLength
+						content={featuredPost.content.content}
+						preContent="Around a "
+					/>
 				</AuthorMetadata>
 			</FeaturedItem.Description>
 			<FeaturedItem.Image
