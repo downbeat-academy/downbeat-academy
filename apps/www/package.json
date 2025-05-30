@@ -25,6 +25,7 @@
 		"analyze": "ANALYZE=true pnpm build"
 	},
 	"dependencies": {
+		"@elevenlabs/elevenlabs-js": "^2.1.0",
 		"@hookform/resolvers": "^3.10.0",
 		"@neondatabase/serverless": "^0.10.4",
 		"@next/bundle-analyzer": "^15.1.4",
