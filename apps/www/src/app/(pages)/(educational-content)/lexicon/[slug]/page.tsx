@@ -17,9 +17,9 @@ const client = sanityClient
 export async function generateMetadata({
 	params,
 }: {
-	params: Promise<{ id: string; slug: string }>
+	params: { id: string; slug: string }
 }) {
-	const { slug } = await params
+	const { slug } = params
 
 	try {
 		const lexicon = await sanityClient.fetch(
@@ -66,8 +66,8 @@ export async function generateStaticParams() {
 	}
 }
 
-export default async function LexiconSlugRoute({ params }: { params: Promise<{ slug: string }> }) {
-	const { slug } = await params
+export default async function LexiconSlugRoute({ params }: { params: { slug: string } }) {
+	const { slug } = params
 	const lexicon = await client.fetch(lexiconsBySlugQuery, { slug })
 	const {
 		artist,

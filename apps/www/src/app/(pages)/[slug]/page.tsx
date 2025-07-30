@@ -20,7 +20,7 @@ export async function generateMetadata(
 	{ params }: MetaProps,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const { slug } = await params
+	const { slug } = params
 	try {
 		const page = await client.fetch(
 			pagesBySlugQuery,
@@ -55,10 +55,9 @@ export async function generateStaticParams() {
 }
 
 // Render the page data
-export default async function PageSlugRoute({ params }: { params: Promise<{ slug: string }> }) {
-	const { slug } = await params
-	const draftModeState = await draftMode()
-	const preview = draftModeState.isEnabled ? { token: readToken } : undefined
+export default async function PageSlugRoute({ params }: { params: { slug: string } }) {
+	const { slug } = params
+	const preview = draftMode().isEnabled ? { token: readToken } : undefined
 
 	try {
 		const page = await sanityClient.fetch(pagesBySlugQuery, {

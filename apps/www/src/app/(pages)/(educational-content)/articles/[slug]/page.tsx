@@ -19,9 +19,9 @@ import s from './page.module.css'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type PageProps = {
-	params: Promise<{
+	params: {
 		slug: string
-	}>
+	}
 }
 
 type ArticleData = {
@@ -55,7 +55,7 @@ export async function generateMetadata(
 	{ params }: PageProps,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const { slug } = await params
+	const { slug } = params
 
 	try {
 		const article = await client.fetch<ArticleData>(
@@ -91,7 +91,7 @@ export async function generateStaticParams() {
 
 // Render the article data
 export default async function ArticleSlugRoute({ params }: PageProps) {
-	const { slug } = await params
+	const { slug } = params
 
 	try {
 		const article = await sanityClient.fetch<ArticleData>(

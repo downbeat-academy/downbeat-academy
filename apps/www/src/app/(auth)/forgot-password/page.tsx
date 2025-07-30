@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function ForgotPassword() {
   const session = await auth.api.getSession({
-    headers: await headers()
+    headers: headers()
   })
 
   if (session) {
