@@ -18,7 +18,7 @@ const FileDownload = async ({
 }: FileDownloadProps) => {
 
 	const session = await auth.api.getSession({
-    headers: headers()
+    headers: await headers()
   })
 	const fileUrl = getSanityUrl(file.asset._ref)
 

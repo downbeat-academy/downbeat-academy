@@ -10,7 +10,7 @@ import { showAdminRole } from './show-admin-role'
 
 export default async function AccountPage() {
 	const session = await auth.api.getSession({
-		headers: headers()
+		headers: await headers()
 	})
 
 	if (!session?.session) {

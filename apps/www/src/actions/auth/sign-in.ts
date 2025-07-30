@@ -14,7 +14,7 @@ export async function signIn(formData: FormData) {
 
   try {
     await auth.api.signInEmail({
-      headers: headers(),
+      headers: await headers(),
       body: {
         email,
         password
