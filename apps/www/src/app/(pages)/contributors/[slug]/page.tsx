@@ -25,7 +25,7 @@ export async function generateMetadata(
 	{ params }: MetaProps,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const { slug } = params
+	const { slug } = await params
 
 	try {
 		const contributor = await client.fetch(contributorsBySlugQuery, {
@@ -61,9 +61,10 @@ export async function generateStaticParams() {
 }
 
 // Render the page data
-export default async function ContributorSlugRoute({ params }) {
-	const { slug } = params
-	const preview = draftMode().isEnabled ? { token: readToken } : undefined
+export default async function ContributorSlugRoute({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
+	const draftModeState = await draftMode()
+	const preview = draftModeState.isEnabled ? { token: readToken } : undefined
 
 	try {
 		const contributor = await sanityClient.fetch(

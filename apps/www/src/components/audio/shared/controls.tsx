@@ -139,7 +139,7 @@ const Controls = ({
 		if (volumeSlider) {
 			volumeSlider.style.setProperty('--range-progress', `${volume}%`)
 		}
-	}, [])
+	}, [volume])
 
 	return (
 		<div className={s.root}>

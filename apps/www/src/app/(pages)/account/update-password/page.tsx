@@ -7,7 +7,7 @@ import { Text } from 'cadence-core'
 export default async function UpdatePasswordPage() {
   // Check if user is authenticated
   const session = await auth.api.getSession({
-    headers: headers()
+    headers: await headers()
   })
 
   if (!session?.user) {

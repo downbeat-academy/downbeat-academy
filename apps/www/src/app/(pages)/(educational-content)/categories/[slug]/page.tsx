@@ -17,7 +17,7 @@ export async function generateMetadata(
 	{ params }: MetaProps,
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
-	const { slug } = params
+	const { slug } = await params
 
 	try {
 		const category = await client.fetch(
@@ -57,8 +57,8 @@ export async function generateStaticParams() {
 }
 
 // Render the category data
-export default async function CategorySlugRoute({ params }) {
-	const { slug } = params
+export default async function CategorySlugRoute({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
 
 	try {
 		const category = await client.fetch(
