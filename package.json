@@ -28,8 +28,6 @@
     "www:cypress": "pnpm --filter=www cypress",
     "cms:dev": "turbo run dev --filter=cms-sanity",
     "cms:build": "turbo run build --filter=cms-sanity",
-    "payload:dev": "turbo run dev --filter=cms-payload",
-    "payload:build": "turbo run build --filter=cms-payload",
     "tokens:build": "turbo run build --filter=cadence-tokens",
     "email:dev": "turbo run dev --filter=email",
     "core:storybook": "turbo run storybook --filter=cadence-core",
@@ -37,8 +35,8 @@
     "core:build": "turbo run build --filter=cadence-core"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.11",
-    "prettier": "^3.4.2",
-    "turbo": "^2.3.3"
+    "@changesets/cli": "^2.29.5",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.5"
   }
 }

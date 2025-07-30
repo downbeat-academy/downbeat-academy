@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function ForgotPassword() {
   const session = await auth.api.getSession({
-    headers: await headers()
+    headers: headers()
   })
 
   if (session) {
@@ -28,7 +28,7 @@ export default async function ForgotPassword() {
           Reset your password
         </Text>
         <Text type="productive-body" size="body-base" color="primary">
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we&apos;ll send you a link to reset your password.
         </Text>
         <ForgotPasswordForm />
       </div>

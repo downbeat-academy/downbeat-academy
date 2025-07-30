@@ -66,7 +66,7 @@ export async function generateStaticParams() {
 	}
 }
 
-export default async function LexiconSlugRoute({ params }) {
+export default async function LexiconSlugRoute({ params }: { params: { slug: string } }) {
 	const { slug } = params
 	const lexicon = await client.fetch(lexiconsBySlugQuery, { slug })
 	const {

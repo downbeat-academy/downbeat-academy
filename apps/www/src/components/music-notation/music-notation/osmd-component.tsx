@@ -153,7 +153,7 @@ const OpenSheetMusicDisplay = ({
 			}
 			cleanup()
 		}
-	}, [file, JSON.stringify(osmdOptions), onRenderComplete, transpose])
+	}, [file, osmdOptions, onRenderComplete, transpose])
 
 	// Handle window resize
 	useEffect(() => {

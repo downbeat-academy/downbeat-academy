@@ -15,7 +15,7 @@ const client = sanityClient
 
 // Generate metadata
 export async function generateMetadata(
-	{ params }: { params: any },
+	{ params }: { params: { slug: string } },
 	parent: ResolvingMetadata
 ): Promise<Metadata> {
 	const { slug } = params
@@ -61,7 +61,7 @@ export async function generateStaticParams() {
 }
 
 // Render the handbook data
-export default async function HandbookSlugRoute({ params }) {
+export default async function HandbookSlugRoute({ params }: { params: { slug: string } }) {
 	const { slug } = params
 
 	const handbook = await client.fetch(handbooksBySlugQuery, {

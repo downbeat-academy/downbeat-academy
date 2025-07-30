@@ -16,11 +16,7 @@ workspaces.
 ### `cms-sanity`
 
 - Instance of Sanity Studio for managing content on `www`
-- This is the in the progress of being deprecated.
-
-### `cms-payload`
-
-- Instance of Payload using Postgres with Supabase
+- Primary CMS for all educational content and resources
 
 ## Packages
 

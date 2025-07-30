@@ -5,7 +5,7 @@ import { headers } from 'next/headers'
 
 export async function getProfile() {
 	const session = await auth.api.getSession({
-		headers: await headers()
+		headers: headers()
 	})
 
 	if (!session?.session) {

@@ -55,7 +55,7 @@ export async function generateStaticParams() {
 }
 
 // Render the page data
-export default async function PageSlugRoute({ params }) {
+export default async function PageSlugRoute({ params }: { params: { slug: string } }) {
 	const { slug } = params
 	const preview = draftMode().isEnabled ? { token: readToken } : undefined
 

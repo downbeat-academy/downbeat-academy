@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function SignIn() {
   const session = await auth.api.getSession({
-    headers: await headers()
+    headers: headers()
   })
 
   if (session) {

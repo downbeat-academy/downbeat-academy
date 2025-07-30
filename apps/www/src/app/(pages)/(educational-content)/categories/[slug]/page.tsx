@@ -57,7 +57,7 @@ export async function generateStaticParams() {
 }
 
 // Render the category data
-export default async function CategorySlugRoute({ params }) {
+export default async function CategorySlugRoute({ params }: { params: { slug: string } }) {
 	const { slug } = params
 
 	try {

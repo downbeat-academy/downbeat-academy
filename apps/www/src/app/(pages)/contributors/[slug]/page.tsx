@@ -61,7 +61,7 @@ export async function generateStaticParams() {
 }
 
 // Render the page data
-export default async function ContributorSlugRoute({ params }) {
+export default async function ContributorSlugRoute({ params }: { params: { slug: string } }) {
 	const { slug } = params
 	const preview = draftMode().isEnabled ? { token: readToken } : undefined
 
