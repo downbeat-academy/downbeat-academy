@@ -15,6 +15,8 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx', '.css'];
 const globals = {
   react: 'React',
   'react-dom': 'ReactDOM',
+  'react/jsx-runtime': 'jsxRuntime',
+  'react/jsx-dev-runtime': 'jsxDevRuntime',
 };
 
 // This imports tokens from the cadence-tokens package
@@ -56,5 +58,5 @@ export default {
       inject: false, // This prevents automatic injection of styles into the head
     }),
   ],
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
 };
