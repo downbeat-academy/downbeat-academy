@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 
-import { join, dirname } from 'path'
+import { join, dirname, resolve } from 'path'
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -23,19 +23,6 @@ const config: StorybookConfig = {
 		options: {},
 	},
 	async viteFinal(config, { configType }) {
-		// Ensure workspace dependencies are properly resolved
-		config.optimizeDeps = config.optimizeDeps || {};
-		config.optimizeDeps.include = [
-			...(config.optimizeDeps.include || []),
-			'cadence-icons',
-			'cadence-tokens'
-		];
-		
-		// Force re-optimization of workspace dependencies
-		if (configType === 'PRODUCTION') {
-			config.optimizeDeps.force = true;
-		}
-		
 		return config;
 	},
 }

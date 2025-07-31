@@ -1,6 +1,5 @@
 {
   "name": "cadence-icons",
-  "private": true,
   "version": "1.5.1",
   "author": "Jory Tindall <jory@downbeatacademy.com>",
   "type": "module",
@@ -31,7 +30,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/cadence-icons.es.js",
-      "require": "./dist/cadence-icons.umd.js"
+      "require": "./dist/cadence-icons.umd.js",
+      "default": "./dist/cadence-icons.es.js"
     }
   },
   "devDependencies": {
