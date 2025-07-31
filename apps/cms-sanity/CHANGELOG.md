@@ -1,5 +1,11 @@
 # sanity-cms
 
+## 2.5.1
+
+### Patch Changes
+
+- 3141cdc: Update dependencies
+
 ## 2.5.0
 
 ### Minor Changes

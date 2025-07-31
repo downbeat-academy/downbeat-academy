@@ -1,5 +1,12 @@
 # cadence-icons
 
+## 1.5.1
+
+### Patch Changes
+
+- f7bfaef: Update to NextJS 15
+- 3141cdc: Update dependencies
+
 ## 1.5.0
 
 ### Minor Changes

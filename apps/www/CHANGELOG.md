@@ -1,5 +1,26 @@
 # www
 
+## 4.2.0
+
+### Minor Changes
+
+- 594cf0e: Added newsletter subscription component.
+- f7bfaef: Update to NextJS 15
+- 81e5fc2: Cleaning up the notation component.
+- 0866f6d: Added a table of contents component and some updates to the text components to support and ID'
+- e0aea36: Added a reading length calculator and dependent components
+
+### Patch Changes
+
+- d2134d0: Fixed a bug in the update-profile form and refactored how article and homepage data are fetched to correctly revalidate it.
+- 3141cdc: Update dependencies
+- Updated dependencies [f7bfaef]
+- Updated dependencies [0866f6d]
+- Updated dependencies [3141cdc]
+  - cadence-icons@1.5.1
+  - cadence-core@1.6.0
+  - cadence-tokens@2.2.1
+
 ## 4.1.0
 
 ### Minor Changes
