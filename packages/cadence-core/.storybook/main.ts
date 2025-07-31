@@ -22,5 +22,21 @@ const config: StorybookConfig = {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {},
 	},
+	async viteFinal(config, { configType }) {
+		// Ensure workspace dependencies are properly resolved
+		config.optimizeDeps = config.optimizeDeps || {};
+		config.optimizeDeps.include = [
+			...(config.optimizeDeps.include || []),
+			'cadence-icons',
+			'cadence-tokens'
+		];
+		
+		// Force re-optimization of workspace dependencies
+		if (configType === 'PRODUCTION') {
+			config.optimizeDeps.force = true;
+		}
+		
+		return config;
+	},
 }
 export default config
