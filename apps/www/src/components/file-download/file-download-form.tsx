@@ -15,7 +15,7 @@ import {
 	Label,
 	FormField,
 } from '@components/form'
-import { Button } from '@components/button'
+import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
 
 const FileDownloadForm = ({ fileUrl, title }) => {

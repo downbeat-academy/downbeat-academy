@@ -8,7 +8,7 @@ import {
 	TUpdateProfileSchema,
 } from '@lib/types/profile/update-profile-schema'
 import { updateProfile } from '@actions/profile/update-profile'
-import { Button, ButtonWrapper } from '@components/button'
+import { Button, ButtonWrapper } from '@components/ui/button'
 import {
 	Form,
 	FormField,

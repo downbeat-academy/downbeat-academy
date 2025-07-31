@@ -7,7 +7,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@components/dialog'
-import { Button, ButtonWrapper } from '@components/button'
+import { Button, ButtonWrapper } from '@components/ui/button'
 
 import { UpdateProfileForm } from './update-profile-form'
 

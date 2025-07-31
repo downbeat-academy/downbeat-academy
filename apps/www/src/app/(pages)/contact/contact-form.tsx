@@ -14,7 +14,7 @@ import {
 	ValidationMessage,
 	Label,
 } from '@components/form'
-import { Button } from '@components/button'
+import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
 import { sendEmail } from '@actions/email/send-email'
 import s from './contact-form.module.css'
