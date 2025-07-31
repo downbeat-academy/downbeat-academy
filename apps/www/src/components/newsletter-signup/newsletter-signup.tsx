@@ -11,7 +11,7 @@ const NewsletterSignup = async ({
 	description,
 }: NewsletterSignupProps) => {
 	const session = await auth.api.getSession({
-		headers: headers(),
+		headers: await headers(),
 	})
 
 	if (!session) {

@@ -52,9 +52,9 @@
 		"dotenv": "^16.4.7",
 		"drizzle-orm": "^0.44.4",
 		"eslint": "^9.32.0",
-		"eslint-config-next": "^14.2.28",
+		"eslint-config-next": "^15.4.5",
 		"fathom-client": "^3.7.2",
-		"next": "^14.2.28",
+		"next": "^15.4.5",
 		"next-sanity": "^9.12.3",
 		"next-sitemap": "^4.2.3",
 		"nuqs": "^2.3.1",
@@ -74,8 +74,8 @@
 	"devDependencies": {
 		"@types/node": "^22.10.6",
 		"@types/pg": "^8.11.11",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
+		"@types/react": "^18.3.21",
+		"@types/react-dom": "^18.3.7",
 		"cypress": "^13.17.0",
 		"drizzle-kit": "^0.31.4",
 		"typescript": "^5.7.3"

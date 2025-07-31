@@ -11,7 +11,7 @@ interface UpdatePasswordParams {
 export async function updatePasswordAction({ currentPassword, newPassword }: UpdatePasswordParams) {
   try {
     const session = await auth.api.getSession({
-      headers: headers()
+      headers: await headers()
     })
     if (!session?.user) {
       return { error: 'You must be signed in to update your password' }

@@ -24,11 +24,13 @@ export default defineConfig({
 			fileName: (format) => `cadence-icons.${format}.js`,
 		},
 		rollupOptions: {
-			external: ['react', 'react-dom'],
+			external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
 			output: {
 				globals: {
 					react: 'React',
 					'react-dom': 'ReactDom',
+					'react/jsx-runtime': 'jsxRuntime',
+					'react/jsx-dev-runtime': 'jsxDevRuntime',
 				},
 			},
 		},

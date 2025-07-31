@@ -8,7 +8,7 @@ export async function updateProfile(formData: {
 	email?: string
 }) {
 	const session = await auth.api.getSession({
-		headers: headers(),
+		headers: await headers(),
 	})
 
 	if (!session?.session) {
@@ -17,7 +17,7 @@ export async function updateProfile(formData: {
 
 	try {
 		await auth.api.updateUser({
-			headers: headers(),
+			headers: await headers(),
 			body: {
 				name: formData.name,
 			},
