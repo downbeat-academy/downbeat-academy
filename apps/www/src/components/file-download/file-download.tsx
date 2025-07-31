@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { Text } from 'cadence-core'
 import { getSanityUrl } from '@utils/getSanityUrl'
 import { Link } from '@components/link'
-import { Button } from '@components/button'
+import { Button } from '@components/ui/button'
 
 import { FileDownloadForm } from './file-download-form'
 import s from './file-download.module.css'

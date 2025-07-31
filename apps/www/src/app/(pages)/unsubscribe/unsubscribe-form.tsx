@@ -9,7 +9,7 @@ import {
 	Label,
 	ValidationMessage,
 } from '@components/form'
-import { Button } from '@components/button'
+import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
 import { deleteContact } from '@actions/email/delete-contact'
 

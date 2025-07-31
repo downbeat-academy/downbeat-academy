@@ -4,7 +4,7 @@ import { Text } from 'cadence-core'
 import { Link } from '@components/link'
 
 import type { Metadata } from 'next'
-import { Button } from '@components/button'
+import { Button } from '@components/ui/button'
 
 export const metadata: Metadata = {
 	title: 'Error | Downbeat Academy',
