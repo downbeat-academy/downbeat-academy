@@ -11,7 +11,7 @@ import {
   Input,
   Label,
   ValidationMessage
-} from "@/components/form"
+} from "cadence-core"
 import { forgotPasswordAction } from "@/actions/auth"
 
 const forgotPasswordSchema = z.object({

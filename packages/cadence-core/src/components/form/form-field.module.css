@@ -11,4 +11,4 @@
 .cds-form-field--orientation-vertical {
   flex-direction: column;
   gap: var(--cds-scale-2x-small);
-} 
+}

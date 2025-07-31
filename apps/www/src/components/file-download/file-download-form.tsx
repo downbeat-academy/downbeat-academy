@@ -14,7 +14,7 @@ import {
 	ValidationMessage,
 	Label,
 	FormField,
-} from '@components/form'
+} from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
 

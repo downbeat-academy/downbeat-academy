@@ -13,7 +13,7 @@ import {
   Label,
   ValidationMessage,
   HelperText
-} from "@/components/form"
+} from "cadence-core"
 import { useRouter } from "next/navigation"
 import { ToastAction } from "@/components/toast"
 import { Link } from '@components/link'
