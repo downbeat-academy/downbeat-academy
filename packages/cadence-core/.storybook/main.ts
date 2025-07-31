@@ -26,22 +26,16 @@ const config: StorybookConfig = {
 		// Ensure workspace dependencies are properly resolved
 		config.resolve = config.resolve || {};
 		
-		// Resolve workspace packages to their root directories
-		// This allows Vite to use their package.json exports
-		const iconsPackagePath = resolve(__dirname, '../../cadence-icons');
-		const tokensPackagePath = resolve(__dirname, '../../cadence-tokens');
+		// Point directly to the built files for workspace dependencies
+		// This ensures Vite can load them properly in build environments
+		const iconsDistPath = resolve(__dirname, '../../cadence-icons/dist/cadence-icons.es.js');
+		const tokensDistPath = resolve(__dirname, '../../cadence-tokens/dist');
 		
 		config.resolve.alias = {
 			...(config.resolve.alias || {}),
-			'cadence-icons': iconsPackagePath,
-			'cadence-tokens': tokensPackagePath,
+			'cadence-icons': iconsDistPath,
+			'cadence-tokens': tokensDistPath,
 		};
-		
-		// Ensure Vite can resolve workspace dependencies
-		config.resolve.conditions = config.resolve.conditions || [];
-		if (!config.resolve.conditions.includes('source')) {
-			config.resolve.conditions.push('source');
-		}
 		
 		return config;
 	},
