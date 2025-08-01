@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-
 import { join, dirname, resolve } from 'path'
+import { existsSync } from 'fs'
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -26,16 +26,30 @@ const config: StorybookConfig = {
 		// Ensure workspace dependencies are properly resolved
 		config.resolve = config.resolve || {};
 		
-		// Point directly to the built files for workspace dependencies
-		// This ensures Vite can load them properly in build environments
-		const iconsDistPath = resolve(__dirname, '../../cadence-icons/dist/cadence-icons.es.js');
+		// For cadence-icons, try multiple resolution strategies
+		const iconsPackageRoot = resolve(__dirname, '../../cadence-icons');
+		const iconsDistPath = resolve(iconsPackageRoot, 'dist/cadence-icons.es.js');
+		const iconsSrcPath = resolve(iconsPackageRoot, 'src/components/index.ts');
+		
+		// Use the source files if dist doesn't exist (during development or if build hasn't run)
+		const iconsPath = existsSync(iconsDistPath) ? iconsDistPath : iconsSrcPath;
+		
+		// For tokens, use the dist directory
 		const tokensDistPath = resolve(__dirname, '../../cadence-tokens/dist');
 		
 		config.resolve.alias = {
 			...(config.resolve.alias || {}),
-			'cadence-icons': iconsDistPath,
+			'cadence-icons': iconsPath,
 			'cadence-tokens': tokensDistPath,
 		};
+		
+		// Add optimizeDeps configuration for better handling of workspace dependencies
+		config.optimizeDeps = config.optimizeDeps || {};
+		config.optimizeDeps.include = [
+			...(config.optimizeDeps.include || []),
+			'cadence-icons',
+			'cadence-tokens'
+		];
 		
 		return config;
 	},

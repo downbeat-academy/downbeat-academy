@@ -6,7 +6,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && pnpm icons:build && vite build",
+    "ensure-icons": "node scripts/ensure-icons.js",
+    "prebuild": "pnpm ensure-icons",
+    "build": "tsc --noEmit && vite build",
+    "postbuild": "echo 'Icons package built successfully'",
     "preview": "vite preview",
     "clean": "rimraf src/components",
     "svgr": "svgr --config-file .svgrrc.json --out-dir src/components src/assets",

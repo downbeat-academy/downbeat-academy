@@ -12,13 +12,20 @@ export default defineConfig({
 		tsConfigPaths(),
 		dts({
 			insertTypesEntry: true,
-			include: ['src/components'],
+			include: ['src'],
+			beforeWriteFile: (filePath, content) => {
+				// Skip writing if the components haven't been generated yet
+				if (filePath.includes('components/index.d.ts') && !content.trim()) {
+					return false;
+				}
+				return { filePath, content };
+			},
 		}),
 		cssInjectedByJsPlugin(),
 	],
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, './src/components/index.ts'),
+			entry: path.resolve(__dirname, './src/index.ts'),
 			name: 'CadenceIcons',
 			formats: ['es', 'umd'],
 			fileName: (format) => `cadence-icons.${format}.js`,
