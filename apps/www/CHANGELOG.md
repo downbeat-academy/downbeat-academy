@@ -1,5 +1,135 @@
 # www
 
+## 4.3.0
+
+### Minor Changes
+
+- 6d74383: Updated middleware for `better-auth` according to NextJS 15 guidelines.
+
+### Patch Changes
+
+- 294cd52: Migrate Banner component from www app to cadence-core package
+  - Move Banner, BannerActions, and BannerContent components to cadence-core
+  - Add comprehensive Storybook stories for Banner component variants
+  - Add basic test coverage for Banner components
+  - Update www app to use Banner components from cadence-core instead of local components
+  - Remove original Banner component files from www app
+
+- 77fb3a6: Migrate Card component from www app to cadence-core package
+  - Move Card, CardContent, and CardImage components to cadence-core
+  - Add comprehensive Storybook stories for Card component variants and usage patterns
+  - Add basic test coverage for Card components including props, tag rendering, and children handling
+  - Update www app to use Card components from cadence-core instead of local components
+  - Remove original Card component files from www app
+  - Simplify CardImage component to work without Next.js dependencies for better portability
+
+- 9c1bf2b: Migrate Button component from www app to cadence-core package
+
+  This migration centralizes the Button component in the design system while maintaining framework-agnostic compatibility through a polymorphic component design.
+
+  ## New Features
+  - **Button Component**: Added polymorphic Button and ButtonWrapper components to cadence-core
+  - **Framework Agnostic**: Button component accepts `linkComponent` prop for framework-specific routing
+  - **Storybook Documentation**: Comprehensive Button component documentation and examples
+
+  ## Changes
+  - Move Button & ButtonWrapper components from apps/www to packages/cadence-core
+  - Implement polymorphic Button component with linkComponent prop support
+  - Create framework wrapper in www app that injects Next.js Link component
+  - Update all Button imports across www app (17+ files) to use new wrapper
+  - Remove old button component files and tests from www app
+
+  ## Button Component Features
+  - Standard button behavior when no href is provided
+  - Automatic anchor tag rendering with href but no custom link component
+  - Framework-specific link components via linkComponent prop (e.g., Next.js Link)
+  - Zero breaking changes to existing button usage in www app
+
+  ## Usage
+
+  ```tsx
+  // In React apps with custom routing
+  import { Button } from 'cadence-core'
+  import { Link } from 'react-router-dom'
+
+  <Button text="Navigate" href="/about" linkComponent={Link} />
+
+  // In Next.js apps (via wrapper)
+  import { Button } from '@components/ui/button'
+
+  <Button text="Go Home" href="/" />
+  <Button text="Submit" onClick={handleSubmit} />
+  ```
+
+- d0e7699: Migrate Form components from www app to cadence-core package
+
+  This migration centralizes all form components in the design system while maintaining framework-agnostic compatibility and direct import usage.
+
+  ## New Components in cadence-core
+  - **Form**: Main form container with configurable spacing (none, small, medium, large)
+  - **FormField**: Field wrapper supporting horizontal/vertical layouts
+  - **Input**: Text input with validation state support and react-hook-form integration
+  - **Textarea**: Multi-line text input with configurable rows
+  - **Label**: Form field labels with proper typography
+  - **HelperText**: Descriptive text for form fields
+  - **ValidationMessage**: Success/warning/error messages with icons from cadence-icons
+  - **HorizontalWrapper**: Layout helper for side-by-side form fields with responsive behavior
+
+  ## Features
+  - **Framework Agnostic**: All components work without framework-specific dependencies
+  - **TypeScript Support**: Full TypeScript definitions with proper HTML element inheritance
+  - **React Hook Form**: Optional integration support for form validation
+  - **Accessible**: Proper ARIA attributes and semantic HTML
+  - **Design System Integration**: Uses cadence-tokens for consistent styling
+  - **Responsive**: Layout components adapt to mobile viewports
+
+  ## Usage
+
+  All form components can now be imported directly from cadence-core:
+
+  ```tsx
+  import {
+  	Form,
+  	FormField,
+  	Input,
+  	Label,
+  	ValidationMessage,
+  } from 'cadence-core'
+
+  function MyForm() {
+  	return (
+  		<Form spacing="medium">
+  			<FormField>
+  				<Label htmlFor="name">Name</Label>
+  				<Input id="name" name="name" placeholder="Enter your name" />
+  				<ValidationMessage type="success">Name is valid</ValidationMessage>
+  			</FormField>
+  		</Form>
+  	)
+  }
+  ```
+
+  ## Breaking Changes
+  - Form components are no longer available from `@components/form` in www app
+  - All form imports must be updated to use `cadence-core` directly
+  - Switch component was not migrated (requires Radix UI dependency decision)
+
+  ## Migration
+  - Old: `import { Form } from '@components/form'`
+  - New: `import { Form } from 'cadence-core'`
+
+  ## Storybook
+  - Standardized all component stories to use "Cadence/Components" category
+  - Added comprehensive Form component documentation and examples
+  - Updated Button component story to match new category structure
+
+- 9efca4b: Updated Sentry configuration to use instrumentation hooks.
+- Updated dependencies [294cd52]
+- Updated dependencies [77fb3a6]
+- Updated dependencies [9c1bf2b]
+- Updated dependencies [d0e7699]
+  - cadence-core@1.7.0
+
 ## 4.2.0
 
 ### Minor Changes
