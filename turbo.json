@@ -14,10 +14,14 @@
 			"outputs": []
 		},
 		"dev": {
-			"cache": false
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
 		},
 		"storybook": {
-			"cache": false
+			"dependsOn": ["^build"],
+			"cache": false,
+			"persistent": true
 		},
 		"build:storybook": {
 			"dependsOn": ["^build"],

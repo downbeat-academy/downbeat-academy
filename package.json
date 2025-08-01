@@ -18,9 +18,11 @@
   "scripts": {
     "format": "prettier --write .",
     "build": "turbo run build",
+    "build:packages": "turbo run build --filter='./packages/*'",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "dev": "turbo run dev",
+    "dev:fresh": "pnpm build:packages && turbo run dev",
     "icons:dev": "turbo run dev --filter=cadence-icons",
     "icons:build": "turbo run build --filter=cadence-icons",
     "www:dev": "turbo run dev --filter=www",
