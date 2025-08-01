@@ -1,3 +1,5 @@
+import React from 'react'
+
 const BannerContent = ({ children }: { children: React.ReactNode }) => {
 	return <section>{children}</section>
 }
