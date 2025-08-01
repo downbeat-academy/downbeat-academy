@@ -7,7 +7,7 @@ import type { BannerProps } from './types'
 const Banner = ({ children, className, type }: BannerProps) => {
 	const classes = classnames([
 		s[`banner--root`],
-		s[type ? `banner--type-${type}` : null],
+		s[type ? `banner--type-${type}` : ''],
 		className,
 	])
 
