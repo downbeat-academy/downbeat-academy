@@ -2,9 +2,7 @@ import Img from 'next/image'
 import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 
-import * as Card from '@components/card'
-import { Text } from 'cadence-core'
-import { Grid } from 'cadence-core'
+import { Text, Grid, Card, CardContent } from 'cadence-core'
 import { Link } from '@components/link'
 import { Avatar } from '@components/avatar'
 import { Badge, Flex } from 'cadence-core'
@@ -12,8 +10,8 @@ import { Badge, Flex } from 'cadence-core'
 export default async function ContributorsGrid({ contributors }) {
 	const mapContributors = contributors.map((contributor) => {
 		return (
-			<Card.Root borderColor="primary" key={contributor._id}>
-				<Card.Content>
+			<Card borderColor="primary" key={contributor._id}>
+				<CardContent>
 					<Flex direction="row" alignItems="center" gap="medium">
 						<Link href={linkResolver(contributor.slug, 'contributor')}>
 							<Avatar
@@ -60,8 +58,8 @@ export default async function ContributorsGrid({ contributors }) {
 							</Flex>
 						</Flex>
 					</Flex>
-				</Card.Content>
-			</Card.Root>
+				</CardContent>
+			</Card>
 		)
 	})
 
