@@ -6,8 +6,7 @@ import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
 import s from './header-navigation.module.css'
-import * as Banner from '@components/banner'
-import { Text, LogoLockup } from 'cadence-core'
+import { Text, LogoLockup, Banner, BannerActions, BannerContent } from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { NavContent } from './nav-content'
 import { useRouter } from 'next/navigation'
@@ -150,8 +149,8 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 
 	return (
 		<header className={classes}>
-			<Banner.Root type="primary">
-				<Banner.Content>
+			<Banner type="primary">
+				<BannerContent>
 					<Text
 						tag="p"
 						color="high-contrast"
@@ -161,8 +160,8 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 					>
 						{bannerData.headline}
 					</Text>
-				</Banner.Content>
-				<Banner.Actions>
+				</BannerContent>
+				<BannerActions>
 					{!session?.data?.session ? (
 						<>
 							<Button
@@ -185,8 +184,8 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 							/>
 						</>
 					)}
-				</Banner.Actions>
-			</Banner.Root>
+				</BannerActions>
+			</Banner>
 			<NavContent links={navData} session={session} />
 		</header>
 	)
