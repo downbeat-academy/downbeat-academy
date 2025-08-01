@@ -2,9 +2,7 @@ import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { truncateString } from '@utils/truncateString'
 
-import * as Card from '@components/card'
-import { Text } from 'cadence-core'
-import { Grid } from 'cadence-core'
+import { Text, Grid, Card, CardContent, CardImage } from 'cadence-core'
 import { Link } from '@components/link'
 import { AuthorMetadata } from '@components/author'
 import { prettyDate } from '@utils/dateFormat'
@@ -12,13 +10,13 @@ import { prettyDate } from '@utils/dateFormat'
 export default async function ArticlesPostGrid({ articles }) {
 	const mapArticles = articles.map((article) => {
 		return (
-			<Card.Root borderColor="faint" key={article._id}>
-				<Card.Image
+			<Card borderColor="faint" key={article._id}>
+				<CardImage
 					image={getSanityImageUrl(article.featuredImage.image.asset).url()}
 					alt={article.featuredImage.alternativeText}
 					url={linkResolver(article.slug, 'article')}
 				/>
-				<Card.Content>
+				<CardContent>
 					<Link href={linkResolver(article.slug, 'article')} type="inherit">
 						<Text type="expressive-headline" size="h4" collapse>
 							{article.title}
@@ -34,8 +32,8 @@ export default async function ArticlesPostGrid({ articles }) {
 						avatarSize="small"
 						date={prettyDate(article.date)}
 					/>
-				</Card.Content>
-			</Card.Root>
+				</CardContent>
+			</Card>
 		)
 	})
 

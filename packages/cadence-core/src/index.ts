@@ -2,6 +2,7 @@
 export { Badge } from './components/badge';
 export { Banner, BannerActions, BannerContent } from './components/banner';
 export { Button, ButtonWrapper } from './components/button';
+export { Card, CardContent, CardImage } from './components/card';
 export { Flex } from './components/flex';
 export { 
   Form, 
@@ -21,6 +22,7 @@ export { Grid } from './components/grid';
 export type { BadgeProps } from './components/badge';
 export type { BannerProps } from './components/banner';
 export type { ButtonProps, ButtonWrapperProps } from './components/button';
+export type { CardProps, CardContentProps, CardImageProps } from './components/card';
 export type {
   FormProps,
   FormFieldProps,

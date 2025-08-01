@@ -1,5 +1,6 @@
+import React from 'react'
 import classnames from 'classnames'
-import { Flex } from 'cadence-core'
+import { Flex } from '../flex'
 import s from './content.module.css'
 
 import type { CardContentProps } from './types'
