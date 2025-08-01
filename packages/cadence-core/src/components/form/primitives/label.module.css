@@ -1,0 +1,6 @@
+.cds-label--root {
+  font-family: var(--cds-typography-font-family-productive-body);
+  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  font-weight: 600;
+  color: var(--cds-color-foreground-primary);
+}

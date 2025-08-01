@@ -13,7 +13,7 @@ import {
 	Textarea,
 	ValidationMessage,
 	Label,
-} from '@components/form'
+} from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
 import { sendEmail } from '@actions/email/send-email'

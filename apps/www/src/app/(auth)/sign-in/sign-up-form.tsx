@@ -14,7 +14,7 @@ import {
   Label,
   ValidationMessage,
   HelperText
-} from "@/components/form"
+} from "cadence-core"
 import { useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
 

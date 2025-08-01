@@ -15,7 +15,7 @@ import {
 	Label,
 	Input,
 	ValidationMessage,
-} from '@components/form'
+} from 'cadence-core'
 import { useToast } from '@components/toast'
 import { DialogClose } from '@components/dialog'
 

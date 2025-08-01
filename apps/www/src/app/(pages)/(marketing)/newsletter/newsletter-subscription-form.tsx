@@ -8,7 +8,7 @@ import {
 	Input,
 	Label,
 	ValidationMessage,
-} from '@components/form'
+} from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
 import { subscribeToNewsletter } from '@actions/email/newsletter-subscription'

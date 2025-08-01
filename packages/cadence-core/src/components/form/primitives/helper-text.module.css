@@ -1,0 +1,5 @@
+.cds-helper-text--root {
+  font-family: var(--cds-typography-font-family-productive-body);
+  font-size: var(--cds-typography-font-size-fixed-productive-small);
+  color: var(--cds-color-foreground-faint);
+}
