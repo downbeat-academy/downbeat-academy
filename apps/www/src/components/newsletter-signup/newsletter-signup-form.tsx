@@ -12,7 +12,7 @@ import {
 	Input,
 	ValidationMessage,
 	Label,
-	FormField,
+	Field,
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
@@ -54,7 +54,7 @@ const NewsletterSignupForm = () => {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
-			<FormField>
+			<Field>
 				<Label>Email</Label>
 				<Input
 					register={register}
@@ -67,7 +67,7 @@ const NewsletterSignupForm = () => {
 						{`${errors.email.message}`}
 					</ValidationMessage>
 				)}
-			</FormField>
+			</Field>
 			<Button
 				type="submit"
 				text={isSubmitting ? 'Signing you up...' : 'Subscribe'}

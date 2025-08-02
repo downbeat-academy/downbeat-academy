@@ -8,7 +8,7 @@ import {
 } from '@lib/types/contact-form-schema'
 import {
 	Form,
-	FormField,
+	Field,
 	Input,
 	Textarea,
 	ValidationMessage,
@@ -54,7 +54,7 @@ export function ContactForm() {
 	return (
 		<section className={s['contact-form']}>
 			<Form name="contact-form" onSubmit={handleSubmit(onSubmit)}>
-				<FormField>
+				<Field>
 					<Label htmlFor="name">Name</Label>
 					<Input
 						register={register}
@@ -67,8 +67,8 @@ export function ContactForm() {
 							{`${errors.name.message}`}
 						</ValidationMessage>
 					)}
-				</FormField>
-				<FormField>
+				</Field>
+				<Field>
 					<Label htmlFor="email">Email</Label>
 					<Input
 						register={register}
@@ -81,8 +81,8 @@ export function ContactForm() {
 							{`${errors.email.message}`}
 						</ValidationMessage>
 					)}
-				</FormField>
-				<FormField>
+				</Field>
+				<Field>
 					<Label htmlFor="message">Message</Label>
 					<Textarea register={register} name="message" placeholder="Message" />
 					{errors.message && (
@@ -90,7 +90,7 @@ export function ContactForm() {
 							{`${errors.message.message}`}
 						</ValidationMessage>
 					)}
-				</FormField>
+				</Field>
 				<Button
 					type="submit"
 					text={isSubmitting ? 'Sending...' : 'Send message'}

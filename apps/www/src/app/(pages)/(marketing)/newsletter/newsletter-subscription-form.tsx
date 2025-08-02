@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
 	Form,
-	FormField,
+	Field,
 	Input,
 	Label,
 	ValidationMessage,
@@ -51,7 +51,7 @@ const NewsletterSubscriptionForm = () => {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
-			<FormField>
+			<Field>
 				<Label htmlFor="email">Email</Label>
 				<Input
 					type="email"
@@ -63,7 +63,7 @@ const NewsletterSubscriptionForm = () => {
 				{errors.email && (
 					<ValidationMessage type="error">{`${errors.email.message}`}</ValidationMessage>
 				)}
-			</FormField>
+			</Field>
 			<Button
 				type="submit"
 				variant="primary"

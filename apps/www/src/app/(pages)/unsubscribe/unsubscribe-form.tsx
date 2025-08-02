@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useQueryState } from 'nuqs'
 import {
 	Form,
-	FormField,
+	Field,
 	Input,
 	Label,
 	ValidationMessage,
@@ -48,7 +48,7 @@ export function UnsubscribeForm() {
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)}>
-			<FormField>
+			<Field>
 				<Label htmlFor="email">Email</Label>
 				<Input
 					type="email"
@@ -60,7 +60,7 @@ export function UnsubscribeForm() {
 				{errors.email && (
 					<ValidationMessage>{`${errors.email.message}`}</ValidationMessage>
 				)}
-			</FormField>
+			</Field>
 			<Button
 				type="submit"
 				disabled={isSubmitting}

@@ -8,7 +8,7 @@ import { z } from "zod"
 import { useToast } from "@/components/toast"
 import {
   Form,
-  FormField,
+  Field,
   Input,
   Label,
   ValidationMessage,
@@ -75,7 +75,7 @@ export const SignInForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormField>
+      <Field>
         <Label htmlFor="email">Email</Label>
         <Input
           type="email"
@@ -87,8 +87,8 @@ export const SignInForm = () => {
         {errors.email && (
           <ValidationMessage type="error">{errors.email.message}</ValidationMessage>
         )}
-      </FormField>
-      <FormField>
+      </Field>
+      <Field>
         <Label htmlFor="password">Password</Label>
         <Input
           type="password"
@@ -100,7 +100,7 @@ export const SignInForm = () => {
         {errors.password && (
           <ValidationMessage type="error">{errors.password.message}</ValidationMessage>
         )}
-      </FormField>
+      </Field>
       <Button
         type="submit"
         text={isSubmitting ? "🎵 Signing in..." : "Sign In"}

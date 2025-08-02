@@ -7,7 +7,7 @@ import { useToast } from "@components/toast"
 import { Button } from "@components/ui/button"
 import {
   Form,
-  FormField,
+  Field,
   Input,
   Label,
   ValidationMessage
@@ -58,7 +58,7 @@ export function ForgotPasswordForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormField>
+      <Field>
         <Label htmlFor="email">Email</Label>
         <Input
           type="email"
@@ -70,7 +70,7 @@ export function ForgotPasswordForm() {
         {errors.email && (
           <ValidationMessage type="error">{errors.email.message}</ValidationMessage>
         )}
-      </FormField>
+      </Field>
       <Button
         type="submit"
         text={isSubmitting ? "Sending reset link..." : "Send reset link"}
