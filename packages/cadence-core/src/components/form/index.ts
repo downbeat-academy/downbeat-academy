@@ -1,6 +1,6 @@
 // Base components
 export { Form } from './layout'
-export { FormField } from './field'
+export { Field } from './field'
 export { Input } from './input'
 export { Textarea } from './textarea'
 export { Switch } from './switch'
@@ -11,7 +11,7 @@ export { HelperText, Label, ValidationMessage } from './primitives'
 
 // Types
 export type { FormProps } from './layout'
-export type { FormFieldProps } from './field'
+export type { FieldProps } from './field'
 export type { InputProps } from './input'
 export type { TextareaProps } from './textarea'
 export type { SwitchProps } from './switch'

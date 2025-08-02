@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Switch } from '../switch'
-import { FormField } from '../../field/form-field'
+import { Field } from '../../field'
 import { Label } from '../../primitives/label'
 import { HelperText } from '../../primitives/helper-text'
 import { ValidationMessage } from '../../primitives/validation-message'
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Form/Switch',
+  title: 'Cadence/Components/Forms/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',
@@ -81,7 +81,7 @@ export const WithLabel: Story = {
     const [checked, setChecked] = useState(false)
 
     return (
-      <FormField>
+      <Field>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Switch
             id="switch-with-label"
@@ -90,7 +90,7 @@ export const WithLabel: Story = {
           />
           <Label htmlFor="switch-with-label">Enable notifications</Label>
         </div>
-      </FormField>
+      </Field>
     )
   },
 }
@@ -100,7 +100,7 @@ export const WithHelperText: Story = {
     const [checked, setChecked] = useState(false)
 
     return (
-      <FormField>
+      <Field>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Switch
             id="switch-with-helper"
@@ -113,7 +113,7 @@ export const WithHelperText: Story = {
         <HelperText>
           Receive updates about new features and promotions
         </HelperText>
-      </FormField>
+      </Field>
     )
   },
 }
@@ -124,7 +124,7 @@ export const WithValidation: Story = {
     const [showError, setShowError] = useState(true)
 
     return (
-      <FormField>
+      <Field>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Switch
             id="switch-with-validation"
@@ -146,7 +146,7 @@ export const WithValidation: Story = {
             You must accept the terms to continue
           </ValidationMessage>
         )}
-      </FormField>
+      </Field>
     )
   },
 }
@@ -159,32 +159,32 @@ export const HorizontalLayout: Story = {
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', minWidth: '400px' }}>
-        <FormField orientation="horizontal">
+        <Field orientation="horizontal">
           <Label htmlFor="switch-email" style={{ flex: 1 }}>Email notifications</Label>
           <Switch
             id="switch-email"
             checked={emailChecked}
             onCheckedChange={setEmailChecked}
           />
-        </FormField>
+        </Field>
 
-        <FormField orientation="horizontal">
+        <Field orientation="horizontal">
           <Label htmlFor="switch-sms" style={{ flex: 1 }}>SMS notifications</Label>
           <Switch
             id="switch-sms"
             checked={smsChecked}
             onCheckedChange={setSmsChecked}
           />
-        </FormField>
+        </Field>
 
-        <FormField orientation="horizontal">
+        <Field orientation="horizontal">
           <Label htmlFor="switch-push" style={{ flex: 1 }}>Push notifications</Label>
           <Switch
             id="switch-push"
             checked={pushChecked}
             onCheckedChange={setPushChecked}
           />
-        </FormField>
+        </Field>
       </div>
     )
   },
@@ -214,7 +214,7 @@ export const CompleteExample: Story = {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', minWidth: '500px' }}>
         <h3 style={{ margin: 0 }}>Notification Settings</h3>
 
-        <FormField>
+        <Field>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Switch
               id="switch-notifications"
@@ -227,9 +227,9 @@ export const CompleteExample: Story = {
           <HelperText>
             Get notified about important updates and activities
           </HelperText>
-        </FormField>
+        </Field>
 
-        <FormField>
+        <Field>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Switch
               id="switch-marketing"
@@ -239,9 +239,9 @@ export const CompleteExample: Story = {
             />
             <Label htmlFor="switch-marketing">Marketing communications</Label>
           </div>
-        </FormField>
+        </Field>
 
-        <FormField>
+        <Field>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Switch
               id="switch-analytics"
@@ -250,11 +250,11 @@ export const CompleteExample: Story = {
             />
             <Label htmlFor="switch-analytics">Share usage analytics</Label>
           </div>
-        </FormField>
+        </Field>
 
         <hr style={{ width: '100%', opacity: 0.2 }} />
 
-        <FormField>
+        <Field>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Switch
               id="switch-terms"
@@ -273,7 +273,7 @@ export const CompleteExample: Story = {
               You must accept the terms to continue
             </ValidationMessage>
           )}
-        </FormField>
+        </Field>
       </div>
     )
   },

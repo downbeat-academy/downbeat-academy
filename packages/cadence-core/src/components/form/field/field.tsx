@@ -1,14 +1,14 @@
 import React from 'react'
 import classnames from 'classnames'
-import s from './form-field.module.css'
-import type { FormFieldProps } from './types'
+import s from './field.module.css'
+import type { FieldProps } from './types'
 
-const FormField = ({
+const Field = ({
   orientation = 'vertical',
   children,
   className,
   ...restProps
-}: FormFieldProps) => {
+}: FieldProps) => {
   const classes = classnames(
     s['cds-form-field--root'],
     s['cds-form-field--orientation-' + orientation],
@@ -22,4 +22,4 @@ const FormField = ({
   )
 }
 
-export { FormField }
+export { Field }
