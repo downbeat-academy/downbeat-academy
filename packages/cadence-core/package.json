@@ -8,7 +8,8 @@
     "build:js": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly --outDir dist",
     "storybook": "storybook dev -p 6006 --ci",
-    "build:storybook": "storybook build"
+    "build:storybook": "storybook build",
+    "test": "vitest"
   },
   "keywords": [],
   "author": {
@@ -73,6 +74,7 @@
     "react-dom": "^18.2.0 || ^19.0.0"
   },
   "dependencies": {
+    "@radix-ui/react-switch": "^1.1.2",
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.5.1",

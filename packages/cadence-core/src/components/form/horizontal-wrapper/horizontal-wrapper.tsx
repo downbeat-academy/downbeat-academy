@@ -19,4 +19,3 @@ const HorizontalWrapper = ({
 }
 
 export { HorizontalWrapper }
-export type { HorizontalWrapperProps }
