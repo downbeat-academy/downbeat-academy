@@ -4,15 +4,15 @@ export { Banner, BannerActions, BannerContent } from './components/banner';
 export { Button, ButtonWrapper } from './components/button';
 export { Card, CardContent, CardImage } from './components/card';
 export { Flex } from './components/flex';
-export { 
-  Form, 
-  FormField, 
-  Input, 
-  Textarea, 
+export {
+  Form,
+  Field,
+  Input,
+  Textarea,
   HorizontalWrapper,
-  HelperText, 
-  Label, 
-  ValidationMessage 
+  HelperText,
+  Label,
+  ValidationMessage
 } from './components/form';
 export { LogoLockup, LogoSymbol, LogoText } from './components/brand';
 export { Text, List } from './components/text';
@@ -25,7 +25,7 @@ export type { ButtonProps, ButtonWrapperProps } from './components/button';
 export type { CardProps, CardContentProps, CardImageProps } from './components/card';
 export type {
   FormProps,
-  FormFieldProps,
+  FieldProps,
   InputProps,
   TextareaProps,
   HorizontalWrapperProps,
