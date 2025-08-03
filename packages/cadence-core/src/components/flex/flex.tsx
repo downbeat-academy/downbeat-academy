@@ -19,16 +19,16 @@ const Flex = ({
 	wrap,
 }: FlexProps) => {
 	const classes = classnames(
-		s[`flex`],
-		s[`flex--gap--${gap}`],
-		s[`flex--padding--${padding}`],
-		s[`flex--direction--${direction}`],
-		s[`flex--align-items--${alignItems}`],
-		s[`flex--align-content--${alignContent}`],
-		s[`flex--justify-items--${justifyItems}`],
-		s[`flex--justify--${justifyContent}`],
-		s[`flex--background--${background}`],
-		{[s[`flex--wrap`]]: wrap},
+		s[`cds-flex`],
+		s[`cds-flex--gap--${gap}`],
+		s[`cds-flex--padding--${padding}`],
+		s[`cds-flex--direction--${direction}`],
+		s[`cds-flex--align-items--${alignItems}`],
+		s[`cds-flex--align-content--${alignContent}`],
+		s[`cds-flex--justify-items--${justifyItems}`],
+		s[`cds-flex--justify--${justifyContent}`],
+		s[`cds-flex--background--${background}`],
+		{[s[`cds-flex--wrap`]]: wrap},
 		className,
 	)
 

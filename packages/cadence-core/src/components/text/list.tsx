@@ -6,8 +6,8 @@ import type { ListProps } from './types'
 
 const List = ({ children, type, collapse, className }: ListProps) => {
 	const classes = classnames(
-		s['text__list'],
-		{ [s['text__list--collapse']]: collapse },
+		s['cds-list--root'],
+		{ [s['cds-list--collapse']]: collapse },
 		className
 	)
 

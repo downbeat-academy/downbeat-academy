@@ -26,7 +26,15 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({
     className
   )
 
-  const thumbClasses = classnames(s['cds-switch--thumb'])
+  const thumbClasses = classnames(
+    s['cds-switch--thumb'],
+    checked && s['cds-switch--thumb-checked']
+  )
+
+  const checkIconClasses = classnames(
+    s['cds-switch--check-icon'],
+    checked && s['cds-switch--check-icon-visible']
+  )
 
   return (
     <SwitchPrimitive.Root
@@ -44,7 +52,7 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({
       aria-describedby={ariaDescribedby}
       {...props}
     >
-      <span className={s['cds-switch--check-icon']}>
+      <span className={checkIconClasses}>
         <Check width={14} color="var(--cds-color-foreground-high-contrast)" />
       </span>
       <SwitchPrimitive.Thumb className={thumbClasses} />

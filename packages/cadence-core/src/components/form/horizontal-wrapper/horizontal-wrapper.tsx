@@ -9,11 +9,29 @@ const HorizontalWrapper = ({
   className,
   ...restProps 
 }: HorizontalWrapperProps) => {
-  const classes = classnames(s['form--layout_helper--horizontal-wrapper'], className)
+  const classes = classnames(s['cds-horizontal-wrapper'], className)
+
+  // Clone children and apply appropriate classes
+  const enhancedChildren = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      const isButton = child.type === 'button' || 
+                      (typeof child.type === 'function' && (child.type as any).displayName?.includes('Button')) ||
+                      (typeof child.type === 'object' && child.type !== null && (child.type as any).displayName?.includes('Button'))
+      
+      const childClass = isButton ? s['cds-horizontal-wrapper--button'] : s['cds-horizontal-wrapper--child']
+      const existingClassName = child.props.className || ''
+      
+      return React.cloneElement(child, {
+        ...child.props,
+        className: classnames(childClass, existingClassName)
+      })
+    }
+    return child
+  })
 
   return (
     <div className={classes} {...restProps}>
-      {children}
+      {enhancedChildren}
     </div>
   )
 }

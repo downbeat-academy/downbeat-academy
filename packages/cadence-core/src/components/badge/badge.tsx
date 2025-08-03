@@ -13,9 +13,9 @@ const Badge = ({
 	className,
 }: BadgeProps) => {
 	const classes = classnames(
-		s[`badge`],
-		s[`badge--${size}`],
-		s[`badge--${style}--${type}`],
+		s[`cds-badge--root`],
+		s[`cds-badge--${size}`],
+		s[`cds-badge--${style}--${type}`],
 		className,
 	)
 
@@ -25,12 +25,12 @@ const Badge = ({
 	return (
 		<div className={classes} data-cy="cds-badge">
 			{hasIcon && (
-				<span className={s.icon} data-cy="icon">
+				<span className={s['cds-badge--icon']} data-cy="icon">
 					{icon}
 				</span>
 			)}
 			{hasText && (
-				<span className={s.text} data-cy="text">
+				<span className={s['cds-badge--text']} data-cy="text">
 					{text}
 				</span>
 			)}

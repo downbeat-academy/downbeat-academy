@@ -1,4 +1,4 @@
-.form--layout_helper--horizontal-wrapper {
+.cds-horizontal-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6,17 +6,21 @@
   width: 100%;
 }
 
-.form--layout_helper--horizontal-wrapper > *:not(button) {
+.cds-horizontal-wrapper--child {
   flex-grow: 1;
 }
 
+.cds-horizontal-wrapper--button {
+  /* No additional styles needed, inherits from base wrapper */
+}
+
 @media (max-width: 768px) {
-  .form--layout_helper--horizontal-wrapper {
+  .cds-horizontal-wrapper {
     flex-direction: column;
   }
 
-  .form--layout_helper--horizontal-wrapper > *,
-  .form--layout_helper--horizontal-wrapper > button {
+  .cds-horizontal-wrapper--child,
+  .cds-horizontal-wrapper--button {
     width: 100%;
   }
 }
