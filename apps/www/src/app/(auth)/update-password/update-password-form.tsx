@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@components/ui/button'
-import { Form, FormField, Input, Label, ValidationMessage } from 'cadence-core'
+import { Form, Field, Input, Label, ValidationMessage } from 'cadence-core'
 import { useToast } from '@components/toast'
 import { useRouter } from 'next/navigation'
 import { resetPasswordAction } from '@/actions/auth/reset-password'
@@ -95,7 +95,7 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormField>
+      <Field>
         <Label htmlFor="newPassword">New Password</Label>
         <Input
           type="password"
@@ -107,8 +107,8 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
         {errors.newPassword && (
           <ValidationMessage type="error">{errors.newPassword.message}</ValidationMessage>
         )}
-      </FormField>
-      <FormField>
+      </Field>
+      <Field>
         <Label htmlFor="confirmPassword">Confirm New Password</Label>
         <Input
           type="password"
@@ -120,7 +120,7 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
         {errors.confirmPassword && (
           <ValidationMessage type="error">{errors.confirmPassword.message}</ValidationMessage>
         )}
-      </FormField>
+      </Field>
       <Button
         type="submit"
         text={isSubmitting ? "Resetting..." : "Reset Password"}

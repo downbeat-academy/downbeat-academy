@@ -13,7 +13,7 @@ import {
 	Input,
 	ValidationMessage,
 	Label,
-	FormField,
+	Field,
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
@@ -60,7 +60,7 @@ const FileDownloadForm = ({ fileUrl, title }) => {
 
 	return (
 		<Form name="file-download-form" onSubmit={handleSubmit(onSubmit)}>
-			<FormField>
+			<Field>
 				<Label htmlFor="email">Email</Label>
 				<Input
 					register={register}
@@ -73,7 +73,7 @@ const FileDownloadForm = ({ fileUrl, title }) => {
 						{`${errors.email.message}`}
 					</ValidationMessage>
 				)}
-			</FormField>
+			</Field>
 			<Button
 				type="submit"
 				text={isSubmitting ? 'Landing in your inbox...' : 'Show me the files!'}

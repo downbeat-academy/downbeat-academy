@@ -9,7 +9,7 @@ import { useToast } from "@/components/toast"
 import { createContact } from "@/actions/email/create-contact"
 import {
   Form,
-  FormField,
+  Field,
   Input,
   Label,
   ValidationMessage,
@@ -97,7 +97,7 @@ export const SignUpForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormField>
+      <Field>
         <Label htmlFor="name">Name</Label>
         <Input
           type="text"
@@ -109,8 +109,8 @@ export const SignUpForm = () => {
         {errors.name && (
           <ValidationMessage type="error">{errors.name.message}</ValidationMessage>
         )}
-      </FormField>
-      <FormField>
+      </Field>
+      <Field>
         <Label htmlFor="email">Email</Label>
         <Input
           type="email"
@@ -122,8 +122,8 @@ export const SignUpForm = () => {
         {errors.email && (
           <ValidationMessage type="error">{errors.email.message}</ValidationMessage>
         )}
-      </FormField>
-      <FormField>
+      </Field>
+      <Field>
         <Label htmlFor="password">Password</Label>
         <HelperText>
           Password must be at least 8 characters and include uppercase & lowercase letters, numbers, and special characters.
@@ -141,8 +141,8 @@ export const SignUpForm = () => {
         {!errors.password && passwordMeetsRequirements && (
           <ValidationMessage type="success">Password meets all requirements</ValidationMessage>
         )}
-      </FormField>
-      <FormField>
+      </Field>
+      <Field>
         <Label htmlFor="confirmPassword">Confirm Password</Label>
         <Input
           type="password"
@@ -154,7 +154,7 @@ export const SignUpForm = () => {
         {errors.confirmPassword && (
           <ValidationMessage type="error">{errors.confirmPassword.message}</ValidationMessage>
         )}
-      </FormField>
+      </Field>
       <Button
         type="submit"
         text={isSubmitting ? "Creating account..." : "Sign Up"}

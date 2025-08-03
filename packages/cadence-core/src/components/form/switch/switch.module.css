@@ -1,0 +1,83 @@
+.cds-switch--root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 42px;
+  height: 24px;
+  background-color: var(--cds-color-palette-blackberry-100);
+  border-radius: var(--cds-radii-x-soft);
+  border: 1px solid var(--cds-color-border-primary);
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.cds-switch--root:hover:not([data-disabled]) {
+  background-color: var(--cds-color-palette-blackberry-200);
+}
+
+.cds-switch--root:focus-visible {
+  outline: 2px solid var(--cds-color-border-focus);
+  outline-offset: 2px;
+}
+
+.cds-switch--root[data-state='checked'] {
+  background-color: var(--cds-color-foreground-interactive-default);
+  border-color: var(--cds-color-palette-blueberry-700);
+}
+
+.cds-switch--root[data-state='checked']:hover:not([data-disabled]) {
+  background-color: var(--cds-color-foreground-interactive-hover);
+  border-color: var(--cds-color-background-brand-hover);
+}
+
+.cds-switch--root[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cds-switch--is-invalid {
+  border-color: var(--cds-color-border-critical);
+}
+
+.cds-switch--is-invalid:focus-visible {
+  outline-color: var(--cds-color-border-critical);
+}
+
+.cds-switch--thumb {
+  position: absolute;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--cds-color-foreground-high-contrast);
+  border: 1px solid var(--cds-color-border-primary);
+  border-radius: 18px;
+  transition: transform 100ms ease;
+  will-change: transform;
+}
+
+.cds-switch--thumb:hover {
+  background-color: var(--cds-color-palette-blackberry-100);
+}
+
+.cds-switch--root[data-state='checked'] .cds-switch--thumb {
+  background-color: var(--cds-color-foreground-high-contrast);
+}
+
+.cds-switch--root[data-state='checked'] .cds-switch--thumb {
+  transform: translateX(17px);
+}
+
+.cds-switch--check-icon {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cds-switch--root[data-state='checked'] .cds-switch--check-icon {
+  display: flex;
+}

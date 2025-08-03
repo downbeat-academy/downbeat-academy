@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@components/ui/button'
-import { Form, FormField, Input, Label, ValidationMessage } from 'cadence-core'
+import { Form, Field, Input, Label, ValidationMessage } from 'cadence-core'
 import { useToast } from '@components/toast'
 import { updatePasswordAction } from '@/actions/auth/update-password'
 import { useEffect, useState } from 'react'
@@ -92,7 +92,7 @@ export function UpdatePasswordForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       {hasPassword && (
-        <FormField>
+        <Field>
           <Label htmlFor="currentPassword">Current Password</Label>
           <Input
             type="password"
@@ -104,9 +104,9 @@ export function UpdatePasswordForm() {
           {errors.currentPassword && (
             <ValidationMessage type="error">{errors.currentPassword.message}</ValidationMessage>
           )}
-        </FormField>
+        </Field>
       )}
-      <FormField>
+      <Field>
         <Label htmlFor="newPassword">New Password</Label>
         <Input
           type="password"
@@ -118,8 +118,8 @@ export function UpdatePasswordForm() {
         {errors.newPassword && (
           <ValidationMessage type="error">{errors.newPassword.message}</ValidationMessage>
         )}
-      </FormField>
-      <FormField>
+      </Field>
+      <Field>
         <Label htmlFor="confirmPassword">Confirm New Password</Label>
         <Input
           type="password"
@@ -131,7 +131,7 @@ export function UpdatePasswordForm() {
         {errors.confirmPassword && (
           <ValidationMessage type="error">{errors.confirmPassword.message}</ValidationMessage>
         )}
-      </FormField>
+      </Field>
       <Button
         type="submit"
         text={isSubmitting ? "Updating..." : "Update Password"}

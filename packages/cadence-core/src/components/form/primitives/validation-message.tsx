@@ -6,7 +6,7 @@ import {
   AlertCircleOutline,
 } from 'cadence-icons'
 import s from './validation-message.module.css'
-import type { ValidationMessageProps } from '../types'
+import type { ValidationMessageProps } from './types'
 
 const ValidationMessage = ({
   type = 'success',
@@ -42,4 +42,3 @@ const ValidationMessage = ({
 }
 
 export { ValidationMessage }
-export type { ValidationMessageProps }

@@ -42,4 +42,3 @@ const Form = ({
 }
 
 export { Form }
-export type { FormProps }

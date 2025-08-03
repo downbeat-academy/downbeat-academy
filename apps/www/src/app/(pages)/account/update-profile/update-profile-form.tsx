@@ -11,7 +11,7 @@ import { updateProfile } from '@actions/profile/update-profile'
 import { Button, ButtonWrapper } from '@components/ui/button'
 import {
 	Form,
-	FormField,
+	Field,
 	Label,
 	Input,
 	ValidationMessage,
@@ -75,7 +75,7 @@ const UpdateProfileForm = ({
 
 	return (
 		<Form onSubmit={handleSubmit(onSubmit)} maxWidth="400px">
-			<FormField>
+			<Field>
 				<Label htmlFor="name">Name</Label>
 				<Input
 					type="text"
@@ -89,8 +89,8 @@ const UpdateProfileForm = ({
 				{errors.name && (
 					<ValidationMessage type="error">{`${errors.name.message}`}</ValidationMessage>
 				)}
-			</FormField>
-			<FormField>
+			</Field>
+			<Field>
 				<Label htmlFor="email">Email</Label>
 				<Input
 					type="email"
@@ -100,7 +100,7 @@ const UpdateProfileForm = ({
 					placeholder={email}
 					disabled={true}
 				/>
-			</FormField>
+			</Field>
 			{!isReadOnly && (
 				<ButtonWrapper>
 					<Button
