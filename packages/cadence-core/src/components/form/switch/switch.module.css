@@ -59,11 +59,8 @@
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-switch--root[data-state='checked'] .cds-switch--thumb {
+.cds-switch--thumb-checked {
   background-color: var(--cds-color-foreground-high-contrast);
-}
-
-.cds-switch--root[data-state='checked'] .cds-switch--thumb {
   transform: translateX(17px);
 }
 
@@ -78,6 +75,6 @@
   pointer-events: none;
 }
 
-.cds-switch--root[data-state='checked'] .cds-switch--check-icon {
+.cds-switch--check-icon-visible {
   display: flex;
 }

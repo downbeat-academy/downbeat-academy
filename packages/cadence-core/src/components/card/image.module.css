@@ -1,8 +1,14 @@
-.root {
+.cds-card-image--root {
   position: relative;
   flex-basis: 250px;
 }
 
-.root a img {
+.cds-card-image--link {
+  display: block;
+}
+
+.cds-card-image--img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }

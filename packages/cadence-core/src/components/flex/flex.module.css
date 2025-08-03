@@ -1,154 +1,154 @@
-.flex {
+.cds-flex {
 	display: flex;
 }
 
 /* Direction */
 
-.flex--direction--row {
+.cds-flex--direction--row {
 	flex-direction: row;
 }
-.flex--direction--column {
+.cds-flex--direction--column {
 	flex-direction: column;
 }
 
 /* Gap */
 
-.flex--gap--none {
+.cds-flex--gap--none {
 	gap: 0;
 }
-.flex--gap--2x-small {
+.cds-flex--gap--2x-small {
 	gap: var(--cds-scale-2x-small);
 }
-.flex--gap--x-small {
+.cds-flex--gap--x-small {
 	gap: var(--cds-scale-x-small);
 }
-.flex--gap--small {
+.cds-flex--gap--small {
 	gap: var(--cds-scale-small);
 }
-.flex--gap--medium {
+.cds-flex--gap--medium {
 	gap: var(--cds-scale-base);
 }
-.flex--gap--large {
+.cds-flex--gap--large {
 	gap: var(--cds-scale-large);
 }
-.flex--gap--x-large {
+.cds-flex--gap--x-large {
 	gap: var(--cds-scale-x-large);
 }
-.flex--gap--2x-large {
+.cds-flex--gap--2x-large {
 	gap: var(--cds-scale-2x-large);
 }
-.flex--gap--3x-large {
+.cds-flex--gap--3x-large {
 	gap: var(--cds-scale-3x-large);
 }
 
 /* Padding */
 
-.flex--padding--none {
+.cds-flex--padding--none {
 	padding: 0;
 }
-.flex--padding--2x-small {
+.cds-flex--padding--2x-small {
 	padding: var(--cds-scale-2x-small);
 }
-.flex--padding--x-small {
+.cds-flex--padding--x-small {
 	padding: var(--cds-scale-x-small);
 }
-.flex--padding--small {
+.cds-flex--padding--small {
 	padding: var(--cds-scale-small);
 }
-.flex--padding--medium {
+.cds-flex--padding--medium {
 	padding: var(--cds-scale-base);
 }
-.flex--padding--large {
+.cds-flex--padding--large {
 	padding: var(--cds-scale-large);
 }
-.flex--padding--x-large {
+.cds-flex--padding--x-large {
 	padding: var(--cds-scale-x-large);
 }
-.flex--padding--2x-large {
+.cds-flex--padding--2x-large {
 	padding: var(--cds-scale-2x-large);
 }
-.flex--padding--3x-large {
+.cds-flex--padding--3x-large {
 	padding: var(--cds-scale-3x-large);
 }
 
 /* Align items */
 
-.flex--align-items--stretch {
+.cds-flex--align-items--stretch {
 	align-items: stretch;
 }
-.flex--align-items--start {
+.cds-flex--align-items--start {
 	align-items: start;
 }
-.flex--align-items--center {
+.cds-flex--align-items--center {
 	align-items: center;
 }
-.flex--align-items--end {
+.cds-flex--align-items--end {
 	align-items: end;
 }
 
 /* Align content */
 
-.flex--align-content--stretch {
+.cds-flex--align-content--stretch {
 	align-content: stretch;
 }
-.flex--align-content--start {
+.cds-flex--align-content--start {
 	align-content: start;
 }
-.flex--align-content--center {
+.cds-flex--align-content--center {
 	align-content: center;
 }
-.flex--align-content--end {
+.cds-flex--align-content--end {
 	align-content: end;
 }
 
 /* Justify content */
 
-.flex--justify--start {
+.cds-flex--justify--start {
 	justify-content: start;
 }
-.flex--justify--center {
+.cds-flex--justify--center {
 	justify-content: center;
 }
-.flex--justify--end {
+.cds-flex--justify--end {
 	justify-content: end;
 }
-.flex--justify--space-between {
+.cds-flex--justify--space-between {
 	justify-content: space-between;
 }
-.flex--justify--space-around {
+.cds-flex--justify--space-around {
 	justify-content: space-around;
 }
-.flex--justify--space-evenly {
+.cds-flex--justify--space-evenly {
 	justify-content: space-evenly;
 }
 
 /* Background */
 
-.flex--background--primary {
+.cds-flex--background--primary {
 	background: var(--cds-color-surface-primary);
 }
-.flex--background--faint {
+.cds-flex--background--faint {
 	background: var(--cds-color-surface-faint);
 }
-.flex--background--high-contrast {
+.cds-flex--background--high-contrast {
 	background: var(--cds-color-surface-high-contrast);
 }
-.flex--background--brand {
+.cds-flex--background--brand {
 	background: var(--cds-color-surface-brand);
 }
-.flex--background--interactive {
+.cds-flex--background--interactive {
 	background: var(--cds-color-surface-interactive);
 }
-.flex--background--success {
+.cds-flex--background--success {
 	background: var(--cds-color-surface-success);
 }
-.flex--background--warning {
+.cds-flex--background--warning {
 	background: var(--cds-color-surface-warning);
 }
-.flex--background--critical {
+.cds-flex--background--critical {
 	background: var(--cds-color-surface-critical);
 }
 
-.flex--wrap {
+.cds-flex--wrap {
 	flex-wrap: wrap;
 }

@@ -1,27 +1,27 @@
-.brand path {
+.cds-logo--root path {
 	fill: var(--cds-color-foreground-brand-default);
 }
 
-.high-contrast path {
+.cds-logo--contrast-high path {
 	fill: var(--cds-color-foreground-high-contrast);
 }
 
-.dark path {
+.cds-logo--variant-strong path {
 	fill: var(--cds-color-foreground-strong);
 }
 
-.blueberry path {
+.cds-logo--variant-interactive path {
 	fill: var(--cds-color-foreground-interactive-default);
 }
 
-.kale path {
+.cds-logo--variant-success path {
 	fill: var(--cds-color-foreground-success-default);
 }
 
-.pineapple path {
+.cds-logo--variant-warning path {
 	fill: var(--cds-color-foreground-warning-default);
 }
 
-.peach path {
+.cds-logo--variant-critical path {
 	fill: var(--cds-color-foreground-critical-default);
 }

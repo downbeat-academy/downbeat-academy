@@ -1,4 +1,4 @@
-.text {
+.cds-text {
 	color: inherit;
 	font-family: inherit;
 	font-size: inherit;
@@ -7,22 +7,22 @@
 
 /* Type */
 
-.text--productive-body {
+.cds-text--productive-body {
 	font-family: var(--cds-typography-font-family-productive-body);
 	line-height: var(--cds-typography-line-height-productive-body);
 }
 
-.text--productive-headline {
+.cds-text--productive-headline {
 	font-family: var(--cds-typography-font-family-productive-headline);
 	line-height: var(--cds-typography-line-height-productive-headline);
 }
 
-.text--expressive-body {
+.cds-text--expressive-body {
 	font-family: var(--cds-typography-font-family-expressive-body);
 	line-height: var(--cds-typography-line-height-expressive-body);
 }
 
-.text--expressive-headline {
+.cds-text--expressive-headline {
 	font-family: var(--cds-typography-font-family-expressive-headline);
 	line-height: var(--cds-typography-line-height-expressive-headline);
 }
@@ -31,213 +31,213 @@
 
 /* -- Productive Headline */
 
-.text--productive-headline--h1 {
+.cds-text--productive-headline--h1 {
 	font-size: var(--cds-typography-font-size-fixed-productive-4x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-4x-large);
 }
 
-.text--productive-headline--h2 {
+.cds-text--productive-headline--h2 {
 	font-size: var(--cds-typography-font-size-fixed-productive-3x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-3x-large);
 }
 
-.text--productive-headline--h3 {
+.cds-text--productive-headline--h3 {
 	font-size: var(--cds-typography-font-size-fixed-productive-2x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-2x-large);
 }
 
-.text--productive-headline--h4 {
+.cds-text--productive-headline--h4 {
 	font-size: var(--cds-typography-font-size-fixed-productive-x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-x-large);
 }
 
-.text--productive-headline--h5 {
+.cds-text--productive-headline--h5 {
 	font-size: var(--cds-typography-font-size-fixed-productive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-large);
 }
 
-.text--productive-headline--h6 {
+.cds-text--productive-headline--h6 {
 	font-size: var(--cds-typography-font-size-fixed-productive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-base);
 }
 
 /* -- Productive Body */
 
-.text--productive-body--body-large {
+.cds-text--productive-body--body-large {
 	font-size: var(--cds-typography-font-size-fixed-productive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-large);
 }
 
-.text--productive-body--body-base {
+.cds-text--productive-body--body-base {
 	font-size: var(--cds-typography-font-size-fixed-productive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-base);
 }
 
-.text--productive-body--body-small {
+.cds-text--productive-body--body-small {
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-small);
 }
 
-.text--productive-body--body-x-small {
+.cds-text--productive-body--body-x-small {
 	font-size: var(--cds-typography-font-size-fixed-productive-x-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-x-small);
 }
 
 /* -- Expressive Headline */
 
-.text--expressive-headline--mega {
+.cds-text--expressive-headline--mega {
 	font-size: var(--cds-typography-font-size-fixed-expressive-6x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-6x-large);
 }
 
-.text--expressive-headline--h1 {
+.cds-text--expressive-headline--h1 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-5x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-5x-large);
 }
 
-.text--expressive-headline--h2 {
+.cds-text--expressive-headline--h2 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-4x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-4x-large);
 }
 
-.text--expressive-headline--h3 {
+.cds-text--expressive-headline--h3 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-3x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-3x-large);
 }
 
-.text--expressive-headline--h4 {
+.cds-text--expressive-headline--h4 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-2x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-2x-large);
 }
 
-.text--expressive-headline--h5 {
+.cds-text--expressive-headline--h5 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-x-large);
 }
 
-.text--expressive-headline--h6 {
+.cds-text--expressive-headline--h6 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-large);
 }
 
 /* -- Expressive body */
 
-.text--expressive-body--body-large {
+.cds-text--expressive-body--body-large {
 	font-size: var(--cds-typography-font-size-fixed-expressive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-large);
 }
 
-.text--expressive-body--body-base {
+.cds-text--expressive-body--body-base {
 	font-size: var(--cds-typography-font-size-fixed-expressive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-base);
 }
 
-.text--expressive-body--body-small {
+.cds-text--expressive-body--body-small {
 	font-size: var(--cds-typography-font-size-fixed-expressive-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-small);
 }
 
-.text--expressive-body--body-x-small {
+.cds-text--expressive-body--body-x-small {
 	font-size: var(--cds-typography-font-size-fixed-expressive-x-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-x-small);
 }
 
 /* Color */
 
-.text--color-primary {
+.cds-text--color-primary {
 	color: var(--cds-color-foreground-primary);
 }
 
-.text--color-strong {
+.cds-text--color-strong {
 	color: var(--cds-color-foreground-strong);
 }
 
-.text--color-faint {
+.cds-text--color-faint {
 	color: var(--cds-color-foreground-faint);
 }
 
-.text--color-disabled {
+.cds-text--color-disabled {
 	color: var(--cds-color-foreground-disabled);
 }
 
-.text--color-high-contrast {
+.cds-text--color-high-contrast {
 	color: var(--cds-color-foreground-high-contrast);
 }
 
-.text--color-warning {
+.cds-text--color-warning {
 	color: var(--cds-color-foreground-warning-default);
 }
 
-.text--color-critical {
+.cds-text--color-critical {
 	color: var(--cds-color-foreground-critical-default);
 }
 
-.text--color-interactive {
+.cds-text--color-interactive {
 	color: var(--cds-color-foreground-interactive-default);
 }
 
-.text--color-brand {
+.cds-text--color-brand {
 	color: var(--cds-color-foreground-brand-default);
 }
 
-.text--color-success {
+.cds-text--color-success {
 	color: var(--cds-color-foreground-success-default);
 }
 
 /* Background */
 
-.text--background-primary {
+.cds-text--background-primary {
 	background: var(--cds-color-surface-primary);
 }
 
-.text--background-faint {
+.cds-text--background-faint {
 	background: var(--cds-color-surface-faint);
 }
 
-.text--background-high-contrast {
+.cds-text--background-high-contrast {
 	background: var(--cds-color-surface-high-contrast);
 }
 
-.text--background-brand {
+.cds-text--background-brand {
 	background: var(--cds-color-surface-brand);
 }
 
-.text--background-interactive {
+.cds-text--background-interactive {
 	background: var(--cds-color-surface-interactive);
 }
 
-.text--background-success {
+.cds-text--background-success {
 	background: var(--cds-color-surface-success);
 }
 
-.text--background-warning {
+.cds-text--background-warning {
 	background: var(--cds-color-surface-warning);
 }
 
-.text--background-critical {
+.cds-text--background-critical {
 	background: var(--cds-color-surface-critical);
 }
 
 /* Align */
 
-.text--align-left {
+.cds-text--align-left {
 	text-align: left;
 }
 
-.text--align-center {
+.cds-text--align-center {
 	text-align: center;
 }
 
-.text--align-right {
+.cds-text--align-right {
 	text-align: right;
 }
 
-.text--align-justify {
+.cds-text--align-justify {
 	text-align: justify;
 }
 
 /* Collapse */
 
-.text--collapse {
+.cds-text--collapse {
 	margin-bottom: 0;
 }

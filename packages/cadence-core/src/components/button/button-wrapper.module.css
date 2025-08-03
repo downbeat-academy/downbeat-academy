@@ -1,33 +1,33 @@
-.root {
+.cds-button-wrapper--root {
   display: flex;
 }
 
 /* Direction */
-.horizontal {
+.cds-button-wrapper--direction-horizontal {
   flex-direction: row;
 }
 
-.vertical {
+.cds-button-wrapper--direction-vertical {
   flex-direction: column;
 }
 
 /* Gap */
-.none {
+.cds-button-wrapper--gap-none {
   gap: 0;
 }
 
-.small {
+.cds-button-wrapper--gap-small {
   gap: var(--cds-scale-small);
 }
 
-.medium {
+.cds-button-wrapper--gap-medium {
   gap: var(--cds-scale-base);
 }
 
-.large {
+.cds-button-wrapper--gap-large {
   gap: var(--cds-scale-large);
 }
 
-.wrap {
+.cds-button-wrapper--wrap {
   flex-wrap: wrap;
 }
