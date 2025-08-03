@@ -58,5 +58,5 @@ export default {
       inject: false, // This prevents automatic injection of styles into the head
     }),
   ],
-  external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'cadence-icons'],
+  external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'cadence-icons', '@radix-ui/react-switch'],
 };
