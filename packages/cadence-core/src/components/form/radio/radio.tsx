@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
+import { Root as RadioGroupRoot, Item as RadioGroupItem, Indicator as RadioGroupIndicator } from '@radix-ui/react-radio-group'
 import classnames from 'classnames'
 import s from './radio.module.css'
 import type { RadioGroupProps, RadioItemProps } from './types'
@@ -26,7 +26,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
   )
 
   return (
-    <RadioGroupPrimitive.Root
+    <RadioGroupRoot
       ref={ref}
       value={value}
       onValueChange={onValueChange}
@@ -42,7 +42,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
       {...props}
     >
       {children}
-    </RadioGroupPrimitive.Root>
+    </RadioGroupRoot>
   )
 })
 
@@ -69,7 +69,7 @@ const RadioItem = forwardRef<HTMLButtonElement, RadioItemProps>(({
   )
 
   return (
-    <RadioGroupPrimitive.Item
+    <RadioGroupItem
       ref={ref}
       value={value}
       disabled={disabled}
@@ -81,8 +81,8 @@ const RadioItem = forwardRef<HTMLButtonElement, RadioItemProps>(({
       aria-describedby={ariaDescribedby}
       {...props}
     >
-      <RadioGroupPrimitive.Indicator className={indicatorClasses} />
-    </RadioGroupPrimitive.Item>
+      <RadioGroupIndicator className={indicatorClasses} />
+    </RadioGroupItem>
   )
 })
 
