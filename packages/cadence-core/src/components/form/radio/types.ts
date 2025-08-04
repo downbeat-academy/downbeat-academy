@@ -11,12 +11,13 @@ export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof RadioGr
   loop?: boolean
   isInvalid?: boolean
   className?: string
+  children: React.ReactNode
   'aria-label'?: string
   'aria-labelledby'?: string
   'aria-describedby'?: string
 }
 
-export interface RadioGroupItemProps extends ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
+export interface RadioItemProps extends ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
   value: string
   disabled?: boolean
   required?: boolean

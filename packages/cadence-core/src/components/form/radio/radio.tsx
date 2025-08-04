@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import classnames from 'classnames'
 import s from './radio.module.css'
-import type { RadioGroupProps, RadioGroupItemProps } from './types'
+import type { RadioGroupProps, RadioItemProps } from './types'
 
 const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
   value,
@@ -46,7 +46,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
   )
 })
 
-const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(({
+const RadioItem = forwardRef<HTMLButtonElement, RadioItemProps>(({
   value,
   disabled,
   required,
@@ -87,7 +87,7 @@ const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(({
 })
 
 RadioGroup.displayName = 'RadioGroup'
-RadioGroupItem.displayName = 'RadioGroupItem'
+RadioItem.displayName = 'RadioItem'
 
-export { RadioGroup, RadioGroupItem }
-export type { RadioGroupProps, RadioGroupItemProps }
+export { RadioGroup, RadioItem }
+export type { RadioGroupProps, RadioItemProps }

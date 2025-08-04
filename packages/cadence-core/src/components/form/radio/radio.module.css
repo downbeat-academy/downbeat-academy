@@ -2,16 +2,16 @@
 .cds-radio-group--root {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--cds-scale-small);
 }
 
 .cds-radio-group--root[data-orientation='horizontal'] {
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: var(--cds-scale-base);
 }
 
-/* RadioGroupItem styles */
+/* RadioItem styles */
 .cds-radio-group-item--root {
   position: relative;
   display: inline-flex;
@@ -20,16 +20,16 @@
   width: 20px;
   height: 20px;
   background-color: var(--cds-color-surface-primary);
-  border: 2px solid var(--cds-color-border-primary);
-  border-radius: var(--cds-radii-round);
+  border: 1px solid var(--cds-color-border-primary);
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  transition: background-color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
   flex-shrink: 0;
 }
 
 .cds-radio-group-item--root:hover:not([data-disabled]) {
   border-color: var(--cds-color-border-interactive-hover);
-  background-color: var(--cds-color-surface-secondary);
+  background-color: var(--cds-color-palette-blackberry-100);
 }
 
 .cds-radio-group-item--root:focus-visible {
@@ -48,8 +48,14 @@
 }
 
 .cds-radio-group-item--root[data-disabled] {
-  opacity: 0.5;
   cursor: not-allowed;
+  border-color: var(--cds-color-palette-blackberry-200);
+  background-color: var(--cds-color-palette-blackberry-100);
+}
+
+.cds-radio-group-item--root[data-state='checked'][data-disabled] {
+  background-color: var(--cds-color-palette-blueberry-300);
+  border-color: var(--cds-color-palette-blueberry-400);
 }
 
 .cds-radio-group-item--is-invalid {
@@ -60,7 +66,7 @@
   outline-color: var(--cds-color-border-critical);
 }
 
-/* RadioGroupItem Indicator styles */
+/* RadioItem Indicator styles */
 .cds-radio-group-item--indicator {
   display: flex;
   align-items: center;
@@ -73,7 +79,7 @@
 .cds-radio-group-item--indicator::after {
   content: '';
   width: 8px;
-  height: 8px;
-  border-radius: var(--cds-radii-round);
+  height: 6px;
+  border-radius: 50%;
   background-color: var(--cds-color-foreground-high-contrast);
 }
