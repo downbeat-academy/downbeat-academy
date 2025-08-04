@@ -1,0 +1,85 @@
+/* RadioGroup styles */
+.cds-radio-group--root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-scale-small);
+}
+
+.cds-radio-group--root[data-orientation='horizontal'] {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--cds-scale-base);
+}
+
+/* RadioItem styles */
+.cds-radio-group-item--root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--cds-color-surface-primary);
+  border: 1px solid var(--cds-color-border-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+  flex-shrink: 0;
+}
+
+.cds-radio-group-item--root:hover:not([data-disabled]) {
+  border-color: var(--cds-color-border-interactive-hover);
+  background-color: var(--cds-color-palette-blackberry-100);
+}
+
+.cds-radio-group-item--root:focus-visible {
+  outline: 2px solid var(--cds-color-border-focus);
+  outline-offset: 2px;
+}
+
+.cds-radio-group-item--root[data-state='checked'] {
+  background-color: var(--cds-color-foreground-interactive-default);
+  border-color: var(--cds-color-foreground-interactive-default);
+}
+
+.cds-radio-group-item--root[data-state='checked']:hover:not([data-disabled]) {
+  background-color: var(--cds-color-foreground-interactive-hover);
+  border-color: var(--cds-color-foreground-interactive-hover);
+}
+
+.cds-radio-group-item--root[data-disabled] {
+  cursor: not-allowed;
+  border-color: var(--cds-color-palette-blackberry-200);
+  background-color: var(--cds-color-palette-blackberry-100);
+}
+
+.cds-radio-group-item--root[data-state='checked'][data-disabled] {
+  background-color: var(--cds-color-palette-blueberry-300);
+  border-color: var(--cds-color-palette-blueberry-400);
+}
+
+.cds-radio-group-item--is-invalid {
+  border-color: var(--cds-color-border-critical);
+}
+
+.cds-radio-group-item--is-invalid:focus-visible {
+  outline-color: var(--cds-color-border-critical);
+}
+
+/* RadioItem Indicator styles */
+.cds-radio-group-item--indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.cds-radio-group-item--indicator::after {
+  content: '';
+  width: 8px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--cds-color-foreground-high-contrast);
+}
