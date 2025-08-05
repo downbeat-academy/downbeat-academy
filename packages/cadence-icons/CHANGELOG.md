@@ -1,5 +1,11 @@
 # cadence-icons
 
+## 1.6.0
+
+### Minor Changes
+
+- 1b2e672: Added Checkbox and CheckboxCard components. Added `minus` icon.
+
 ## 1.5.1
 
 ### Patch Changes
