@@ -1,37 +1,13 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { RadioCardGroup, RadioCardItem } from '../radio-card'
+import { Microphone } from 'cadence-icons'
+import { Text } from '../../../text'
+import { RadioCardGroup, RadioCardItem } from '../index'
 import { Field } from '../../field'
 import { Label } from '../../primitives/label'
 import { HelperText } from '../../primitives/helper-text'
 import { ValidationMessage } from '../../primitives/validation-message'
 import { Badge } from '../../../badge'
-
-// Mock icons for demonstration
-const CreditCardIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M2 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2zM1 6h14v6H1V6z" />
-    <path d="M2 8h2v1H2V8zm3 0h2v1H5V8z" />
-  </svg>
-)
-
-const PayPalIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M14.06 3.713c.12-1.071-.093-1.832-.702-2.526C12.628.356 11.312 0 9.626 0H4.734a.696.696 0 0 0-.691.59L2.005 13.509a.42.42 0 0 0 .415.486h2.756l-.202 1.28a.628.628 0 0 0 .62.726H8.14c.429 0 .793-.31.862-.731l.025-.13.48-3.043.03-.164.001-.018a.896.896 0 0 1 .896-.81h.564c2.606 0 4.648-.814 5.24-3.167.423-1.68.185-3.062-.79-3.777-.297-.218-.65-.416-1.018-.55z" />
-  </svg>
-)
-
-const BankIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M8 1.5 1 5v1h14V5L8 1.5zM2 7v6h2V7H2zm3 0v6h2V7H5zm3 0v6h2V7H8zm3 0v6h2V7h-2zM1 14h14v1H1v-1z" />
-  </svg>
-)
-
-const PlanIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM7 4.5V6H5.5a.5.5 0 0 0 0 1H7v1.5H5.5a.5.5 0 0 0 0 1H7V11a.5.5 0 0 0 1 0V9.5h1.5a.5.5 0 0 0 0-1H8V7h1.5a.5.5 0 0 0 0-1H8V4.5a.5.5 0 0 0-1 0z" />
-  </svg>
-)
 
 const meta: Meta<typeof RadioCardGroup> = {
   title: 'Cadence/Components/Forms/RadioCardGroup',
@@ -79,28 +55,34 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
-    <RadioCardGroup aria-label="Choose your payment method" columns={3}>
-      <RadioCardItem
-        value="credit-card"
-        title="Credit Card"
-        description="Pay with your credit or debit card"
-        icon={<CreditCardIcon />}
-      />
-      <RadioCardItem
-        value="paypal"
-        title="PayPal"
-        description="Pay securely with your PayPal account"
-        icon={<PayPalIcon />}
-      />
-      <RadioCardItem
-        value="bank-transfer"
-        title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<BankIcon />}
-      />
-    </RadioCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState('')
+
+    return (
+      <RadioCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your payment method"
+        columns={3}
+      >
+        <RadioCardItem
+          value="credit-card"
+          title="Credit Card"
+          icon={<Microphone />}
+        />
+        <RadioCardItem
+          value="paypal"
+          title="PayPal"
+          icon={<Microphone />}
+        />
+        <RadioCardItem
+          value="bank-transfer"
+          title="Bank Transfer"
+          icon={<Microphone />}
+        />
+      </RadioCardGroup>
+    )
+  },
 }
 
 export const WithDefaultValue: Story = {
@@ -113,337 +95,396 @@ export const WithDefaultValue: Story = {
       <RadioCardItem
         value="credit-card"
         title="Credit Card"
-        description="Pay with your credit or debit card"
-        icon={<CreditCardIcon />}
+        icon={<Microphone />}
       />
       <RadioCardItem
         value="paypal"
         title="PayPal"
-        description="Pay securely with your PayPal account"
-        icon={<PayPalIcon />}
+        icon={<Microphone />}
       />
       <RadioCardItem
         value="bank-transfer"
         title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<BankIcon />}
+        icon={<Microphone />}
       />
     </RadioCardGroup>
   ),
 }
 
 export const WithBadges: Story = {
-  render: () => (
-    <RadioCardGroup aria-label="Choose your plan" columns={3}>
-      <RadioCardItem
-        value="basic"
-        title="Basic Plan"
-        description="Perfect for individuals getting started"
-        icon={<PlanIcon />}
-        badge={<Badge style="outlined" type="neutral" text="$9/mo" />}
-      />
-      <RadioCardItem
-        value="pro"
-        title="Pro Plan"
-        description="Great for growing teams and businesses"
-        icon={<PlanIcon />}
-        badge={<Badge style="outlined" type="highlight" text="$29/mo" />}
-      />
-      <RadioCardItem
-        value="enterprise"
-        title="Enterprise Plan"
-        description="Advanced features for large organizations"
-        icon={<PlanIcon />}
-        badge={<Badge style="outlined" type="info" text="$99/mo" />}
-      />
-    </RadioCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState('')
+
+    return (
+      <RadioCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your plan"
+        columns={3}
+      >
+        <RadioCardItem
+          value="basic"
+          title="Basic Plan"
+          icon={<Microphone />}
+          badge={<Badge text="$9/mo" size="small" type="neutral" />}
+        />
+        <RadioCardItem
+          value="pro"
+          title="Pro Plan"
+          icon={<Microphone />}
+          badge={<Badge text="$29/mo" size="small" type="warning" />}
+        />
+        <RadioCardItem
+          value="enterprise"
+          title="Enterprise Plan"
+          icon={<Microphone />}
+          badge={<Badge text="$99/mo" size="small" type="info" />}
+        />
+      </RadioCardGroup>
+    )
+  },
+}
+
+export const Alignment: Story = {
+  render: () => {
+    const [leftValue, setLeftValue] = useState('')
+    const [centerValue, setCenterValue] = useState('')
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h3>Left Aligned (Default)</h3>
+          <RadioCardGroup
+            value={leftValue}
+            onValueChange={setLeftValue}
+            aria-label="Left aligned cards"
+            columns={3}
+          >
+            <RadioCardItem
+              value="left-1"
+              title="Left Aligned"
+              alignment="left"
+              icon={<Microphone />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                Content is left-aligned
+              </p>
+            </RadioCardItem>
+            <RadioCardItem
+              value="left-2"
+              title="Left Aligned"
+              alignment="left"
+              icon={<Microphone />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                Content is left-aligned
+              </p>
+            </RadioCardItem>
+            <RadioCardItem
+              value="left-3"
+              title="Left Aligned"
+              alignment="left"
+              icon={<Microphone />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                Content is left-aligned
+              </p>
+            </RadioCardItem>
+          </RadioCardGroup>
+        </div>
+
+        <div>
+          <h3>Center Aligned</h3>
+          <RadioCardGroup
+            value={centerValue}
+            onValueChange={setCenterValue}
+            aria-label="Center aligned cards"
+            columns={3}
+          >
+            <RadioCardItem
+              value="center-1"
+              title="Center Aligned"
+              alignment="center"
+              icon={<Microphone />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)', textAlign: 'center' }}>
+                Content is center-aligned
+              </p>
+            </RadioCardItem>
+            <RadioCardItem
+              value="center-2"
+              title="Center Aligned"
+              alignment="center"
+              icon={<Microphone />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)', textAlign: 'center' }}>
+                Content is center-aligned
+              </p>
+            </RadioCardItem>
+            <RadioCardItem
+              value="center-3"
+              title="Center Aligned"
+              alignment="center"
+              icon={<Microphone />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)', textAlign: 'center' }}>
+                Content is center-aligned
+              </p>
+            </RadioCardItem>
+          </RadioCardGroup>
+        </div>
+      </div>
+    )
+  },
 }
 
 export const CustomContent: Story = {
-  render: () => (
-    <RadioCardGroup aria-label="Choose your shipping method" columns={2}>
-      <RadioCardItem value="standard">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>Standard Shipping</h3>
-            <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
-              5-7 business days
-            </p>
-            <p style={{ margin: '8px 0 0', fontSize: '12px', color: 'var(--cds-color-foreground-tertiary)' }}>
-              Free on orders over $50
-            </p>
+  render: () => {
+    const [value, setValue] = useState('')
+
+    return (
+      <RadioCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your shipping method"
+        columns={2}
+      >
+        <RadioCardItem value="standard">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>Standard Shipping</h3>
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                5-7 business days
+              </p>
+              <p style={{ margin: '8px 0 0', fontSize: '12px', color: 'var(--cds-color-foreground-tertiary)' }}>
+                Free on orders over $50
+              </p>
+            </div>
+            <span style={{ fontSize: '16px', fontWeight: '600' }}>$5.99</span>
           </div>
-          <span style={{ fontSize: '16px', fontWeight: '600' }}>$5.99</span>
-        </div>
-      </RadioCardItem>
-      <RadioCardItem value="express">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>Express Shipping</h3>
-            <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
-              2-3 business days
-            </p>
-            <p style={{ margin: '8px 0 0', fontSize: '12px', color: 'var(--cds-color-foreground-tertiary)' }}>
-              Guaranteed delivery
-            </p>
+        </RadioCardItem>
+        <RadioCardItem value="express">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div>
+              <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '600' }}>Express Shipping</h3>
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                2-3 business days
+              </p>
+              <p style={{ margin: '8px 0 0', fontSize: '12px', color: 'var(--cds-color-foreground-tertiary)' }}>
+                Guaranteed delivery
+              </p>
+            </div>
+            <span style={{ fontSize: '16px', fontWeight: '600' }}>$15.99</span>
           </div>
-          <span style={{ fontSize: '16px', fontWeight: '600' }}>$15.99</span>
-        </div>
-      </RadioCardItem>
-    </RadioCardGroup>
-  ),
+        </RadioCardItem>
+      </RadioCardGroup>
+    )
+  },
 }
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h3>Small Size</h3>
-        <RadioCardGroup aria-label="Small cards" columns={3}>
-          <RadioCardItem
-            value="small-1"
-            title="Option 1"
-            size="small"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="small-2"
-            title="Option 2"
-            size="small"
-            icon={<PayPalIcon />}
-          />
-          <RadioCardItem
-            value="small-3"
-            title="Option 3"
-            size="small"
-            icon={<BankIcon />}
-          />
-        </RadioCardGroup>
-      </div>
+  render: () => {
+    const [smallValue, setSmallValue] = useState('')
+    const [mediumValue, setMediumValue] = useState('')
+    const [largeValue, setLargeValue] = useState('')
 
-      <div>
-        <h3>Medium Size (Default)</h3>
-        <RadioCardGroup aria-label="Medium cards" columns={3}>
-          <RadioCardItem
-            value="medium-1"
-            title="Option 1"
-            description="Medium sized option"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="medium-2"
-            title="Option 2"
-            description="Medium sized option"
-            icon={<PayPalIcon />}
-          />
-          <RadioCardItem
-            value="medium-3"
-            title="Option 3"
-            description="Medium sized option"
-            icon={<BankIcon />}
-          />
-        </RadioCardGroup>
-      </div>
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h3>Small Size</h3>
+          <RadioCardGroup
+            value={smallValue}
+            onValueChange={setSmallValue}
+            aria-label="Small cards"
+            columns={3}
+          >
+            <RadioCardItem
+              value="small-1"
+              title="Option 1"
+              size="small"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="small-2"
+              title="Option 2"
+              size="small"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="small-3"
+              title="Option 3"
+              size="small"
+              icon={<Microphone />}
+            />
+          </RadioCardGroup>
+        </div>
 
-      <div>
-        <h3>Large Size</h3>
-        <RadioCardGroup aria-label="Large cards" columns={2}>
-          <RadioCardItem
-            value="large-1"
-            title="Option 1"
-            description="Large sized option with more content and details"
-            size="large"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="large-2"
-            title="Option 2"
-            description="Large sized option with more content and details"
-            size="large"
-            icon={<PayPalIcon />}
-          />
-        </RadioCardGroup>
-      </div>
-    </div>
-  ),
-}
+        <div>
+          <h3>Medium Size (Default)</h3>
+          <RadioCardGroup
+            value={mediumValue}
+            onValueChange={setMediumValue}
+            aria-label="Medium cards"
+            columns={3}
+          >
+            <RadioCardItem
+              value="medium-1"
+              title="Option 1"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="medium-2"
+              title="Option 2"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="medium-3"
+              title="Option 3"
+              icon={<Microphone />}
+            />
+          </RadioCardGroup>
+        </div>
 
-export const Variants: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h3>Default Variant</h3>
-        <RadioCardGroup aria-label="Default variant cards" columns={3}>
-          <RadioCardItem
-            value="default-1"
-            title="Default Card"
-            description="Standard card appearance"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="default-2"
-            title="Default Card"
-            description="Standard card appearance"
-            icon={<PayPalIcon />}
-          />
-          <RadioCardItem
-            value="default-3"
-            title="Default Card"
-            description="Standard card appearance"
-            icon={<BankIcon />}
-          />
-        </RadioCardGroup>
+        <div>
+          <h3>Large Size</h3>
+          <RadioCardGroup
+            value={largeValue}
+            onValueChange={setLargeValue}
+            aria-label="Large cards"
+            columns={2}
+          >
+            <RadioCardItem
+              value="large-1"
+              title="Option 1"
+              size="large"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="large-2"
+              title="Option 2"
+              size="large"
+              icon={<Microphone />}
+            />
+          </RadioCardGroup>
+        </div>
       </div>
-
-      <div>
-        <h3>Outlined Variant</h3>
-        <RadioCardGroup aria-label="Outlined variant cards" columns={3}>
-          <RadioCardItem
-            value="outlined-1"
-            title="Outlined Card"
-            description="Outlined card appearance"
-            variant="outlined"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="outlined-2"
-            title="Outlined Card"
-            description="Outlined card appearance"
-            variant="outlined"
-            icon={<PayPalIcon />}
-          />
-          <RadioCardItem
-            value="outlined-3"
-            title="Outlined Card"
-            description="Outlined card appearance"
-            variant="outlined"
-            icon={<BankIcon />}
-          />
-        </RadioCardGroup>
-      </div>
-
-      <div>
-        <h3>Filled Variant</h3>
-        <RadioCardGroup aria-label="Filled variant cards" columns={3}>
-          <RadioCardItem
-            value="filled-1"
-            title="Filled Card"
-            description="Filled card appearance"
-            variant="filled"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="filled-2"
-            title="Filled Card"
-            description="Filled card appearance"
-            variant="filled"
-            icon={<PayPalIcon />}
-          />
-          <RadioCardItem
-            value="filled-3"
-            title="Filled Card"
-            description="Filled card appearance"
-            variant="filled"
-            icon={<BankIcon />}
-          />
-        </RadioCardGroup>
-      </div>
-    </div>
-  ),
+    )
+  },
 }
 
 export const GridLayouts: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h3>Single Column</h3>
-        <RadioCardGroup aria-label="Single column layout" columns={1}>
-          <RadioCardItem
-            value="single-1"
-            title="Full Width Option 1"
-            description="This card spans the full width"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="single-2"
-            title="Full Width Option 2"
-            description="This card also spans the full width"
-            icon={<PayPalIcon />}
-          />
-        </RadioCardGroup>
-      </div>
+  render: () => {
+    const [singleValue, setSingleValue] = useState('')
+    const [twoValue, setTwoValue] = useState('')
+    const [fourValue, setFourValue] = useState('')
 
-      <div>
-        <h3>Two Columns</h3>
-        <RadioCardGroup aria-label="Two column layout" columns={2}>
-          <RadioCardItem
-            value="two-1"
-            title="Option 1"
-            description="Half width option"
-            icon={<CreditCardIcon />}
-          />
-          <RadioCardItem
-            value="two-2"
-            title="Option 2"
-            description="Half width option"
-            icon={<PayPalIcon />}
-          />
-          <RadioCardItem
-            value="two-3"
-            title="Option 3"
-            description="Half width option"
-            icon={<BankIcon />}
-          />
-          <RadioCardItem
-            value="two-4"
-            title="Option 4"
-            description="Half width option"
-            icon={<PlanIcon />}
-          />
-        </RadioCardGroup>
-      </div>
-
-      <div>
-        <h3>Four Columns</h3>
-        <RadioCardGroup aria-label="Four column layout" columns={4}>
-          {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h3>Single Column</h3>
+          <RadioCardGroup
+            value={singleValue}
+            onValueChange={setSingleValue}
+            aria-label="Single column layout"
+            columns={1}
+          >
             <RadioCardItem
-              key={num}
-              value={`four-${num}`}
-              title={`Option ${num}`}
-              icon={<PlanIcon />}
+              value="single-1"
+              title="Full Width Option 1"
+              icon={<Microphone />}
             />
-          ))}
-        </RadioCardGroup>
+            <RadioCardItem
+              value="single-2"
+              title="Full Width Option 2"
+              icon={<Microphone />}
+            />
+          </RadioCardGroup>
+        </div>
+
+        <div>
+          <h3>Two Columns</h3>
+          <RadioCardGroup
+            value={twoValue}
+            onValueChange={setTwoValue}
+            aria-label="Two column layout"
+            columns={2}
+          >
+            <RadioCardItem
+              value="two-1"
+              title="Option 1"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="two-2"
+              title="Option 2"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="two-3"
+              title="Option 3"
+              icon={<Microphone />}
+            />
+            <RadioCardItem
+              value="two-4"
+              title="Option 4"
+              icon={<Microphone />}
+            />
+          </RadioCardGroup>
+        </div>
+
+        <div>
+          <h3>Four Columns</h3>
+          <RadioCardGroup
+            value={fourValue}
+            onValueChange={setFourValue}
+            aria-label="Four column layout"
+            columns={4}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
+              <RadioCardItem
+                key={num}
+                value={`four-${num}`}
+                title={`Option ${num}`}
+                icon={<Microphone />}
+              />
+            ))}
+          </RadioCardGroup>
+        </div>
       </div>
-    </div>
-  ),
+    )
+  },
 }
 
 export const Disabled: Story = {
-  render: () => (
-    <RadioCardGroup disabled aria-label="Disabled payment methods" columns={3}>
-      <RadioCardItem
-        value="credit-card"
-        title="Credit Card"
-        description="Pay with your credit or debit card"
-        icon={<CreditCardIcon />}
-      />
-      <RadioCardItem
-        value="paypal"
-        title="PayPal"
-        description="Pay securely with your PayPal account"
-        icon={<PayPalIcon />}
-      />
-      <RadioCardItem
-        value="bank-transfer"
-        title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<BankIcon />}
-      />
-    </RadioCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState('')
+
+    return (
+      <RadioCardGroup
+        value={value}
+        onValueChange={setValue}
+        disabled
+        aria-label="Disabled payment methods"
+        columns={3}
+      >
+        <RadioCardItem
+          value="credit-card"
+          title="Credit Card"
+          icon={<Microphone />}
+        />
+        <RadioCardItem
+          value="paypal"
+          title="PayPal"
+          icon={<Microphone />}
+        />
+        <RadioCardItem
+          value="bank-transfer"
+          title="Bank Transfer"
+          icon={<Microphone />}
+        />
+      </RadioCardGroup>
+    )
+  },
 }
 
 export const DisabledWithValue: Story = {
@@ -457,117 +498,129 @@ export const DisabledWithValue: Story = {
       <RadioCardItem
         value="credit-card"
         title="Credit Card"
-        description="Pay with your credit or debit card"
-        icon={<CreditCardIcon />}
+        icon={<Microphone />}
       />
       <RadioCardItem
         value="paypal"
         title="PayPal"
-        description="Pay securely with your PayPal account"
-        icon={<PayPalIcon />}
+        icon={<Microphone />}
       />
       <RadioCardItem
         value="bank-transfer"
         title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<BankIcon />}
+        icon={<Microphone />}
       />
     </RadioCardGroup>
   ),
 }
 
 export const IndividualItemDisabled: Story = {
-  render: () => (
-    <RadioCardGroup aria-label="Payment methods with individual disabled" columns={3}>
-      <RadioCardItem
-        value="credit-card"
-        title="Credit Card"
-        description="Pay with your credit or debit card"
-        icon={<CreditCardIcon />}
-      />
-      <RadioCardItem
-        value="paypal"
-        title="PayPal (Unavailable)"
-        description="PayPal is temporarily unavailable"
-        icon={<PayPalIcon />}
-        disabled
-      />
-      <RadioCardItem
-        value="bank-transfer"
-        title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<BankIcon />}
-      />
-    </RadioCardGroup>
-  ),
-}
+  render: () => {
+    const [value, setValue] = useState('')
 
-export const Invalid: Story = {
-  render: () => (
-    <RadioCardGroup aria-label="Payment methods with validation error" columns={3}>
-      <RadioCardItem
-        value="credit-card"
-        title="Credit Card"
-        description="Pay with your credit or debit card"
-        icon={<CreditCardIcon />}
-        isInvalid
-      />
-      <RadioCardItem
-        value="paypal"
-        title="PayPal"
-        description="Pay securely with your PayPal account"
-        icon={<PayPalIcon />}
-        isInvalid
-      />
-      <RadioCardItem
-        value="bank-transfer"
-        title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<BankIcon />}
-        isInvalid
-      />
-    </RadioCardGroup>
-  ),
-}
-
-export const WithHelperText: Story = {
-  render: () => (
-    <Field>
-      <Label style={{ fontWeight: 'bold', marginBottom: '12px', display: 'block' }}>
-        Choose Your Plan
-      </Label>
+    return (
       <RadioCardGroup
-        aria-label="Choose your plan"
-        aria-describedby="plan-helper"
+        value={value}
+        onValueChange={setValue}
+        aria-label="Payment methods with individual disabled"
         columns={3}
       >
         <RadioCardItem
-          value="basic"
-          title="Basic Plan"
-          description="Perfect for individuals"
-          icon={<PlanIcon />}
-          badge={<Badge style="outlined" type="neutral" text="$9/mo" />}
+          value="credit-card"
+          title="Credit Card"
+          icon={<Microphone />}
         />
         <RadioCardItem
-          value="pro"
-          title="Pro Plan"
-          description="Great for small teams"
-          icon={<PlanIcon />}
-          badge={<Badge style="filled" type="highlight" text="$29/mo" />}
+          value="paypal"
+          title="PayPal (Unavailable)"
+          icon={<Microphone />}
+          disabled
         />
         <RadioCardItem
-          value="enterprise"
-          title="Enterprise Plan"
-          description="For large organizations"
-          icon={<PlanIcon />}
-          badge={<Badge style="filled" type="info" text="$99/mo" />}
+          value="bank-transfer"
+          title="Bank Transfer"
+          icon={<Microphone />}
         />
       </RadioCardGroup>
-      <HelperText>
-        All plans include a 14-day free trial. You can upgrade or downgrade anytime.
-      </HelperText>
-    </Field>
-  ),
+    )
+  },
+}
+
+export const Invalid: Story = {
+  render: () => {
+    const [value, setValue] = useState('')
+
+    return (
+      <RadioCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Payment methods with validation error"
+        columns={3}
+      >
+        <RadioCardItem
+          value="credit-card"
+          title="Credit Card"
+          icon={<Microphone />}
+          isInvalid
+        />
+        <RadioCardItem
+          value="paypal"
+          title="PayPal"
+          icon={<Microphone />}
+          isInvalid
+        />
+        <RadioCardItem
+          value="bank-transfer"
+          title="Bank Transfer"
+          icon={<Microphone />}
+          isInvalid
+        />
+      </RadioCardGroup>
+    )
+  },
+}
+
+export const WithHelperText: Story = {
+  render: () => {
+    const [value, setValue] = useState('')
+
+    return (
+      <Field>
+        <Label style={{ fontWeight: 'bold', marginBottom: '12px', display: 'block' }}>
+          Choose Your Plan
+        </Label>
+        <RadioCardGroup
+          value={value}
+          onValueChange={setValue}
+          aria-label="Choose your plan"
+          aria-describedby="plan-helper"
+          columns={3}
+        >
+          <RadioCardItem
+            value="basic"
+            title="Basic Plan"
+            icon={<Microphone />}
+            badge={<Badge text="$9/mo" size="small" type="neutral" />}
+          />
+          <RadioCardItem
+            value="pro"
+            title="Pro Plan"
+            icon={<Microphone />}
+            badge={<Badge text="$29/mo" size="small" type="warning" />}
+          />
+          <RadioCardItem
+            value="enterprise"
+            title="Enterprise Plan"
+            icon={<Microphone />}
+            badge={<Badge text="$99/mo" size="small" type="info" />}
+          />
+        </RadioCardGroup>
+        <HelperText>
+          All plans include a 14-day free trial. You can upgrade or downgrade anytime.
+        </HelperText>
+      </Field>
+    )
+  },
 }
 
 export const WithValidation: Story = {
@@ -604,25 +657,22 @@ export const WithValidation: Story = {
             <RadioCardItem
               value="basic"
               title="Basic Plan"
-              description="Perfect for individuals"
-              icon={<PlanIcon />}
-              badge={<Badge style="outlined" type="neutral" text="$9/mo" />}
+              icon={<Microphone />}
+              badge={<Badge text="$9/mo" size="small" type="neutral" />}
               isInvalid={showError}
             />
             <RadioCardItem
               value="pro"
               title="Pro Plan"
-              description="Great for small teams"
-              icon={<PlanIcon />}
-              badge={<Badge style="filled" type="highlight" text="$29/mo" />}
+              icon={<Microphone />}
+              badge={<Badge text="$29/mo" size="small" type="warning" />}
               isInvalid={showError}
             />
             <RadioCardItem
               value="enterprise"
               title="Enterprise Plan"
-              description="For large organizations"
-              icon={<PlanIcon />}
-              badge={<Badge style="filled" type="info" text="$99/mo" />}
+              icon={<Microphone />}
+              badge={<Badge text="$99/mo" size="small" type="info" />}
               isInvalid={showError}
             />
           </RadioCardGroup>
@@ -700,25 +750,22 @@ export const CompleteExample: Story = {
             <RadioCardItem
               value="basic"
               title="Basic"
-              description="For individuals"
-              icon={<PlanIcon />}
-              badge={<Badge style="outlined" type="neutral" text="$9/mo" />}
+              icon={<Microphone />}
+              badge={<Badge text="$9/mo" size="small" type="neutral" />}
               isInvalid={errors.plan}
             />
             <RadioCardItem
               value="pro"
               title="Pro"
-              description="For small teams"
-              icon={<PlanIcon />}
-              badge={<Badge style="filled" type="highlight" text="$29/mo" />}
+              icon={<Microphone />}
+              badge={<Badge text="$29/mo" size="small" type="warning" />}
               isInvalid={errors.plan}
             />
             <RadioCardItem
               value="enterprise"
               title="Enterprise"
-              description="For large orgs"
-              icon={<PlanIcon />}
-              badge={<Badge style="filled" type="info" text="$99/mo" />}
+              icon={<Microphone />}
+              badge={<Badge text="$99/mo" size="small" type="info" />}
               isInvalid={errors.plan}
             />
           </RadioCardGroup>
@@ -747,22 +794,19 @@ export const CompleteExample: Story = {
             <RadioCardItem
               value="credit-card"
               title="Credit Card"
-              description="Visa, Mastercard, Amex"
-              icon={<CreditCardIcon />}
+              icon={<Microphone />}
               isInvalid={errors.paymentMethod}
             />
             <RadioCardItem
               value="paypal"
               title="PayPal"
-              description="Pay with PayPal"
-              icon={<PayPalIcon />}
+              icon={<Microphone />}
               isInvalid={errors.paymentMethod}
             />
             <RadioCardItem
               value="bank-transfer"
               title="Bank Transfer"
-              description="Direct bank transfer"
-              icon={<BankIcon />}
+              icon={<Microphone />}
               isInvalid={errors.paymentMethod}
             />
           </RadioCardGroup>
@@ -786,15 +830,13 @@ export const CompleteExample: Story = {
             <RadioCardItem
               value="monthly"
               title="Monthly"
-              description="Billed monthly"
               size="small"
             />
             <RadioCardItem
               value="annual"
               title="Annual"
-              description="Billed yearly (save 20%)"
               size="small"
-              badge={<Badge style="filled" type="success" size="small" text="Save 20%" />}
+              badge={<Badge text="Save 20%" size="small" type="success" />}
             />
           </RadioCardGroup>
         </Field>

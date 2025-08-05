@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
-import { Root as RadioGroupRoot, Item as RadioGroupItem } from '@radix-ui/react-radio-group'
 
-export interface RadioCardGroupProps extends ComponentPropsWithoutRef<typeof RadioGroupRoot> {
+export interface RadioCardGroupProps extends ComponentPropsWithoutRef<'div'> {
   value?: string
   onValueChange?: (value: string) => void
   disabled?: boolean
@@ -20,7 +19,7 @@ export interface RadioCardGroupProps extends ComponentPropsWithoutRef<typeof Rad
   gap?: 'small' | 'base' | 'large'
 }
 
-export interface RadioCardItemProps extends ComponentPropsWithoutRef<typeof RadioGroupItem> {
+export interface RadioCardItemProps extends ComponentPropsWithoutRef<'div'> {
   value: string
   disabled?: boolean
   required?: boolean
@@ -33,10 +32,9 @@ export interface RadioCardItemProps extends ComponentPropsWithoutRef<typeof Radi
   // Card-specific props
   children?: ReactNode
   size?: 'small' | 'medium' | 'large'
-  variant?: 'default' | 'outlined' | 'filled'
+  alignment?: 'left' | 'center'
   // Rich content props
   icon?: ReactNode
   title?: string
-  description?: string
   badge?: ReactNode
 }

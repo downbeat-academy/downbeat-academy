@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { CheckboxCardGroup, CheckboxCardItem } from '../checkbox-card'
+import { CheckboxCardGroup, CheckboxCardItem } from '../index'
 import { Field } from '../../field'
 import { Label } from '../../primitives/label'
 import { HelperText } from '../../primitives/helper-text'
@@ -10,28 +10,28 @@ import { Badge } from '../../../badge'
 // Mock icons for the stories
 const CreditCardIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-    <line x1="1" y1="10" x2="23" y2="10"/>
+    <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+    <line x1="1" y1="10" x2="23" y2="10" />
   </svg>
 )
 
 const ShieldIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
 )
 
 const GlobeIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="10"/>
-    <line x1="2" y1="12" x2="22" y2="12"/>
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    <circle cx="12" cy="12" r="10" />
+    <line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
   </svg>
 )
 
 const ZapIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2" />
   </svg>
 )
 
@@ -77,50 +77,67 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
-    <CheckboxCardGroup aria-label="Choose your preferred payment methods">
-      <CheckboxCardItem 
-        value="credit-card" 
-        title="Credit Card"
-        description="Pay with Visa, Mastercard, or American Express"
-        icon={<CreditCardIcon />}
-      />
-      <CheckboxCardItem 
-        value="bank-transfer" 
-        title="Bank Transfer"
-        description="Direct transfer from your bank account"
-        icon={<ShieldIcon />}
-      />
-      <CheckboxCardItem 
-        value="digital-wallet" 
-        title="Digital Wallet"
-        description="Pay with PayPal, Apple Pay, or Google Pay"
-        icon={<GlobeIcon />}
-      />
-    </CheckboxCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your preferred payment methods"
+      >
+        <CheckboxCardItem
+          value="credit-card"
+          title="Credit Card"
+          icon={<CreditCardIcon />}
+        >
+          <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+            Pay with Visa, Mastercard, or American Express
+          </p>
+        </CheckboxCardItem>
+        <CheckboxCardItem
+          value="bank-transfer"
+          title="Bank Transfer"
+          icon={<ShieldIcon />}
+        >
+          <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+            Direct transfer from your bank account
+          </p>
+        </CheckboxCardItem>
+        <CheckboxCardItem
+          value="digital-wallet"
+          title="Digital Wallet"
+          icon={<GlobeIcon />}
+        >
+          <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+            Pay with PayPal, Apple Pay, or Google Pay
+          </p>
+        </CheckboxCardItem>
+      </CheckboxCardGroup>
+    )
+  },
 }
 
 export const WithDefaultValues: Story = {
   render: () => (
-    <CheckboxCardGroup 
-      defaultValue={['credit-card', 'digital-wallet']} 
+    <CheckboxCardGroup
+      defaultValue={['credit-card', 'digital-wallet']}
       aria-label="Choose your preferred payment methods"
     >
-      <CheckboxCardItem 
-        value="credit-card" 
+      <CheckboxCardItem
+        value="credit-card"
         title="Credit Card"
         description="Pay with Visa, Mastercard, or American Express"
         icon={<CreditCardIcon />}
       />
-      <CheckboxCardItem 
-        value="bank-transfer" 
+      <CheckboxCardItem
+        value="bank-transfer"
         title="Bank Transfer"
         description="Direct transfer from your bank account"
         icon={<ShieldIcon />}
       />
-      <CheckboxCardItem 
-        value="digital-wallet" 
+      <CheckboxCardItem
+        value="digital-wallet"
         title="Digital Wallet"
         description="Pay with PayPal, Apple Pay, or Google Pay"
         icon={<GlobeIcon />}
@@ -130,299 +147,492 @@ export const WithDefaultValues: Story = {
 }
 
 export const StandaloneCard: Story = {
-  render: () => (
-    <CheckboxCardItem 
-      value="newsletter" 
-      title="Subscribe to Newsletter"
-      description="Get the latest updates and exclusive offers delivered to your inbox"
-      icon={<GlobeIcon />}
-    />
-  ),
+  render: () => {
+    const [checked, setChecked] = useState(false)
+
+    return (
+      <CheckboxCardItem
+        value="newsletter"
+        title="Subscribe to Newsletter"
+        description="Get the latest updates and exclusive offers delivered to your inbox"
+        icon={<GlobeIcon />}
+        checked={checked}
+        onCheckedChange={setChecked}
+      />
+    )
+  },
 }
 
 export const WithBadges: Story = {
-  render: () => (
-    <CheckboxCardGroup aria-label="Choose your plan features" columns={2}>
-      <CheckboxCardItem 
-        value="basic-analytics" 
-        title="Basic Analytics"
-        description="View basic metrics and reports"
-        icon={<ZapIcon />}
-        badge={<Badge size="small" variant="success">Free</Badge>}
-      />
-      <CheckboxCardItem 
-        value="advanced-analytics" 
-        title="Advanced Analytics"
-        description="Get detailed insights and custom reports"
-        icon={<ZapIcon />}
-        badge={<Badge size="small" variant="warning">Pro</Badge>}
-      />
-      <CheckboxCardItem 
-        value="real-time-data" 
-        title="Real-time Data"
-        description="Live dashboard with instant updates"
-        icon={<ZapIcon />}
-        badge={<Badge size="small" variant="critical">Premium</Badge>}
-      />
-      <CheckboxCardItem 
-        value="api-access" 
-        title="API Access"
-        description="Integrate with third-party applications"
-        icon={<ZapIcon />}
-        badge={<Badge size="small" variant="informational">Enterprise</Badge>}
-      />
-    </CheckboxCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your plan features"
+        columns={2}
+      >
+        <CheckboxCardItem
+          value="basic-analytics"
+          title="Basic Analytics"
+          description="View basic metrics and reports"
+          icon={<ZapIcon />}
+          badge={<Badge size="small" variant="success">Free</Badge>}
+        />
+        <CheckboxCardItem
+          value="advanced-analytics"
+          title="Advanced Analytics"
+          description="Get detailed insights and custom reports"
+          icon={<ZapIcon />}
+          badge={<Badge size="small" variant="warning">Pro</Badge>}
+        />
+        <CheckboxCardItem
+          value="real-time-data"
+          title="Real-time Data"
+          description="Live dashboard with instant updates"
+          icon={<ZapIcon />}
+          badge={<Badge size="small" variant="critical">Premium</Badge>}
+        />
+        <CheckboxCardItem
+          value="api-access"
+          title="API Access"
+          description="Integrate with third-party applications"
+          icon={<ZapIcon />}
+          badge={<Badge size="small" variant="informational">Enterprise</Badge>}
+        />
+      </CheckboxCardGroup>
+    )
+  },
 }
 
 export const GridLayouts: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h4>2 Columns</h4>
-        <CheckboxCardGroup aria-label="2 column layout" columns={2}>
-          <CheckboxCardItem value="option1" title="Option 1" />
-          <CheckboxCardItem value="option2" title="Option 2" />
-          <CheckboxCardItem value="option3" title="Option 3" />
-          <CheckboxCardItem value="option4" title="Option 4" />
-        </CheckboxCardGroup>
+  render: () => {
+    const [twoColumnValue, setTwoColumnValue] = useState<string[]>([])
+    const [threeColumnValue, setThreeColumnValue] = useState<string[]>([])
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h4>2 Columns</h4>
+          <CheckboxCardGroup
+            value={twoColumnValue}
+            onValueChange={setTwoColumnValue}
+            aria-label="2 column layout"
+            columns={2}
+          >
+            <CheckboxCardItem value="option1" title="Option 1" />
+            <CheckboxCardItem value="option2" title="Option 2" />
+            <CheckboxCardItem value="option3" title="Option 3" />
+            <CheckboxCardItem value="option4" title="Option 4" />
+          </CheckboxCardGroup>
+        </div>
+
+        <div>
+          <h4>3 Columns</h4>
+          <CheckboxCardGroup
+            value={threeColumnValue}
+            onValueChange={setThreeColumnValue}
+            aria-label="3 column layout"
+            columns={3}
+          >
+            <CheckboxCardItem value="option1" title="Option 1" />
+            <CheckboxCardItem value="option2" title="Option 2" />
+            <CheckboxCardItem value="option3" title="Option 3" />
+            <CheckboxCardItem value="option4" title="Option 4" />
+            <CheckboxCardItem value="option5" title="Option 5" />
+            <CheckboxCardItem value="option6" title="Option 6" />
+          </CheckboxCardGroup>
+        </div>
       </div>
-      
-      <div>
-        <h4>3 Columns</h4>
-        <CheckboxCardGroup aria-label="3 column layout" columns={3}>
-          <CheckboxCardItem value="option1" title="Option 1" />
-          <CheckboxCardItem value="option2" title="Option 2" />
-          <CheckboxCardItem value="option3" title="Option 3" />
-          <CheckboxCardItem value="option4" title="Option 4" />
-          <CheckboxCardItem value="option5" title="Option 5" />
-          <CheckboxCardItem value="option6" title="Option 6" />
-        </CheckboxCardGroup>
-      </div>
-    </div>
-  ),
+    )
+  },
 }
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h4>Small Size</h4>
-        <CheckboxCardGroup aria-label="Small cards" columns={3}>
-          <CheckboxCardItem 
-            value="small1" 
-            title="Small Card 1"
-            size="small"
-            icon={<ZapIcon />}
-          />
-          <CheckboxCardItem 
-            value="small2" 
-            title="Small Card 2"
-            size="small"
-            icon={<ZapIcon />}
-          />
-          <CheckboxCardItem 
-            value="small3" 
-            title="Small Card 3"
-            size="small"
-            icon={<ZapIcon />}
-          />
-        </CheckboxCardGroup>
+  render: () => {
+    const [smallValue, setSmallValue] = useState<string[]>([])
+    const [mediumValue, setMediumValue] = useState<string[]>([])
+    const [largeValue, setLargeValue] = useState<string[]>([])
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h4>Small Size</h4>
+          <CheckboxCardGroup
+            value={smallValue}
+            onValueChange={setSmallValue}
+            aria-label="Small cards"
+            columns={3}
+          >
+            <CheckboxCardItem
+              value="small1"
+              title="Small Card 1"
+              size="small"
+              icon={<ZapIcon />}
+            />
+            <CheckboxCardItem
+              value="small2"
+              title="Small Card 2"
+              size="small"
+              icon={<ZapIcon />}
+            />
+            <CheckboxCardItem
+              value="small3"
+              title="Small Card 3"
+              size="small"
+              icon={<ZapIcon />}
+            />
+          </CheckboxCardGroup>
+        </div>
+
+        <div>
+          <h4>Medium Size (Default)</h4>
+          <CheckboxCardGroup
+            value={mediumValue}
+            onValueChange={setMediumValue}
+            aria-label="Medium cards"
+            columns={2}
+          >
+            <CheckboxCardItem
+              value="medium1"
+              title="Medium Card 1"
+              description="This is a medium-sized card"
+              size="medium"
+              icon={<ZapIcon />}
+            />
+            <CheckboxCardItem
+              value="medium2"
+              title="Medium Card 2"
+              description="This is a medium-sized card"
+              size="medium"
+              icon={<ZapIcon />}
+            />
+          </CheckboxCardGroup>
+        </div>
+
+        <div>
+          <h4>Large Size</h4>
+          <CheckboxCardGroup
+            value={largeValue}
+            onValueChange={setLargeValue}
+            aria-label="Large cards"
+            columns={2}
+          >
+            <CheckboxCardItem
+              value="large1"
+              title="Large Card 1"
+              description="This is a large card with more space for content and descriptions that might be longer"
+              size="large"
+              icon={<ZapIcon />}
+            />
+            <CheckboxCardItem
+              value="large2"
+              title="Large Card 2"
+              description="This is a large card with more space for content and descriptions that might be longer"
+              size="large"
+              icon={<ZapIcon />}
+            />
+          </CheckboxCardGroup>
+        </div>
       </div>
-      
-      <div>
-        <h4>Medium Size (Default)</h4>
-        <CheckboxCardGroup aria-label="Medium cards" columns={2}>
-          <CheckboxCardItem 
-            value="medium1" 
-            title="Medium Card 1"
-            description="This is a medium-sized card"
-            size="medium"
-            icon={<ZapIcon />}
-          />
-          <CheckboxCardItem 
-            value="medium2" 
-            title="Medium Card 2"
-            description="This is a medium-sized card"
-            size="medium"
-            icon={<ZapIcon />}
-          />
-        </CheckboxCardGroup>
-      </div>
-      
-      <div>
-        <h4>Large Size</h4>
-        <CheckboxCardGroup aria-label="Large cards" columns={2}>
-          <CheckboxCardItem 
-            value="large1" 
-            title="Large Card 1"
-            description="This is a large card with more space for content and descriptions that might be longer"
-            size="large"
-            icon={<ZapIcon />}
-          />
-          <CheckboxCardItem 
-            value="large2" 
-            title="Large Card 2"
-            description="This is a large card with more space for content and descriptions that might be longer"
-            size="large"
-            icon={<ZapIcon />}
-          />
-        </CheckboxCardGroup>
-      </div>
-    </div>
-  ),
+    )
+  },
 }
 
 export const Variants: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h4>Default Variant</h4>
-        <CheckboxCardGroup aria-label="Default variant" columns={3}>
-          <CheckboxCardItem 
-            value="default1" 
-            title="Default Card"
-            description="Standard card appearance"
-            variant="default"
-          />
-          <CheckboxCardItem 
-            value="default2" 
-            title="Default Card"
-            description="Standard card appearance"
-            variant="default"
-          />
-          <CheckboxCardItem 
-            value="default3" 
-            title="Default Card"
-            description="Standard card appearance"
-            variant="default"
-          />
-        </CheckboxCardGroup>
+  render: () => {
+    const [defaultValue, setDefaultValue] = useState<string[]>([])
+    const [outlinedValue, setOutlinedValue] = useState<string[]>([])
+    const [filledValue, setFilledValue] = useState<string[]>([])
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h4>Default Variant</h4>
+          <CheckboxCardGroup
+            value={defaultValue}
+            onValueChange={setDefaultValue}
+            aria-label="Default variant"
+            columns={3}
+          >
+            <CheckboxCardItem
+              value="default1"
+              title="Default Card"
+              description="Standard card appearance"
+              variant="default"
+            />
+            <CheckboxCardItem
+              value="default2"
+              title="Default Card"
+              description="Standard card appearance"
+              variant="default"
+            />
+            <CheckboxCardItem
+              value="default3"
+              title="Default Card"
+              description="Standard card appearance"
+              variant="default"
+            />
+          </CheckboxCardGroup>
+        </div>
+
+        <div>
+          <h4>Outlined Variant</h4>
+          <CheckboxCardGroup
+            value={outlinedValue}
+            onValueChange={setOutlinedValue}
+            aria-label="Outlined variant"
+            columns={3}
+          >
+            <CheckboxCardItem
+              value="outlined1"
+              title="Outlined Card"
+              description="Outlined card with transparent background"
+              variant="outlined"
+            />
+            <CheckboxCardItem
+              value="outlined2"
+              title="Outlined Card"
+              description="Outlined card with transparent background"
+              variant="outlined"
+            />
+            <CheckboxCardItem
+              value="outlined3"
+              title="Outlined Card"
+              description="Outlined card with transparent background"
+              variant="outlined"
+            />
+          </CheckboxCardGroup>
+        </div>
+
+        <div>
+          <h4>Filled Variant</h4>
+          <CheckboxCardGroup
+            value={filledValue}
+            onValueChange={setFilledValue}
+            aria-label="Filled variant"
+            columns={3}
+          >
+            <CheckboxCardItem
+              value="filled1"
+              title="Filled Card"
+              description="Card with filled background"
+              variant="filled"
+            />
+            <CheckboxCardItem
+              value="filled2"
+              title="Filled Card"
+              description="Card with filled background"
+              variant="filled"
+            />
+            <CheckboxCardItem
+              value="filled3"
+              title="Filled Card"
+              description="Card with filled background"
+              variant="filled"
+            />
+          </CheckboxCardGroup>
+        </div>
       </div>
-      
-      <div>
-        <h4>Outlined Variant</h4>
-        <CheckboxCardGroup aria-label="Outlined variant" columns={3}>
-          <CheckboxCardItem 
-            value="outlined1" 
-            title="Outlined Card"
-            description="Outlined card with transparent background"
-            variant="outlined"
-          />
-          <CheckboxCardItem 
-            value="outlined2" 
-            title="Outlined Card"
-            description="Outlined card with transparent background"
-            variant="outlined"
-          />
-          <CheckboxCardItem 
-            value="outlined3" 
-            title="Outlined Card"
-            description="Outlined card with transparent background"
-            variant="outlined"
-          />
-        </CheckboxCardGroup>
+    )
+  },
+}
+
+export const Alignment: Story = {
+  render: () => {
+    const [leftValue, setLeftValue] = useState<string[]>([])
+    const [centerValue, setCenterValue] = useState<string[]>([])
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h4>Left Aligned (Default)</h4>
+          <CheckboxCardGroup
+            value={leftValue}
+            onValueChange={setLeftValue}
+            aria-label="Left aligned cards"
+            columns={3}
+          >
+            <CheckboxCardItem
+              value="left1"
+              title="Left Aligned"
+              alignment="left"
+              icon={<ZapIcon />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                Content is left-aligned
+              </p>
+            </CheckboxCardItem>
+            <CheckboxCardItem
+              value="left2"
+              title="Left Aligned"
+              alignment="left"
+              icon={<ZapIcon />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                Content is left-aligned
+              </p>
+            </CheckboxCardItem>
+            <CheckboxCardItem
+              value="left3"
+              title="Left Aligned"
+              alignment="left"
+              icon={<ZapIcon />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)' }}>
+                Content is left-aligned
+              </p>
+            </CheckboxCardItem>
+          </CheckboxCardGroup>
+        </div>
+
+        <div>
+          <h4>Center Aligned</h4>
+          <CheckboxCardGroup
+            value={centerValue}
+            onValueChange={setCenterValue}
+            aria-label="Center aligned cards"
+            columns={3}
+          >
+            <CheckboxCardItem
+              value="center1"
+              title="Center Aligned"
+              alignment="center"
+              icon={<ZapIcon />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)', textAlign: 'center' }}>
+                Content is center-aligned
+              </p>
+            </CheckboxCardItem>
+            <CheckboxCardItem
+              value="center2"
+              title="Center Aligned"
+              alignment="center"
+              icon={<ZapIcon />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)', textAlign: 'center' }}>
+                Content is center-aligned
+              </p>
+            </CheckboxCardItem>
+            <CheckboxCardItem
+              value="center3"
+              title="Center Aligned"
+              alignment="center"
+              icon={<ZapIcon />}
+            >
+              <p style={{ margin: '4px 0 0', fontSize: '14px', color: 'var(--cds-color-foreground-secondary)', textAlign: 'center' }}>
+                Content is center-aligned
+              </p>
+            </CheckboxCardItem>
+          </CheckboxCardGroup>
+        </div>
       </div>
-      
-      <div>
-        <h4>Filled Variant</h4>
-        <CheckboxCardGroup aria-label="Filled variant" columns={3}>
-          <CheckboxCardItem 
-            value="filled1" 
-            title="Filled Card"
-            description="Card with filled background"
-            variant="filled"
-          />
-          <CheckboxCardItem 
-            value="filled2" 
-            title="Filled Card"
-            description="Card with filled background"
-            variant="filled"
-          />
-          <CheckboxCardItem 
-            value="filled3" 
-            title="Filled Card"
-            description="Card with filled background"
-            variant="filled"
-          />
-        </CheckboxCardGroup>
-      </div>
-    </div>
-  ),
+    )
+  },
 }
 
 export const CustomContent: Story = {
-  render: () => (
-    <CheckboxCardGroup aria-label="Custom content cards" columns={2}>
-      <CheckboxCardItem value="custom1">
-        <div style={{ padding: '16px', textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎵</div>
-          <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Music Plan</h3>
-          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$9.99/month</p>
-        </div>
-      </CheckboxCardItem>
-      <CheckboxCardItem value="custom2">
-        <div style={{ padding: '16px', textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎬</div>
-          <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Video Plan</h3>
-          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$14.99/month</p>
-        </div>
-      </CheckboxCardItem>
-      <CheckboxCardItem value="custom3">
-        <div style={{ padding: '16px', textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>📚</div>
-          <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Premium Plan</h3>
-          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$19.99/month</p>
-        </div>
-      </CheckboxCardItem>
-      <CheckboxCardItem value="custom4">
-        <div style={{ padding: '16px', textAlign: 'center' }}>
-          <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎯</div>
-          <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Everything Plan</h3>
-          <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$29.99/month</p>
-        </div>
-      </CheckboxCardItem>
-    </CheckboxCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Custom content cards"
+        columns={2}
+      >
+        <CheckboxCardItem value="custom1">
+          <div style={{ padding: '16px', textAlign: 'center' }}>
+            <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎵</div>
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Music Plan</h3>
+            <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$9.99/month</p>
+          </div>
+        </CheckboxCardItem>
+        <CheckboxCardItem value="custom2">
+          <div style={{ padding: '16px', textAlign: 'center' }}>
+            <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎬</div>
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Video Plan</h3>
+            <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$14.99/month</p>
+          </div>
+        </CheckboxCardItem>
+        <CheckboxCardItem value="custom3">
+          <div style={{ padding: '16px', textAlign: 'center' }}>
+            <div style={{ fontSize: '32px', marginBottom: '8px' }}>📚</div>
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Premium Plan</h3>
+            <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$19.99/month</p>
+          </div>
+        </CheckboxCardItem>
+        <CheckboxCardItem value="custom4">
+          <div style={{ padding: '16px', textAlign: 'center' }}>
+            <div style={{ fontSize: '32px', marginBottom: '8px' }}>🎯</div>
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '18px' }}>Everything Plan</h3>
+            <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>$29.99/month</p>
+          </div>
+        </CheckboxCardItem>
+      </CheckboxCardGroup>
+    )
+  },
 }
 
 export const Disabled: Story = {
-  render: () => (
-    <CheckboxCardGroup disabled aria-label="Disabled checkbox cards" columns={2}>
-      <CheckboxCardItem 
-        value="disabled1" 
-        title="Disabled Card 1"
-        description="This card is disabled"
-        icon={<CreditCardIcon />}
-      />
-      <CheckboxCardItem 
-        value="disabled2" 
-        title="Disabled Card 2"
-        description="This card is disabled"
-        icon={<ShieldIcon />}
-      />
-    </CheckboxCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxCardGroup
+        value={value}
+        onValueChange={setValue}
+        disabled
+        aria-label="Disabled checkbox cards"
+        columns={2}
+      >
+        <CheckboxCardItem
+          value="disabled1"
+          title="Disabled Card 1"
+          description="This card is disabled"
+          icon={<CreditCardIcon />}
+        />
+        <CheckboxCardItem
+          value="disabled2"
+          title="Disabled Card 2"
+          description="This card is disabled"
+          icon={<ShieldIcon />}
+        />
+      </CheckboxCardGroup>
+    )
+  },
 }
 
 export const IndividualDisabled: Story = {
-  render: () => (
-    <CheckboxCardGroup aria-label="Mixed disabled states" columns={2}>
-      <CheckboxCardItem 
-        value="enabled" 
-        title="Enabled Card"
-        description="This card is enabled"
-        icon={<CreditCardIcon />}
-      />
-      <CheckboxCardItem 
-        value="disabled" 
-        title="Disabled Card"
-        description="This card is disabled"
-        icon={<ShieldIcon />}
-        disabled
-      />
-    </CheckboxCardGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxCardGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Mixed disabled states"
+        columns={2}
+      >
+        <CheckboxCardItem
+          value="enabled"
+          title="Enabled Card"
+          description="This card is enabled"
+          icon={<CreditCardIcon />}
+        />
+        <CheckboxCardItem
+          value="disabled"
+          title="Disabled Card"
+          description="This card is disabled"
+          icon={<ShieldIcon />}
+          disabled
+        />
+      </CheckboxCardGroup>
+    )
+  },
 }
 
 export const WithValidation: Story = {

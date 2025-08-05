@@ -82,7 +82,7 @@
   transition: all 150ms ease;
   overflow: hidden;
   min-height: 80px;
-  padding: var(--cds-scale-base);
+  padding: 0;
 }
 
 .item-root:hover:not([data-disabled]) {
@@ -95,6 +95,10 @@
 .item-root:focus-visible {
   outline: 2px solid var(--cds-color-border-focus);
   outline-offset: 2px;
+}
+
+.item-root:focus-visible .item-indicator-area {
+  border-top-color: var(--cds-color-border-focus);
 }
 
 .item-root[data-state='checked'] {
@@ -132,40 +136,26 @@
 /* Size variants */
 .item-size-small {
   min-height: 60px;
-  padding: var(--cds-scale-small);
+
+  & .item-content {
+    padding: var(--cds-scale-small);
+  }
 }
 
 .item-size-medium {
   min-height: 80px;
-  padding: var(--cds-scale-base);
+
+  & .item-content {
+    padding: var(--cds-scale-base);
+  }
 }
 
 .item-size-large {
   min-height: 120px;
-  padding: var(--cds-scale-large);
-}
 
-/* Variant styles */
-.item-variant-default {
-  /* Uses base styles */
-}
-
-.item-variant-outlined {
-  background-color: transparent;
-  border-width: 2px;
-}
-
-.item-variant-outlined:hover:not([data-disabled]) {
-  background-color: var(--cds-color-palette-blackberry-50);
-}
-
-.item-variant-filled {
-  background-color: var(--cds-color-palette-blackberry-100);
-  border-color: var(--cds-color-palette-blackberry-200);
-}
-
-.item-variant-filled:hover:not([data-disabled]) {
-  background-color: var(--cds-color-palette-blackberry-150);
+  & .item-content {
+    padding: var(--cds-scale-large);
+  }
 }
 
 /* Content structure */
@@ -176,16 +166,17 @@
   gap: var(--cds-scale-small);
 }
 
-.item-header {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--cds-scale-small);
+.item-content-alignment-left {
+  align-items: start;
+}
+
+.item-content-alignment-center {
+  align-items: center;
 }
 
 .item-icon {
   flex-shrink: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
@@ -196,72 +187,24 @@
   color: var(--cds-color-foreground-interactive-default);
 }
 
-.item-text-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.item-title {
-  font-size: var(--cds-font-size-base);
-  font-weight: var(--cds-font-weight-semibold);
-  line-height: var(--cds-line-height-tight);
-  color: var(--cds-color-foreground-high-contrast);
-  margin: 0;
-}
-
-.item-description {
-  font-size: var(--cds-font-size-small);
-  line-height: var(--cds-line-height-base);
-  color: var(--cds-color-foreground-secondary);
-  margin: 0;
-  margin-top: var(--cds-scale-xs);
-}
-
-.item-badge {
-  flex-shrink: 0;
-  margin-left: auto;
-}
-
-/* Selection indicator */
-.item-indicator {
-  position: absolute;
-  top: var(--cds-scale-small);
-  right: var(--cds-scale-small);
-  width: 16px;
-  height: 16px;
-  border: 2px solid var(--cds-color-border-primary);
-  border-radius: 50%;
-  background-color: var(--cds-color-surface-primary);
+/* Selection indicator area */
+.item-indicator-area {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: var(--cds-scale-small);
+  border-top: 1px solid var(--cds-color-border-faint);
+  background-color: var(--cds-color-palette-blackberry-100);
   transition: all 150ms ease;
+  padding: var(--cds-scale-x-small) 0;
 }
 
-.item-root[data-state='checked'] .item-indicator {
-  border-color: var(--cds-color-foreground-interactive-default);
-  background-color: var(--cds-color-foreground-interactive-default);
+.item-root[data-state='checked'] .item-indicator-area {
+  background-color: var(--cds-color-palette-blueberry-50);
+  border-top-color: var(--cds-color-palette-blueberry-600);
 }
 
-.item-indicator::after {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--cds-color-foreground-high-contrast);
-  opacity: 0;
-  transition: opacity 150ms ease;
-}
-
-.item-root[data-state='checked'] .item-indicator::after {
-  opacity: 1;
-}
-
-.item-root[data-disabled] .item-indicator {
-  border-color: var(--cds-color-palette-blackberry-300);
-  background-color: var(--cds-color-palette-blackberry-200);
-}
-
-.item-is-invalid .item-indicator {
-  border-color: var(--cds-color-border-critical);
+.item-root[data-disabled] .item-indicator-area {
+  background-color: var(--cds-color-palette-blackberry-50);
+  border-top-color: var(--cds-color-palette-blackberry-200);
 }
