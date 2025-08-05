@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react'
 import {
 	EngravingRules,
 	OpenSheetMusicDisplay as OSMD,
@@ -40,7 +40,7 @@ const OpenSheetMusicDisplay = ({
 	const osmd = useRef<OSMD | null>(null)
 	const initialRenderComplete = useRef(false)
 
-	const osmdOptions = {
+	const osmdOptions = useMemo(() => ({
 		autoResize,
 		backend,
 		colorStemsLikeNoteheads: true,
@@ -73,10 +73,26 @@ const OpenSheetMusicDisplay = ({
 		// 	StaffHeight: 12,
 		// 	MinSkyBottomDistBetweenStaves: 20,
 		// },
-	}
+	}), [
+		autoResize,
+		backend,
+		drawingParameters,
+		drawTitle,
+		drawSubtitle,
+		drawComposer,
+		drawLyricist,
+		drawCredits,
+		drawPartNames,
+		drawMetronomeMarks,
+		drawTimeSignatures,
+		drawMeasureNumbers,
+		drawMeasureNumbersOnlyAtSystemStart,
+		drawLyrics,
+		measureNumberInterval,
+	])
 
 	// Cleanup function
-	const cleanup = () => {
+	const cleanup = useCallback(() => {
 		if (osmd.current) {
 			// Clear the div content
 			if (divRef.current) {
@@ -84,7 +100,7 @@ const OpenSheetMusicDisplay = ({
 			}
 			osmd.current = null
 		}
-	}
+	}, [])
 
 	useEffect(() => {
 		let mounted = true
@@ -153,7 +169,7 @@ const OpenSheetMusicDisplay = ({
 			}
 			cleanup()
 		}
-	}, [file, osmdOptions, onRenderComplete, transpose])
+	}, [file, osmdOptions, onRenderComplete, transpose, cleanup])
 
 	// Handle window resize
 	useEffect(() => {
@@ -191,4 +207,4 @@ const OpenSheetMusicDisplay = ({
 	return <div className={className} ref={divRef} />
 }
 
-export default OpenSheetMusicDisplay
+export default memo(OpenSheetMusicDisplay)

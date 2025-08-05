@@ -17,17 +17,17 @@ const MusicTextRenderer = ({ values, className }: MusicTextRendererProps) => {
 	const item = values.map((i) => {
 		switch (i._type) {
 			case 'musicText':
-				return <MusicText text={i.musicText} />
+				return <MusicText text={i.musicText} key={i._key} />
 			case 'accidental':
-				return <Accidental value={i.options} />
+				return <Accidental value={i.options} key={i._key} />
 			case 'barValue':
-				return <BarValue value={i.options} />
+				return <BarValue value={i.options} key={i._key} />
 			case 'rhythmicValue':
-				return <RhythmicValue value={i.options} />
+				return <RhythmicValue value={i.options} key={i._key} />
 			case 'clef':
-				return <Clef value={i.options} />
+				return <Clef value={i.options} key={i._key} />
 			case 'musicSymbol':
-				return <MusicSymbol value={i.options} />
+				return <MusicSymbol value={i.options} key={i._key} />
 			default:
 				throw new Error('Incorrect or unsupported item type.')
 		}
