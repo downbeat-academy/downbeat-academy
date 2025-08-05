@@ -1,8 +1,7 @@
-import React, { forwardRef, useContext } from 'react'
+import React, { forwardRef } from 'react'
 import classnames from 'classnames'
 import { Radio } from '../radio'
 import { Text } from '../../text'
-import { RadioCardGroupContext } from './radio-card-group'
 import s from './radio-card.module.css'
 import type { RadioCardItemProps } from './types'
 
@@ -22,22 +21,25 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
   'aria-describedby': ariaDescribedby,
+  _groupValue,
+  _groupOnValueChange,
+  _groupDisabled,
+  _groupRequired,
+  _groupName,
+  _groupIsInvalid,
   ...props
 }, ref) => {
-  const context = useContext(RadioCardGroupContext)
-
   if (!value) {
     throw new Error('RadioCardItem requires a value prop')
   }
 
-  // Use context values if available, otherwise use props
-  const finalDisabled = disabled ?? context?.disabled
-  const finalRequired = required ?? context?.required
-  const finalIsInvalid = isInvalid ?? context?.isInvalid
+  // Use group props if available, otherwise use individual props
+  const finalDisabled = disabled ?? _groupDisabled
+  const finalRequired = required ?? _groupRequired
+  const finalIsInvalid = isInvalid ?? _groupIsInvalid
 
-  // Handle group vs individual radio logic
-  const isGrouped = context !== null
-  const isSelected = isGrouped ? context.value === value : false
+  // Check if this item is selected based on group value
+  const isSelected = _groupValue === value
 
   const rootClasses = classnames(
     s['item-root'],
@@ -93,7 +95,7 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
     <div
       ref={ref}
       className={rootClasses}
-      onClick={() => !finalDisabled && context?.onValueChange?.(value)}
+      onClick={() => !finalDisabled && _groupOnValueChange?.(value)}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}
       aria-describedby={ariaDescribedby}

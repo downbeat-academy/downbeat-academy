@@ -1,8 +1,7 @@
-import React, { forwardRef, useContext } from 'react'
+import React, { forwardRef } from 'react'
 import classnames from 'classnames'
 import { Checkbox } from '../checkbox'
 import { Text } from '../../text'
-import { CheckboxCardGroupContext } from './checkbox-card-group'
 import s from './checkbox-card.module.css'
 import type { CheckboxCardItemProps } from './types'
 
@@ -24,39 +23,44 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
   'aria-describedby': ariaDescribedby,
+  _groupValue,
+  _groupDefaultValue,
+  _groupOnValueChange,
+  _groupDisabled,
+  _groupRequired,
+  _groupName,
+  _groupIsInvalid,
   ...props
 }, ref) => {
-  const context = useContext(CheckboxCardGroupContext)
-
   if (!value) {
     throw new Error('CheckboxCardItem requires a value prop')
   }
 
-  // Use context values if available, otherwise use props
-  const finalDisabled = disabled ?? context?.disabled
-  const finalRequired = required ?? context?.required
-  const finalIsInvalid = isInvalid ?? context?.isInvalid
+  // Use group props if available, otherwise use individual props
+  const finalDisabled = disabled ?? _groupDisabled
+  const finalRequired = required ?? _groupRequired
+  const finalIsInvalid = isInvalid ?? _groupIsInvalid
 
   // Handle group vs individual checkbox logic
-  const isGrouped = context !== null
+  const isGrouped = _groupValue !== undefined || _groupOnValueChange !== undefined
   let finalChecked = checked
   let finalOnCheckedChange = onCheckedChange
 
   if (isGrouped) {
-    const currentValue = context.value || []
+    const currentValue = _groupValue || []
     finalChecked = currentValue.includes(value)
     
-    if (context.onValueChange) {
+    if (_groupOnValueChange) {
       finalOnCheckedChange = (newChecked: boolean) => {
-        const currentValueAtTime = context.value || []
+        const currentValueAtTime = _groupValue || []
         if (newChecked) {
           // Add to array if not present
           if (!currentValueAtTime.includes(value)) {
-            context.onValueChange?.([...currentValueAtTime, value])
+            _groupOnValueChange([...currentValueAtTime, value])
           }
         } else {
           // Remove from array
-          context.onValueChange?.(currentValueAtTime.filter(v => v !== value))
+          _groupOnValueChange(currentValueAtTime.filter(v => v !== value))
         }
       }
     }
@@ -131,7 +135,7 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
           disabled={finalDisabled}
           required={finalRequired}
           id={id}
-          name={context?.name}
+          name={_groupName}
           value={value}
           isInvalid={finalIsInvalid}
           className={indicatorClasses}

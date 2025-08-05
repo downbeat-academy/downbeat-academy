@@ -1,20 +1,7 @@
-import React, { forwardRef, createContext } from 'react'
+import React, { forwardRef } from 'react'
 import classnames from 'classnames'
 import s from './checkbox-card.module.css'
 import type { CheckboxCardGroupProps } from './types'
-
-// Context for CheckboxCardGroup
-interface CheckboxCardGroupContextValue {
-  value?: string[]
-  defaultValue?: string[]
-  onValueChange?: (value: string[]) => void
-  disabled?: boolean
-  required?: boolean
-  name?: string
-  isInvalid?: boolean
-}
-
-const CheckboxCardGroupContext = createContext<CheckboxCardGroupContextValue | null>(null)
 
 const CheckboxCardGroup = forwardRef<HTMLDivElement, CheckboxCardGroupProps>(({
   value,
@@ -41,34 +28,40 @@ const CheckboxCardGroup = forwardRef<HTMLDivElement, CheckboxCardGroupProps>(({
     className
   )
 
-  const contextValue = {
-    value,
-    defaultValue,
-    onValueChange,
-    disabled,
-    required,
-    name,
-    isInvalid
-  }
+  // Clone children and pass down group props
+  const clonedChildren = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, {
+        // Pass down group props to each CheckboxCardItem
+        _groupValue: value,
+        _groupDefaultValue: defaultValue,
+        _groupOnValueChange: onValueChange,
+        _groupDisabled: disabled,
+        _groupRequired: required,
+        _groupName: name,
+        _groupIsInvalid: isInvalid,
+        ...child.props // Keep existing child props, they take precedence
+      })
+    }
+    return child
+  })
 
   return (
-    <CheckboxCardGroupContext.Provider value={contextValue}>
-      <div
-        ref={ref}
-        className={rootClasses}
-        data-orientation={orientation}
-        role="group"
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledby}
-        aria-describedby={ariaDescribedby}
-        {...props}
-      >
-        {children}
-      </div>
-    </CheckboxCardGroupContext.Provider>
+    <div
+      ref={ref}
+      className={rootClasses}
+      data-orientation={orientation}
+      role="group"
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      aria-describedby={ariaDescribedby}
+      {...props}
+    >
+      {clonedChildren}
+    </div>
   )
 })
 
 CheckboxCardGroup.displayName = 'CheckboxCardGroup'
 
-export { CheckboxCardGroup, CheckboxCardGroupContext }
+export { CheckboxCardGroup }

@@ -40,4 +40,12 @@ export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<'div'> {
   // Checkbox-specific props
   checked?: boolean | 'indeterminate'
   onCheckedChange?: (checked: boolean) => void
+  // Internal props passed from CheckboxCardGroup (prefixed with _)
+  _groupValue?: string[]
+  _groupDefaultValue?: string[]
+  _groupOnValueChange?: (value: string[]) => void
+  _groupDisabled?: boolean
+  _groupRequired?: boolean
+  _groupName?: string
+  _groupIsInvalid?: boolean
 }

@@ -37,4 +37,11 @@ export interface RadioCardItemProps extends ComponentPropsWithoutRef<'div'> {
   icon?: ReactNode
   title?: string
   badge?: ReactNode
+  // Internal props passed from RadioCardGroup (prefixed with _)
+  _groupValue?: string
+  _groupOnValueChange?: (value: string) => void
+  _groupDisabled?: boolean
+  _groupRequired?: boolean
+  _groupName?: string
+  _groupIsInvalid?: boolean
 }
