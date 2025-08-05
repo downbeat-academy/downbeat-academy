@@ -1,4 +1,4 @@
-.cds-textarea--root {
+.root {
   font-family: var(--cds-typography-font-family-productive-body);
   font-size: var(--cds-typography-font-size-fixed-productive-base);
   border-radius: var(--cds-radii-medium);

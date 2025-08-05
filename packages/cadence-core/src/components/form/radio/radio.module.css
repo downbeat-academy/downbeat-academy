@@ -1,18 +1,18 @@
 /* RadioGroup styles */
-.cds-radio-group--root {
+.group-root {
   display: flex;
   flex-direction: column;
   gap: var(--cds-scale-small);
 }
 
-.cds-radio-group--root[data-orientation='horizontal'] {
+.group-root[data-orientation='horizontal'] {
   flex-direction: row;
   align-items: center;
   gap: var(--cds-scale-base);
 }
 
 /* Radio styles */
-.cds-radio--root {
+.root {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -27,47 +27,47 @@
   flex-shrink: 0;
 }
 
-.cds-radio--root:hover:not([data-disabled]) {
+.root:hover:not([data-disabled]) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-radio--root:focus-visible {
+.root:focus-visible {
   outline: 2px solid var(--cds-color-border-focus);
   outline-offset: 2px;
 }
 
-.cds-radio--root[data-state='checked'] {
+.root[data-state='checked'] {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-foreground-interactive-default);
 }
 
-.cds-radio--root[data-state='checked']:hover:not([data-disabled]) {
+.root[data-state='checked']:hover:not([data-disabled]) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-foreground-interactive-hover);
 }
 
-.cds-radio--root[data-disabled] {
+.root[data-disabled] {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-radio--root[data-state='checked'][data-disabled] {
+.root[data-state='checked'][data-disabled] {
   background-color: var(--cds-color-palette-blueberry-300);
   border-color: var(--cds-color-palette-blueberry-400);
 }
 
-.cds-radio--is-invalid {
+.is-invalid {
   border-color: var(--cds-color-border-critical);
 }
 
-.cds-radio--is-invalid:focus-visible {
+.is-invalid:focus-visible {
   outline-color: var(--cds-color-border-critical);
 }
 
 /* Radio Indicator styles */
-.cds-radio--indicator {
+.indicator {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@
   position: relative;
 }
 
-.cds-radio--indicator::after {
+.indicator::after {
   content: '';
   width: 8px;
   height: 6px;

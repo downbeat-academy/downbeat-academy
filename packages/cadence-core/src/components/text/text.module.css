@@ -1,4 +1,4 @@
-.cds-text {
+.root {
 	color: inherit;
 	font-family: inherit;
 	font-size: inherit;
@@ -7,22 +7,22 @@
 
 /* Type */
 
-.cds-text--productive-body {
+.root--productive-body {
 	font-family: var(--cds-typography-font-family-productive-body);
 	line-height: var(--cds-typography-line-height-productive-body);
 }
 
-.cds-text--productive-headline {
+.root--productive-headline {
 	font-family: var(--cds-typography-font-family-productive-headline);
 	line-height: var(--cds-typography-line-height-productive-headline);
 }
 
-.cds-text--expressive-body {
+.root--expressive-body {
 	font-family: var(--cds-typography-font-family-expressive-body);
 	line-height: var(--cds-typography-line-height-expressive-body);
 }
 
-.cds-text--expressive-headline {
+.root--expressive-headline {
 	font-family: var(--cds-typography-font-family-expressive-headline);
 	line-height: var(--cds-typography-line-height-expressive-headline);
 }
@@ -31,213 +31,213 @@
 
 /* -- Productive Headline */
 
-.cds-text--productive-headline--h1 {
+.root--productive-headline--h1 {
 	font-size: var(--cds-typography-font-size-fixed-productive-4x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-4x-large);
 }
 
-.cds-text--productive-headline--h2 {
+.root--productive-headline--h2 {
 	font-size: var(--cds-typography-font-size-fixed-productive-3x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-3x-large);
 }
 
-.cds-text--productive-headline--h3 {
+.root--productive-headline--h3 {
 	font-size: var(--cds-typography-font-size-fixed-productive-2x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-2x-large);
 }
 
-.cds-text--productive-headline--h4 {
+.root--productive-headline--h4 {
 	font-size: var(--cds-typography-font-size-fixed-productive-x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-x-large);
 }
 
-.cds-text--productive-headline--h5 {
+.root--productive-headline--h5 {
 	font-size: var(--cds-typography-font-size-fixed-productive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-large);
 }
 
-.cds-text--productive-headline--h6 {
+.root--productive-headline--h6 {
 	font-size: var(--cds-typography-font-size-fixed-productive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-base);
 }
 
 /* -- Productive Body */
 
-.cds-text--productive-body--body-large {
+.root--productive-body--body-large {
 	font-size: var(--cds-typography-font-size-fixed-productive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-large);
 }
 
-.cds-text--productive-body--body-base {
+.root--productive-body--body-base {
 	font-size: var(--cds-typography-font-size-fixed-productive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-base);
 }
 
-.cds-text--productive-body--body-small {
+.root--productive-body--body-small {
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-small);
 }
 
-.cds-text--productive-body--body-x-small {
+.root--productive-body--body-x-small {
 	font-size: var(--cds-typography-font-size-fixed-productive-x-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-x-small);
 }
 
 /* -- Expressive Headline */
 
-.cds-text--expressive-headline--mega {
+.root--expressive-headline--mega {
 	font-size: var(--cds-typography-font-size-fixed-expressive-6x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-6x-large);
 }
 
-.cds-text--expressive-headline--h1 {
+.root--expressive-headline--h1 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-5x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-5x-large);
 }
 
-.cds-text--expressive-headline--h2 {
+.root--expressive-headline--h2 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-4x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-4x-large);
 }
 
-.cds-text--expressive-headline--h3 {
+.root--expressive-headline--h3 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-3x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-3x-large);
 }
 
-.cds-text--expressive-headline--h4 {
+.root--expressive-headline--h4 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-2x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-2x-large);
 }
 
-.cds-text--expressive-headline--h5 {
+.root--expressive-headline--h5 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-x-large);
 }
 
-.cds-text--expressive-headline--h6 {
+.root--expressive-headline--h6 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-large);
 }
 
 /* -- Expressive body */
 
-.cds-text--expressive-body--body-large {
+.root--expressive-body--body-large {
 	font-size: var(--cds-typography-font-size-fixed-expressive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-large);
 }
 
-.cds-text--expressive-body--body-base {
+.root--expressive-body--body-base {
 	font-size: var(--cds-typography-font-size-fixed-expressive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-base);
 }
 
-.cds-text--expressive-body--body-small {
+.root--expressive-body--body-small {
 	font-size: var(--cds-typography-font-size-fixed-expressive-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-small);
 }
 
-.cds-text--expressive-body--body-x-small {
+.root--expressive-body--body-x-small {
 	font-size: var(--cds-typography-font-size-fixed-expressive-x-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-x-small);
 }
 
 /* Color */
 
-.cds-text--color-primary {
+.root--color-primary {
 	color: var(--cds-color-foreground-primary);
 }
 
-.cds-text--color-strong {
+.root--color-strong {
 	color: var(--cds-color-foreground-strong);
 }
 
-.cds-text--color-faint {
+.root--color-faint {
 	color: var(--cds-color-foreground-faint);
 }
 
-.cds-text--color-disabled {
+.root--color-disabled {
 	color: var(--cds-color-foreground-disabled);
 }
 
-.cds-text--color-high-contrast {
+.root--color-high-contrast {
 	color: var(--cds-color-foreground-high-contrast);
 }
 
-.cds-text--color-warning {
+.root--color-warning {
 	color: var(--cds-color-foreground-warning-default);
 }
 
-.cds-text--color-critical {
+.root--color-critical {
 	color: var(--cds-color-foreground-critical-default);
 }
 
-.cds-text--color-interactive {
+.root--color-interactive {
 	color: var(--cds-color-foreground-interactive-default);
 }
 
-.cds-text--color-brand {
+.root--color-brand {
 	color: var(--cds-color-foreground-brand-default);
 }
 
-.cds-text--color-success {
+.root--color-success {
 	color: var(--cds-color-foreground-success-default);
 }
 
 /* Background */
 
-.cds-text--background-primary {
+.root--background-primary {
 	background: var(--cds-color-surface-primary);
 }
 
-.cds-text--background-faint {
+.root--background-faint {
 	background: var(--cds-color-surface-faint);
 }
 
-.cds-text--background-high-contrast {
+.root--background-high-contrast {
 	background: var(--cds-color-surface-high-contrast);
 }
 
-.cds-text--background-brand {
+.root--background-brand {
 	background: var(--cds-color-surface-brand);
 }
 
-.cds-text--background-interactive {
+.root--background-interactive {
 	background: var(--cds-color-surface-interactive);
 }
 
-.cds-text--background-success {
+.root--background-success {
 	background: var(--cds-color-surface-success);
 }
 
-.cds-text--background-warning {
+.root--background-warning {
 	background: var(--cds-color-surface-warning);
 }
 
-.cds-text--background-critical {
+.root--background-critical {
 	background: var(--cds-color-surface-critical);
 }
 
 /* Align */
 
-.cds-text--align-left {
+.root--align-left {
 	text-align: left;
 }
 
-.cds-text--align-center {
+.root--align-center {
 	text-align: center;
 }
 
-.cds-text--align-right {
+.root--align-right {
 	text-align: right;
 }
 
-.cds-text--align-justify {
+.root--align-justify {
 	text-align: justify;
 }
 
 /* Collapse */
 
-.cds-text--collapse {
+.root--collapse {
 	margin-bottom: 0;
 }

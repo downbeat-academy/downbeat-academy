@@ -6,8 +6,8 @@ import { GridProps } from './types'
 
 const Grid = ({ children, tag = 'div', columns, className }: GridProps) => {
 	const classes = classnames(
-		s[`cds-grid`],
-		s[`cds-grid--columns--${columns}`],
+		s[`root`],
+		s[`columns--${columns}`],
 		className
 	)
 

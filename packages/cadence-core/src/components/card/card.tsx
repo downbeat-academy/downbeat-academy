@@ -6,8 +6,8 @@ import type { CardProps } from './types'
 
 const Card = ({ children, tag = 'div', borderColor, className }: CardProps) => {
 	const classes = classnames(
-		s['cds-card--root'],
-		borderColor && s[`cds-card--border-${borderColor}`],
+		s['root'],
+		borderColor && s[`border-${borderColor}`],
 		className
 	)
 

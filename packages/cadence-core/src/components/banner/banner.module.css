@@ -1,4 +1,4 @@
-.banner--root {
+.root {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,7 +10,7 @@
 }
 
 @media (max-width: 600px) {
-  .banner--root {
+  .root {
     flex-direction: column;
   }
 }

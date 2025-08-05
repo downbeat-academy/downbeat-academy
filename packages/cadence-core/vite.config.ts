@@ -3,6 +3,7 @@
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { peerDependencies } from "./package.json";
+import crypto from "crypto";
 
 export default defineConfig({
   build: {
@@ -21,7 +22,23 @@ export default defineConfig({
   plugins: [dts()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
   css: {
     modules: {
-      generateScopedName: "cds-[local]--[hash:base64:5]", // creates a unique class prefixed by cds
+      generateScopedName: (name, filename, css) => {
+        // Extract component name from path
+        const parts = filename.split('/');
+        const componentFile = parts[parts.length - 1];
+        const componentName = componentFile.replace('.module.css', '');
+        
+        // Generate short hash
+        const hash = crypto
+          .createHash('md5')
+          .update(filename + name)
+          .digest('base64')
+          .substring(0, 5)
+          .replace(/[/+=]/g, ''); // Remove special characters from base64
+        
+        // Return formatted class name
+        return `cds-${componentName}-${name}--${hash}`;
+      }
     },
   },
   test: {

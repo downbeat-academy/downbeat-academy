@@ -18,8 +18,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
   ...props
 }, ref) => {
   const classes = classnames(
-    s['cds-input--root'],
-    isInvalid ? s['cds-input--is-invalid'] : null,
+    s['root'],
+    isInvalid ? s['is-invalid'] : null,
     className
   )
 

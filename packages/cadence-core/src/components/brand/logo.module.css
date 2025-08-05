@@ -1,27 +1,27 @@
-.cds-logo--root path {
+.root path {
 	fill: var(--cds-color-foreground-brand-default);
 }
 
-.cds-logo--contrast-high path {
+.contrast-high path {
 	fill: var(--cds-color-foreground-high-contrast);
 }
 
-.cds-logo--variant-strong path {
+.variant-strong path {
 	fill: var(--cds-color-foreground-strong);
 }
 
-.cds-logo--variant-interactive path {
+.variant-interactive path {
 	fill: var(--cds-color-foreground-interactive-default);
 }
 
-.cds-logo--variant-success path {
+.variant-success path {
 	fill: var(--cds-color-foreground-success-default);
 }
 
-.cds-logo--variant-warning path {
+.variant-warning path {
 	fill: var(--cds-color-foreground-warning-default);
 }
 
-.cds-logo--variant-critical path {
+.variant-critical path {
 	fill: var(--cds-color-foreground-critical-default);
 }

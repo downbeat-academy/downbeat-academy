@@ -19,12 +19,12 @@ const Text = ({
 	id,
 }: TextProps) => {
 	const classes = classnames(
-		s[`cds-text--${type}`],
-		s[`cds-text--${type}--${size}`],
-		s[`cds-text--color-${color}`],
-		s[`cds-text--background-${background}`],
-		s[`cds-text--align-${align}`],
-		{[s[`cds-text--collapse`]]: collapse,},
+		s[`root--${type}`],
+		s[`root--${type}--${size}`],
+		s[`root--color-${color}`],
+		s[`root--background-${background}`],
+		s[`root--align-${align}`],
+		{[s[`root--collapse`]]: collapse,},
 		className
 	)
 

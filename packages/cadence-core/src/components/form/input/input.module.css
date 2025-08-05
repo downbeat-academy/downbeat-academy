@@ -1,4 +1,4 @@
-.cds-input--root {
+.root {
   font-family: var(--cds-typography-font-family-productive-body);
   font-size: var(--cds-typography-font-size-fixed-productive-base);
   border-radius: var(--cds-radii-medium);
@@ -6,10 +6,10 @@
   padding: var(--cds-scale-small);
 }
 
-.cds-input--root[disabled] {
+.root[disabled] {
   cursor: not-allowed;
 }
 
-.cds-input--is-invalid {
+.is-invalid {
   border: 2px solid var(--cds-color-border-critical);
 }

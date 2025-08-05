@@ -23,9 +23,9 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-radio-card-group--root'],
-    columns && s[`cds-radio-card-group--columns-${columns}`],
-    s[`cds-radio-card-group--gap-${gap}`],
+    s['group-root'],
+    columns && s[`group-columns-${columns}`],
+    s[`group-gap-${gap}`],
     className
   )
 
@@ -70,41 +70,41 @@ const RadioCardItem = forwardRef<HTMLButtonElement, RadioCardItemProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-radio-card-item--root'],
-    s[`cds-radio-card-item--size-${size}`],
-    s[`cds-radio-card-item--variant-${variant}`],
-    isInvalid && s['cds-radio-card-item--is-invalid'],
+    s['item-root'],
+    s[`item-size-${size}`],
+    s[`item-variant-${variant}`],
+    isInvalid && s['item-is-invalid'],
     className
   )
 
   const indicatorClasses = classnames(
-    s['cds-radio-card-item--indicator']
+    s['item-indicator']
   )
 
   // If children is provided, use it directly
   // Otherwise, build the content from props
   const content = children || (
-    <div className={s['cds-radio-card-item--content']}>
-      <div className={s['cds-radio-card-item--header']}>
+    <div className={s['item-content']}>
+      <div className={s['item-header']}>
         {icon && (
-          <div className={s['cds-radio-card-item--icon']}>
+          <div className={s['item-icon']}>
             {icon}
           </div>
         )}
-        <div className={s['cds-radio-card-item--text-content']}>
+        <div className={s['item-text-content']}>
           {title && (
-            <h3 className={s['cds-radio-card-item--title']}>
+            <h3 className={s['item-title']}>
               {title}
             </h3>
           )}
           {description && (
-            <p className={s['cds-radio-card-item--description']}>
+            <p className={s['item-description']}>
               {description}
             </p>
           )}
         </div>
         {badge && (
-          <div className={s['cds-radio-card-item--badge']}>
+          <div className={s['item-badge']}>
             {badge}
           </div>
         )}

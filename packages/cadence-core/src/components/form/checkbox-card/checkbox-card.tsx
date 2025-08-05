@@ -61,9 +61,9 @@ const CheckboxCardGroup = forwardRef<HTMLDivElement, CheckboxCardGroupProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-checkbox-card-group--root'],
-    columns && s[`cds-checkbox-card-group--columns-${columns}`],
-    s[`cds-checkbox-card-group--gap-${gap}`],
+    s['group-root'],
+    columns && s[`group-columns-${columns}`],
+    s[`group-gap-${gap}`],
     className
   )
 
@@ -149,41 +149,41 @@ const CheckboxCardItem = forwardRef<HTMLButtonElement, CheckboxCardItemProps>(({
   }
 
   const rootClasses = classnames(
-    s['cds-checkbox-card-item--root'],
-    s[`cds-checkbox-card-item--size-${size}`],
-    s[`cds-checkbox-card-item--variant-${variant}`],
-    finalIsInvalid && s['cds-checkbox-card-item--is-invalid'],
+    s['item-root'],
+    s[`item-size-${size}`],
+    s[`item-variant-${variant}`],
+    finalIsInvalid && s['item-is-invalid'],
     className
   )
 
   const indicatorClasses = classnames(
-    s['cds-checkbox-card-item--indicator']
+    s['item-indicator']
   )
 
   // If children is provided, use it directly
   // Otherwise, build the content from props
   const content = children || (
-    <div className={s['cds-checkbox-card-item--content']}>
-      <div className={s['cds-checkbox-card-item--header']}>
+    <div className={s['item-content']}>
+      <div className={s['item-header']}>
         {icon && (
-          <div className={s['cds-checkbox-card-item--icon']}>
+          <div className={s['item-icon']}>
             {icon}
           </div>
         )}
-        <div className={s['cds-checkbox-card-item--text-content']}>
+        <div className={s['item-text-content']}>
           {title && (
-            <h3 className={s['cds-checkbox-card-item--title']}>
+            <h3 className={s['item-title']}>
               {title}
             </h3>
           )}
           {description && (
-            <p className={s['cds-checkbox-card-item--description']}>
+            <p className={s['item-description']}>
               {description}
             </p>
           )}
         </div>
         {badge && (
-          <div className={s['cds-checkbox-card-item--badge']}>
+          <div className={s['item-badge']}>
             {badge}
           </div>
         )}
