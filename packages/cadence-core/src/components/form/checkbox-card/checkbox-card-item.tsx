@@ -6,7 +6,7 @@ import { CheckboxCardGroupContext } from './checkbox-card-group'
 import s from './checkbox-card.module.css'
 import type { CheckboxCardItemProps } from './types'
 
-const CheckboxCardItem = forwardRef<HTMLButtonElement, CheckboxCardItemProps>(({
+const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   value,
   disabled,
   required,
@@ -15,7 +15,6 @@ const CheckboxCardItem = forwardRef<HTMLButtonElement, CheckboxCardItemProps>(({
   className,
   children,
   size = 'medium',
-  variant = 'default',
   alignment = 'left',
   icon,
   title,
@@ -28,21 +27,22 @@ const CheckboxCardItem = forwardRef<HTMLButtonElement, CheckboxCardItemProps>(({
   ...props
 }, ref) => {
   const context = useContext(CheckboxCardGroupContext)
-  
+
+  if (!value) {
+    throw new Error('CheckboxCardItem requires a value prop')
+  }
+
   // Use context values if available, otherwise use props
   const finalDisabled = disabled ?? context?.disabled
   const finalRequired = required ?? context?.required
   const finalIsInvalid = isInvalid ?? context?.isInvalid
-  
+
   // Handle group vs individual checkbox logic
   const isGrouped = context !== null
   let finalChecked = checked
   let finalOnCheckedChange = onCheckedChange
 
   if (isGrouped) {
-    if (!value) {
-      throw new Error('CheckboxCardItem requires a value prop when used within CheckboxCardGroup')
-    }
     const currentValue = context.value || []
     finalChecked = currentValue.includes(value)
     
@@ -65,51 +65,55 @@ const CheckboxCardItem = forwardRef<HTMLButtonElement, CheckboxCardItemProps>(({
   const rootClasses = classnames(
     s['item-root'],
     s[`item-size-${size}`],
-    s[`item-variant-${variant}`],
-    s[`item-alignment-${alignment}`],
     finalIsInvalid && s['item-is-invalid'],
     className
+  )
+
+  const itemContentClasses = classnames(
+    s[`item-content`],
+    s[`item-content-alignment-${alignment}`],
+  )
+
+  const indicatorAreaClasses = classnames(
+    s[`item-indicator-area`]
   )
 
   const indicatorClasses = classnames(
     s['item-indicator']
   )
 
-  // If children is provided, use it directly
-  // Otherwise, build the content from props
-  const content = children || (
-    <div className={s['item-content']}>
-      <div className={s['item-header']}>
-        {icon && (
-          <div className={s['item-icon']}>
-            {icon}
-          </div>
-        )}
-        <div className={s['item-text-content']}>
-          {title && (
-            <Text 
-              className={s['item-title']}
-              tag="h3"
-              type="productive-headline"
-              size="h6"
-              color="strong"
-              align={alignment}
-            >
-              {title}
-            </Text>
-          )}
+  const content = (
+    <div className={itemContentClasses}>
+      {icon && (
+        <div className={s['item-icon']}>
+          {icon}
         </div>
-        {badge && (
-          <div className={s['item-badge']}>
-            {badge}
-          </div>
-        )}
-      </div>
+      )}
+      {title && (
+        <Text
+          className={s['item-title']}
+          tag="h3"
+          type="productive-headline"
+          size="h6"
+          color="strong"
+          align={alignment}
+          collapse
+        >
+          {title}
+        </Text>
+      )}
+      {badge && (
+        <div className={s['item-badge']}>
+          {badge}
+        </div>
+      )}
+      {children}
     </div>
   )
 
   return (
     <div
+      ref={ref}
       className={rootClasses}
       onClick={() => !finalDisabled && finalOnCheckedChange?.(!finalChecked)}
       aria-label={ariaLabel}
@@ -119,12 +123,9 @@ const CheckboxCardItem = forwardRef<HTMLButtonElement, CheckboxCardItemProps>(({
       data-disabled={finalDisabled || undefined}
       {...props}
     >
-      <div className={s['item-content-wrapper']}>
-        {content}
-      </div>
-      <div className={s['item-indicator-area']}>
+      {content}
+      <div className={indicatorAreaClasses}>
         <Checkbox
-          ref={ref}
           checked={finalChecked}
           onCheckedChange={finalOnCheckedChange}
           disabled={finalDisabled}

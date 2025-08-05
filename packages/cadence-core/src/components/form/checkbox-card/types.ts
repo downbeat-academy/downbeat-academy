@@ -20,9 +20,6 @@ export interface CheckboxCardGroupProps {
 }
 
 export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<'div'> {
-  // Checkbox-specific props
-  checked?: boolean | 'indeterminate'
-  onCheckedChange?: (checked: boolean) => void
   value: string
   disabled?: boolean
   required?: boolean
@@ -35,10 +32,12 @@ export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<'div'> {
   // Card-specific props
   children?: ReactNode
   size?: 'small' | 'medium' | 'large'
-  variant?: 'default' | 'outlined' | 'filled'
   alignment?: 'left' | 'center'
   // Rich content props
   icon?: ReactNode
   title?: string
   badge?: ReactNode
+  // Checkbox-specific props
+  checked?: boolean | 'indeterminate'
+  onCheckedChange?: (checked: boolean) => void
 }

@@ -105,6 +105,7 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
       <div className={indicatorAreaClasses}>
         <Radio
           value={value}
+          checked={isSelected}
           disabled={finalDisabled}
           required={finalRequired}
           id={id}
