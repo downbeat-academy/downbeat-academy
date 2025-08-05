@@ -38,50 +38,75 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => (
-    <CheckboxGroup aria-label="Choose your favorite colors">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="red" id="color-red" />
-        <Label htmlFor="color-red">Red</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="blue" id="color-blue" />
-        <Label htmlFor="color-blue">Blue</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="green" id="color-green" />
-        <Label htmlFor="color-green">Green</Label>
-      </div>
-    </CheckboxGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your favorite colors"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="red" id="color-red" />
+          <Label htmlFor="color-red">Red</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="blue" id="color-blue" />
+          <Label htmlFor="color-blue">Blue</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="green" id="color-green" />
+          <Label htmlFor="color-green">Green</Label>
+        </div>
+      </CheckboxGroup>
+    )
+  },
 }
 
 export const WithDefaultValues: Story = {
-  render: () => (
-    <CheckboxGroup defaultValue={['blue', 'green']} aria-label="Choose your favorite colors">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="red" id="default-red" />
-        <Label htmlFor="default-red">Red</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="blue" id="default-blue" />
-        <Label htmlFor="default-blue">Blue (Default)</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="green" id="default-green" />
-        <Label htmlFor="default-green">Green (Default)</Label>
-      </div>
-    </CheckboxGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>(['blue', 'green'])
+
+    return (
+      <CheckboxGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your favorite colors"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="red" id="default-red" />
+          <Label htmlFor="default-red">Red</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="blue" id="default-blue" />
+          <Label htmlFor="default-blue">Blue (Default)</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="green" id="default-green" />
+          <Label htmlFor="default-green">Green (Default)</Label>
+        </div>
+      </CheckboxGroup>
+    )
+  },
 }
 
 export const StandaloneCheckbox: Story = {
-  render: () => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <CheckboxItem value="standalone" id="standalone-checkbox" />
-      <Label htmlFor="standalone-checkbox">I agree to the terms and conditions</Label>
-    </div>
-  ),
+  render: () => {
+    const [checked, setChecked] = useState(false)
+
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <CheckboxItem
+          value="standalone"
+          id="standalone-checkbox"
+          checked={checked}
+          onCheckedChange={setChecked}
+        />
+        <Label htmlFor="standalone-checkbox">I agree to the terms and conditions</Label>
+      </div>
+    )
+  },
 }
 
 export const IndeterminateState: Story = {
@@ -113,8 +138,8 @@ export const IndeterminateState: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <CheckboxItem 
-            value="all" 
+          <CheckboxItem
+            value="all"
             id="parent-checkbox"
             checked={parentChecked}
             onCheckedChange={handleParentChange}
@@ -123,9 +148,9 @@ export const IndeterminateState: Story = {
             Select All Features
           </Label>
         </div>
-        
+
         <div style={{ paddingLeft: '24px' }}>
-          <CheckboxGroup 
+          <CheckboxGroup
             value={childChecked}
             onValueChange={handleChildChange}
             aria-label="Available features"
@@ -150,22 +175,31 @@ export const IndeterminateState: Story = {
 }
 
 export const Horizontal: Story = {
-  render: () => (
-    <CheckboxGroup orientation="horizontal" aria-label="Choose your favorite colors">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="red" id="horizontal-red" />
-        <Label htmlFor="horizontal-red">Red</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="blue" id="horizontal-blue" />
-        <Label htmlFor="horizontal-blue">Blue</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="green" id="horizontal-green" />
-        <Label htmlFor="horizontal-green">Green</Label>
-      </div>
-    </CheckboxGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxGroup
+        value={value}
+        onValueChange={setValue}
+        orientation="horizontal"
+        aria-label="Choose your favorite colors"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="red" id="horizontal-red" />
+          <Label htmlFor="horizontal-red">Red</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="blue" id="horizontal-blue" />
+          <Label htmlFor="horizontal-blue">Blue</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="green" id="horizontal-green" />
+          <Label htmlFor="horizontal-green">Green</Label>
+        </div>
+      </CheckboxGroup>
+    )
+  },
 }
 
 export const Disabled: Story = {
@@ -207,69 +241,94 @@ export const DisabledWithValues: Story = {
 }
 
 export const IndividualItemDisabled: Story = {
-  render: () => (
-    <CheckboxGroup aria-label="Choose your favorite colors">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="red" id="individual-red" />
-        <Label htmlFor="individual-red">Red</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="blue" id="individual-blue" disabled />
-        <Label htmlFor="individual-blue">Blue (Disabled)</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="green" id="individual-green" />
-        <Label htmlFor="individual-green">Green</Label>
-      </div>
-    </CheckboxGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your favorite colors"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="red" id="individual-red" />
+          <Label htmlFor="individual-red">Red</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="blue" id="individual-blue" disabled />
+          <Label htmlFor="individual-blue">Blue (Disabled)</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="green" id="individual-green" />
+          <Label htmlFor="individual-green">Green</Label>
+        </div>
+      </CheckboxGroup>
+    )
+  },
 }
 
 export const Invalid: Story = {
-  render: () => (
-    <CheckboxGroup aria-label="Choose your favorite colors">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="red" id="invalid-red" isInvalid />
-        <Label htmlFor="invalid-red">Red</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="blue" id="invalid-blue" isInvalid />
-        <Label htmlFor="invalid-blue">Blue</Label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem value="green" id="invalid-green" isInvalid />
-        <Label htmlFor="invalid-green">Green</Label>
-      </div>
-    </CheckboxGroup>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <CheckboxGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label="Choose your favorite colors"
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="red" id="invalid-red" isInvalid />
+          <Label htmlFor="invalid-red">Red</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="blue" id="invalid-blue" isInvalid />
+          <Label htmlFor="invalid-blue">Blue</Label>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem value="green" id="invalid-green" isInvalid />
+          <Label htmlFor="invalid-green">Green</Label>
+        </div>
+      </CheckboxGroup>
+    )
+  },
 }
 
 export const WithHelperText: Story = {
-  render: () => (
-    <Field>
-      <CheckboxGroup aria-label="Choose your interests" aria-describedby="interests-helper">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <CheckboxItem value="technology" id="interest-tech" />
-          <Label htmlFor="interest-tech">Technology</Label>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <CheckboxItem value="design" id="interest-design" />
-          <Label htmlFor="interest-design">Design</Label>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <CheckboxItem value="music" id="interest-music" />
-          <Label htmlFor="interest-music">Music</Label>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <CheckboxItem value="sports" id="interest-sports" />
-          <Label htmlFor="interest-sports">Sports</Label>
-        </div>
-      </CheckboxGroup>
-      <HelperText id="interests-helper">
-        Select all topics that interest you. We'll customize your experience based on your choices.
-      </HelperText>
-    </Field>
-  ),
+  render: () => {
+    const [value, setValue] = useState<string[]>([])
+
+    return (
+      <Field>
+        <CheckboxGroup
+          value={value}
+          onValueChange={setValue}
+          aria-label="Choose your interests"
+          aria-describedby="interests-helper"
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <CheckboxItem value="technology" id="interest-tech" />
+            <Label htmlFor="interest-tech">Technology</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <CheckboxItem value="design" id="interest-design" />
+            <Label htmlFor="interest-design">Design</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <CheckboxItem value="music" id="interest-music" />
+            <Label htmlFor="interest-music">Music</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <CheckboxItem value="sports" id="interest-sports" />
+            <Label htmlFor="interest-sports">Sports</Label>
+          </div>
+        </CheckboxGroup>
+        <HelperText id="interests-helper">
+          Select all topics that interest you. We'll customize your experience based on your choices.
+        </HelperText>
+      </Field>
+    )
+  },
 }
 
 export const WithValidation: Story = {

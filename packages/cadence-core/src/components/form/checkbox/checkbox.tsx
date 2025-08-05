@@ -1,33 +1,9 @@
 import React, { forwardRef, createContext, useContext } from 'react'
 import { Root as CheckboxRoot, Indicator as CheckboxIndicator } from '@radix-ui/react-checkbox'
 import classnames from 'classnames'
+import { Check, Minus } from 'cadence-icons'
 import s from './checkbox.module.css'
 import type { CheckboxGroupProps, CheckboxItemProps } from './types'
-
-// CheckMark icon for checked state
-const CheckMark = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M10 3L4.5 8.5L2 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
-
-// Minus icon for indeterminate state
-const Minus = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M2.5 6H9.5"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-)
 
 // Context for CheckboxGroup
 interface CheckboxGroupContextValue {
@@ -106,12 +82,12 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(({
   ...props
 }, ref) => {
   const context = useContext(CheckboxGroupContext)
-  
+
   // Use context values if available, otherwise use props
   const finalDisabled = disabled ?? context?.disabled
   const finalRequired = required ?? context?.required
   const finalIsInvalid = isInvalid ?? context?.isInvalid
-  
+
   // Handle group vs individual checkbox logic
   const isGrouped = context !== null
   let finalChecked = checked
@@ -120,7 +96,7 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(({
   if (isGrouped) {
     const currentValue = context.value || []
     finalChecked = currentValue.includes(value)
-    
+
     if (context.onValueChange) {
       finalOnCheckedChange = (newChecked: boolean) => {
         const currentValueAtTime = context.value || []
@@ -164,7 +140,7 @@ const CheckboxItem = forwardRef<HTMLButtonElement, CheckboxItemProps>(({
       {...props}
     >
       <CheckboxIndicator className={indicatorClasses}>
-        {finalChecked === 'indeterminate' ? <Minus /> : <CheckMark />}
+        {finalChecked === 'indeterminate' ? <Minus width={12} /> : <Check width={12} />}
       </CheckboxIndicator>
     </CheckboxRoot>
   )

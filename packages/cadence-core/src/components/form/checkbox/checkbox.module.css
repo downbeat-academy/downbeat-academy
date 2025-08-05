@@ -21,7 +21,7 @@
   height: 20px;
   background-color: var(--cds-color-surface-primary);
   border: 1px solid var(--cds-color-border-primary);
-  border-radius: 4px; /* Square corners for checkbox, unlike radio */
+  border-radius: var(--cds-radii-hard);
   cursor: pointer;
   transition: background-color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
   flex-shrink: 0;
@@ -86,13 +86,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  color: var(--cds-color-foreground-high-contrast);
-}
-
-.cds-checkbox-item--indicator svg {
   width: 12px;
   height: 12px;
+  position: relative;
+  color: var(--cds-color-foreground-high-contrast);
 }
