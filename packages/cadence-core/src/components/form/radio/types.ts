@@ -1,30 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react'
-import { Root as RadioGroupRoot, Item as RadioGroupItem } from '@radix-ui/react-radio-group'
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 
-export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof RadioGroupRoot> {
-  value?: string
-  onValueChange?: (value: string) => void
-  disabled?: boolean
-  required?: boolean
-  name?: string
-  orientation?: 'horizontal' | 'vertical'
-  loop?: boolean
-  isInvalid?: boolean
-  className?: string
-  children: React.ReactNode
-  'aria-label'?: string
-  'aria-labelledby'?: string
-  'aria-describedby'?: string
-}
+export interface RadioGroupProps extends ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> {}
 
-export interface RadioItemProps extends ComponentPropsWithoutRef<typeof RadioGroupItem> {
-  value: string
-  disabled?: boolean
-  required?: boolean
-  id?: string
+export interface RadioProps extends ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
   isInvalid?: boolean
-  className?: string
-  'aria-label'?: string
-  'aria-labelledby'?: string
-  'aria-describedby'?: string
 }

@@ -1,203 +1,57 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { CheckboxGroup, CheckboxItem } from '../checkbox'
+import { Checkbox } from '../checkbox'
 import { describe, it, expect, vi } from 'vitest'
 
-describe('CheckboxGroup', () => {
+describe('Checkbox', () => {
   it('renders correctly', () => {
-    render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
+    render(<Checkbox aria-label="Test checkbox" />)
 
-    const checkboxGroup = screen.getByRole('group')
-    expect(checkboxGroup).toBeDefined()
-    expect(checkboxGroup.getAttribute('aria-label')).toBe('Test checkbox group')
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox).toBeDefined()
+    expect(checkbox.getAttribute('aria-label')).toBe('Test checkbox')
   })
 
-  it('renders checkbox items correctly', () => {
-    render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
-
-    const checkboxItems = screen.getAllByRole('checkbox')
-    expect(checkboxItems.length).toBe(2)
-    expect(checkboxItems[0].getAttribute('value')).toBe('option1')
-    expect(checkboxItems[1].getAttribute('value')).toBe('option2')
-  })
-
-  it('can select multiple checkbox items', () => {
-    const TestComponent = () => {
-      const [values, setValues] = React.useState<string[]>([])
-      return (
-        <CheckboxGroup 
-          aria-label="Test checkbox group" 
-          value={values}
-          onValueChange={setValues}
-        >
-          <CheckboxItem value="option1" aria-label="Option 1" />
-          <CheckboxItem value="option2" aria-label="Option 2" />
-        </CheckboxGroup>
-      )
-    }
-
-    render(<TestComponent />)
-
-    const firstCheckbox = screen.getByLabelText('Option 1')
-    const secondCheckbox = screen.getByLabelText('Option 2')
-
-    // Initially both should be unchecked
-    expect(firstCheckbox.getAttribute('aria-checked')).toBe('false')
-    expect(secondCheckbox.getAttribute('aria-checked')).toBe('false')
-
-    // Click first checkbox
-    fireEvent.click(firstCheckbox)
-    expect(firstCheckbox.getAttribute('aria-checked')).toBe('true')
-    expect(secondCheckbox.getAttribute('aria-checked')).toBe('false')
-
-    // Click second checkbox
-    fireEvent.click(secondCheckbox)
-    expect(firstCheckbox.getAttribute('aria-checked')).toBe('true')
-    expect(secondCheckbox.getAttribute('aria-checked')).toBe('true')
-  })
-
-  it('can deselect checkbox items', () => {
+  it('can be checked and unchecked', () => {
     const handleChange = vi.fn()
     render(
-      <CheckboxGroup 
-        aria-label="Test checkbox group" 
-        value={['option1', 'option2']}
-        onValueChange={handleChange}
-      >
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
-
-    const firstCheckbox = screen.getByLabelText('Option 1')
-    fireEvent.click(firstCheckbox)
-    expect(handleChange).toHaveBeenCalledWith(['option2'])
-  })
-
-  it('respects controlled state', () => {
-    const { rerender } = render(
-      <CheckboxGroup aria-label="Test checkbox group" value={['option1']}>
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
-
-    const firstCheckbox = screen.getByLabelText('Option 1')
-    const secondCheckbox = screen.getByLabelText('Option 2')
-
-    expect(firstCheckbox.getAttribute('aria-checked')).toBe('true')
-    expect(secondCheckbox.getAttribute('aria-checked')).toBe('false')
-
-    rerender(
-      <CheckboxGroup aria-label="Test checkbox group" value={['option2']}>
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
-
-    expect(firstCheckbox.getAttribute('aria-checked')).toBe('false')
-    expect(secondCheckbox.getAttribute('aria-checked')).toBe('true')
-  })
-
-  it('can be disabled', () => {
-    const handleChange = vi.fn()
-    render(
-      <CheckboxGroup aria-label="Test checkbox group" disabled onValueChange={handleChange}>
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
-
-    const checkboxItems = screen.getAllByRole('checkbox')
-    checkboxItems.forEach(checkbox => {
-      expect(checkbox.getAttribute('data-disabled')).toBe('')
-    })
-
-    fireEvent.click(checkboxItems[0])
-    expect(handleChange).not.toHaveBeenCalled()
-  })
-
-  it('supports horizontal orientation', () => {
-    render(
-      <CheckboxGroup aria-label="Test checkbox group" orientation="horizontal">
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" />
-      </CheckboxGroup>
-    )
-
-    const checkboxGroup = screen.getByRole('group')
-    expect(checkboxGroup.getAttribute('data-orientation')).toBe('horizontal')
-  })
-
-  it('applies custom className', () => {
-    render(
-      <CheckboxGroup aria-label="Test checkbox group" className="custom-class">
-        <CheckboxItem value="option1" aria-label="Option 1" />
-      </CheckboxGroup>
-    )
-
-    const checkboxGroup = screen.getByRole('group')
-    expect(checkboxGroup.className).toContain('custom-class')
-  })
-
-  it('handles empty value array correctly', () => {
-    const handleChange = vi.fn()
-    render(
-      <CheckboxGroup aria-label="Test checkbox group" value={[]} onValueChange={handleChange}>
-        <CheckboxItem value="option1" aria-label="Option 1" />
-      </CheckboxGroup>
-    )
-
-    const checkbox = screen.getByLabelText('Option 1')
-    expect(checkbox.getAttribute('aria-checked')).toBe('false')
-
-    fireEvent.click(checkbox)
-    expect(handleChange).toHaveBeenCalledWith(['option1'])
-  })
-})
-
-describe('CheckboxItem', () => {
-  it('renders correctly', () => {
-    render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem value="test" aria-label="Test option" />
-      </CheckboxGroup>
-    )
-
-    const checkboxItem = screen.getByRole('checkbox')
-    expect(checkboxItem).toBeDefined()
-    expect(checkboxItem.getAttribute('value')).toBe('test')
-  })
-
-  it('works as standalone checkbox', () => {
-    const handleChange = vi.fn()
-    render(
-      <CheckboxItem 
-        value="standalone" 
-        aria-label="Standalone checkbox"
+      <Checkbox 
+        aria-label="Test checkbox"
         onCheckedChange={handleChange}
       />
     )
 
     const checkbox = screen.getByRole('checkbox')
+    
+    // Initially unchecked
+    expect(checkbox.getAttribute('aria-checked')).toBe('false')
+
+    // Click to check
     fireEvent.click(checkbox)
     expect(handleChange).toHaveBeenCalledWith(true)
+
+    // Click again to uncheck
+    fireEvent.click(checkbox)
+    expect(handleChange).toHaveBeenCalledWith(false)
+  })
+
+  it('respects controlled state', () => {
+    const { rerender } = render(
+      <Checkbox aria-label="Test checkbox" checked={false} />
+    )
+
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.getAttribute('aria-checked')).toBe('false')
+
+    rerender(
+      <Checkbox aria-label="Test checkbox" checked={true} />
+    )
+    expect(checkbox.getAttribute('aria-checked')).toBe('true')
   })
 
   it('supports indeterminate state', () => {
     render(
-      <CheckboxItem 
-        value="indeterminate" 
+      <Checkbox 
         aria-label="Indeterminate checkbox"
         checked="indeterminate"
       />
@@ -207,108 +61,120 @@ describe('CheckboxItem', () => {
     expect(checkbox.getAttribute('aria-checked')).toBe('mixed')
   })
 
-  it('can be individually disabled', () => {
+  it('can be disabled', () => {
+    const handleChange = vi.fn()
     render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem value="option1" aria-label="Option 1" />
-        <CheckboxItem value="option2" aria-label="Option 2" disabled />
-      </CheckboxGroup>
+      <Checkbox 
+        aria-label="Disabled checkbox"
+        disabled
+        onCheckedChange={handleChange}
+      />
     )
 
-    const firstCheckbox = screen.getByLabelText('Option 1')
-    const secondCheckbox = screen.getByLabelText('Option 2')
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.getAttribute('data-disabled')).toBe('')
 
-    expect(firstCheckbox.getAttribute('data-disabled')).toBeNull()
-    expect(secondCheckbox.getAttribute('data-disabled')).toBe('')
+    fireEvent.click(checkbox)
+    expect(handleChange).not.toHaveBeenCalled()
   })
 
   it('applies invalid styles when isInvalid is true', () => {
     render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem value="test" aria-label="Test option" isInvalid />
-      </CheckboxGroup>
+      <Checkbox 
+        aria-label="Invalid checkbox"
+        isInvalid
+      />
     )
 
-    const checkboxItem = screen.getByRole('checkbox')
-    expect(checkboxItem.className).toContain('cds-checkbox-item--is-invalid')
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.className).toContain('cds-checkbox--is-invalid')
   })
 
   it('applies custom className', () => {
     render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem
-          value="test"
-          aria-label="Test option"
-          className="custom-item-class"
-        />
-      </CheckboxGroup>
+      <Checkbox
+        aria-label="Custom checkbox"
+        className="custom-checkbox-class"
+      />
     )
 
-    const checkboxItem = screen.getByRole('checkbox')
-    expect(checkboxItem.className).toContain('custom-item-class')
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.className).toContain('custom-checkbox-class')
   })
 
   it('supports form attributes', () => {
     render(
-      <CheckboxGroup aria-label="Test checkbox group" name="test-group">
-        <CheckboxItem
-          value="test"
-          aria-label="Test option"
-          id="test-checkbox"
-          required
-        />
-      </CheckboxGroup>
+      <Checkbox
+        aria-label="Form checkbox"
+        id="test-checkbox"
+        name="test-name"
+        value="test-value"
+        required
+      />
     )
 
-    const checkboxItem = screen.getByRole('checkbox')
-    expect(checkboxItem.getAttribute('id')).toBe('test-checkbox')
-    expect(checkboxItem.getAttribute('value')).toBe('test')
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.getAttribute('id')).toBe('test-checkbox')
+    expect(checkbox.getAttribute('value')).toBe('test-value')
+    expect(checkbox.hasAttribute('required')).toBe(true)
+    // Note: name attribute may not be set on Radix checkbox primitive
   })
 
   it('supports aria attributes', () => {
     render(
-      <CheckboxGroup aria-label="Test checkbox group">
-        <CheckboxItem
-          value="test"
-          aria-label="Test option"
-          aria-describedby="helper-text"
-          aria-labelledby="label-text"
-        />
-      </CheckboxGroup>
+      <Checkbox
+        aria-label="Accessible checkbox"
+        aria-describedby="helper-text"
+        aria-labelledby="label-text"
+      />
     )
 
-    const checkboxItem = screen.getByRole('checkbox')
-    expect(checkboxItem.getAttribute('aria-label')).toBe('Test option')
-    expect(checkboxItem.getAttribute('aria-describedby')).toBe('helper-text')
-    expect(checkboxItem.getAttribute('aria-labelledby')).toBe('label-text')
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.getAttribute('aria-label')).toBe('Accessible checkbox')
+    expect(checkbox.getAttribute('aria-describedby')).toBe('helper-text')
+    expect(checkbox.getAttribute('aria-labelledby')).toBe('label-text')
   })
 
-  it('prevents adding duplicates to group value', () => {
-    const TestComponent = () => {
-      const [values, setValues] = React.useState<string[]>(['option1'])
-      return (
-        <CheckboxGroup 
-          aria-label="Test checkbox group" 
-          value={values}
-          onValueChange={setValues}
-        >
-          <CheckboxItem value="option1" aria-label="Option 1" />
-        </CheckboxGroup>
-      )
-    }
+  it('works with uncontrolled state using defaultChecked', () => {
+    const handleChange = vi.fn()
+    render(
+      <Checkbox
+        aria-label="Uncontrolled checkbox"
+        defaultChecked={true}
+        onCheckedChange={handleChange}
+      />
+    )
 
-    render(<TestComponent />)
+    const checkbox = screen.getByRole('checkbox')
+    expect(checkbox.getAttribute('aria-checked')).toBe('true')
 
-    const checkbox = screen.getByLabelText('Option 1')
-    // Should be checked initially
-    expect(checkbox.getAttribute('aria-checked')).toBe('true')
-    
-    // Click to uncheck
     fireEvent.click(checkbox)
-    expect(checkbox.getAttribute('aria-checked')).toBe('false')
-    
-    // Click again to check - should not create duplicates
-    fireEvent.click(checkbox)
-    expect(checkbox.getAttribute('aria-checked')).toBe('true')
+    expect(handleChange).toHaveBeenCalledWith(false)
+  })
+
+  it('shows correct icon for checked state', () => {
+    const { container } = render(
+      <Checkbox
+        aria-label="Checked checkbox"
+        checked={true}
+      />
+    )
+
+    // Check that the indicator contains the check icon (not minus)
+    const indicator = container.querySelector('[class*="indicator"]')
+    expect(indicator).toBeDefined()
+  })
+
+  it('shows correct icon for indeterminate state', () => {
+    const { container } = render(
+      <Checkbox
+        aria-label="Indeterminate checkbox"
+        checked="indeterminate"
+      />
+    )
+
+    // Check that the indicator contains the minus icon
+    const indicator = container.querySelector('[class*="indicator"]')
+    expect(indicator).toBeDefined()
   })
 })

@@ -11,8 +11,8 @@
   gap: var(--cds-scale-base);
 }
 
-/* RadioItem styles */
-.cds-radio-group-item--root {
+/* Radio styles */
+.cds-radio--root {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -27,47 +27,47 @@
   flex-shrink: 0;
 }
 
-.cds-radio-group-item--root:hover:not([data-disabled]) {
+.cds-radio--root:hover:not([data-disabled]) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-radio-group-item--root:focus-visible {
+.cds-radio--root:focus-visible {
   outline: 2px solid var(--cds-color-border-focus);
   outline-offset: 2px;
 }
 
-.cds-radio-group-item--root[data-state='checked'] {
+.cds-radio--root[data-state='checked'] {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-foreground-interactive-default);
 }
 
-.cds-radio-group-item--root[data-state='checked']:hover:not([data-disabled]) {
+.cds-radio--root[data-state='checked']:hover:not([data-disabled]) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-foreground-interactive-hover);
 }
 
-.cds-radio-group-item--root[data-disabled] {
+.cds-radio--root[data-disabled] {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-radio-group-item--root[data-state='checked'][data-disabled] {
+.cds-radio--root[data-state='checked'][data-disabled] {
   background-color: var(--cds-color-palette-blueberry-300);
   border-color: var(--cds-color-palette-blueberry-400);
 }
 
-.cds-radio-group-item--is-invalid {
+.cds-radio--is-invalid {
   border-color: var(--cds-color-border-critical);
 }
 
-.cds-radio-group-item--is-invalid:focus-visible {
+.cds-radio--is-invalid:focus-visible {
   outline-color: var(--cds-color-border-critical);
 }
 
-/* RadioItem Indicator styles */
-.cds-radio-group-item--indicator {
+/* Radio Indicator styles */
+.cds-radio--indicator {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@
   position: relative;
 }
 
-.cds-radio-group-item--indicator::after {
+.cds-radio--indicator::after {
   content: '';
   width: 8px;
   height: 6px;
