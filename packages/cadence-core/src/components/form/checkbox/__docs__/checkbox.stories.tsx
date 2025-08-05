@@ -93,18 +93,22 @@ export const WithDefaultValues: Story = {
 
 export const StandaloneCheckbox: Story = {
   render: () => {
-    const [checked, setChecked] = useState(false)
+    const [value, setValue] = useState<string[]>([])
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <CheckboxItem
-          value="standalone"
-          id="standalone-checkbox"
-          checked={checked}
-          onCheckedChange={setChecked}
-        />
-        <Label htmlFor="standalone-checkbox">I agree to the terms and conditions</Label>
-      </div>
+      <CheckboxGroup
+        value={value}
+        onValueChange={setValue}
+        aria-label='Accept terms and conditions'
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <CheckboxItem
+            value="standalone"
+            id="standalone-checkbox"
+          />
+          <Label htmlFor="standalone-checkbox">I agree to the terms and conditions</Label>
+        </div>
+      </CheckboxGroup>
     )
   },
 }
