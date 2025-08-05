@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { RadioGroup, RadioItem } from '../radio'
+import { RadioGroup, Radio } from '../radio'
 import { Field } from '../../field'
 import { Label } from '../../primitives/label'
 import { HelperText } from '../../primitives/helper-text'
@@ -45,15 +45,15 @@ export const Default: Story = {
   render: () => (
     <RadioGroup aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="color-red" />
+        <Radio value="red" id="color-red" />
         <Label htmlFor="color-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="color-blue" />
+        <Radio value="blue" id="color-blue" />
         <Label htmlFor="color-blue">Blue</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="color-green" />
+        <Radio value="green" id="color-green" />
         <Label htmlFor="color-green">Green</Label>
       </div>
     </RadioGroup>
@@ -64,15 +64,15 @@ export const WithDefaultValue: Story = {
   render: () => (
     <RadioGroup defaultValue="blue" aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="default-red" />
+        <Radio value="red" id="default-red" />
         <Label htmlFor="default-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="default-blue" />
+        <Radio value="blue" id="default-blue" />
         <Label htmlFor="default-blue">Blue (Default)</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="default-green" />
+        <Radio value="green" id="default-green" />
         <Label htmlFor="default-green">Green</Label>
       </div>
     </RadioGroup>
@@ -83,15 +83,15 @@ export const Horizontal: Story = {
   render: () => (
     <RadioGroup orientation="horizontal" aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="horizontal-red" />
+        <Radio value="red" id="horizontal-red" />
         <Label htmlFor="horizontal-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="horizontal-blue" />
+        <Radio value="blue" id="horizontal-blue" />
         <Label htmlFor="horizontal-blue">Blue</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="horizontal-green" />
+        <Radio value="green" id="horizontal-green" />
         <Label htmlFor="horizontal-green">Green</Label>
       </div>
     </RadioGroup>
@@ -102,15 +102,15 @@ export const Disabled: Story = {
   render: () => (
     <RadioGroup disabled aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="disabled-red" />
+        <Radio value="red" id="disabled-red" />
         <Label htmlFor="disabled-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="disabled-blue" />
+        <Radio value="blue" id="disabled-blue" />
         <Label htmlFor="disabled-blue">Blue</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="disabled-green" />
+        <Radio value="green" id="disabled-green" />
         <Label htmlFor="disabled-green">Green</Label>
       </div>
     </RadioGroup>
@@ -121,15 +121,15 @@ export const DisabledWithValue: Story = {
   render: () => (
     <RadioGroup disabled defaultValue="blue" aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="disabled-value-red" />
+        <Radio value="red" id="disabled-value-red" />
         <Label htmlFor="disabled-value-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="disabled-value-blue" />
+        <Radio value="blue" id="disabled-value-blue" />
         <Label htmlFor="disabled-value-blue">Blue (Selected)</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="disabled-value-green" />
+        <Radio value="green" id="disabled-value-green" />
         <Label htmlFor="disabled-value-green">Green</Label>
       </div>
     </RadioGroup>
@@ -140,15 +140,15 @@ export const IndividualItemDisabled: Story = {
   render: () => (
     <RadioGroup aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="individual-red" />
+        <Radio value="red" id="individual-red" />
         <Label htmlFor="individual-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="individual-blue" disabled />
+        <Radio value="blue" id="individual-blue" disabled />
         <Label htmlFor="individual-blue">Blue (Disabled)</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="individual-green" />
+        <Radio value="green" id="individual-green" />
         <Label htmlFor="individual-green">Green</Label>
       </div>
     </RadioGroup>
@@ -159,15 +159,15 @@ export const Invalid: Story = {
   render: () => (
     <RadioGroup aria-label="Choose your favorite color">
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="red" id="invalid-red" isInvalid />
+        <Radio value="red" id="invalid-red" isInvalid />
         <Label htmlFor="invalid-red">Red</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="blue" id="invalid-blue" isInvalid />
+        <Radio value="blue" id="invalid-blue" isInvalid />
         <Label htmlFor="invalid-blue">Blue</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <RadioItem value="green" id="invalid-green" isInvalid />
+        <Radio value="green" id="invalid-green" isInvalid />
         <Label htmlFor="invalid-green">Green</Label>
       </div>
     </RadioGroup>
@@ -179,15 +179,15 @@ export const WithHelperText: Story = {
     <Field>
       <RadioGroup aria-label="Choose your plan" aria-describedby="plan-helper">
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <RadioItem value="basic" id="plan-basic" />
+          <Radio value="basic" id="plan-basic" />
           <Label htmlFor="plan-basic">Basic Plan - $9/month</Label>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <RadioItem value="pro" id="plan-pro" />
+          <Radio value="pro" id="plan-pro" />
           <Label htmlFor="plan-pro">Pro Plan - $29/month</Label>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <RadioItem value="enterprise" id="plan-enterprise" />
+          <Radio value="enterprise" id="plan-enterprise" />
           <Label htmlFor="plan-enterprise">Enterprise Plan - $99/month</Label>
         </div>
       </RadioGroup>
@@ -226,7 +226,7 @@ export const WithValidation: Story = {
             aria-describedby={showError ? 'plan-error' : undefined}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="basic"
                 id="validation-basic"
                 isInvalid={showError}
@@ -234,7 +234,7 @@ export const WithValidation: Story = {
               <Label htmlFor="validation-basic">Basic Plan - $9/month</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="pro"
                 id="validation-pro"
                 isInvalid={showError}
@@ -242,7 +242,7 @@ export const WithValidation: Story = {
               <Label htmlFor="validation-pro">Pro Plan - $29/month</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="enterprise"
                 id="validation-enterprise"
                 isInvalid={showError}
@@ -321,7 +321,7 @@ export const CompleteExample: Story = {
             aria-describedby={errors.paymentMethod ? 'payment-error' : undefined}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="credit-card"
                 id="payment-credit"
                 isInvalid={errors.paymentMethod}
@@ -329,7 +329,7 @@ export const CompleteExample: Story = {
               <Label htmlFor="payment-credit">Credit Card</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="paypal"
                 id="payment-paypal"
                 isInvalid={errors.paymentMethod}
@@ -337,7 +337,7 @@ export const CompleteExample: Story = {
               <Label htmlFor="payment-paypal">PayPal</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="bank-transfer"
                 id="payment-bank"
                 isInvalid={errors.paymentMethod}
@@ -363,15 +363,15 @@ export const CompleteExample: Story = {
             aria-describedby="shipping-helper"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem value="standard" id="shipping-standard" />
+              <Radio value="standard" id="shipping-standard" />
               <Label htmlFor="shipping-standard">Standard (5-7 days)</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem value="express" id="shipping-express" />
+              <Radio value="express" id="shipping-express" />
               <Label htmlFor="shipping-express">Express (2-3 days)</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem value="overnight" id="shipping-overnight" />
+              <Radio value="overnight" id="shipping-overnight" />
               <Label htmlFor="shipping-overnight">Overnight</Label>
             </div>
           </RadioGroup>
@@ -391,7 +391,7 @@ export const CompleteExample: Story = {
             aria-describedby={errors.newsletter ? 'newsletter-error' : 'newsletter-helper'}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="weekly"
                 id="newsletter-weekly"
                 isInvalid={errors.newsletter}
@@ -399,7 +399,7 @@ export const CompleteExample: Story = {
               <Label htmlFor="newsletter-weekly">Weekly newsletter</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="monthly"
                 id="newsletter-monthly"
                 isInvalid={errors.newsletter}
@@ -407,7 +407,7 @@ export const CompleteExample: Story = {
               <Label htmlFor="newsletter-monthly">Monthly newsletter</Label>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <RadioItem
+              <Radio
                 value="none"
                 id="newsletter-none"
                 isInvalid={errors.newsletter}

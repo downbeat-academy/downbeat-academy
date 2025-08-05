@@ -1,14 +1,14 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { RadioGroup, RadioItem } from '../radio'
+import { RadioGroup, Radio } from '../radio'
 import { describe, it, expect, vi } from 'vitest'
 
 describe('RadioGroup', () => {
   it('renders correctly', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -20,8 +20,8 @@ describe('RadioGroup', () => {
   it('renders radio items correctly', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -35,8 +35,8 @@ describe('RadioGroup', () => {
     const handleChange = vi.fn()
     render(
       <RadioGroup aria-label="Test radio group" onValueChange={handleChange}>
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -49,8 +49,8 @@ describe('RadioGroup', () => {
   it('respects controlled state', () => {
     const { rerender } = render(
       <RadioGroup aria-label="Test radio group" value="option1">
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -62,8 +62,8 @@ describe('RadioGroup', () => {
 
     rerender(
       <RadioGroup aria-label="Test radio group" value="option2">
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -75,8 +75,8 @@ describe('RadioGroup', () => {
     const handleChange = vi.fn()
     render(
       <RadioGroup aria-label="Test radio group" disabled onValueChange={handleChange}>
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -92,8 +92,8 @@ describe('RadioGroup', () => {
   it('supports horizontal orientation', () => {
     render(
       <RadioGroup aria-label="Test radio group" orientation="horizontal">
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" />
       </RadioGroup>
     )
 
@@ -104,7 +104,7 @@ describe('RadioGroup', () => {
   it('applies custom className', () => {
     render(
       <RadioGroup aria-label="Test radio group" className="custom-class">
-        <RadioItem value="option1" aria-label="Option 1" />
+        <Radio value="option1" aria-label="Option 1" />
       </RadioGroup>
     )
 
@@ -113,11 +113,11 @@ describe('RadioGroup', () => {
   })
 })
 
-describe('RadioItem', () => {
+describe('Radio', () => {
   it('renders correctly', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem value="test" aria-label="Test option" />
+        <Radio value="test" aria-label="Test option" />
       </RadioGroup>
     )
 
@@ -129,8 +129,8 @@ describe('RadioItem', () => {
   it('can be individually disabled', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem value="option1" aria-label="Option 1" />
-        <RadioItem value="option2" aria-label="Option 2" disabled />
+        <Radio value="option1" aria-label="Option 1" />
+        <Radio value="option2" aria-label="Option 2" disabled />
       </RadioGroup>
     )
 
@@ -144,18 +144,18 @@ describe('RadioItem', () => {
   it('applies invalid styles when isInvalid is true', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem value="test" aria-label="Test option" isInvalid />
+        <Radio value="test" aria-label="Test option" isInvalid />
       </RadioGroup>
     )
 
     const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain('cds-radio-group-item--is-invalid')
+    expect(radioItem.className).toContain('cds-radio--is-invalid')
   })
 
   it('applies custom className', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem
+        <Radio
           value="test"
           aria-label="Test option"
           className="custom-item-class"
@@ -170,7 +170,7 @@ describe('RadioItem', () => {
   it('supports form attributes', () => {
     render(
       <RadioGroup aria-label="Test radio group" name="test-group">
-        <RadioItem
+        <Radio
           value="test"
           aria-label="Test option"
           id="test-radio"
@@ -188,7 +188,7 @@ describe('RadioItem', () => {
   it('supports aria attributes', () => {
     render(
       <RadioGroup aria-label="Test radio group">
-        <RadioItem
+        <Radio
           value="test"
           aria-label="Test option"
           aria-describedby="helper-text"

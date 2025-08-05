@@ -1,23 +1,12 @@
 import React, { forwardRef } from 'react'
-import { Root as RadioGroupRoot, Item as RadioGroupItem, Indicator as RadioGroupIndicator } from '@radix-ui/react-radio-group'
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
 import classnames from 'classnames'
 import s from './radio.module.css'
-import type { RadioGroupProps, RadioItemProps } from './types'
+import type { RadioGroupProps, RadioProps } from './types'
 
 const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
-  value,
-  onValueChange,
-  disabled,
-  required,
-  name,
   orientation = 'vertical',
-  loop = true,
-  isInvalid,
   className,
-  children,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  'aria-describedby': ariaDescribedby,
   ...props
 }, ref) => {
   const rootClasses = classnames(
@@ -26,68 +15,43 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
   )
 
   return (
-    <RadioGroupRoot
+    <RadioGroupPrimitive.Root
       ref={ref}
-      value={value}
-      onValueChange={onValueChange}
-      disabled={disabled}
-      required={required}
-      name={name}
       orientation={orientation}
-      loop={loop}
       className={rootClasses}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledby}
-      aria-describedby={ariaDescribedby}
       {...props}
-    >
-      {children}
-    </RadioGroupRoot>
+    />
   )
 })
 
-const RadioItem = forwardRef<HTMLButtonElement, RadioItemProps>(({
-  value,
-  disabled,
-  required,
-  id,
+const Radio = forwardRef<HTMLButtonElement, RadioProps>(({
   isInvalid,
   className,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  'aria-describedby': ariaDescribedby,
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-radio-group-item--root'],
-    isInvalid && s['cds-radio-group-item--is-invalid'],
+    s['cds-radio--root'],
+    isInvalid && s['cds-radio--is-invalid'],
     className
   )
 
   const indicatorClasses = classnames(
-    s['cds-radio-group-item--indicator']
+    s['cds-radio--indicator']
   )
 
   return (
-    <RadioGroupItem
+    <RadioGroupPrimitive.Item
       ref={ref}
-      value={value}
-      disabled={disabled}
-      required={required}
-      id={id}
       className={rootClasses}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledby}
-      aria-describedby={ariaDescribedby}
       {...props}
     >
-      <RadioGroupIndicator className={indicatorClasses} />
-    </RadioGroupItem>
+      <RadioGroupPrimitive.Indicator className={indicatorClasses} />
+    </RadioGroupPrimitive.Item>
   )
 })
 
 RadioGroup.displayName = 'RadioGroup'
-RadioItem.displayName = 'RadioItem'
+Radio.displayName = 'Radio'
 
-export { RadioGroup, RadioItem }
-export type { RadioGroupProps, RadioItemProps }
+export { RadioGroup, Radio }
+export type { RadioGroupProps, RadioProps }
