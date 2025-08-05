@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { CheckboxCardGroup, CheckboxCardItem } from '../checkbox-card'
+import { CheckboxCardGroup, CheckboxCardItem } from '../index'
 import { describe, it, expect, vi } from 'vitest'
 
 describe('CheckboxCardGroup', () => {

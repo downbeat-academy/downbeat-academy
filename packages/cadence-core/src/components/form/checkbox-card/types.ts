@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
-import { Root as CheckboxRoot } from '@radix-ui/react-checkbox'
 
 export interface CheckboxCardGroupProps {
   value?: string[]
@@ -20,7 +19,7 @@ export interface CheckboxCardGroupProps {
   gap?: 'small' | 'base' | 'large'
 }
 
-export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<typeof CheckboxRoot> {
+export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<'div'> {
   value: string
   disabled?: boolean
   required?: boolean
@@ -33,10 +32,20 @@ export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<typeof C
   // Card-specific props
   children?: ReactNode
   size?: 'small' | 'medium' | 'large'
-  variant?: 'default' | 'outlined' | 'filled'
+  alignment?: 'left' | 'center'
   // Rich content props
   icon?: ReactNode
   title?: string
-  description?: string
   badge?: ReactNode
+  // Checkbox-specific props
+  checked?: boolean | 'indeterminate'
+  onCheckedChange?: (checked: boolean) => void
+  // Internal props passed from CheckboxCardGroup (prefixed with _)
+  _groupValue?: string[]
+  _groupDefaultValue?: string[]
+  _groupOnValueChange?: (value: string[]) => void
+  _groupDisabled?: boolean
+  _groupRequired?: boolean
+  _groupName?: string
+  _groupIsInvalid?: boolean
 }

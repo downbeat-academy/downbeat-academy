@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { RadioCardGroup, RadioCardItem } from '../radio-card'
+import { RadioCardGroup, RadioCardItem } from '../index'
 import { describe, it, expect, vi } from 'vitest'
 
 describe('RadioCardGroup', () => {
