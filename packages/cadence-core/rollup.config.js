@@ -7,6 +7,7 @@ import postcssPresetEnv from 'postcss-preset-env';
 import autoprefixer from 'autoprefixer';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -56,6 +57,25 @@ export default {
       sourceMap: false,
       include: [tokensPath, '**/*.css'], // Include both tokens and your CSS files
       inject: false, // This prevents automatic injection of styles into the head
+      modules: {
+        generateScopedName: (name, filename, css) => {
+          // Extract component name from path
+          const parts = filename.split('/');
+          const componentFile = parts[parts.length - 1];
+          const componentName = componentFile.replace('.module.css', '');
+          
+          // Generate short hash
+          const hash = crypto
+            .createHash('md5')
+            .update(filename + name)
+            .digest('base64')
+            .substring(0, 5)
+            .replace(/[/+=]/g, ''); // Remove special characters from base64
+          
+          // Return formatted class name
+          return `cds-${componentName}-${name}--${hash}`;
+        }
+      }
     }),
   ],
   external: [
