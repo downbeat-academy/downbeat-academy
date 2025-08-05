@@ -1,4 +1,4 @@
-.cds-horizontal-wrapper {
+.root {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -6,21 +6,21 @@
   width: 100%;
 }
 
-.cds-horizontal-wrapper--child {
+.child {
   flex-grow: 1;
 }
 
-.cds-horizontal-wrapper--button {
+.button {
   /* No additional styles needed, inherits from base wrapper */
 }
 
 @media (max-width: 768px) {
-  .cds-horizontal-wrapper {
+  .root {
     flex-direction: column;
   }
 
-  .cds-horizontal-wrapper--child,
-  .cds-horizontal-wrapper--button {
+  .child,
+  .button {
     width: 100%;
   }
 }

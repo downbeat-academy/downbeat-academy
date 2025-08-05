@@ -11,10 +11,10 @@ const ButtonWrapper = ({
   children,
 }: ButtonWrapperProps) => {
   const classes = classnames([
-    s[`cds-button-wrapper--root`],
-    s[`cds-button-wrapper--direction-${direction}`],
-    s[`cds-button-wrapper--gap-${gap}`],
-    wrap && s[`cds-button-wrapper--wrap`],
+    s[`root`],
+    s[`direction-${direction}`],
+    s[`gap-${gap}`],
+    wrap && s[`wrap`],
     className,
   ])
 

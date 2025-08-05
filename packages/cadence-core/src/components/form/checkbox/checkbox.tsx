@@ -11,13 +11,13 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-checkbox--root'],
-    isInvalid && s['cds-checkbox--is-invalid'],
+    s['root'],
+    isInvalid && s['is-invalid'],
     className
   )
 
   const indicatorClasses = classnames(
-    s['cds-checkbox--indicator']
+    s['indicator']
   )
 
   return (

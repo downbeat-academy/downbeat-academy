@@ -21,7 +21,7 @@ export default defineConfig({
   plugins: [dts()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
   css: {
     modules: {
-      generateScopedName: "cds-[local]--[hash:base64:5]", // creates a unique class prefixed by cds
+      generateScopedName: "cds-[name]-[local]--[hash:base64:5]", // creates a unique class prefixed by cds with component name
     },
   },
   test: {

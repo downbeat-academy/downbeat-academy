@@ -4,7 +4,7 @@ import s from './label.module.css'
 import type { LabelProps } from './types'
 
 const Label = ({ htmlFor, id, children, className, ...restProps }: LabelProps) => {
-  const classes = classnames(s['cds-label--root'], className)
+  const classes = classnames(s['root'], className)
 
   return (
     <label htmlFor={htmlFor} id={id} className={classes} {...restProps}>

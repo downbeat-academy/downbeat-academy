@@ -20,8 +20,8 @@ const Form = ({
   }
 
   const classes = classnames(
-    s['cds-form--root'],
-    s[`cds-form--spacing-${spacing}`],
+    s['root'],
+    s[`spacing-${spacing}`],
     className
   )
 

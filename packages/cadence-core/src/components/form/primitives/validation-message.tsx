@@ -15,8 +15,8 @@ const ValidationMessage = ({
   ...restProps
 }: ValidationMessageProps) => {
   const classes = classnames(
-    s['cds-validation-message--root'],
-    s['cds-validation-message--type-' + type],
+    s['root'],
+    s['type-' + type],
     className
   )
 
@@ -35,7 +35,7 @@ const ValidationMessage = ({
 
   return (
     <span className={classes} {...restProps}>
-      <i className={s['cds-validation-message--icon']}>{getTypeIcon(type)}</i>
+      <i className={s['icon']}>{getTypeIcon(type)}</i>
       {children}
     </span>
   )

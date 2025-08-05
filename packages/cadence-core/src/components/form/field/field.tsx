@@ -10,8 +10,8 @@ const Field = ({
   ...restProps
 }: FieldProps) => {
   const classes = classnames(
-    s['cds-form-field--root'],
-    s['cds-form-field--orientation-' + orientation],
+    s['root'],
+    s['orientation-' + orientation],
     className
   )
 

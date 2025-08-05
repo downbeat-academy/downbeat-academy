@@ -34,11 +34,11 @@ const Button = forwardRef(
     ref: ForwardedRef<any>
   ) => {
     const classes = classnames([
-      s[`cds-button--root`],
-      s[`cds-button--variant-${variant}`],
-      s[`cds-button--size-${size}`],
-      isFullWidth && s[`cds-button--full-width`],
-      disabled && s[`cds-button--disabled`],
+      s[`root`],
+      s[`variant-${variant}`],
+      s[`size-${size}`],
+      isFullWidth && s[`full-width`],
+      disabled && s[`disabled`],
       className,
     ])
 

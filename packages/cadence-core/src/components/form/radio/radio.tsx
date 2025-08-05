@@ -10,7 +10,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-radio-group--root'],
+    s['group-root'],
     className
   )
 
@@ -30,13 +30,13 @@ const Radio = forwardRef<HTMLButtonElement, RadioProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['cds-radio--root'],
-    isInvalid && s['cds-radio--is-invalid'],
+    s['root'],
+    isInvalid && s['is-invalid'],
     className
   )
 
   const indicatorClasses = classnames(
-    s['cds-radio--indicator']
+    s['indicator']
   )
 
   return (

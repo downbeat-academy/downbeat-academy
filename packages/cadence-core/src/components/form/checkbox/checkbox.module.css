@@ -1,5 +1,5 @@
 /* Checkbox styles */
-.cds-checkbox--root {
+.root {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -14,62 +14,62 @@
   flex-shrink: 0;
 }
 
-.cds-checkbox--root:hover:not([data-disabled]) {
+.root:hover:not([data-disabled]) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-checkbox--root:focus-visible {
+.root:focus-visible {
   outline: 2px solid var(--cds-color-border-focus);
   outline-offset: 2px;
 }
 
-.cds-checkbox--root[data-state='checked'] {
+.root[data-state='checked'] {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-foreground-interactive-default);
 }
 
-.cds-checkbox--root[data-state='indeterminate'] {
+.root[data-state='indeterminate'] {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-foreground-interactive-default);
 }
 
-.cds-checkbox--root[data-state='checked']:hover:not([data-disabled]) {
+.root[data-state='checked']:hover:not([data-disabled]) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-foreground-interactive-hover);
 }
 
-.cds-checkbox--root[data-state='indeterminate']:hover:not([data-disabled]) {
+.root[data-state='indeterminate']:hover:not([data-disabled]) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-foreground-interactive-hover);
 }
 
-.cds-checkbox--root[data-disabled] {
+.root[data-disabled] {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.cds-checkbox--root[data-state='checked'][data-disabled] {
+.root[data-state='checked'][data-disabled] {
   background-color: var(--cds-color-palette-blueberry-300);
   border-color: var(--cds-color-palette-blueberry-400);
 }
 
-.cds-checkbox--root[data-state='indeterminate'][data-disabled] {
+.root[data-state='indeterminate'][data-disabled] {
   background-color: var(--cds-color-palette-blueberry-300);
   border-color: var(--cds-color-palette-blueberry-400);
 }
 
-.cds-checkbox--is-invalid {
+.is-invalid {
   border-color: var(--cds-color-border-critical);
 }
 
-.cds-checkbox--is-invalid:focus-visible {
+.is-invalid:focus-visible {
   outline-color: var(--cds-color-border-critical);
 }
 
 /* Checkbox Indicator styles */
-.cds-checkbox--indicator {
+.indicator {
   display: flex;
   align-items: center;
   justify-content: center;
