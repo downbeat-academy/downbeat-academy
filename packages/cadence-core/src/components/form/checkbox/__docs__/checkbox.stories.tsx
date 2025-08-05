@@ -323,7 +323,7 @@ export const WithHelperText: Story = {
             <Label htmlFor="interest-sports">Sports</Label>
           </div>
         </CheckboxGroup>
-        <HelperText id="interests-helper">
+        <HelperText>
           Select all topics that interest you. We'll customize your experience based on your choices.
         </HelperText>
       </Field>
@@ -499,7 +499,7 @@ export const CompleteExample: Story = {
               Please select at least one feature
             </ValidationMessage>
           ) : (
-            <HelperText id="features-helper">
+            <HelperText>
               Choose the features you want to enable for your account
             </HelperText>
           )}
@@ -527,7 +527,7 @@ export const CompleteExample: Story = {
               <Label htmlFor="notification-sms">SMS notifications</Label>
             </div>
           </CheckboxGroup>
-          <HelperText id="notifications-helper">
+          <HelperText>
             Choose how you want to receive notifications
           </HelperText>
         </Field>
@@ -572,7 +572,7 @@ export const CompleteExample: Story = {
               Please select at least one privacy setting
             </ValidationMessage>
           ) : (
-            <HelperText id="privacy-helper">
+            <HelperText>
               Choose your privacy preferences (at least one required)
             </HelperText>
           )}
