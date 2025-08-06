@@ -1,3 +1,4 @@
+import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Card, CardContent, CardImage } from '../index'
 
@@ -49,9 +50,9 @@ export const WithContentAndImage: Story = {
     borderColor: 'primary',
     children: (
       <>
-        <CardImage 
-          image="https://via.placeholder.com/300x200" 
-          alt="Sample image" 
+        <CardImage
+          image="https://via.placeholder.com/300x200"
+          alt="Sample image"
           url="#"
         />
         <CardContent>
