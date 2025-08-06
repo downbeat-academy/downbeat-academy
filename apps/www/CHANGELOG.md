@@ -1,5 +1,20 @@
 # www
 
+## 4.3.1
+
+### Patch Changes
+
+- 82c8bb3: Fixed useEffect rendering of OSMD component.
+- Updated dependencies [8918592]
+- Updated dependencies [0130ae8]
+- Updated dependencies [eec9469]
+- Updated dependencies [1b2e672]
+- Updated dependencies [3800d36]
+- Updated dependencies [53421c0]
+- Updated dependencies [7345fbb]
+  - cadence-core@2.0.0
+  - cadence-icons@1.6.0
+
 ## 4.3.0
 
 ### Minor Changes
