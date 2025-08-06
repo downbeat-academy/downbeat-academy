@@ -34,6 +34,7 @@
     "email:dev": "turbo run dev --filter=email",
     "core:storybook": "turbo run storybook --filter=cadence-core",
     "core:build-storybook": "turbo run build:storybook --filter=cadence-core",
+    "core:publish": "turbo run build-publish-storybook --filter=cadence-core",
     "core:build": "turbo run build --filter=cadence-core"
   },
   "devDependencies": {
