@@ -11,6 +11,7 @@
     "build:storybook": "storybook build",
     "build-storybook": "storybook build",
     "test": "vitest",
+    "build-publish-storybook": "pnpm run build:storybook && pnpm run chromatic",
     "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "keywords": [],
