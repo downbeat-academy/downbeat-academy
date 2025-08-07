@@ -237,3 +237,39 @@ export const CheckboxGroup: Story = {
     )
   },
 }
+
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '600' }}>
+          Keyboard Focus Demonstration
+        </h4>
+        <p style={{ marginBottom: '16px', fontSize: '12px', color: '#666' }}>
+          Use Tab key to navigate and see focus rings appear on keyboard navigation only
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Checkbox id="focus-normal" />
+            <Label htmlFor="focus-normal">Normal checkbox (standard focus ring)</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Checkbox checked id="focus-checked" />
+            <Label htmlFor="focus-checked">Checked checkbox</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Checkbox checked="indeterminate" id="focus-indeterminate" />
+            <Label htmlFor="focus-indeterminate">Indeterminate checkbox</Label>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. All checkbox states (unchecked, checked, indeterminate) use the standard blue focus ring.',
+      },
+    },
+  },
+}

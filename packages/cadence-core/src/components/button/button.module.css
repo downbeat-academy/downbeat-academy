@@ -11,6 +11,22 @@
   height: fit-content;
 }
 
+/* Focus ring styles for keyboard navigation */
+.root:focus {
+  outline: none;
+}
+
+.root:focus-visible {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: var(--cds-focus-ring-offset);
+}
+
+/* Critical focus ring for destructive variant */
+.variant-destructive:focus-visible {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-critical);
+  outline-offset: var(--cds-focus-ring-offset);
+}
+
 .root:hover {
   cursor: pointer;
 }
