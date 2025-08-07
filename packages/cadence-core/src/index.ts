@@ -26,6 +26,8 @@ export { LogoLockup, LogoSymbol, LogoText } from './components/brand';
 export { Text, List } from './components/text';
 export { Grid } from './components/grid';
 
+// Utilities are now implemented directly in component CSS modules
+
 // Export types
 export type { BadgeProps } from './components/badge';
 export type { BannerProps } from './components/banner';

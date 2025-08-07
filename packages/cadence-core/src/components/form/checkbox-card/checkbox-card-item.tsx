@@ -115,11 +115,26 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
     </div>
   )
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (finalDisabled) return
+    
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault()
+      finalOnCheckedChange?.(!finalChecked)
+    }
+  }
+
   return (
     <div
       ref={ref}
+      id={id}
       className={rootClasses}
       onClick={() => !finalDisabled && finalOnCheckedChange?.(!finalChecked)}
+      onKeyDown={handleKeyDown}
+      tabIndex={finalDisabled ? -1 : 0}
+      role="checkbox"
+      aria-checked={finalChecked === 'indeterminate' ? 'mixed' : finalChecked}
+      aria-disabled={finalDisabled}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}
       aria-describedby={ariaDescribedby}
@@ -131,10 +146,8 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
       <div className={indicatorAreaClasses}>
         <Checkbox
           checked={finalChecked}
-          onCheckedChange={finalOnCheckedChange}
           disabled={finalDisabled}
           required={finalRequired}
-          id={id}
           name={_groupName}
           value={value}
           isInvalid={finalIsInvalid}

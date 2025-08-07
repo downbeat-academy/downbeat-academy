@@ -94,6 +94,10 @@
   --cds-color-surface-warning: #b07b07;
   --cds-color-surface-critical: #d8311f;
   --cds-elevation-box-shadow-base: 0 1px 16px 0 hsla(240, 36%, 22%, 5%);
+  --cds-focus-ring-color-standard: #1f7deb;
+  --cds-focus-ring-color-critical: #f7594b;
+  --cds-focus-ring-width: 2px;
+  --cds-focus-ring-offset: 2px;
   --cds-radii-x-soft: 1.25rem;
   --cds-radii-soft: 1rem;
   --cds-radii-medium: 0.5rem;

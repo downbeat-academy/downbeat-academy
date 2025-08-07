@@ -276,6 +276,54 @@ export const WithValidation: Story = {
   },
 }
 
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Standard Focus States</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Use Tab key to navigate between radio buttons and see focus rings
+        </p>
+        <RadioGroup aria-label="Standard focus example">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio value="option1" id="focus-option1" />
+            <Label htmlFor="focus-option1">Option 1</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio value="option2" id="focus-option2" />
+            <Label htmlFor="focus-option2">Option 2</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio value="option3" id="focus-option3" />
+            <Label htmlFor="focus-option3">Option 3</Label>
+          </div>
+        </RadioGroup>
+      </div>
+
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Error State Focus</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Focus rings show critical color when radio buttons are in error state
+        </p>
+        <RadioGroup aria-label="Error focus example">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio value="error1" id="focus-error1" isInvalid />
+            <Label htmlFor="focus-error1">Error Option 1</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio value="error2" id="focus-error2" isInvalid />
+            <Label htmlFor="focus-error2">Error Option 2</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Radio value="error3" id="focus-error3" isInvalid />
+            <Label htmlFor="focus-error3">Error Option 3</Label>
+          </div>
+        </RadioGroup>
+      </div>
+    </div>
+  ),
+}
+
 export const CompleteExample: Story = {
   render: () => {
     const [formData, setFormData] = useState({

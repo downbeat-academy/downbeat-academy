@@ -689,6 +689,91 @@ export const WithValidation: Story = {
   },
 }
 
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Standard Focus States</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Use Tab key to navigate between checkbox cards and see focus rings
+        </p>
+        <CheckboxCardGroup aria-label="Standard focus example" columns={3}>
+          <CheckboxCardItem
+            value="focus1"
+            title="Option 1"
+            icon={<Microphone />}
+          />
+          <CheckboxCardItem
+            value="focus2"
+            title="Option 2"
+            icon={<Microphone />}
+          />
+          <CheckboxCardItem
+            value="focus3"
+            title="Option 3"
+            icon={<Microphone />}
+          />
+        </CheckboxCardGroup>
+      </div>
+
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Error State Focus</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Focus rings show critical color when checkbox cards are in error state
+        </p>
+        <CheckboxCardGroup aria-label="Error focus example" columns={3}>
+          <CheckboxCardItem
+            value="error1"
+            title="Error Option 1"
+            icon={<Microphone />}
+            isInvalid
+          />
+          <CheckboxCardItem
+            value="error2"
+            title="Error Option 2"
+            icon={<Microphone />}
+            isInvalid
+          />
+          <CheckboxCardItem
+            value="error3"
+            title="Error Option 3"
+            icon={<Microphone />}
+            isInvalid
+          />
+        </CheckboxCardGroup>
+      </div>
+
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Mixed States</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Checkbox cards can have different checked/unchecked/indeterminate states
+        </p>
+        <CheckboxCardGroup
+          aria-label="Mixed states example"
+          defaultValue={['mixed2']}
+          columns={3}
+        >
+          <CheckboxCardItem
+            value="mixed1"
+            title="Unchecked"
+            icon={<Microphone />}
+          />
+          <CheckboxCardItem
+            value="mixed2"
+            title="Checked"
+            icon={<Microphone />}
+          />
+          <CheckboxCardItem
+            value="mixed3"
+            title="Available"
+            icon={<Microphone />}
+          />
+        </CheckboxCardGroup>
+      </div>
+    </div>
+  ),
+}
+
 export const CompleteExample: Story = {
   render: () => {
     const [formData, setFormData] = useState({

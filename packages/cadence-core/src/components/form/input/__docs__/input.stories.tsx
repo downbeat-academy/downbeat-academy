@@ -142,3 +142,51 @@ export const InputTypes: Story = {
     </div>
   ),
 }
+
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '600' }}>
+          Keyboard Focus Demonstration
+        </h4>
+        <p style={{ marginBottom: '16px', fontSize: '12px', color: '#666' }}>
+          Use Tab key to navigate and see focus rings appear on keyboard navigation only
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '300px' }}>
+          <Field>
+            <Label htmlFor="focus-normal">Normal Input (Standard Focus Ring)</Label>
+            <Input id="focus-normal" placeholder="Standard blue focus ring" />
+          </Field>
+          
+          <Field>
+            <Label htmlFor="focus-invalid">Invalid Input (Critical Focus Ring)</Label>
+            <Input 
+              id="focus-invalid" 
+              placeholder="Critical red focus ring" 
+              isInvalid
+              value="invalid-input"
+            />
+          </Field>
+          
+          <Field>
+            <Label htmlFor="focus-valid">Valid Input</Label>
+            <Input 
+              id="focus-valid" 
+              placeholder="Valid input with standard focus" 
+              value="valid-input@example.com"
+              type="email"
+            />
+          </Field>
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. Normal inputs use the standard blue focus ring, while invalid inputs use the critical red focus ring to indicate errors.',
+      },
+    },
+  },
+}

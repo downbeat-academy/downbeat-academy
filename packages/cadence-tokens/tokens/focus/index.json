@@ -1,0 +1,24 @@
+{
+	"focus": {
+		"ring": {
+			"color": {
+				"standard": {
+					"value": "{color.palette.blueberry.500}",
+					"type": "color"
+				},
+				"critical": {
+					"value": "{color.palette.peach.500}",
+					"type": "color"
+				}
+			},
+			"width": {
+				"value": "2px",
+				"type": "borderWidth"
+			},
+			"offset": {
+				"value": "2px",
+				"type": "spacing"
+			}
+		}
+	}
+}

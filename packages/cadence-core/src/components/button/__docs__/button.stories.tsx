@@ -97,3 +97,31 @@ export const FullWidth: Story = {
     ),
   ],
 }
+
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '600' }}>
+          Keyboard Focus Demonstration
+        </h4>
+        <p style={{ marginBottom: '16px', fontSize: '12px', color: '#666' }}>
+          Use Tab key to navigate and see focus rings appear on keyboard navigation only
+        </p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Button text="Primary" variant="primary" />
+          <Button text="Secondary" variant="secondary" />
+          <Button text="Ghost" variant="ghost" />
+          <Button text="Destructive" variant="destructive" />
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. This ensures accessibility for keyboard users while maintaining clean visual design for mouse users.',
+      },
+    },
+  },
+}
