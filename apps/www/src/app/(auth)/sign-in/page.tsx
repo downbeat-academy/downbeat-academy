@@ -29,7 +29,7 @@ export default async function SignIn() {
         <Tabs.Root defaultValue="Login">
           <Tabs.List>
             <Tabs.Trigger value="Login">Sign in</Tabs.Trigger>
-            <Tabs.Trigger value="Sign up">Sign up</Tabs.Trigger>
+            <Tabs.Trigger value="Sign up" data-testid="create-account-tab">Sign up</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="Login" className={s['login--content']}>
             <Text type="expressive-headline" size="h4" tag="h1" color="brand">

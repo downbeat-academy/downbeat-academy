@@ -22,7 +22,21 @@
 		"start": "next start",
 		"lint": "next lint",
 		"cypress": "cypress open",
-		"analyze": "ANALYZE=true pnpm build"
+		"cypress:run": "cypress run",
+		"cypress:run:chrome": "cypress run --browser chrome",
+		"cypress:run:firefox": "cypress run --browser firefox",
+		"cypress:run:ci": "cypress run --browser chrome --headless --record",
+		"cypress:run:auth": "cypress run --spec 'cypress/e2e/auth/**'",
+		"cypress:run:routes": "cypress run --spec 'cypress/e2e/routes/**'",
+		"cypress:run:forms": "cypress run --spec 'cypress/e2e/forms/**'",
+		"cypress:run:a11y": "cypress run --spec 'cypress/e2e/accessibility/**'",
+		"cypress:run:journeys": "cypress run --spec 'cypress/e2e/journeys/**'",
+		"test:e2e": "start-server-and-test dev http://localhost:3000 cypress:run",
+		"test:e2e:ci": "start-server-and-test start http://localhost:3000 cypress:run:ci",
+		"analyze": "ANALYZE=true pnpm build",
+		"db:push": "drizzle-kit push --config=drizzle-auth.config.ts",
+		"db:migrate": "drizzle-kit migrate --config=drizzle-auth.config.ts",
+		"db:seed:test": "tsx cypress/support/db-seed.ts"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.10.0",
@@ -72,12 +86,19 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
+		"@types/bcryptjs": "^3.0.0",
 		"@types/node": "^22.10.6",
 		"@types/pg": "^8.11.11",
 		"@types/react": "^18.3.21",
 		"@types/react-dom": "^18.3.7",
+		"bcryptjs": "^3.0.2",
 		"cypress": "^13.17.0",
+		"cypress-axe": "^1.6.0",
 		"drizzle-kit": "^0.31.4",
+		"nanoid": "^5.1.5",
+		"postgres": "^3.4.7",
+		"start-server-and-test": "^2.0.13",
+		"tsx": "^4.20.3",
 		"typescript": "^5.7.3"
 	}
 }

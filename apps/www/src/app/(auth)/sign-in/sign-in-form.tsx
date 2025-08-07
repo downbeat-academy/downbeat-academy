@@ -80,6 +80,7 @@ export const SignInForm = () => {
         <Input
           type="email"
           id="email"
+          data-testid="email-input"
           {...register('email')}
           placeholder="john@coltrane.com"
           isInvalid={!!errors.email}
@@ -93,6 +94,7 @@ export const SignInForm = () => {
         <Input
           type="password"
           id="password"
+          data-testid="password-input"
           {...register('password')}
           placeholder="Enter your password"
           isInvalid={!!errors.password}
@@ -103,6 +105,7 @@ export const SignInForm = () => {
       </Field>
       <Button
         type="submit"
+        data-testid="sign-in-submit"
         text={isSubmitting ? "🎵 Signing in..." : "Sign In"}
         variant="primary"
         disabled={isSubmitting}

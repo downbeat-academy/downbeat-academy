@@ -60,6 +60,7 @@ export function ContactForm() {
 						register={register}
 						type="text"
 						name="name"
+						data-testid="contact-name-input"
 						placeholder="Name"
 					/>
 					{errors.name && (
@@ -74,6 +75,7 @@ export function ContactForm() {
 						register={register}
 						type="email"
 						name="email"
+						data-testid="contact-email-input"
 						placeholder="Email"
 					/>
 					{errors.email && (
@@ -84,7 +86,7 @@ export function ContactForm() {
 				</Field>
 				<Field>
 					<Label htmlFor="message">Message</Label>
-					<Textarea register={register} name="message" placeholder="Message" />
+					<Textarea register={register} name="message" data-testid="contact-message-input" placeholder="Message" />
 					{errors.message && (
 						<ValidationMessage type="error">
 							{`${errors.message.message}`}
@@ -93,6 +95,7 @@ export function ContactForm() {
 				</Field>
 				<Button
 					type="submit"
+					data-testid="contact-submit"
 					text={isSubmitting ? 'Sending...' : 'Send message'}
 					disabled={isSubmitting}
 				/>
