@@ -190,6 +190,54 @@ export const HorizontalLayout: Story = {
   },
 }
 
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Standard Focus States</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Use Tab key to navigate between switches and see focus rings
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Switch id="focus-switch1" />
+            <Label htmlFor="focus-switch1">Switch Option 1</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Switch id="focus-switch2" defaultChecked />
+            <Label htmlFor="focus-switch2">Switch Option 2 (Default checked)</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Switch id="focus-switch3" />
+            <Label htmlFor="focus-switch3">Switch Option 3</Label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Error State Focus</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Focus rings show critical color when switches are in error state
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Switch id="focus-error1" isInvalid />
+            <Label htmlFor="focus-error1">Error Switch 1</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Switch id="focus-error2" isInvalid defaultChecked />
+            <Label htmlFor="focus-error2">Error Switch 2 (Checked)</Label>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Switch id="focus-error3" isInvalid />
+            <Label htmlFor="focus-error3">Error Switch 3</Label>
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+}
+
 export const CompleteExample: Story = {
   render: () => {
     const [settings, setSettings] = useState({

@@ -702,6 +702,63 @@ export const WithValidation: Story = {
   },
 }
 
+export const FocusStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Standard Focus States</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Use Tab key to navigate between radio cards and see focus rings
+        </p>
+        <RadioCardGroup aria-label="Standard focus example" columns={3}>
+          <RadioCardItem
+            value="focus1"
+            title="Option 1"
+            icon={<Microphone />}
+          />
+          <RadioCardItem
+            value="focus2"
+            title="Option 2"
+            icon={<Microphone />}
+          />
+          <RadioCardItem
+            value="focus3"
+            title="Option 3"
+            icon={<Microphone />}
+          />
+        </RadioCardGroup>
+      </div>
+
+      <div>
+        <h3 style={{ margin: '0 0 16px 0', fontSize: '16px' }}>Error State Focus</h3>
+        <p style={{ margin: '0 0 16px 0', color: '#666', fontSize: '14px' }}>
+          Focus rings show critical color when radio cards are in error state
+        </p>
+        <RadioCardGroup aria-label="Error focus example" columns={3}>
+          <RadioCardItem
+            value="error1"
+            title="Error Option 1"
+            icon={<Microphone />}
+            isInvalid
+          />
+          <RadioCardItem
+            value="error2"
+            title="Error Option 2"
+            icon={<Microphone />}
+            isInvalid
+          />
+          <RadioCardItem
+            value="error3"
+            title="Error Option 3"
+            icon={<Microphone />}
+            isInvalid
+          />
+        </RadioCardGroup>
+      </div>
+    </div>
+  ),
+}
+
 export const CompleteExample: Story = {
   render: () => {
     const [formData, setFormData] = useState({

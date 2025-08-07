@@ -93,8 +93,8 @@
 }
 
 .item-root:focus-visible {
-  outline: 2px solid var(--cds-color-border-focus);
-  outline-offset: 2px;
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: var(--cds-focus-ring-offset);
 }
 
 .item-root:focus-visible .item-indicator-area {
@@ -142,7 +142,7 @@
 }
 
 .item-is-invalid:focus-visible {
-  outline-color: var(--cds-color-border-critical);
+  outline-color: var(--cds-focus-ring-color-critical);
 }
 
 /* Size variants */
