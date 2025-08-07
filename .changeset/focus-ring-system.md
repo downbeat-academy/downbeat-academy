@@ -11,5 +11,6 @@ Add focus ring system for accessibility
 - Use :focus for text inputs and textarea (all interactions)
 - Add critical focus rings for error states
 - Update all Storybook stories with Focus States examples
+- Fix CheckboxCard accessibility with proper ARIA attributes and keyboard navigation
 - Ensure WCAG compliance with proper focus indicators
 
