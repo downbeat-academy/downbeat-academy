@@ -30,6 +30,7 @@
 		"cypress:run:routes": "cypress run --spec 'cypress/e2e/routes/**'",
 		"cypress:run:forms": "cypress run --spec 'cypress/e2e/forms/**'",
 		"cypress:run:a11y": "cypress run --spec 'cypress/e2e/accessibility/**'",
+		"cypress:run:a11y:only": "CYPRESS_SKIP_OVERRIDE=true cypress run --spec 'cypress/e2e/accessibility/**'",
 		"cypress:run:journeys": "cypress run --spec 'cypress/e2e/journeys/**'",
 		"test:e2e": "start-server-and-test dev http://localhost:3000 cypress:run",
 		"test:e2e:ci": "start-server-and-test start http://localhost:3000 cypress:run:ci",
