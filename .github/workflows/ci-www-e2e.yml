@@ -84,9 +84,13 @@ jobs:
       
       - name: Setup test environment
         working-directory: apps/www
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
         run: |
           cat > .env.local << 'EOF'
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET=test-secret-for-smoke-tests
           BETTER_AUTH_URL=http://localhost:3000
           NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
@@ -99,8 +103,6 @@ jobs:
           
           pnpm db:push
           pnpm db:seed:test || echo "Seed script not found, skipping..."
-        env:
-          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
       
       - name: Run smoke tests
         uses: cypress-io/github-action@v6
@@ -163,9 +165,13 @@ jobs:
       
       - name: Setup test environment
         working-directory: apps/www
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
         run: |
           cat > .env.local << 'EOF'
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET=test-secret-for-ci
           BETTER_AUTH_URL=http://localhost:3000
           NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
@@ -178,8 +184,6 @@ jobs:
           
           pnpm db:push
           pnpm db:seed:test || echo "Seed script not found, skipping..."
-        env:
-          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
       
       - name: Determine test suite
         id: test-suite
