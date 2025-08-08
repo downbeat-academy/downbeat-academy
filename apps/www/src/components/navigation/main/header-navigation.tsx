@@ -46,6 +46,7 @@ function SignOutButton() {
 	return (
 		<Button
 			type="submit"
+			data-testid="logout-button"
 			text={pending ? "Signing out..." : "Sign Out"}
 			variant="ghost"
 			size="small"
@@ -165,6 +166,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 					{!session?.data?.session ? (
 						<>
 							<Button
+								data-testid="sign-in-link"
 								text="Sign in / Sign up"
 								variant="primary"
 								size="small"
@@ -173,10 +175,11 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 						</>
 					) : (
 						<>
-							<form action={handleSignOut}>
+							<form action={handleSignOut} data-testid="user-menu">
 								<SignOutButton />
 							</form>
 							<Button
+								data-testid="account-link"
 								text="Account"
 								size="small"
 								variant="primary"

@@ -17,6 +17,10 @@ const nextConfig = {
 			},
 		],
 	},
+	// Use custom TypeScript config for build that excludes Cypress files
+	typescript: {
+		tsconfigPath: './tsconfig.build.json',
+	},
 }
 
 module.exports = withBundleAnalyzer(nextConfig)

@@ -102,6 +102,7 @@ export const SignUpForm = () => {
         <Input
           type="text"
           id="name"
+          data-testid="signup-name-input"
           {...register('name')}
           placeholder="John Coltrane"
           isInvalid={!!errors.name}
@@ -115,6 +116,7 @@ export const SignUpForm = () => {
         <Input
           type="email"
           id="email"
+          data-testid="signup-email-input"
           {...register('email')}
           placeholder="john@bluenote.com"
           isInvalid={!!errors.email}
@@ -131,6 +133,7 @@ export const SignUpForm = () => {
         <Input
           type="password"
           id="password"
+          data-testid="signup-password-input"
           {...register('password')}
           placeholder="Choose a password"
           isInvalid={!!errors.password}
@@ -147,6 +150,7 @@ export const SignUpForm = () => {
         <Input
           type="password"
           id="confirmPassword"
+          data-testid="signup-confirm-password-input"
           {...register('confirmPassword')}
           placeholder="Confirm your password"
           isInvalid={!!errors.confirmPassword}
@@ -157,6 +161,7 @@ export const SignUpForm = () => {
       </Field>
       <Button
         type="submit"
+        data-testid="signup-submit"
         text={isSubmitting ? "Creating account..." : "Sign Up"}
         variant="primary"
         disabled={isSubmitting}

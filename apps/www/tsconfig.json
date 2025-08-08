@@ -33,7 +33,6 @@
 		],
 		"lib": ["dom", "dom.iterable", "esnext"]
 	},
-	"exclude": ["node_modules"],
-	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
-	"types": ["cypress", "cypress-axe"]
+	"exclude": ["node_modules", "cypress/**/*"],
+	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "!cypress/**/*"]
 }

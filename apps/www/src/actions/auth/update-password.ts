@@ -33,6 +33,11 @@ export async function updatePasswordAction({ currentPassword, newPassword }: Upd
         return { error: 'Current password is required' }
       }
 
+      // Ensure the account actually has a password hash
+      if (!accountWithPassword.password) {
+        return { error: 'Account does not have a password set' }
+      }
+
       const isValid = await ctx.password.verify({
         password: currentPassword,
         hash: accountWithPassword.password
