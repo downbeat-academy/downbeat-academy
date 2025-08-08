@@ -86,11 +86,18 @@ export default defineConfig({
 			on('after:run', (results) => {
 				if (config.env.CI) {
 					console.log('Test Results Summary:')
-					console.log(`Total Tests: ${results.totalTests}`)
-					console.log(`Passed: ${results.totalPassed}`)
-					console.log(`Failed: ${results.totalFailed}`)
-					console.log(`Skipped: ${results.totalSkipped}`)
-					console.log(`Duration: ${results.totalDuration}ms`)
+					// Check if this is a successful run result or failed run result
+					if ('totalTests' in results) {
+						console.log(`Total Tests: ${results.totalTests}`)
+						console.log(`Passed: ${results.totalPassed}`)
+						console.log(`Failed: ${results.totalFailed}`)
+						console.log(`Skipped: ${results.totalSkipped}`)
+						console.log(`Duration: ${results.totalDuration}ms`)
+					} else {
+						// Handle CypressFailedRunResult
+						console.log(`Run failed with ${results.failures} failures`)
+						console.log(`Message: ${results.message}`)
+					}
 				}
 			})
 

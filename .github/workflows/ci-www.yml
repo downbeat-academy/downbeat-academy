@@ -7,8 +7,8 @@ on:
   pull_request: {}
 
 env:
-  NODE_VERSION: '18.x'
-  PNPM_VERSION: '8'
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '9'
 
 concurrency:
   group: ci-website-${{ github.head_ref || github.ref }}
@@ -108,14 +108,14 @@ jobs:
       
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        continue-on-error: true  # TODO: Remove this once tests are fixed
         id: cypress
         with:
-          build: pnpm www:build
-          start: pnpm www:start
+          build: pnpm --filter www build
+          start: pnpm --filter www start
           working-directory: .
           wait-on: 'http://localhost:3000'
-          wait-on-timeout: 120
+          wait-on-timeout: 180
+          browser: chrome
           record: false
           config-file: apps/www/cypress.config.ts
           spec: apps/www/cypress/e2e/**/*.cy.ts

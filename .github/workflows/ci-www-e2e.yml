@@ -34,8 +34,8 @@ on:
           - smoke
 
 env:
-  NODE_VERSION: '18.x'
-  PNPM_VERSION: '8'
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '9'
 
 concurrency:
   group: e2e-tests-${{ github.head_ref || github.ref }}
@@ -47,6 +47,21 @@ jobs:
     name: 'Smoke Tests'
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     
     steps:
       - uses: actions/checkout@v4
@@ -67,11 +82,44 @@ jobs:
           pnpm --filter cadence-icons build
           pnpm --filter cadence-core build
       
-      - name: Run smoke tests
+      - name: Setup test environment
+        working-directory: apps/www
         run: |
-          cd apps/www
-          # Run only critical path tests
-          pnpm cypress:run --spec "cypress/e2e/routes/public-routes.cy.ts,cypress/e2e/auth/authentication.cy.ts" --config video=false
+          cat > .env.local << 'EOF'
+          DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET=test-secret-for-smoke-tests
+          BETTER_AUTH_URL=http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
+          RESEND_API_KEY=test-key
+          BLOB_READ_WRITE_TOKEN=test-token
+          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
+          NEXT_PUBLIC_SANITY_DATASET=production
+          SANITY_SECRET_TOKEN=test-token
+          EOF
+          
+          pnpm db:push
+          pnpm db:seed:test || echo "Seed script not found, skipping..."
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+      
+      - name: Run smoke tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: pnpm --filter www build
+          start: pnpm --filter www start
+          working-directory: .
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 180
+          browser: chrome
+          record: false
+          config-file: apps/www/cypress.config.ts
+          spec: apps/www/cypress/e2e/routes/public-routes.cy.ts
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET: test-secret-for-smoke-tests
+          BETTER_AUTH_URL: http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
+          CYPRESS_BASE_URL: http://localhost:3000
 
   # Full test suite for main branch and manual triggers
   full-tests:
@@ -122,10 +170,16 @@ jobs:
           BETTER_AUTH_URL=http://localhost:3000
           NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
           RESEND_API_KEY=test-key
+          BLOB_READ_WRITE_TOKEN=test-token
+          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
+          NEXT_PUBLIC_SANITY_DATASET=production
+          SANITY_SECRET_TOKEN=test-token
           EOF
           
           pnpm db:push
           pnpm db:seed:test || echo "Seed script not found, skipping..."
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
       
       - name: Determine test suite
         id: test-suite
@@ -140,17 +194,20 @@ jobs:
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
-          build: pnpm www:build
-          start: pnpm www:start
+          build: pnpm --filter www build
+          start: pnpm --filter www start
           working-directory: .
           wait-on: 'http://localhost:3000'
-          wait-on-timeout: 120
+          wait-on-timeout: 180
+          browser: chrome
           record: false
           config-file: apps/www/cypress.config.ts
           spec: ${{ steps.test-suite.outputs.suite == 'all' && 'apps/www/cypress/e2e/**/*.cy.ts' || format('apps/www/cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET: test-secret-for-ci
+          BETTER_AUTH_URL: http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
           CYPRESS_BASE_URL: http://localhost:3000
       
       - name: Upload test artifacts

@@ -96,6 +96,7 @@
 		"cypress": "^13.17.0",
 		"cypress-axe": "^1.6.0",
 		"drizzle-kit": "^0.31.4",
+		"ignore-loader": "^0.1.2",
 		"nanoid": "^5.1.5",
 		"postgres": "^3.4.7",
 		"start-server-and-test": "^2.0.13",
