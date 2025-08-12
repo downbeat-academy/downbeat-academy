@@ -38,7 +38,7 @@ const FileDownload = async ({
 			</Text>
 			{!session ? (
 				<>
-					<FileDownloadForm fileUrl={fileUrl} title={title} />
+					<FileDownloadForm fileUrl={fileUrl || undefined} title={title} />
 					<Text
 						size="body-small"
 						tag="p"
@@ -51,7 +51,7 @@ const FileDownload = async ({
 					</Text>
 				</>
 			) : (
-				<Button href={fileUrl} text="Download" variant="primary" />
+				<Button href={fileUrl || ''} text="Download" variant="primary" />
 			)}
 		</section>
 	)

@@ -1,8 +1,9 @@
 import { RichText } from '@components/rich-text'
 import { ModuleItem } from '@components/module-content'
 import s from './module-renderer.module.css'
+import type { ModuleRendererProps } from './types'
 
-const ModuleRenderer = ({ modules }) => {
+const ModuleRenderer = ({ modules }: ModuleRendererProps) => {
 	const renderModules = modules.map((m) => {
 		switch (m._type) {
 			case 'richText':

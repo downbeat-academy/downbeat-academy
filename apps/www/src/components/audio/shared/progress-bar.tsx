@@ -1,19 +1,20 @@
 import { Text } from 'cadence-core'
 import s from './progress-bar.module.css'
+import type { ProgressBarProps } from './types'
 
 export const ProgressBar = ({
 	progressBarRef,
 	audioRef,
 	timeProgress,
 	duration,
-}) => {
+}: ProgressBarProps) => {
 	const handleProgressChange = () => {
 		if (audioRef?.current && progressBarRef?.current) {
 			audioRef.current.currentTime = parseFloat(progressBarRef.current.value)
 		}
 	}
 
-	const formatTime = (time) => {
+	const formatTime = (time: number) => {
 		if (time && !isNaN(time)) {
 			const minutes = Math.floor(time / 60)
 			const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`

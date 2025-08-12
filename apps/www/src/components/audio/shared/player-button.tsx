@@ -23,7 +23,7 @@ const PlayerButton = ({
 }: PlayerButtonProps) => {
 	const defaultIconSize = 16
 
-	const getTypes = (type) => {
+	const getTypes = (type: PlayerButtonProps['type']) => {
 		switch (type) {
 			case 'play':
 				return <PlayFill width={defaultIconSize} />

@@ -3,7 +3,7 @@ import s from './authors.module.css'
 
 import type { FeaturedItemDescriptionProps } from './types'
 
-const FeaturedItemDescription = ({ children }) => {
+const FeaturedItemDescription = ({ children }: FeaturedItemDescriptionProps) => {
 	return (
 		<Flex
 			tag="div"

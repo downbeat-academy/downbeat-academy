@@ -64,7 +64,7 @@ const UpdateProfileForm = ({
 		}
 	}
 
-	const readOnlyProps = (value) => {
+	const readOnlyProps = (value: any) => {
 		if (isReadOnly === true) {
 			return {
 				disabled: true,

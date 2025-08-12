@@ -31,4 +31,13 @@ interface ModuleItemProps {
 	className?: string
 }
 
-export type { ModuleItemProps }
+interface ModuleRendererProps {
+	modules: Array<{
+		_type: string
+		_key?: string
+		content?: any
+		[key: string]: any
+	}>
+}
+
+export type { ModuleItemProps, ModuleRendererProps }

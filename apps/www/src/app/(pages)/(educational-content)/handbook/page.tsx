@@ -30,7 +30,7 @@ export default async function HandbookPage() {
 	// Get all of the handbook entries
 	const handbooks = await getHandbooks()
 	// Sort the entries alphabetically by title
-	handbooks.sort((a, b) => a.title.localeCompare(b.title))
+	handbooks.sort((a: { title: string }, b: { title: string }) => a.title.localeCompare(b.title))
 
 	return (
 		<>
@@ -64,7 +64,7 @@ export default async function HandbookPage() {
 					}
 				/>
 				<Flex direction="column" gap="small" padding="large">
-					{handbooks.map((handbook) => (
+					{handbooks.map((handbook: { _id: string; title: string; slug: string }) => (
 						<Text
 							key={handbook._id}
 							tag="p"

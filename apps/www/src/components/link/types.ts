@@ -10,6 +10,7 @@ interface LinkProps extends Omit<NextLinkProps, 'href'> {
 	href?: any,
 	target?: string
 	ariaDescribedBy?: string
+	'aria-describedby'?: string
 }
 
 export type { LinkProps }

@@ -36,7 +36,7 @@ export default async function LinkInBioPage() {
 			return notFound()
 		}
 
-		const renderLinks = links.map((link) => {
+		const renderLinks = links.map((link: { _id: string; title: string; description: string; link: { slug: string; _type: string }; date: string }) => {
 			return (
 				<ListItem
 					key={link._id}

@@ -9,6 +9,7 @@ import { ListItem } from '@components/list'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../../types/meta'
+import type { CategorySlug, CategoryParams, CategoryReference } from '../../../../../types/category'
 
 const client = sanityClient
 
@@ -39,9 +40,9 @@ export async function generateMetadata(
 }
 
 // Generate slugs/routes for categories
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<CategoryParams[]> {
 	try {
-		const slugs = await client.fetch(categoryPaths,
+		const slugs: CategorySlug[] = await client.fetch(categoryPaths,
 			{},
 			{
 				next: {
@@ -49,7 +50,7 @@ export async function generateStaticParams() {
 				}
 			}
 		)
-		return slugs.map((slug) => ({ slug }))
+		return slugs.map((slug: string) => ({ slug }))
 	} catch (error) {
 		console.error(error)
 		throw error
@@ -111,7 +112,7 @@ export default async function CategorySlugRoute({ params }: { params: Promise<{ 
 						</Text>
 					}
 				/>
-				{category.references.map((reference) => {
+				{category.references.map((reference: CategoryReference) => {
 					// Handle potentially complex reference data
 					const title = typeof reference.title === 'string' ? reference.title : 'Untitled'
 					const description = typeof reference.excerpt === 'string' ? reference.excerpt : ''

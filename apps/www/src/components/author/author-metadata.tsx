@@ -18,7 +18,9 @@ const AuthorMetadata = ({
 }: AuthorMetadataProps) => {
 	const classes = classnames(className)
 
-	const mapAuthorImages = authors.map((authorImage) => {
+	const mapAuthorImages = authors?.map((authorImage) => {
+		if (!authorImage.slug || !authorImage.name) return null
+		
 		return (
 			<Link
 				href={linkResolver(authorImage.slug, 'contributor')}
@@ -41,7 +43,9 @@ const AuthorMetadata = ({
 		)
 	})
 
-	const mapAuthorNames = authors.map((authorLink) => {
+	const mapAuthorNames = authors?.map((authorLink) => {
+		if (!authorLink.slug || !authorLink.name) return null
+		
 		return (
 			<Link
 				type="secondary"

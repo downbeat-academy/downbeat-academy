@@ -17,6 +17,7 @@ import { Flex } from 'cadence-core'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../types/meta'
+import type { SlugParams, SlugString } from '../../../../types/common'
 
 const client = sanityClient
 
@@ -42,9 +43,9 @@ export async function generateMetadata(
 }
 
 // Generate the routes for each page
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<SlugParams[]> {
 	try {
-		const slugs = await client.fetch(
+		const slugs: SlugString[] = await client.fetch(
 			contributorPaths,
 			{},
 			{
@@ -53,7 +54,7 @@ export async function generateStaticParams() {
 				}
 			}
 		)
-		return slugs.map((slug) => ({ slug }))
+		return slugs.map((slug: string) => ({ slug }))
 	} catch (error) {
 		console.error(error)
 		throw error
@@ -119,7 +120,7 @@ export default async function ContributorSlugRoute({ params }: { params: Promise
 						}
 					/>
 					<Flex direction="column" tag="section">
-						{contributor.content.map((c) => {
+						{contributor.content.map((c: { _id: string; title: string; excerpt: string; slug: string; type: string }) => {
 							return (
 								<ListItem
 									key={c._id}

@@ -27,7 +27,7 @@ const Flex = ({
 		s[`justify-items--${justifyItems}`],
 		s[`justify--${justifyContent}`],
 		s[`background--${background}`],
-		s[wrap ? `wrap` : null],
+		wrap && s['wrap'],
 		className,
 	])
 

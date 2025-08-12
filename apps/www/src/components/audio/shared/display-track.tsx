@@ -15,7 +15,7 @@ export const DisplayTrack = ({
 	showTitle = true,
 	showArtist = true,
 }: DisplayTrackProps) => {
-	const track = getSanityUrl(currentTrack.file.asset._ref)
+	const track = getSanityUrl(currentTrack.file.asset._ref) || ''
 
 	const onLoadedMetadata = () => {
 		if (!audioRef.current || !progressBarRef.current) return
