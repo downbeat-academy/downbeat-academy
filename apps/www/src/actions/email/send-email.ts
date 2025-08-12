@@ -5,7 +5,15 @@ import ContactFormEmail from '../../../../../packages/email/emails/contact-form'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function sendEmail({ name, email, message }) {
+export async function sendEmail({ 
+	name, 
+	email, 
+	message 
+}: { 
+	name: string
+	email: string
+	message: string 
+}) {
 	try {
 		const { data } = await resend.emails.send({
 			from: 'Downbeat Academy <hello@email.downbeatacademy.com>',

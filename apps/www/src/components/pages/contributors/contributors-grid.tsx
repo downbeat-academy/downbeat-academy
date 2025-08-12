@@ -7,7 +7,18 @@ import { Link } from '@components/link'
 import { Avatar } from '@components/avatar'
 import { Badge, Flex } from 'cadence-core'
 
-export default async function ContributorsGrid({ contributors }) {
+interface Contributor {
+	_id: string
+	name: string
+	slug: string
+	jobTitle?: string
+	bio?: string
+	profilePicture?: {
+		asset: any
+	}
+}
+
+export default async function ContributorsGrid({ contributors }: { contributors: Contributor[] }) {
 	const mapContributors = contributors.map((contributor) => {
 		return (
 			<Card borderColor="primary" key={contributor._id}>

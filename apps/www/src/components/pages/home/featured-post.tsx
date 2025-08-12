@@ -8,7 +8,32 @@ import { AuthorMetadata } from '@components/author'
 import { Text } from 'cadence-core'
 import { Badge, Flex } from 'cadence-core'
 
-export default async function FeaturedPost({ featuredPost }) {
+interface FeaturedPostType {
+	_id: string
+	slug: string
+	title: string
+	publishedAt: string
+	excerpt?: string
+	featuredImage: {
+		image: {
+			asset: any
+		}
+		alternativeText?: string
+	}
+	author?: {
+		name: string
+		slug?: string
+		profilePicture?: {
+			asset: any
+		}
+	}
+	categories: Array<{
+		title: string
+		slug: string
+	}>
+}
+
+export default async function FeaturedPost({ featuredPost }: { featuredPost: FeaturedPostType }) {
 	// Render the categories of the featured post as badges
 	const renderCategories = featuredPost.categories.map((category) => {
 		return (

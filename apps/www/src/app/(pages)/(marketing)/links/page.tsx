@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 // Render the page data
-export default async function LinkInBioPage({ params }) {
+export default async function LinkInBioPage() {
 	try {
 		const links = await client.fetch(
 			linkInBioPageQuery,
