@@ -12,7 +12,19 @@ import { linkResolver } from '@utils/link-resolver'
 import { Link } from '@components/link'
 import { Badge } from 'cadence-core'
 
-const LexiconTable = ({ data }) => {
+interface LexiconRowData {
+	id: string
+	artist: string
+	track: string
+	album: string
+	timestamp: number
+	style: string
+	length: string
+	chordProgression: string
+	slug: string
+}
+
+const LexiconTable = ({ data }: { data: LexiconRowData[] }) => {
 	return (
 		<Table>
 			<TableHeader>
@@ -28,7 +40,7 @@ const LexiconTable = ({ data }) => {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{data.map((row) => {
+				{data.map((row: LexiconRowData) => {
 					return (
 						<TableRow key={row.id}>
 							<TableCell>{row.artist}</TableCell>

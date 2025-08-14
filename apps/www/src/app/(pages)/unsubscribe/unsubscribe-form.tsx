@@ -32,7 +32,7 @@ export function UnsubscribeForm() {
 		try {
 			await deleteContact({
 				email: formData.email,
-				audienceId: process.env.RESEND_DEFAULT_AUDIENCE_ID,
+				// audienceId is optional - server action will use default
 			})
 			toast({
 				title: 'Unsubscribed',

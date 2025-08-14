@@ -3,7 +3,7 @@
 import { Toaster } from '@components/toast'
 import { TooltipProvider } from '@components/tooltip'
 
-const Provider = ({ children }) => {
+const Provider = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
 			<TooltipProvider delayDuration={500}>

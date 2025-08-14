@@ -61,10 +61,11 @@ export const SignUpForm = () => {
       
       if (result.success) {
         try {
+          const nameParts = data.name?.split(' ') || []
           await createContact({ 
             email: data.email,
-            firstName: data.name.split(' ')[0],
-            lastName: data.name.split(' ').slice(1).join(' ')
+            firstName: nameParts[0] || data.name || '',
+            lastName: nameParts.slice(1).join(' ') || ''
           })
           console.log('Successfully added contact to Resend:', data.email)
         } catch (error) {
@@ -102,6 +103,7 @@ export const SignUpForm = () => {
         <Input
           type="text"
           id="name"
+          data-testid="signup-name-input"
           {...register('name')}
           placeholder="John Coltrane"
           isInvalid={!!errors.name}
@@ -115,6 +117,7 @@ export const SignUpForm = () => {
         <Input
           type="email"
           id="email"
+          data-testid="signup-email-input"
           {...register('email')}
           placeholder="john@bluenote.com"
           isInvalid={!!errors.email}
@@ -131,6 +134,7 @@ export const SignUpForm = () => {
         <Input
           type="password"
           id="password"
+          data-testid="signup-password-input"
           {...register('password')}
           placeholder="Choose a password"
           isInvalid={!!errors.password}
@@ -147,6 +151,7 @@ export const SignUpForm = () => {
         <Input
           type="password"
           id="confirmPassword"
+          data-testid="signup-confirm-password-input"
           {...register('confirmPassword')}
           placeholder="Confirm your password"
           isInvalid={!!errors.confirmPassword}
@@ -157,6 +162,7 @@ export const SignUpForm = () => {
       </Field>
       <Button
         type="submit"
+        data-testid="signup-submit"
         text={isSubmitting ? "Creating account..." : "Sign Up"}
         variant="primary"
         disabled={isSubmitting}

@@ -1,4 +1,12 @@
 const deslugify = (slug: string): { string: string; sentence: string } => {
+	// Handle undefined or null slug
+	if (!slug) {
+		return {
+			string: '',
+			sentence: '',
+		}
+	}
+
 	// Return a basic string
 	const string = slug.replace(/-/g, ' ')
 

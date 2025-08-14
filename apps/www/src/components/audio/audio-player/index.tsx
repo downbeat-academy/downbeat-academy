@@ -19,8 +19,8 @@ const AudioPlayer = ({ tracks, showTitle, showArtist }: AudioPlayerProps) => {
 	const [timeProgress, setTimeProgress] = useState(0)
 	const [duration, setDuration] = useState(0)
 
-	const audioRef = useRef()
-	const progressBarRef = useRef()
+	const audioRef = useRef<HTMLAudioElement>(null)
+	const progressBarRef = useRef<HTMLInputElement>(null)
 
 	const handleNext = () => {
 		if (trackIndex >= tracks.length - 1) {

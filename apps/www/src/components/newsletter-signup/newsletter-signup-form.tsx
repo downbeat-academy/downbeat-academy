@@ -60,6 +60,7 @@ const NewsletterSignupForm = () => {
 					register={register}
 					type="email"
 					name="email"
+					data-testid="newsletter-email-input"
 					placeholder="john@coltrane.com"
 				/>
 				{errors.email && (
@@ -70,6 +71,7 @@ const NewsletterSignupForm = () => {
 			</Field>
 			<Button
 				type="submit"
+				data-testid="newsletter-submit"
 				text={isSubmitting ? 'Signing you up...' : 'Subscribe'}
 				variant="primary"
 				size="medium"

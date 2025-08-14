@@ -4,7 +4,7 @@ import { Text } from 'cadence-core'
 import { Badge, Flex } from 'cadence-core'
 import s from './lexicon-item.module.css'
 
-const LexiconItem = ({ title, url, album, track, timestamp }) => {
+const LexiconItem = ({ title, url, album, track, timestamp }: { title: string; url: string; album: string; track: string; timestamp: string }) => {
 	return (
 		<Link href={linkResolver(url, 'lexicon')} className={s.root}>
 			<Text

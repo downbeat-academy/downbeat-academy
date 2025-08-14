@@ -1,0 +1,230 @@
+name: E2E Tests - www
+
+on:
+  # Run on PRs that modify www app or test files
+  pull_request:
+    paths:
+      - 'apps/www/**'
+      - '.github/workflows/ci-www-e2e.yml'
+      - 'packages/cadence-**/**'
+      - 'pnpm-lock.yaml'
+  
+  # Run on push to main only if www files changed
+  push:
+    branches: [main]
+    paths:
+      - 'apps/www/**'
+      - '.github/workflows/ci-www-e2e.yml'
+      - 'packages/cadence-**/**'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Test suite to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - auth
+          - routes
+          - forms
+          - journeys
+          - smoke
+
+env:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '9'
+
+concurrency:
+  group: e2e-tests-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Quick smoke tests for every PR
+  smoke-tests:
+    name: 'Smoke Tests'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Install Cypress binary
+        run: pnpm --filter www cypress install
+      
+      - name: Build packages
+        run: |
+          pnpm --filter cadence-tokens build
+          pnpm --filter cadence-icons build
+          pnpm --filter cadence-core build
+      
+      - name: Setup test environment
+        working-directory: apps/www
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+        run: |
+          cat > .env.local << 'EOF'
+          DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET=test-secret-for-smoke-tests
+          BETTER_AUTH_URL=http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
+          RESEND_API_KEY=test-key
+          BLOB_READ_WRITE_TOKEN=test-token
+          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
+          NEXT_PUBLIC_SANITY_DATASET=production
+          SANITY_SECRET_TOKEN=test-token
+          EOF
+          
+          pnpm db:push
+          pnpm db:seed:test || echo "Seed script not found, skipping..."
+      
+      - name: Run smoke tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: pnpm --filter www build
+          start: pnpm --filter www start
+          working-directory: .
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 180
+          browser: chrome
+          record: false
+          config-file: apps/www/cypress.config.ts
+          spec: apps/www/cypress/e2e/routes/public-routes.cy.ts
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET: test-secret-for-smoke-tests
+          BETTER_AUTH_URL: http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
+          CYPRESS_BASE_URL: http://localhost:3000
+
+  # Full test suite for main branch and manual triggers
+  full-tests:
+    name: 'Full E2E Tests'
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: test_db
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Install Cypress binary
+        run: pnpm --filter www cypress install
+      
+      - name: Build packages
+        run: |
+          pnpm --filter cadence-tokens build
+          pnpm --filter cadence-icons build
+          pnpm --filter cadence-core build
+      
+      - name: Setup test environment
+        working-directory: apps/www
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+        run: |
+          cat > .env.local << 'EOF'
+          DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET=test-secret-for-ci
+          BETTER_AUTH_URL=http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
+          RESEND_API_KEY=test-key
+          BLOB_READ_WRITE_TOKEN=test-token
+          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
+          NEXT_PUBLIC_SANITY_DATASET=production
+          SANITY_SECRET_TOKEN=test-token
+          EOF
+          
+          pnpm db:push
+          pnpm db:seed:test || echo "Seed script not found, skipping..."
+      
+      - name: Determine test suite
+        id: test-suite
+        run: |
+          if [ "${{ github.event.inputs.test_suite }}" != "" ]; then
+            echo "suite=${{ github.event.inputs.test_suite }}" >> $GITHUB_OUTPUT
+          else
+            echo "suite=all" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v6
+        continue-on-error: true
+        with:
+          build: pnpm --filter www build
+          start: pnpm --filter www start
+          working-directory: .
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 180
+          browser: chrome
+          record: false
+          config-file: apps/www/cypress.config.ts
+          spec: ${{ steps.test-suite.outputs.suite == 'all' && 'apps/www/cypress/e2e/**/*.cy.ts' || format('apps/www/cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET: test-secret-for-ci
+          BETTER_AUTH_URL: http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
+          CYPRESS_BASE_URL: http://localhost:3000
+      
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-artifacts
+          path: |
+            apps/www/cypress/screenshots
+            apps/www/cypress/videos

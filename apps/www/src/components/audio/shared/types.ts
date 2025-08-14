@@ -56,9 +56,17 @@ interface ControlsProps {
 	handleNext: () => void
 }
 
+interface ProgressBarProps {
+	progressBarRef: React.RefObject<HTMLInputElement>
+	audioRef: React.RefObject<HTMLAudioElement>
+	timeProgress: number
+	duration: number
+}
+
 export type {
 	Track,
 	PlayerButtonProps,
 	DisplayTrackProps,
-	ControlsProps
+	ControlsProps,
+	ProgressBarProps
 }

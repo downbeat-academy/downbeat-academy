@@ -10,6 +10,8 @@ import { Link } from '@components/link'
 import s from './handbook-page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
+import type { SlugParams, SlugString } from '../../../../../types/common'
+import type { category } from '../../../../../types/category'
 
 const client = sanityClient
 
@@ -42,9 +44,9 @@ export async function generateMetadata(
 }
 
 // Generate the slugs/routes for the handbooks
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<SlugParams[]> {
 	try {
-		const slugs = await sanityClient.fetch(
+		const slugs: SlugString[] = await sanityClient.fetch(
 			handbookPaths,
 			{},
 			{
@@ -53,7 +55,7 @@ export async function generateStaticParams() {
 				}
 			}
 		)
-		return slugs.map((slug) => ({ slug }))
+		return slugs.map((slug: string) => ({ slug }))
 	} catch (error) {
 		console.error(error)
 		throw error
@@ -89,7 +91,7 @@ export default async function HandbookSlugRoute({ params }: { params: Promise<{ 
 					<Text tag="p" type="expressive-body" size="body-base" collapse>
 						Categories:
 					</Text>
-					{handbook.categories.map((category) => (
+					{handbook.categories.map((category: category) => (
 						<Link key={category.title} href={`/category/${category.slug}`}>
 							<Badge text={category.title} />
 						</Link>

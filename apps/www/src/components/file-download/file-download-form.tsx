@@ -17,8 +17,9 @@ import {
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { useToast } from '@components/toast'
+import type { FileDownloadFormProps } from './types'
 
-const FileDownloadForm = ({ fileUrl, title }) => {
+const FileDownloadForm = ({ fileUrl, title }: FileDownloadFormProps) => {
 	const { toast } = useToast()
 
 	const {
@@ -32,6 +33,10 @@ const FileDownloadForm = ({ fileUrl, title }) => {
 
 	const onSubmit = async (formData: TFileDownloadSchema) => {
 		try {
+			if (!fileUrl || !title) {
+				throw new Error('Missing file URL or title')
+			}
+
 			const fileDownloadObject = {
 				email: formData.email || '',
 				file: fileUrl,

@@ -23,7 +23,7 @@ const MainImage = ({
 
 	return (
 		<section className={classes}>
-			<Img src={getSanityImageUrl(image).url()} alt={altText} fill={true} />
+			<Img src={getSanityImageUrl(image).url()} alt={altText || ''} fill={true} />
 			<aside className={s[`caption-wrapper`]}>
 				<Text tag="span" type="productive-body" color="primary">
 					{caption}

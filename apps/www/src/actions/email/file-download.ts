@@ -5,7 +5,15 @@ import FileDownload from '../../../../../packages/email/emails/file-download'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function sendFileDownload({ email, file, title }) {
+export async function sendFileDownload({ 
+	email, 
+	file, 
+	title 
+}: { 
+	email: string
+	file: string
+	title: string 
+}) {
 	try {
 		const { data } = await resend.emails.send({
 			from: 'Downbeat Academy <hello@email.downbeatacademy.com>',

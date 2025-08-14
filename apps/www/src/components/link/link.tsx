@@ -16,11 +16,6 @@ const Link = ({
 	ariaDescribedBy,
 	...restProps
 }: LinkProps) => {
-
-	if (restProps['aria-describedby']?.length > 0) {
-		ariaDescribedBy += ` ${restProps['aria-describedby']}`
-	}
-
 	const classes = classnames([
 		s.root,
 		s[type],

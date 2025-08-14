@@ -26,7 +26,12 @@ function SignOutButton() {
 	)
 }
 
-const NavContent = ({ links, session }) => {
+interface NavContentProps {
+	links: any
+	session: any
+}
+
+const NavContent = ({ links, session }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
@@ -96,7 +101,7 @@ const NavContent = ({ links, session }) => {
 	const mapLinks = staticLinks.map((link) => {
 		return (
 			<li key={link.text} className={s[`link-item`]}>
-				<Link href={link.href} type="secondary">
+				<Link href={link.href} type="secondary" data-testid={`nav-${link.text.toLowerCase().replace(/\s+/g, '-')}`}>
 					{link.text}
 				</Link>
 			</li>
@@ -119,7 +124,7 @@ const NavContent = ({ links, session }) => {
 				</Link>
 			</div>
 			<div className={toggledNavClasses}>
-				<nav>
+				<nav data-testid="main-navigation">
 					<ul className={s[`nav-links`]}>
 						{mapLinks}
 					</ul>
@@ -151,6 +156,7 @@ const NavContent = ({ links, session }) => {
 			</div>
 			<button
 				type='button'
+				data-testid="mobile-menu-toggle"
 				className={s['menu-button']}
 				onClick={handleNavToggled}
 			>{navToggled ? 'Close menu' : 'Open menu'}</button>

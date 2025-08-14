@@ -6,7 +6,7 @@ import type { ContentProps } from './types'
 const Content = ({ children, isFullBleed, className }: ContentProps) => {
 	const classes = classnames(
 		s['content-wrapper'],
-		s[isFullBleed ? 'is-full-bleed' : null],
+		isFullBleed && s['is-full-bleed'],
 		className
 	)
 

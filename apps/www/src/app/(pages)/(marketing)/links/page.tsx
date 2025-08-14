@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 // Render the page data
-export default async function LinkInBioPage({ params }) {
+export default async function LinkInBioPage() {
 	try {
 		const links = await client.fetch(
 			linkInBioPageQuery,
@@ -36,7 +36,7 @@ export default async function LinkInBioPage({ params }) {
 			return notFound()
 		}
 
-		const renderLinks = links.map((link) => {
+		const renderLinks = links.map((link: { _id: string; title: string; description: string; link: { slug: string; _type: string }; date: string }) => {
 			return (
 				<ListItem
 					key={link._id}

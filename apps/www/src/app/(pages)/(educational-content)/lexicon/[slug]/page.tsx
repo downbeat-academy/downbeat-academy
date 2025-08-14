@@ -11,6 +11,7 @@ import { MusicNotation } from '@components/music-notation'
 import { AudioPlayer } from '@components/audio'
 
 import s from './lexicon-page.module.css'
+import type { SlugParams, SlugString } from '../../../../../types/common'
 
 const client = sanityClient
 
@@ -45,9 +46,9 @@ export async function generateMetadata({
 	}
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<SlugParams[]> {
 	try {
-		const slugs = await sanityClient.fetch(
+		const slugs: SlugString[] = await sanityClient.fetch(
 			lexiconPaths,
 			{},
 			{
@@ -57,7 +58,7 @@ export async function generateStaticParams() {
 			}
 		)
 
-		return slugs.map((slug) => ({ slug }))
+		return slugs.map((slug: string) => ({ slug }))
 	} catch (error) {
 		{
 			console.error(error)
@@ -113,7 +114,7 @@ export default async function LexiconSlugRoute({ params }: { params: Promise<{ s
 		},
 	]
 
-	const renderMetadata = lexiconMetadata.map((item) => {
+	const renderMetadata = lexiconMetadata.map((item: { title: string; value: string }) => {
 		return (
 			<Flex
 				direction="column"

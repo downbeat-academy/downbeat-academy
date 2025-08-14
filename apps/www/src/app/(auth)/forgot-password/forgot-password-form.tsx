@@ -63,6 +63,7 @@ export function ForgotPasswordForm() {
         <Input
           type="email"
           id="email"
+          data-testid="forgot-password-email-input"
           {...register('email')}
           placeholder="john@coltrane.com"
           isInvalid={!!errors.email}
@@ -73,6 +74,7 @@ export function ForgotPasswordForm() {
       </Field>
       <Button
         type="submit"
+        data-testid="forgot-password-submit"
         text={isSubmitting ? "Sending reset link..." : "Send reset link"}
         variant="primary"
         disabled={isSubmitting}

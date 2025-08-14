@@ -7,7 +7,28 @@ import { Link } from '@components/link'
 import { AuthorMetadata } from '@components/author'
 import { prettyDate } from '@utils/dateFormat'
 
-export default async function ArticlesPostGrid({ articles }) {
+interface Article {
+	_id: string
+	slug: string
+	title: string
+	publishedAt: string
+	excerpt?: string
+	featuredImage: {
+		image: {
+			asset: any
+		}
+		alternativeText?: string
+	}
+	author?: {
+		name: string
+		slug?: string
+		profilePicture?: {
+			asset: any
+		}
+	}
+}
+
+export default async function ArticlesPostGrid({ articles }: { articles: Article[] }) {
 	const mapArticles = articles.map((article) => {
 		return (
 			<Card borderColor="faint" key={article._id}>
@@ -28,9 +49,9 @@ export default async function ArticlesPostGrid({ articles }) {
 						</Text>
 					)}
 					<AuthorMetadata
-						authors={article.authors}
+						authors={article.author ? [article.author] : []}
 						avatarSize="small"
-						date={prettyDate(article.date)}
+						date={prettyDate(article.publishedAt)}
 					/>
 				</CardContent>
 			</Card>

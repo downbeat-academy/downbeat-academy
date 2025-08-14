@@ -64,7 +64,7 @@ const UpdateProfileForm = ({
 		}
 	}
 
-	const readOnlyProps = (value) => {
+	const readOnlyProps = (value: any) => {
 		if (isReadOnly === true) {
 			return {
 				disabled: true,
@@ -81,6 +81,7 @@ const UpdateProfileForm = ({
 					type="text"
 					id="name"
 					name="name"
+					data-testid="profile-name-input"
 					register={register}
 					isInvalid={!!errors.name}
 					placeholder={name}
@@ -96,6 +97,7 @@ const UpdateProfileForm = ({
 					type="email"
 					id="email"
 					name="email"
+					data-testid="profile-email-input"
 					isInvalid={false}
 					placeholder={email}
 					disabled={true}
@@ -105,6 +107,7 @@ const UpdateProfileForm = ({
 				<ButtonWrapper>
 					<Button
 						type="submit"
+						data-testid="profile-update-submit"
 						variant="primary"
 						text={isSubmitting ? 'Updating profile…' : 'Update profile'}
 						disabled={isSubmitting}

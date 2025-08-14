@@ -4,4 +4,9 @@ interface FileDownloadProps {
 	file?: any
 }
 
-export type { FileDownloadProps }
+interface FileDownloadFormProps {
+	fileUrl?: string
+	title?: string
+}
+
+export type { FileDownloadProps, FileDownloadFormProps }

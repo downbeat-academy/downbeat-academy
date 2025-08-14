@@ -100,6 +100,7 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
         <Input
           type="password"
           id="newPassword"
+          data-testid="new-password-input"
           {...register('newPassword')}
           placeholder="Enter your new password"
           isInvalid={!!errors.newPassword}
@@ -113,6 +114,7 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
         <Input
           type="password"
           id="confirmPassword"
+          data-testid="confirm-new-password-input"
           {...register('confirmPassword')}
           placeholder="Confirm your new password"
           isInvalid={!!errors.confirmPassword}
@@ -123,6 +125,7 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
       </Field>
       <Button
         type="submit"
+        data-testid="reset-password-submit"
         text={isSubmitting ? "Resetting..." : "Reset Password"}
         variant="primary"
         disabled={isSubmitting}

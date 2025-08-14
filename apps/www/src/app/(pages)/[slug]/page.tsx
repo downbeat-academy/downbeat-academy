@@ -12,6 +12,7 @@ import { ModuleRenderer } from '@components/module-content'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../types/meta'
+import type { SlugParams, SlugString } from '../../../types/common'
 
 const client = sanityClient
 
@@ -44,10 +45,10 @@ export async function generateMetadata(
 }
 
 // Generate the slugs/routes for each page
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<SlugParams[]> {
 	try {
-		const slugs = await client.fetch(pagePaths)
-		return slugs.map((slug) => ({ slug }))
+		const slugs: SlugString[] = await client.fetch(pagePaths)
+		return slugs.map((slug: string) => ({ slug }))
 	} catch (error) {
 		console.error(error)
 		throw error

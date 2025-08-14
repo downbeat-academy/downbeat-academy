@@ -15,7 +15,7 @@ const Chord = ({
 }: ChordProps) => {
 	const classes = classnames(s.root, className)
 
-	const chord = transformChord(root, quality, extension, alternateBass, 'abbr')
+	const chord = transformChord(root || '', quality || '', extension || '', alternateBass || '', 'abbr')
 
 	return <span className={classes}>{chord}</span>
 }
