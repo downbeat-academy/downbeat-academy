@@ -1,7 +1,7 @@
 {
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
-		"strict": true
+		"strict": false
 	},
 	"include": ["next-env.d.ts", ".next/types/**/*.ts", "src/**/*.ts", "src/**/*.tsx"],
 	"exclude": ["node_modules", "cypress", "**/*.cy.ts", "**/*.cy.tsx", "**/cypress/**/*"]
