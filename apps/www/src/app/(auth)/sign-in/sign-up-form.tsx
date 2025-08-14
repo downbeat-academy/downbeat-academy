@@ -61,10 +61,11 @@ export const SignUpForm = () => {
       
       if (result.success) {
         try {
+          const nameParts = data.name?.split(' ') || []
           await createContact({ 
             email: data.email,
-            firstName: data.name.split(' ')[0],
-            lastName: data.name.split(' ').slice(1).join(' ')
+            firstName: nameParts[0] || data.name || '',
+            lastName: nameParts.slice(1).join(' ') || ''
           })
           console.log('Successfully added contact to Resend:', data.email)
         } catch (error) {

@@ -1,4 +1,9 @@
 const linkResolver = (url: string, category: string) => {
+	// Handle undefined or null url
+	if (!url) {
+		return '/'
+	}
+	
 	switch (category) {
 		case 'page':
 			return `/${url}`
