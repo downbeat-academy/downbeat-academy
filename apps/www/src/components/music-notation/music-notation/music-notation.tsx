@@ -26,20 +26,20 @@ const MusicNotation = ({
 		className,
 	])
 
-	const renderTriggers = files.map((file) => {
-		const label = toKebabCase(file.label)
+	const renderTriggers = files.map((file, index) => {
+		const label = toKebabCase(file.label || `file-${index}`)
 
 		return (
 			<Tabs.Trigger value={label} key={label}>
-				{file.label}
+				{file.label || `File ${index + 1}`}
 			</Tabs.Trigger>
 		)
 	})
 
-	const renderContent = files.map((file) => {
+	const renderContent = files.map((file, index) => {
 		// Get the file asset information from Sanity
 		const fileData = getFile(file.asset, sanityConfig)
-		const label = toKebabCase(file.label)
+		const label = toKebabCase(file.label || `file-${index}`)
 
 		return (
 			<Tabs.Content
@@ -74,7 +74,7 @@ const MusicNotation = ({
 				/>
 			)}
 			<Tabs.Root
-				defaultValue={toKebabCase(files[0].label)}
+				defaultValue={toKebabCase(files[0]?.label || 'file-0')}
 				className={s.content}
 			>
 				<Tabs.List>{renderTriggers}</Tabs.List>

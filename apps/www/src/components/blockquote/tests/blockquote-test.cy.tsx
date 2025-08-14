@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 import React from 'react'
 import { Blockquote } from '@components/blockquote'
 

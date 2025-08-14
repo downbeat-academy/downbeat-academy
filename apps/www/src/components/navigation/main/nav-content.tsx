@@ -26,7 +26,12 @@ function SignOutButton() {
 	)
 }
 
-const NavContent = ({ links, session }) => {
+interface NavContentProps {
+	links: any
+	session: any
+}
+
+const NavContent = ({ links, session }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)

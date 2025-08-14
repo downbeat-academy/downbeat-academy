@@ -1,5 +1,5 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
-import { Client } from 'pg'
+import { Pool } from 'pg'
 import { user, account, session } from '../../src/lib/db/schema/auth'
 import { eq } from 'drizzle-orm'
 import { hash } from 'bcryptjs'
@@ -49,31 +49,31 @@ const TEST_USERS = [
 	},
 ]
 
-let dbClient: Client | null = null
+let dbPool: Pool | null = null
 let db: ReturnType<typeof drizzle> | null = null
 
 async function getDbConnection() {
-	if (!dbClient || !db) {
+	if (!dbPool || !db) {
 		const databaseUrl = process.env.TEST_DATABASE_URL || process.env.DATABASE_URL_AUTH || process.env.DATABASE_URL
 		if (!databaseUrl) {
 			throw new Error('No database URL found for testing')
 		}
 		
-		dbClient = new Client({
+		dbPool = new Pool({
 			connectionString: databaseUrl,
 		})
 		
-		// Ensure connection is established
+		// Test connection
 		try {
-			await dbClient.connect()
+			await dbPool.query('SELECT 1')
 		} catch (error) {
 			console.error('Failed to connect to test database:', error)
 			throw error
 		}
 		
-		db = drizzle(dbClient)
+		db = drizzle(dbPool)
 	}
-	return { dbClient, db }
+	return { dbPool, db }
 }
 
 export async function seedTestUsers(): Promise<boolean> {
@@ -201,9 +201,9 @@ export async function getTestUserByEmail(email: string) {
 
 // Close database connection when done
 export async function closeDbConnection() {
-	if (dbClient) {
-		await dbClient.end()
-		dbClient = null
+	if (dbPool) {
+		await dbPool.end()
+		dbPool = null
 		db = null
 	}
 }

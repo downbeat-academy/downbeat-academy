@@ -16,6 +16,12 @@ interface Contributor {
 	profilePicture?: {
 		asset: any
 	}
+	avatar?: {
+		image: {
+			asset: any
+		}
+	}
+	instrument?: string[]
 }
 
 export default async function ContributorsGrid({ contributors }: { contributors: Contributor[] }) {
@@ -29,14 +35,16 @@ export default async function ContributorsGrid({ contributors }: { contributors:
 								name={contributor.name}
 								size="large"
 								imageObject={
-									<Img
-										src={getSanityImageUrl(
-											contributor.avatar.image.asset
-										).url()}
-										alt={contributor.name}
-										width={80}
-										height={80}
-									/>
+									contributor.avatar?.image?.asset ? (
+										<Img
+											src={getSanityImageUrl(
+												contributor.avatar.image.asset
+											).url()}
+											alt={contributor.name}
+											width={80}
+											height={80}
+										/>
+									) : undefined
 								}
 							/>
 						</Link>
@@ -55,18 +63,20 @@ export default async function ContributorsGrid({ contributors }: { contributors:
 									{contributor.name}
 								</Link>
 							</Text>
-							<Flex direction="row" gap="x-small">
-								{contributor.instrument.map((instrument) => {
-									return (
-										<Badge
-											style="outlined"
-											size="small"
-											text={instrument}
-											key={instrument}
-										/>
-									)
-								})}
-							</Flex>
+							{contributor.instrument && contributor.instrument.length > 0 && (
+								<Flex direction="row" gap="x-small">
+									{contributor.instrument.map((instrument) => {
+										return (
+											<Badge
+												style="outlined"
+												size="small"
+												text={instrument}
+												key={instrument}
+											/>
+										)
+									})}
+								</Flex>
+							)}
 						</Flex>
 					</Flex>
 				</CardContent>

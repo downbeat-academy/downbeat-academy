@@ -1,5 +1,12 @@
+interface MusicTextItem {
+	_type: 'musicText' | 'accidental' | 'barValue' | 'rhythmicValue' | 'clef' | 'musicSymbol'
+	_key: string
+	musicText?: string
+	options?: string | any
+}
+
 interface MusicTextRendererProps {
-	values?: any
+	values?: MusicTextItem[]
 	className?: string
 }
 

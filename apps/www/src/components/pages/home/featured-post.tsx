@@ -72,8 +72,8 @@ export default async function FeaturedPost({ featuredPost }: { featuredPost: Fea
 			</FeaturedItem.Title>
 			<FeaturedItem.Description>
 				<AuthorMetadata
-					authors={featuredPost.authors}
-					date={prettyDate(featuredPost.date)}
+					authors={featuredPost.author ? [featuredPost.author] : []}
+					date={prettyDate(featuredPost.publishedAt)}
 				>
 					<Flex tag="div" direction="row" gap="medium">
 						{renderCategories}

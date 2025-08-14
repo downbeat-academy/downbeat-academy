@@ -14,10 +14,12 @@ import type { MusicTextRendererProps } from './types'
 const MusicTextRenderer = ({ values, className }: MusicTextRendererProps) => {
 	const classes = classnames(s.root, className)
 
+	if (!values) return null
+
 	const item = values.map((i) => {
 		switch (i._type) {
 			case 'musicText':
-				return <MusicText text={i.musicText} key={i._key} />
+				return <MusicText text={i.musicText || ''} key={i._key} />
 			case 'accidental':
 				return <Accidental value={i.options} key={i._key} />
 			case 'barValue':

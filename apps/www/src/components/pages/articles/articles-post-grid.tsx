@@ -49,9 +49,9 @@ export default async function ArticlesPostGrid({ articles }: { articles: Article
 						</Text>
 					)}
 					<AuthorMetadata
-						authors={article.authors}
+						authors={article.author ? [article.author] : []}
 						avatarSize="small"
-						date={prettyDate(article.date)}
+						date={prettyDate(article.publishedAt)}
 					/>
 				</CardContent>
 			</Card>
