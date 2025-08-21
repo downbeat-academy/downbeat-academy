@@ -11,7 +11,7 @@ interface Post {
 	_id: string
 	slug: string
 	title: string
-	publishedAt: string
+	date: string
 	excerpt?: string
 	featuredImage: {
 		image: {
@@ -19,13 +19,13 @@ interface Post {
 		}
 		alternativeText?: string
 	}
-	author?: {
+	authors?: Array<{
 		name: string
 		slug?: string
-		profilePicture?: {
+		image?: {
 			asset: any
 		}
-	}
+	}>
 }
 
 export default async function HomePostGrid({ posts }: { posts: Post[] }) {
@@ -49,9 +49,9 @@ export default async function HomePostGrid({ posts }: { posts: Post[] }) {
 						</Text>
 					)}
 					<AuthorMetadata
-						authors={post.author ? [post.author] : []}
+						authors={post.authors || []}
 						avatarSize="small"
-						date={prettyDate(post.publishedAt)}
+						date={prettyDate(post.date)}
 					/>
 				</CardContent>
 			</Card>

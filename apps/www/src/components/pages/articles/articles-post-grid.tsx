@@ -11,7 +11,7 @@ interface Article {
 	_id: string
 	slug: string
 	title: string
-	publishedAt: string
+	date: string
 	excerpt?: string
 	featuredImage: {
 		image: {
@@ -19,13 +19,13 @@ interface Article {
 		}
 		alternativeText?: string
 	}
-	author?: {
+	authors?: Array<{
 		name: string
 		slug?: string
-		profilePicture?: {
+		image?: {
 			asset: any
 		}
-	}
+	}>
 }
 
 export default async function ArticlesPostGrid({ articles }: { articles: Article[] }) {
@@ -49,9 +49,9 @@ export default async function ArticlesPostGrid({ articles }: { articles: Article
 						</Text>
 					)}
 					<AuthorMetadata
-						authors={article.author ? [article.author] : []}
+						authors={article.authors || []}
 						avatarSize="small"
-						date={prettyDate(article.publishedAt)}
+						date={prettyDate(article.date)}
 					/>
 				</CardContent>
 			</Card>
