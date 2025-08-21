@@ -77,7 +77,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       - name: Install Cypress binary
-        run: pnpm --filter www cypress install
+        run: pnpm --filter www cypress:install
       
       - name: Build packages
         run: |
@@ -116,6 +116,7 @@ jobs:
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
           browser: chrome
+          headless: true
           record: false
           config-file: apps/www/cypress.config.ts
           spec: apps/www/cypress/e2e/routes/public-routes.cy.ts
@@ -161,7 +162,7 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       - name: Install Cypress binary
-        run: pnpm --filter www cypress install
+        run: pnpm --filter www cypress:install
       
       - name: Build packages
         run: |
@@ -210,6 +211,7 @@ jobs:
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
           browser: chrome
+          headless: true
           record: false
           config-file: apps/www/cypress.config.ts
           spec: ${{ steps.test-suite.outputs.suite == 'all' && 'apps/www/cypress/e2e/**/*.cy.ts' || format('apps/www/cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
