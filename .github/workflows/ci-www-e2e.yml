@@ -116,7 +116,8 @@ jobs:
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
           browser: chrome
-          headless: true
+          headed: false
+          install: false
           record: false
           config-file: apps/www/cypress.config.ts
           spec: apps/www/cypress/e2e/routes/public-routes.cy.ts
@@ -211,7 +212,8 @@ jobs:
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
           browser: chrome
-          headless: true
+          headed: false
+          install: false
           record: false
           config-file: apps/www/cypress.config.ts
           spec: ${{ steps.test-suite.outputs.suite == 'all' && 'apps/www/cypress/e2e/**/*.cy.ts' || format('apps/www/cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
