@@ -3,7 +3,7 @@
 	"description": "Downbeat Academy Design Tokens",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
 	"private": true,
-	"version": "2.2.1",
+	"version": "2.3.0",
 	"license": "UNLICENSED",
 	"scripts": {
 		"build": "style-dictionary build"
