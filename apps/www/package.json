@@ -22,6 +22,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"cypress": "cypress open",
+		"cypress:install": "cypress install",
 		"cypress:run": "cypress run",
 		"cypress:run:chrome": "cypress run --browser chrome",
 		"cypress:run:firefox": "cypress run --browser firefox",
