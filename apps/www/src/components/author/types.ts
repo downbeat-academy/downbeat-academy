@@ -1,7 +1,11 @@
-import type { AvatarProps } from '@components/avatar'
+interface Author {
+	name: string
+	slug?: string
+	image?: any // Can be various structures from Sanity
+}
 
 interface AuthorMetadataProps {
-	authors?: AvatarProps[]
+	authors?: Author[]
 	avatarSize?: 'small' | 'medium' | 'large'
 	children?: React.ReactNode
 	className?: string
