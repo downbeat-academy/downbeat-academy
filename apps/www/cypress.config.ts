@@ -78,6 +78,12 @@ export default defineConfig({
 					launchOptions.args.push('--disable-gpu')
 					launchOptions.args.push('--disable-web-security')
 					launchOptions.args.push('--disable-features=VizDisplayCompositor')
+					launchOptions.args.push('--disable-background-timer-throttling')
+					launchOptions.args.push('--disable-backgrounding-occluded-windows')
+					launchOptions.args.push('--disable-renderer-backgrounding')
+					launchOptions.args.push('--force-color-profile=generic-rgb')
+					launchOptions.args.push('--disable-ipc-flooding-protection')
+					launchOptions.args.push('--window-size=1280,720')
 				}
 				return launchOptions
 			})

@@ -1,5 +1,6 @@
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { handbookPageQuery } from '@lib/queries'
+import { getOgTitle } from '@utils/metaHelpers'
 
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
@@ -10,7 +11,7 @@ import { Flex } from 'cadence-core'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'Handbook',
+	title: getOgTitle('Handbook'),
 	description: 'A collection of educational content from Downbeat Academy.',
 }
 

@@ -222,9 +222,10 @@ describe('Public Routes Coverage', () => {
 			cy.visit('/non-existent-route', { failOnStatusCode: false })
 			
 			// Should show 404 or not found content
-			cy.contains('404').should('be.visible')
-				.or(cy.contains('Not Found').should('be.visible'))
-				.or(cy.contains('Page not found').should('be.visible'))
+			cy.get('body').should(($body) => {
+				const text = $body.text()
+				expect(text).to.match(/404|Not Found|Page not found/i)
+			})
 		})
 
 		it('should maintain navigation on 404 pages', () => {

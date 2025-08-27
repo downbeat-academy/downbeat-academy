@@ -23,6 +23,7 @@ interface TabTriggerProps {
 	disabled?: boolean
 	icon?: any
 	className?: string
+	'data-testid'?: string
 }
 
 interface TabContentProps {
