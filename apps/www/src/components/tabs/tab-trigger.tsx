@@ -12,6 +12,7 @@ const TabTrigger = ({
 	disabled,
 	icon,
 	className,
+	'data-testid': dataTestId,
 }: TabTriggerProps) => {
 	const classes = classnames([s[`tabs--trigger`], className])
 
@@ -20,6 +21,7 @@ const TabTrigger = ({
 			value={value}
 			className={classes}
 			disabled={disabled}
+			data-testid={dataTestId}
 		>
 			{icon}
 			{children}
