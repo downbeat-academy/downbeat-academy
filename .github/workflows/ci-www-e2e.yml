@@ -111,16 +111,16 @@ jobs:
       - name: Run smoke tests
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm --filter www dev
-          working-directory: .
+          start: pnpm dev
+          working-directory: apps/www
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
           browser: chrome
           headed: false
           install: false
           record: false
-          config-file: apps/www/cypress.config.ts
-          spec: apps/www/cypress/e2e/routes/public-routes.cy.ts
+          config-file: cypress.config.ts
+          spec: cypress/e2e/routes/public-routes.cy.ts
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
@@ -207,16 +207,16 @@ jobs:
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
-          start: pnpm --filter www dev
-          working-directory: .
+          start: pnpm dev
+          working-directory: apps/www
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
           browser: chrome
           headed: false
           install: false
           record: false
-          config-file: apps/www/cypress.config.ts
-          spec: ${{ steps.test-suite.outputs.suite == 'all' && 'apps/www/cypress/e2e/**/*.cy.ts' || format('apps/www/cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
+          config-file: cypress.config.ts
+          spec: ${{ steps.test-suite.outputs.suite == 'all' && 'cypress/e2e/**/*.cy.ts' || format('cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
