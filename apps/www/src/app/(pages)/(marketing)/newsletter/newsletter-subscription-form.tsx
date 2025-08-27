@@ -59,6 +59,7 @@ const NewsletterSubscriptionForm = () => {
 					name="email"
 					register={register}
 					isInvalid={!!errors.email}
+					data-testid="newsletter-email-input"
 				/>
 				{errors.email && (
 					<ValidationMessage type="error">{`${errors.email.message}`}</ValidationMessage>
@@ -69,6 +70,7 @@ const NewsletterSubscriptionForm = () => {
 				variant="primary"
 				text={isSubmitting ? 'Is signing you up...' : 'Subscribe'}
 				disabled={isSubmitting}
+				data-testid="newsletter-submit"
 			/>
 		</Form>
 	)
