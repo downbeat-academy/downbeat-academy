@@ -91,17 +91,18 @@ jobs:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
         run: |
-          cat > .env.local << 'EOF'
+          cat > .env.local << EOF
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET=test-secret-for-smoke-tests
-          BETTER_AUTH_URL=http://localhost:3000
-          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
-          RESEND_API_KEY=test-key
-          BLOB_READ_WRITE_TOKEN=test-token
-          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
-          NEXT_PUBLIC_SANITY_DATASET=production
-          SANITY_SECRET_TOKEN=test-token
+          BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION=${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          SANITY_API_TOKEN=${{ secrets.SANITY_API_TOKEN }}
+          SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
           EOF
           
           pnpm db:push
@@ -110,8 +111,7 @@ jobs:
       - name: Run smoke tests
         uses: cypress-io/github-action@v6
         with:
-          build: pnpm --filter www build
-          start: pnpm --filter www start
+          start: pnpm --filter www dev
           working-directory: .
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
@@ -123,10 +123,10 @@ jobs:
           spec: apps/www/cypress/e2e/routes/public-routes.cy.ts
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET: test-secret-for-smoke-tests
-          BETTER_AUTH_URL: http://localhost:3000
-          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
-          CYPRESS_BASE_URL: http://localhost:3000
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          CYPRESS_BASE_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
 
   # Full test suite for main branch and manual triggers
   full-tests:
@@ -177,17 +177,18 @@ jobs:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
         run: |
-          cat > .env.local << 'EOF'
+          cat > .env.local << EOF
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET=test-secret-for-ci
-          BETTER_AUTH_URL=http://localhost:3000
-          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
-          RESEND_API_KEY=test-key
-          BLOB_READ_WRITE_TOKEN=test-token
-          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
-          NEXT_PUBLIC_SANITY_DATASET=production
-          SANITY_SECRET_TOKEN=test-token
+          BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION=${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          SANITY_API_TOKEN=${{ secrets.SANITY_API_TOKEN }}
+          SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
           EOF
           
           pnpm db:push
@@ -206,8 +207,7 @@ jobs:
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
-          build: pnpm --filter www build
-          start: pnpm --filter www start
+          start: pnpm --filter www dev
           working-directory: .
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
@@ -219,10 +219,10 @@ jobs:
           spec: ${{ steps.test-suite.outputs.suite == 'all' && 'apps/www/cypress/e2e/**/*.cy.ts' || format('apps/www/cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET: test-secret-for-ci
-          BETTER_AUTH_URL: http://localhost:3000
-          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
-          CYPRESS_BASE_URL: http://localhost:3000
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          CYPRESS_BASE_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
       
       - name: Upload test artifacts
         uses: actions/upload-artifact@v3

@@ -82,20 +82,21 @@ jobs:
         working-directory: apps/www
         run: |
           # Create env file with test configuration
-          cat > .env.local << 'EOF'
+          cat > .env.local << EOF
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET=test-secret-for-ci-testing-only
-          BETTER_AUTH_URL=http://localhost:3000
-          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
-          RESEND_API_KEY=test-key
-          BLOB_READ_WRITE_TOKEN=test-token
-          NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
-          NEXT_PUBLIC_SANITY_DATASET=production
-          SANITY_SECRET_TOKEN=test-token
-          SENTRY_AUTH_TOKEN=test-token
-          NEXT_PUBLIC_SENTRY_DSN=
-          NEXT_PUBLIC_SENTRY_PROJECT=
-          NEXT_PUBLIC_FATHOM_SITE_ID=
+          BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION=${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          SANITY_API_TOKEN=${{ secrets.SANITY_API_TOKEN }}
+          SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
+          SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN || 'test-token' }}
+          NEXT_PUBLIC_SENTRY_DSN=${{ secrets.NEXT_PUBLIC_SENTRY_DSN || '' }}
+          NEXT_PUBLIC_SENTRY_PROJECT=${{ secrets.NEXT_PUBLIC_SENTRY_PROJECT || '' }}
+          NEXT_PUBLIC_FATHOM_SITE_ID=${{ secrets.NEXT_PUBLIC_FATHOM_SITE_ID || '' }}
           EOF
           
           # Run database migrations
