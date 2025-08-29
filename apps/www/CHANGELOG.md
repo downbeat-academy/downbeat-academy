@@ -1,5 +1,20 @@
 # www
 
+## 4.4.0
+
+### Minor Changes
+
+- 5ae0244: Added new detailed test coverage throughout the application with Cypress.
+
+### Patch Changes
+
+- 245ca6e: Fix tests for efficiency and hang-ups
+- 950dabf: Fixed image layout in cards and did some cleanup
+- Updated dependencies [3de90cf]
+- Updated dependencies [950dabf]
+  - cadence-tokens@2.3.0
+  - cadence-core@2.1.0
+
 ## 4.3.1
 
 ### Patch Changes
