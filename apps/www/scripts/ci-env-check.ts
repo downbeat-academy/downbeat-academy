@@ -17,9 +17,18 @@ interface CIEnvironmentCheck {
 	generatedVars: string[]
 }
 
+// Check if this is a smoke test (public routes only) vs full E2E test
+const isSmokeTesting = process.env.CYPRESS_SPEC?.includes('public-routes') || 
+	process.argv.includes('--smoke-test') ||
+	process.env.SMOKE_TEST === 'true'
+
 const CI_CONFIG: CIEnvironmentCheck = {
 	// These must be set as GitHub Secrets
-	requiredSecrets: [
+	requiredSecrets: isSmokeTesting ? [
+		// For smoke tests (public routes), we only need basic setup
+		'BETTER_AUTH_SECRET'  // Still needed for app initialization
+	] : [
+		// For full E2E tests, we need authentication URLs
 		'BETTER_AUTH_SECRET',
 		'BETTER_AUTH_URL',
 		'NEXT_PUBLIC_PROJECT_URL'
@@ -185,6 +194,11 @@ ${CI_CONFIG.optionalSecrets.map(secret => `• ${secret}: See project documentat
 
 async function main() {
 	console.log('🚀 CI Environment Pre-check for Cypress Tests\n')
+	if (isSmokeTesting) {
+		console.log('🔥 SMOKE TEST MODE: Public routes only (minimal requirements)')
+	} else {
+		console.log('🎯 FULL E2E MODE: Authentication routes included (full requirements)')
+	}
 	console.log('================================================\n')
 
 	let overallErrors: string[] = []
