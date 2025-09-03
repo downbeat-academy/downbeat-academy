@@ -100,7 +100,7 @@ jobs:
           NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
           SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
           SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-        run: tsx scripts/ci-env-check.ts
+        run: pnpm tsx scripts/ci-env-check.ts
       
       - name: Setup test environment
         working-directory: apps/www
@@ -205,7 +205,7 @@ jobs:
           NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
           SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
           SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-        run: tsx scripts/ci-env-check.ts
+        run: pnpm tsx scripts/ci-env-check.ts
       
       - name: Setup test environment
         working-directory: apps/www
