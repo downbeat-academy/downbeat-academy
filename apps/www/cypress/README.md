@@ -105,11 +105,11 @@ The test suite includes custom Cypress commands for common operations:
 The test suite uses a separate test database to avoid interfering with development data:
 
 ### Test Users
-- **Student**: `test-student@example.com` / `TestPassword123!`
-- **Educator**: `test-educator@example.com` / `TestPassword123!`
-- **Admin**: `test-admin@example.com` / `TestPassword123!`
-- **Super Admin**: `test-superadmin@example.com` / `TestPassword123!`
-- **Unverified**: `test-unverified@example.com` / `TestPassword123!` (email not verified)
+- **Student**: `test.student@example.com` / `TestPassword123!`
+- **Educator**: `test.educator@example.com` / `TestPassword123!`
+- **Admin**: `test.admin@example.com` / `TestPassword123!`
+- **Super Admin**: `test.superadmin@example.com` / `TestPassword123!`
+- **Unverified**: `test.unverified@example.com` / `TestPassword123!` (email not verified)
 
 ### Database Seeding
 Tests automatically seed and clean up test data:

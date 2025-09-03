@@ -85,15 +85,34 @@ jobs:
           pnpm --filter cadence-icons build
           pnpm --filter cadence-core build
       
+      - name: Validate CI environment
+        working-directory: apps/www
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+        run: tsx scripts/ci-env-check.ts
+      
       - name: Setup test environment
         working-directory: apps/www
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
         run: |
           cat > .env.local << EOF
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
           BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
           NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
@@ -105,8 +124,8 @@ jobs:
           SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
           EOF
           
-          pnpm db:push
-          pnpm db:seed:test || echo "Seed script not found, skipping..."
+          # Setup database schema, seed test data, and verify test users
+          pnpm test:prepare
       
       - name: Run smoke tests
         uses: cypress-io/github-action@v6
@@ -171,15 +190,34 @@ jobs:
           pnpm --filter cadence-icons build
           pnpm --filter cadence-core build
       
+      - name: Validate CI environment
+        working-directory: apps/www
+        env:
+          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+        run: tsx scripts/ci-env-check.ts
+      
       - name: Setup test environment
         working-directory: apps/www
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
         run: |
           cat > .env.local << EOF
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
           BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
           NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
@@ -191,8 +229,8 @@ jobs:
           SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
           EOF
           
-          pnpm db:push
-          pnpm db:seed:test || echo "Seed script not found, skipping..."
+          # Setup database schema, seed test data, and verify test users
+          pnpm test:prepare
       
       - name: Determine test suite
         id: test-suite

@@ -12,7 +12,7 @@ describe('User Journey Tests', () => {
 		it('should complete full new user registration and setup journey', () => {
 			const newUser = {
 				name: 'Miles Davis',
-				email: `miles-${Date.now()}@example.com`,
+				email: `test.miles.davis-${Date.now()}@example.com`,
 				password: 'TestPassword123!'
 			}
 
@@ -59,7 +59,7 @@ describe('User Journey Tests', () => {
 			cy.visit('/sign-in')
 			
 			// Try to sign in with unverified account
-			cy.get('[data-testid="email-input"]').type('test-unverified@example.com')
+			cy.get('[data-testid="email-input"]').type('test.unverified@example.com')
 			cy.get('[data-testid="password-input"]').type(Cypress.env('TEST_STUDENT_PASSWORD'))
 			cy.get('[data-testid="sign-in-submit"]').click()
 			
@@ -170,7 +170,7 @@ describe('User Journey Tests', () => {
 			// 2. Fill out contact form
 			const contactData = {
 				name: 'Thelonious Monk',
-				email: 'thelonious@monk.com',
+				email: 'test.thelonious.monk@example.com',
 				message: 'I\'m interested in learning more about jazz theory and would like to contribute to the community.'
 			}
 			
@@ -283,7 +283,7 @@ describe('User Journey Tests', () => {
 			cy.contains('valid email').should('be.visible')
 			
 			// 3. User corrects error and resubmits
-			cy.get('[data-testid="contact-email-input"]').clear().type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').clear().type('test.user@example.com')
 			cy.get('[data-testid="contact-submit"]').click()
 			
 			// 4. Should succeed
@@ -294,7 +294,7 @@ describe('User Journey Tests', () => {
 			// 1. Try to sign in with wrong credentials
 			cy.visit('/sign-in')
 			
-			cy.get('[data-testid="email-input"]').type('wrong@example.com')
+			cy.get('[data-testid="email-input"]').type('test.wrong@example.com')
 			cy.get('[data-testid="password-input"]').type('wrongpassword')
 			cy.get('[data-testid="sign-in-submit"]').click()
 			
@@ -314,7 +314,7 @@ describe('User Journey Tests', () => {
 
 	describe('Cross-Device Journey Simulation', () => {
 		it('should work consistently across different viewport sizes', () => {
-			const viewports = ['iphone-x', 'ipad-2', 'macbook-15']
+			const viewports: Cypress.ViewportPreset[] = ['iphone-x', 'ipad-2', 'macbook-15']
 			
 			viewports.forEach(viewport => {
 				cy.viewport(viewport)
@@ -380,7 +380,7 @@ describe('User Journey Tests', () => {
 			// 3. Forms should be responsive
 			cy.visit('/contact')
 			cy.get('[data-testid="contact-name-input"]').type('Test User')
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type('Test message')
 			
 			// Form should respond immediately to input
@@ -392,7 +392,7 @@ describe('User Journey Tests', () => {
 		it('should complete a comprehensive user journey from discovery to engagement', () => {
 			const newUser = {
 				name: 'Charlie Parker',
-				email: `charlie-${Date.now()}@example.com`,
+				email: `test.charlie.parker-${Date.now()}@example.com`,
 				password: 'TestPassword123!'
 			}
 			

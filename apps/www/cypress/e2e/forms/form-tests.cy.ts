@@ -16,7 +16,7 @@ describe('Form Tests', () => {
 		it('should submit valid contact form successfully', () => {
 			const contactData = {
 				name: 'John Coltrane',
-				email: 'john@coltrane.com',
+				email: 'test.john.coltrane@example.com',
 				message: 'Hello, I would like to learn more about jazz theory and improvisation techniques.'
 			}
 
@@ -61,7 +61,7 @@ describe('Form Tests', () => {
 			const specialMessage = 'Test with special characters: !@#$%^&*()_+{}|:"<>?[]\\;\',./`~'
 
 			cy.get('[data-testid="contact-name-input"]').type('Test User')
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type(specialMessage)
 
 			cy.get('[data-testid="contact-submit"]').click()
@@ -74,7 +74,7 @@ describe('Form Tests', () => {
 			const longMessage = 'A'.repeat(5000) // Very long message
 
 			cy.get('[data-testid="contact-name-input"]').type('Test User')
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type(longMessage)
 
 			cy.get('[data-testid="contact-submit"]').click()
@@ -85,7 +85,7 @@ describe('Form Tests', () => {
 
 		it('should disable submit button while submitting', () => {
 			cy.get('[data-testid="contact-name-input"]').type('Test User')
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type('Test message')
 
 			cy.get('[data-testid="contact-submit"]').click()
@@ -101,7 +101,7 @@ describe('Form Tests', () => {
 		})
 
 		it('should successfully subscribe to newsletter', () => {
-			const email = `test-newsletter-${Date.now()}@example.com`
+			const email = `test.newsletter-${Date.now()}@example.com`
 
 			cy.get('[data-testid="newsletter-email-input"]').type(email)
 			cy.get('[data-testid="newsletter-submit"]').click()
@@ -130,7 +130,7 @@ describe('Form Tests', () => {
 		})
 
 		it('should handle duplicate newsletter signups gracefully', () => {
-			const email = 'duplicate@example.com'
+			const email = 'test.duplicate@example.com'
 
 			// Sign up first time
 			cy.get('[data-testid="newsletter-email-input"]').type(email)
@@ -148,7 +148,7 @@ describe('Form Tests', () => {
 		})
 
 		it('should disable submit button while processing', () => {
-			cy.get('[data-testid="newsletter-email-input"]').type('test@example.com')
+			cy.get('[data-testid="newsletter-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="newsletter-submit"]').click()
 
 			// Button should be disabled during submission
@@ -264,7 +264,7 @@ describe('Form Tests', () => {
 
 			const formData = {
 				name: 'Test User',
-				email: 'test@example.com',
+				email: 'test.user@example.com',
 				message: 'Test message'
 			}
 
@@ -284,7 +284,7 @@ describe('Form Tests', () => {
 		it('should clear form data after successful submission', () => {
 			cy.visit('/newsletter')
 
-			cy.get('[data-testid="newsletter-email-input"]').type('test@example.com')
+			cy.get('[data-testid="newsletter-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="newsletter-submit"]').click()
 
 			// Wait for success message
@@ -303,7 +303,7 @@ describe('Form Tests', () => {
 			cy.intercept('POST', '/api/**', { forceNetworkError: true })
 
 			cy.get('[data-testid="contact-name-input"]').type('Test User')
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type('Test message')
 
 			cy.get('[data-testid="contact-submit"]').click()
@@ -318,7 +318,7 @@ describe('Form Tests', () => {
 			// Intercept and return server error
 			cy.intercept('POST', '/api/**', { statusCode: 500, body: { error: 'Server error' } })
 
-			cy.get('[data-testid="newsletter-email-input"]').type('test@example.com')
+			cy.get('[data-testid="newsletter-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="newsletter-submit"]').click()
 
 			// Should show error message
@@ -333,7 +333,7 @@ describe('Form Tests', () => {
 			const xssAttempt = '<script>alert("xss")</script>'
 
 			cy.get('[data-testid="contact-name-input"]').type(xssAttempt)
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type('Normal message')
 
 			cy.get('[data-testid="contact-submit"]').click()
@@ -353,7 +353,7 @@ describe('Form Tests', () => {
 			const sqlInjection = "'; DROP TABLE users; --"
 
 			cy.get('[data-testid="contact-name-input"]').type(sqlInjection)
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type('Test message')
 
 			cy.get('[data-testid="contact-submit"]').click()

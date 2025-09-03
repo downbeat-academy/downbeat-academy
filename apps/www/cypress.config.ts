@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress'
+import { validateCypressEnvironment } from './cypress/plugins/env-validator'
 
 export default defineConfig({
 	e2e: {
@@ -40,7 +41,10 @@ export default defineConfig({
 			CI: process.env.CI || false,
 			GITHUB_ACTIONS: process.env.GITHUB_ACTIONS || false,
 		},
-		setupNodeEvents(on, config) {
+		async setupNodeEvents(on, config) {
+			// Validate environment before setting up other plugins
+			config = await validateCypressEnvironment(on, config)
+
 			// CI/CD optimizations
 			if (config.env.CI) {
 				// Increase timeouts for CI environment
@@ -63,6 +67,10 @@ export default defineConfig({
 				async 'db:cleanup'() {
 					const { cleanupTestUsers } = await import('./cypress/support/db-seed')
 					return await cleanupTestUsers()
+				},
+				async 'db:verify'() {
+					const { verifyTestUsers } = await import('./scripts/verify-test-users')
+					return await verifyTestUsers()
 				},
 				log(message) {
 					console.log(message)

@@ -11,16 +11,83 @@ import 'cypress-axe'
 
 // Login command - logs in a user via the UI
 Cypress.Commands.add('login', (email: string, password: string) => {
+	cy.debugLog(`🔑 Attempting login with email: ${email}`)
+	
+	// Check server health before attempting login
+	cy.checkServerHealth()
+	
 	cy.visit('/sign-in')
-	cy.get('[data-testid="email-input"]').clear().type(email)
-	cy.get('[data-testid="password-input"]').clear().type(password)
+	
+	// Wait for page to load with better error handling
+	cy.get('[data-testid="email-input"]', { timeout: 10000 }).should('be.visible')
+	cy.get('[data-testid="password-input"]', { timeout: 10000 }).should('be.visible')
+	cy.get('[data-testid="sign-in-submit"]', { timeout: 10000 }).should('be.visible')
+	
+	// Clear and fill in credentials
+	cy.get('[data-testid="email-input"]').clear().type(email, { delay: 50 })
+	cy.get('[data-testid="password-input"]').clear().type(password, { delay: 50 })
+	
+	// Ensure form is ready
+	cy.get('[data-testid="sign-in-submit"]').should('not.be.disabled')
+	
+	// Submit the form
 	cy.get('[data-testid="sign-in-submit"]').click()
 	
-	// Wait for redirect after successful login
-	cy.url().should('not.include', '/sign-in')
-	
-	// Verify user is logged in by checking for account link
-	cy.get('[data-testid="user-menu"]', { timeout: 10000 }).should('be.visible')
+	// Handle different possible outcomes with better timeout and error detection
+	cy.url({ timeout: 20000 }).then(url => {
+		cy.debugLog(`Current URL after login attempt: ${url}`)
+		
+		if (url.includes('/sign-in')) {
+			// Still on sign-in page, check for specific error messages
+			cy.get('body').then($body => {
+				const bodyText = $body.text()
+				cy.debugLog(`Page content after failed login:`, bodyText)
+				
+				if (bodyText.includes('verify your email') || bodyText.includes('Please verify')) {
+					cy.debugLog('❌ User email verification required')
+					throw new Error(`Email verification required for user: ${email}`)
+				} else if (bodyText.includes('Sign in failed') || bodyText.includes('Invalid') || bodyText.includes('incorrect')) {
+					cy.debugLog('❌ Invalid credentials provided')
+					throw new Error(`Invalid credentials for user: ${email}`)
+				} else if (bodyText.includes('not found') || bodyText.includes('does not exist')) {
+					cy.debugLog('❌ User does not exist')
+					throw new Error(`User does not exist: ${email}`)
+				} else {
+					cy.debugLog('❌ Login failed for unknown reason')
+					// Take a screenshot for debugging
+					cy.screenshotWithName(`failed-login-${email.replace('@', '-at-')}`)
+					throw new Error(`Login failed for unknown reason. Check screenshot for details. User: ${email}`)
+				}
+			})
+		} else {
+			// Successfully redirected, verify authentication state
+			cy.debugLog('✅ Successfully redirected from sign-in page')
+			
+			// Wait for auth state to propagate
+			cy.waitForAuthState()
+			
+			// Check for authentication indicators with better error messages
+			cy.get('body').then($body => {
+				// Look for sign-in link (should not exist when logged in)
+				if ($body.find('[data-testid="sign-in-link"]').length > 0) {
+					cy.debugLog('❌ Sign-in link still visible after login')
+					throw new Error('User appears to not be authenticated (sign-in link visible)')
+				}
+				
+				// Look for user menu or account link
+				const hasUserMenu = $body.find('[data-testid="user-menu"]').length > 0
+				const hasAccountLink = $body.find('[data-testid="account-link"]').length > 0
+				
+				if (!hasUserMenu && !hasAccountLink) {
+					cy.debugLog('❌ No authentication indicators found in header')
+					cy.screenshotWithName(`missing-auth-indicators-${email.replace('@', '-at-')}`)
+					throw new Error('No user menu or account link found after login')
+				}
+				
+				cy.debugLog(`✅ Login successful for ${email}`)
+			})
+		}
+	})
 })
 
 // Login as specific role - uses predefined test accounts
@@ -71,12 +138,40 @@ Cypress.Commands.add('signup', (userData: { name: string; email: string; passwor
 
 // Seed test users before test suite
 Cypress.Commands.add('seedDatabase', () => {
-	cy.task('db:seed')
+	cy.debugLog('🌱 Seeding test database...')
+	cy.task('db:seed').then((result) => {
+		if (result) {
+			cy.debugLog('✅ Database seeding completed')
+		} else {
+			cy.debugLog('❌ Database seeding failed')
+			throw new Error('Database seeding failed')
+		}
+	})
 })
 
 // Clean up test users after test suite
 Cypress.Commands.add('cleanDatabase', () => {
-	cy.task('db:cleanup')
+	cy.debugLog('🧹 Cleaning up test database...')
+	cy.task('db:cleanup').then((result) => {
+		if (result) {
+			cy.debugLog('✅ Database cleanup completed')
+		} else {
+			cy.debugLog('⚠️ Database cleanup had issues but continuing...')
+		}
+	})
+})
+
+// Verify test users exist before test suite
+Cypress.Commands.add('verifyTestUsers', () => {
+	cy.debugLog('🔍 Verifying test users exist...')
+	cy.task('db:verify').then((result) => {
+		if (result) {
+			cy.debugLog('✅ Test users verified')
+		} else {
+			cy.debugLog('❌ Test user verification failed')
+			throw new Error('Test users are not properly set up')
+		}
+	})
 })
 
 /**
@@ -152,6 +247,23 @@ Cypress.Commands.add('auditA11y', (context?: string) => {
 })
 
 /**
+ * Keyboard Navigation Commands
+ */
+
+// Tab navigation command
+Cypress.Commands.add('tab', { prevSubject: 'optional' }, (subject) => {
+	const tabEvent = { keyCode: 9, which: 9, key: 'Tab' }
+	
+	if (subject) {
+		cy.wrap(subject).trigger('keydown', tabEvent)
+	} else {
+		cy.get('body').trigger('keydown', tabEvent)
+	}
+	
+	return cy.focused()
+})
+
+/**
  * Utility Commands
  */
 
@@ -183,41 +295,38 @@ Cypress.Commands.add('screenshotWithName', (name: string) => {
 	})
 })
 
-/**
- * Type Declarations
- */
-declare global {
-	namespace Cypress {
-		interface Chainable {
-			// Authentication
-			login(email: string, password: string): Chainable<void>
-			loginAsStudent(): Chainable<void>
-			loginAsEducator(): Chainable<void>
-			loginAsAdmin(): Chainable<void>
-			loginAsSuperAdmin(): Chainable<void>
-			logout(): Chainable<void>
-			signup(userData: { name: string; email: string; password: string }): Chainable<void>
-			
-			// Database
-			seedDatabase(): Chainable<void>
-			cleanDatabase(): Chainable<void>
-			
-			// Forms
-			submitContactForm(formData: { name: string; email: string; message: string }): Chainable<void>
-			subscribeToNewsletter(email: string): Chainable<void>
-			
-			// Navigation
-			visitProtectedRoute(route: string): Chainable<void>
-			verifyRoleAccess(route: string, shouldHaveAccess: boolean): Chainable<void>
-			
-			// Accessibility
-			checkA11y(options?: any): Chainable<void>
-			auditA11y(context?: string): Chainable<void>
-			
-			// Utilities
-			waitForPageLoad(): Chainable<void>
-			clearAllData(): Chainable<void>
-			screenshotWithName(name: string): Chainable<void>
-		}
+// Check server health before critical operations
+Cypress.Commands.add('checkServerHealth', () => {
+	cy.request({
+		url: '/',
+		timeout: 10000,
+		retryOnStatusCodeFailure: true
+	}).then(response => {
+		expect(response.status).to.equal(200)
+		cy.log('✅ Server is healthy')
+	})
+})
+
+// Enhanced debug logging
+Cypress.Commands.add('debugLog', (message: string, data?: any) => {
+	const timestamp = new Date().toISOString()
+	if (data) {
+		cy.log(`[${timestamp}] ${message}`, data)
+	} else {
+		cy.log(`[${timestamp}] ${message}`)
 	}
-}
+})
+
+// Wait for authentication state to settle
+Cypress.Commands.add('waitForAuthState', () => {
+	// Wait for auth state to propagate through the app
+	cy.wait(1000)
+	
+	// Check that the page is stable
+	cy.get('body').should('be.visible')
+	
+	// Allow additional time for React state updates
+	cy.wait(1000)
+})
+
+// Type declarations are now in support/index.d.ts
