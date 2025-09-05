@@ -17,6 +17,11 @@ import { Pool } from 'pg'
 // Load environment variables
 config({ path: '.env.local' })
 
+// Check if this is a smoke test (public routes only) vs full E2E test
+const isSmokeTesting = process.env.CYPRESS_SPEC?.includes('public-routes') || 
+	process.argv.includes('--smoke-test') ||
+	process.env.SMOKE_TEST === 'true'
+
 interface EnvRequirement {
 	name: string
 	required: boolean
@@ -98,7 +103,7 @@ const ENV_REQUIREMENTS: EnvRequirement[] = [
 	// Public URL Configuration
 	{
 		name: 'NEXT_PUBLIC_PROJECT_URL',
-		required: true,
+		required: !isSmokeTesting, // Only required for full E2E tests, not smoke tests
 		description: 'Public URL for the application',
 		example: 'http://localhost:3000',
 		validator: (value) => {
@@ -218,7 +223,11 @@ async function validateEnvironmentVariables(): Promise<ValidationResult> {
 		}
 	}
 
-	console.log('🔍 Validating environment variables for Cypress tests...\n')
+	console.log('🔍 Validating environment variables for Cypress tests...')
+	if (isSmokeTesting) {
+		console.log('🔥 Running in SMOKE TEST MODE - reduced requirements for public routes')
+	}
+	console.log()
 
 	// Check each environment requirement
 	for (const requirement of ENV_REQUIREMENTS) {
