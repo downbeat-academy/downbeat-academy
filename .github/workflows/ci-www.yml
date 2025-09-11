@@ -84,6 +84,8 @@ jobs:
           # Create env file with test configuration
           cat > .env.local << EOF
           DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
           BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
           NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
@@ -99,13 +101,12 @@ jobs:
           NEXT_PUBLIC_FATHOM_SITE_ID=${{ secrets.NEXT_PUBLIC_FATHOM_SITE_ID || '' }}
           EOF
           
-          # Run database migrations
-          pnpm db:push
-          
-          # Seed test data
-          pnpm db:seed:test || echo "Seed script not found, skipping..."
+          # Setup database schema, seed test data, and verify test users
+          pnpm test:prepare
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
+          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
       
       - name: Cypress run
         uses: cypress-io/github-action@v6

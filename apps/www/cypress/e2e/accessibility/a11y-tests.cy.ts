@@ -308,7 +308,7 @@ describe.skip('Accessibility Tests', () => {
 			
 			// Fill and submit form to trigger dynamic content
 			cy.get('[data-testid="contact-name-input"]').type('Test User')
-			cy.get('[data-testid="contact-email-input"]').type('test@example.com')
+			cy.get('[data-testid="contact-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="contact-message-input"]').type('Test message')
 			
 			cy.get('[data-testid="contact-submit"]').click()
@@ -366,7 +366,7 @@ describe.skip('Accessibility Tests', () => {
 				.focus()
 				.type('Test User')
 				.tab()
-				.type('test@example.com')
+				.type('test.user@example.com')
 				.tab()
 				.type('Test message')
 				.tab()
@@ -434,8 +434,15 @@ describe.skip('Accessibility Tests', () => {
 			
 			// Check for skip to main content link
 			cy.get('body').tab()
-			cy.focused().should('contain.text', 'Skip')
-				.or(cy.get('a[href="#main"]').should('exist'))
+			
+			// Should either focus on skip link or have a skip link present
+			cy.focused().then($focused => {
+				if ($focused.text().includes('Skip')) {
+					cy.wrap($focused).should('contain.text', 'Skip')
+				} else {
+					cy.get('a[href="#main"]').should('exist')
+				}
+			})
 		})
 
 		it('should announce page changes for single-page app behavior', () => {

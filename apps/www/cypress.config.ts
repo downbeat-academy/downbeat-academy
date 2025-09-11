@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress'
+import { validateCypressEnvironment } from './cypress/plugins/env-validator'
 
 export default defineConfig({
 	e2e: {
@@ -28,19 +29,22 @@ export default defineConfig({
 			BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
 			NEXT_PUBLIC_PROJECT_URL: process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000',
 			// Test user credentials
-			TEST_STUDENT_EMAIL: 'test-student@example.com',
-			TEST_STUDENT_PASSWORD: 'TestPassword123!',
-			TEST_EDUCATOR_EMAIL: 'test-educator@example.com',
-			TEST_EDUCATOR_PASSWORD: 'TestPassword123!',
-			TEST_ADMIN_EMAIL: 'test-admin@example.com',
-			TEST_ADMIN_PASSWORD: 'TestPassword123!',
-			TEST_SUPER_ADMIN_EMAIL: 'test-superadmin@example.com',
-			TEST_SUPER_ADMIN_PASSWORD: 'TestPassword123!',
+			TEST_STUDENT_EMAIL: process.env.TEST_STUDENT_EMAIL || 'test-student@example.com',
+			TEST_STUDENT_PASSWORD: process.env.TEST_STUDENT_PASSWORD || 'TestPassword123!',
+			TEST_EDUCATOR_EMAIL: process.env.TEST_EDUCATOR_EMAIL || 'test-educator@example.com',
+			TEST_EDUCATOR_PASSWORD: process.env.TEST_EDUCATOR_PASSWORD || 'TestPassword123!',
+			TEST_ADMIN_EMAIL: process.env.TEST_ADMIN_EMAIL || 'test-admin@example.com',
+			TEST_ADMIN_PASSWORD: process.env.TEST_ADMIN_PASSWORD || 'TestPassword123!',
+			TEST_SUPER_ADMIN_EMAIL: process.env.TEST_SUPER_ADMIN_EMAIL || 'test-superadmin@example.com',
+			TEST_SUPER_ADMIN_PASSWORD: process.env.TEST_SUPER_ADMIN_PASSWORD || 'TestPassword123!',
 			// CI/CD flags
 			CI: process.env.CI || false,
 			GITHUB_ACTIONS: process.env.GITHUB_ACTIONS || false,
 		},
-		setupNodeEvents(on, config) {
+		async setupNodeEvents(on, config) {
+			// Validate environment before setting up other plugins
+			config = await validateCypressEnvironment(on, config)
+
 			// CI/CD optimizations
 			if (config.env.CI) {
 				// Increase timeouts for CI environment
@@ -63,6 +67,10 @@ export default defineConfig({
 				async 'db:cleanup'() {
 					const { cleanupTestUsers } = await import('./cypress/support/db-seed')
 					return await cleanupTestUsers()
+				},
+				async 'db:verify'() {
+					const { verifyTestUsers } = await import('./scripts/verify-test-users')
+					return await verifyTestUsers()
 				},
 				log(message) {
 					console.log(message)

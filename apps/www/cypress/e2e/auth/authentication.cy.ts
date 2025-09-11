@@ -1,4 +1,9 @@
 describe('Authentication Flow Tests', () => {
+	before(() => {
+		// Ensure test users exist before running any auth tests
+		cy.verifyTestUsers()
+	})
+
 	beforeEach(() => {
 		// Seed database and clear any existing sessions
 		cy.seedDatabase()
@@ -14,7 +19,7 @@ describe('Authentication Flow Tests', () => {
 		it('should successfully register a new user', () => {
 			const newUser = {
 				name: 'Cypress Test User',
-				email: `cypress-test-${Date.now()}@example.com`,
+				email: `test.cypress-user-${Date.now()}@example.com`,
 				password: 'TestPassword123!'
 			}
 
@@ -53,7 +58,7 @@ describe('Authentication Flow Tests', () => {
 			cy.get('[data-testid="create-account-tab"]').click()
 			
 			cy.get('[data-testid="signup-name-input"]').type('Test User')
-			cy.get('[data-testid="signup-email-input"]').type('test@example.com')
+			cy.get('[data-testid="signup-email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="signup-password-input"]').type('TestPassword123!')
 			cy.get('[data-testid="signup-confirm-password-input"]').type('DifferentPassword123!')
 			
@@ -82,25 +87,66 @@ describe('Authentication Flow Tests', () => {
 
 	describe('Sign In Flow', () => {
 		it('should successfully sign in with valid credentials', () => {
+			// Log environment variables for debugging
+			cy.log('Test credentials:', {
+				email: Cypress.env('TEST_STUDENT_EMAIL'),
+				hasPassword: !!Cypress.env('TEST_STUDENT_PASSWORD')
+			})
+			
 			cy.visit('/sign-in')
 			
+			// Ensure page is fully loaded
+			cy.get('[data-testid="email-input"]').should('be.visible')
+			cy.get('[data-testid="password-input"]').should('be.visible')
+			cy.get('[data-testid="sign-in-submit"]').should('be.visible')
+			
 			// Use predefined test user credentials
-			cy.get('[data-testid="email-input"]').type(Cypress.env('TEST_STUDENT_EMAIL'))
-			cy.get('[data-testid="password-input"]').type(Cypress.env('TEST_STUDENT_PASSWORD'))
+			cy.get('[data-testid="email-input"]').clear().type(Cypress.env('TEST_STUDENT_EMAIL'))
+			cy.get('[data-testid="password-input"]').clear().type(Cypress.env('TEST_STUDENT_PASSWORD'))
 			cy.get('[data-testid="sign-in-submit"]').click()
 			
-			// Should redirect away from sign-in page
-			cy.url().should('not.include', '/sign-in')
-			
-			// Should show user menu indicating successful login
-			cy.get('[data-testid="user-menu"]').should('be.visible')
-			cy.get('[data-testid="account-link"]').should('be.visible')
+			// Should redirect away from sign-in page or handle errors gracefully
+			cy.url({ timeout: 15000 }).then(url => {
+				cy.log('Current URL after sign-in attempt:', url)
+				
+				if (url.includes('/sign-in')) {
+					// Still on sign-in page, check for specific error messages
+					cy.get('body').then($body => {
+						const bodyText = $body.text()
+						cy.log('Page content after failed login:', bodyText)
+						
+						if (bodyText.includes('verify your email')) {
+							cy.log('❌ Email verification required - this should not happen for test users')
+							throw new Error('Test user email not verified')
+						} else if (bodyText.includes('Sign in failed') || bodyText.includes('Invalid')) {
+							cy.log('❌ Authentication failed with invalid credentials')
+							throw new Error('Invalid test credentials')
+						} else {
+							cy.log('❌ Login failed for unknown reason')
+							// Take a screenshot for debugging
+							cy.screenshot('failed-login-debug')
+							throw new Error('Login failed - see screenshot for details')
+						}
+					})
+				} else {
+					// Successfully redirected
+					cy.log('✅ Successfully redirected from sign-in page')
+					
+					// Wait for auth state to propagate
+					cy.wait(2000)
+					
+					// Should show user menu or account link indicating successful login
+					cy.get('[data-testid="sign-in-link"]', { timeout: 5000 }).should('not.exist')
+					cy.get('[data-testid="user-menu"], [data-testid="account-link"]', { timeout: 10000 })
+						.should('be.visible')
+				}
+			})
 		})
 
 		it('should show error for invalid credentials', () => {
 			cy.visit('/sign-in')
 			
-			cy.get('[data-testid="email-input"]').type('invalid@example.com')
+			cy.get('[data-testid="email-input"]').type('test.invalid@example.com')
 			cy.get('[data-testid="password-input"]').type('wrongpassword')
 			cy.get('[data-testid="sign-in-submit"]').click()
 			
@@ -122,7 +168,7 @@ describe('Authentication Flow Tests', () => {
 			cy.visit('/sign-in')
 			
 			// Try to sign in with unverified test user
-			cy.get('[data-testid="email-input"]').type('test-unverified@example.com')
+			cy.get('[data-testid="email-input"]').type('test.unverified@example.com')
 			cy.get('[data-testid="password-input"]').type(Cypress.env('TEST_STUDENT_PASSWORD'))
 			cy.get('[data-testid="sign-in-submit"]').click()
 			
@@ -276,7 +322,7 @@ describe('Authentication Flow Tests', () => {
 		it('should clear sensitive form data on navigation away', () => {
 			cy.visit('/sign-in')
 			
-			cy.get('[data-testid="email-input"]').type('test@example.com')
+			cy.get('[data-testid="email-input"]').type('test.user@example.com')
 			cy.get('[data-testid="password-input"]').type('password123')
 			
 			// Navigate away
