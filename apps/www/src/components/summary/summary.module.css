@@ -1,0 +1,8 @@
+.title {
+  font-family: var(--cds-typography-font-family-productive-headline);
+  font-size: var(--cds-typography-font-size-fixed-productive-x-large);
+  line-height: var(--cds-typography-line-height-productive-headline);
+  color: var(--cds-color-foreground-strong);
+}
+
+.description {}
