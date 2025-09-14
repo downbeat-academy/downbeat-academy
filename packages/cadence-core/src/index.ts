@@ -33,6 +33,7 @@ export type { BadgeProps } from './components/badge';
 export type { BannerProps } from './components/banner';
 export type { ButtonProps, ButtonWrapperProps } from './components/button';
 export type { CardProps, CardContentProps, CardImageProps } from './components/card';
+export type { FlexProps } from './components/flex';
 export type {
   FormProps,
   FieldProps,
@@ -51,3 +52,4 @@ export type {
   LabelProps,
   ValidationMessageProps,
 } from './components/form';
+export type { TextProps } from './components/text';

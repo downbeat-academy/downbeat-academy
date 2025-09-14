@@ -128,7 +128,18 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>
-				<Summary title="Summary" />
+				<Summary
+					isOpen={false}
+					type='flush'
+					size='small'
+					title={{
+						text: 'Summary',
+					}}
+				>
+					<Text tag="p" collapse type="expressive-body" size="body-small" color="primary">
+						This is the content of the summary.
+					</Text>
+				</Summary>
 				<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
 					<RichTextWrapper>
 						<RichText value={article.content.content} />
