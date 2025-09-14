@@ -25,20 +25,8 @@ const meta: Meta<typeof Summary> = {
     maxWidth: {
       control: 'text',
     },
-    'title.text': {
-      control: 'text',
-    },
-    'title.type': {
-      control: 'select',
-      options: ['productive-body', 'productive-headline', 'expressive-body', 'expressive-headline'],
-    },
-    'title.size': {
-      control: 'select',
-      options: ['mega', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body-large', 'body-base', 'body-small', 'body-x-small'],
-    },
-    'title.color': {
-      control: 'select',
-      options: ['primary', 'strong', 'faint', 'disabled', 'high-contrast', 'warning', 'critical', 'interactive', 'brand', 'success'],
+    title: {
+      control: 'object',
     },
   },
 }
@@ -315,7 +303,7 @@ export const ComplexContent: Story = {
           This summary contains various types of content to demonstrate how the component
           handles more complex layouts and multiple elements.
         </Text>
-        
+
         <Text size="body-large" color="strong">Key Features</Text>
         <ul style={{ marginLeft: '20px' }}>
           <li>Native HTML details/summary elements for accessibility</li>
@@ -323,17 +311,17 @@ export const ComplexContent: Story = {
           <li>Multiple visual variants and sizes</li>
           <li>Smooth chevron rotation animation</li>
         </ul>
-        
+
         <Text size="body-large" color="strong">Usage Guidelines</Text>
         <Text>
-          Use the Summary component for collapsible content sections, FAQs, 
+          Use the Summary component for collapsible content sections, FAQs,
           expandable details, or any scenario where you want to hide/show content
           while maintaining semantic HTML structure.
         </Text>
-        
-        <div style={{ 
-          padding: '16px', 
-          backgroundColor: '#f8f9fa', 
+
+        <div style={{
+          padding: '16px',
+          backgroundColor: '#f8f9fa',
           borderRadius: '4px',
           border: '1px solid #e9ecef'
         }}>
@@ -361,19 +349,19 @@ export const CustomStyling: Story = {
             <>
               <Text>This summary has a maximum width constraint of 400px.</Text>
               <Text>
-                The content will wrap appropriately within this constraint, making it useful 
+                The content will wrap appropriately within this constraint, making it useful
                 for controlling layout in wider containers.
               </Text>
             </>
           }
         />
       </div>
-      
+
       <div>
         <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '600' }}>
           With Custom Class
         </h4>
-        <div style={{ 
+        <div style={{
           border: '2px dashed #007acc',
           borderRadius: '8px',
           display: 'inline-block',
@@ -470,14 +458,14 @@ export const AccessibilityDemo: Story = {
           Accessibility Features
         </h4>
         <p style={{ marginBottom: '16px', fontSize: '12px', color: '#666' }}>
-          Use Tab/Shift+Tab to navigate between summaries, Space/Enter to toggle, and 
-          arrow keys work within expanded content. Screen readers will announce the 
+          Use Tab/Shift+Tab to navigate between summaries, Space/Enter to toggle, and
+          arrow keys work within expanded content. Screen readers will announce the
           expanded/collapsed state.
         </p>
       </div>
 
       <Summary
-        title={{ 
+        title={{
           text: 'Keyboard Navigation',
           color: 'strong'
         }}
@@ -496,18 +484,18 @@ export const AccessibilityDemo: Story = {
       />
 
       <Summary
-        title={{ 
+        title={{
           text: 'Screen Reader Support',
           color: 'strong'
         }}
         children={
           <>
             <Text>
-              Screen readers will announce the title content and the current state 
+              Screen readers will announce the title content and the current state
               (expanded or collapsed) when the summary receives focus.
             </Text>
             <Text>
-              The chevron icon includes aria-hidden="true" to prevent redundant 
+              The chevron icon includes aria-hidden="true" to prevent redundant
               announcements since the state is already conveyed by the native element.
             </Text>
           </>
@@ -515,19 +503,19 @@ export const AccessibilityDemo: Story = {
       />
 
       <Summary
-        title={{ 
+        title={{
           text: 'Semantic HTML',
           color: 'strong'
         }}
         children={
           <>
             <Text>
-              Built on native details/summary elements which are part of the HTML5 
-              specification and provide built-in accessibility features without 
+              Built on native details/summary elements which are part of the HTML5
+              specification and provide built-in accessibility features without
               requiring additional ARIA attributes.
             </Text>
             <Text>
-              This ensures maximum compatibility with assistive technologies and 
+              This ensures maximum compatibility with assistive technologies and
               follows web standards best practices.
             </Text>
           </>
