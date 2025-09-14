@@ -13,11 +13,17 @@ const HoverCardTrigger = forwardRef<
 	React.ElementRef<typeof HoverCardPrimitive.Trigger>,
 	React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Trigger> &
 		HoverCardTriggerProps // Add 'HoverCardTriggerProps' to the type definition
->(({ className, hasIcon = false, ...props }, ref) => {
+>(({ className, hasIcon = false, asChild = false, ...props }, ref) => {
 	return (
-		<HoverCardPrimitive.Trigger ref={ref} className={s.trigger} {...props}>
-			{props.children}
-			{hasIcon && <QuestionCircleOutline width={16} />}
+		<HoverCardPrimitive.Trigger ref={ref} className={s.trigger} asChild={asChild} {...props}>
+			{asChild ? (
+				props.children
+			) : (
+				<>
+					{props.children}
+					{hasIcon && <QuestionCircleOutline width={16} />}
+				</>
+			)}
 		</HoverCardPrimitive.Trigger>
 	)
 })

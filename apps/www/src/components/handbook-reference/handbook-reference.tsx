@@ -9,6 +9,7 @@ import {
 import { Text } from 'cadence-core'
 import { Link } from '@components/link'
 import { Badge, Flex } from 'cadence-core'
+import { QuestionCircleOutline } from 'cadence-icons'
 
 import type { HandbookReferenceProps } from './types'
 
@@ -21,8 +22,11 @@ const HandbookReference = ({
 }: HandbookReferenceProps) => {
 	return (
 		<HoverCard openDelay={300}>
-			<HoverCardTrigger hasIcon>
-				<Link href={link}>{text}</Link>
+			<HoverCardTrigger asChild>
+				<span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+					<Link href={link}>{text}</Link>
+					<QuestionCircleOutline width={16} />
+				</span>
 			</HoverCardTrigger>
 			<HoverCardContent>
 				<HoverCardTitle>
