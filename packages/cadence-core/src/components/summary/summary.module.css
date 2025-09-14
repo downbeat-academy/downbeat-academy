@@ -60,3 +60,8 @@
 .size--large {
   padding: var(--cds-scale-large);
 }
+
+/* Icon */
+.icon {
+  transition: transform 0.15s ease-in-out;
+}

@@ -1,5 +1,11 @@
 # cadence-core
 
+## 2.2.0
+
+### Minor Changes
+
+- Added Summary component - A collapsible disclosure widget with configurable title, visual variants (contained/flush), and size options (small/medium/large)
+
 ## 1.1.0
 
 ### Minor Changes

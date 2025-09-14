@@ -1,5 +1,7 @@
+import React from 'react'
 import classnames from 'classnames'
-import { Flex, Text } from 'cadence-core'
+import { Flex } from '../flex'
+import { Text } from '../text'
 import { ChevronRight } from 'cadence-icons'
 import s from './summary.module.css'
 import type { SummaryProps } from './types'
@@ -59,5 +61,7 @@ const Summary = ({
     </details>
   )
 }
+
+Summary.displayName = 'Summary'
 
 export { Summary }

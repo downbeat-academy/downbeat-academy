@@ -4,17 +4,15 @@ import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/link-resolver'
 import { getOgTitle } from '@utils/metaHelpers'
-import { Text, Flex } from 'cadence-core'
+import { Text, Flex, Badge } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { RichText, RichTextWrapper } from '@components/rich-text'
-import { Badge } from 'cadence-core'
 import { Link } from '@components/link'
 import { NewsletterSignup } from '@components/newsletter-signup'
 import { TableOfContents } from '@components/table-of-contents'
 import { ReadingLength } from '@components/reading-length'
-import { Summary } from '@components/summary'
 import s from './page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -128,18 +126,6 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>
-				<Summary
-					isOpen={false}
-					type='flush'
-					size='small'
-					title={{
-						text: 'Summary',
-					}}
-				>
-					<Text tag="p" collapse type="expressive-body" size="body-small" color="primary">
-						This is the content of the summary.
-					</Text>
-				</Summary>
 				<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
 					<RichTextWrapper>
 						<RichText value={article.content.content} />
