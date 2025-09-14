@@ -25,6 +25,7 @@ export {
 export { LogoLockup, LogoSymbol, LogoText } from './components/brand';
 export { Text, List } from './components/text';
 export { Grid } from './components/grid';
+export { Summary } from './components/summary';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -33,6 +34,7 @@ export type { BadgeProps } from './components/badge';
 export type { BannerProps } from './components/banner';
 export type { ButtonProps, ButtonWrapperProps } from './components/button';
 export type { CardProps, CardContentProps, CardImageProps } from './components/card';
+export type { FlexProps } from './components/flex';
 export type {
   FormProps,
   FieldProps,
@@ -51,3 +53,5 @@ export type {
   LabelProps,
   ValidationMessageProps,
 } from './components/form';
+export type { TextProps } from './components/text';
+export type { SummaryProps, SummaryTitleConfig } from './components/summary';
