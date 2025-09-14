@@ -14,9 +14,9 @@ const HoverCardTitle = ({
 	const classes = classnames(s.title, className)
 
 	return (
-		<header className={classes} {...props}>
+		<div className={classes} {...props}>
 			{children}
-		</header>
+		</div>
 	)
 }
 

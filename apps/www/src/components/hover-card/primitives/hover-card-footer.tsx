@@ -14,9 +14,9 @@ const HoverCardFooter = ({
 	const classes = classnames(s.footer, className)
 
 	return (
-		<footer className={classes} {...props}>
+		<div className={classes} {...props}>
 			{children}
-		</footer>
+		</div>
 	)
 }
 

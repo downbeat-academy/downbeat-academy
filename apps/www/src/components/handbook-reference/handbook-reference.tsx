@@ -26,13 +26,13 @@ const HandbookReference = ({
 			</HoverCardTrigger>
 			<HoverCardContent>
 				<HoverCardTitle>
-					<Text tag="p" type="productive-body" size="body-base" collapse>
+					<Text tag="span" type="productive-body" size="body-base" collapse>
 						<strong>{title}</strong>
 					</Text>
 				</HoverCardTitle>
 				<HoverCardMain>
 					<Flex direction="column" gap="small">
-						<Text tag="p" type="productive-body" size="body-base" collapse>
+						<Text tag="span" type="productive-body" size="body-base" collapse>
 							{excerpt}
 						</Text>
 						<Flex gap="small" direction="row" wrap>
@@ -48,7 +48,7 @@ const HandbookReference = ({
 					</Flex>
 				</HoverCardMain>
 				<HoverCardFooter>
-					<Text tag="p" type="productive-body" size="body-base" collapse>
+					<Text tag="span" type="productive-body" size="body-base" collapse>
 						<Link href={link}>Learn more in the Handbook</Link>
 					</Text>
 				</HoverCardFooter>
