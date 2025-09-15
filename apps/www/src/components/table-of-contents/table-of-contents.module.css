@@ -11,6 +11,8 @@
 	gap: var(--cds-scale-large);
 	z-index: 10;
 	width: 300px;
+	min-width: 300px;
+	flex-shrink: 0;
 }
 
 .collapsed {
