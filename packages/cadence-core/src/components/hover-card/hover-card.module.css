@@ -1,0 +1,114 @@
+/* Trigger */
+.trigger {
+  text-decoration: underline;
+  color: var(--cds-color-foreground-interactive-default);
+  cursor: help;
+  display: inline-flex;
+  gap: var(--cds-scale-3x-small);
+  align-items: center;
+}
+
+/* Focus indicator for accessibility */
+.trigger:focus-visible {
+  outline: 2px solid var(--cds-color-foreground-interactive-default);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Title */
+.title {
+  padding: var(--cds-scale-x-small) var(--cds-scale-base);
+  border-bottom: 1px solid var(--cds-color-palette-blackberry-200);
+}
+
+/* Main */
+.main {
+  padding: var(--cds-scale-x-small) var(--cds-scale-base);
+}
+
+/* Footer */
+.footer {
+  padding: var(--cds-scale-x-small) var(--cds-scale-base);
+  border-top: 1px solid var(--cds-color-palette-blackberry-200);
+}
+
+/* Content */
+.content {
+  background: var(--cds-color-surface-primary);
+  border-radius: var(--cds-radii-medium);
+  border: 1px solid var(--cds-color-palette-blackberry-200);
+  max-width: 400px;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  z-index: 40;
+}
+
+/* Respect user's motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    animation-duration: 0ms;
+  }
+}
+
+.content[data-side='top'] {
+  animation-name: slideDownAndFade;
+}
+
+.content[data-side='right'] {
+  animation-name: slideLeftAndFade;
+}
+
+.content[data-side='bottom'] {
+  animation-name: slideUpAndFade;
+}
+
+.content[data-side='left'] {
+  animation-name: slideRightAndFade;
+}
+
+@keyframes slideUpAndFade {
+  0% {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	HoverCard,
 	HoverCardTrigger,
@@ -5,10 +7,11 @@ import {
 	HoverCardMain,
 	HoverCardTitle,
 	HoverCardFooter,
-} from '@components/hover-card'
-import { Text } from 'cadence-core'
+	Text,
+	Badge,
+	Flex,
+} from 'cadence-core'
 import { Link } from '@components/link'
-import { Badge, Flex } from 'cadence-core'
 
 import type { HandbookReferenceProps } from './types'
 
@@ -26,13 +29,13 @@ const HandbookReference = ({
 			</HoverCardTrigger>
 			<HoverCardContent>
 				<HoverCardTitle>
-					<Text tag="p" type="productive-body" size="body-base" collapse>
+					<Text tag="span" type="productive-body" size="body-base" collapse>
 						<strong>{title}</strong>
 					</Text>
 				</HoverCardTitle>
 				<HoverCardMain>
 					<Flex direction="column" gap="small">
-						<Text tag="p" type="productive-body" size="body-base" collapse>
+						<Text tag="span" type="productive-body" size="body-base" collapse>
 							{excerpt}
 						</Text>
 						<Flex gap="small" direction="row" wrap>
@@ -48,7 +51,7 @@ const HandbookReference = ({
 					</Flex>
 				</HoverCardMain>
 				<HoverCardFooter>
-					<Text tag="p" type="productive-body" size="body-base" collapse>
+					<Text tag="span" type="productive-body" size="body-base" collapse>
 						<Link href={link}>Learn more in the Handbook</Link>
 					</Text>
 				</HoverCardFooter>

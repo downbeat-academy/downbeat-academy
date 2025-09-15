@@ -1,3 +1,5 @@
+'use client'
+
 import React, { forwardRef } from 'react'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import classnames from 'classnames'

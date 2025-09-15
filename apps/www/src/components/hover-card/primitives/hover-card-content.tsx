@@ -8,13 +8,15 @@ const HoverCardContent = forwardRef<
 	React.ElementRef<typeof HoverCardPrimitive.Content>,
 	React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>
 >(({ className, align = 'center', sideOffset = 4, ...props }, ref) => (
-	<HoverCardPrimitive.Content
-		className={s.content}
-		ref={ref}
-		align={align}
-		sideOffset={sideOffset}
-		{...props}
-	/>
+	<HoverCardPrimitive.Portal>
+		<HoverCardPrimitive.Content
+			className={s.content}
+			ref={ref}
+			align={align}
+			sideOffset={sideOffset}
+			{...props}
+		/>
+	</HoverCardPrimitive.Portal>
 ))
 
 HoverCardContent.displayName = HoverCardPrimitive.Content.displayName

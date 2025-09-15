@@ -26,6 +26,22 @@ export { LogoLockup, LogoSymbol, LogoText } from './components/brand';
 export { Text, List } from './components/text';
 export { Grid } from './components/grid';
 export { Summary } from './components/summary';
+export {
+  HoverCard,
+  HoverCardArrow,
+  HoverCardContent,
+  HoverCardTrigger,
+  HoverCardTitle,
+  HoverCardMain,
+  HoverCardFooter,
+} from './components/hover-card';
+export {
+  Tooltip,
+  TooltipProvider,
+  TooltipArrow,
+  TooltipContent,
+  TooltipTrigger,
+} from './components/tooltip';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -55,3 +71,14 @@ export type {
 } from './components/form';
 export type { TextProps } from './components/text';
 export type { SummaryProps, SummaryTitleConfig } from './components/summary';
+export type {
+  HoverCardContentProps,
+  HoverCardTriggerProps,
+  HoverCardTitleProps,
+  HoverCardMainProps,
+  HoverCardFooterProps,
+} from './components/hover-card';
+export type {
+  TooltipContentProps,
+  TooltipTriggerProps,
+} from './components/tooltip';
