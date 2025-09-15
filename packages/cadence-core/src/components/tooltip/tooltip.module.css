@@ -1,8 +1,8 @@
 .content {
-  padding: var(--cds-scale-base);
+  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
   background: var(--cds-color-surface-high-contrast);
   color: var(--cds-color-foreground-high-contrast);
-  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  font-size: var(--cds-typography-font-size-fixed-productive-x-small);
   font-family: var(--cds-typography-font-family-productive-body);
   border-radius: var(--cds-radii-medium);
   max-width: 300px;
@@ -33,6 +33,7 @@
     opacity: 0;
     transform: translateY(2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -44,6 +45,7 @@
     opacity: 0;
     transform: translateX(-2px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -55,6 +57,7 @@
     opacity: 0;
     transform: translateY(-2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -66,8 +69,9 @@
     opacity: 0;
     transform: translateX(2px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
   }
-} 
+}
