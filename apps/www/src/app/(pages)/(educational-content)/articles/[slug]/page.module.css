@@ -2,12 +2,12 @@
 	position: relative;
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr auto;
+	grid-template-columns: 1fr 300px;
 	gap: var(--cds-scale-2x-large);
 }
 
-/* Hide table of contents on mobile */
-@media (max-width: 768px) {
+/* Hide table of contents on mobile and tablets */
+@media (max-width: 1200px) {
 	.content {
 		grid-template-columns: 1fr;
 	}
