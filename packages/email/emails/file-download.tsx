@@ -20,7 +20,7 @@ type FileDownloadProps = {
 }
 
 const FileDownload = ({ file, title }: FileDownloadProps) => {
-	const previewText = `Your download for ${title} from Downbeat Academy is here!`
+	const previewText: string = `Your download for ${title} from Downbeat Academy is here!`
 
 	return (
 		<Html>

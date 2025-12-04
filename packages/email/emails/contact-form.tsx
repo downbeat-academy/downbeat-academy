@@ -21,7 +21,7 @@ type ContactFormEmailProps = {
 }
 
 const ContactFormEmail = ({ name, email, message }: ContactFormEmailProps) => {
-	const previewText = `${name} sent you a message through your website`
+	const previewText: string = `${name} sent you a message through your website`
 
 	return (
 		<Html>

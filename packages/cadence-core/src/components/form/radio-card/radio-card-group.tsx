@@ -33,7 +33,7 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
 
   // Clone children and pass down group props
   const clonedChildren = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
+    if (React.isValidElement<Record<string, unknown>>(child)) {
       return React.cloneElement(child, {
         // Pass down group props to each RadioCardItem
         _groupValue: value,
@@ -42,7 +42,7 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
         _groupRequired: required,
         _groupName: name,
         _groupIsInvalid: isInvalid,
-        ...child.props // Keep existing child props, they take precedence
+        ...(child.props as Record<string, unknown>) // Keep existing child props, they take precedence
       })
     }
     return child

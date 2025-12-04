@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { Heading as ReactEmailHeading } from '@react-email/components'
 import { getHeadingStyles, type HeadingLevel } from './styles'
 import type { TextColor } from '../text/styles'
 
 export interface HeadingProps {
-  children: React.ReactNode
   level?: HeadingLevel
   color?: TextColor
   style?: React.CSSProperties
@@ -15,7 +14,7 @@ export const Heading = ({
   level = 'h1',
   color = 'primary',
   style,
-}: HeadingProps) => {
+}: PropsWithChildren<HeadingProps>) => {
   return (
     <ReactEmailHeading
       as={level}

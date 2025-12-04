@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { Link as ReactEmailLink } from '@react-email/components'
 import { getLinkStyles, type LinkColor } from './styles'
 
 export interface LinkProps {
-  children: React.ReactNode
   href: string
   color?: LinkColor
   style?: React.CSSProperties
@@ -16,7 +15,7 @@ export const Link = ({
   color = 'brand',
   style,
   download,
-}: LinkProps) => {
+}: PropsWithChildren<LinkProps>) => {
   return (
     <ReactEmailLink
       href={href}
