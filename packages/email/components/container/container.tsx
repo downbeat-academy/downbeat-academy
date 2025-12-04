@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { Container as ReactEmailContainer } from '@react-email/components'
 import { getContainerStyles, type ContainerBackground, type ContainerBorderColor, type ContainerPadding } from './styles'
 
 export interface ContainerProps {
-  children: React.ReactNode
   background?: ContainerBackground
   borderColor?: ContainerBorderColor
   padding?: ContainerPadding
@@ -16,7 +15,7 @@ export const Container = ({
   borderColor = 'primary',
   padding = 'medium',
   style,
-}: ContainerProps) => {
+}: PropsWithChildren<ContainerProps>) => {
   return (
     <>
       <ReactEmailContainer

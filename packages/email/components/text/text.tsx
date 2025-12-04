@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { Text as ReactEmailText } from '@react-email/components'
 import { getTextStyles, type TextColor, type TextSize, type TextWeight } from './styles'
 
 export interface TextProps {
-  children: React.ReactNode
   size?: TextSize
   weight?: TextWeight
   color?: TextColor
@@ -16,7 +15,7 @@ export const Text = ({
   weight = 'normal',
   color = 'primary',
   style,
-}: TextProps) => {
+}: PropsWithChildren<TextProps>) => {
   return (
     <ReactEmailText
       style={{

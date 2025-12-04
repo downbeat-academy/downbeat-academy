@@ -21,7 +21,7 @@ type VerifyEmailProps = {
 }
 
 const VerifyEmail = ({ name, verificationUrl }: VerifyEmailProps) => {
-  const previewText = `Verify your email address for Downbeat Academy`
+  const previewText: string = `Verify your email address for Downbeat Academy`
 
   return (
     <Html>

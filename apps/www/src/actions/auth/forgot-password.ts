@@ -4,7 +4,7 @@ import { auth } from '@/lib/auth/auth'
 
 export async function forgotPasswordAction(email: string) {
 	try {
-		await auth.api.forgetPassword({
+		await auth.api.requestPasswordReset({
 			body: {
 				email,
 				redirectTo: '/account/update-password',

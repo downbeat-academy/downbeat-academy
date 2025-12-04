@@ -9,18 +9,18 @@ import {
 
 describe('Logo components', () => {
   it('LogoLockup should render correctly', () => {
-    render(<LogoLockup />)
-    const logoLockup = screen.getByTestId('logo-lockup')
-    expect(logoLockup).toBeInstanceOf(HTMLElement)
+    const { container } = render(<LogoLockup />)
+    const svg = container.querySelector('svg')
+    expect(svg).toBeInstanceOf(HTMLElement)
   });
   it('LogoSymbol should render correctly', () => {
-    render(<LogoSymbol />)
-    const logoSymbol = screen.getByTestId('logo-symbol')
-    expect(logoSymbol).toBeInstanceOf(HTMLElement)
+    const { container } = render(<LogoSymbol />)
+    const svg = container.querySelector('svg')
+    expect(svg).toBeInstanceOf(HTMLElement)
   })
   it('LogoText should render correctly', () => {
-    render(<LogoText />)
-    const logoText = screen.getByTestId('logo-text')
-    expect(logoText).toBeInstanceOf(HTMLElement)
+    const { container } = render(<LogoText />)
+    const svg = container.querySelector('svg')
+    expect(svg).toBeInstanceOf(HTMLElement)
   })
 })
