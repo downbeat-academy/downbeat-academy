@@ -17,6 +17,7 @@
 	},
 	"scripts": {
 		"dev": "infisical run -- next dev",
+		"dev:ci": "next dev",
 		"build": "next build",
 		"postbuild": "next-sitemap --config next-sitemap.config.js",
 		"start": "next start",

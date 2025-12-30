@@ -131,7 +131,7 @@ jobs:
       - name: Run smoke tests
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm dev
+          start: pnpm dev:ci
           working-directory: apps/www
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
@@ -247,7 +247,7 @@ jobs:
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
-          start: pnpm dev
+          start: pnpm dev:ci
           working-directory: apps/www
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
