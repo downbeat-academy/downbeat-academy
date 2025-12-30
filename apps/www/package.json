@@ -59,7 +59,8 @@
 		"test:auth:dev": "pnpm tsx scripts/auth-test-runner.ts --mode=dev",
 		"test:auth:start": "pnpm tsx scripts/auth-test-runner.ts --mode=start",
 		"test:verify-setup": "pnpm tsx scripts/verify-test-setup.ts",
-		"test:verify-setup:quick": "pnpm tsx scripts/verify-test-setup.ts --skip-server --no-quick-tests"
+		"test:verify-setup:quick": "pnpm tsx scripts/verify-test-setup.ts --skip-server --no-quick-tests",
+		"validate:proxy": "pnpm tsx scripts/validate-proxy.ts"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",

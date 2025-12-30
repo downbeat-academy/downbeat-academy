@@ -13,8 +13,8 @@ export async function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl
 
 	// Define protected routes that require authentication
-	const protectedRoutes = ['/dashboard', '/account', '/settings']
-	const authRoutes = ['/login', '/register', '/forgot-password']
+	const protectedRoutes = ['/account']
+	const authRoutes = ['/sign-in', '/forgot-password', '/update-password']
 
 	const isProtectedRoute = protectedRoutes.some((route) =>
 		pathname.startsWith(route)
@@ -27,16 +27,16 @@ export async function proxy(request: NextRequest) {
 		headers: request.headers,
 	})
 
-	// Redirect to login if accessing protected route without valid session
+	// Redirect to sign-in if accessing protected route without valid session
 	if (isProtectedRoute && !session) {
-		const loginUrl = new URL('/login', request.url)
-		loginUrl.searchParams.set('callbackUrl', pathname)
-		return NextResponse.redirect(loginUrl)
+		const signInUrl = new URL('/sign-in', request.url)
+		signInUrl.searchParams.set('callbackUrl', pathname)
+		return NextResponse.redirect(signInUrl)
 	}
 
-	// Redirect to dashboard if accessing auth routes with valid session
+	// Redirect to account if accessing auth routes with valid session
 	if (isAuthRoute && session) {
-		return NextResponse.redirect(new URL('/dashboard', request.url))
+		return NextResponse.redirect(new URL('/account', request.url))
 	}
 
 	return NextResponse.next()
