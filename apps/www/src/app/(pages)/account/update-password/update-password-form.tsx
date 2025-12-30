@@ -8,8 +8,6 @@ import { Form, Field, Input, Label, ValidationMessage } from 'cadence-core'
 import { useToast } from '@components/toast'
 import { updatePasswordAction } from '@/actions/auth/update-password'
 import { useEffect, useState } from 'react'
-import { auth } from '@/lib/auth/auth'
-import { headers } from 'next/headers'
 
 const updatePasswordSchema = z.object({
   currentPassword: z.string().optional(),
