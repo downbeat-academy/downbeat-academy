@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getAuth } from '@/lib/auth/auth'
 
 /**
- * Middleware for authentication checks using better-auth.
- * 
- * For Next.js 15.2.0+, we can use the Node.js runtime and call auth.api directly.
- * This provides better security than just checking cookie existence.
- * 
+ * Proxy for authentication checks using better-auth.
+ *
+ * In Next.js 16+, proxy.ts replaces middleware.ts and runs on the Node.js runtime,
+ * allowing direct database access for full session validation.
+ *
  * @see https://www.better-auth.com/docs/integrations/next#middleware
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl
 
 	// Define protected routes that require authentication
