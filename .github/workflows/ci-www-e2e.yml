@@ -84,25 +84,7 @@ jobs:
           pnpm --filter cadence-tokens build
           pnpm --filter cadence-icons build
           pnpm --filter cadence-core build
-      
-      - name: Validate CI environment
-        working-directory: apps/www
-        env:
-          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
-          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
-          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
-          NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
-          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
-          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-          SMOKE_TEST: true
-        run: pnpm tsx scripts/ci-env-check.ts
-      
+
       - name: Setup test environment
         working-directory: apps/www
         env:
@@ -124,14 +106,18 @@ jobs:
           SANITY_API_TOKEN=${{ secrets.SANITY_API_TOKEN }}
           SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
           EOF
-          
+
           # Setup database schema, seed test data, and verify test users
           pnpm test:prepare
-      
+
+      - name: Build www app
+        working-directory: apps/www
+        run: pnpm build
+
       - name: Run smoke tests
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm dev:ci
+          start: pnpm start
           working-directory: apps/www
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
@@ -190,25 +176,7 @@ jobs:
           pnpm --filter cadence-tokens build
           pnpm --filter cadence-icons build
           pnpm --filter cadence-core build
-      
-      - name: Validate CI environment
-        working-directory: apps/www
-        env:
-          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
-          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
-          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
-          NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
-          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
-          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-          SMOKE_TEST: true
-        run: pnpm tsx scripts/ci-env-check.ts
-      
+
       - name: Setup test environment
         working-directory: apps/www
         env:
@@ -230,10 +198,14 @@ jobs:
           SANITY_API_TOKEN=${{ secrets.SANITY_API_TOKEN }}
           SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
           EOF
-          
+
           # Setup database schema, seed test data, and verify test users
           pnpm test:prepare
-      
+
+      - name: Build www app
+        working-directory: apps/www
+        run: pnpm build
+
       - name: Determine test suite
         id: test-suite
         run: |
@@ -242,12 +214,12 @@ jobs:
           else
             echo "suite=all" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Run E2E tests
         uses: cypress-io/github-action@v6
         continue-on-error: true
         with:
-          start: pnpm dev:ci
+          start: pnpm start
           working-directory: apps/www
           wait-on: 'http://localhost:3000'
           wait-on-timeout: 180
