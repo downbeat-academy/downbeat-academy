@@ -35,14 +35,17 @@ describe('Public Routes Coverage', () => {
 
 		it('should have working navigation menu', () => {
 			cy.visit('/')
-			
+
 			// Test navigation links work
 			cy.get('[data-testid="nav-articles"]').click()
 			cy.url().should('include', '/articles')
-			
+
+			// Navigate back and wait for homepage to load
 			cy.go('back')
-			
-			cy.get('[data-testid="nav-handbook"]').click()
+			cy.url().should('eq', Cypress.config('baseUrl') + '/')
+
+			// Wait for navigation to be visible before clicking
+			cy.get('[data-testid="nav-handbook"]').should('be.visible').click()
 			cy.url().should('include', '/handbook')
 		})
 	})

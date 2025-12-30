@@ -33,6 +33,14 @@ export async function generateMetadata(
 			}
 		)
 
+		// Handle non-existent pages gracefully
+		if (!page || !page.metadata) {
+			return {
+				title: 'Page Not Found | Downbeat Academy',
+				description: 'The requested page could not be found.',
+			}
+		}
+
 		const { title } = page.metadata
 		return {
 			title: getOgTitle(title),
@@ -40,7 +48,11 @@ export async function generateMetadata(
 		}
 	} catch (error) {
 		console.error(error)
-		throw error
+		// Return fallback metadata on error instead of throwing
+		return {
+			title: 'Page Not Found | Downbeat Academy',
+			description: 'The requested page could not be found.',
+		}
 	}
 }
 
