@@ -12,7 +12,7 @@ interface FeaturedPostType {
 	_id: string
 	slug: string
 	title: string
-	publishedAt: string
+	date: string
 	excerpt?: string
 	featuredImage: {
 		image: {
@@ -20,13 +20,11 @@ interface FeaturedPostType {
 		}
 		alternativeText?: string
 	}
-	author?: {
+	authors?: Array<{
 		name: string
 		slug?: string
-		profilePicture?: {
-			asset: any
-		}
-	}
+		image?: any
+	}>
 	categories: Array<{
 		title: string
 		slug: string
@@ -72,8 +70,8 @@ export default async function FeaturedPost({ featuredPost }: { featuredPost: Fea
 			</FeaturedItem.Title>
 			<FeaturedItem.Description>
 				<AuthorMetadata
-					authors={featuredPost.author ? [featuredPost.author] : []}
-					date={prettyDate(featuredPost.publishedAt)}
+					authors={featuredPost.authors}
+					date={prettyDate(featuredPost.date)}
 				>
 					<Flex tag="div" direction="row" gap="medium">
 						{renderCategories}
