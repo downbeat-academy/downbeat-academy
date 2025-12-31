@@ -59,8 +59,9 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 			</td>
 			<td className={styles.cell}>
 				<Text
-					variant="body-small"
-					color="secondary"
+					size="body-small"
+					color="faint"
+					tag='p'
 					title={link.originalUrl}
 					className={styles.originalUrl}
 				>
@@ -68,7 +69,7 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 				</Text>
 			</td>
 			<td className={styles.cell}>
-				<Text variant="body-small" color="tertiary">
+				<Text size="body-small" tag='p' color="faint">
 					{format(new Date(link.createdAt), 'MMM d, yyyy')}
 				</Text>
 			</td>

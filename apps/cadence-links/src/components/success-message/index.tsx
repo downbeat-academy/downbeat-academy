@@ -25,10 +25,10 @@ export function SuccessMessage({ shortUrl, onDismiss }: SuccessMessageProps) {
 	return (
 		<div className={styles.container}>
 			<Flex direction="column" gap="small">
-				<Text variant="body-medium" color="primary">
+				<Text size="body-large" color="primary">
 					Link created successfully!
 				</Text>
-				<Flex align="center" gap="medium" className={styles.urlRow}>
+				<Flex alignItems="center" gap="medium" className={styles.urlRow}>
 					<code className={styles.url}>{shortUrl}</code>
 					<Flex gap="small">
 						<Button

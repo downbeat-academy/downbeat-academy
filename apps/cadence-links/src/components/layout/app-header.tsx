@@ -6,9 +6,9 @@ import styles from './app-header.module.css'
 export function AppHeader() {
 	return (
 		<header className={styles.header}>
-			<Flex align="center" gap="small">
+			<Flex alignItems="center" gap="small">
 				<LogoSymbol height={32} />
-				<Text variant="heading-small" as="h1">
+				<Text size="h6" tag="h1">
 					Cadence Links
 				</Text>
 			</Flex>

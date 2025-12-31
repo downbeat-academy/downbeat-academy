@@ -15,14 +15,14 @@ export function LinksTable({ links, onDelete }: LinksTableProps) {
 		return (
 			<Flex
 				direction="column"
-				align="center"
-				justify="center"
+				alignItems="center"
+				justifyContent="center"
 				className={styles.empty}
 			>
-				<Text variant="body-large" color="secondary">
+				<Text size="body-large" tag='p' color="faint">
 					No links yet
 				</Text>
-				<Text variant="body-medium" color="tertiary">
+				<Text size="body-base" tag='p' color="faint">
 					Create your first shortened URL above
 				</Text>
 			</Flex>
