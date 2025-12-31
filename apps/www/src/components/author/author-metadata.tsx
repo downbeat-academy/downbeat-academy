@@ -20,10 +20,10 @@ const AuthorMetadata = ({
 
 	const mapAuthorImages = authors?.map((authorImage) => {
 		if (!authorImage.slug || !authorImage.name) return null
-		
+
 		// Handle the nested image structure from Sanity
 		let imageUrl: string | undefined = undefined
-		
+
 		if (authorImage.image) {
 			// Check if it's the nested structure (image.image.asset)
 			if (authorImage.image.image?.asset) {
@@ -38,7 +38,7 @@ const AuthorMetadata = ({
 				imageUrl = getSanityImageUrl(authorImage.image).url()
 			}
 		}
-		
+
 		return (
 			<Link
 				href={linkResolver(authorImage.slug, 'contributor')}
@@ -55,10 +55,10 @@ const AuthorMetadata = ({
 
 	const renderAuthorNames = () => {
 		if (!authors || authors.length === 0) return null
-		
+
 		const validAuthors = authors.filter(author => author.slug && author.name)
 		if (validAuthors.length === 0) return null
-		
+
 		// Handle different cases for natural language formatting
 		if (validAuthors.length === 1) {
 			return (
