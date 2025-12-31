@@ -1,0 +1,8 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--cds-scale-large) var(--cds-scale-x-large);
+	border-bottom: 1px solid var(--cds-color-border-primary);
+	background: var(--cds-color-surface-primary);
+}

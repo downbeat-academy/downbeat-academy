@@ -1,0 +1,55 @@
+/* Import styles from packages */
+@import '../../node_modules/cadence-tokens/dist/web/tokens.css';
+@import '../../node_modules/cadence-core/dist/cadence-core.min.css';
+@import '../../node_modules/typeface-tiempos-text';
+
+/* Reset and base styles */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-size: 16px;
+	font-family: var(--cds-typography-font-family-expressive-body);
+	color: var(--cds-color-foreground-primary);
+	background: var(--cds-color-surface-primary);
+	-webkit-font-smoothing: antialiased;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+	font-style: normal;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font-family: inherit;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+	outline: 2px solid var(--cds-color-border-interactive);
+	outline-offset: 2px;
+}

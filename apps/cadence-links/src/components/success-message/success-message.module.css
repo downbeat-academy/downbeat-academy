@@ -1,0 +1,20 @@
+.container {
+	padding: var(--cds-scale-medium) var(--cds-scale-large);
+	background: var(--cds-color-surface-success);
+	border: 1px solid var(--cds-color-border-success);
+	border-radius: var(--cds-radius-medium);
+}
+
+.urlRow {
+	flex-wrap: wrap;
+}
+
+.url {
+	padding: var(--cds-scale-x-small) var(--cds-scale-small);
+	font-family: monospace;
+	font-size: var(--cds-typography-body-medium-font-size);
+	color: var(--cds-color-foreground-primary);
+	background: var(--cds-color-surface-primary);
+	border-radius: var(--cds-radius-small);
+	word-break: break-all;
+}
