@@ -396,14 +396,9 @@ pnpm db:studio
 
 ## Domain Configuration
 
-For production use, configure DNS records for your short domains:
+For local development, test redirects via `localhost:3001/[shortCode]`.
 
-1. **Point domains to your deployment**:
-   - Add A/AAAA records or CNAME to your hosting provider
-
-2. **Configure Next.js rewrites** if hosting on a different domain than your short URLs
-
-3. **Set up SSL/TLS** for all domains
+For production DNS setup, see [docs/DOMAIN_CONFIGURATION.md](docs/DOMAIN_CONFIGURATION.md).
 
 ## Development Tips
 
