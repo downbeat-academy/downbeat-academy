@@ -30,6 +30,8 @@
     "www:cypress": "pnpm --filter=www cypress",
     "cms:dev": "turbo run dev --filter=cms-sanity",
     "cms:build": "turbo run build --filter=cms-sanity",
+    "links:dev": "turbo run dev --filter=cadence-links",
+    "links:build": "turbo run build --filter=cadence-links",
     "tokens:build": "turbo run build --filter=cadence-tokens",
     "email:dev": "turbo run dev --filter=email",
     "core:storybook": "turbo run storybook --filter=cadence-core",
