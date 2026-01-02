@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { format } from 'date-fns'
 import { Button, Text, Flex, TableRow, TableCell } from 'cadence-core'
 import type { Link } from '@/types/link'
-import styles from './links-table.module.css'
 
 interface LinkRowProps {
 	link: Link
@@ -46,34 +45,32 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 	}
 
 	return (
-		<TableRow className={styles.row}>
-			<TableCell className={styles.cell}>
+		<TableRow>
+			<TableCell>
 				<a
 					href={shortUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					className={styles.shortUrl}
 				>
 					{shortUrl.replace('https://', '')}
 				</a>
 			</TableCell>
-			<TableCell className={styles.cell}>
+			<TableCell>
 				<Text
 					size="body-small"
 					color="faint"
 					tag='p'
 					title={link.originalUrl}
-					className={styles.originalUrl}
 				>
 					{truncateUrl(link.originalUrl)}
 				</Text>
 			</TableCell>
-			<TableCell className={styles.cell}>
+			<TableCell>
 				<Text size="body-small" tag='p' color="faint">
 					{format(new Date(link.createdAt), 'MMM d, yyyy')}
 				</Text>
 			</TableCell>
-			<TableCell className={styles.cell}>
+			<TableCell>
 				<Flex gap="small" direction='row'>
 					<Button
 						variant="secondary"

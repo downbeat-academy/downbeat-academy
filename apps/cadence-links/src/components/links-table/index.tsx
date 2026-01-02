@@ -38,22 +38,20 @@ export function LinksTable({ links, onDelete }: LinksTableProps) {
 	}
 
 	return (
-		<div className={styles.wrapper}>
-			<Table>
-				<TableHeader>
-					<TableRow isHeader className={styles.headerRow}>
-						<TableHead className={styles.headerCell}>Short URL</TableHead>
-						<TableHead className={styles.headerCell}>Original URL</TableHead>
-						<TableHead className={styles.headerCell}>Created</TableHead>
-						<TableHead className={styles.headerCell}>Actions</TableHead>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
-					{links.map((link) => (
-						<LinkRow key={link.id} link={link} onDelete={onDelete} />
-					))}
-				</TableBody>
-			</Table>
-		</div>
+		<Table>
+			<TableHeader>
+				<TableRow isHeader>
+					<TableHead>Short URL</TableHead>
+					<TableHead>Original URL</TableHead>
+					<TableHead>Created</TableHead>
+					<TableHead>Actions</TableHead>
+				</TableRow>
+			</TableHeader>
+			<TableBody>
+				{links.map((link) => (
+					<LinkRow key={link.id} link={link} onDelete={onDelete} />
+				))}
+			</TableBody>
+		</Table>
 	)
 }
