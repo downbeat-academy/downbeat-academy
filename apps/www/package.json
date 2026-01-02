@@ -16,7 +16,7 @@
 		"url": "https://github.com/downbeat-academy/downbeat-academy.git"
 	},
 	"scripts": {
-		"dev": "infisical run --path=/www-- next dev",
+		"dev": "infisical run --path=/www -- next dev",
 		"dev:ci": "next dev",
 		"build": "next build",
 		"postbuild": "next-sitemap --config next-sitemap.config.js",
