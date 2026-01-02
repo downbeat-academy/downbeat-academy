@@ -1,11 +1,11 @@
+'use client'
+
+import { useMemo } from 'react'
 import {
-	Table,
-	TableHeader,
-	TableBody,
-	TableHead,
-	TableRow,
-	TableCell,
+	DataTable,
 	Badge,
+	createTextColumn,
+	createCustomColumn,
 } from 'cadence-core'
 import { formatTime } from '@utils/format-time'
 import { deslugify } from '@utils/deslugify'
@@ -25,67 +25,56 @@ interface LexiconRowData {
 }
 
 const LexiconTable = ({ data }: { data: LexiconRowData[] }) => {
+	const columns = useMemo(
+		() => [
+			createTextColumn<LexiconRowData>('artist', 'Artist'),
+			createTextColumn<LexiconRowData>('track', 'Track'),
+			createTextColumn<LexiconRowData>('album', 'Album'),
+			createCustomColumn<LexiconRowData, number>('timestamp', 'Timestamp', (timestamp) => (
+				<Badge
+					text={formatTime(timestamp).totalTime}
+					type="neutral"
+					size="medium"
+					style="outlined"
+				/>
+			), { enableSorting: false }),
+			createCustomColumn<LexiconRowData, string>('style', 'Style', (style) => (
+				<Badge
+					text={deslugify(style).sentence}
+					type="neutral"
+					size="medium"
+					style="outlined"
+				/>
+			)),
+			createCustomColumn<LexiconRowData, string>('length', 'Length', (length) => (
+				<Badge
+					text={deslugify(length).sentence}
+					type="neutral"
+					size="medium"
+					style="outlined"
+				/>
+			)),
+			createCustomColumn<LexiconRowData, string>('chordProgression', 'Chord progression', (chordProgression) => (
+				<Badge
+					text={chordProgression}
+					type="neutral"
+					size="medium"
+					style="outlined"
+				/>
+			)),
+			createCustomColumn<LexiconRowData, string>('slug', 'Link', (slug) => (
+				<Link href={linkResolver(slug, 'lexicon')}>See more</Link>
+			), { alignment: 'end', enableSorting: false }),
+		],
+		[]
+	)
+
 	return (
-		<Table>
-			<TableHeader>
-				<TableRow isHeader>
-					<TableHead>Artist</TableHead>
-					<TableHead>Track</TableHead>
-					<TableHead>Album</TableHead>
-					<TableHead>Timestamp</TableHead>
-					<TableHead>Style</TableHead>
-					<TableHead>Length</TableHead>
-					<TableHead>Chord progression</TableHead>
-					<TableHead alignment="end">Link</TableHead>
-				</TableRow>
-			</TableHeader>
-			<TableBody>
-				{data.map((row: LexiconRowData) => {
-					return (
-						<TableRow key={row.id}>
-							<TableCell>{row.artist}</TableCell>
-							<TableCell>{row.track}</TableCell>
-							<TableCell>{row.album}</TableCell>
-							<TableCell>
-								<Badge
-									text={formatTime(row.timestamp).totalTime}
-									type="neutral"
-									size="medium"
-									style="outlined"
-								/>
-							</TableCell>
-							<TableCell>
-								<Badge
-									text={deslugify(row.style).sentence}
-									type="neutral"
-									size="medium"
-									style="outlined"
-								/>
-							</TableCell>
-							<TableCell>
-								<Badge
-									text={deslugify(row.length).sentence}
-									type="neutral"
-									size="medium"
-									style="outlined"
-								/>
-							</TableCell>
-							<TableCell>
-								<Badge
-									text={row.chordProgression}
-									type="neutral"
-									size="medium"
-									style="outlined"
-								/>
-							</TableCell>
-							<TableCell alignment="end">
-								<Link href={linkResolver(row.slug, 'lexicon')}>See more</Link>
-							</TableCell>
-						</TableRow>
-					)
-				})}
-			</TableBody>
-		</Table>
+		<DataTable
+			data={data}
+			columns={columns}
+			sorting={{ enabled: true }}
+		/>
 	)
 }
 

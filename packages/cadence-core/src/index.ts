@@ -37,15 +37,15 @@ export {
   HoverCardFooter,
 } from './components/hover-card';
 export {
-  Table,
-  TableHeader,
-  TableBody,
-  TableFooter,
-  TableRow,
-  TableHead,
-  TableCell,
-  TableCaption,
-} from './components/table';
+  DataTable,
+  DataTablePagination,
+  DataTableFilter,
+  DataTableEmpty,
+  createTextColumn,
+  createCustomColumn,
+  createActionsColumn,
+  createDisplayColumn,
+} from './components/data-table';
 export {
   Tooltip,
   TooltipProvider,
@@ -91,17 +91,20 @@ export type {
   HoverCardFooterProps,
 } from './components/hover-card';
 export type {
-  TableAlignment,
-  TableBackgroundColor,
-  TableProps,
-  TableHeaderProps,
-  TableBodyProps,
-  TableFooterProps,
-  TableRowProps,
-  TableHeadProps,
-  TableCellProps,
-  TableCaptionProps,
-} from './components/table';
+  DataTableProps,
+  DataTableAlignment,
+  DataTableBackgroundColor,
+  DataTableSortingConfig,
+  DataTablePaginationConfig,
+  DataTableFilteringConfig,
+  DataTableEmptyStateConfig,
+  DataTablePaginationProps,
+  DataTableFilterProps,
+  DataTableEmptyProps,
+  ColumnDef,
+  SortingState,
+  PaginationState,
+} from './components/data-table';
 export type {
   TooltipContentProps,
   TooltipTriggerProps,
