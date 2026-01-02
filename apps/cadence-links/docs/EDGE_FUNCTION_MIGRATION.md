@@ -111,7 +111,7 @@ export default {
     }
 
     // Query database via HTTP
-    const originalUrl = await queryDatabase(shortCode, env.DATABASE_URL)
+    const originalUrl = await queryDatabase(shortCode, env.DATABASE_PUBLIC_URL)
     if (!originalUrl) {
       return new Response('Not found', { status: 404 })
     }
@@ -148,7 +148,7 @@ export async function middleware(request: NextRequest) {
   const shortCode = request.nextUrl.pathname.slice(1)
 
   // Edge runtime - limited to Web APIs
-  const response = await fetch(`${process.env.DATABASE_URL}/query`, {
+  const response = await fetch(`${process.env.DATABASE_PUBLIC_URL}/query`, {
     method: 'POST',
     body: JSON.stringify({ shortCode }),
   })
