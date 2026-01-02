@@ -1,6 +1,14 @@
 'use client'
 
-import { Text, Flex } from 'cadence-core'
+import {
+	Text,
+	Flex,
+	Table,
+	TableHeader,
+	TableBody,
+	TableRow,
+	TableHead,
+} from 'cadence-core'
 import { LinkRow } from './link-row'
 import type { Link } from '@/types/link'
 import styles from './links-table.module.css'
@@ -19,10 +27,10 @@ export function LinksTable({ links, onDelete }: LinksTableProps) {
 				justifyContent="center"
 				className={styles.empty}
 			>
-				<Text size="body-large" tag='p' color="faint">
+				<Text size="body-large" tag="p" color="faint">
 					No links yet
 				</Text>
-				<Text size="body-base" tag='p' color="faint">
+				<Text size="body-base" tag="p" color="faint">
 					Create your first shortened URL above
 				</Text>
 			</Flex>
@@ -31,21 +39,21 @@ export function LinksTable({ links, onDelete }: LinksTableProps) {
 
 	return (
 		<div className={styles.wrapper}>
-			<table className={styles.table}>
-				<thead>
-					<tr className={styles.headerRow}>
-						<th className={styles.headerCell}>Short URL</th>
-						<th className={styles.headerCell}>Original URL</th>
-						<th className={styles.headerCell}>Created</th>
-						<th className={styles.headerCell}>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
+			<Table>
+				<TableHeader>
+					<TableRow isHeader className={styles.headerRow}>
+						<TableHead className={styles.headerCell}>Short URL</TableHead>
+						<TableHead className={styles.headerCell}>Original URL</TableHead>
+						<TableHead className={styles.headerCell}>Created</TableHead>
+						<TableHead className={styles.headerCell}>Actions</TableHead>
+					</TableRow>
+				</TableHeader>
+				<TableBody>
 					{links.map((link) => (
 						<LinkRow key={link.id} link={link} onDelete={onDelete} />
 					))}
-				</tbody>
-			</table>
+				</TableBody>
+			</Table>
 		</div>
 	)
 }

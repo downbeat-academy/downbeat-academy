@@ -1,0 +1,19 @@
+.table-head {
+	padding: var(--cds-scale-base);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-base);
+	line-height: var(--cds-typography-line-height-productive-body);
+	color: var(--cds-color-foreground-strong);
+}
+
+.table-head--alignment-start {
+	text-align: left;
+}
+
+.table-head--alignment-center {
+	text-align: center;
+}
+
+.table-head--alignment-end {
+	text-align: right;
+}

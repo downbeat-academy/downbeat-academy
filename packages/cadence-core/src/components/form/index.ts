@@ -8,6 +8,14 @@ export { RadioGroup, Radio } from './radio'
 export { RadioCardGroup, RadioCardItem } from './radio-card'
 export { Checkbox } from './checkbox'
 // export { CheckboxCardGroup, CheckboxCardItem } from './checkbox-card'
+export {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  SelectLabel
+} from './select'
 export { HorizontalWrapper } from './horizontal-wrapper'
 
 // Primitives
@@ -23,5 +31,13 @@ export type { RadioGroupProps, RadioProps } from './radio'
 export type { RadioCardGroupProps, RadioCardItemProps } from './radio-card'
 export type { CheckboxProps } from './checkbox'
 // export type { CheckboxCardGroupProps, CheckboxCardItemProps } from './checkbox-card'
+export type {
+  SelectProps,
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectGroupProps,
+  SelectLabelProps
+} from './select'
 export type { HorizontalWrapperProps } from './horizontal-wrapper'
 export type { HelperTextProps, LabelProps, ValidationMessageProps } from './primitives'

@@ -1,10 +1,21 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Button, Form, Field, Input, Label, ValidationMessage } from 'cadence-core'
+import {
+	Button,
+	Form,
+	Field,
+	Input,
+	Label,
+	ValidationMessage,
+	Select,
+	SelectTrigger,
+	SelectContent,
+	SelectItem,
+} from 'cadence-core'
 import { AVAILABLE_DOMAINS, DEFAULT_DOMAIN } from '@lib/constants/domains'
 import type { CreateLinkResponse, ErrorResponse } from '@/types/link'
 import styles from './link-form.module.css'
@@ -26,6 +37,7 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 		register,
 		handleSubmit,
 		reset,
+		control,
 		formState: { errors, isSubmitting },
 	} = useForm<LinkFormData>({
 		resolver: zodResolver(linkFormSchema),
@@ -84,17 +96,29 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 
 				<Field className={styles.domainField}>
 					<Label htmlFor="domain">Short domain</Label>
-					<select
-						id="domain"
-						className={styles.select}
-						{...register('domain')}
-					>
-						{AVAILABLE_DOMAINS.map((domain) => (
-							<option key={domain} value={domain}>
-								{domain.replace('https://', '')}
-							</option>
-						))}
-					</select>
+					<Controller
+						name="domain"
+						control={control}
+						render={({ field }) => (
+							<Select
+								value={field.value}
+								onValueChange={field.onChange}
+							>
+								<SelectTrigger
+									id="domain"
+									placeholder="Select domain"
+									isInvalid={!!errors.domain}
+								/>
+								<SelectContent>
+									{AVAILABLE_DOMAINS.map((domain) => (
+										<SelectItem key={domain} value={domain}>
+											{domain.replace('https://', '')}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						)}
+					/>
 					{errors.domain && (
 						<ValidationMessage>{errors.domain.message}</ValidationMessage>
 					)}

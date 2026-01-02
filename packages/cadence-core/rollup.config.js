@@ -30,11 +30,13 @@ export default {
       file: 'dist/index.esm.js',
       format: 'esm',
       globals,
+      banner: "'use client';",
     },
     {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       globals,
+      banner: "'use client';",
     }
   ],
   plugins: [
@@ -88,6 +90,7 @@ export default {
     '@radix-ui/react-radio-group',
     '@radix-ui/react-checkbox',
     '@radix-ui/react-hover-card',
-    '@radix-ui/react-tooltip'
+    '@radix-ui/react-tooltip',
+    '@radix-ui/react-select'
   ],
 };

@@ -1,0 +1,13 @@
+.table-wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.table-wrapper--background-primary {
+	background-color: var(--cds-color-background-primary);
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+}

@@ -5,12 +5,12 @@ import {
 	TableHead,
 	TableRow,
 	TableCell,
-} from '@components/table'
+	Badge,
+} from 'cadence-core'
 import { formatTime } from '@utils/format-time'
 import { deslugify } from '@utils/deslugify'
 import { linkResolver } from '@utils/link-resolver'
 import { Link } from '@components/link'
-import { Badge } from 'cadence-core'
 
 interface LexiconRowData {
 	id: string

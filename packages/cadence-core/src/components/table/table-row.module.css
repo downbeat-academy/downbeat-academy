@@ -1,0 +1,7 @@
+.table-row:not(:last-child) {
+	border-bottom: 1px solid var(--cds-color-palette-blackberry-200);
+}
+
+.table-row--is-header {
+	border-bottom: 1px solid var(--cds-color-border-faint);
+}

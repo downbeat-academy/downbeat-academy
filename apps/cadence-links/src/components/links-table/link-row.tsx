@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { format } from 'date-fns'
-import { Button, Text, Flex } from 'cadence-core'
+import { Button, Text, Flex, TableRow, TableCell } from 'cadence-core'
 import type { Link } from '@/types/link'
 import styles from './links-table.module.css'
 
@@ -46,8 +46,8 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 	}
 
 	return (
-		<tr className={styles.row}>
-			<td className={styles.cell}>
+		<TableRow className={styles.row}>
+			<TableCell className={styles.cell}>
 				<a
 					href={shortUrl}
 					target="_blank"
@@ -56,8 +56,8 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 				>
 					{shortUrl.replace('https://', '')}
 				</a>
-			</td>
-			<td className={styles.cell}>
+			</TableCell>
+			<TableCell className={styles.cell}>
 				<Text
 					size="body-small"
 					color="faint"
@@ -67,13 +67,13 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 				>
 					{truncateUrl(link.originalUrl)}
 				</Text>
-			</td>
-			<td className={styles.cell}>
+			</TableCell>
+			<TableCell className={styles.cell}>
 				<Text size="body-small" tag='p' color="faint">
 					{format(new Date(link.createdAt), 'MMM d, yyyy')}
 				</Text>
-			</td>
-			<td className={styles.cell}>
+			</TableCell>
+			<TableCell className={styles.cell}>
 				<Flex gap="small" direction='row'>
 					<Button
 						variant="secondary"
@@ -89,7 +89,7 @@ export function LinkRow({ link, onDelete }: LinkRowProps) {
 						text={isDeleting ? 'Deleting...' : 'Delete'}
 					/>
 				</Flex>
-			</td>
-		</tr>
+			</TableCell>
+		</TableRow>
 	)
 }

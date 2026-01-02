@@ -22,26 +22,3 @@
 .buttonWrapper {
 	flex-shrink: 0;
 }
-
-.select {
-	width: 100%;
-	height: 44px;
-	padding: 0 var(--cds-scale-small);
-	font-family: var(--cds-typography-font-family-expressive-body);
-	font-size: var(--cds-typography-body-medium-font-size);
-	color: var(--cds-color-foreground-primary);
-	background: var(--cds-color-surface-primary);
-	border: 1px solid var(--cds-color-border-primary);
-	border-radius: var(--cds-radius-small);
-	cursor: pointer;
-	appearance: none;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-	background-repeat: no-repeat;
-	background-position: right 12px center;
-}
-
-.select:focus {
-	outline: none;
-	border-color: var(--cds-color-border-interactive);
-	box-shadow: 0 0 0 2px var(--cds-color-surface-interactive);
-}
