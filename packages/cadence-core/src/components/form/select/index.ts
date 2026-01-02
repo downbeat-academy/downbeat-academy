@@ -1,17 +1,3 @@
-export {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectGroup,
-  SelectLabel
-} from './select'
+export { Select } from './select'
 
-export type {
-  SelectProps,
-  SelectTriggerProps,
-  SelectContentProps,
-  SelectItemProps,
-  SelectGroupProps,
-  SelectLabelProps
-} from './types'
+export type { SelectProps } from './types'

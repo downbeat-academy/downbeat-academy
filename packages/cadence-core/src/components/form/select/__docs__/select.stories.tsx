@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import {
-  Select,
-  SelectTrigger,
-  SelectContent,
-  SelectItem,
-  SelectGroup,
-  SelectLabel
-} from '../select'
+import { Select } from '../select'
 import { Field } from '../../field'
 import { Label } from '../../primitives'
 
@@ -27,21 +20,17 @@ const fruits = [
   { value: 'mango', label: 'Mango' },
 ]
 
-const meta: Meta<typeof SelectTrigger> = {
+const meta: Meta<typeof Select> = {
   title: 'Cadence/Components/Forms/Select',
-  component: SelectTrigger,
+  component: Select,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    placeholder: {
-      control: 'text',
-      description: 'Placeholder text shown when no value is selected',
-    },
     disabled: {
       control: 'boolean',
-      description: 'Whether the select trigger is disabled',
+      description: 'Whether the select is disabled',
     },
     isInvalid: {
       control: 'boolean',
@@ -55,15 +44,13 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: (args) => (
-    <Select>
-      <SelectTrigger {...args} placeholder="Select a country" />
-      <SelectContent>
-        {countries.map((country) => (
-          <SelectItem key={country.value} value={country.value}>
-            {country.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
+    <Select {...args} defaultValue="">
+      <option value="" disabled>Select a country</option>
+      {countries.map((country) => (
+        <option key={country.value} value={country.value}>
+          {country.label}
+        </option>
+      ))}
     </Select>
   ),
 }
@@ -72,15 +59,13 @@ export const WithLabel: Story = {
   render: (args) => (
     <Field>
       <Label htmlFor="select-with-label">Country</Label>
-      <Select>
-        <SelectTrigger id="select-with-label" {...args} placeholder="Select a country" />
-        <SelectContent>
-          {countries.map((country) => (
-            <SelectItem key={country.value} value={country.value}>
-              {country.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
+      <Select id="select-with-label" {...args} defaultValue="">
+        <option value="" disabled>Select a country</option>
+        {countries.map((country) => (
+          <option key={country.value} value={country.value}>
+            {country.label}
+          </option>
+        ))}
       </Select>
     </Field>
   ),
@@ -90,19 +75,13 @@ export const WithPlaceholder: Story = {
   render: (args) => (
     <Field>
       <Label htmlFor="select-placeholder">Favorite Fruit</Label>
-      <Select>
-        <SelectTrigger
-          id="select-placeholder"
-          {...args}
-          placeholder="Choose your favorite fruit..."
-        />
-        <SelectContent>
-          {fruits.map((fruit) => (
-            <SelectItem key={fruit.value} value={fruit.value}>
-              {fruit.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
+      <Select id="select-placeholder" {...args} defaultValue="">
+        <option value="" disabled>Choose your favorite fruit...</option>
+        {fruits.map((fruit) => (
+          <option key={fruit.value} value={fruit.value}>
+            {fruit.label}
+          </option>
+        ))}
       </Select>
     </Field>
   ),
@@ -112,20 +91,13 @@ export const Disabled: Story = {
   render: (args) => (
     <Field>
       <Label htmlFor="select-disabled">Country (Disabled)</Label>
-      <Select disabled>
-        <SelectTrigger
-          id="select-disabled"
-          {...args}
-          placeholder="Cannot select"
-          disabled
-        />
-        <SelectContent>
-          {countries.map((country) => (
-            <SelectItem key={country.value} value={country.value}>
-              {country.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
+      <Select id="select-disabled" {...args} disabled defaultValue="">
+        <option value="" disabled>Cannot select</option>
+        {countries.map((country) => (
+          <option key={country.value} value={country.value}>
+            {country.label}
+          </option>
+        ))}
       </Select>
     </Field>
   ),
@@ -135,66 +107,54 @@ export const Invalid: Story = {
   render: (args) => (
     <Field>
       <Label htmlFor="select-invalid">Country</Label>
-      <Select>
-        <SelectTrigger
-          id="select-invalid"
-          {...args}
-          placeholder="Please select a country"
-          isInvalid
-        />
-        <SelectContent>
-          {countries.map((country) => (
-            <SelectItem key={country.value} value={country.value}>
-              {country.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
+      <Select id="select-invalid" {...args} isInvalid defaultValue="">
+        <option value="" disabled>Please select a country</option>
+        {countries.map((country) => (
+          <option key={country.value} value={country.value}>
+            {country.label}
+          </option>
+        ))}
       </Select>
     </Field>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Shows the select in an invalid state with error styling. The trigger displays a red border to indicate validation errors.',
+        story: 'Shows the select in an invalid state with error styling. The select displays a red border to indicate validation errors.',
       },
     },
   },
 }
 
-export const WithGroups: Story = {
+export const WithOptgroups: Story = {
   render: (args) => (
     <Field>
       <Label htmlFor="select-groups">Location</Label>
-      <Select>
-        <SelectTrigger id="select-groups" {...args} placeholder="Select a location" />
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>North America</SelectLabel>
-            <SelectItem value="us">United States</SelectItem>
-            <SelectItem value="ca">Canada</SelectItem>
-            <SelectItem value="mx">Mexico</SelectItem>
-          </SelectGroup>
-          <SelectGroup>
-            <SelectLabel>Europe</SelectLabel>
-            <SelectItem value="uk">United Kingdom</SelectItem>
-            <SelectItem value="de">Germany</SelectItem>
-            <SelectItem value="fr">France</SelectItem>
-            <SelectItem value="es">Spain</SelectItem>
-          </SelectGroup>
-          <SelectGroup>
-            <SelectLabel>Asia</SelectLabel>
-            <SelectItem value="jp">Japan</SelectItem>
-            <SelectItem value="cn">China</SelectItem>
-            <SelectItem value="kr">South Korea</SelectItem>
-          </SelectGroup>
-        </SelectContent>
+      <Select id="select-groups" {...args} defaultValue="">
+        <option value="" disabled>Select a location</option>
+        <optgroup label="North America">
+          <option value="us">United States</option>
+          <option value="ca">Canada</option>
+          <option value="mx">Mexico</option>
+        </optgroup>
+        <optgroup label="Europe">
+          <option value="uk">United Kingdom</option>
+          <option value="de">Germany</option>
+          <option value="fr">France</option>
+          <option value="es">Spain</option>
+        </optgroup>
+        <optgroup label="Asia">
+          <option value="jp">Japan</option>
+          <option value="cn">China</option>
+          <option value="kr">South Korea</option>
+        </optgroup>
       </Select>
     </Field>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Demonstrates grouping options with SelectGroup and SelectLabel for better organization of related items.',
+        story: 'Demonstrates grouping options with native optgroup elements for better organization of related items.',
       },
     },
   },
@@ -207,15 +167,17 @@ const ControlledSelect = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Field>
         <Label htmlFor="select-controlled">Country</Label>
-        <Select value={value} onValueChange={setValue}>
-          <SelectTrigger id="select-controlled" placeholder="Select a country" />
-          <SelectContent>
-            {countries.map((country) => (
-              <SelectItem key={country.value} value={country.value}>
-                {country.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
+        <Select
+          id="select-controlled"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        >
+          <option value="" disabled>Select a country</option>
+          {countries.map((country) => (
+            <option key={country.value} value={country.value}>
+              {country.label}
+            </option>
+          ))}
         </Select>
       </Field>
       <p style={{ fontSize: '14px', color: '#666' }}>
@@ -257,55 +219,41 @@ export const FocusStates: Story = {
           Keyboard Focus Demonstration
         </h4>
         <p style={{ marginBottom: '16px', fontSize: '12px', color: '#666' }}>
-          Use Tab key to navigate and see focus rings appear on keyboard navigation only
+          Use Tab key to navigate and see focus rings appear on keyboard navigation
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '300px' }}>
           <Field>
             <Label htmlFor="focus-normal">Normal Select (Standard Focus Ring)</Label>
-            <Select>
-              <SelectTrigger id="focus-normal" placeholder="Standard blue focus ring" />
-              <SelectContent>
-                {countries.map((country) => (
-                  <SelectItem key={country.value} value={country.value}>
-                    {country.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
+            <Select id="focus-normal" defaultValue="">
+              <option value="" disabled>Standard blue focus ring</option>
+              {countries.map((country) => (
+                <option key={country.value} value={country.value}>
+                  {country.label}
+                </option>
+              ))}
             </Select>
           </Field>
 
           <Field>
             <Label htmlFor="focus-invalid">Invalid Select (Critical Focus Ring)</Label>
-            <Select>
-              <SelectTrigger
-                id="focus-invalid"
-                placeholder="Critical red focus ring"
-                isInvalid
-              />
-              <SelectContent>
-                {countries.map((country) => (
-                  <SelectItem key={country.value} value={country.value}>
-                    {country.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
+            <Select id="focus-invalid" isInvalid defaultValue="">
+              <option value="" disabled>Critical red focus ring</option>
+              {countries.map((country) => (
+                <option key={country.value} value={country.value}>
+                  {country.label}
+                </option>
+              ))}
             </Select>
           </Field>
 
           <Field>
             <Label htmlFor="focus-with-value">Select With Value</Label>
-            <Select defaultValue="us">
-              <SelectTrigger
-                id="focus-with-value"
-                placeholder="Select a country"
-              />
-              <SelectContent>
-                {countries.map((country) => (
-                  <SelectItem key={country.value} value={country.value}>
-                    {country.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
+            <Select id="focus-with-value" defaultValue="us">
+              {countries.map((country) => (
+                <option key={country.value} value={country.value}>
+                  {country.label}
+                </option>
+              ))}
             </Select>
           </Field>
         </div>
@@ -315,7 +263,7 @@ export const FocusStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. Normal selects use the standard blue focus ring, while invalid selects use the critical red focus ring to indicate errors.',
+        story: 'Focus rings appear when navigating with keyboard (Tab key). Normal selects use the standard blue focus ring, while invalid selects use the critical red focus ring to indicate errors.',
       },
     },
   },
@@ -325,23 +273,14 @@ export const Required: Story = {
   render: (args) => (
     <Field>
       <Label htmlFor="select-required">Country (Required)</Label>
-      <Select required>
-        <SelectTrigger
-          id="select-required"
-          {...args}
-          placeholder="Select a country"
-        />
-        <SelectContent>
-          {countries.map((country) => (
-            <SelectItem key={country.value} value={country.value}>
-              {country.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
+      <Select id="select-required" {...args} required defaultValue="">
+        <option value="" disabled>Select a country</option>
+        {countries.map((country) => (
+          <option key={country.value} value={country.value}>
+            {country.label}
+          </option>
+        ))}
       </Select>
     </Field>
   ),
-  args: {
-    required: true,
-  },
 }

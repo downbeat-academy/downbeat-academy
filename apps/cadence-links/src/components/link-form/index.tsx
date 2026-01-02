@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import {
@@ -12,9 +12,6 @@ import {
 	Label,
 	ValidationMessage,
 	Select,
-	SelectTrigger,
-	SelectContent,
-	SelectItem,
 } from 'cadence-core'
 import { AVAILABLE_DOMAINS, DEFAULT_DOMAIN } from '@lib/constants/domains'
 import type { CreateLinkResponse, ErrorResponse } from '@/types/link'
@@ -37,7 +34,6 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 		register,
 		handleSubmit,
 		reset,
-		control,
 		formState: { errors, isSubmitting },
 	} = useForm<LinkFormData>({
 		resolver: zodResolver(linkFormSchema),
@@ -96,29 +92,17 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 
 				<Field className={styles.domainField}>
 					<Label htmlFor="domain">Short domain</Label>
-					<Controller
-						name="domain"
-						control={control}
-						render={({ field }) => (
-							<Select
-								value={field.value}
-								onValueChange={field.onChange}
-							>
-								<SelectTrigger
-									id="domain"
-									placeholder="Select domain"
-									isInvalid={!!errors.domain}
-								/>
-								<SelectContent>
-									{AVAILABLE_DOMAINS.map((domain) => (
-										<SelectItem key={domain} value={domain}>
-											{domain.replace('https://', '')}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-						)}
-					/>
+					<Select
+						id="domain"
+						isInvalid={!!errors.domain}
+						{...register('domain')}
+					>
+						{AVAILABLE_DOMAINS.map((domain) => (
+							<option key={domain} value={domain}>
+								{domain.replace('https://', '')}
+							</option>
+						))}
+					</Select>
 					{errors.domain && (
 						<ValidationMessage>{errors.domain.message}</ValidationMessage>
 					)}
