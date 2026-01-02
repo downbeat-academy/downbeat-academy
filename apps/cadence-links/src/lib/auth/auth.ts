@@ -14,6 +14,12 @@ export const auth = betterAuth({
 	appName: 'Cadence Links',
 	secret: process.env.BETTER_AUTH_SECRET,
 	baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+	trustedOrigins: [
+		'https://links.downbeatacademy.services',
+		'https://dwnbe.at',
+		'https://downbeatacademy.services',
+		'https://downbeatacade.my',
+	],
 	database: drizzleAdapter(db, {
 		provider: 'pg',
 		schema: authSchema,
