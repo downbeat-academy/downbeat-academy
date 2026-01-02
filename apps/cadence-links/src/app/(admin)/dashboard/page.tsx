@@ -67,7 +67,12 @@ export default function DashboardPage() {
 				<div className={styles.content}>
 					<Flex direction="column" gap="large">
 						<section>
-							<Text size='h2' tag="h2" className={styles.sectionTitle}>
+							<Text
+								size='h2'
+								tag="h2"
+								type='productive-headline'
+								className={styles.sectionTitle}
+							>
 								Create Short Link
 							</Text>
 							<LinkForm onSuccess={handleSuccess} />

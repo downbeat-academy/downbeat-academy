@@ -1,5 +1,4 @@
 .form {
-	padding: var(--cds-scale-large);
 	background: var(--cds-color-surface-faint);
 	border-radius: var(--cds-radius-medium);
 }
