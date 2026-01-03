@@ -4,10 +4,16 @@ import s from './card.module.css'
 
 import type { CardProps } from './types'
 
+const borderColorMap = {
+	primary: s.borderPrimary,
+	faint: s.borderFaint,
+	none: s.borderNone,
+} as const
+
 const Card = ({ children, tag = 'div', borderColor, className }: CardProps) => {
 	const classes = classnames(
-		s['root'],
-		borderColor && s[`border-${borderColor}`],
+		s.root,
+		borderColor && borderColorMap[borderColor],
 		className
 	)
 
