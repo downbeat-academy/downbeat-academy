@@ -22,6 +22,7 @@ import type { DataTableProps } from './types'
 function DataTable<TData>({
 	data,
 	columns,
+	isStriped = false,
 	backgroundColor = 'none',
 	sorting = false,
 	pagination = false,
@@ -31,6 +32,7 @@ function DataTable<TData>({
 	onRowClick,
 	loading = false,
 	loadingRowCount = 5,
+	contained = false,
 	className,
 	...props
 }: DataTableProps<TData>) {
@@ -132,6 +134,7 @@ function DataTable<TData>({
 	const wrapperClasses = classnames(
 		s['data-table-wrapper'],
 		backgroundColor !== 'none' && s[`data-table-wrapper--background-${backgroundColor}`],
+		contained && s['data-table-wrapper--contained'],
 		className
 	)
 
@@ -166,6 +169,7 @@ function DataTable<TData>({
 					onRowClick={onRowClick}
 					loading={loading}
 					loadingRowCount={loadingRowCount}
+					isStriped={isStriped}
 				/>
 			</table>
 			{pagination && pagination.enabled && (

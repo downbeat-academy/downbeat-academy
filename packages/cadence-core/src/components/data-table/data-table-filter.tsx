@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import classnames from 'classnames'
 import { X } from 'cadence-icons'
+import { Input } from '../form/input'
 import s from './data-table-filter.module.css'
 import type { DataTableFilterProps } from './types'
 
@@ -40,9 +41,8 @@ function DataTableFilter({
 	return (
 		<div className={classes}>
 			<div className={s['filter-input-wrapper']}>
-				<input
+				<Input
 					type="text"
-					className={s['filter-input']}
 					placeholder={placeholder}
 					value={localValue}
 					onChange={(e) => setLocalValue(e.target.value)}

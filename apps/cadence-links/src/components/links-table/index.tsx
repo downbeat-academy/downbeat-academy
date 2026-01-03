@@ -72,7 +72,7 @@ function ActionsCell({ link, onDelete }: { link: Link; onDelete: (id: string) =>
 	}
 
 	return (
-		<Flex gap="small" direction="row">
+		<Flex gap="small" direction="row" justifyContent="end">
 			<Button
 				variant="secondary"
 				size="small"
@@ -115,6 +115,8 @@ export function LinksTable({ links, onDelete }: LinksTableProps) {
 		<DataTable
 			data={links}
 			columns={columns}
+			isStriped={true}
+			contained={true}
 			emptyState={{
 				title: 'No links yet',
 				description: 'Create your first shortened URL above',

@@ -101,6 +101,8 @@ export interface DataTableProps<TData> extends Omit<HTMLAttributes<HTMLDivElemen
 	/** Column definitions - use any for value type to allow mixed column types */
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	columns: ColumnDef<TData, any>[]
+	/** Display rows with alternating background colors */
+	isStriped?: boolean
 	/** Background color of the table wrapper */
 	backgroundColor?: DataTableBackgroundColor
 	/** Sorting configuration */
@@ -119,6 +121,8 @@ export interface DataTableProps<TData> extends Omit<HTMLAttributes<HTMLDivElemen
 	loading?: boolean
 	/** Loading row count for skeleton */
 	loadingRowCount?: number
+	/** Whether the table is contained (with border and rounded corners) */
+	contained?: boolean
 }
 
 /**

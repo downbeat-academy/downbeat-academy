@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { flexRender, type Table } from '@tanstack/react-table'
+import classnames from 'classnames'
 import { DataTableRow } from './data-table-row'
 import { DataTableCell } from './data-table-cell'
 import s from './data-table.module.css'
@@ -12,6 +13,7 @@ interface DataTableBodyProps<TData> {
 	onRowClick?: (row: TData) => void
 	loading?: boolean
 	loadingRowCount?: number
+	isStriped?: boolean
 	className?: string
 }
 
@@ -20,13 +22,18 @@ function DataTableBody<TData>({
 	onRowClick,
 	loading = false,
 	loadingRowCount = 5,
+	isStriped = false,
 	className,
 }: DataTableBodyProps<TData>) {
 	const columns = table.getAllColumns()
+	const bodyClasses = classnames(
+		isStriped && s['data-table-body--striped'],
+		className
+	)
 
 	if (loading) {
 		return (
-			<tbody className={className}>
+			<tbody className={bodyClasses}>
 				{Array.from({ length: loadingRowCount }).map((_, rowIndex) => (
 					<DataTableRow key={`loading-${rowIndex}`} isLoading>
 						{columns.map((column, colIndex) => {
@@ -44,7 +51,7 @@ function DataTableBody<TData>({
 	}
 
 	return (
-		<tbody className={className}>
+		<tbody className={bodyClasses}>
 			{table.getRowModel().rows.map((row) => (
 				<DataTableRow
 					key={row.id}

@@ -103,7 +103,7 @@ const columnsWithStatus = [
 const columnsWithActions = [
 	...columnsWithStatus,
 	createActionsColumn<Person>('actions', (row) => (
-		<Flex gap="small" direction="row">
+		<Flex gap="small" direction="row" justifyContent="end">
 			<Button
 				variant="secondary"
 				size="small"
@@ -248,5 +248,30 @@ export const WithRowClick: Story = {
 		data: sampleData,
 		columns: columnsWithStatus,
 		onRowClick: (row) => console.log('Row clicked:', row),
+	},
+}
+
+export const Striped: Story = {
+	args: {
+		data: sampleData,
+		columns: columnsWithStatus,
+		isStriped: true,
+	},
+}
+
+export const Contained: Story = {
+	args: {
+		data: sampleData,
+		columns: columnsWithStatus,
+		contained: true,
+	},
+}
+
+export const StripedAndContained: Story = {
+	args: {
+		data: sampleData,
+		columns: columnsWithStatus,
+		isStriped: true,
+		contained: true,
 	},
 }
