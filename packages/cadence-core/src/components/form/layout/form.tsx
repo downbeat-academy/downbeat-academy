@@ -3,6 +3,13 @@ import classnames from 'classnames'
 import s from './form.module.css'
 import type { FormProps } from './types'
 
+const spacingClassMap: Record<string, string> = {
+  none: s.spacingNone,
+  small: s.spacingSmall,
+  medium: s.spacingMedium,
+  large: s.spacingLarge,
+}
+
 const Form = ({
   children,
   name,
@@ -20,8 +27,8 @@ const Form = ({
   }
 
   const classes = classnames(
-    s['root'],
-    s[`spacing-${spacing}`],
+    s.root,
+    spacingClassMap[spacing],
     className
   )
 

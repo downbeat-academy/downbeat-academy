@@ -5,6 +5,17 @@ import { Text } from '../../text'
 import s from './checkbox-card.module.css'
 import type { CheckboxCardItemProps } from './types'
 
+const sizeClassMap: Record<string, string> = {
+  small: s.itemSizeSmall,
+  medium: s.itemSizeMedium,
+  large: s.itemSizeLarge,
+}
+
+const alignmentClassMap: Record<string, string> = {
+  left: s.itemContentAlignmentLeft,
+  center: s.itemContentAlignmentCenter,
+}
+
 const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   value,
   disabled,
@@ -49,7 +60,7 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   if (isGrouped) {
     const currentValue = _groupValue || []
     finalChecked = currentValue.includes(value)
-    
+
     if (_groupOnValueChange) {
       finalOnCheckedChange = (newChecked: boolean) => {
         const currentValueAtTime = _groupValue || []
@@ -67,35 +78,26 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   }
 
   const rootClasses = classnames(
-    s['item-root'],
-    s[`item-size-${size}`],
-    finalIsInvalid && s['item-is-invalid'],
+    s.itemRoot,
+    sizeClassMap[size],
+    finalIsInvalid && s.itemIsInvalid,
     className
   )
 
   const itemContentClasses = classnames(
-    s[`item-content`],
-    s[`item-content-alignment-${alignment}`],
-  )
-
-  const indicatorAreaClasses = classnames(
-    s[`item-indicator-area`]
-  )
-
-  const indicatorClasses = classnames(
-    s['item-indicator']
+    s.itemContent,
+    alignmentClassMap[alignment],
   )
 
   const content = (
     <div className={itemContentClasses}>
       {icon && (
-        <div className={s['item-icon']}>
+        <div className={s.itemIcon}>
           {icon}
         </div>
       )}
       {title && (
         <Text
-          className={s['item-title']}
           tag="h3"
           type="productive-headline"
           size="h6"
@@ -107,7 +109,7 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
         </Text>
       )}
       {badge && (
-        <div className={s['item-badge']}>
+        <div>
           {badge}
         </div>
       )}
@@ -117,7 +119,7 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (finalDisabled) return
-    
+
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault()
       finalOnCheckedChange?.(!finalChecked)
@@ -143,7 +145,7 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
       {...props}
     >
       {content}
-      <div className={indicatorAreaClasses}>
+      <div className={s.itemIndicatorArea}>
         <Checkbox
           checked={finalChecked}
           disabled={finalDisabled}
@@ -151,7 +153,6 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
           name={_groupName}
           value={value}
           isInvalid={finalIsInvalid}
-          className={indicatorClasses}
           tabIndex={-1}
           aria-hidden="true"
         />

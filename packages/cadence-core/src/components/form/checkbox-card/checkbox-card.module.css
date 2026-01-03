@@ -1,77 +1,77 @@
 /* CheckboxCardGroup styles */
-.group-root {
+.groupRoot {
   display: grid;
   gap: var(--cds-scale-base);
   grid-template-columns: 1fr;
 }
 
-.group-root[data-orientation='horizontal'] {
+.groupRoot[data-orientation='horizontal'] {
   grid-auto-flow: column;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 /* Grid columns */
-.group-columns-1 {
+.groupColumns1 {
   grid-template-columns: 1fr;
 }
 
-.group-columns-2 {
+.groupColumns2 {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.group-columns-3 {
+.groupColumns3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.group-columns-4 {
+.groupColumns4 {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.group-columns-5 {
+.groupColumns5 {
   grid-template-columns: repeat(5, 1fr);
 }
 
-.group-columns-6 {
+.groupColumns6 {
   grid-template-columns: repeat(6, 1fr);
 }
 
 /* Gap variants */
-.group-gap-small {
+.groupGapSmall {
   gap: var(--cds-scale-small);
 }
 
-.group-gap-base {
+.groupGapBase {
   gap: var(--cds-scale-base);
 }
 
-.group-gap-large {
+.groupGapLarge {
   gap: var(--cds-scale-large);
 }
 
 /* Responsive breakpoints */
 @media (max-width: 768px) {
 
-  .group-columns-3,
-  .group-columns-4,
-  .group-columns-5,
-  .group-columns-6 {
+  .groupColumns3,
+  .groupColumns4,
+  .groupColumns5,
+  .groupColumns6 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
 
-  .group-columns-2,
-  .group-columns-3,
-  .group-columns-4,
-  .group-columns-5,
-  .group-columns-6 {
+  .groupColumns2,
+  .groupColumns3,
+  .groupColumns4,
+  .groupColumns5,
+  .groupColumns6 {
     grid-template-columns: 1fr;
   }
 }
 
 /* CheckboxCardItem styles */
-.item-root {
+.itemRoot {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -85,108 +85,108 @@
   padding: 0;
 }
 
-.item-root:hover:not([data-disabled]) {
+.itemRoot:hover:not([data-disabled]) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-50);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.item-root:focus-visible {
+.itemRoot:focus-visible {
   outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
   outline-offset: var(--cds-focus-ring-offset);
 }
 
-.item-root:focus-visible .item-indicator-area {
+.itemRoot:focus-visible .itemIndicatorArea {
   border-top-color: var(--cds-color-border-focus);
 }
 
-.item-root[data-state='checked'] {
+.itemRoot[data-state='checked'] {
   background-color: var(--cds-color-palette-blueberry-50);
   border-color: var(--cds-color-foreground-interactive-default);
   box-shadow: 0 0 0 1px var(--cds-color-foreground-interactive-default);
 }
 
-.item-root[data-state='indeterminate'] {
+.itemRoot[data-state='indeterminate'] {
   background-color: var(--cds-color-palette-blueberry-50);
   border-color: var(--cds-color-foreground-interactive-default);
   box-shadow: 0 0 0 1px var(--cds-color-foreground-interactive-default);
 }
 
-.item-root[data-state='checked']:hover:not([data-disabled]) {
+.itemRoot[data-state='checked']:hover:not([data-disabled]) {
   border-color: var(--cds-color-foreground-interactive-hover);
   box-shadow: 0 0 0 1px var(--cds-color-foreground-interactive-hover);
   background-color: var(--cds-color-palette-blueberry-100);
 }
 
-.item-root[data-state='indeterminate']:hover:not([data-disabled]) {
+.itemRoot[data-state='indeterminate']:hover:not([data-disabled]) {
   border-color: var(--cds-color-foreground-interactive-hover);
   box-shadow: 0 0 0 1px var(--cds-color-foreground-interactive-hover);
   background-color: var(--cds-color-palette-blueberry-100);
 }
 
-.item-root[data-disabled] {
+.itemRoot[data-disabled] {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
   opacity: 0.6;
 }
 
-.item-root[data-disabled]:hover {
+.itemRoot[data-disabled]:hover {
   transform: none;
   box-shadow: none;
 }
 
-.item-is-invalid {
+.itemIsInvalid {
   border-color: var(--cds-color-border-critical);
 }
 
-.item-is-invalid:focus-visible {
+.itemIsInvalid:focus-visible {
   outline-color: var(--cds-focus-ring-color-critical);
 }
 
 /* Size variants */
-.item-size-small {
+.itemSizeSmall {
   min-height: 60px;
 
-  & .item-content {
+  & .itemContent {
     padding: var(--cds-scale-small);
   }
 }
 
-.item-size-medium {
+.itemSizeMedium {
   min-height: 80px;
 
-  & .item-content {
+  & .itemContent {
     padding: var(--cds-scale-base);
   }
 }
 
-.item-size-large {
+.itemSizeLarge {
   min-height: 120px;
 
-  & .item-content {
+  & .itemContent {
     padding: var(--cds-scale-large);
   }
 }
 
 /* Content structure */
-.item-content {
+.itemContent {
   display: flex;
   flex-direction: column;
   flex: 1;
   gap: var(--cds-scale-small);
 }
 
-.item-content-alignment-left {
+.itemContentAlignmentLeft {
   align-items: start;
 }
 
-.item-content-alignment-center {
+.itemContentAlignmentCenter {
   align-items: center;
 }
 
-.item-icon {
+.itemIcon {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -195,13 +195,13 @@
   color: var(--cds-color-foreground-secondary);
 }
 
-.item-root[data-state='checked'] .item-icon,
-.item-root[data-state='indeterminate'] .item-icon {
+.itemRoot[data-state='checked'] .itemIcon,
+.itemRoot[data-state='indeterminate'] .itemIcon {
   color: var(--cds-color-foreground-interactive-default);
 }
 
 /* Selection indicator area */
-.item-indicator-area {
+.itemIndicatorArea {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,13 +212,13 @@
   padding: var(--cds-scale-x-small) 0;
 }
 
-.item-root[data-state='checked'] .item-indicator-area,
-.item-root[data-state='indeterminate'] .item-indicator-area {
+.itemRoot[data-state='checked'] .itemIndicatorArea,
+.itemRoot[data-state='indeterminate'] .itemIndicatorArea {
   background-color: var(--cds-color-palette-blueberry-50);
   border-top-color: var(--cds-color-palette-blueberry-600);
 }
 
-.item-root[data-disabled] .item-indicator-area {
+.itemRoot[data-disabled] .itemIndicatorArea {
   background-color: var(--cds-color-palette-blackberry-50);
   border-top-color: var(--cds-color-palette-blackberry-200);
 }

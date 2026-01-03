@@ -5,6 +5,17 @@ import { Text } from '../../text'
 import s from './radio-card.module.css'
 import type { RadioCardItemProps } from './types'
 
+const sizeClassMap: Record<string, string> = {
+  small: s.itemSizeSmall,
+  medium: s.itemSizeMedium,
+  large: s.itemSizeLarge,
+}
+
+const alignmentClassMap: Record<string, string> = {
+  left: s.itemContentAlignmentLeft,
+  center: s.itemContentAlignmentCenter,
+}
+
 const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   value,
   disabled,
@@ -42,36 +53,26 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   const isSelected = _groupValue === value
 
   const rootClasses = classnames(
-    s['item-root'],
-    s[`item-size-${size}`],
-    s[`item-alignment-${alignment}`],
-    finalIsInvalid && s['item-is-invalid'],
+    s.itemRoot,
+    sizeClassMap[size],
+    finalIsInvalid && s.itemIsInvalid,
     className
   )
 
   const itemContentClasses = classnames(
-    s[`item-content`],
-    s[`item-content-alignment-${alignment}`],
-  )
-
-  const indicatorAreaClasses = classnames(
-    s[`item-indicator-area`]
-  )
-
-  const indicatorClasses = classnames(
-    s['item-indicator']
+    s.itemContent,
+    alignmentClassMap[alignment],
   )
 
   const content = (
     <div className={itemContentClasses}>
       {icon && (
-        <div className={s['item-icon']}>
+        <div className={s.itemIcon}>
           {icon}
         </div>
       )}
       {title && (
         <Text
-          className={s['item-title']}
           tag="h3"
           type="productive-headline"
           size="h6"
@@ -83,7 +84,7 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
         </Text>
       )}
       {badge && (
-        <div className={s['item-badge']}>
+        <div>
           {badge}
         </div>
       )}
@@ -104,7 +105,7 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
       {...props}
     >
       {content}
-      <div className={indicatorAreaClasses}>
+      <div className={s.itemIndicatorArea}>
         <Radio
           value={value}
           checked={isSelected}
@@ -112,7 +113,6 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
           required={finalRequired}
           id={id}
           isInvalid={finalIsInvalid}
-          className={indicatorClasses}
           tabIndex={-1}
           aria-hidden="true"
         />
