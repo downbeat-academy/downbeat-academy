@@ -7,22 +7,22 @@
 
 /* Type */
 
-.root--productive-body {
+.productiveBody {
 	font-family: var(--cds-typography-font-family-productive-body);
 	line-height: var(--cds-typography-line-height-productive-body);
 }
 
-.root--productive-headline {
+.productiveHeadline {
 	font-family: var(--cds-typography-font-family-productive-headline);
 	line-height: var(--cds-typography-line-height-productive-headline);
 }
 
-.root--expressive-body {
+.expressiveBody {
 	font-family: var(--cds-typography-font-family-expressive-body);
 	line-height: var(--cds-typography-line-height-expressive-body);
 }
 
-.root--expressive-headline {
+.expressiveHeadline {
 	font-family: var(--cds-typography-font-family-expressive-headline);
 	line-height: var(--cds-typography-line-height-expressive-headline);
 }
@@ -31,214 +31,214 @@
 
 /* -- Productive Headline */
 
-.root--productive-headline--h1 {
+.productiveHeadlineH1 {
 	font-size: var(--cds-typography-font-size-fixed-productive-4x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-4x-large);
 }
 
-.root--productive-headline--h2 {
+.productiveHeadlineH2 {
 	font-size: var(--cds-typography-font-size-fixed-productive-3x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-3x-large);
 }
 
-.root--productive-headline--h3 {
+.productiveHeadlineH3 {
 	font-size: var(--cds-typography-font-size-fixed-productive-2x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-2x-large);
 }
 
-.root--productive-headline--h4 {
+.productiveHeadlineH4 {
 	font-size: var(--cds-typography-font-size-fixed-productive-x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-x-large);
 }
 
-.root--productive-headline--h5 {
+.productiveHeadlineH5 {
 	font-size: var(--cds-typography-font-size-fixed-productive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-large);
 }
 
-.root--productive-headline--h6 {
+.productiveHeadlineH6 {
 	font-size: var(--cds-typography-font-size-fixed-productive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-base);
 }
 
 /* -- Productive Body */
 
-.root--productive-body--body-large {
+.productiveBodyBodyLarge {
 	font-size: var(--cds-typography-font-size-fixed-productive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-large);
 }
 
-.root--productive-body--body-base {
+.productiveBodyBodyBase {
 	font-size: var(--cds-typography-font-size-fixed-productive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-base);
 }
 
-.root--productive-body--body-small {
+.productiveBodyBodySmall {
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-small);
 }
 
-.root--productive-body--body-x-small {
+.productiveBodyBodyXSmall {
 	font-size: var(--cds-typography-font-size-fixed-productive-x-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-productive-x-small);
 }
 
 /* -- Expressive Headline */
 
-.root--expressive-headline--mega {
+.expressiveHeadlineMega {
 	font-size: var(--cds-typography-font-size-fixed-expressive-6x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-6x-large);
 }
 
-.root--expressive-headline--h1 {
+.expressiveHeadlineH1 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-5x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-5x-large);
 }
 
-.root--expressive-headline--h2 {
+.expressiveHeadlineH2 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-4x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-4x-large);
 }
 
-.root--expressive-headline--h3 {
+.expressiveHeadlineH3 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-3x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-3x-large);
 }
 
-.root--expressive-headline--h4 {
+.expressiveHeadlineH4 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-2x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-2x-large);
 }
 
-.root--expressive-headline--h5 {
+.expressiveHeadlineH5 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-x-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-x-large);
 }
 
-.root--expressive-headline--h6 {
+.expressiveHeadlineH6 {
 	font-size: var(--cds-typography-font-size-fixed-expressive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-large);
 }
 
 /* -- Expressive body */
 
-.root--expressive-body--body-large {
+.expressiveBodyBodyLarge {
 	font-size: var(--cds-typography-font-size-fixed-expressive-large);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-large);
 }
 
-.root--expressive-body--body-base {
+.expressiveBodyBodyBase {
 	font-size: var(--cds-typography-font-size-fixed-expressive-base);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-base);
 }
 
-.root--expressive-body--body-small {
+.expressiveBodyBodySmall {
 	font-size: var(--cds-typography-font-size-fixed-expressive-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-small);
 }
 
-.root--expressive-body--body-x-small {
+.expressiveBodyBodyXSmall {
 	font-size: var(--cds-typography-font-size-fixed-expressive-x-small);
 	margin-bottom: var(--cds-typography-font-size-fixed-expressive-x-small);
 }
 
 /* Color */
 
-.root--color-primary {
+.colorPrimary {
 	color: var(--cds-color-foreground-primary);
 }
 
-.root--color-strong {
+.colorStrong {
 	color: var(--cds-color-foreground-strong);
 }
 
-.root--color-faint {
+.colorFaint {
 	color: var(--cds-color-foreground-faint);
 }
 
-.root--color-disabled {
+.colorDisabled {
 	color: var(--cds-color-foreground-disabled);
 }
 
-.root--color-high-contrast {
+.colorHighContrast {
 	color: var(--cds-color-foreground-high-contrast);
 }
 
-.root--color-warning {
+.colorWarning {
 	color: var(--cds-color-foreground-warning-default);
 }
 
-.root--color-critical {
+.colorCritical {
 	color: var(--cds-color-foreground-critical-default);
 }
 
-.root--color-interactive {
+.colorInteractive {
 	color: var(--cds-color-foreground-interactive-default);
 }
 
-.root--color-brand {
+.colorBrand {
 	color: var(--cds-color-foreground-brand-default);
 }
 
-.root--color-success {
+.colorSuccess {
 	color: var(--cds-color-foreground-success-default);
 }
 
 /* Background */
 
-.root--background-primary {
+.backgroundPrimary {
 	background: var(--cds-color-surface-primary);
 }
 
-.root--background-faint {
+.backgroundFaint {
 	background: var(--cds-color-surface-faint);
 }
 
-.root--background-high-contrast {
+.backgroundHighContrast {
 	background: var(--cds-color-surface-high-contrast);
 }
 
-.root--background-brand {
+.backgroundBrand {
 	background: var(--cds-color-surface-brand);
 }
 
-.root--background-interactive {
+.backgroundInteractive {
 	background: var(--cds-color-surface-interactive);
 }
 
-.root--background-success {
+.backgroundSuccess {
 	background: var(--cds-color-surface-success);
 }
 
-.root--background-warning {
+.backgroundWarning {
 	background: var(--cds-color-surface-warning);
 }
 
-.root--background-critical {
+.backgroundCritical {
 	background: var(--cds-color-surface-critical);
 }
 
 /* Align */
 
-.root--align-left {
+.alignLeft {
 	text-align: left;
 }
 
-.root--align-center {
+.alignCenter {
 	text-align: center;
 }
 
-.root--align-right {
+.alignRight {
 	text-align: right;
 }
 
-.root--align-justify {
+.alignJustify {
 	text-align: justify;
 }
 
 /* Collapse */
 
-.root--collapse {
+.collapse {
 	margin-bottom: 0;
 	margin-top: 0;
 }
