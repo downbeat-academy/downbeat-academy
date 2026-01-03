@@ -27,7 +27,7 @@ function DataTableBody<TData>({
 }: DataTableBodyProps<TData>) {
 	const columns = table.getAllColumns()
 	const bodyClasses = classnames(
-		isStriped && s['data-table-body--striped'],
+		isStriped && s.bodyStriped,
 		className
 	)
 
@@ -40,7 +40,7 @@ function DataTableBody<TData>({
 							const alignment = (column.columnDef.meta?.alignment ?? 'start') as DataTableAlignment
 							return (
 								<DataTableCell key={`loading-${rowIndex}-${colIndex}`} alignment={alignment}>
-									<div className={s['data-table-skeleton-cell']} style={{ width: `${60 + Math.random() * 40}%` }} />
+									<div className={s.skeletonCell} style={{ width: `${60 + Math.random() * 40}%` }} />
 								</DataTableCell>
 							)
 						})}

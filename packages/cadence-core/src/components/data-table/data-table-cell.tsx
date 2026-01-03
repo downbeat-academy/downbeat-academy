@@ -1,13 +1,19 @@
 import React from 'react'
 import classnames from 'classnames'
 import s from './data-table.module.css'
-import type { DataTableCellProps } from './types'
+import type { DataTableCellProps, DataTableAlignment } from './types'
+
+const alignmentClassMap: Record<DataTableAlignment, string> = {
+	start: s.cellAlignmentStart,
+	center: s.cellAlignmentCenter,
+	end: s.cellAlignmentEnd,
+}
 
 const DataTableCell = React.forwardRef<HTMLTableCellElement, DataTableCellProps>(
 	({ alignment = 'start', className, children, ...props }, ref) => {
 		const classes = classnames(
-			s['data-table-cell'],
-			s[`data-table-cell--alignment-${alignment}`],
+			s.cell,
+			alignmentClassMap[alignment],
 			className
 		)
 

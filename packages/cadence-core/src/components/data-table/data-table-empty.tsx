@@ -9,7 +9,7 @@ function DataTableEmpty({
 	render,
 	className,
 }: DataTableEmptyProps) {
-	const classes = classnames(s['data-table-empty'], className)
+	const classes = classnames(s.empty, className)
 
 	if (render) {
 		return <div className={classes}>{render()}</div>
@@ -17,8 +17,8 @@ function DataTableEmpty({
 
 	return (
 		<div className={classes}>
-			<p className={s['data-table-empty-title']}>{title}</p>
-			{description && <p className={s['data-table-empty-description']}>{description}</p>}
+			<p className={s.emptyTitle}>{title}</p>
+			{description && <p className={s.emptyDescription}>{description}</p>}
 		</div>
 	)
 }

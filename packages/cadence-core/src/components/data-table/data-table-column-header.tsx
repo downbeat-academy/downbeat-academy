@@ -7,6 +7,12 @@ import { ChevronUp, ChevronDown, ArrowsSort } from 'cadence-icons'
 import s from './data-table.module.css'
 import type { DataTableAlignment } from './types'
 
+const alignmentClassMap: Record<DataTableAlignment, string> = {
+	start: s.headAlignmentStart,
+	center: s.headAlignmentCenter,
+	end: s.headAlignmentEnd,
+}
+
 interface DataTableColumnHeaderProps<TData, TValue> {
 	header: Header<TData, TValue>
 	sortingEnabled?: boolean
@@ -23,9 +29,9 @@ function DataTableColumnHeader<TData, TValue>({
 	const alignment = (header.column.columnDef.meta?.alignment ?? 'start') as DataTableAlignment
 
 	const classes = classnames(
-		s['data-table-head'],
-		s[`data-table-head--alignment-${alignment}`],
-		canSort && s['data-table-head--sortable'],
+		s.head,
+		alignmentClassMap[alignment],
+		canSort && s.headSortable,
 		className
 	)
 
@@ -34,7 +40,7 @@ function DataTableColumnHeader<TData, TValue>({
 
 		if (isSorted === 'asc') {
 			return (
-				<span className={classnames(s['data-table-sort-indicator'], s['data-table-sort-indicator--active'])}>
+				<span className={classnames(s.sortIndicator, s.sortIndicatorActive)}>
 					<ChevronUp width={14} height={14} aria-hidden="true" />
 				</span>
 			)
@@ -42,14 +48,14 @@ function DataTableColumnHeader<TData, TValue>({
 
 		if (isSorted === 'desc') {
 			return (
-				<span className={classnames(s['data-table-sort-indicator'], s['data-table-sort-indicator--active'])}>
+				<span className={classnames(s.sortIndicator, s.sortIndicatorActive)}>
 					<ChevronDown width={14} height={14} aria-hidden="true" />
 				</span>
 			)
 		}
 
 		return (
-			<span className={s['data-table-sort-indicator']}>
+			<span className={s.sortIndicator}>
 				<ArrowsSort width={14} height={14} aria-hidden="true" />
 			</span>
 		)
@@ -76,7 +82,7 @@ function DataTableColumnHeader<TData, TValue>({
 			>
 				<button
 					type="button"
-					className={s['data-table-sort-button']}
+					className={s.sortButton}
 					onClick={header.column.getToggleSortingHandler()}
 					onKeyDown={(e) => {
 						if (e.key === 'Enter' || e.key === ' ') {

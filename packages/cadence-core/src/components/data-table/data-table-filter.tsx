@@ -36,11 +36,11 @@ function DataTableFilter({
 		onChange('')
 	}, [onChange])
 
-	const classes = classnames(s.filter, className)
+	const classes = classnames(s.root, className)
 
 	return (
 		<div className={classes}>
-			<div className={s['filter-input-wrapper']}>
+			<div className={s.inputWrapper}>
 				<Input
 					type="text"
 					placeholder={placeholder}
@@ -51,8 +51,8 @@ function DataTableFilter({
 				<button
 					type="button"
 					className={classnames(
-						s['filter-clear-button'],
-						!localValue && s['filter-clear-button--hidden']
+						s.clearButton,
+						!localValue && s.clearButtonHidden
 					)}
 					onClick={handleClear}
 					aria-label="Clear filter"

@@ -11,9 +11,9 @@ interface DataTableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
 const DataTableRow = React.forwardRef<HTMLTableRowElement, DataTableRowProps>(
 	({ isHeader, isClickable, isLoading, className, children, ...props }, ref) => {
 		const classes = classnames(
-			isHeader ? s['data-table-header-row'] : s['data-table-row'],
-			isClickable && s['data-table-row--clickable'],
-			isLoading && s['data-table-row--loading'],
+			isHeader ? s.headerRow : s.row,
+			isClickable && s.rowClickable,
+			isLoading && s.rowLoading,
 			className
 		)
 

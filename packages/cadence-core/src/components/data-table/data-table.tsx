@@ -19,6 +19,10 @@ import { DataTableFilter } from './data-table-filter'
 import { DataTableEmpty } from './data-table-empty'
 import type { DataTableProps } from './types'
 
+const backgroundClassMap = {
+	primary: s.backgroundPrimary,
+} as const
+
 function DataTable<TData>({
 	data,
 	columns,
@@ -132,9 +136,9 @@ function DataTable<TData>({
 		: data.length
 
 	const wrapperClasses = classnames(
-		s['data-table-wrapper'],
-		backgroundColor !== 'none' && s[`data-table-wrapper--background-${backgroundColor}`],
-		contained && s['data-table-wrapper--contained'],
+		s.root,
+		backgroundColor !== 'none' && backgroundClassMap[backgroundColor as keyof typeof backgroundClassMap],
+		contained && s.isContained,
 		className
 	)
 
@@ -158,8 +162,8 @@ function DataTable<TData>({
 					placeholder={filtering.placeholder}
 				/>
 			)}
-			<table className={s['data-table']} role="table">
-				{caption && <caption className={s['data-table-caption']}>{caption}</caption>}
+			<table className={s.table} role="table">
+				{caption && <caption className={s.caption}>{caption}</caption>}
 				<DataTableHeader
 					table={table}
 					sortingEnabled={sorting ? sorting.enabled : false}

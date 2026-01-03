@@ -22,26 +22,26 @@ function DataTablePagination({
 	showPageSizeSelector = true,
 	className,
 }: DataTablePaginationProps) {
-	const classes = classnames(s.pagination, className)
+	const classes = classnames(s.root, className)
 
 	const startRow = pageIndex * pageSize + 1
 	const endRow = Math.min((pageIndex + 1) * pageSize, totalRows)
 
 	return (
 		<div className={classes}>
-			<div className={s['pagination-info']}>
+			<div className={s.info}>
 				Showing {startRow} to {endRow} of {totalRows} results
 			</div>
 
-			<div className={s['pagination-controls']}>
+			<div className={s.controls}>
 				{showPageSizeSelector && (
-					<div className={s['pagination-page-size']}>
-						<label htmlFor="page-size" className={s['pagination-page-size-label']}>
+					<div className={s.pageSize}>
+						<label htmlFor="page-size" className={s.pageSizeLabel}>
 							Rows per page:
 						</label>
 						<select
 							id="page-size"
-							className={s['pagination-page-size-select']}
+							className={s.pageSizeSelect}
 							value={pageSize}
 							onChange={(e) => setPageSize(Number(e.target.value))}
 						>
@@ -54,10 +54,10 @@ function DataTablePagination({
 					</div>
 				)}
 
-				<div className={s['pagination-nav']}>
+				<div className={s.nav}>
 					<button
 						type="button"
-						className={s['pagination-button']}
+						className={s.button}
 						onClick={firstPage}
 						disabled={!canPreviousPage}
 						aria-label="Go to first page"
@@ -66,7 +66,7 @@ function DataTablePagination({
 					</button>
 					<button
 						type="button"
-						className={s['pagination-button']}
+						className={s.button}
 						onClick={previousPage}
 						disabled={!canPreviousPage}
 						aria-label="Go to previous page"
@@ -75,7 +75,7 @@ function DataTablePagination({
 					</button>
 					<button
 						type="button"
-						className={s['pagination-button']}
+						className={s.button}
 						onClick={nextPage}
 						disabled={!canNextPage}
 						aria-label="Go to next page"
@@ -84,7 +84,7 @@ function DataTablePagination({
 					</button>
 					<button
 						type="button"
-						className={s['pagination-button']}
+						className={s.button}
 						onClick={lastPage}
 						disabled={!canNextPage}
 						aria-label="Go to last page"
