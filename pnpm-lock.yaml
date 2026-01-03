@@ -62,6 +62,9 @@ importers:
       react-hook-form:
         specifier: ^7.69.0
         version: 7.69.0(react@19.2.3)
+      typeface-favorit:
+        specifier: workspace:^
+        version: link:../../packages/typeface-favorit
       typeface-tiempos-text:
         specifier: workspace:^
         version: link:../../packages/typeface-tiempos-text
@@ -341,6 +344,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.0
         version: 1.2.8(@types/react-dom@19.2.3)(@types/react@19.2.7)(react-dom@19.0.0)(react@19.0.0)
+      '@tanstack/react-table':
+        specifier: ^8.20.6
+        version: 8.21.3(react-dom@19.0.0)(react@19.0.0)
       cadence-icons:
         specifier: workspace:^
         version: link:../cadence-icons
@@ -4021,22 +4027,9 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@floating-ui/core@1.7.2:
-    resolution: {integrity: sha512-wNB5ooIKHQc+Kui96jE/n69rHFWAVoxn5CAzL1Xdd8FG03cgY3MLO+GF9U3W737fYDSgPWA6MReKhBQBop6Pcw==}
-    dependencies:
-      '@floating-ui/utils': 0.2.10
-    dev: false
-
   /@floating-ui/core@1.7.3:
     resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
     dependencies:
-      '@floating-ui/utils': 0.2.10
-    dev: false
-
-  /@floating-ui/dom@1.7.2:
-    resolution: {integrity: sha512-7cfaOQuCS27HD7DX+6ib2OrnW+b4ZBwDNnCcT0uTyidcmyWb03FnQqJybDBoCnpdxwBSfA94UAYlRCt7mV+TbA==}
-    dependencies:
-      '@floating-ui/core': 1.7.2
       '@floating-ui/utils': 0.2.10
     dev: false
 
@@ -4047,26 +4040,15 @@ packages:
       '@floating-ui/utils': 0.2.10
     dev: false
 
-  /@floating-ui/react-dom@2.1.4(react-dom@19.0.0)(react@19.0.0):
-    resolution: {integrity: sha512-JbbpPhp38UmXDDAu60RJmbeme37Jbgsm7NrHGgzYYFKmblzRUh6Pa641dII6LsjwF4XlScDrde2UAzDo/b9KPw==}
+  /@floating-ui/react-dom@2.1.6(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-4JX6rEatQEvlmgU80wZyq9RT96HZJa88q8hp0pBd+LrczeDI4o6uA2M+uvxngVHo4Ihr8uibXxH6+70zhAFrVw==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 1.7.2
+      '@floating-ui/dom': 1.7.4
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
-    dev: false
-
-  /@floating-ui/react-dom@2.1.4(react-dom@19.2.3)(react@19.2.3):
-    resolution: {integrity: sha512-JbbpPhp38UmXDDAu60RJmbeme37Jbgsm7NrHGgzYYFKmblzRUh6Pa641dII6LsjwF4XlScDrde2UAzDo/b9KPw==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
-    dependencies:
-      '@floating-ui/dom': 1.7.2
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
     dev: false
 
   /@floating-ui/react-dom@2.1.6(react-dom@19.2.3)(react@19.2.3):
@@ -6766,7 +6748,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@floating-ui/react-dom': 2.1.4(react-dom@19.0.0)(react@19.0.0)
+      '@floating-ui/react-dom': 2.1.6(react-dom@19.0.0)(react@19.0.0)
       '@radix-ui/react-arrow': 1.1.7(@types/react-dom@19.2.3)(@types/react@19.2.7)(react-dom@19.0.0)(react@19.0.0)
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.2.7)(react@19.0.0)
       '@radix-ui/react-context': 1.1.2(@types/react@19.2.7)(react@19.0.0)
@@ -6795,7 +6777,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@floating-ui/react-dom': 2.1.4(react-dom@19.2.3)(react@19.2.3)
+      '@floating-ui/react-dom': 2.1.6(react-dom@19.2.3)(react@19.2.3)
       '@radix-ui/react-arrow': 1.1.7(@types/react-dom@19.2.3)(@types/react@19.2.7)(react-dom@19.2.3)(react@19.2.3)
       '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.2.7)(react@19.2.3)
       '@radix-ui/react-context': 1.1.2(@types/react@19.2.7)(react@19.2.3)
@@ -10298,6 +10280,18 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
+    dev: false
+
+  /@tanstack/react-table@8.21.3(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@tanstack/table-core': 8.21.3
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
     dev: false
 
   /@tanstack/react-table@8.21.3(react-dom@19.2.3)(react@19.2.3):

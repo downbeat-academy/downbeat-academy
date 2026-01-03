@@ -1,0 +1,53 @@
+/* Filter container */
+.filter {
+	display: flex;
+	align-items: center;
+	gap: var(--cds-scale-small);
+	margin-bottom: var(--cds-scale-base);
+}
+
+/* Filter input wrapper */
+.filter-input-wrapper {
+	position: relative;
+	flex: 1;
+	max-width: 320px;
+}
+
+.filter-input-wrapper input {
+	width: 100%;
+	padding-right: calc(var(--cds-scale-small) + 24px + var(--cds-scale-2x-small));
+}
+
+/* Clear button */
+.filter-clear-button {
+	position: absolute;
+	right: var(--cds-scale-small);
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	border-radius: var(--cds-radii-small);
+	background: transparent;
+	color: var(--cds-color-foreground-faint);
+	cursor: pointer;
+	transition: color 100ms ease, background-color 100ms ease;
+}
+
+.filter-clear-button:hover {
+	color: var(--cds-color-foreground-primary);
+	background-color: var(--cds-color-surface-faint);
+}
+
+.filter-clear-button:focus-visible {
+	outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+	outline-offset: var(--cds-focus-ring-offset);
+}
+
+.filter-clear-button--hidden {
+	visibility: hidden;
+}

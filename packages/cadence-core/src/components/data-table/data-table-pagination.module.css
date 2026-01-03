@@ -1,0 +1,90 @@
+/* Pagination container */
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: var(--cds-scale-base) 0;
+	gap: var(--cds-scale-base);
+}
+
+/* Info text */
+.pagination-info {
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
+	color: var(--cds-color-foreground-faint);
+}
+
+/* Controls wrapper */
+.pagination-controls {
+	display: flex;
+	align-items: center;
+	gap: var(--cds-scale-small);
+}
+
+/* Navigation buttons container */
+.pagination-nav {
+	display: flex;
+	align-items: center;
+	gap: var(--cds-scale-2x-small);
+}
+
+/* Navigation button */
+.pagination-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: 1px solid var(--cds-color-border-faint);
+	border-radius: var(--cds-radii-small);
+	background-color: var(--cds-color-surface-primary);
+	color: var(--cds-color-foreground-primary);
+	cursor: pointer;
+	transition: background-color 100ms ease, border-color 100ms ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+	background-color: var(--cds-color-surface-faint);
+	border-color: var(--cds-color-border-primary);
+}
+
+.pagination-button:focus-visible {
+	outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+	outline-offset: var(--cds-focus-ring-offset);
+}
+
+.pagination-button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+/* Page size selector */
+.pagination-page-size {
+	display: flex;
+	align-items: center;
+	gap: var(--cds-scale-2x-small);
+}
+
+.pagination-page-size-label {
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
+	color: var(--cds-color-foreground-faint);
+}
+
+.pagination-page-size-select {
+	padding: var(--cds-scale-2x-small) var(--cds-scale-small);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
+	border: 1px solid var(--cds-color-border-faint);
+	border-radius: var(--cds-radii-small);
+	background-color: var(--cds-color-surface-primary);
+	color: var(--cds-color-foreground-primary);
+	cursor: pointer;
+}
+
+.pagination-page-size-select:focus-visible {
+	outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+	outline-offset: var(--cds-focus-ring-offset);
+}

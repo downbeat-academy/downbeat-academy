@@ -11,7 +11,7 @@ const globalForDb = globalThis as unknown as {
 const pool =
 	globalForDb.pool ??
 	new Pool({
-		connectionString: process.env.DATABASE_URL,
+		connectionString: process.env.DATABASE_PUBLIC_URL,
 	})
 
 if (process.env.NODE_ENV !== 'production') {

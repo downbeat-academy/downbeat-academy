@@ -1,0 +1,193 @@
+/* Wrapper */
+.data-table-wrapper {
+	width: 100%;
+	overflow-x: auto;
+}
+
+.data-table-wrapper--background-primary {
+	background-color: var(--cds-color-surface-primary);
+}
+
+.data-table-wrapper--contained {
+	border: 1px solid var(--cds-color-border-primary);
+	border-radius: var(--cds-radii-medium);
+	overflow: hidden;
+}
+
+/* Table */
+.data-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/* Caption */
+.data-table-caption {
+	padding: var(--cds-scale-base);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
+	color: var(--cds-color-foreground-faint);
+	caption-side: top;
+	text-align: left;
+}
+
+/* Header row */
+.data-table-header-row {
+	border-bottom: 1px solid var(--cds-color-border-faint);
+}
+
+/* Body row */
+.data-table-row:not(:last-child) {
+	border-bottom: 1px solid var(--cds-color-palette-blackberry-200);
+}
+
+/* Striped rows */
+.data-table-body--striped .data-table-row:nth-child(odd) {
+	background-color: var(--cds-color-surface-primary);
+}
+
+.data-table-body--striped .data-table-row:nth-child(even) {
+	background-color: var(--cds-color-surface-faint);
+}
+
+.data-table-row--clickable {
+	cursor: pointer;
+}
+
+.data-table-row--clickable:hover {
+	background-color: var(--cds-color-surface-faint);
+}
+
+/* Loading skeleton */
+.data-table-row--loading {
+	animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.data-table-skeleton-cell {
+	height: 1em;
+	background-color: var(--cds-color-surface-faint);
+	border-radius: var(--cds-radii-small);
+}
+
+/* Header cell */
+.data-table-head {
+	padding: var(--cds-scale-base);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-base);
+	font-weight: 600;
+	line-height: var(--cds-typography-line-height-productive-body);
+	color: var(--cds-color-foreground-strong);
+}
+
+.data-table-head--alignment-start {
+	text-align: left;
+}
+
+.data-table-head--alignment-center {
+	text-align: center;
+}
+
+.data-table-head--alignment-end {
+	text-align: right;
+}
+
+/* Sortable header */
+.data-table-head--sortable {
+	cursor: pointer;
+	user-select: none;
+}
+
+.data-table-head--sortable:hover {
+	background-color: var(--cds-color-surface-faint);
+}
+
+.data-table-head--sortable:focus-visible {
+	outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+	outline-offset: calc(-1 * var(--cds-focus-ring-offset));
+}
+
+.data-table-sort-button {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--cds-scale-2x-small);
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+	text-align: inherit;
+	width: 100%;
+}
+
+.data-table-sort-indicator {
+	display: inline-flex;
+	flex-shrink: 0;
+	opacity: 0.4;
+	transition: opacity 100ms ease;
+}
+
+.data-table-sort-indicator--active {
+	opacity: 1;
+}
+
+/* Data cell */
+.data-table-cell {
+	padding: var(--cds-scale-base);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-base);
+	line-height: var(--cds-typography-line-height-productive-body);
+	color: var(--cds-color-foreground-primary);
+}
+
+.data-table-cell--alignment-start {
+	text-align: left;
+}
+
+.data-table-cell--alignment-center {
+	text-align: center;
+}
+
+.data-table-cell--alignment-end {
+	text-align: right;
+}
+
+/* Empty state */
+.data-table-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: var(--cds-scale-3x-large);
+	background: var(--cds-color-surface-faint);
+	border-radius: var(--cds-radii-medium);
+	text-align: center;
+	gap: var(--cds-scale-x-small);
+}
+
+.data-table-empty-title {
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-base);
+	font-weight: 600;
+	color: var(--cds-color-foreground-primary);
+	margin: 0;
+}
+
+.data-table-empty-description {
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
+	color: var(--cds-color-foreground-faint);
+	margin: 0;
+}

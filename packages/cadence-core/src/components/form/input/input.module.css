@@ -7,8 +7,8 @@
 }
 
 .root:focus {
-  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
-  outline-offset: var(--cds-focus-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--cds-focus-ring-width) var(--cds-focus-ring-color-standard);
 }
 
 .root[disabled] {
@@ -20,6 +20,6 @@
 }
 
 .is-invalid:focus {
-  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-critical);
-  outline-offset: var(--cds-focus-ring-offset);
+  outline: none;
+  box-shadow: 0 0 0 var(--cds-focus-ring-width) var(--cds-focus-ring-color-critical);
 }

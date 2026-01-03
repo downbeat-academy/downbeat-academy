@@ -1,7 +1,16 @@
 'use client'
 
-import { Text, Flex } from 'cadence-core'
-import { LinkRow } from './link-row'
+import { useState, useMemo } from 'react'
+import { format } from 'date-fns'
+import {
+	Text,
+	Flex,
+	Button,
+	DataTable,
+	createCustomColumn,
+	createDisplayColumn,
+	createActionsColumn,
+} from 'cadence-core'
 import type { Link } from '@/types/link'
 import styles from './links-table.module.css'
 
@@ -10,42 +19,109 @@ interface LinksTableProps {
 	onDelete: (id: string) => void
 }
 
-export function LinksTable({ links, onDelete }: LinksTableProps) {
-	if (links.length === 0) {
-		return (
-			<Flex
-				direction="column"
-				alignItems="center"
-				justifyContent="center"
-				className={styles.empty}
-			>
-				<Text size="body-large" tag='p' color="faint">
-					No links yet
-				</Text>
-				<Text size="body-base" tag='p' color="faint">
-					Create your first shortened URL above
-				</Text>
-			</Flex>
-		)
+function ShortUrlCell({ link }: { link: Link }) {
+	const shortUrl = `${link.domain}/${link.shortCode}`
+
+	return (
+		<a href={shortUrl} target="_blank" rel="noopener noreferrer">
+			{shortUrl.replace('https://', '')}
+		</a>
+	)
+}
+
+function OriginalUrlCell({ url }: { url: string }) {
+	const truncateUrl = (url: string, maxLength = 50) => {
+		if (url.length <= maxLength) return url
+		return `${url.substring(0, maxLength)}...`
 	}
 
 	return (
-		<div className={styles.wrapper}>
-			<table className={styles.table}>
-				<thead>
-					<tr className={styles.headerRow}>
-						<th className={styles.headerCell}>Short URL</th>
-						<th className={styles.headerCell}>Original URL</th>
-						<th className={styles.headerCell}>Created</th>
-						<th className={styles.headerCell}>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					{links.map((link) => (
-						<LinkRow key={link.id} link={link} onDelete={onDelete} />
-					))}
-				</tbody>
-			</table>
-		</div>
+		<Text size="body-small" color="faint" tag="p" title={url}>
+			{truncateUrl(url)}
+		</Text>
+	)
+}
+
+function ActionsCell({ link, onDelete }: { link: Link; onDelete: (id: string) => void }) {
+	const [isDeleting, setIsDeleting] = useState(false)
+	const [copied, setCopied] = useState(false)
+
+	const shortUrl = `${link.domain}/${link.shortCode}`
+
+	const handleCopy = async () => {
+		try {
+			await navigator.clipboard.writeText(shortUrl)
+			setCopied(true)
+			setTimeout(() => setCopied(false), 2000)
+		} catch (error) {
+			console.error('Failed to copy:', error)
+		}
+	}
+
+	const handleDelete = async () => {
+		if (!confirm('Are you sure you want to delete this link?')) {
+			return
+		}
+
+		setIsDeleting(true)
+		try {
+			await onDelete(link.id)
+		} finally {
+			setIsDeleting(false)
+		}
+	}
+
+	return (
+		<Flex gap="small" direction="row" justifyContent="end">
+			<Button
+				variant="secondary"
+				size="small"
+				onClick={handleCopy}
+				text={copied ? 'Copied!' : 'Copy'}
+			/>
+			<Button
+				variant="ghost"
+				size="small"
+				onClick={handleDelete}
+				disabled={isDeleting}
+				text={isDeleting ? 'Deleting...' : 'Delete'}
+			/>
+		</Flex>
+	)
+}
+
+export function LinksTable({ links, onDelete }: LinksTableProps) {
+	const columns = useMemo(
+		() => [
+			createDisplayColumn<Link>('shortUrl', 'Short URL', (row) => (
+				<ShortUrlCell link={row} />
+			)),
+			createCustomColumn<Link, string>('originalUrl', 'Original URL', (url) => (
+				<OriginalUrlCell url={url} />
+			)),
+			createCustomColumn<Link, Date>('createdAt', 'Created', (date) => (
+				<Text size="body-small" tag="p" color="faint">
+					{format(new Date(date), 'MMM d, yyyy')}
+				</Text>
+			)),
+			createActionsColumn<Link>('actions', (row) => (
+				<ActionsCell link={row} onDelete={onDelete} />
+			)),
+		],
+		[onDelete]
+	)
+
+	return (
+		<DataTable
+			data={links}
+			columns={columns}
+			isStriped={true}
+			contained={true}
+			emptyState={{
+				title: 'No links yet',
+				description: 'Create your first shortened URL above',
+			}}
+			className={styles.table}
+		/>
 	)
 }

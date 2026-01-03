@@ -4,7 +4,15 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Button, Form, Field, Input, Label, ValidationMessage } from 'cadence-core'
+import {
+	Button,
+	Form,
+	Field,
+	Input,
+	Label,
+	ValidationMessage,
+	Select,
+} from 'cadence-core'
 import { AVAILABLE_DOMAINS, DEFAULT_DOMAIN } from '@lib/constants/domains'
 import type { CreateLinkResponse, ErrorResponse } from '@/types/link'
 import styles from './link-form.module.css'
@@ -84,9 +92,9 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 
 				<Field className={styles.domainField}>
 					<Label htmlFor="domain">Short domain</Label>
-					<select
+					<Select
 						id="domain"
-						className={styles.select}
+						isInvalid={!!errors.domain}
 						{...register('domain')}
 					>
 						{AVAILABLE_DOMAINS.map((domain) => (
@@ -94,7 +102,7 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 								{domain.replace('https://', '')}
 							</option>
 						))}
-					</select>
+					</Select>
 					{errors.domain && (
 						<ValidationMessage>{errors.domain.message}</ValidationMessage>
 					)}

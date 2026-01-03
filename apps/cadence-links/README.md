@@ -68,7 +68,7 @@ Before you begin, ensure you have the following installed:
    Edit `.env.local` and add your PostgreSQL connection string:
 
    ```env
-   DATABASE_URL=postgresql://username:password@localhost:5432/cadence_links
+   DATABASE_PUBLIC_URL=postgresql://username:password@localhost:5432/cadence_links
    ```
 
    For cloud databases:
@@ -280,7 +280,7 @@ The following environment variables are required:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/cadence_links` |
+| `DATABASE_PUBLIC_URL` | PostgreSQL connection string | `postgresql://user:pass@localhost:5432/cadence_links` |
 
 ### Database Connection Strings
 
@@ -356,7 +356,7 @@ pnpm db:studio
    - Framework preset: Next.js
 
 3. **Configure environment variables**:
-   - Add `DATABASE_URL` in the Vercel project settings
+   - Add `DATABASE_PUBLIC_URL` in the Vercel project settings
 
 4. **Deploy**: Vercel will automatically deploy on push
 
@@ -365,7 +365,7 @@ pnpm db:studio
 1. **Create a new project** in Railway
 
 2. **Add PostgreSQL database**:
-   - Railway will provide the `DATABASE_URL`
+   - Railway will provide the `DATABASE_PUBLIC_URL`
 
 3. **Deploy the application**:
    - Connect your GitHub repository
@@ -436,7 +436,7 @@ This starts all workspace packages in watch mode.
 **Problem**: Cannot connect to PostgreSQL
 
 **Solutions**:
-- Verify `DATABASE_URL` is correctly formatted
+- Verify `DATABASE_PUBLIC_URL` is correctly formatted
 - Ensure PostgreSQL is running (local) or accessible (cloud)
 - Check firewall rules and network access
 - For Neon, use the pooled connection string

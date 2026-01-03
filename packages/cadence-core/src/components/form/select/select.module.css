@@ -1,0 +1,58 @@
+/* Select wrapper for positioning the icon */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Native select element */
+.select {
+  appearance: none;
+  width: 100%;
+  font-family: var(--cds-typography-font-family-productive-body);
+  font-size: var(--cds-typography-font-size-fixed-productive-base);
+  line-height: var(--cds-typography-line-height-productive-body);
+  border-radius: var(--cds-radii-medium);
+  border: 1px solid var(--cds-color-border-primary);
+  padding: var(--cds-scale-small);
+  padding-right: var(--cds-scale-2x-large);
+  background-color: var(--cds-color-surface-primary);
+  color: var(--cds-color-foreground-primary);
+  cursor: pointer;
+  transition: border-color 100ms ease, background-color 100ms ease;
+}
+
+.select:hover:not(:disabled) {
+  border-color: var(--cds-color-border-interactive-hover);
+  background-color: var(--cds-color-surface-interactive-hover);
+}
+
+.select:focus {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: var(--cds-focus-ring-offset);
+}
+
+.select:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--cds-color-palette-blackberry-100);
+}
+
+.select.is-invalid {
+  border: 2px solid var(--cds-color-border-critical);
+}
+
+.select.is-invalid:focus {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-critical);
+  outline-offset: var(--cds-focus-ring-offset);
+}
+
+/* Chevron icon */
+.select-icon {
+  position: absolute;
+  right: var(--cds-scale-small);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cds-color-foreground-secondary);
+  pointer-events: none;
+}

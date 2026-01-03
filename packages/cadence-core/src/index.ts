@@ -17,6 +17,7 @@ export {
   Checkbox,
   // CheckboxCardGroup,
   // CheckboxCardItem,
+  Select,
   HorizontalWrapper,
   HelperText,
   Label,
@@ -35,6 +36,16 @@ export {
   HoverCardMain,
   HoverCardFooter,
 } from './components/hover-card';
+export {
+  DataTable,
+  DataTablePagination,
+  DataTableFilter,
+  DataTableEmpty,
+  createTextColumn,
+  createCustomColumn,
+  createActionsColumn,
+  createDisplayColumn,
+} from './components/data-table';
 export {
   Tooltip,
   TooltipProvider,
@@ -64,6 +75,7 @@ export type {
   CheckboxProps,
   // CheckboxCardGroupProps,
   // CheckboxCardItemProps,
+  SelectProps,
   HorizontalWrapperProps,
   HelperTextProps,
   LabelProps,
@@ -78,6 +90,21 @@ export type {
   HoverCardMainProps,
   HoverCardFooterProps,
 } from './components/hover-card';
+export type {
+  DataTableProps,
+  DataTableAlignment,
+  DataTableBackgroundColor,
+  DataTableSortingConfig,
+  DataTablePaginationConfig,
+  DataTableFilteringConfig,
+  DataTableEmptyStateConfig,
+  DataTablePaginationProps,
+  DataTableFilterProps,
+  DataTableEmptyProps,
+  ColumnDef,
+  SortingState,
+  PaginationState,
+} from './components/data-table';
 export type {
   TooltipContentProps,
   TooltipTriggerProps,

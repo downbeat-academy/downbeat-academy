@@ -30,11 +30,13 @@ export default {
       file: 'dist/index.esm.js',
       format: 'esm',
       globals,
+      banner: "'use client';",
     },
     {
       file: 'dist/index.cjs.js',
       format: 'cjs',
       globals,
+      banner: "'use client';",
     }
   ],
   plugins: [
