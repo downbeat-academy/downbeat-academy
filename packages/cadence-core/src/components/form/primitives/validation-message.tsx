@@ -8,6 +8,14 @@ import {
 import s from './validation-message.module.css'
 import type { ValidationMessageProps } from './types'
 
+type ValidationType = NonNullable<ValidationMessageProps['type']>
+
+const typeStyles: Record<ValidationType, string> = {
+  success: s.success,
+  warning: s.warning,
+  error: s.error,
+}
+
 const ValidationMessage = ({
   type = 'success',
   children,
@@ -15,12 +23,12 @@ const ValidationMessage = ({
   ...restProps
 }: ValidationMessageProps) => {
   const classes = classnames(
-    s['root'],
-    s['type-' + type],
+    s.root,
+    typeStyles[type],
     className
   )
 
-  const getTypeIcon = (type: 'success' | 'warning' | 'error') => {
+  const getTypeIcon = (type: ValidationType) => {
     switch (type) {
       case 'success':
         return <CheckCircleOutline width="16" />
@@ -35,7 +43,7 @@ const ValidationMessage = ({
 
   return (
     <span className={classes} {...restProps}>
-      <i className={s['icon']}>{getTypeIcon(type)}</i>
+      <i className={s.icon}>{getTypeIcon(type)}</i>
       {children}
     </span>
   )

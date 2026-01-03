@@ -23,19 +23,19 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['root'],
-    isInvalid && s['is-invalid'],
+    s.root,
+    isInvalid && s.isInvalid,
     className
   )
 
   const thumbClasses = classnames(
-    s['thumb'],
-    checked && s['thumb-checked']
+    s.thumb,
+    checked && s.thumbChecked
   )
 
   const checkIconClasses = classnames(
-    s['check-icon'],
-    checked && s['check-icon-visible']
+    s.checkIcon,
+    checked && s.checkIconVisible
   )
 
   return (

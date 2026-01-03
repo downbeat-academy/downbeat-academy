@@ -4,18 +4,18 @@
 }
 
 /* Spacing */
-.spacing-none {
+.spacingNone {
   gap: 0;
 }
 
-.spacing-small {
+.spacingSmall {
   gap: var(--cds-scale-base);
 }
 
-.spacing-medium {
+.spacingMedium {
   gap: var(--cds-scale-x-large);
 }
 
-.spacing-large {
+.spacingLarge {
   gap: var(--cds-scale-3x-large);
 }

@@ -35,11 +35,11 @@
   cursor: not-allowed;
 }
 
-.is-invalid {
+.isInvalid {
   border-color: var(--cds-color-border-critical);
 }
 
-.is-invalid:focus-visible {
+.isInvalid:focus-visible {
   outline-color: var(--cds-focus-ring-color-critical);
 }
 
@@ -59,12 +59,12 @@
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.thumb-checked {
+.thumbChecked {
   background-color: var(--cds-color-foreground-high-contrast);
   transform: translateX(17px);
 }
 
-.check-icon {
+.checkIcon {
   position: absolute;
   left: 4px;
   top: 50%;
@@ -75,6 +75,6 @@
   pointer-events: none;
 }
 
-.check-icon-visible {
+.checkIconVisible {
   display: flex;
 }

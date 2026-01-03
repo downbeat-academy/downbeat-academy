@@ -1,5 +1,5 @@
 /* Pagination container */
-.pagination {
+.root {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -9,28 +9,28 @@
 }
 
 /* Info text */
-.pagination-info {
+.info {
 	font-family: var(--cds-typography-font-family-productive-body);
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
 	color: var(--cds-color-foreground-faint);
 }
 
 /* Controls wrapper */
-.pagination-controls {
+.controls {
 	display: flex;
 	align-items: center;
 	gap: var(--cds-scale-small);
 }
 
 /* Navigation buttons container */
-.pagination-nav {
+.nav {
 	display: flex;
 	align-items: center;
 	gap: var(--cds-scale-2x-small);
 }
 
 /* Navigation button */
-.pagination-button {
+.button {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -45,35 +45,35 @@
 	transition: background-color 100ms ease, border-color 100ms ease;
 }
 
-.pagination-button:hover:not(:disabled) {
+.button:hover:not(:disabled) {
 	background-color: var(--cds-color-surface-faint);
 	border-color: var(--cds-color-border-primary);
 }
 
-.pagination-button:focus-visible {
+.button:focus-visible {
 	outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
 	outline-offset: var(--cds-focus-ring-offset);
 }
 
-.pagination-button:disabled {
+.button:disabled {
 	opacity: 0.4;
 	cursor: not-allowed;
 }
 
 /* Page size selector */
-.pagination-page-size {
+.pageSize {
 	display: flex;
 	align-items: center;
 	gap: var(--cds-scale-2x-small);
 }
 
-.pagination-page-size-label {
+.pageSizeLabel {
 	font-family: var(--cds-typography-font-family-productive-body);
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
 	color: var(--cds-color-foreground-faint);
 }
 
-.pagination-page-size-select {
+.pageSizeSelect {
 	padding: var(--cds-scale-2x-small) var(--cds-scale-small);
 	font-family: var(--cds-typography-font-family-productive-body);
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
@@ -84,7 +84,7 @@
 	cursor: pointer;
 }
 
-.pagination-page-size-select:focus-visible {
+.pageSizeSelect:focus-visible {
 	outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
 	outline-offset: var(--cds-focus-ring-offset);
 }

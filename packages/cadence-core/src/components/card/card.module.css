@@ -3,18 +3,18 @@
   flex-direction: column;
 }
 
-.border-primary {
+.borderPrimary {
   outline-color: var(--cds-color-border-primary);
   outline-width: 1px;
   outline-style: solid;
 }
 
-.border-faint {
+.borderFaint {
   outline-color: var(--cds-color-border-faint);
   outline-width: 1px;
   outline-style: solid;
 }
 
-.border-none {
+.borderNone {
   outline-color: none;
 }

@@ -5,50 +5,50 @@
 }
 
 /* Grid columns classes */
-.columns--1 {
+.columns1 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 1), 1fr));
 }
 
-.columns--2 {
+.columns2 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 2), 1fr));
 }
 
-.columns--3 {
+.columns3 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 3), 1fr));
 }
 
-.columns--4 {
+.columns4 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 4), 1fr));
 }
 
-.columns--5 {
+.columns5 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 5), 1fr));
 }
 
-.columns--6 {
+.columns6 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 6), 1fr));
 }
 
-.columns--7 {
+.columns7 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 7), 1fr));
 }
 
-.columns--8 {
+.columns8 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 8), 1fr));
 }
 
-.columns--9 {
+.columns9 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 9), 1fr));
 }
 
-.columns--10 {
+.columns10 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 10), 1fr));
 }
 
-.columns--11 {
+.columns11 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 11), 1fr));
 }
 
-.columns--12 {
+.columns12 {
 	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 12), 1fr));
 }

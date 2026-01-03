@@ -1,20 +1,20 @@
 import classnames from 'classnames'
 import s from './logo.module.css'
 
-const colorVariantMap: Record<string, keyof typeof s> = {
-  'brand': 'root',
-  'high-contrast': 'contrast-high',
-  'dark': 'variant-strong',
-  'blueberry': 'variant-interactive',
-  'kale': 'variant-success',
-  'pineapple': 'variant-warning',
-  'peach': 'variant-critical'
-}
+const colorVariantMap = {
+  brand: s.root,
+  'high-contrast': s.contrastHigh,
+  dark: s.variantStrong,
+  blueberry: s.variantInteractive,
+  kale: s.variantSuccess,
+  pineapple: s.variantWarning,
+  peach: s.variantCritical,
+} as const
 
-export const getBrandClasses = (color: string , className: string | undefined) => {
-  const variantClass = colorVariantMap[color] || 'root'
+export const getBrandClasses = (color: string, className: string | undefined) => {
+  const variantClass = colorVariantMap[color as keyof typeof colorVariantMap] || s.root
   return classnames(
-    s[variantClass],
+    variantClass,
     className
   )
 }

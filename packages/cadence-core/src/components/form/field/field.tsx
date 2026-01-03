@@ -3,6 +3,11 @@ import classnames from 'classnames'
 import s from './field.module.css'
 import type { FieldProps } from './types'
 
+const orientationClassMap: Record<string, string> = {
+  horizontal: s.orientationHorizontal,
+  vertical: s.orientationVertical,
+}
+
 const Field = ({
   orientation = 'vertical',
   children,
@@ -10,8 +15,8 @@ const Field = ({
   ...restProps
 }: FieldProps) => {
   const classes = classnames(
-    s['root'],
-    s['orientation-' + orientation],
+    s.root,
+    orientationClassMap[orientation],
     className
   )
 

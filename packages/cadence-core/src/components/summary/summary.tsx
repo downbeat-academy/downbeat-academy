@@ -6,6 +6,17 @@ import { ChevronRight } from 'cadence-icons'
 import s from './summary.module.css'
 import type { SummaryProps } from './types'
 
+const typeMap = {
+  contained: s.typeContained,
+  flush: s.typeFlush,
+} as const
+
+const sizeMap = {
+  small: s.sizeSmall,
+  medium: s.sizeMedium,
+  large: s.sizeLarge,
+} as const
+
 const Summary = ({
   title = {
     text: 'Summary',
@@ -22,19 +33,18 @@ const Summary = ({
 }: SummaryProps) => {
 
   const rootClasses = classnames(
-    s['root'],
-    s[`type--${type}`],
+    s.root,
+    typeMap[type],
     className
   )
   const titleClasses = classnames(
-    s['title'],
-    s[`size--${size}`],
-    { [s['is-open']]: isOpen, },
+    s.title,
+    sizeMap[size],
   )
 
   const contentClasses = classnames(
-    s['content'],
-    s[`size--${size}`],
+    s.content,
+    sizeMap[size],
   )
 
   return (
@@ -47,7 +57,7 @@ const Summary = ({
         collapse={true}
         className={titleClasses}
       >
-        <ChevronRight aria-hidden='true' width={16} className={s['icon']} />
+        <ChevronRight aria-hidden='true' width={16} className={s.icon} />
         <strong>{title.text}</strong>
       </Text>
       <Flex

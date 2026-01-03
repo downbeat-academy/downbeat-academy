@@ -1,12 +1,12 @@
 /* Select wrapper for positioning the icon */
-.select-wrapper {
+.wrapper {
   position: relative;
   display: inline-block;
   width: 100%;
 }
 
 /* Native select element */
-.select {
+.root {
   appearance: none;
   width: 100%;
   font-family: var(--cds-typography-font-family-productive-body);
@@ -22,33 +22,33 @@
   transition: border-color 100ms ease, background-color 100ms ease;
 }
 
-.select:hover:not(:disabled) {
+.root:hover:not(:disabled) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-surface-interactive-hover);
 }
 
-.select:focus {
+.root:focus {
   outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
   outline-offset: var(--cds-focus-ring-offset);
 }
 
-.select:disabled {
+.root:disabled {
   cursor: not-allowed;
   opacity: 0.5;
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.select.is-invalid {
+.root.isInvalid {
   border: 2px solid var(--cds-color-border-critical);
 }
 
-.select.is-invalid:focus {
+.root.isInvalid:focus {
   outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-critical);
   outline-offset: var(--cds-focus-ring-offset);
 }
 
 /* Chevron icon */
-.select-icon {
+.icon {
   position: absolute;
   right: var(--cds-scale-small);
   top: 50%;

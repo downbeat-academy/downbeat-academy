@@ -34,12 +34,12 @@
 }
 
 /* Type */
-.type--contained {
+.typeContained {
   border: 1px solid var(--cds-color-border-primary);
   border-radius: var(--cds-radii-soft);
 }
 
-.type--flush {
+.typeFlush {
   border-bottom: 1px solid var(--cds-color-palette-blackberry-300);
 }
 
@@ -49,15 +49,15 @@
 }
 
 /* Size */
-.size--small {
+.sizeSmall {
   padding: var(--cds-scale-small);
 }
 
-.size--medium {
+.sizeMedium {
   padding: var(--cds-scale-base);
 }
 
-.size--large {
+.sizeLarge {
   padding: var(--cds-scale-large);
 }
 

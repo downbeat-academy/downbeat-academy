@@ -15,11 +15,11 @@
   cursor: not-allowed;
 }
 
-.is-invalid {
+.isInvalid {
   border: 2px solid var(--cds-color-border-critical);
 }
 
-.is-invalid:focus {
+.isInvalid:focus {
   outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-critical);
   outline-offset: var(--cds-focus-ring-offset);
 }

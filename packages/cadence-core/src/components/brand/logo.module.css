@@ -2,26 +2,26 @@
 	fill: var(--cds-color-foreground-brand-default);
 }
 
-.contrast-high path {
+.contrastHigh path {
 	fill: var(--cds-color-foreground-high-contrast);
 }
 
-.variant-strong path {
+.variantStrong path {
 	fill: var(--cds-color-foreground-strong);
 }
 
-.variant-interactive path {
+.variantInteractive path {
 	fill: var(--cds-color-foreground-interactive-default);
 }
 
-.variant-success path {
+.variantSuccess path {
 	fill: var(--cds-color-foreground-success-default);
 }
 
-.variant-warning path {
+.variantWarning path {
 	fill: var(--cds-color-foreground-warning-default);
 }
 
-.variant-critical path {
+.variantCritical path {
 	fill: var(--cds-color-foreground-critical-default);
 }

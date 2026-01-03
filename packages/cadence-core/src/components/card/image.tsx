@@ -5,13 +5,13 @@ import type { CardImageProps } from './types'
 
 const CardImage = ({ image, alt, url, children }: CardImageProps & { children?: React.ReactNode }) => {
 	return (
-		<div className={s['root']}>
+		<div className={s.root}>
 			{children || (
-				<a href={url} className={s['link']}>
+				<a href={url} className={s.link}>
 					<img
 						src={image}
 						alt={alt}
-						className={s['img']}
+						className={s.img}
 					/>
 				</a>
 			)}

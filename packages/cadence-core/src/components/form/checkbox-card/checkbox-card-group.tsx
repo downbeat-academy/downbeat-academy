@@ -3,6 +3,21 @@ import classnames from 'classnames'
 import s from './checkbox-card.module.css'
 import type { CheckboxCardGroupProps } from './types'
 
+const columnsClassMap: Record<number, string> = {
+  1: s.groupColumns1,
+  2: s.groupColumns2,
+  3: s.groupColumns3,
+  4: s.groupColumns4,
+  5: s.groupColumns5,
+  6: s.groupColumns6,
+}
+
+const gapClassMap: Record<string, string> = {
+  small: s.groupGapSmall,
+  base: s.groupGapBase,
+  large: s.groupGapLarge,
+}
+
 const CheckboxCardGroup = forwardRef<HTMLDivElement, CheckboxCardGroupProps>(({
   value,
   defaultValue,
@@ -22,9 +37,9 @@ const CheckboxCardGroup = forwardRef<HTMLDivElement, CheckboxCardGroupProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['group-root'],
-    columns && s[`group-columns-${columns}`],
-    s[`group-gap-${gap}`],
+    s.groupRoot,
+    columns && columnsClassMap[columns],
+    gapClassMap[gap],
     className
   )
 
