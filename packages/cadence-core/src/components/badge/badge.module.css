@@ -29,92 +29,92 @@
 
 /* Style + color */
 
-.filled--neutral {
+.filledNeutral {
   color: var(--cds-color-foreground-high-contrast);
   background: var(--cds-color-palette-blackberry-600);
 }
 
-.filled--info {
+.filledInfo {
   color: var(--cds-color-foreground-high-contrast);
   background: var(--cds-color-palette-blueberry-600);
 }
 
-.filled--success {
+.filledSuccess {
   color: var(--cds-color-foreground-high-contrast);
   background: var(--cds-color-palette-kale-600);
 }
 
-.filled--warning {
+.filledWarning {
   color: var(--cds-color-foreground-high-contrast);
   background: var(--cds-color-palette-pineapple-600);
 }
 
-.filled--error {
+.filledError {
   color: var(--cds-color-foreground-high-contrast);
   background: var(--cds-color-palette-peach-600);
 }
 
-.filled--highlight {
+.filledHighlight {
   color: var(--cds-color-foreground-high-contrast);
   background: var(--cds-color-palette-violet-600);
 }
 
-.outlined--neutral {
+.outlinedNeutral {
   border: 1px solid var(--cds-color-palette-blackberry-700);
   color: var(--cds-color-palette-blackberry-700);
 }
 
-.outlined--info {
+.outlinedInfo {
   border: 1px solid var(--cds-color-palette-blueberry-700);
   color: var(--cds-color-palette-blueberry-700);
 }
 
-.outlined--success {
+.outlinedSuccess {
   border: 1px solid var(--cds-color-palette-kale-700);
   color: var(--cds-color-palette-kale-700);
 }
 
-.outlined--warning {
+.outlinedWarning {
   border: 1px solid var(--cds-color-palette-pineapple-700);
   color: var(--cds-color-palette-pineapple-700);
 }
 
-.outlined--error {
+.outlinedError {
   border: 1px solid var(--cds-color-palette-peach-700);
   color: var(--cds-color-palette-peach-700);
 }
 
-.outlined--highlight {
+.outlinedHighlight {
   border: 1px solid var(--cds-color-palette-violet-600);
   color: var(--cds-color-palette-violet-600);
 }
 
-.light--neutral {
+.lightNeutral {
   background: var(--cds-color-palette-blackberry-100);
   color: var(--cds-color-palette-blackberry-600);
 }
 
-.light--info {
+.lightInfo {
   background: var(--cds-color-palette-blueberry-200);
   color: var(--cds-color-palette-blueberry-700);
 }
 
-.light--success {
+.lightSuccess {
   background: var(--cds-color-palette-kale-200);
   color: var(--cds-color-palette-kale-700);
 }
 
-.light--warning {
+.lightWarning {
   background: var(--cds-color-palette-pineapple-200);
   color: var(--cds-color-palette-pineapple-700);
 }
 
-.light--error {
+.lightError {
   background: var(--cds-color-palette-peach-200);
   color: var(--cds-color-palette-peach-700);
 }
 
-.light--highlight {
+.lightHighlight {
   background: var(--cds-color-palette-violet-200);
   color: var(--cds-color-palette-violet-700);
 }
