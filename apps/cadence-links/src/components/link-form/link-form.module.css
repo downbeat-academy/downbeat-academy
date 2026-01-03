@@ -5,8 +5,9 @@
 
 .fields {
 	display: flex;
+	flex-direction: row;
 	flex-wrap: wrap;
-	gap: var(--cds-scale-medium);
+	gap: var(--cds-scale-base);
 	align-items: flex-end;
 }
 
