@@ -1,7 +1,7 @@
 {
   "name": "cms-sanity",
   "private": true,
-  "version": "2.5.1",
+  "version": "2.5.2",
   "main": "package.json",
   "author": "Jory Tindall <jory@downbeatacademy.com>",
   "license": "UNLICENSED",
