@@ -3,28 +3,28 @@
 }
 
 /* Direction */
-.direction-horizontal {
+.horizontal {
   flex-direction: row;
 }
 
-.direction-vertical {
+.vertical {
   flex-direction: column;
 }
 
 /* Gap */
-.gap-none {
+.gapNone {
   gap: 0;
 }
 
-.gap-small {
+.gapSmall {
   gap: var(--cds-scale-small);
 }
 
-.gap-medium {
+.gapMedium {
   gap: var(--cds-scale-base);
 }
 
-.gap-large {
+.gapLarge {
   gap: var(--cds-scale-large);
 }
 

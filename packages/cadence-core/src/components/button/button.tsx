@@ -1,7 +1,21 @@
 import React, { ForwardedRef, forwardRef, ElementType } from 'react'
 import classnames from 'classnames'
 import s from './button.module.css'
-import type { ButtonProps } from './types'
+import type { ButtonProps, ButtonVariant, ButtonSize } from './types'
+
+const variantStyles: Record<ButtonVariant, string> = {
+  primary: s.primary,
+  secondary: s.secondary,
+  ghost: s.ghost,
+  destructive: s.destructive,
+}
+
+const sizeStyles: Record<ButtonSize, string> = {
+  'x-small': s.sizeXSmall,
+  small: s.sizeSmall,
+  medium: s.sizeMedium,
+  large: s.sizeLarge,
+}
 
 const Button = forwardRef(
   (
@@ -34,11 +48,11 @@ const Button = forwardRef(
     ref: ForwardedRef<any>
   ) => {
     const classes = classnames([
-      s[`root`],
-      s[`variant-${variant}`],
-      s[`size-${size}`],
-      isFullWidth && s[`full-width`],
-      disabled && s[`disabled`],
+      s.root,
+      variantStyles[variant],
+      sizeStyles[size],
+      isFullWidth && s.fullWidth,
+      disabled && s.isDisabled,
       className,
     ])
 
