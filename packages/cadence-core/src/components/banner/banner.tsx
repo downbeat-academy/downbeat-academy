@@ -4,12 +4,18 @@ import s from './banner.module.css'
 
 import type { BannerProps } from './types'
 
+const typeMap = {
+	primary: s.typePrimary,
+	secondary: s.typeSecondary,
+	tertiary: s.typeTertiary,
+} as const
+
 const Banner = ({ children, className, type }: BannerProps) => {
-	const classes = classnames([
-		s[`root`],
-		s[type ? `type-${type}` : ''],
+	const classes = classnames(
+		s.root,
+		type && typeMap[type],
 		className,
-	])
+	)
 
 	return <div className={classes}>{children}</div>
 }
