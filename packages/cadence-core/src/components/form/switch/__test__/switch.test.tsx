@@ -92,14 +92,14 @@ describe('Switch', () => {
 
   it('applies invalid styles when isInvalid is true', () => {
     render(
-      <Switch 
-        aria-label="Test switch" 
+      <Switch
+        aria-label="Test switch"
         isInvalid
       />
     )
-    
+
     const switchElement = screen.getByRole('switch')
-    expect(switchElement).toHaveClass('cds-switch--is-invalid')
+    expect(switchElement.className).toContain('isInvalid')
   })
 
   it('supports aria attributes', () => {

@@ -13,13 +13,13 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(({
   ...props
 }, ref) => {
   const rootClasses = classnames(
-    s['root'],
-    isInvalid && s['is-invalid'],
+    s.root,
+    isInvalid && s.isInvalid,
     className
   )
 
   const indicatorClasses = classnames(
-    s['indicator']
+    s.indicator
   )
 
   return (

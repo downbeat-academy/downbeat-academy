@@ -16,7 +16,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(({
   register,
   ...props
 }, ref) => {
-  const classes = classnames(s['root'], className)
+  const classes = classnames(s.root, className)
 
   return (
     <textarea

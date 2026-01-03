@@ -65,7 +65,7 @@ describe('Select', () => {
     it('applies isInvalid styling class', () => {
       renderSelect({ isInvalid: true })
       const select = screen.getByRole('combobox')
-      expect(select.className).toContain('is-invalid')
+      expect(select.className).toContain('isInvalid')
     })
 
     it('applies aria-invalid when isInvalid is true', () => {
@@ -237,19 +237,19 @@ describe('Select', () => {
   describe('Wrapper and icon', () => {
     it('renders with chevron icon', () => {
       const { container } = renderSelect()
-      const icon = container.querySelector('[class*="select-icon"]')
+      const icon = container.querySelector('[class*="icon"]')
       expect(icon).toBeDefined()
     })
 
     it('icon has aria-hidden', () => {
       const { container } = renderSelect()
-      const icon = container.querySelector('[class*="select-icon"]')
+      const icon = container.querySelector('[class*="icon"]')
       expect(icon?.getAttribute('aria-hidden')).toBe('true')
     })
 
     it('renders within a wrapper div', () => {
       const { container } = renderSelect()
-      const wrapper = container.querySelector('[class*="select-wrapper"]')
+      const wrapper = container.querySelector('[class*="wrapper"]')
       expect(wrapper).toBeDefined()
     })
   })

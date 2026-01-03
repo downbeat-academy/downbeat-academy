@@ -8,15 +8,15 @@
   font-weight: 600;
 }
 
-.type-success {
+.success {
   color: var(--cds-color-foreground-success-default);
 }
 
-.type-warning {
+.warning {
   color: var(--cds-color-foreground-warning-default);
 }
 
-.type-error {
+.error {
   color: var(--cds-color-foreground-critical-default);
 }
 

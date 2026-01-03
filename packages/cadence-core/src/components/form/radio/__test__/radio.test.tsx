@@ -149,7 +149,7 @@ describe('Radio', () => {
     )
 
     const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain('cds-radio--is-invalid')
+    expect(radioItem.className).toContain('isInvalid')
   })
 
   it('applies custom className', () => {

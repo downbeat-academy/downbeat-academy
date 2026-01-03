@@ -22,13 +22,13 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(({
   ...props
 }, ref) => {
   const selectClasses = classnames(
-    s['select'],
-    isInvalid && s['is-invalid'],
+    s.root,
+    isInvalid && s.isInvalid,
     className
   )
 
   return (
-    <div className={s['select-wrapper']}>
+    <div className={s.wrapper}>
       <select
         ref={ref}
         className={selectClasses}
@@ -37,7 +37,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(({
       >
         {children}
       </select>
-      <ChevronDown width={16} height={16} className={s['select-icon']} aria-hidden="true" />
+      <ChevronDown width={16} height={16} className={s.icon} aria-hidden="true" />
     </div>
   )
 })

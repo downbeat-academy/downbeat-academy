@@ -80,14 +80,14 @@ describe('Checkbox', () => {
 
   it('applies invalid styles when isInvalid is true', () => {
     render(
-      <Checkbox 
+      <Checkbox
         aria-label="Invalid checkbox"
         isInvalid
       />
     )
 
     const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain('cds-checkbox--is-invalid')
+    expect(checkbox.className).toContain('isInvalid')
   })
 
   it('applies custom className', () => {

@@ -1,11 +1,11 @@
 /* RadioGroup styles */
-.group-root {
+.groupRoot {
   display: flex;
   flex-direction: column;
   gap: var(--cds-scale-small);
 }
 
-.group-root[data-orientation='horizontal'] {
+.groupRoot[data-orientation='horizontal'] {
   flex-direction: row;
   align-items: center;
   gap: var(--cds-scale-base);
@@ -58,11 +58,11 @@
   border-color: var(--cds-color-palette-blueberry-400);
 }
 
-.is-invalid {
+.isInvalid {
   border-color: var(--cds-color-border-critical);
 }
 
-.is-invalid:focus-visible {
+.isInvalid:focus-visible {
   outline-color: var(--cds-focus-ring-color-critical);
 }
 
