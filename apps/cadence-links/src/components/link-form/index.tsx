@@ -109,7 +109,9 @@ export function LinkForm({ onSuccess }: LinkFormProps) {
 				</Field>
 
 				<div className={styles.buttonWrapper}>
-					<Button type="submit" disabled={isSubmitting} text={isSubmitting ? `Creating...` : 'Shorten URL'} />
+					<Button type="submit" disabled={isSubmitting}>
+						{isSubmitting ? 'Creating...' : 'Shorten URL'}
+					</Button>
 				</div>
 			</div>
 		</Form>

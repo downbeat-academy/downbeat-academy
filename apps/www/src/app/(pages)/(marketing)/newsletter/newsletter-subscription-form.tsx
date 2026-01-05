@@ -68,10 +68,11 @@ const NewsletterSubscriptionForm = () => {
 			<Button
 				type="submit"
 				variant="primary"
-				text={isSubmitting ? 'Is signing you up...' : 'Subscribe'}
 				disabled={isSubmitting}
 				data-testid="newsletter-submit"
-			/>
+			>
+				{isSubmitting ? 'Signing you up...' : 'Subscribe'}
+			</Button>
 		</Form>
 	)
 }

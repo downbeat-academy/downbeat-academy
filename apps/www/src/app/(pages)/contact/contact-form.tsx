@@ -96,9 +96,10 @@ export function ContactForm() {
 				<Button
 					type="submit"
 					data-testid="contact-submit"
-					text={isSubmitting ? 'Sending...' : 'Send message'}
 					disabled={isSubmitting}
-				/>
+				>
+					{isSubmitting ? 'Sending...' : 'Send message'}
+				</Button>
 			</Form>
 		</section>
 	)

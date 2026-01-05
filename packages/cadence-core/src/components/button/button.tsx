@@ -26,6 +26,7 @@ const Button = forwardRef(
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
       as,
+      children,
       className,
       disabled,
       href,
@@ -37,7 +38,6 @@ const Button = forwardRef(
       name,
       onClick,
       size = 'medium',
-      text,
       type = 'button',
       variant = 'primary',
       formAction,
@@ -56,7 +56,7 @@ const Button = forwardRef(
       className,
     ])
 
-    const hasText = !!text
+    const hasChildren = !!children
 
     // Common props for all button types
     const commonProps = {
@@ -80,7 +80,7 @@ const Button = forwardRef(
           {...restProps}
           href={href}
         >
-          {hasText && <span>{text}</span>}
+          {hasChildren && <span>{children}</span>}
         </LinkComponent>
       )
     }
@@ -94,7 +94,7 @@ const Button = forwardRef(
           target={target}
           rel={rel}
         >
-          {hasText && <span>{text}</span>}
+          {hasChildren && <span>{children}</span>}
         </a>
       )
     }
@@ -111,7 +111,7 @@ const Button = forwardRef(
         type={type}
         formAction={formAction}
       >
-        {hasText && <span>{text}</span>}
+        {hasChildren && <span>{children}</span>}
       </Component>
     )
   }

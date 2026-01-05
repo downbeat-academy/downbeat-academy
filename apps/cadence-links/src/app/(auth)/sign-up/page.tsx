@@ -148,8 +148,9 @@ export default function SignUpPage() {
 							<Button
 								type="submit"
 								disabled={isSubmitting}
-								text={isSubmitting ? 'Creating account...' : 'Create Account'}
-							/>
+							>
+								{isSubmitting ? 'Creating account...' : 'Create Account'}
+							</Button>
 						</Flex>
 					</Form>
 

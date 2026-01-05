@@ -126,10 +126,11 @@ export function UpdatePasswordForm({ token }: UpdatePasswordFormProps) {
       <Button
         type="submit"
         data-testid="reset-password-submit"
-        text={isSubmitting ? "Resetting..." : "Reset Password"}
         variant="primary"
         disabled={isSubmitting}
-      />
+      >
+        {isSubmitting ? "Resetting..." : "Reset Password"}
+      </Button>
     </Form>
   )
 } 

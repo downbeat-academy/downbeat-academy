@@ -26,7 +26,7 @@ const ProfileSettings = ({ name, email }: ProfileSettingsProps) => {
 			<ButtonWrapper>
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button variant="primary" size="medium" text="Update profile" />
+						<Button variant="primary" size="medium">Update profile</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>

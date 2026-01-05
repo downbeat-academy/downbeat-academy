@@ -29,7 +29,7 @@ export default function Error({
 				Sorry, we ran into an issue 😞. Return to the{' '}
 				<Link href="/">home page?</Link>
 			</Text>
-			<Button onClick={() => reset()} text="Reset" variant="primary" />
+			<Button onClick={() => reset()} variant="primary">Reset</Button>
 		</>
 	)
 }
