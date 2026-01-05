@@ -75,10 +75,11 @@ export function ForgotPasswordForm() {
       <Button
         type="submit"
         data-testid="forgot-password-submit"
-        text={isSubmitting ? "Sending reset link..." : "Send reset link"}
         variant="primary"
         disabled={isSubmitting}
-      />
+      >
+        {isSubmitting ? "Sending reset link..." : "Send reset link"}
+      </Button>
     </Form>
   )
 } 

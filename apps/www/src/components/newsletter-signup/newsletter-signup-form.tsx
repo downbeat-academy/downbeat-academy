@@ -72,11 +72,12 @@ const NewsletterSignupForm = () => {
 			<Button
 				type="submit"
 				data-testid="newsletter-submit"
-				text={isSubmitting ? 'Signing you up...' : 'Subscribe'}
 				variant="primary"
 				size="medium"
 				disabled={isSubmitting}
-			/>
+			>
+				{isSubmitting ? 'Signing you up...' : 'Subscribe'}
+			</Button>
 		</Form>
 	)
 }

@@ -47,12 +47,13 @@ function SignOutButton() {
 		<Button
 			type="submit"
 			data-testid="logout-button"
-			text={pending ? "Signing out..." : "Sign Out"}
 			variant="ghost"
 			size="small"
 			className={s['sign-out-button']}
 			disabled={pending}
-		/>
+		>
+			{pending ? "Signing out..." : "Sign Out"}
+		</Button>
 	)
 }
 
@@ -167,11 +168,12 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 						<>
 							<Button
 								data-testid="sign-in-link"
-								text="Sign in / Sign up"
 								variant="primary"
 								size="small"
 								href="/sign-in"
-							/>
+							>
+								Sign in / Sign up
+							</Button>
 						</>
 					) : (
 						<>
@@ -180,11 +182,12 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 							</form>
 							<Button
 								data-testid="account-link"
-								text="Account"
 								size="small"
 								variant="primary"
 								href="/account"
-							/>
+							>
+								Account
+							</Button>
 						</>
 					)}
 				</BannerActions>

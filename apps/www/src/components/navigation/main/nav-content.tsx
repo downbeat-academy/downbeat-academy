@@ -17,12 +17,13 @@ function SignOutButton() {
 	return (
 		<Button
 			type="submit"
-			text={pending ? "Signing out..." : "Sign Out"}
 			variant="ghost"
 			size="small"
 			className={s['sign-out-button']}
 			disabled={pending}
-		/>
+		>
+			{pending ? "Signing out..." : "Sign Out"}
+		</Button>
 	)
 }
 
@@ -132,24 +133,26 @@ const NavContent = ({ links, session }: NavContentProps) => {
 				<div className={s.actions}>
 					{!session?.data?.session ? (
 						<Button
-							text="Sign in / Sign up"
 							variant="primary"
 							size="large"
 							href="/sign-in"
 							isFullWidth
-						/>
+						>
+							Sign in / Sign up
+						</Button>
 					) : (
 						<>
 							<form action={handleSignOut}>
 								<SignOutButton />
 							</form>
 							<Button
-								text="Account"
 								size="large"
 								variant="primary"
 								href="/account"
 								isFullWidth
-							/>
+							>
+								Account
+							</Button>
 						</>
 					)}
 				</div>

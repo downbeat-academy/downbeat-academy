@@ -81,9 +81,10 @@ const FileDownloadForm = ({ fileUrl, title }: FileDownloadFormProps) => {
 			</Field>
 			<Button
 				type="submit"
-				text={isSubmitting ? 'Landing in your inbox...' : 'Show me the files!'}
 				disabled={isSubmitting}
-			/>
+			>
+				{isSubmitting ? 'Landing in your inbox...' : 'Show me the files!'}
+			</Button>
 		</Form>
 	)
 }

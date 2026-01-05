@@ -132,10 +132,11 @@ export function UpdatePasswordForm() {
       </Field>
       <Button
         type="submit"
-        text={isSubmitting ? "Updating..." : "Update Password"}
         variant="primary"
         disabled={isSubmitting}
-      />
+      >
+        {isSubmitting ? "Updating..." : "Update Password"}
+      </Button>
     </Form>
   )
 } 

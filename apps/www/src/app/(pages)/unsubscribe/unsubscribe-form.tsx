@@ -64,8 +64,9 @@ export function UnsubscribeForm() {
 			<Button
 				type="submit"
 				disabled={isSubmitting}
-				text={isSubmitting ? 'See you later 👋' : 'Unsubscribe'}
-			/>
+			>
+				{isSubmitting ? 'See you later' : 'Unsubscribe'}
+			</Button>
 		</Form>
 	)
 }

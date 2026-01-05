@@ -163,10 +163,11 @@ export const SignUpForm = () => {
       <Button
         type="submit"
         data-testid="signup-submit"
-        text={isSubmitting ? "Creating account..." : "Sign Up"}
         variant="primary"
         disabled={isSubmitting}
-      />
+      >
+        {isSubmitting ? "Creating account..." : "Sign Up"}
+      </Button>
     </Form>
   )
 }

@@ -106,10 +106,11 @@ export const SignInForm = () => {
       <Button
         type="submit"
         data-testid="sign-in-submit"
-        text={isSubmitting ? "🎵 Signing in..." : "Sign In"}
         variant="primary"
         disabled={isSubmitting}
-      />
+      >
+        {isSubmitting ? "Signing in..." : "Sign In"}
+      </Button>
       <Link href="/forgot-password">
         Forgot your password?
       </Link>
