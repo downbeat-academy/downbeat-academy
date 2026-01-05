@@ -109,11 +109,12 @@ const UpdateProfileForm = ({
 						type="submit"
 						data-testid="profile-update-submit"
 						variant="primary"
-						text={isSubmitting ? 'Updating profile…' : 'Update profile'}
 						disabled={isSubmitting}
-					/>
+					>
+						{isSubmitting ? 'Updating profile…' : 'Update profile'}
+					</Button>
 					<DialogClose asChild>
-						<Button type="submit" variant="secondary" text="Cancel" />
+						<Button type="submit" variant="secondary">Cancel</Button>
 					</DialogClose>
 				</ButtonWrapper>
 			)}

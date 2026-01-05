@@ -32,28 +32,28 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    text: 'Primary Button',
+    children: 'Primary Button',
     variant: 'primary',
   },
 }
 
 export const Secondary: Story = {
   args: {
-    text: 'Secondary Button',
+    children: 'Secondary Button',
     variant: 'secondary',
   },
 }
 
 export const Ghost: Story = {
   args: {
-    text: 'Ghost Button',
+    children: 'Ghost Button',
     variant: 'ghost',
   },
 }
 
 export const Destructive: Story = {
   args: {
-    text: 'Destructive Button',
+    children: 'Destructive Button',
     variant: 'destructive',
   },
 }
@@ -61,17 +61,17 @@ export const Destructive: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-      <Button text="X-Small" size="x-small" />
-      <Button text="Small" size="small" />
-      <Button text="Medium" size="medium" />
-      <Button text="Large" size="large" />
+      <Button size="x-small">X-Small</Button>
+      <Button size="small">Small</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="large">Large</Button>
     </div>
   ),
 }
 
 export const AsLink: Story = {
   args: {
-    text: 'Button as Link',
+    children: 'Button as Link',
     href: 'https://example.com',
     variant: 'primary',
   },
@@ -79,14 +79,14 @@ export const AsLink: Story = {
 
 export const Disabled: Story = {
   args: {
-    text: 'Disabled Button',
+    children: 'Disabled Button',
     disabled: true,
   },
 }
 
 export const FullWidth: Story = {
   args: {
-    text: 'Full Width Button',
+    children: 'Full Width Button',
     isFullWidth: true,
   },
   decorators: [
@@ -109,10 +109,10 @@ export const FocusStates: Story = {
           Use Tab key to navigate and see focus rings appear on keyboard navigation only
         </p>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-          <Button text="Primary" variant="primary" />
-          <Button text="Secondary" variant="secondary" />
-          <Button text="Ghost" variant="ghost" />
-          <Button text="Destructive" variant="destructive" />
+          <Button variant="primary">Primary</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="destructive">Destructive</Button>
         </div>
       </div>
     </div>

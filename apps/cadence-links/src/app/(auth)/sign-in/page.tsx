@@ -105,8 +105,9 @@ export default function SignInPage() {
 							<Button
 								type="submit"
 								disabled={isSubmitting}
-								text={isSubmitting ? 'Signing in...' : 'Sign In'}
-							/>
+							>
+								{isSubmitting ? 'Signing in...' : 'Sign In'}
+							</Button>
 						</Flex>
 					</Form>
 

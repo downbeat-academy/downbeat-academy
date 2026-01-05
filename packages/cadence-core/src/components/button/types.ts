@@ -5,12 +5,12 @@ export type ButtonSize = 'x-small' | 'small' | 'medium' | 'large'
 
 export interface ButtonProps {
   // Button specific props
+  children: ReactNode
   className?: string
   icon?: ReactNode
   iconPosition?: 'leading' | 'trailing'
   isFullWidth?: boolean
   size?: ButtonSize
-  text?: string
   variant?: ButtonVariant
   linkComponent?: ElementType
   as?: ElementType

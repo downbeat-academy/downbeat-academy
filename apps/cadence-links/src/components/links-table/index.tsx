@@ -77,15 +77,17 @@ function ActionsCell({ link, onDelete }: { link: Link; onDelete: (id: string) =>
 				variant="secondary"
 				size="small"
 				onClick={handleCopy}
-				text={copied ? 'Copied!' : 'Copy'}
-			/>
+			>
+				{copied ? 'Copied!' : 'Copy'}
+			</Button>
 			<Button
 				variant="ghost"
 				size="small"
 				onClick={handleDelete}
 				disabled={isDeleting}
-				text={isDeleting ? 'Deleting...' : 'Delete'}
-			/>
+			>
+				{isDeleting ? 'Deleting...' : 'Delete'}
+			</Button>
 		</Flex>
 	)
 }

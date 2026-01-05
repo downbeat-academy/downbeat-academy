@@ -51,7 +51,7 @@ const FileDownload = async ({
 					</Text>
 				</>
 			) : (
-				<Button href={fileUrl || ''} text="Download" variant="primary" />
+				<Button href={fileUrl || ''} variant="primary">Download</Button>
 			)}
 		</section>
 	)

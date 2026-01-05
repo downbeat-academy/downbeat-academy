@@ -36,9 +36,10 @@ export function AppHeader() {
 			<Button
 				variant="secondary"
 				size="small"
-				text="Sign Out"
 				onClick={handleSignOut}
-			/>
+			>
+				Sign Out
+			</Button>
 		</header>
 	)
 }

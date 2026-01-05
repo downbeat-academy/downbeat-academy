@@ -35,14 +35,16 @@ export function SuccessMessage({ shortUrl, onDismiss }: SuccessMessageProps) {
 							variant="secondary"
 							size="small"
 							onClick={handleCopy}
-							text={copied ? 'Copied!' : 'Copy'}
-						/>
+						>
+							{copied ? 'Copied!' : 'Copy'}
+						</Button>
 						<Button
 							variant="ghost"
 							size="small"
 							onClick={onDismiss}
-							text="Dismiss"
-						/>
+						>
+							Dismiss
+						</Button>
 					</Flex>
 				</Flex>
 			</Flex>
