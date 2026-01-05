@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '../button'
+import { Check, ChevronRight, Download, PlayFill, X } from 'cadence-icons'
 
 const meta: Meta<typeof Button> = {
   title: 'Cadence/Components/Button',
@@ -23,6 +24,15 @@ const meta: Meta<typeof Button> = {
     },
     disabled: {
       control: 'boolean',
+    },
+    icon: {
+      control: false,
+      description: 'Icon element to display in the button',
+    },
+    iconPosition: {
+      control: 'radio',
+      options: ['leading', 'trailing'],
+      description: 'Position of the icon relative to the button text',
     },
   },
 }
@@ -120,7 +130,136 @@ export const FocusStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. This ensures accessibility for keyboard users while maintaining clean visual design for mouse users.',
+        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse.',
+      },
+    },
+  },
+}
+
+// Icon Stories
+
+export const WithLeadingIcon: Story = {
+  args: {
+    children: 'Download',
+    icon: <Download />,
+    iconPosition: 'leading',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button with an icon in the leading (left) position. This is the default icon position.',
+      },
+    },
+  },
+}
+
+export const WithTrailingIcon: Story = {
+  args: {
+    children: 'Continue',
+    icon: <ChevronRight />,
+    iconPosition: 'trailing',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Button with an icon in the trailing (right) position.',
+      },
+    },
+  },
+}
+
+export const IconOnly: Story = {
+  args: {
+    icon: <PlayFill />,
+    'aria-label': 'Play',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Icon-only button without text. Always provide an `aria-label` for accessibility.',
+      },
+    },
+  },
+}
+
+export const IconSizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div>
+        <p style={{ marginBottom: '12px', fontSize: '12px', color: '#666' }}>
+          Icon sizes scale automatically: x-small (12px), small (14px), medium (16px), large (20px)
+        </p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Button size="x-small" icon={<Check />}>X-Small</Button>
+          <Button size="small" icon={<Check />}>Small</Button>
+          <Button size="medium" icon={<Check />}>Medium</Button>
+          <Button size="large" icon={<Check />}>Large</Button>
+        </div>
+      </div>
+      <div>
+        <p style={{ marginBottom: '12px', fontSize: '12px', color: '#666' }}>
+          Icon-only buttons at different sizes
+        </p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Button size="x-small" icon={<X />} aria-label="Close" />
+          <Button size="small" icon={<X />} aria-label="Close" />
+          <Button size="medium" icon={<X />} aria-label="Close" />
+          <Button size="large" icon={<X />} aria-label="Close" />
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Icons automatically scale to match the button size.',
+      },
+    },
+  },
+}
+
+export const IconWithVariants: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div>
+        <p style={{ marginBottom: '12px', fontSize: '12px', color: '#666' }}>
+          Icons inherit color from the button variant
+        </p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Button variant="primary" icon={<Check />}>Primary</Button>
+          <Button variant="secondary" icon={<Check />}>Secondary</Button>
+          <Button variant="ghost" icon={<Check />}>Ghost</Button>
+          <Button variant="destructive" icon={<Check />}>Destructive</Button>
+        </div>
+      </div>
+      <div>
+        <p style={{ marginBottom: '12px', fontSize: '12px', color: '#666' }}>
+          Trailing icons with variants
+        </p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Button variant="primary" icon={<ChevronRight />} iconPosition="trailing">Primary</Button>
+          <Button variant="secondary" icon={<ChevronRight />} iconPosition="trailing">Secondary</Button>
+          <Button variant="ghost" icon={<ChevronRight />} iconPosition="trailing">Ghost</Button>
+          <Button variant="destructive" icon={<ChevronRight />} iconPosition="trailing">Destructive</Button>
+        </div>
+      </div>
+      <div>
+        <p style={{ marginBottom: '12px', fontSize: '12px', color: '#666' }}>
+          Icon-only buttons with variants
+        </p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Button variant="primary" icon={<PlayFill />} aria-label="Play" />
+          <Button variant="secondary" icon={<PlayFill />} aria-label="Play" />
+          <Button variant="ghost" icon={<PlayFill />} aria-label="Play" />
+          <Button variant="destructive" icon={<PlayFill />} aria-label="Play" />
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Icons work with all button variants. Icon color inherits from button text color.',
       },
     },
   },
