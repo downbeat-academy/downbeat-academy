@@ -1,4 +1,11 @@
-import React, { ForwardedRef, forwardRef, ElementType } from 'react'
+import React, {
+  ForwardedRef,
+  forwardRef,
+  ElementType,
+  isValidElement,
+  cloneElement,
+  ReactElement,
+} from 'react'
 import classnames from 'classnames'
 import s from './button.module.css'
 import type { ButtonProps, ButtonVariant, ButtonSize } from './types'
@@ -15,6 +22,13 @@ const sizeStyles: Record<ButtonSize, string> = {
   small: s.sizeSmall,
   medium: s.sizeMedium,
   large: s.sizeLarge,
+}
+
+const iconSizes: Record<ButtonSize, number> = {
+  'x-small': 12,
+  small: 14,
+  medium: 16,
+  large: 20,
 }
 
 const Button = forwardRef(
@@ -47,16 +61,56 @@ const Button = forwardRef(
     }: ButtonProps,
     ref: ForwardedRef<any>
   ) => {
+    const hasChildren = !!children
+    const hasIcon = !!icon
+    const isIconOnly = hasIcon && !hasChildren
+
     const classes = classnames([
       s.root,
       variantStyles[variant],
       sizeStyles[size],
       isFullWidth && s.fullWidth,
       disabled && s.isDisabled,
+      isIconOnly && s.iconOnly,
       className,
     ])
 
-    const hasChildren = !!children
+    // Render icon with proper sizing and accessibility
+    const renderIcon = () => {
+      if (!icon) return null
+
+      const iconSize = iconSizes[size]
+      const iconElement = isValidElement(icon)
+        ? cloneElement(icon as ReactElement<{ width?: number; height?: number; 'aria-hidden'?: boolean }>, {
+            width: iconSize,
+            height: iconSize,
+            'aria-hidden': true,
+          })
+        : icon
+
+      return (
+        <span className={s.iconContainer} aria-hidden="true">
+          {iconElement}
+        </span>
+      )
+    }
+
+    // Render button content with icon positioning
+    const renderContent = () => {
+      const iconElement = renderIcon()
+
+      if (isIconOnly) {
+        return iconElement
+      }
+
+      return (
+        <>
+          {iconPosition === 'leading' && iconElement}
+          {hasChildren && <span className={s.label}>{children}</span>}
+          {iconPosition === 'trailing' && iconElement}
+        </>
+      )
+    }
 
     // Common props for all button types
     const commonProps = {
@@ -80,7 +134,7 @@ const Button = forwardRef(
           {...restProps}
           href={href}
         >
-          {hasChildren && <span>{children}</span>}
+          {renderContent()}
         </LinkComponent>
       )
     }
@@ -94,7 +148,7 @@ const Button = forwardRef(
           target={target}
           rel={rel}
         >
-          {hasChildren && <span>{children}</span>}
+          {renderContent()}
         </a>
       )
     }
@@ -111,7 +165,7 @@ const Button = forwardRef(
         type={type}
         formAction={formAction}
       >
-        {hasChildren && <span>{children}</span>}
+        {renderContent()}
       </Component>
     )
   }

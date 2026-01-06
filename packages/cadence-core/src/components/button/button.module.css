@@ -137,3 +137,48 @@
   color: var(--cds-color-palette-blackberry-400);
   background: var(--cds-color-palette-blackberry-200);
 }
+
+/* Icon container */
+.iconContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* Label styling */
+.label {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Icon spacing for buttons with text */
+.root:not(.iconOnly) .iconContainer + .label {
+  margin-left: var(--cds-scale-2x-small);
+}
+
+.root:not(.iconOnly) .label + .iconContainer {
+  margin-left: var(--cds-scale-2x-small);
+}
+
+/* Icon-only button styles */
+.iconOnly {
+  aspect-ratio: 1;
+}
+
+.iconOnly.sizeXSmall {
+  padding: 4px;
+}
+
+.iconOnly.sizeSmall {
+  padding: 6px;
+}
+
+.iconOnly.sizeMedium {
+  padding: 8px;
+}
+
+.iconOnly.sizeLarge {
+  padding: 9px;
+}
