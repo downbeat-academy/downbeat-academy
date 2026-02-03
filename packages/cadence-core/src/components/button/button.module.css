@@ -155,11 +155,11 @@
 
 /* Icon spacing for buttons with text */
 .root:not(.iconOnly) .iconContainer + .label {
-  margin-left: var(--cds-scale-2x-small);
+  margin-left: var(--cds-scale-x-small);
 }
 
 .root:not(.iconOnly) .label + .iconContainer {
-  margin-left: var(--cds-scale-2x-small);
+  margin-left: var(--cds-scale-x-small);
 }
 
 /* Icon-only button styles */
