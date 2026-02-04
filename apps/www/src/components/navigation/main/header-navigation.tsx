@@ -170,7 +170,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 								data-testid="sign-in-link"
 								variant="primary"
 								size="small"
-								href="/sign-in"
+								href={`${process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'}/sign-in?redirect_uri=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '/')}`}
 							>
 								Sign in / Sign up
 							</Button>

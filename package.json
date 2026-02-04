@@ -32,6 +32,8 @@
     "cms:build": "turbo run build --filter=cms-sanity",
     "links:dev": "turbo run dev --filter=cadence-links",
     "links:build": "turbo run build --filter=cadence-links",
+    "auth:dev": "turbo run dev --filter=auth",
+    "auth:build": "turbo run build --filter=auth",
     "tokens:build": "turbo run build --filter=cadence-tokens",
     "email:dev": "turbo run dev --filter=email",
     "core:storybook": "turbo run storybook --filter=cadence-core",

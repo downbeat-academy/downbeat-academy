@@ -28,6 +28,8 @@ export default defineConfig({
 			// Better Auth configuration for tests
 			BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
 			NEXT_PUBLIC_PROJECT_URL: process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000',
+			// Centralized auth service URL
+			AUTH_SERVICE_URL: process.env.AUTH_SERVICE_URL || process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002',
 			// Test user credentials
 			TEST_STUDENT_EMAIL: process.env.TEST_STUDENT_EMAIL || 'test-student@example.com',
 			TEST_STUDENT_PASSWORD: process.env.TEST_STUDENT_PASSWORD || 'TestPassword123!',

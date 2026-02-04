@@ -1,3 +1,5 @@
+'use client'
+
 import { Flex } from 'cadence-core'
 import { Text } from 'cadence-core'
 import {

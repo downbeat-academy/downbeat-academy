@@ -5,44 +5,54 @@ import 'cypress-axe'
 // Custom Commands for Downbeat Academy E2E Tests
 // ***********************************************
 
+// Auth service URL for centralized authentication
+const AUTH_SERVICE_URL = Cypress.env('AUTH_SERVICE_URL') || 'http://localhost:3002'
+
 /**
  * Authentication Commands
+ *
+ * With the centralized auth service, login now happens via:
+ * 1. Visiting the auth service sign-in page
+ * 2. Submitting credentials there
+ * 3. Being redirected back to www with session cookies
  */
 
-// Login command - logs in a user via the UI
+// Login command - logs in a user via the auth service
 Cypress.Commands.add('login', (email: string, password: string) => {
 	cy.debugLog(`🔑 Attempting login with email: ${email}`)
-	
+
 	// Check server health before attempting login
 	cy.checkServerHealth()
-	
-	cy.visit('/sign-in')
-	
-	// Wait for page to load with better error handling
+
+	// Visit auth service sign-in page with redirect back to www
+	const redirectUri = encodeURIComponent(Cypress.config('baseUrl') + '/')
+	cy.visit(`${AUTH_SERVICE_URL}/sign-in?redirect_uri=${redirectUri}`)
+
+	// Wait for auth service page to load
 	cy.get('[data-testid="email-input"]', { timeout: 10000 }).should('be.visible')
 	cy.get('[data-testid="password-input"]', { timeout: 10000 }).should('be.visible')
 	cy.get('[data-testid="sign-in-submit"]', { timeout: 10000 }).should('be.visible')
-	
+
 	// Clear and fill in credentials
 	cy.get('[data-testid="email-input"]').clear().type(email, { delay: 50 })
 	cy.get('[data-testid="password-input"]').clear().type(password, { delay: 50 })
-	
+
 	// Ensure form is ready
 	cy.get('[data-testid="sign-in-submit"]').should('not.be.disabled')
-	
+
 	// Submit the form
 	cy.get('[data-testid="sign-in-submit"]').click()
-	
+
 	// Handle different possible outcomes with better timeout and error detection
 	cy.url({ timeout: 20000 }).then(url => {
 		cy.debugLog(`Current URL after login attempt: ${url}`)
-		
+
 		if (url.includes('/sign-in')) {
 			// Still on sign-in page, check for specific error messages
 			cy.get('body').then($body => {
 				const bodyText = $body.text()
 				cy.debugLog(`Page content after failed login:`, bodyText)
-				
+
 				if (bodyText.includes('verify your email') || bodyText.includes('Please verify')) {
 					cy.debugLog('❌ User email verification required')
 					throw new Error(`Email verification required for user: ${email}`)
@@ -62,10 +72,14 @@ Cypress.Commands.add('login', (email: string, password: string) => {
 		} else {
 			// Successfully redirected, verify authentication state
 			cy.debugLog('✅ Successfully redirected from sign-in page')
-			
+
+			// If redirected back to www, verify we're on the right domain
+			// Visit the www app explicitly to ensure we're on the right origin
+			cy.visit(Cypress.config('baseUrl') + '/')
+
 			// Wait for auth state to propagate
 			cy.waitForAuthState()
-			
+
 			// Check for authentication indicators with better error messages
 			cy.get('body').then($body => {
 				// Look for sign-in link (should not exist when logged in)
@@ -73,17 +87,17 @@ Cypress.Commands.add('login', (email: string, password: string) => {
 					cy.debugLog('❌ Sign-in link still visible after login')
 					throw new Error('User appears to not be authenticated (sign-in link visible)')
 				}
-				
+
 				// Look for user menu or account link
 				const hasUserMenu = $body.find('[data-testid="user-menu"]').length > 0
 				const hasAccountLink = $body.find('[data-testid="account-link"]').length > 0
-				
+
 				if (!hasUserMenu && !hasAccountLink) {
 					cy.debugLog('❌ No authentication indicators found in header')
 					cy.screenshotWithName(`missing-auth-indicators-${email.replace('@', '-at-')}`)
 					throw new Error('No user menu or account link found after login')
 				}
-				
+
 				cy.debugLog(`✅ Login successful for ${email}`)
 			})
 		}
@@ -119,16 +133,19 @@ Cypress.Commands.add('logout', () => {
 	cy.get('[data-testid="sign-in-link"]').should('be.visible')
 })
 
-// Sign up command
+// Sign up command - now uses auth service
 Cypress.Commands.add('signup', (userData: { name: string; email: string; password: string }) => {
-	cy.visit('/sign-in')
+	const redirectUri = encodeURIComponent(Cypress.config('baseUrl') + '/')
+	cy.visit(`${AUTH_SERVICE_URL}/sign-in?redirect_uri=${redirectUri}`)
+
+	// Switch to sign up tab
 	cy.get('[data-testid="create-account-tab"]').click()
-	
+
 	cy.get('[data-testid="signup-name-input"]').clear().type(userData.name)
 	cy.get('[data-testid="signup-email-input"]').clear().type(userData.email)
 	cy.get('[data-testid="signup-password-input"]').clear().type(userData.password)
 	cy.get('[data-testid="signup-confirm-password-input"]').clear().type(userData.password)
-	
+
 	cy.get('[data-testid="signup-submit"]').click()
 })
 
