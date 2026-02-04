@@ -1,0 +1,47 @@
+{
+	"name": "auth",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Centralized authentication service for Downbeat Academy",
+	"author": "Jory Tindall <jory@downbeatacademy.com>",
+	"license": "UNLICENSED",
+	"scripts": {
+		"dev": "infisical run --path=/auth -- next dev --port 3002",
+		"dev:ci": "next dev --port 3002",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"db:push": "drizzle-kit push --config=drizzle-auth.config.ts",
+		"db:migrate": "drizzle-kit migrate --config=drizzle-auth.config.ts"
+	},
+	"dependencies": {
+		"@hookform/resolvers": "^5.2.2",
+		"@radix-ui/react-tabs": "^1.1.13",
+		"@radix-ui/react-toast": "^1.2.15",
+		"better-auth": "^1.4.9",
+		"cadence-core": "workspace:^",
+		"cadence-icons": "workspace:^",
+		"cadence-tokens": "workspace:^",
+		"classnames": "^2.5.1",
+		"drizzle-orm": "^0.45.1",
+		"next": "^16.1.1",
+		"pg": "^8.16.3",
+		"react": "^19.2.3",
+		"react-dom": "^19.2.3",
+		"react-hook-form": "^7.69.0",
+		"resend": "^6.6.0",
+		"typeface-favorit": "workspace:^",
+		"typeface-tiempos-text": "workspace:^",
+		"zod": "^4.2.1"
+	},
+	"devDependencies": {
+		"@types/node": "^25.0.3",
+		"@types/pg": "^8.16.0",
+		"@types/react": "^19.1.8",
+		"@types/react-dom": "^19.1.6",
+		"drizzle-kit": "^0.31.8",
+		"eslint": "^9.39.2",
+		"eslint-config-next": "^16.1.1",
+		"typescript": "^5.9.3"
+	}
+}

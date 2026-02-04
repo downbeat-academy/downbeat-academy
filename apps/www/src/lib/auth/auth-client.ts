@@ -3,7 +3,12 @@ import { adminClient, organizationClient } from "better-auth/client/plugins"
 import { ac, student, educator, admin, superAdmin } from "@/lib/auth/permissions"
 
 export const authClient = createAuthClient({
-    baseURL: process.env.PROJECT_URL,
+    // Point to the centralized auth service
+    baseURL: process.env.NEXT_PUBLIC_AUTH_SERVICE_URL,
+    // Enable credentials for cross-origin requests
+    fetchOptions: {
+        credentials: 'include',
+    },
     plugins: [
         adminClient({
             ac: ac,
@@ -11,7 +16,7 @@ export const authClient = createAuthClient({
                 student,
                 educator,
                 admin,
-                superAdmin,        
+                superAdmin,
             }
         }),
         organizationClient()

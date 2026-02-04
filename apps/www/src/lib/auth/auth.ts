@@ -2,7 +2,6 @@ import { betterAuth } from 'better-auth'
 import { nextCookies } from 'better-auth/next-js'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, organization } from 'better-auth/plugins'
-import { Resend } from 'resend'
 import { authDb } from '@/lib/db/drizzle'
 import { authSchema } from '@/lib/db/schema'
 import {
@@ -13,81 +12,38 @@ import {
 	superAdmin,
 } from '@/lib/auth/permissions'
 
-// Email templates
-import VerifyEmail from '../../../../../packages/email/emails/verify-email'
-import ResetPasswordEmail from '../../../../../packages/email/emails/reset-password'
-
+// This is a READ-ONLY configuration for session validation
+// All auth operations (sign-in, sign-up, etc.) are handled by the auth service at auth.downbeatacademy.com
 export function createAuth() {
+	const isDev = process.env.NODE_ENV === 'development'
+	const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:3002'
+
 	return betterAuth({
 		appName: 'Downbeat Academy',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseUrl: process.env.NEXT_PUBLIC_PROJECT_URL,
+		baseUrl: authServiceUrl,
+
+		// Cross-subdomain cookie configuration (must match auth service)
+		// Only enable in production when we have proper domains
+		advanced: {
+			crossSubDomainCookies: isDev
+				? { enabled: false }
+				: {
+					enabled: true,
+					domain: '.downbeatacademy.com',
+				},
+			defaultCookieAttributes: {
+				sameSite: 'lax',
+				secure: !isDev,
+				httpOnly: true,
+			},
+		},
+
 		database: drizzleAdapter(authDb, {
 			provider: 'pg',
 			schema: authSchema,
 		}),
-		emailAndPassword: {
-			enabled: true,
-			autoSignIn: true,
-			requireEmailVerification: true,
-			resetPasswordPath: '/update-password',
-			forgetPasswordPath: '/api/auth/forget-password',
-			sendResetPassword: async ({ user, url, token }, request) => {
-				try {
-					const resend = new Resend(process.env.RESEND_API_KEY)
-					const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(
-						/\/$/,
-						''
-					)
-					const fullUrl = `${baseUrl}/update-password?token=${token}`
 
-					const { data } = await resend.emails.send({
-						from: 'Downbeat Academy <hello@email.downbeatacademy.com>',
-						to: user.email,
-						subject: '🎵 Reset your Downbeat Academy password',
-						react: ResetPasswordEmail({
-							name: user.name,
-							resetUrl: fullUrl,
-						}),
-					})
-
-					console.log('Password reset email sent:', data)
-				} catch (error) {
-					console.error('Failed to send password reset email:', error)
-					throw error
-				}
-			},
-		},
-		emailVerification: {
-			sendOnSignUp: true,
-			autoSignInAfterVerification: true,
-			redirectAfterVerification: '/',
-			sendVerificationEmail: async ({ user, url, token }, request) => {
-				try {
-					const resend = new Resend(process.env.RESEND_API_KEY)
-					const baseUrl = process.env.NEXT_PUBLIC_PROJECT_URL?.replace(
-						/\/$/,
-						''
-					)
-					const fullUrl = `${baseUrl}/api/auth${url}`
-
-					const { data } = await resend.emails.send({
-						from: 'Downbeat Academy <hello@email.downbeatacademy.com>',
-						to: user.email,
-						subject: '🎵 Verify your Downbeat Academy email address',
-						react: VerifyEmail({
-							name: user.name,
-							verificationUrl: fullUrl,
-						}),
-					})
-
-					console.log('Verification email sent:', data)
-				} catch (error) {
-					console.error('Failed to send verification email:', error)
-					throw error
-				}
-			},
-		},
 		plugins: [
 			admin({
 				ac: ac,

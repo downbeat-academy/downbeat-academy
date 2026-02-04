@@ -1,0 +1,54 @@
+.root {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  transition: var(--cds-transition-02);
+  color: inherit;
+}
+
+/* Type */
+.primary {
+  color: var(--cds-color-foreground-interactive-default);
+}
+
+.primary:hover {
+  color: var(--cds-color-foreground-interactive-hover);
+}
+
+.primary:active {
+  color: var(--cds-color-foreground-interactive-active);
+}
+
+.secondary {
+  color: var(--cds-color-palette-blackberry-700);
+}
+
+.secondary:hover {
+  color: var(--cds-color-palette-blackberry-800);
+}
+
+.secondary:active {
+  color: var(--cds-color-palette-blackberry-800);
+}
+
+.brand {
+  color: var(--cds-color-foreground-brand-default);
+}
+
+.brand:hover {
+  color: var(--cds-color-foreground-brand-hover);
+}
+
+.brand:active {
+  color: var(--cds-color-foreground-brand-active);
+}
+
+.inherit {
+  color: inherit;
+}
+
+/* Underline */
+.underline {
+  text-decoration: underline;
+}

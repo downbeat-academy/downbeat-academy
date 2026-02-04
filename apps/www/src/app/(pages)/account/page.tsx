@@ -1,21 +1,13 @@
-import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { auth } from '@/lib/auth/auth'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { Text, Flex, Badge } from 'cadence-core'
 import { Separator } from '@components/separator'
 import { ProfileSettings } from './update-profile'
 import { showAdminRole } from './show-admin-role'
+import { requireAuth } from '@/lib/auth/require-auth'
 
 export default async function AccountPage() {
-	const session = await auth.api.getSession({
-		headers: await headers()
-	})
-
-	if (!session?.session) {
-		redirect('/sign-in')
-	}
+	const session = await requireAuth('/account')
 	const { session: sessionData, user } = session
 
 	return (
