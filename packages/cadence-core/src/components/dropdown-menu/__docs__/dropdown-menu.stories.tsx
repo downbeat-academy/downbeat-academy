@@ -1,5 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { Button } from '../../button'
+import { Flex } from '../../flex'
 import {
 	DropdownMenu,
 	DropdownMenuTrigger,
@@ -54,9 +56,14 @@ DropdownMenu displays a menu of actions or options triggered by a button click. 
 	tags: ['autodocs'],
 	decorators: [
 		(Story) => (
-			<div style={{ padding: '40px', minHeight: '300px' }}>
+			<Flex
+				padding="large"
+				alignItems="center"
+				justifyContent="center"
+				style={{ minHeight: '300px' }}
+			>
 				<Story />
-			</div>
+			</Flex>
 		),
 	],
 }
@@ -68,17 +75,7 @@ export const Default: Story = {
 	render: () => (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button
-					style={{
-						padding: '8px 16px',
-						cursor: 'pointer',
-						border: '1px solid #ccc',
-						borderRadius: '4px',
-						background: '#f9f9f9',
-					}}
-				>
-					Open Menu
-				</button>
+				<Button variant="secondary">Open Menu</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -97,17 +94,7 @@ export const WithShortcuts: Story = {
 	render: () => (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button
-					style={{
-						padding: '8px 16px',
-						cursor: 'pointer',
-						border: '1px solid #ccc',
-						borderRadius: '4px',
-						background: '#f9f9f9',
-					}}
-				>
-					Edit
-				</button>
+				<Button variant="secondary">Edit</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuItem>
@@ -148,17 +135,7 @@ export const WithCheckboxItems: Story = {
 		return (
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<button
-						style={{
-							padding: '8px 16px',
-							cursor: 'pointer',
-							border: '1px solid #ccc',
-							borderRadius: '4px',
-							background: '#f9f9f9',
-						}}
-					>
-						View Options
-					</button>
+					<Button variant="secondary">View Options</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuLabel>Appearance</DropdownMenuLabel>
@@ -202,17 +179,7 @@ export const WithRadioItems: Story = {
 		return (
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<button
-						style={{
-							padding: '8px 16px',
-							cursor: 'pointer',
-							border: '1px solid #ccc',
-							borderRadius: '4px',
-							background: '#f9f9f9',
-						}}
-					>
-						Select Color
-					</button>
+					<Button variant="secondary">Select Color</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
 					<DropdownMenuLabel>Theme Color</DropdownMenuLabel>
@@ -242,17 +209,7 @@ export const WithSubMenu: Story = {
 	render: () => (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button
-					style={{
-						padding: '8px 16px',
-						cursor: 'pointer',
-						border: '1px solid #ccc',
-						borderRadius: '4px',
-						background: '#f9f9f9',
-					}}
-				>
-					Options
-				</button>
+				<Button variant="secondary">Options</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuItem>New File</DropdownMenuItem>
@@ -286,17 +243,7 @@ export const WithDisabledItems: Story = {
 	render: () => (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button
-					style={{
-						padding: '8px 16px',
-						cursor: 'pointer',
-						border: '1px solid #ccc',
-						borderRadius: '4px',
-						background: '#f9f9f9',
-					}}
-				>
-					Actions
-				</button>
+				<Button variant="secondary">Actions</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuItem>Edit</DropdownMenuItem>
@@ -321,17 +268,7 @@ export const WithGroups: Story = {
 	render: () => (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button
-					style={{
-						padding: '8px 16px',
-						cursor: 'pointer',
-						border: '1px solid #ccc',
-						borderRadius: '4px',
-						background: '#f9f9f9',
-					}}
-				>
-					Settings
-				</button>
+				<Button variant="secondary">Settings</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuLabel>Account</DropdownMenuLabel>
@@ -373,17 +310,7 @@ export const WithInsetItems: Story = {
 	render: () => (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button
-					style={{
-						padding: '8px 16px',
-						cursor: 'pointer',
-						border: '1px solid #ccc',
-						borderRadius: '4px',
-						background: '#f9f9f9',
-					}}
-				>
-					Menu
-				</button>
+				<Button variant="secondary">Menu</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
 				<DropdownMenuLabel inset>Edit</DropdownMenuLabel>
@@ -408,28 +335,10 @@ export const WithInsetItems: Story = {
 
 export const Positioning: Story = {
 	render: () => (
-		<div
-			style={{
-				display: 'grid',
-				gridTemplateColumns: 'repeat(3, 1fr)',
-				gap: '32px',
-				width: '100%',
-				maxWidth: '600px',
-			}}
-		>
+		<Flex direction="row" gap="large" wrap>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<button
-						style={{
-							padding: '8px 16px',
-							cursor: 'pointer',
-							border: '1px solid #ccc',
-							borderRadius: '4px',
-							background: '#f9f9f9',
-						}}
-					>
-						Top
-					</button>
+					<Button variant="secondary">Top</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent side="top">
 					<DropdownMenuItem>Item 1</DropdownMenuItem>
@@ -439,17 +348,7 @@ export const Positioning: Story = {
 
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<button
-						style={{
-							padding: '8px 16px',
-							cursor: 'pointer',
-							border: '1px solid #ccc',
-							borderRadius: '4px',
-							background: '#f9f9f9',
-						}}
-					>
-						Right
-					</button>
+					<Button variant="secondary">Right</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent side="right">
 					<DropdownMenuItem>Item 1</DropdownMenuItem>
@@ -459,24 +358,14 @@ export const Positioning: Story = {
 
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<button
-						style={{
-							padding: '8px 16px',
-							cursor: 'pointer',
-							border: '1px solid #ccc',
-							borderRadius: '4px',
-							background: '#f9f9f9',
-						}}
-					>
-						Left
-					</button>
+					<Button variant="secondary">Left</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent side="left">
 					<DropdownMenuItem>Item 1</DropdownMenuItem>
 					<DropdownMenuItem>Item 2</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>
-		</div>
+		</Flex>
 	),
 	parameters: {
 		docs: {
