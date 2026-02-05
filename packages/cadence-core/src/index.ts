@@ -1,4 +1,5 @@
 // Global export of components
+export { Avatar, AvatarGroup } from './components/avatar';
 export { Badge } from './components/badge';
 export { Banner, BannerActions, BannerContent } from './components/banner';
 export { Button, ButtonWrapper } from './components/button';
@@ -57,6 +58,7 @@ export {
 // Utilities are now implemented directly in component CSS modules
 
 // Export types
+export type { AvatarProps, AvatarGroupProps } from './components/avatar';
 export type { BadgeProps } from './components/badge';
 export type { BannerProps } from './components/banner';
 export type { ButtonProps, ButtonWrapperProps } from './components/button';

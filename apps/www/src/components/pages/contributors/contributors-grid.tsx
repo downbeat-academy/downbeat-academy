@@ -2,10 +2,8 @@ import Img from 'next/image'
 import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 
-import { Text, Grid, Card, CardContent } from 'cadence-core'
+import { Text, Grid, Card, CardContent, Avatar, Badge, Flex } from 'cadence-core'
 import { Link } from '@components/link'
-import { Avatar } from '@components/avatar'
-import { Badge, Flex } from 'cadence-core'
 
 interface Contributor {
 	_id: string
