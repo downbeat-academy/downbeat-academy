@@ -10,6 +10,10 @@ import {
   DialogTrigger,
   DialogClose,
 } from '../index'
+import { Button, ButtonWrapper } from '../../button'
+import { Text } from '../../text'
+import { Flex } from '../../flex'
+import { Form, Field, Label, Input } from '../../form'
 
 const meta: Meta<typeof Dialog> = {
   title: 'Cadence / Components / Dialog',
@@ -55,15 +59,7 @@ export const Default: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <button style={{
-          padding: '8px 16px',
-          cursor: 'pointer',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          background: '#f9f9f9',
-        }}>
-          Open Dialog
-        </button>
+        <Button variant="secondary">Open Dialog</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -74,27 +70,12 @@ export const Default: Story = {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <button style={{
-              padding: '8px 16px',
-              cursor: 'pointer',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              background: '#f9f9f9',
-            }}>
-              Cancel
-            </button>
-          </DialogClose>
-          <button style={{
-            padding: '8px 16px',
-            cursor: 'pointer',
-            border: 'none',
-            borderRadius: '4px',
-            background: '#1a1a2e',
-            color: 'white',
-          }}>
-            Confirm
-          </button>
+          <ButtonWrapper>
+            <DialogClose asChild>
+              <Button variant="secondary">Cancel</Button>
+            </DialogClose>
+            <Button variant="primary">Confirm</Button>
+          </ButtonWrapper>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -105,15 +86,7 @@ export const WithForm: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <button style={{
-          padding: '8px 16px',
-          cursor: 'pointer',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          background: '#f9f9f9',
-        }}>
-          Edit Profile
-        </button>
+        <Button variant="secondary">Edit Profile</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -122,58 +95,33 @@ export const WithForm: Story = {
             Update your profile information below.
           </DialogDescription>
         </DialogHeader>
-        <form style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <label htmlFor="name" style={{ fontSize: '14px', fontWeight: 500 }}>Name</label>
-            <input
-              id="name"
+        <Form>
+          <Field>
+            <Label htmlFor="name">Name</Label>
+            <Input
               type="text"
+              id="name"
+              name="name"
               placeholder="Enter your name"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                fontSize: '14px',
-              }}
             />
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <label htmlFor="email" style={{ fontSize: '14px', fontWeight: 500 }}>Email</label>
-            <input
-              id="email"
+          </Field>
+          <Field>
+            <Label htmlFor="email">Email</Label>
+            <Input
               type="email"
+              id="email"
+              name="email"
               placeholder="Enter your email"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                fontSize: '14px',
-              }}
             />
-          </div>
-        </form>
+          </Field>
+        </Form>
         <DialogFooter>
-          <DialogClose asChild>
-            <button style={{
-              padding: '8px 16px',
-              cursor: 'pointer',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              background: '#f9f9f9',
-            }}>
-              Cancel
-            </button>
-          </DialogClose>
-          <button style={{
-            padding: '8px 16px',
-            cursor: 'pointer',
-            border: 'none',
-            borderRadius: '4px',
-            background: '#1a1a2e',
-            color: 'white',
-          }}>
-            Save Changes
-          </button>
+          <ButtonWrapper>
+            <DialogClose asChild>
+              <Button variant="secondary">Cancel</Button>
+            </DialogClose>
+            <Button variant="primary">Save Changes</Button>
+          </ButtonWrapper>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -191,16 +139,7 @@ export const ConfirmationDialog: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <button style={{
-          padding: '8px 16px',
-          cursor: 'pointer',
-          border: 'none',
-          borderRadius: '4px',
-          background: '#dc3545',
-          color: 'white',
-        }}>
-          Delete Account
-        </button>
+        <Button variant="destructive">Delete Account</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -211,27 +150,12 @@ export const ConfirmationDialog: Story = {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <button style={{
-              padding: '8px 16px',
-              cursor: 'pointer',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              background: '#f9f9f9',
-            }}>
-              Cancel
-            </button>
-          </DialogClose>
-          <button style={{
-            padding: '8px 16px',
-            cursor: 'pointer',
-            border: 'none',
-            borderRadius: '4px',
-            background: '#dc3545',
-            color: 'white',
-          }}>
-            Delete Account
-          </button>
+          <ButtonWrapper>
+            <DialogClose asChild>
+              <Button variant="secondary">Cancel</Button>
+            </DialogClose>
+            <Button variant="destructive">Delete Account</Button>
+          </ButtonWrapper>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -249,36 +173,19 @@ export const TitleOnly: Story = {
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <button style={{
-          padding: '8px 16px',
-          cursor: 'pointer',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          background: '#f9f9f9',
-        }}>
-          Open Simple Dialog
-        </button>
+        <Button variant="secondary">Open Simple Dialog</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Notification</DialogTitle>
         </DialogHeader>
-        <p style={{ margin: 0, fontSize: '14px', lineHeight: 1.5 }}>
+        <Text type="productive-body" size="body-base">
           Your changes have been saved successfully. You can continue editing
           or close this dialog.
-        </p>
+        </Text>
         <DialogFooter>
           <DialogClose asChild>
-            <button style={{
-              padding: '8px 16px',
-              cursor: 'pointer',
-              border: 'none',
-              borderRadius: '4px',
-              background: '#1a1a2e',
-              color: 'white',
-            }}>
-              OK
-            </button>
+            <Button variant="primary">OK</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
@@ -298,21 +205,13 @@ export const Controlled: Story = {
     const [open, setOpen] = React.useState(false)
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
-        <p style={{ fontSize: '14px', color: '#666' }}>
+      <Flex direction="column" gap="small" alignItems="center">
+        <Text type="productive-body" size="body-small" color="faint">
           Dialog is {open ? 'open' : 'closed'}
-        </p>
+        </Text>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <button style={{
-              padding: '8px 16px',
-              cursor: 'pointer',
-              border: '1px solid #ccc',
-              borderRadius: '4px',
-              background: '#f9f9f9',
-            }}>
-              Open Controlled Dialog
-            </button>
+            <Button variant="secondary">Open Controlled Dialog</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -323,23 +222,13 @@ export const Controlled: Story = {
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
-              <button
-                onClick={() => setOpen(false)}
-                style={{
-                  padding: '8px 16px',
-                  cursor: 'pointer',
-                  border: 'none',
-                  borderRadius: '4px',
-                  background: '#1a1a2e',
-                  color: 'white',
-                }}
-              >
+              <Button variant="primary" onClick={() => setOpen(false)}>
                 Close Programmatically
-              </button>
+              </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
-      </div>
+      </Flex>
     )
   },
   parameters: {
