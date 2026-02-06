@@ -1,14 +1,14 @@
 'use client'
 
-import { Flex } from 'cadence-core'
-import { Text } from 'cadence-core'
 import {
+	Flex,
+	Text,
 	Dialog,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@components/dialog'
+} from 'cadence-core'
 import { Button, ButtonWrapper } from '@components/ui/button'
 
 import { UpdateProfileForm } from './update-profile-form'
