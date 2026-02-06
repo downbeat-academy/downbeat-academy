@@ -1,0 +1,48 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import Example from "./example.tsx";
+import * as Avatar from "./avatar.stories.tsx";
+
+<Meta of={Avatar} title="Avatar" />
+
+# Avatar
+
+Use an Avatar to represent a user or contributor with a profile image or a generated placeholder.
+
+## Example
+
+<Canvas />
+
+## Usage
+
+```ts
+import { Avatar, AvatarGroup } from "cadence-core";
+
+const Example = () => {
+  return (
+    <>
+      <Avatar name="John Doe" size="medium" />
+
+      <AvatarGroup spacing="overlap-small">
+        <Avatar name="Alice" size="medium" />
+        <Avatar name="Bob" size="medium" />
+      </AvatarGroup>
+    </>
+  );
+};
+
+export default Example;
+```
+
+## Avatar Arguments
+
+- **name** - The name used for the alt text and to generate the placeholder avatar.
+- **size** - The size of the Avatar. Can be one of `small`, `medium`, `large`.
+- **imageUrl** - An optional URL for the avatar image.
+- **imageObject** - An optional React node to render as the avatar image (e.g. a Next.js Image component).
+- **className** - An optional class name to apply to the Avatar.
+
+## AvatarGroup Arguments
+
+- **spacing** - The spacing between avatars. Can be one of `small`, `large`, `overlap-small`, `overlap-large`.
+- **direction** - The layout direction. Can be one of `horizontal`, `vertical`.
+- **className** - An optional class name to apply to the AvatarGroup.

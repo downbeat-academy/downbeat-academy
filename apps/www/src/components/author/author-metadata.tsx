@@ -1,8 +1,6 @@
 import classnames from 'classnames'
-import { Text } from 'cadence-core'
-import { Avatar, AvatarGroup } from '@components/avatar'
+import { Text, Avatar, AvatarGroup, Flex } from 'cadence-core'
 import { Link } from '@components/link'
-import { Flex } from 'cadence-core'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/link-resolver'
 
