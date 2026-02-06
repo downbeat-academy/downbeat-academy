@@ -48,6 +48,18 @@ export {
   createDisplayColumn,
 } from './components/data-table';
 export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from './components/dialog';
+export {
   Tooltip,
   TooltipProvider,
   TooltipArrow,
@@ -107,6 +119,16 @@ export type {
   SortingState,
   PaginationState,
 } from './components/data-table';
+export type {
+  DialogContentProps,
+  DialogOverlayProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
+  DialogTriggerProps,
+  DialogCloseProps,
+  DialogHeaderProps,
+  DialogFooterProps,
+} from './components/dialog';
 export type {
   TooltipContentProps,
   TooltipTriggerProps,

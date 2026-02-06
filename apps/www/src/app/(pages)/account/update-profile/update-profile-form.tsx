@@ -15,9 +15,9 @@ import {
 	Label,
 	Input,
 	ValidationMessage,
+	DialogClose,
 } from 'cadence-core'
 import { useToast } from '@components/toast'
-import { DialogClose } from '@components/dialog'
 
 interface UpdateProfileFormProps {
 	isReadOnly: boolean
