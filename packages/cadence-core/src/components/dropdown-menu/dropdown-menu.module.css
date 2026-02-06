@@ -95,6 +95,11 @@
   background: var(--cds-color-palette-blackberry-200);
 }
 
+.item:focus-visible:not(:hover) {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: calc(-1 * var(--cds-focus-ring-width));
+}
+
 .item[data-highlighted] {
   background: var(--cds-color-palette-blackberry-100);
 }
@@ -131,6 +136,11 @@
   background: var(--cds-color-palette-blackberry-200);
 }
 
+.checkboxItem:focus-visible:not(:hover) {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: calc(-1 * var(--cds-focus-ring-width));
+}
+
 .checkboxItem[data-highlighted] {
   background: var(--cds-color-palette-blackberry-100);
 }
@@ -161,6 +171,11 @@
 
 .radioItem:active {
   background: var(--cds-color-palette-blackberry-200);
+}
+
+.radioItem:focus-visible:not(:hover) {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: calc(-1 * var(--cds-focus-ring-width));
 }
 
 .radioItem[data-highlighted] {
@@ -223,6 +238,11 @@
 
 .subTrigger:active {
   background: var(--cds-color-palette-blackberry-200);
+}
+
+.subTrigger:focus-visible:not(:hover) {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: calc(-1 * var(--cds-focus-ring-width));
 }
 
 .subTrigger[data-highlighted] {
