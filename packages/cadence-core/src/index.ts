@@ -66,6 +66,23 @@ export {
   TooltipContent,
   TooltipTrigger,
 } from './components/tooltip';
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuRadioGroup,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuShortcut,
+} from './components/dropdown-menu';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -133,3 +150,14 @@ export type {
   TooltipContentProps,
   TooltipTriggerProps,
 } from './components/tooltip';
+export type {
+  DropdownMenuContentProps,
+  DropdownMenuItemProps,
+  DropdownMenuCheckboxItemProps,
+  DropdownMenuRadioItemProps,
+  DropdownMenuLabelProps,
+  DropdownMenuSeparatorProps,
+  DropdownMenuSubTriggerProps,
+  DropdownMenuSubContentProps,
+  DropdownMenuShortcutProps,
+} from './components/dropdown-menu';

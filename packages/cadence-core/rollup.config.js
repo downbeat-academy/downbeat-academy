@@ -90,6 +90,7 @@ export default {
     '@radix-ui/react-radio-group',
     '@radix-ui/react-checkbox',
     '@radix-ui/react-hover-card',
-    '@radix-ui/react-tooltip'
+    '@radix-ui/react-tooltip',
+    '@radix-ui/react-dropdown-menu'
   ],
 };
