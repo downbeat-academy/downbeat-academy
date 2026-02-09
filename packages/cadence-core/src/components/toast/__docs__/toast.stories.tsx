@@ -3,13 +3,34 @@ import type { Meta, StoryObj } from '@storybook/react'
 import {
   Toast,
   Toaster,
-  ToastProvider,
   ToastAction,
   useToast,
 } from '../index'
 import { Button } from '../../button'
 import { Flex } from '../../flex'
 import { Text } from '../../text'
+
+/**
+ * Each story gets its own isolated wrapper that:
+ * - Renders a single `<Toaster />` for this story
+ * - Dismisses all toasts on mount (cleans up from previous story navigation)
+ * - Dismisses all toasts on unmount (prevents persistence across pages)
+ */
+function ToastStoryWrapper({ children }: { children: React.ReactNode }) {
+  const { dismiss } = useToast()
+
+  React.useEffect(() => {
+    dismiss()
+    return () => dismiss()
+  }, [])
+
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  )
+}
 
 const meta: Meta<typeof Toast> = {
   title: 'Cadence / Components / Toast',
@@ -67,14 +88,6 @@ toast({ title: "Success!", variant: "success" })
     },
   },
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <>
-        <Story />
-        <Toaster />
-      </>
-    ),
-  ],
 }
 
 export default meta
@@ -83,17 +96,19 @@ type Story = StoryObj<typeof Toast>
 function DefaultToastTrigger() {
   const { toast } = useToast()
   return (
-    <Button
-      variant="secondary"
-      onClick={() =>
-        toast({
-          title: 'Notification',
-          description: 'This is a default toast notification.',
-        })
-      }
-    >
-      Show Default Toast
-    </Button>
+    <ToastStoryWrapper>
+      <Button
+        variant="secondary"
+        onClick={() =>
+          toast({
+            title: 'Notification',
+            description: 'This is a default toast notification.',
+          })
+        }
+      >
+        Show Default Toast
+      </Button>
+    </ToastStoryWrapper>
   )
 }
 
@@ -104,18 +119,20 @@ export const Default: Story = {
 function SuccessToastTrigger() {
   const { toast } = useToast()
   return (
-    <Button
-      variant="secondary"
-      onClick={() =>
-        toast({
-          title: 'Success!',
-          description: 'Your changes have been saved.',
-          variant: 'success',
-        })
-      }
-    >
-      Show Success Toast
-    </Button>
+    <ToastStoryWrapper>
+      <Button
+        variant="secondary"
+        onClick={() =>
+          toast({
+            title: 'Success!',
+            description: 'Your changes have been saved.',
+            variant: 'success',
+          })
+        }
+      >
+        Show Success Toast
+      </Button>
+    </ToastStoryWrapper>
   )
 }
 
@@ -133,18 +150,20 @@ export const Success: Story = {
 function ErrorToastTrigger() {
   const { toast } = useToast()
   return (
-    <Button
-      variant="secondary"
-      onClick={() =>
-        toast({
-          title: 'Error',
-          description: 'Something went wrong. Please try again.',
-          variant: 'error',
-        })
-      }
-    >
-      Show Error Toast
-    </Button>
+    <ToastStoryWrapper>
+      <Button
+        variant="secondary"
+        onClick={() =>
+          toast({
+            title: 'Error',
+            description: 'Something went wrong. Please try again.',
+            variant: 'error',
+          })
+        }
+      >
+        Show Error Toast
+      </Button>
+    </ToastStoryWrapper>
   )
 }
 
@@ -162,18 +181,20 @@ export const Error: Story = {
 function WarningToastTrigger() {
   const { toast } = useToast()
   return (
-    <Button
-      variant="secondary"
-      onClick={() =>
-        toast({
-          title: 'Warning',
-          description: 'Your session is about to expire.',
-          variant: 'warning',
-        })
-      }
-    >
-      Show Warning Toast
-    </Button>
+    <ToastStoryWrapper>
+      <Button
+        variant="secondary"
+        onClick={() =>
+          toast({
+            title: 'Warning',
+            description: 'Your session is about to expire.',
+            variant: 'warning',
+          })
+        }
+      >
+        Show Warning Toast
+      </Button>
+    </ToastStoryWrapper>
   )
 }
 
@@ -191,23 +212,31 @@ export const Warning: Story = {
 function WithActionTrigger() {
   const { toast } = useToast()
   return (
-    <Button
-      variant="secondary"
-      onClick={() =>
-        toast({
-          title: 'Account not found',
-          description: 'Would you like to create an account?',
-          variant: 'error',
-          action: (
-            <ToastAction altText="Sign up" onClick={() => alert('Sign up clicked')}>
-              Sign up
-            </ToastAction>
-          ),
-        })
-      }
-    >
-      Show Toast with Action
-    </Button>
+    <ToastStoryWrapper>
+      <Button
+        variant="secondary"
+        onClick={() =>
+          toast({
+            title: 'Account not found',
+            description: 'Would you like to create an account?',
+            variant: 'error',
+            action: (
+              <ToastAction altText="Sign up" asChild>
+                <Button
+                  variant="secondary"
+                  size="small"
+                  onClick={() => alert('Sign up clicked')}
+                >
+                  Sign up
+                </Button>
+              </ToastAction>
+            ),
+          })
+        }
+      >
+        Show Toast with Action
+      </Button>
+    </ToastStoryWrapper>
   )
 }
 
@@ -216,7 +245,7 @@ export const WithAction: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Toasts can include an action button using the `ToastAction` component. Provide an `altText` prop for accessibility.',
+        story: 'Toasts can include an action button using the `ToastAction` component. Use `asChild` to compose with the cadence-core `Button`. Provide an `altText` prop for accessibility.',
       },
     },
   },
@@ -225,34 +254,36 @@ export const WithAction: Story = {
 function DirectionTrigger() {
   const { toast } = useToast()
   return (
-    <Flex gap="small">
-      <Button
-        variant="secondary"
-        onClick={() =>
-          toast({
-            title: 'From Bottom',
-            description: 'This toast slides up from the bottom.',
-            variant: 'success',
-            direction: 'from-bottom',
-          })
-        }
-      >
-        Slide from Bottom
-      </Button>
-      <Button
-        variant="secondary"
-        onClick={() =>
-          toast({
-            title: 'From Right',
-            description: 'This toast slides in from the right.',
-            variant: 'success',
-            direction: 'from-right',
-          })
-        }
-      >
-        Slide from Right
-      </Button>
-    </Flex>
+    <ToastStoryWrapper>
+      <Flex gap="small">
+        <Button
+          variant="secondary"
+          onClick={() =>
+            toast({
+              title: 'From Bottom',
+              description: 'This toast slides up from the bottom.',
+              variant: 'success',
+              direction: 'from-bottom',
+            })
+          }
+        >
+          Slide from Bottom
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={() =>
+            toast({
+              title: 'From Right',
+              description: 'This toast slides in from the right.',
+              variant: 'success',
+              direction: 'from-right',
+            })
+          }
+        >
+          Slide from Right
+        </Button>
+      </Flex>
+    </ToastStoryWrapper>
   )
 }
 
@@ -270,57 +301,59 @@ export const Directions: Story = {
 function AllVariantsTrigger() {
   const { toast } = useToast()
   return (
-    <Flex gap="small" direction="column">
-      <Text type="productive-body" size="body-small" color="faint">
-        Click the buttons below to trigger toasts of each variant.
-      </Text>
-      <Flex gap="small">
-        <Button
-          variant="secondary"
-          onClick={() =>
-            toast({ title: 'Default', description: 'A default notification.' })
-          }
-        >
-          Default
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() =>
-            toast({
-              title: 'Success',
-              description: 'Operation completed.',
-              variant: 'success',
-            })
-          }
-        >
-          Success
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() =>
-            toast({
-              title: 'Warning',
-              description: 'Please review carefully.',
-              variant: 'warning',
-            })
-          }
-        >
-          Warning
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={() =>
-            toast({
-              title: 'Error',
-              description: 'Something failed.',
-              variant: 'error',
-            })
-          }
-        >
-          Error
-        </Button>
+    <ToastStoryWrapper>
+      <Flex gap="small" direction="column">
+        <Text type="productive-body" size="body-small" color="faint">
+          Click the buttons below to trigger toasts of each variant.
+        </Text>
+        <Flex gap="small">
+          <Button
+            variant="secondary"
+            onClick={() =>
+              toast({ title: 'Default', description: 'A default notification.' })
+            }
+          >
+            Default
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() =>
+              toast({
+                title: 'Success',
+                description: 'Operation completed.',
+                variant: 'success',
+              })
+            }
+          >
+            Success
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() =>
+              toast({
+                title: 'Warning',
+                description: 'Please review carefully.',
+                variant: 'warning',
+              })
+            }
+          >
+            Warning
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={() =>
+              toast({
+                title: 'Error',
+                description: 'Something failed.',
+                variant: 'error',
+              })
+            }
+          >
+            Error
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </ToastStoryWrapper>
   )
 }
 
