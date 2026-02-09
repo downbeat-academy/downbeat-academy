@@ -82,8 +82,8 @@ export const Default: Story = {
       <HoverCardTrigger hasIcon>Hover for more info</HoverCardTrigger>
       <HoverCardContent>
         <HoverCardTitle>
-          <Text tag="span" type="productive-body" size="body-base" collapse>
-            <strong>Information</strong>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            Information
           </Text>
         </HoverCardTitle>
         <HoverCardMain>
@@ -134,8 +134,8 @@ export const WithFooter: Story = {
       <HoverCardTrigger hasIcon>Complete example</HoverCardTrigger>
       <HoverCardContent>
         <HoverCardTitle>
-          <Text tag="span" type="productive-body" size="body-base" collapse>
-            <strong>Complete Layout</strong>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            Complete Layout
           </Text>
         </HoverCardTitle>
         <HoverCardMain>
@@ -165,8 +165,8 @@ export const WithArrow: Story = {
       <HoverCardContent>
         <HoverCardArrow />
         <HoverCardTitle>
-          <Text tag="span" type="productive-body" size="body-base" collapse>
-            <strong>Arrow Pointer</strong>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            Arrow Pointer
           </Text>
         </HoverCardTitle>
         <HoverCardMain>
@@ -186,8 +186,8 @@ export const SemanticHeadings: Story = {
         <HoverCardTrigger hasIcon>As H2</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardTitle as="h2">
-            <Text tag="span" type="productive-body" size="body-base" collapse>
-              <strong>This is an H2 heading</strong>
+            <Text tag="span" type="productive-headline" size="body-base" collapse>
+              This is an H2 heading
             </Text>
           </HoverCardTitle>
           <HoverCardMain>
@@ -202,8 +202,8 @@ export const SemanticHeadings: Story = {
         <HoverCardTrigger hasIcon>As H3</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardTitle as="h3">
-            <Text tag="span" type="productive-body" size="body-base" collapse>
-              <strong>This is an H3 heading</strong>
+            <Text tag="span" type="productive-headline" size="body-base" collapse>
+              This is an H3 heading
             </Text>
           </HoverCardTitle>
           <HoverCardMain>
@@ -218,8 +218,8 @@ export const SemanticHeadings: Story = {
         <HoverCardTrigger hasIcon>As Div</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardTitle as="div">
-            <Text tag="span" type="productive-body" size="body-base" collapse>
-              <strong>This is a div element</strong>
+            <Text tag="span" type="productive-headline" size="body-base" collapse>
+              This is a div element
             </Text>
           </HoverCardTitle>
           <HoverCardMain>
@@ -322,8 +322,8 @@ export const ComplexContent: Story = {
       <HoverCardTrigger hasIcon>Rich content example</HoverCardTrigger>
       <HoverCardContent style={{ width: '320px' }}>
         <HoverCardTitle as="h3">
-          <Text tag="span" type="productive-body" size="body-base" collapse>
-            <strong>User Profile</strong>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            User Profile
           </Text>
         </HoverCardTitle>
         <HoverCardMain>
@@ -331,8 +331,8 @@ export const ComplexContent: Story = {
             <Flex gap="small" alignItems="center">
               <Avatar name="Jane Doe" size="medium" />
               <Flex direction="column" gap="2x-small">
-                <Text tag="span" type="productive-body" size="body-base" collapse>
-                  <strong>Jane Doe</strong>
+                <Text tag="span" type="productive-headline" size="body-base" collapse>
+                  Jane Doe
                 </Text>
                 <Text tag="span" type="productive-body" size="body-small" color="faint" collapse>
                   Senior Developer
@@ -384,8 +384,8 @@ export const AccessibilityDemo: Story = {
           </HoverCardTrigger>
           <HoverCardContent>
             <HoverCardTitle as="h3">
-              <Text tag="span" type="productive-body" size="body-base" collapse>
-                <strong>Feature A Details</strong>
+              <Text tag="span" type="productive-headline" size="body-base" collapse>
+                Feature A Details
               </Text>
             </HoverCardTitle>
             <HoverCardMain>
@@ -402,8 +402,8 @@ export const AccessibilityDemo: Story = {
           </HoverCardTrigger>
           <HoverCardContent>
             <HoverCardTitle as="h3">
-              <Text tag="span" type="productive-body" size="body-base" collapse>
-                <strong>Feature B Details</strong>
+              <Text tag="span" type="productive-headline" size="body-base" collapse>
+                Feature B Details
               </Text>
             </HoverCardTitle>
             <HoverCardMain>
