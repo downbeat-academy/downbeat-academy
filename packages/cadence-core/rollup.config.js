@@ -92,6 +92,7 @@ export default {
     '@radix-ui/react-hover-card',
     '@radix-ui/react-tooltip',
     '@radix-ui/react-dropdown-menu',
-    '@radix-ui/react-separator'
+    '@radix-ui/react-separator',
+    '@radix-ui/react-toast'
   ],
 };

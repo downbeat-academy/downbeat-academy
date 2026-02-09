@@ -1,7 +1,6 @@
 'use client'
 
-import { Toaster } from '@components/toast'
-import { TooltipProvider } from 'cadence-core'
+import { Toaster, TooltipProvider } from 'cadence-core'
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
 	return (

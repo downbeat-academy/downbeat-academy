@@ -8,9 +8,9 @@ import {
 	Input,
 	Label,
 	ValidationMessage,
+	useToast,
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
-import { useToast } from '@components/toast'
 import { deleteContact } from '@actions/email/delete-contact'
 
 export function UnsubscribeForm() {

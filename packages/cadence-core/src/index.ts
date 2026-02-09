@@ -84,6 +84,18 @@ export {
   DropdownMenuSubContent,
   DropdownMenuShortcut,
 } from './components/dropdown-menu';
+export {
+  Toast,
+  ToastProvider,
+  ToastViewport,
+  ToastAction,
+  ToastClose,
+  ToastTitle,
+  ToastDescription,
+  Toaster,
+  useToast,
+  toast,
+} from './components/toast';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -163,3 +175,14 @@ export type {
   DropdownMenuSubContentProps,
   DropdownMenuShortcutProps,
 } from './components/dropdown-menu';
+export type {
+  ToastProps,
+  ToastVariant,
+  ToastDirection,
+  ToastViewportProps,
+  ToastTitleProps,
+  ToastDescriptionProps,
+  ToastCloseProps,
+  ToastActionProps,
+  ToastActionElement,
+} from './components/toast';
