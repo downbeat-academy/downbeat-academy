@@ -66,6 +66,7 @@ export {
   TooltipContent,
   TooltipTrigger,
 } from './components/tooltip';
+export { Separator } from './components/separator';
 export {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -162,6 +163,7 @@ export type {
   TooltipContentProps,
   TooltipTriggerProps,
 } from './components/tooltip';
+export type { SeparatorProps, SeparatorColor } from './components/separator';
 export type {
   DropdownMenuContentProps,
   DropdownMenuItemProps,

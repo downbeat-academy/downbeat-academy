@@ -1,5 +1,11 @@
 # cadence-core
 
+## 2.4.0
+
+### Minor Changes
+
+- Added Toast component - A notification system built on Radix UI's Toast primitive with variant styling (default, success, error, warning), slide direction animations (from-bottom, from-right), and a global state management pattern via the `useToast` hook and `toast()` function. Includes `Toaster`, `Toast`, `ToastAction`, `ToastClose`, `ToastTitle`, `ToastDescription`, `ToastViewport`, and `ToastProvider` components. Migrated from the www app to the shared library.
+
 ## 2.2.0
 
 ### Minor Changes
