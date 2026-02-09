@@ -1,17 +1,16 @@
-'use client'
-
+import React from 'react'
 import classnames from 'classnames'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
 import s from './tabs.module.css'
 
-import type { TabListProps } from './types'
+import type { TabsListProps } from './types'
 
-const TabList = ({
+const TabsList = ({
 	children,
 	loop = true,
 	isContained = false,
 	className,
-}: TabListProps) => {
+}: TabsListProps) => {
 	const classes = classnames([
 		s[`tabs--list`],
 		isContained ? s['tabs--list--contained'] : null,
@@ -25,9 +24,6 @@ const TabList = ({
 	)
 }
 
-TabList.displayName = 'TabList'
+TabsList.displayName = 'TabsList'
 
-const List = TabList
-
-export { TabList, List }
-export type { TabListProps }
+export { TabsList }

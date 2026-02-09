@@ -1,8 +1,6 @@
-'use client'
-
+import React from 'react'
 import classnames from 'classnames'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
-import s from './tabs.module.css'
 
 import type { TabsProps } from './types'
 
@@ -35,8 +33,4 @@ const Tabs = ({
 
 Tabs.displayName = 'Tabs'
 
-const Root = Tabs
-
-export { Tabs, Root }
-
-export type { TabsProps }
+export { Tabs }

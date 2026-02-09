@@ -1,19 +1,18 @@
-'use client'
-
+import React from 'react'
 import classnames from 'classnames'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
 import s from './tabs.module.css'
 
-import type { TabTriggerProps } from './types'
+import type { TabsTriggerProps } from './types'
 
-const TabTrigger = ({
+const TabsTrigger = ({
 	children,
 	value,
 	disabled,
 	icon,
 	className,
 	'data-testid': dataTestId,
-}: TabTriggerProps) => {
+}: TabsTriggerProps) => {
 	const classes = classnames([s[`tabs--trigger`], className])
 
 	return (
@@ -29,9 +28,6 @@ const TabTrigger = ({
 	)
 }
 
-TabTrigger.displayName = 'TabTrigger'
+TabsTrigger.displayName = 'TabsTrigger'
 
-const Trigger = TabTrigger
-
-export { TabTrigger, Trigger }
-export type { TabTriggerProps }
+export { TabsTrigger }

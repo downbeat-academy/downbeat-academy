@@ -2,8 +2,7 @@ import { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { headers } from "next/headers"
 import { auth } from "@lib/auth/auth"
-import * as Tabs from '@components/tabs'
-import { Text } from 'cadence-core'
+import { Tabs, TabsList, TabsTrigger, TabsContent, Text } from 'cadence-core'
 import { Link } from '@components/link'
 import s from './sign-in.module.css'
 import { SignInForm } from "./sign-in-form"
@@ -26,24 +25,24 @@ export default async function SignIn() {
   return (
     <section className={s['login--wrapper']}>
       <div className={s['login--wrapper-inner']}>
-        <Tabs.Root defaultValue="Login">
-          <Tabs.List>
-            <Tabs.Trigger value="Login">Sign in</Tabs.Trigger>
-            <Tabs.Trigger value="Sign up" data-testid="create-account-tab">Sign up</Tabs.Trigger>
-          </Tabs.List>
-          <Tabs.Content value="Login" className={s['login--content']}>
+        <Tabs defaultValue="Login">
+          <TabsList>
+            <TabsTrigger value="Login">Sign in</TabsTrigger>
+            <TabsTrigger value="Sign up" data-testid="create-account-tab">Sign up</TabsTrigger>
+          </TabsList>
+          <TabsContent value="Login" className={s['login--content']}>
             <Text type="expressive-headline" size="h4" tag="h1" color="brand">
               Login to your Downbeat Academy account
             </Text>
             <SignInForm />
-          </Tabs.Content>
-          <Tabs.Content value="Sign up" className={s['login--content']}>
+          </TabsContent>
+          <TabsContent value="Sign up" className={s['login--content']}>
             <Text type="expressive-headline" size="h4" tag="h1" color="brand">
               Sign up for a free Downbeat Academy account
             </Text>
             <SignUpForm />
-          </Tabs.Content>
-        </Tabs.Root>
+          </TabsContent>
+        </Tabs>
       </div>
       <Link href="/">Back to home</Link>
     </section>

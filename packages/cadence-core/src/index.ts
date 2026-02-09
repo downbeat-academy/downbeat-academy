@@ -97,6 +97,13 @@ export {
   toast,
 } from './components/toast';
 
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from './components/tabs';
+
 // Utilities are now implemented directly in component CSS modules
 
 // Export types
@@ -186,3 +193,9 @@ export type {
   ToastActionProps,
   ToastActionElement,
 } from './components/toast';
+export type {
+  TabsProps,
+  TabsListProps,
+  TabsTriggerProps,
+  TabsContentProps,
+} from './components/tabs';

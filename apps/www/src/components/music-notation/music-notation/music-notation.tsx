@@ -2,8 +2,7 @@ import classnames from 'classnames'
 import { buildFileUrl, getFile } from '@sanity/asset-utils'
 import { sanityConfig } from '@lib/sanity/sanity.config'
 import { toKebabCase } from '@utils/stringFormat'
-import * as Tabs from '@components/tabs'
-import { Text } from 'cadence-core'
+import { Tabs, TabsList, TabsTrigger, TabsContent, Text } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { OpenSheetMusicDisplay } from './open-sheet-music-display'
@@ -30,9 +29,9 @@ const MusicNotation = ({
 		const label = toKebabCase(file.label || `file-${index}`)
 
 		return (
-			<Tabs.Trigger value={label} key={label}>
+			<TabsTrigger value={label} key={label}>
 				{file.label || `File ${index + 1}`}
-			</Tabs.Trigger>
+			</TabsTrigger>
 		)
 	})
 
@@ -42,7 +41,7 @@ const MusicNotation = ({
 		const label = toKebabCase(file.label || `file-${index}`)
 
 		return (
-			<Tabs.Content
+			<TabsContent
 				value={label}
 				padding="large"
 				background="primary"
@@ -51,7 +50,7 @@ const MusicNotation = ({
 				<OpenSheetMusicDisplay
 					file={buildFileUrl(fileData.asset, sanityConfig)}
 				/>
-			</Tabs.Content>
+			</TabsContent>
 		)
 	})
 
@@ -73,13 +72,13 @@ const MusicNotation = ({
 					}
 				/>
 			)}
-			<Tabs.Root
+			<Tabs
 				defaultValue={toKebabCase(files[0]?.label || 'file-0')}
 				className={s.content}
 			>
-				<Tabs.List>{renderTriggers}</Tabs.List>
+				<TabsList>{renderTriggers}</TabsList>
 				{renderContent}
-			</Tabs.Root>
+			</Tabs>
 		</SectionContainer>
 	)
 }

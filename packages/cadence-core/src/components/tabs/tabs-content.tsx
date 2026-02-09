@@ -1,19 +1,18 @@
-'use client'
-
+import React from 'react'
 import classnames from 'classnames'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
 import s from './tabs.module.css'
 
-import type { TabContentProps } from './types'
+import type { TabsContentProps } from './types'
 
-const TabContent = ({
+const TabsContent = ({
 	children,
 	value,
 	forceMount = false,
 	padding,
 	background,
 	className,
-}: TabContentProps) => {
+}: TabsContentProps) => {
 	const classes = classnames([
 		s[`tabs--content`],
 		s[`tabs--content--padding--${padding}`],
@@ -33,9 +32,6 @@ const TabContent = ({
 	)
 }
 
-TabContent.displayName = 'TabContent'
+TabsContent.displayName = 'TabsContent'
 
-const Content = TabContent
-
-export { TabContent, Content }
-export type { TabContentProps }
+export { TabsContent }
