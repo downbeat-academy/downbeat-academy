@@ -222,21 +222,14 @@ describe('Public Routes Coverage', () => {
 		})
 
 		it('should maintain navigation on 404 pages', () => {
-			// Use a unique non-existent route to avoid any caching issues
-			cy.request({
-				url: '/this-page-does-not-exist-xyz',
-				failOnStatusCode: false,
-				followRedirect: false
-			}).then((response) => {
-				// Verify we get a 404 status (not a redirect loop)
-				expect(response.status).to.be.oneOf([404, 200]) // 200 if custom 404 page renders
+			// Visit a non-existent page directly
+			cy.visit('/navigate-test-not-found-page', { failOnStatusCode: false })
+
+			// Should show 404 content
+			cy.get('body', { timeout: 10000 }).should(($body) => {
+				const text = $body.text()
+				expect(text).to.match(/404|Not Found|Page not found/i)
 			})
-
-			// Visit the 404 page
-			cy.visit('/this-page-does-not-exist-xyz', { failOnStatusCode: false })
-
-			// Wait for page to stabilize
-			cy.wait(500)
 
 			// Should still show main navigation (if 404 page has it)
 			cy.get('body').then(($body) => {
