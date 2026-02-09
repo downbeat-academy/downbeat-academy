@@ -9,6 +9,12 @@ import {
   HoverCardFooter,
   HoverCardArrow,
 } from '../index'
+import { Text } from '../../text'
+import { Flex } from '../../flex'
+import { Badge } from '../../badge'
+import { Avatar } from '../../avatar'
+import { Button } from '../../button'
+import { Grid } from '../../grid'
 
 const meta: Meta<typeof HoverCard> = {
   title: 'Cadence / Components / HoverCard',
@@ -76,12 +82,14 @@ export const Default: Story = {
       <HoverCardTrigger hasIcon>Hover for more info</HoverCardTrigger>
       <HoverCardContent>
         <HoverCardTitle>
-          <h4 style={{ margin: 0 }}>Information</h4>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            Information
+          </Text>
         </HoverCardTitle>
         <HoverCardMain>
-          <p style={{ margin: 0 }}>
+          <Text tag="p" type="productive-body" size="body-base" collapse>
             This is additional information that appears on hover.
-          </p>
+          </Text>
         </HoverCardMain>
       </HoverCardContent>
     </HoverCard>
@@ -94,9 +102,9 @@ export const WithoutIcon: Story = {
       <HoverCardTrigger>Simple text trigger</HoverCardTrigger>
       <HoverCardContent>
         <HoverCardMain>
-          <p style={{ margin: 0 }}>
+          <Text tag="p" type="productive-body" size="body-base" collapse>
             This trigger doesn't have an icon, just underlined text.
-          </p>
+          </Text>
         </HoverCardMain>
       </HoverCardContent>
     </HoverCard>
@@ -111,9 +119,9 @@ export const WithCustomIcon: Story = {
       </HoverCardTrigger>
       <HoverCardContent>
         <HoverCardMain>
-          <p style={{ margin: 0 }}>
+          <Text tag="p" type="productive-body" size="body-base" collapse>
             The icon has a custom aria-label for better accessibility.
-          </p>
+          </Text>
         </HoverCardMain>
       </HoverCardContent>
     </HoverCard>
@@ -126,20 +134,24 @@ export const WithFooter: Story = {
       <HoverCardTrigger hasIcon>Complete example</HoverCardTrigger>
       <HoverCardContent>
         <HoverCardTitle>
-          <h4 style={{ margin: 0 }}>Complete Layout</h4>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            Complete Layout
+          </Text>
         </HoverCardTitle>
         <HoverCardMain>
-          <p style={{ margin: 0, marginBottom: '8px' }}>
-            This hover card demonstrates all the layout components working together.
-          </p>
-          <p style={{ margin: 0 }}>
-            It includes a title, main content area, and footer section.
-          </p>
+          <Flex direction="column" gap="x-small">
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              This hover card demonstrates all the layout components working together.
+            </Text>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              It includes a title, main content area, and footer section.
+            </Text>
+          </Flex>
         </HoverCardMain>
         <HoverCardFooter>
-          <small style={{ margin: 0, color: '#666' }}>
+          <Text tag="span" type="productive-body" size="body-small" color="faint" collapse>
             Learn more in the documentation
-          </small>
+          </Text>
         </HoverCardFooter>
       </HoverCardContent>
     </HoverCard>
@@ -153,12 +165,14 @@ export const WithArrow: Story = {
       <HoverCardContent>
         <HoverCardArrow />
         <HoverCardTitle>
-          <h4 style={{ margin: 0 }}>Arrow Pointer</h4>
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            Arrow Pointer
+          </Text>
         </HoverCardTitle>
         <HoverCardMain>
-          <p style={{ margin: 0 }}>
+          <Text tag="p" type="productive-body" size="body-base" collapse>
             This hover card includes an arrow that points to the trigger element.
-          </p>
+          </Text>
         </HoverCardMain>
       </HoverCardContent>
     </HoverCard>
@@ -167,17 +181,19 @@ export const WithArrow: Story = {
 
 export const SemanticHeadings: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+    <Flex gap="large" wrap>
       <HoverCard>
         <HoverCardTrigger hasIcon>As H2</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardTitle as="h2">
-            This is an H2 heading
+            <Text tag="span" type="productive-headline" size="body-base" collapse>
+              This is an H2 heading
+            </Text>
           </HoverCardTitle>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
               The title is rendered as an H2 element for proper document structure.
-            </p>
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -186,12 +202,14 @@ export const SemanticHeadings: Story = {
         <HoverCardTrigger hasIcon>As H3</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardTitle as="h3">
-            This is an H3 heading
+            <Text tag="span" type="productive-headline" size="body-base" collapse>
+              This is an H3 heading
+            </Text>
           </HoverCardTitle>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
               Choose the appropriate heading level for your document structure.
-            </p>
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -200,16 +218,18 @@ export const SemanticHeadings: Story = {
         <HoverCardTrigger hasIcon>As Div</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardTitle as="div">
-            This is a div element
+            <Text tag="span" type="productive-headline" size="body-base" collapse>
+              This is a div element
+            </Text>
           </HoverCardTitle>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
               Use div when the content is not a semantic heading.
-            </p>
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
-    </div>
+    </Flex>
   ),
   parameters: {
     docs: {
@@ -222,14 +242,14 @@ export const SemanticHeadings: Story = {
 
 export const CustomTiming: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+    <Flex gap="large" wrap>
       <HoverCard openDelay={0} closeDelay={0}>
         <HoverCardTrigger hasIcon>Instant (0ms)</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
               This hover card appears and disappears instantly.
-            </p>
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -238,13 +258,13 @@ export const CustomTiming: Story = {
         <HoverCardTrigger hasIcon>Slow (700ms/300ms)</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
               This hover card has a longer delay before opening and closing.
-            </p>
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
-    </div>
+    </Flex>
   ),
   parameters: {
     docs: {
@@ -257,68 +277,35 @@ export const CustomTiming: Story = {
 
 export const AsChildTrigger: Story = {
   render: () => (
-    <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', alignItems: 'center' }}>
+    <Flex gap="large" wrap alignItems="center">
       <HoverCard>
         <HoverCardTrigger asChild>
-          <button style={{
-            padding: '8px 16px',
-            cursor: 'pointer',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            background: '#f9f9f9'
-          }}>
-            Custom Button Trigger
-          </button>
+          <Button variant="secondary" size="small">
+            Button Trigger
+          </Button>
         </HoverCardTrigger>
         <HoverCardContent>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
               You can use any element as a trigger with the asChild prop.
-            </p>
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
 
       <HoverCard>
         <HoverCardTrigger asChild>
-          <a href="#" style={{
-            color: '#0066cc',
-            textDecoration: 'none',
-            fontWeight: '500'
-          }}>
-            Link Trigger
-          </a>
+          <Badge text="Badge Trigger" type="info" />
         </HoverCardTrigger>
         <HoverCardContent>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>
-              Links can also be used as triggers for additional information.
-            </p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Badge components can also serve as triggers.
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
-
-      <HoverCard>
-        <HoverCardTrigger asChild>
-          <span style={{
-            padding: '4px 8px',
-            background: '#e3f2fd',
-            borderRadius: '12px',
-            fontSize: '14px',
-            cursor: 'help'
-          }}>
-            Badge Trigger
-          </span>
-        </HoverCardTrigger>
-        <HoverCardContent>
-          <HoverCardMain>
-            <p style={{ margin: 0 }}>
-              Even badge-like elements can serve as triggers.
-            </p>
-          </HoverCardMain>
-        </HoverCardContent>
-      </HoverCard>
-    </div>
+    </Flex>
   ),
   parameters: {
     docs: {
@@ -335,47 +322,37 @@ export const ComplexContent: Story = {
       <HoverCardTrigger hasIcon>Rich content example</HoverCardTrigger>
       <HoverCardContent style={{ width: '320px' }}>
         <HoverCardTitle as="h3">
-          User Profile
+          <Text tag="span" type="productive-headline" size="body-base" collapse>
+            User Profile
+          </Text>
         </HoverCardTitle>
         <HoverCardMain>
-          <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
-            <div style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: '18px'
-            }}>
-              JD
-            </div>
-            <div>
-              <div style={{ fontWeight: '600', marginBottom: '4px' }}>
-                Jane Doe
-              </div>
-              <div style={{ fontSize: '14px', color: '#666', marginBottom: '4px' }}>
-                Senior Developer
-              </div>
-              <div style={{ fontSize: '12px', color: '#888' }}>
-                jane.doe@example.com
-              </div>
-            </div>
-          </div>
-          <div style={{ fontSize: '14px', lineHeight: '1.4' }}>
-            Experienced full-stack developer with expertise in React, TypeScript, and Node.js.
-            Passionate about creating accessible and performant web applications.
-          </div>
+          <Flex direction="column" gap="small">
+            <Flex gap="small" alignItems="center">
+              <Avatar name="Jane Doe" size="medium" />
+              <Flex direction="column" gap="2x-small">
+                <Text tag="span" type="productive-headline" size="body-base" collapse>
+                  Jane Doe
+                </Text>
+                <Text tag="span" type="productive-body" size="body-small" color="faint" collapse>
+                  Senior Developer
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex gap="x-small" wrap>
+              <Badge text="React" type="info" size="small" />
+              <Badge text="TypeScript" type="info" size="small" />
+              <Badge text="Node.js" type="info" size="small" />
+            </Flex>
+            <Text tag="p" type="productive-body" size="body-small" collapse>
+              Experienced full-stack developer passionate about creating accessible and performant web applications.
+            </Text>
+          </Flex>
         </HoverCardMain>
         <HoverCardFooter>
-          <div style={{ display: 'flex', gap: '8px', fontSize: '12px', color: '#666' }}>
-            <span>📍 San Francisco, CA</span>
-            <span>•</span>
-            <span>🕒 PST timezone</span>
-          </div>
+          <Text tag="span" type="productive-body" size="body-x-small" color="faint" collapse>
+            San Francisco, CA
+          </Text>
         </HoverCardFooter>
       </HoverCardContent>
     </HoverCard>
@@ -383,7 +360,7 @@ export const ComplexContent: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'HoverCards can contain complex layouts including profiles, images, lists, and other rich content.',
+        story: 'HoverCards can contain complex layouts including profiles, badges, and other rich content using cadence-core components.',
       },
     },
   },
@@ -391,45 +368,53 @@ export const ComplexContent: Story = {
 
 export const AccessibilityDemo: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <div>
-        <h4 style={{ marginBottom: '12px', fontSize: '16px', fontWeight: '600' }}>
+    <Flex direction="column" gap="medium">
+      <Flex direction="column" gap="small">
+        <Text tag="h4" type="productive-headline" size="h5" collapse>
           Keyboard Navigation
-        </h4>
-        <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        </Text>
+        <Text tag="p" type="productive-body" size="body-small" color="faint" collapse>
           Use Tab to focus triggers, then hover or press Enter/Space. Press Escape to close any open hover card.
-        </p>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-          <HoverCard>
-            <HoverCardTrigger hasIcon iconAriaLabel="Information about feature A">
-              Feature A
-            </HoverCardTrigger>
-            <HoverCardContent>
-              <HoverCardTitle as="h3">Feature A Details</HoverCardTitle>
-              <HoverCardMain>
-                <p style={{ margin: 0 }}>
-                  This feature provides core functionality for user management.
-                </p>
-              </HoverCardMain>
-            </HoverCardContent>
-          </HoverCard>
+        </Text>
+      </Flex>
+      <Flex gap="medium" wrap>
+        <HoverCard>
+          <HoverCardTrigger hasIcon iconAriaLabel="Information about feature A">
+            Feature A
+          </HoverCardTrigger>
+          <HoverCardContent>
+            <HoverCardTitle as="h3">
+              <Text tag="span" type="productive-headline" size="body-base" collapse>
+                Feature A Details
+              </Text>
+            </HoverCardTitle>
+            <HoverCardMain>
+              <Text tag="p" type="productive-body" size="body-base" collapse>
+                This feature provides core functionality for user management.
+              </Text>
+            </HoverCardMain>
+          </HoverCardContent>
+        </HoverCard>
 
-          <HoverCard>
-            <HoverCardTrigger hasIcon iconAriaLabel="Information about feature B">
-              Feature B
-            </HoverCardTrigger>
-            <HoverCardContent>
-              <HoverCardTitle as="h3">Feature B Details</HoverCardTitle>
-              <HoverCardMain>
-                <p style={{ margin: 0 }}>
-                  This feature handles data processing and analytics.
-                </p>
-              </HoverCardMain>
-            </HoverCardContent>
-          </HoverCard>
-        </div>
-      </div>
-    </div>
+        <HoverCard>
+          <HoverCardTrigger hasIcon iconAriaLabel="Information about feature B">
+            Feature B
+          </HoverCardTrigger>
+          <HoverCardContent>
+            <HoverCardTitle as="h3">
+              <Text tag="span" type="productive-headline" size="body-base" collapse>
+                Feature B Details
+              </Text>
+            </HoverCardTitle>
+            <HoverCardMain>
+              <Text tag="p" type="productive-body" size="body-base" collapse>
+                This feature handles data processing and analytics.
+              </Text>
+            </HoverCardMain>
+          </HoverCardContent>
+        </HoverCard>
+      </Flex>
+    </Flex>
   ),
   parameters: {
     docs: {
@@ -458,18 +443,14 @@ export const AccessibilityDemo: Story = {
 
 export const Positioning: Story = {
   render: () => (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: '32px',
-      width: '100%',
-      maxWidth: '600px'
-    }}>
+    <Grid columns={3}>
       <HoverCard>
         <HoverCardTrigger hasIcon>Top Left</HoverCardTrigger>
         <HoverCardContent side="top" align="start">
           <HoverCardMain>
-            <p style={{ margin: 0 }}>Positioned above, aligned to start</p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Positioned above, aligned to start
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -478,7 +459,9 @@ export const Positioning: Story = {
         <HoverCardTrigger hasIcon>Top Center</HoverCardTrigger>
         <HoverCardContent side="top" align="center">
           <HoverCardMain>
-            <p style={{ margin: 0 }}>Positioned above, centered</p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Positioned above, centered
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -487,7 +470,9 @@ export const Positioning: Story = {
         <HoverCardTrigger hasIcon>Top Right</HoverCardTrigger>
         <HoverCardContent side="top" align="end">
           <HoverCardMain>
-            <p style={{ margin: 0 }}>Positioned above, aligned to end</p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Positioned above, aligned to end
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -496,7 +481,9 @@ export const Positioning: Story = {
         <HoverCardTrigger hasIcon>Left</HoverCardTrigger>
         <HoverCardContent side="left">
           <HoverCardMain>
-            <p style={{ margin: 0 }}>Positioned to the left</p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Positioned to the left
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -505,7 +492,9 @@ export const Positioning: Story = {
         <HoverCardTrigger hasIcon>Bottom (default)</HoverCardTrigger>
         <HoverCardContent>
           <HoverCardMain>
-            <p style={{ margin: 0 }}>Default positioning (bottom)</p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Default positioning (bottom)
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
@@ -514,11 +503,13 @@ export const Positioning: Story = {
         <HoverCardTrigger hasIcon>Right</HoverCardTrigger>
         <HoverCardContent side="right">
           <HoverCardMain>
-            <p style={{ margin: 0 }}>Positioned to the right</p>
+            <Text tag="p" type="productive-body" size="body-base" collapse>
+              Positioned to the right
+            </Text>
           </HoverCardMain>
         </HoverCardContent>
       </HoverCard>
-    </div>
+    </Grid>
   ),
   parameters: {
     docs: {
