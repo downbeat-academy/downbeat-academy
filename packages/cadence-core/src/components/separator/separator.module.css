@@ -1,0 +1,45 @@
+.root {
+  height: 1px;
+}
+
+.root[data-orientation='horizontal'] {
+  height: 1px;
+  width: 100%;
+}
+
+.root[data-orientation='vertical'] {
+  min-height: 100%;
+  width: 1px;
+}
+
+.color--primary {
+  background: var(--cds-color-border-primary);
+}
+
+.color--faint {
+  background: var(--cds-color-border-faint);
+}
+
+.color--brand {
+  background: var(--cds-color-border-brand);
+}
+
+.color--interactive {
+  background: var(--cds-color-border-interactive);
+}
+
+.color--success {
+  background: var(--cds-color-border-success);
+}
+
+.color--warning {
+  background: var(--cds-color-border-warning);
+}
+
+.color--critical {
+  background: var(--cds-color-border-critical);
+}
+
+.color--high-contrast {
+  background: var(--cds-color-border-high-contrast);
+}
