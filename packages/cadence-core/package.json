@@ -1,6 +1,6 @@
 {
   "name": "cadence-core",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Core component library for Downbeat Academy and the Cadence Design System.",
   "scripts": {
     "clean": "rm -rf dist",
