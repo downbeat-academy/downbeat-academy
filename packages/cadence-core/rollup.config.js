@@ -91,6 +91,7 @@ export default {
     '@radix-ui/react-checkbox',
     '@radix-ui/react-hover-card',
     '@radix-ui/react-tooltip',
-    '@radix-ui/react-dropdown-menu'
+    '@radix-ui/react-dropdown-menu',
+    '@radix-ui/react-toast'
   ],
 };

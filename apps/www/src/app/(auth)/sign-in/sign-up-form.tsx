@@ -5,7 +5,7 @@ import { Button } from "@components/ui/button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpFormSchema, type TSignUpFormSchema } from "@/lib/types/auth/sign-up-form-schema"
-import { useToast } from "@/components/toast"
+import { useToast } from "cadence-core"
 import { createContact } from "@/actions/email/create-contact"
 import {
   Form,

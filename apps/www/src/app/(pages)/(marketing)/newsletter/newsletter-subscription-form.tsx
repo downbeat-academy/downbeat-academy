@@ -8,9 +8,9 @@ import {
 	Input,
 	Label,
 	ValidationMessage,
+	useToast,
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
-import { useToast } from '@components/toast'
 import { subscribeToNewsletter } from '@actions/email/newsletter-subscription'
 import {
 	subscribeToNewsletterSchema,

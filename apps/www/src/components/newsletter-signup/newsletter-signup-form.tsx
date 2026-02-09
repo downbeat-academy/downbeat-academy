@@ -13,9 +13,9 @@ import {
 	ValidationMessage,
 	Label,
 	Field,
+	useToast,
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
-import { useToast } from '@components/toast'
 
 const NewsletterSignupForm = () => {
 	const { toast } = useToast()

@@ -14,9 +14,9 @@ import {
 	ValidationMessage,
 	Label,
 	Field,
+	useToast,
 } from 'cadence-core'
 import { Button } from '@components/ui/button'
-import { useToast } from '@components/toast'
 import type { FileDownloadFormProps } from './types'
 
 const FileDownloadForm = ({ fileUrl, title }: FileDownloadFormProps) => {
