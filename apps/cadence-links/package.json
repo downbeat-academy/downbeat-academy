@@ -1,6 +1,6 @@
 {
 	"name": "cadence-links",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"private": true,
 	"description": "URL shortener service for Downbeat Academy",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",

@@ -1,6 +1,6 @@
 {
 	"name": "auth",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": true,
 	"description": "Centralized authentication service for Downbeat Academy",
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
