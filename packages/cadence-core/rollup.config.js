@@ -93,6 +93,7 @@ export default {
     '@radix-ui/react-tooltip',
     '@radix-ui/react-dropdown-menu',
     '@radix-ui/react-separator',
+    '@radix-ui/react-tabs',
     '@radix-ui/react-toast'
   ],
 };
