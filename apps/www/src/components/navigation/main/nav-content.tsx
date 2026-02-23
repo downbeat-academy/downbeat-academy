@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { useTheme } from 'next-themes'
 import classnames from 'classnames'
-import { LogoLockup } from 'cadence-core'
+import { LogoLockup, ThemeSwitcher } from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { Link } from '@components/link'
 import s from './nav-content.module.css'
@@ -36,6 +37,10 @@ const NavContent = ({ links, session }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
+	const { theme, setTheme } = useTheme()
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => setMounted(true), [])
 
 	const handleNavToggled = () => {
 		setNavToggled(!navToggled)
@@ -157,6 +162,9 @@ const NavContent = ({ links, session }: NavContentProps) => {
 					)}
 				</div>
 			</div>
+			{mounted && (
+				<ThemeSwitcher theme={theme ?? 'system'} setTheme={setTheme} />
+			)}
 			<button
 				type='button'
 				data-testid="mobile-menu-toggle"

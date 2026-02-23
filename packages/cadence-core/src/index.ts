@@ -103,6 +103,7 @@ export {
   TabsTrigger,
   TabsContent,
 } from './components/tabs';
+export { ThemeSwitcher } from './components/theme-switcher';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -199,3 +200,4 @@ export type {
   TabsTriggerProps,
   TabsContentProps,
 } from './components/tabs';
+export type { ThemeSwitcherProps } from './components/theme-switcher';

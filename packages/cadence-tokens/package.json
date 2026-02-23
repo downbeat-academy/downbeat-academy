@@ -6,7 +6,7 @@
 	"version": "2.3.0",
 	"license": "UNLICENSED",
 	"scripts": {
-		"build": "style-dictionary build"
+		"build": "style-dictionary build && cp src/tokens-dark.css dist/web/tokens-dark.css"
 	},
 	"main": "dist/web",
 	"files": [
@@ -17,7 +17,8 @@
 			"import": "./dist/web/tokens.scss",
 			"require": "./dist/web/tokens.scss"
 		},
-		"./dist/web.tokens.css": "./dist/web/tokens.scss"
+		"./dist/web.tokens.css": "./dist/web/tokens.scss",
+		"./dist/web/tokens-dark.css": "./dist/web/tokens-dark.css"
 	},
 	"module": "./dist/web/tokens.scss",
 	"keywords": [

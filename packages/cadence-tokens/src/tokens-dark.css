@@ -1,0 +1,125 @@
+[data-theme="dark"] {
+  /* =============================================
+     SEMANTIC TOKENS — Dark Theme Overrides
+     ============================================= */
+
+  /* Border */
+  --cds-color-border-primary: #c2c5d0;
+  --cds-color-border-faint: #2a3055;
+  --cds-color-border-brand: #7986fd;
+  --cds-color-border-interactive: #64a5f1;
+  --cds-color-border-success: #58d8d8;
+  --cds-color-border-warning: #fedf50;
+  --cds-color-border-critical: #fd9185;
+  --cds-color-border-high-contrast: #081034;
+
+  /* Foreground */
+  --cds-color-foreground-primary: #f3f3f6;
+  --cds-color-foreground-strong: #ffffff;
+  --cds-color-foreground-faint: #858aa1;
+  --cds-color-foreground-disabled: #585f7e;
+  --cds-color-foreground-high-contrast: #081034;
+  --cds-color-foreground-critical-default: #fd9185;
+  --cds-color-foreground-critical-hover: #fdb5ae;
+  --cds-color-foreground-warning-default: #fedf50;
+  --cds-color-foreground-warning-hover: #fee986;
+  --cds-color-foreground-interactive-default: #64a5f1;
+  --cds-color-foreground-interactive-hover: #97c3f5;
+  --cds-color-foreground-interactive-active: #cbe1fa;
+  --cds-color-foreground-brand-default: #7986fd;
+  --cds-color-foreground-brand-hover: #b6c6ff;
+  --cds-color-foreground-brand-active: #d3dcfe;
+  --cds-color-foreground-success-default: #58d8d8;
+  --cds-color-foreground-success-hover: #8ee5e5;
+
+  /* Page */
+  --cds-color-page-primary: #0a0f24;
+  --cds-color-page-secondary: #0f1629;
+  --cds-color-page-faint: #151c35;
+
+  /* Surface */
+  --cds-color-surface-primary: #0f1629;
+  --cds-color-surface-faint: #151c35;
+  --cds-color-surface-high-contrast: #f3f3f6;
+  --cds-color-surface-brand: #2723d8;
+  --cds-color-surface-interactive: #1f7deb;
+  --cds-color-surface-success: #33bdb8;
+  --cds-color-surface-warning: #e5b400;
+  --cds-color-surface-critical: #f7594b;
+
+  /* =============================================
+     PALETTE TOKENS — Remapped for Dark Theme
+     ============================================= */
+
+  /* Blackberry — inverted scale */
+  --cds-color-palette-blackberry-50: #0f1629;
+  --cds-color-palette-blackberry-100: #151c35;
+  --cds-color-palette-blackberry-200: #2a3055;
+  --cds-color-palette-blackberry-300: #585f7e;
+  --cds-color-palette-blackberry-400: #858aa1;
+  --cds-color-palette-blackberry-500: #c2c5d0;
+  --cds-color-palette-blackberry-600: #f3f3f6;
+  --cds-color-palette-blackberry-700: #ffffff;
+  --cds-color-palette-blackberry-800: #ffffff;
+
+  /* Violet — adjusted for dark backgrounds */
+  --cds-color-palette-violet-50: #0d0b2e;
+  --cds-color-palette-violet-100: #161240;
+  --cds-color-palette-violet-200: #1e1960;
+  --cds-color-palette-violet-300: #495af1;
+  --cds-color-palette-violet-400: #7986fd;
+  --cds-color-palette-violet-500: #b6c6ff;
+  --cds-color-palette-violet-600: #d3dcfe;
+  --cds-color-palette-violet-700: #ecf0ff;
+
+  /* Peach — adjusted for dark backgrounds */
+  --cds-color-palette-peach-50: #2a0f0c;
+  --cds-color-palette-peach-100: #3d1510;
+  --cds-color-palette-peach-200: #5c1e16;
+  --cds-color-palette-peach-300: #d8311f;
+  --cds-color-palette-peach-400: #f7594b;
+  --cds-color-palette-peach-500: #fd9185;
+  --cds-color-palette-peach-600: #fdb5ae;
+  --cds-color-palette-peach-700: #ffecea;
+
+  /* Kale — adjusted for dark backgrounds */
+  --cds-color-palette-kale-50: #0a201f;
+  --cds-color-palette-kale-100: #0e2e2d;
+  --cds-color-palette-kale-200: #134544;
+  --cds-color-palette-kale-300: #0f9590;
+  --cds-color-palette-kale-400: #33bdb8;
+  --cds-color-palette-kale-500: #58d8d8;
+  --cds-color-palette-kale-600: #8ee5e5;
+  --cds-color-palette-kale-700: #c6f2f2;
+
+  /* Blueberry — adjusted for dark backgrounds */
+  --cds-color-palette-blueberry-50: #0a1a2e;
+  --cds-color-palette-blueberry-100: #0e2440;
+  --cds-color-palette-blueberry-200: #133660;
+  --cds-color-palette-blueberry-300: #0f65ca;
+  --cds-color-palette-blueberry-400: #1f7deb;
+  --cds-color-palette-blueberry-500: #64a5f1;
+  --cds-color-palette-blueberry-600: #97c3f5;
+  --cds-color-palette-blueberry-700: #cbe1fa;
+
+  /* Pineapple — adjusted for dark backgrounds */
+  --cds-color-palette-pineapple-50: #1f1a05;
+  --cds-color-palette-pineapple-100: #2e2608;
+  --cds-color-palette-pineapple-200: #453a0e;
+  --cds-color-palette-pineapple-300: #b07b07;
+  --cds-color-palette-pineapple-400: #e5b400;
+  --cds-color-palette-pineapple-500: #fedf50;
+  --cds-color-palette-pineapple-600: #fee986;
+  --cds-color-palette-pineapple-700: #fff4c2;
+
+  /* =============================================
+     OTHER TOKENS
+     ============================================= */
+
+  /* Elevation — stronger shadow for dark mode */
+  --cds-elevation-box-shadow-base: 0 1px 16px 0 hsla(0, 0%, 0%, 25%);
+
+  /* Focus ring — keep vibrant */
+  --cds-focus-ring-color-standard: #64a5f1;
+  --cds-focus-ring-color-critical: #fd9185;
+}
