@@ -39,6 +39,7 @@ const OpenSheetMusicDisplay = ({
 	const divRef = useRef<HTMLDivElement>(null)
 	const osmd = useRef<OSMD | null>(null)
 	const initialRenderComplete = useRef(false)
+	const loadComplete = useRef(false)
 
 	const osmdOptions = useMemo(() => ({
 		autoResize,
@@ -100,6 +101,8 @@ const OpenSheetMusicDisplay = ({
 			}
 			osmd.current = null
 		}
+		loadComplete.current = false
+		initialRenderComplete.current = false
 	}, [])
 
 	useEffect(() => {
@@ -113,6 +116,7 @@ const OpenSheetMusicDisplay = ({
 
 			try {
 				cleanup() // Clean up before creating new instance
+				loadComplete.current = false
 
 				// Create new instance with initial options
 				const osmdInstance = new OSMD(divRef.current, osmdOptions)
@@ -123,6 +127,7 @@ const OpenSheetMusicDisplay = ({
 
 				// Load the file and wait for it to complete
 				await osmdInstance.load(file)
+				loadComplete.current = true
 
 				// Add small delay to ensure container is ready
 				timeoutId = setTimeout(async () => {
@@ -174,8 +179,12 @@ const OpenSheetMusicDisplay = ({
 	// Handle window resize
 	useEffect(() => {
 		const handleResize = () => {
-			if (osmd.current && initialRenderComplete.current) {
-				osmd.current.render()
+			if (osmd.current && initialRenderComplete.current && loadComplete.current) {
+				try {
+					osmd.current.render()
+				} catch (err) {
+					console.error('OSMD resize render error:', err)
+				}
 			}
 		}
 
@@ -185,7 +194,7 @@ const OpenSheetMusicDisplay = ({
 
 	// Handle transposition changes
 	useEffect(() => {
-		if (osmd.current && initialRenderComplete.current && transpose !== 0) {
+		if (osmd.current && initialRenderComplete.current && loadComplete.current && transpose !== 0) {
 			try {
 				if (osmd.current.Sheet) {
 					osmd.current.Sheet.Transpose = transpose
