@@ -14,6 +14,10 @@ export default {
 			name: 'content',
 			title: 'Content',
 		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+		},
 	],
 	fields: [
 		{
@@ -84,6 +88,18 @@ export default {
 			validation: (Rule: any) => [
 				Rule.required().error('You must enter content for the handbook item.'),
 			],
+		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+			type: 'array',
+			group: 'changelog',
+			description:
+				'Track meaningful changes to this handbook entry over time.',
+			of: [{ type: 'changelogEntry' }],
+			options: {
+				sortable: true,
+			},
 		},
 	],
 	preview: {

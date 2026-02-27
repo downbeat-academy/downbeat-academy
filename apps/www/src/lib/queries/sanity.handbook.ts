@@ -8,6 +8,11 @@ export const handbooksBySlugQuery = groq`
       "slug": slug.current,
       excerpt,
       content,
+      changelog[] {
+          date,
+          summary,
+          description,
+      } | order(date desc),
       categories[]-> {
           title,
           "slug": slug.current,

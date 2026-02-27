@@ -13,6 +13,7 @@ import { Link } from '@components/link'
 import { NewsletterSignup } from '@components/newsletter-signup'
 import { TableOfContents } from '@components/table-of-contents'
 import { ReadingLength } from '@components/reading-length'
+import { ChangelogDrawer } from '@components/changelog'
 import s from './page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -123,6 +124,9 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 								content={article.content.content}
 								preContent="Around a "
 							/>
+							{article.changelog && article.changelog.length > 0 && (
+								<ChangelogDrawer changelog={article.changelog} />
+							)}
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>

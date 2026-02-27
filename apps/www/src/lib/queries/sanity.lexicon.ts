@@ -38,6 +38,11 @@ export const lexiconsBySlugQuery = groq`
     },
     excerpt,
     audio[],
+    changelog[] {
+      date,
+      summary,
+      description,
+    } | order(date desc),
   }
 `
 

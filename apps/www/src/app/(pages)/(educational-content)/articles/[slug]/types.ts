@@ -19,6 +19,12 @@ type ArticleData = {
   }
   authors: any[]
   date: string
+  updatedDate?: string
+  changelog?: Array<{
+    date: string
+    summary: string
+    description?: string
+  }>
   categories: Array<{
     title: string
     slug: string

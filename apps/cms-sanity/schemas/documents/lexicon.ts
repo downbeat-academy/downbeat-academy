@@ -24,6 +24,10 @@ export default {
 			name: 'metadata',
 			title: 'Metadata',
 		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+		},
 	],
 	fields: [
 		{
@@ -221,6 +225,18 @@ export default {
 			validation: (Rule: any) => [
 				Rule.required().error('Please enter metadata.'),
 			],
+		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+			type: 'array',
+			group: 'changelog',
+			description:
+				'Track meaningful changes to this lexicon entry over time.',
+			of: [{ type: 'changelogEntry' }],
+			options: {
+				sortable: true,
+			},
 		},
 	],
 	preview: {

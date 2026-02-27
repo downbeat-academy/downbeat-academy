@@ -210,6 +210,11 @@ export const getResources = groq`
         _id,
         title,
         "slug": slug.current,
+        changelog[] {
+            date,
+            summary,
+            description,
+        } | order(date desc),
     }
 `
 
