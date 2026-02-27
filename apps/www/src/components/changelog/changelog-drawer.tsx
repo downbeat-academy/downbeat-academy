@@ -1,7 +1,7 @@
 'use client'
 
 import {
-	Badge,
+	Button,
 	Text,
 	Flex,
 	Separator,
@@ -13,6 +13,7 @@ import {
 	DrawerTitle,
 	DrawerDescription,
 } from 'cadence-core'
+import { ChevronRight } from 'cadence-icons'
 import { prettyDate } from '@utils/dateFormat'
 import s from './changelog-drawer.module.css'
 
@@ -32,14 +33,15 @@ const ChangelogDrawer = ({ changelog }: ChangelogDrawerProps) => {
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
-				<button className={s.trigger} aria-label="View changelog">
-					<Badge
-						text={`Updated ${prettyDate(latestDate, 'MMM d, yyyy')}`}
-						type="info"
-						style="light"
-						size="small"
-					/>
-				</button>
+				<Button
+					variant="ghost"
+					size="small"
+					icon={<ChevronRight />}
+					iconPosition="trailing"
+					aria-label="View changelog"
+				>
+					{`Updated ${prettyDate(latestDate, 'MMM d, yyyy')}`}
+				</Button>
 			</DrawerTrigger>
 			<DrawerContent side="right">
 				<DrawerHeader>
@@ -65,7 +67,7 @@ const ChangelogDrawer = ({ changelog }: ChangelogDrawerProps) => {
 									tag="p"
 									type="productive-body"
 									size="body-base"
-									color="high-contrast"
+									color="strong"
 									collapse
 								>
 									{entry.summary}
