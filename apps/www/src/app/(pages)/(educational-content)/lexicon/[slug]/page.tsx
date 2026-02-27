@@ -9,6 +9,7 @@ import { RichText } from '@components/rich-text'
 import { Badge, Flex } from 'cadence-core'
 import { MusicNotation } from '@components/music-notation'
 import { AudioPlayer } from '@components/audio'
+import { ChangelogDrawer } from '@components/changelog'
 
 import s from './lexicon-page.module.css'
 import type { SlugParams, SlugString } from '../../../../../types/common'
@@ -144,6 +145,9 @@ export default async function LexiconSlugRoute({ params }: { params: Promise<{ s
 						{renderMetadata}
 					</Flex>
 				</SectionTitle>
+				{lexicon.changelog && lexicon.changelog.length > 0 && (
+					<ChangelogDrawer changelog={lexicon.changelog} />
+				)}
 				<section className={s.excerpt}>
 					<Flex
 						direction="column"

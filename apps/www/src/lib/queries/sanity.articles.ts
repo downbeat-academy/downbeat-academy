@@ -32,6 +32,12 @@ export const articlesBySlugQuery = groq`
         },
         featuredImage,
         date,
+        updatedDate,
+        changelog[] {
+            date,
+            summary,
+            description,
+        } | order(date desc),
         metadata,
         categories[]-> {
             title,

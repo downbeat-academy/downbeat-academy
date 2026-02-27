@@ -60,6 +60,19 @@ export {
   DialogDescription,
 } from './components/dialog';
 export {
+  Drawer,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+} from './components/drawer';
+export {
   Tooltip,
   TooltipProvider,
   TooltipArrow,
@@ -166,6 +179,18 @@ export type {
   DialogHeaderProps,
   DialogFooterProps,
 } from './components/dialog';
+export type {
+  DrawerContentProps,
+  DrawerOverlayProps,
+  DrawerTitleProps,
+  DrawerDescriptionProps,
+  DrawerTriggerProps,
+  DrawerCloseProps,
+  DrawerHeaderProps,
+  DrawerBodyProps,
+  DrawerFooterProps,
+  DrawerSide,
+} from './components/drawer';
 export type {
   TooltipContentProps,
   TooltipTriggerProps,

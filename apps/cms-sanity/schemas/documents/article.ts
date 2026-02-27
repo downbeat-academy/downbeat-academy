@@ -14,6 +14,10 @@ export default {
 			name: 'content',
 			title: 'Content',
 		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+		},
 	],
 	fields: [
 		{
@@ -130,6 +134,18 @@ export default {
 			validation: (Rule: any) => [
 				Rule.required().error(`The article needs content.`),
 			],
+		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+			type: 'array',
+			group: 'changelog',
+			description:
+				'Track meaningful changes to this article over time. Each entry appears in a changelog drawer on the published page.',
+			of: [{ type: 'changelogEntry' }],
+			options: {
+				sortable: true,
+			},
 		},
 	],
 	preview: {

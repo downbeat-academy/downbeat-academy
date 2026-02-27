@@ -7,6 +7,7 @@ import { SectionTitle } from '@components/section-title'
 import { RichText, RichTextWrapper } from '@components/rich-text'
 import { Badge } from 'cadence-core'
 import { Link } from '@components/link'
+import { ChangelogDrawer } from '@components/changelog'
 import s from './handbook-page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -97,6 +98,9 @@ export default async function HandbookSlugRoute({ params }: { params: Promise<{ 
 						</Link>
 					))}
 				</aside>
+				{handbook.changelog && handbook.changelog.length > 0 && (
+					<ChangelogDrawer changelog={handbook.changelog} />
+				)}
 				<RichTextWrapper className={s['rich-text']}>
 					<RichText value={handbook.content.content} />
 				</RichTextWrapper>

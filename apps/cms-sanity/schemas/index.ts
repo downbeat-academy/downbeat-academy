@@ -37,6 +37,7 @@ import moduleContent from './objects/moduleContent'
 import blockquote from './objects/blockquote'
 import fileDownload from './objects/fileDownload'
 import handbookReference from './objects/handbook-reference'
+import changelogEntry from './objects/changelogEntry'
 
 // Navigation
 import navigationSection from './objects/navigation/section'
@@ -102,6 +103,7 @@ export const schemaTypes = [
 	blockquote,
 	fileDownload,
 	handbookReference,
+	changelogEntry,
 	link,
 	customLink,
 	internalLink,
