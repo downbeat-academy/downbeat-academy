@@ -29,6 +29,17 @@ export default {
 			title: `Module Content`,
 			type: `moduleContent`,
 		},
+		{
+			name: 'changelog',
+			title: 'Changelog',
+			type: 'array',
+			description:
+				'Track meaningful changes to this lesson over time. Each entry appears in a changelog drawer on the published page.',
+			of: [{ type: 'changelogEntry' }],
+			options: {
+				sortable: true,
+			},
+		},
 	],
 	preview: {
 		select: {
