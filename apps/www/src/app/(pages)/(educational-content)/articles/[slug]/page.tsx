@@ -120,13 +120,13 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 									{renderCategories}
 								</Flex>
 							</AuthorMetadata>
-							{article.changelog && article.changelog.length > 0 && (
-								<ChangelogDrawer changelog={article.changelog} />
-							)}
 							<ReadingLength
 								content={article.content.content}
 								preContent="Around a "
 							/>
+							{article.changelog && article.changelog.length > 0 && (
+								<ChangelogDrawer changelog={article.changelog} />
+							)}
 						</FeaturedItem.Description>
 					</FeaturedItem.Root>
 				</SectionContainer>

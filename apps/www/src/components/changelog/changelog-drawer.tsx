@@ -13,7 +13,7 @@ import {
 	DrawerTitle,
 	DrawerDescription,
 } from 'cadence-core'
-import { ChevronRight } from 'cadence-icons'
+import { Logs } from 'cadence-icons'
 import { prettyDate } from '@utils/dateFormat'
 import s from './changelog-drawer.module.css'
 
@@ -34,9 +34,9 @@ const ChangelogDrawer = ({ changelog }: ChangelogDrawerProps) => {
 		<Drawer>
 			<DrawerTrigger asChild>
 				<Button
-					variant="ghost"
+					variant="secondary"
 					size="small"
-					icon={<ChevronRight />}
+					icon={<Logs />}
 					iconPosition="trailing"
 					aria-label="View changelog"
 				>
@@ -51,40 +51,42 @@ const ChangelogDrawer = ({ changelog }: ChangelogDrawerProps) => {
 					</DrawerDescription>
 				</DrawerHeader>
 				<DrawerBody>
-					<Flex tag="div" direction="column" gap="large" className={s.list}>
+					<Flex tag="div" direction="column" gap="x-large" className={s.list}>
 						{changelog.map((entry, index) => (
-							<div key={`${entry.date}-${index}`} className={s.entry}>
-								<Text
-									tag="p"
-									type="productive-body"
-									size="body-small"
-									color="faint"
-									collapse
-								>
-									{prettyDate(entry.date)}
-								</Text>
-								<Text
-									tag="p"
-									type="productive-body"
-									size="body-base"
-									color="strong"
-									collapse
-								>
-									{entry.summary}
-								</Text>
-								{entry.description && (
+							<>
+								<div key={`${entry.date}-${index}`} className={s.entry}>
 									<Text
 										tag="p"
 										type="productive-body"
 										size="body-small"
-										color="primary"
+										color="faint"
 										collapse
 									>
-										{entry.description}
+										{prettyDate(entry.date)}
 									</Text>
-								)}
+									<Text
+										tag="p"
+										type="productive-body"
+										size="body-base"
+										color="strong"
+										collapse
+									>
+										{entry.summary}
+									</Text>
+									{entry.description && (
+										<Text
+											tag="p"
+											type="productive-body"
+											size="body-small"
+											color="primary"
+											collapse
+										>
+											{entry.description}
+										</Text>
+									)}
+								</div>
 								{index < changelog.length - 1 && <Separator />}
-							</div>
+							</>
 						))}
 					</Flex>
 				</DrawerBody>
