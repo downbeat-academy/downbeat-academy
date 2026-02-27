@@ -94,7 +94,7 @@ export default async function HandbookSlugRoute({ params }: { params: Promise<{ 
 						{handbook.categories.map((category: category, i: number) => (
 							<Fragment key={category.title}>
 								{i > 0 && ', '}
-								<Link href={`/category/${category.slug}`} type="secondary">
+								<Link href={`/categories/${category.slug}`} type="secondary">
 									{category.title}
 								</Link>
 							</Fragment>
