@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
@@ -6,7 +7,6 @@ import { Link } from '@components/link'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { Text } from 'cadence-core'
-import { Badge, Flex } from 'cadence-core'
 
 interface FeaturedPostType {
 	_id: string
@@ -32,14 +32,18 @@ interface FeaturedPostType {
 }
 
 export default async function FeaturedPost({ featuredPost }: { featuredPost: FeaturedPostType }) {
-	// Render the categories of the featured post as badges
-	const renderCategories = featuredPost.categories.map((category) => {
-		return (
-			<Link href={linkResolver(category.slug, 'category')} key={category.title}>
-				<Badge type="neutral" style="filled" text={category.title} />
-			</Link>
-		)
-	})
+	const renderCategories = (
+		<Text tag="p" type="productive-body" size="body-small" collapse>
+			{featuredPost.categories.map((category, i) => (
+				<Fragment key={category.title}>
+					{i > 0 && ', '}
+					<Link href={linkResolver(category.slug, 'category')} type="secondary">
+						{category.title}
+					</Link>
+				</Fragment>
+			))}
+		</Text>
+	)
 
 	return (
 		<FeaturedItem.Root>
@@ -73,9 +77,7 @@ export default async function FeaturedPost({ featuredPost }: { featuredPost: Fea
 					authors={featuredPost.authors}
 					date={prettyDate(featuredPost.date)}
 				>
-					<Flex tag="div" direction="row" gap="medium">
-						{renderCategories}
-					</Flex>
+					{renderCategories}
 				</AuthorMetadata>
 			</FeaturedItem.Description>
 			<FeaturedItem.Image

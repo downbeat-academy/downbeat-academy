@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { handbooksBySlugQuery, handbookPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
@@ -5,7 +6,6 @@ import { Text } from 'cadence-core'
 import { SectionContainer } from '@components/section-container'
 import { SectionTitle } from '@components/section-title'
 import { RichText, RichTextWrapper } from '@components/rich-text'
-import { Badge } from 'cadence-core'
 import { Link } from '@components/link'
 import { ChangelogDrawer } from '@components/changelog'
 import s from './handbook-page.module.css'
@@ -90,13 +90,16 @@ export default async function HandbookSlugRoute({ params }: { params: Promise<{ 
 				/>
 				<aside className={s.categories}>
 					<Text tag="p" type="expressive-body" size="body-base" collapse>
-						Categories:
+						Categories:{' '}
+						{handbook.categories.map((category: category, i: number) => (
+							<Fragment key={category.title}>
+								{i > 0 && ', '}
+								<Link href={`/category/${category.slug}`} type="secondary">
+									{category.title}
+								</Link>
+							</Fragment>
+						))}
 					</Text>
-					{handbook.categories.map((category: category) => (
-						<Link key={category.title} href={`/category/${category.slug}`}>
-							<Badge text={category.title} />
-						</Link>
-					))}
 				</aside>
 				{handbook.changelog && handbook.changelog.length > 0 && (
 					<ChangelogDrawer changelog={handbook.changelog} />
