@@ -20,6 +20,18 @@ Sentry.init({
 	// in development and sample at a lower rate in production
 	replaysSessionSampleRate: 0.1,
 
+	// Filter out non-actionable resource loading errors (e.g. font/stylesheet failures)
+	beforeSend(event) {
+		const message = event.exception?.values?.[0]?.value ?? ''
+		const target = (event.extra?.target as string) ?? ''
+
+		if (message === '<unknown>' && target.includes('head > link')) {
+			return null
+		}
+
+		return event
+	},
+
 	// You can remove this option if you're not planning to use the Sentry Session Replay feature:
 	integrations: [
 		Sentry.replayIntegration({

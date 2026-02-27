@@ -27,20 +27,18 @@ const TableOfContents = ({
 	const [headings, setHeadings] = useState<Heading[]>([])
 	const [activeId, setActiveId] = useState<string>('')
 	const [isExpanded, setIsExpanded] = useState(true)
+	const [hasMounted, setHasMounted] = useState(false)
 
 	// Set initial expanded state based on viewport width
 	useEffect(() => {
+		setHasMounted(true)
+		setIsExpanded(window.innerWidth > 1200)
+
 		const handleResize = () => {
 			setIsExpanded(window.innerWidth > 1200)
 		}
 
-		// Set initial state
-		handleResize()
-
-		// Add resize listener
 		window.addEventListener('resize', handleResize)
-
-		// Cleanup
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
@@ -104,9 +102,12 @@ const TableOfContents = ({
 
 	if (headings.length === 0) return null
 
+	// Use SSR-matching value (true) until after mount to avoid hydration mismatch
+	const effectiveExpanded = hasMounted ? isExpanded : true
+
 	const classes = classnames(s.root, className, {
-		[s.collapsed]: !isExpanded,
-		[s.expanded]: isExpanded,
+		[s.collapsed]: !effectiveExpanded,
+		[s.expanded]: effectiveExpanded,
 	})
 
 	return (
@@ -114,7 +115,7 @@ const TableOfContents = ({
 			<button
 				className={s.titleButton}
 				onClick={() => setIsExpanded(!isExpanded)}
-				aria-expanded={isExpanded}
+				aria-expanded={effectiveExpanded}
 			>
 				<Text
 					tag="h2"
@@ -125,7 +126,7 @@ const TableOfContents = ({
 				>
 					{title}
 				</Text>
-				<span className={s.expandIcon}>{isExpanded ? '−' : '+'}</span>
+				<span className={s.expandIcon}>{effectiveExpanded ? '−' : '+'}</span>
 			</button>
 			<div className={s.content}>
 				<ul className={s.list}>
