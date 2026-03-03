@@ -93,6 +93,7 @@
     "cadence-icons": "workspace:^",
     "cadence-tokens": "workspace:^",
     "classnames": "^2.5.1",
+    "react-loading-skeleton": "^3.5.0",
     "typeface-favorit": "workspace:^",
     "typeface-tiempos-text": "workspace:^"
   }

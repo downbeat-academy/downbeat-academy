@@ -2,9 +2,7 @@ import { sanityClient } from '@lib/sanity/sanity.client'
 import { articlesPageQuery } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 
-import { SectionContainer } from '@components/section-container'
-import { SectionTitle } from '@components/section-title'
-import { Text } from 'cadence-core'
+import { Text, SectionContainer, SectionTitle } from 'cadence-core'
 import { ArticlesPostGrid } from '../../../../components/pages/articles'
 
 import type { Metadata } from 'next'

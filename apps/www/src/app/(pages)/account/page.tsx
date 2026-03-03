@@ -1,6 +1,4 @@
-import { SectionContainer } from '@components/section-container'
-import { SectionTitle } from '@components/section-title'
-import { Text, Flex, Badge, Separator } from 'cadence-core'
+import { Text, Flex, Badge, Separator, SectionContainer, SectionTitle } from 'cadence-core'
 import { ProfileSettings } from './update-profile'
 import { showAdminRole } from './show-admin-role'
 import { requireAuth } from '@/lib/auth/require-auth'

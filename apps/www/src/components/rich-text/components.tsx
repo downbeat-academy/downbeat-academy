@@ -1,12 +1,11 @@
-import { Text, List } from 'cadence-core'
-import { Link } from '@components/link'
+import NextLink from 'next/link'
+import { Text, List, Link, Blockquote } from 'cadence-core'
 import { linkResolver } from '@utils/link-resolver'
 import {
 	Chord,
 	MusicTextRenderer,
 	MusicNotation,
 } from '@components/music-notation'
-import { Blockquote } from '@components/blockquote'
 import { MainImage } from '@components/images'
 import { FileDownload } from '@components/file-download'
 import { HandbookReference } from '@components/handbook-reference'
@@ -178,12 +177,12 @@ const Components = {
 	},
 	marks: {
 		link: ({ children, value }) => (
-			<Link href={value.href} type="primary">
+			<Link as={NextLink} href={value.href} type="primary">
 				{children}
 			</Link>
 		),
 		internalLink: ({ children, value }) => (
-			<Link href={linkResolver(value.slug, value.type)} type="primary">
+			<Link as={NextLink} href={linkResolver(value.slug, value.type)} type="primary">
 				{children}
 			</Link>
 		),

@@ -94,6 +94,8 @@ export default {
     '@radix-ui/react-dropdown-menu',
     '@radix-ui/react-separator',
     '@radix-ui/react-tabs',
-    '@radix-ui/react-toast'
+    '@radix-ui/react-toast',
+    'react-loading-skeleton',
+    'react-loading-skeleton/dist/skeleton.css'
   ],
 };

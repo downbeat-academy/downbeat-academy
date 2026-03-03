@@ -1,5 +1,6 @@
 import Img from 'next/image'
-import { Link } from '@components/link'
+import NextLink from 'next/link'
+import { Link } from 'cadence-core'
 import s from './image.module.css'
 
 import type { FeaturedItemImageProps } from './types'
@@ -10,7 +11,7 @@ const FeaturedItemImage = ({ image, alt, url }: FeaturedItemImageProps) => {
 	return (
 		<aside className={s.root}>
 			{url ? (
-				<Link href={url}>
+				<Link as={NextLink} href={url}>
 					<Img
 						src={image}
 						alt={alt || ''}

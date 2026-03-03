@@ -3,10 +3,10 @@ import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 
-import { Link } from '@components/link'
+import NextLink from 'next/link'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
-import { Text } from 'cadence-core'
+import { Text, Link } from 'cadence-core'
 
 interface FeaturedPostType {
 	_id: string
@@ -37,7 +37,7 @@ export default async function FeaturedPost({ featuredPost }: { featuredPost: Fea
 			{featuredPost.categories.map((category, i) => (
 				<Fragment key={category.title}>
 					{i > 0 && ', '}
-					<Link href={linkResolver(category.slug, 'category')} type="secondary">
+					<Link as={NextLink} href={linkResolver(category.slug, 'category')} type="secondary">
 						{category.title}
 					</Link>
 				</Fragment>
@@ -56,6 +56,7 @@ export default async function FeaturedPost({ featuredPost }: { featuredPost: Fea
 					collapse
 				>
 					<Link
+						as={NextLink}
 						href={linkResolver(featuredPost.slug, 'article')}
 						type="inherit"
 					>

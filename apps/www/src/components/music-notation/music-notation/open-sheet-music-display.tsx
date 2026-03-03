@@ -2,8 +2,8 @@
 
 import dynamic from 'next/dynamic'
 import { OpenSheetMusicDisplayProps } from './types'
-import { SkeletonLoader } from '@components/loader/skeleton'
-import { Text } from 'cadence-core'
+import { Text, SkeletonLoader } from 'cadence-core'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { useState, useEffect, useRef } from 'react'
 
 const OSMDComponent = dynamic(

@@ -2,8 +2,8 @@ import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { truncateString } from '@utils/truncateString'
 
-import { Text, Grid, Card, CardContent, CardImage } from 'cadence-core'
-import { Link } from '@components/link'
+import NextLink from 'next/link'
+import { Text, Grid, Card, CardContent, CardImage, Link } from 'cadence-core'
 import { AuthorMetadata } from '@components/author'
 import { prettyDate } from '@utils/dateFormat'
 
@@ -38,7 +38,7 @@ export default async function ArticlesPostGrid({ articles }: { articles: Article
 					url={linkResolver(article.slug, 'article')}
 				/>
 				<CardContent>
-					<Link href={linkResolver(article.slug, 'article')} type="inherit">
+					<Link as={NextLink} href={linkResolver(article.slug, 'article')} type="inherit">
 						<Text type="expressive-headline" size="h4" collapse>
 							{article.title}
 						</Text>

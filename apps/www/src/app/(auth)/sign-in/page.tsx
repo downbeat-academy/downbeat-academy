@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { headers } from "next/headers"
 import { auth } from "@lib/auth/auth"
-import { Tabs, TabsList, TabsTrigger, TabsContent, Text } from 'cadence-core'
-import { Link } from '@components/link'
+import NextLink from 'next/link'
+import { Tabs, TabsList, TabsTrigger, TabsContent, Text, Link } from 'cadence-core'
 import s from './sign-in.module.css'
 import { SignInForm } from "./sign-in-form"
 import { SignUpForm } from "./sign-up-form"
@@ -44,7 +44,7 @@ export default async function SignIn() {
           </TabsContent>
         </Tabs>
       </div>
-      <Link href="/">Back to home</Link>
+      <Link as={NextLink} href="/">Back to home</Link>
     </section>
   )
 }

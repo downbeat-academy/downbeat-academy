@@ -1,8 +1,7 @@
 import classnames from 'classnames'
 import { Twitter, Facebook, Tiktok, Youtube, Instagram } from 'cadence-icons'
-import { Flex, LogoSymbol } from 'cadence-core'
-import { Link } from '@components/link'
-import { Text } from 'cadence-core'
+import NextLink from 'next/link'
+import { Flex, LogoSymbol, Text, Link } from 'cadence-core'
 import s from './footer.module.css'
 
 import type { FooterProps } from './types'
@@ -96,7 +95,7 @@ const Footer = ({ className }: FooterProps) => {
 	return (
 		<footer className={classes}>
 			<section className={s.logo}>
-				<Link href="/">
+				<Link as={NextLink} href="/">
 					<LogoSymbol color="high-contrast" width={64} aria-label="Home link" />
 				</Link>
 			</section>
@@ -105,7 +104,7 @@ const Footer = ({ className }: FooterProps) => {
 					{socialLinks.map((link) => {
 						return (
 							<li key={link.name}>
-								<Link href={link.url}>{link.icon}</Link>
+								<Link as={NextLink} href={link.url}>{link.icon}</Link>
 							</li>
 						)
 					})}
@@ -133,7 +132,7 @@ const Footer = ({ className }: FooterProps) => {
 											color="high-contrast"
 											key={link.name}
 										>
-											<Link href={link.url} className={s[`high-contrast-link`]}>
+											<Link as={NextLink} href={link.url} className={s[`high-contrast-link`]}>
 												{link.name}
 											</Link>
 										</Text>
@@ -157,6 +156,7 @@ const Footer = ({ className }: FooterProps) => {
 					<Flex direction="row" gap="large" wrap>
 						<Text tag="p" type="productive-body" size="body-small">
 							<Link
+								as={NextLink}
 								href="/terms-and-conditions"
 								className={s[`high-contrast-link`]}
 							>
@@ -164,7 +164,7 @@ const Footer = ({ className }: FooterProps) => {
 							</Link>
 						</Text>
 						<Text tag="p" type="productive-body" size="body-small">
-							<Link href="/privacy-policy" className={s[`high-contrast-link`]}>
+							<Link as={NextLink} href="/privacy-policy" className={s[`high-contrast-link`]}>
 								Privacy Policy
 							</Link>
 						</Text>

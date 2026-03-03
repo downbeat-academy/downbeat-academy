@@ -1,8 +1,8 @@
 'use client'
 
 import { UpdatePasswordForm } from '@/app/(auth)/update-password/update-password-form'
-import { Text } from 'cadence-core'
-import { Link } from '@components/link'
+import NextLink from 'next/link'
+import { Text, Link } from 'cadence-core'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import s from './update-password.module.css'
@@ -27,7 +27,7 @@ function UpdatePasswordContent() {
         </Text>
         <UpdatePasswordForm token={token} />
       </div>
-      <Link href="/sign-in">Back to sign in</Link>
+      <Link as={NextLink} href="/sign-in">Back to sign in</Link>
     </section>
   )
 }

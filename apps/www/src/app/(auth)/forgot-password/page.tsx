@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { headers } from "next/headers"
 import { auth } from "@lib/auth/auth"
-import { Text } from 'cadence-core'
-import { Link } from '@components/link'
+import NextLink from 'next/link'
+import { Text, Link } from 'cadence-core'
 import { ForgotPasswordForm } from "./forgot-password-form"
 import s from './forgot-password.module.css'
 
@@ -32,7 +32,7 @@ export default async function ForgotPassword() {
         </Text>
         <ForgotPasswordForm />
       </div>
-      <Link href="/sign-in">Back to sign in</Link>
+      <Link as={NextLink} href="/sign-in">Back to sign in</Link>
     </section>
   )
 } 
