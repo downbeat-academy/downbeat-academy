@@ -6,9 +6,8 @@ import {
 	Badge,
 	createTextColumn,
 	createCustomColumn,
-	Link,
 } from 'cadence-core'
-import NextLink from 'next/link'
+import { Link } from '@components/link'
 import { formatTime } from '@utils/format-time'
 import { deslugify } from '@utils/deslugify'
 import { linkResolver } from '@utils/link-resolver'
@@ -64,7 +63,7 @@ const LexiconTable = ({ data }: { data: LexiconRowData[] }) => {
 				/>
 			)),
 			createCustomColumn<LexiconRowData, string>('slug', 'Link', (slug) => (
-				<Link as={NextLink} href={linkResolver(slug, 'lexicon')}>See more</Link>
+				<Link href={linkResolver(slug, 'lexicon')}>See more</Link>
 			), { alignment: 'end', enableSorting: false }),
 		],
 		[]

@@ -14,10 +14,9 @@ import {
   HelperText,
   useToast,
   ToastAction,
-  Link,
 } from "cadence-core"
+import { Link } from '@components/link'
 import { useRouter } from "next/navigation"
-import NextLink from 'next/link'
 
 const signInSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -112,7 +111,7 @@ export const SignInForm = () => {
       >
         {isSubmitting ? "Signing in..." : "Sign In"}
       </Button>
-      <Link as={NextLink} href="/forgot-password">
+      <Link href="/forgot-password">
         Forgot your password?
       </Link>
     </Form>

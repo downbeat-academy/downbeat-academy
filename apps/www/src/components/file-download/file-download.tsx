@@ -1,8 +1,8 @@
 import { headers } from 'next/headers'
 import { auth } from '@/lib/auth/auth'
 import classnames from 'classnames'
-import NextLink from 'next/link'
-import { Text, Link } from 'cadence-core'
+import { Text } from 'cadence-core'
+import { Link } from '@components/link'
 import { getSanityUrl } from '@utils/getSanityUrl'
 import { Button } from '@components/ui/button'
 
@@ -46,7 +46,7 @@ const FileDownload = async ({
 						color="faint"
 						collapse
 					>
-						<Link as={NextLink} href="/login">Login or create a free account</Link> to
+						<Link href="/login">Login or create a free account</Link> to
 						download the files directly.
 					</Text>
 				</>

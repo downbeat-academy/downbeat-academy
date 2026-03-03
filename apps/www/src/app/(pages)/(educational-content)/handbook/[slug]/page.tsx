@@ -2,8 +2,8 @@ import { Fragment } from 'react'
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { handbooksBySlugQuery, handbookPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
-import NextLink from 'next/link'
-import { Text, Link, SectionContainer, SectionTitle } from 'cadence-core'
+import { Text, SectionContainer, SectionTitle } from 'cadence-core'
+import { Link } from '@components/link'
 import { RichText, RichTextWrapper } from '@components/rich-text'
 import { ChangelogDrawer } from '@components/changelog'
 import s from './handbook-page.module.css'
@@ -92,7 +92,7 @@ export default async function HandbookSlugRoute({ params }: { params: Promise<{ 
 						{handbook.categories.map((category: category, i: number) => (
 							<Fragment key={category.title}>
 								{i > 0 && ', '}
-								<Link as={NextLink} href={`/categories/${category.slug}`} type="secondary">
+								<Link href={`/categories/${category.slug}`} type="secondary">
 									{category.title}
 								</Link>
 							</Fragment>

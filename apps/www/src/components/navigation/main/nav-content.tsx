@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import classnames from 'classnames'
-import NextLink from 'next/link'
-import { LogoLockup, Link } from 'cadence-core'
+import { LogoLockup } from 'cadence-core'
+import { Link } from '@components/link'
 import { Button } from '@components/ui/button'
 import s from './nav-content.module.css'
 import { signOut } from '@/actions/auth'
@@ -102,7 +102,7 @@ const NavContent = ({ links, session }: NavContentProps) => {
 	const mapLinks = staticLinks.map((link) => {
 		return (
 			<li key={link.text} className={s[`link-item`]}>
-				<Link as={NextLink} href={link.href} type="secondary" data-testid={`nav-${link.text.toLowerCase().replace(/\s+/g, '-')}`}>
+				<Link href={link.href} type="secondary" data-testid={`nav-${link.text.toLowerCase().replace(/\s+/g, '-')}`}>
 					{link.text}
 				</Link>
 			</li>
@@ -120,7 +120,7 @@ const NavContent = ({ links, session }: NavContentProps) => {
 	return (
 		<div className={rootClasses}>
 			<div className={s.logo}>
-				<Link as={NextLink} href="/">
+				<Link href="/">
 					<LogoLockup width={180} color='brand' />
 				</Link>
 			</div>

@@ -36,6 +36,11 @@ export const metadata: Metadata = {
 // Render the homepage data in an async function
 export default async function Page() {
 	const data = await getHomepageData()
+
+	if (!data || data.length === 0) {
+		return null
+	}
+
 	const featuredPost = data[0]
 	const posts = data.slice(1, -1)
 

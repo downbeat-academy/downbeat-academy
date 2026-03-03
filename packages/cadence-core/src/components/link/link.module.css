@@ -3,6 +3,7 @@
 	font-size: inherit;
 	color: inherit;
 	font-weight: inherit;
+	text-decoration: none;
 	transition: var(--cds-transition-02);
 }
 

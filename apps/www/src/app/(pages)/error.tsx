@@ -1,7 +1,7 @@
 'use client'
 
-import NextLink from 'next/link'
-import { Text, Link } from 'cadence-core'
+import { Text } from 'cadence-core'
+import { Link } from '@components/link'
 
 import type { Metadata } from 'next'
 import { Button } from '@components/ui/button'
@@ -27,7 +27,7 @@ export default function Error({
 			</Text>
 			<Text type="expressive-body" size="body-base" color="primary" collapse>
 				Sorry, we ran into an issue 😞. Return to the{' '}
-				<Link as={NextLink} href="/">home page?</Link>
+				<Link href="/">home page?</Link>
 			</Text>
 			<Button onClick={() => reset()} variant="primary">Reset</Button>
 		</>

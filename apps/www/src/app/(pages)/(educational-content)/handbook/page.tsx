@@ -2,8 +2,8 @@ import { sanityClient } from '@lib/sanity/sanity.client'
 import { handbookPageQuery } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 
-import NextLink from 'next/link'
-import { Text, Link, Flex, SectionContainer, SectionTitle } from 'cadence-core'
+import { Text, Flex, SectionContainer, SectionTitle } from 'cadence-core'
+import { Link } from '@components/link'
 
 import type { Metadata } from 'next'
 
@@ -70,7 +70,7 @@ export default async function HandbookPage() {
 							size="body-base"
 							collapse
 						>
-							<Link as={NextLink} type="inherit" href={`/handbook/${handbook.slug}`}>
+							<Link type="inherit" href={`/handbook/${handbook.slug}`}>
 								{handbook.title}
 							</Link>
 						</Text>

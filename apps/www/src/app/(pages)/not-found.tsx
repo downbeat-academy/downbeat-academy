@@ -1,5 +1,5 @@
-import NextLink from 'next/link'
-import { Flex, Text, Link, SectionContainer, SectionTitle } from 'cadence-core'
+import { Flex, Text, SectionContainer, SectionTitle } from 'cadence-core'
+import { Link } from '@components/link'
 
 import type { Metadata } from 'next'
 
@@ -37,7 +37,7 @@ export default function NotFound() {
 			/>
 			<Flex>
 				<Text type="expressive-body" size="body-base" tag="p" color="primary">
-					<Link as={NextLink} href="/">Back to the home page.</Link>
+					<Link href="/">Back to the home page.</Link>
 				</Text>
 			</Flex>
 		</SectionContainer>

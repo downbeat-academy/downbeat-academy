@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import classnames from 'classnames'
-import NextLink from 'next/link'
-import { Text, Link } from 'cadence-core'
+import { Text } from 'cadence-core'
+import { Link } from '@components/link'
 import { slugify } from '@utils/slugify'
 import s from './table-of-contents.module.css'
 
@@ -139,7 +139,6 @@ const TableOfContents = ({
 							})}
 						>
 							<Link
-								as={NextLink}
 								href={`#${heading.id}`}
 								type="primary"
 								className={s.link}

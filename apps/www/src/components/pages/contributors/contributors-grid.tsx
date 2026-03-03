@@ -2,8 +2,8 @@ import Img from 'next/image'
 import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 
-import NextLink from 'next/link'
-import { Text, Grid, Card, CardContent, Avatar, Badge, Flex, Link } from 'cadence-core'
+import { Text, Grid, Card, CardContent, Avatar, Badge, Flex } from 'cadence-core'
+import { Link } from '@components/link'
 
 interface Contributor {
 	_id: string
@@ -28,7 +28,7 @@ export default async function ContributorsGrid({ contributors }: { contributors:
 			<Card borderColor="primary" key={contributor._id}>
 				<CardContent>
 					<Flex direction="row" alignItems="center" gap="medium">
-						<Link as={NextLink} href={linkResolver(contributor.slug, 'contributor')}>
+						<Link href={linkResolver(contributor.slug, 'contributor')}>
 							<Avatar
 								name={contributor.name}
 								size="large"
@@ -55,7 +55,6 @@ export default async function ContributorsGrid({ contributors }: { contributors:
 								collapse
 							>
 								<Link
-									as={NextLink}
 									href={linkResolver(contributor.slug, 'contributor')}
 									type="inherit"
 								>

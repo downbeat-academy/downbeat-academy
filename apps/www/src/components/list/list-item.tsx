@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import s from './list-item.module.css'
-import NextLink from 'next/link'
-import { Text, Badge, Link } from 'cadence-core'
+import { Text, Badge } from 'cadence-core'
+import { Link } from '@components/link'
 
 import type { ListItemProps } from './types'
 
@@ -24,7 +24,7 @@ const ListItem = ({
 				color="primary"
 				collapse
 			>
-				<Link as={NextLink} href={url} type="inherit">
+				<Link href={url} type="inherit">
 					{title}
 				</Link>
 			</Text>

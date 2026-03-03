@@ -1,6 +1,6 @@
 import classnames from 'classnames'
-import NextLink from 'next/link'
-import { Text, Avatar, AvatarGroup, Flex, Link } from 'cadence-core'
+import { Text, Avatar, AvatarGroup, Flex } from 'cadence-core'
+import { Link } from '@components/link'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { linkResolver } from '@utils/link-resolver'
 
@@ -29,7 +29,7 @@ function resolveImageUrl(image: any): string | undefined {
 /** Renders an author name as a link */
 function AuthorLink({ slug, name }: { slug: string; name: string }) {
 	return (
-		<Link as={NextLink} type="secondary" href={linkResolver(slug, 'contributor')}>
+		<Link type="secondary" href={linkResolver(slug, 'contributor')}>
 			<strong>{name}</strong>
 		</Link>
 	)
@@ -90,7 +90,6 @@ const AuthorMetadata = ({
 
 	const authorAvatars = validAuthors?.map((author) => (
 		<Link
-			as={NextLink}
 			href={linkResolver(author.slug, 'contributor')}
 			key={author.name}
 		>

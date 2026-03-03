@@ -1,5 +1,5 @@
-import NextLink from 'next/link'
-import { Text, List, Link, Blockquote } from 'cadence-core'
+import { Text, List, Blockquote } from 'cadence-core'
+import { Link } from '@components/link'
 import { linkResolver } from '@utils/link-resolver'
 import {
 	Chord,
@@ -177,12 +177,12 @@ const Components = {
 	},
 	marks: {
 		link: ({ children, value }) => (
-			<Link as={NextLink} href={value.href} type="primary">
+			<Link href={value.href} type="primary">
 				{children}
 			</Link>
 		),
 		internalLink: ({ children, value }) => (
-			<Link as={NextLink} href={linkResolver(value.slug, value.type)} type="primary">
+			<Link href={linkResolver(value.slug, value.type)} type="primary">
 				{children}
 			</Link>
 		),

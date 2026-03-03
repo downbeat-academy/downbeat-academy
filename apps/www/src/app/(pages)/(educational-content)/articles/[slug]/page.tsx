@@ -5,8 +5,8 @@ import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 import { linkResolver } from '@utils/link-resolver'
 import { getOgTitle } from '@utils/metaHelpers'
-import NextLink from 'next/link'
-import { Text, Flex, SectionContainer, Link } from 'cadence-core'
+import { Text, Flex, SectionContainer } from 'cadence-core'
+import { Link } from '@components/link'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { RichText, RichTextWrapper } from '@components/rich-text'
@@ -76,7 +76,7 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 				{article.categories.map((category, i) => (
 					<Fragment key={category.title}>
 						{i > 0 && ', '}
-						<Link as={NextLink} href={linkResolver(category.slug, 'category')} type="secondary">
+						<Link href={linkResolver(category.slug, 'category')} type="secondary">
 							{category.title}
 						</Link>
 					</Fragment>
