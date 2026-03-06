@@ -222,7 +222,11 @@ describe('Public Routes Coverage', () => {
 		})
 
 		it('should maintain navigation on 404 pages', () => {
-			// Visit a non-existent page directly
+			// Visit home first to ensure clean router state after previous 404 test
+			cy.visit('/')
+			cy.url().should('eq', Cypress.config('baseUrl') + '/')
+
+			// Now visit a non-existent page
 			cy.visit('/navigate-test-not-found-page', { failOnStatusCode: false })
 
 			// Should show 404 content
