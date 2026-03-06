@@ -1,5 +1,34 @@
 # www
 
+## 4.7.0
+
+### Minor Changes
+
+- af86b9f: Add changelog feature for tracking content changes
+
+  Introduces a changelog system that lets editors document meaningful content updates in Sanity CMS, displayed to readers via a slide-out drawer on content pages.
+  - **cadence-core**: New Drawer component built on Radix UI Dialog, with slide-in animation, scrollable body, left/right side support, and full keyboard accessibility. Includes DrawerContent, DrawerTrigger, DrawerHeader, DrawerBody, DrawerFooter, DrawerTitle, and DrawerDescription sub-components.
+  - **cms-sanity**: New `changelogEntry` object schema (date, summary, description) and `changelog` array field added to all educational content document types — articles, resources, snippets, handbook, lexicon, courses, lessons, and curricula — each with a dedicated Changelog tab (groups added where applicable).
+  - **www**: New ChangelogDrawer component with an "Updated" badge trigger near content metadata. GROQ queries updated to fetch changelog data for educational content types.
+  - **cadence-icons**: Added a logs icon.
+
+### Patch Changes
+
+- 61d7ee8: Fix nested anchor tag hydration error in HandbookReference component
+  - Use `asChild` on `HoverCardTrigger` so the Radix primitive delegates to the child `Link` element instead of wrapping it in a second `<a>` tag.
+  - Render the `QuestionCircleOutline` icon directly inside the `Link` since `asChild` bypasses the trigger's built-in icon rendering.
+
+- 0694c9e: Fix top 5 Sentry issues for improved stability and reduced error noise
+  - **OSMD race condition**: Prevent `render()` calls before `load()` completes during component remount cycles by tracking load state with a dedicated ref.
+  - **OSMD mobile crash**: Wrap resize and transposition render calls in try/catch to gracefully handle OSMD internal layout errors on narrow viewports.
+  - **Music notation lazy loading**: Defer OSMD component loading with IntersectionObserver so notation blocks only fetch MusicXML files when near the viewport.
+  - **TableOfContents hydration mismatch**: Use a `hasMounted` pattern to ensure the initial client render matches SSR before applying viewport-based collapsed state.
+  - **Sentry noise filter**: Drop non-actionable `<unknown>` errors from `head > link` resource load failures via `beforeSend`.
+
+- Updated dependencies [af86b9f]
+  - cadence-core@3.1.0
+  - cadence-icons@1.7.0
+
 ## 4.6.0
 
 ### Minor Changes
