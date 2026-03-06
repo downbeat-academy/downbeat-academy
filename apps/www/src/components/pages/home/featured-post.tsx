@@ -3,10 +3,10 @@ import { linkResolver } from '@utils/link-resolver'
 import { getSanityImageUrl } from '@utils/getSanityImage'
 import { prettyDate } from '@utils/dateFormat'
 
-import { Link } from '@components/link'
 import * as FeaturedItem from '@components/featured-item'
 import { AuthorMetadata } from '@components/author'
 import { Text } from 'cadence-core'
+import { Link } from '@components/link'
 
 interface FeaturedPostType {
 	_id: string

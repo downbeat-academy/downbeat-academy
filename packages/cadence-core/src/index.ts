@@ -116,6 +116,12 @@ export {
   TabsTrigger,
   TabsContent,
 } from './components/tabs';
+export { Link } from './components/link';
+export { Blockquote } from './components/blockquote';
+export { SectionContainer } from './components/section-container';
+export { SectionTitle } from './components/section-title';
+export { SkeletonLoader } from './components/skeleton-loader';
+export { AudioPlayer, PlayerButton } from './components/audio-player';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -224,3 +230,9 @@ export type {
   TabsTriggerProps,
   TabsContentProps,
 } from './components/tabs';
+export type { LinkProps, LinkType } from './components/link';
+export type { BlockquoteProps } from './components/blockquote';
+export type { SectionContainerProps, SectionContainerBackground, SectionContainerBorderColor } from './components/section-container';
+export type { SectionTitleProps, SectionTitleAlignment, SectionTitleBackground } from './components/section-title';
+export type { SkeletonLoaderProps } from './components/skeleton-loader';
+export type { AudioPlayerProps, Track, PlayerButtonProps, PlayerButtonType } from './components/audio-player';

@@ -2,13 +2,11 @@ import { sanityClient } from '@lib/sanity/sanity.client'
 import { lexiconPaths, lexiconsBySlugQuery } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 import { formatTime } from '@utils/format-time'
-import { Text } from 'cadence-core'
-import { SectionContainer } from '@components/section-container'
-import { SectionTitle } from '@components/section-title'
+import { Text, Badge, Flex, SectionContainer, SectionTitle, AudioPlayer } from 'cadence-core'
+import type { Track } from 'cadence-core'
+import { getSanityUrl } from '@utils/getSanityUrl'
 import { RichText } from '@components/rich-text'
-import { Badge, Flex } from 'cadence-core'
 import { MusicNotation } from '@components/music-notation'
-import { AudioPlayer } from '@components/audio'
 import { ChangelogDrawer } from '@components/changelog'
 
 import s from './lexicon-page.module.css'
@@ -115,6 +113,13 @@ export default async function LexiconSlugRoute({ params }: { params: Promise<{ s
 		},
 	]
 
+	const resolvedTracks: Track[] = (audio || []).map((t: any, index: number) => ({
+		id: t._key || index,
+		title: t.title,
+		artist: t.artist,
+		src: getSanityUrl(t.file.asset._ref) || '',
+	}))
+
 	const renderMetadata = lexiconMetadata.map((item: { title: string; value: string }) => {
 		return (
 			<Flex
@@ -155,7 +160,7 @@ export default async function LexiconSlugRoute({ params }: { params: Promise<{ s
 						className={s['excerpt-content']}
 					>
 						<RichText value={description.content} />
-						<AudioPlayer tracks={audio} showTitle={false} showArtist={false} />
+						<AudioPlayer tracks={resolvedTracks} showTitle={false} showArtist={false} />
 						<MusicNotation files={excerpt.files} collapse />
 					</Flex>
 				</section>

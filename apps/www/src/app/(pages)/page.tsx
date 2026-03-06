@@ -1,10 +1,8 @@
 import { homepagePostsQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
 
-import { SectionContainer } from '@components/section-container'
-import { SectionTitle } from '@components/section-title'
 import { FeaturedPost, HomePostGrid } from '@components/pages/home'
-import { Text } from 'cadence-core'
+import { Text, SectionContainer, SectionTitle } from 'cadence-core'
 
 import type { Metadata } from 'next'
 
@@ -38,6 +36,11 @@ export const metadata: Metadata = {
 // Render the homepage data in an async function
 export default async function Page() {
 	const data = await getHomepageData()
+
+	if (!data || data.length === 0) {
+		return null
+	}
+
 	const featuredPost = data[0]
 	const posts = data.slice(1, -1)
 

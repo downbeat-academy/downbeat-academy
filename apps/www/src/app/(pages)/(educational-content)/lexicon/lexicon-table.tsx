@@ -7,10 +7,10 @@ import {
 	createTextColumn,
 	createCustomColumn,
 } from 'cadence-core'
+import { Link } from '@components/link'
 import { formatTime } from '@utils/format-time'
 import { deslugify } from '@utils/deslugify'
 import { linkResolver } from '@utils/link-resolver'
-import { Link } from '@components/link'
 
 interface LexiconRowData {
 	id: string

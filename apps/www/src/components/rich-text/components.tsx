@@ -1,4 +1,4 @@
-import { Text, List } from 'cadence-core'
+import { Text, List, Blockquote } from 'cadence-core'
 import { Link } from '@components/link'
 import { linkResolver } from '@utils/link-resolver'
 import {
@@ -6,7 +6,6 @@ import {
 	MusicTextRenderer,
 	MusicNotation,
 } from '@components/music-notation'
-import { Blockquote } from '@components/blockquote'
 import { MainImage } from '@components/images'
 import { FileDownload } from '@components/file-download'
 import { HandbookReference } from '@components/handbook-reference'

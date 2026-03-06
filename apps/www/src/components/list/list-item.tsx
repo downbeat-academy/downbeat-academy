@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import s from './list-item.module.css'
-import { Link } from '@components/link'
 import { Text, Badge } from 'cadence-core'
+import { Link } from '@components/link'
 
 import type { ListItemProps } from './types'
 

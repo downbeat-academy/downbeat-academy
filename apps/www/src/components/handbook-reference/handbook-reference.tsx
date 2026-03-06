@@ -11,8 +11,8 @@ import {
 	Badge,
 	Flex,
 } from 'cadence-core'
-import { QuestionCircleOutline } from 'cadence-icons'
 import { Link } from '@components/link'
+import { QuestionCircleOutline } from 'cadence-icons'
 
 import type { HandbookReferenceProps } from './types'
 

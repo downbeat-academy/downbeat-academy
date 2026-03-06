@@ -2,11 +2,8 @@ import { sanityClient } from '@lib/sanity/sanity.client'
 import { handbookPageQuery } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
 
-import { SectionContainer } from '@components/section-container'
-import { SectionTitle } from '@components/section-title'
-import { Text } from 'cadence-core'
+import { Text, Flex, SectionContainer, SectionTitle } from 'cadence-core'
 import { Link } from '@components/link'
-import { Flex } from 'cadence-core'
 
 import type { Metadata } from 'next'
 
