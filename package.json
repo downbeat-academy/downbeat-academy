@@ -39,7 +39,10 @@
     "core:storybook": "turbo run storybook --filter=cadence-core",
     "core:build-storybook": "turbo run build:storybook --filter=cadence-core",
     "core:publish": "turbo run build-publish-storybook --filter=cadence-core",
-    "core:build": "turbo run build --filter=cadence-core"
+    "core:build": "turbo run build --filter=cadence-core",
+    "wc:storybook": "turbo run storybook --filter=cadence-core-web-components",
+    "wc:build-storybook": "turbo run build:storybook --filter=cadence-core-web-components",
+    "wc:build": "turbo run build --filter=cadence-core-web-components"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.8",
