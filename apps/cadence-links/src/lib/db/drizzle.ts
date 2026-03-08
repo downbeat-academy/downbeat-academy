@@ -1,9 +1,11 @@
 import { drizzle } from 'drizzle-orm/node-postgres'
 import { Pool } from 'pg'
 import * as linksSchema from './schema/links'
-import * as authSchema from './schema/auth'
 
-// Create a connection pool singleton
+// Auth database connection (shared with auth service for session validation)
+export const authDb = drizzle(process.env.DATABASE_URL_AUTH!)
+
+// Links database connection pool singleton
 const globalForDb = globalThis as unknown as {
 	pool: Pool | undefined
 }
@@ -18,10 +20,4 @@ if (process.env.NODE_ENV !== 'production') {
 	globalForDb.pool = pool
 }
 
-// Combined schema for database operations
-const schema = {
-	...linksSchema,
-	...authSchema,
-}
-
-export const db = drizzle(pool, { schema })
+export const db = drizzle(pool, { schema: linksSchema })

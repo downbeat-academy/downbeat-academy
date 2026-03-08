@@ -1,47 +1,75 @@
 import { betterAuth } from 'better-auth'
 import { nextCookies } from 'better-auth/next-js'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { db } from '@/lib/db/drizzle'
-import * as authSchema from '@/lib/db/schema/auth'
+import { admin, organization } from 'better-auth/plugins'
+import { authDb } from '@/lib/db/drizzle'
+import { authSchema } from '@/lib/db/schema'
+import {
+	ac,
+	admin as adminRole,
+	educator,
+	student,
+	superAdmin,
+} from '@/lib/auth/permissions'
 
-// Parse allowed emails from environment variable
-const ALLOWED_EMAILS = (process.env.ALLOWED_EMAILS || '')
-	.split(',')
-	.map((e) => e.trim().toLowerCase())
-	.filter(Boolean)
+// This is a READ-ONLY configuration for session validation
+// All auth operations (sign-in, sign-up, etc.) are handled by the auth service
+export function createAuth() {
+	const isDev = process.env.NODE_ENV === 'development'
+	const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:3002'
 
-export const auth = betterAuth({
-	appName: 'Cadence Links',
-	secret: process.env.BETTER_AUTH_SECRET,
-	baseUrl: process.env.NEXT_PUBLIC_APP_URL,
-	trustedOrigins: [
-		'https://links.downbeatacademy.services',
-		'https://dwnbe.at',
-		'https://downbeatacademy.services',
-		'https://downbeatacade.my',
-	],
-	database: drizzleAdapter(db, {
-		provider: 'pg',
-		schema: authSchema,
-	}),
-	emailAndPassword: {
-		enabled: true,
-		autoSignIn: true,
-		requireEmailVerification: false,
-	},
-	databaseHooks: {
-		user: {
-			create: {
-				before: async (user) => {
-					// Check if email is in the allowlist
-					const email = user.email.toLowerCase()
-					if (ALLOWED_EMAILS.length > 0 && !ALLOWED_EMAILS.includes(email)) {
-						throw new Error('Email not allowed. Contact an administrator for access.')
-					}
-					return { data: user }
+	return betterAuth({
+		appName: 'Cadence Links',
+		secret: process.env.BETTER_AUTH_SECRET,
+		baseUrl: authServiceUrl,
+
+		// Cross-subdomain cookie configuration (must match auth service)
+		advanced: {
+			crossSubDomainCookies: isDev
+				? { enabled: false }
+				: {
+					enabled: true,
+					domain: '.downbeatacademy.com',
 				},
+			defaultCookieAttributes: {
+				sameSite: 'lax',
+				secure: !isDev,
+				httpOnly: true,
 			},
 		},
-	},
-	plugins: [nextCookies()],
-})
+
+		database: drizzleAdapter(authDb, {
+			provider: 'pg',
+			schema: authSchema,
+		}),
+
+		plugins: [
+			admin({
+				ac: ac,
+				roles: {
+					student,
+					educator,
+					admin: adminRole,
+					superAdmin,
+				},
+				defaultRole: 'student',
+			}),
+			organization(),
+			// nextCookies must be the last plugin in the array.
+			nextCookies(),
+		],
+	})
+}
+
+// Lazy initialize auth
+let authInstance: ReturnType<typeof betterAuth> | null = null
+
+export function getAuth() {
+	if (!authInstance) {
+		authInstance = createAuth()
+	}
+	return authInstance
+}
+
+// For backward compatibility
+export const auth = getAuth()
