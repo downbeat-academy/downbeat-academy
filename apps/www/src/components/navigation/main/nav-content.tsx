@@ -13,7 +13,7 @@ import { useFormStatus } from 'react-dom'
 // Create a client component for the sign-out button
 function SignOutButton() {
 	const { pending } = useFormStatus()
-	
+
 	return (
 		<Button
 			type="submit"
@@ -29,10 +29,10 @@ function SignOutButton() {
 
 interface NavContentProps {
 	links: any
-	session: any
+	isAuthenticated: boolean
 }
 
-const NavContent = ({ links, session }: NavContentProps) => {
+const NavContent = ({ links, isAuthenticated }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
@@ -45,7 +45,7 @@ const NavContent = ({ links, session }: NavContentProps) => {
 		try {
 			await signOut()
 		} catch (error) {
-			window.dispatchEvent(new Event('auth-event'))
+			// Sign-out failed
 		}
 	}
 
@@ -131,7 +131,7 @@ const NavContent = ({ links, session }: NavContentProps) => {
 					</ul>
 				</nav>
 				<div className={s.actions}>
-					{!session?.data?.session ? (
+					{!isAuthenticated ? (
 						<Button
 							variant="primary"
 							size="large"
