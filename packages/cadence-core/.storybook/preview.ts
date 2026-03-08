@@ -3,6 +3,7 @@ import '../node_modules/cadence-tokens/dist/web/tokens.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const preview: Preview = {
+	initialGlobals: {},
 	parameters: {
 		controls: {
 			matchers: {
@@ -12,7 +13,7 @@ const preview: Preview = {
 		},
 		options: {
 			storySort: {
-				order: ['Introduction', '*'],
+				order: ['Introduction', 'Cadence', '*'],
 			},
 		},
 	},
