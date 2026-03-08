@@ -1,0 +1,45 @@
+{
+  "name": "cadence-core-web-components",
+  "version": "0.1.0",
+  "author": "Jory Tindall <jory@downbeatacademy.com>",
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && vite build && tsc --emitDeclarationOnly --outDir dist",
+    "storybook": "storybook dev -p 6007 --ci",
+    "build:storybook": "storybook build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "lit": "^3.2.0",
+    "cadence-tokens": "workspace:^"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.15",
+    "@storybook/addon-interactions": "^8.6.15",
+    "@storybook/addon-links": "^8.6.15",
+    "@storybook/web-components": "^8.6.15",
+    "@storybook/web-components-vite": "^8.6.15",
+    "@storybook/test": "^8.6.15",
+    "@open-wc/testing": "^4.0.0",
+    "storybook": "^8.6.18",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.16"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.es.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "default": "./dist/index.es.js"
+    }
+  }
+}
