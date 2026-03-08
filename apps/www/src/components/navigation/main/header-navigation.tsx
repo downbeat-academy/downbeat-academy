@@ -9,7 +9,6 @@ import s from './header-navigation.module.css'
 import { Text, LogoLockup, Banner, BannerActions, BannerContent } from 'cadence-core'
 import { Button } from '@components/ui/button'
 import { NavContent } from './nav-content'
-import { useRouter } from 'next/navigation'
 import { signOut } from '@/actions/auth'
 import { useFormStatus } from 'react-dom'
 import Link from 'next/link'
@@ -42,7 +41,7 @@ async function getBannerData() {
 // Create a client component for the sign-out button
 function SignOutButton() {
 	const { pending } = useFormStatus()
-	
+
 	return (
 		<Button
 			type="submit"
@@ -58,12 +57,15 @@ function SignOutButton() {
 }
 
 // Render the component
-const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
-	const [session, setSession] = useState<any>(null)
+const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) => {
+	const { data: clientSession } = authClient.useSession()
 	const [navData, setNavData] = useState<any>(null)
 	const [bannerData, setBannerData] = useState<any>(null)
 	const [error, setError] = useState<Error | null>(null)
-	const router = useRouter()
+
+	// Use client session if available (reactive updates after sign-in/out),
+	// otherwise fall back to the server-provided initial session
+	const session = clientSession ?? initialSession
 
 	useEffect(() => {
 		const initData = async () => {
@@ -87,27 +89,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 		}
 
 		initData()
-
-		// Check session when auth state changes
-		const checkSession = async () => {
-			try {
-				const session = await authClient.getSession()
-				setSession(session)
-				router.refresh()
-			} catch (error) {
-				console.error('Failed to get session:', error)
-				setSession(null)
-			}
-		}
-
-		checkSession()
-
-		// Listen for auth state changes
-		window.addEventListener('auth-event', checkSession)
-		return () => {
-			window.removeEventListener('auth-event', checkSession)
-		}
-	}, [router])
+	}, [])
 
 	const classes = classnames(s.root, [className])
 
@@ -139,15 +121,13 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 
 	const handleSignOut = async () => {
 		try {
-			// Update local session state immediately
-			setSession(null)
-			// Trigger the server action
 			await signOut()
 		} catch (error) {
-			// If sign-out fails, recheck the session
-			window.dispatchEvent(new Event('auth-event'))
+			// Sign-out failed, session state will update reactively via useSession
 		}
 	}
+
+	const isAuthenticated = !!session?.session
 
 	return (
 		<header className={classes}>
@@ -164,7 +144,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 					</Text>
 				</BannerContent>
 				<BannerActions>
-					{!session?.data?.session ? (
+					{!isAuthenticated ? (
 						<>
 							<Button
 								data-testid="sign-in-link"
@@ -192,7 +172,7 @@ const HeaderNavigation = ({ className }: HeaderNavigationProps) => {
 					)}
 				</BannerActions>
 			</Banner>
-			<NavContent links={navData} session={session} />
+			<NavContent links={navData} isAuthenticated={isAuthenticated} />
 		</header>
 	)
 }
