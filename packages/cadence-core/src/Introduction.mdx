@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Introduction" />
+
+# Cadence Design System
+
+Welcome to the component library for **Cadence** — the design system powering [Downbeat Academy](https://downbeatacademy.com).
+
+---
+
+## About
+
+`cadence-core` provides a set of accessible, composable React components built with design tokens from `cadence-tokens`. Components are styled with CSS Modules and use scoped class names to avoid collisions when consumed by host applications.
+
+The library ships as both ESM and CommonJS, with full TypeScript declarations and a bundled CSS stylesheet.
+
+## Installation
+
+```bash
+pnpm add cadence-core
+```
+
+Then import the stylesheet in your application entry point:
+
+```tsx
+import 'cadence-core/styles.css'
+```
+
+## Packages in the ecosystem
+
+| Package | Description |
+|---|---|
+| **cadence-core** | Core component library (this package) |
+| **cadence-tokens** | Design tokens managed with style-dictionary |
+| **cadence-icons** | Icon library |
+| **typeface-favorit** | ABC Favorit font package |
+| **typeface-tiempos-text** | Tiempos Text font package |
+
+## Components
+
+Cadence Core currently includes **26 components** across layout, data display, feedback, and form categories:
+
+### Layout
+Flex, Grid, Section Container, Separator
+
+### Data Display
+Avatar, Badge, Card, Data Table, Hover Card, Summary, Tabs, Text
+
+### Feedback
+Banner, Dialog, Drawer, Dropdown Menu, Skeleton Loader, Toast, Tooltip
+
+### Forms
+Button, Input, Select, Checkbox, Radio, Switch, Textarea
+
+### Media & Brand
+Audio Player, Blockquote, Brand, Link, Section Title
+
+---
+
+Browse the sidebar to explore individual component documentation and interactive examples.
