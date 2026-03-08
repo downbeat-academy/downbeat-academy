@@ -5,6 +5,7 @@
   "type": "module",
   "license": "UNLICENSED",
   "scripts": {
+    "start": "serve storybook-static -l tcp://0.0.0.0:$PORT",
     "clean": "rm -rf dist",
     "build": "pnpm run clean && vite build && tsc --emitDeclarationOnly --outDir dist",
     "storybook": "storybook dev -p 6007 --ci",
@@ -23,6 +24,7 @@
     "@storybook/web-components-vite": "^8.6.15",
     "@storybook/test": "^8.6.15",
     "@open-wc/testing": "^4.0.0",
+    "serve": "^14.2.6",
     "storybook": "^8.6.18",
     "typescript": "^5.9.3",
     "vite": "^6.3.5",
