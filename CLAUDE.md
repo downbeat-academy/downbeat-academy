@@ -107,6 +107,22 @@ Key environment variables needed:
 - **Unit Testing**: Vitest for packages (cadence-icons, cadence-core)
 - Test files follow *.test.* or *.cy.* naming conventions
 
+## Changesets
+
+This project uses [changesets](https://github.com/changesets/changesets) to manage versioning and changelogs. When making changes to any package, always include a changeset:
+
+1. Create a new markdown file in `.changeset/` with a descriptive kebab-case name (e.g., `.changeset/fix-button-styles.md`)
+2. Use this format:
+   ```md
+   ---
+   "package-name": patch | minor | major
+   ---
+
+   Description of the change.
+   ```
+3. Use `patch` for bug fixes and small changes, `minor` for new features, `major` for breaking changes
+4. If a change affects multiple packages, list each on its own line in the front matter
+
 ## Code Conventions
 
 - TypeScript throughout the codebase
