@@ -6,7 +6,7 @@ config({ path: '.env.local' })
 export default defineConfig({
 	out: './drizzle',
 	dialect: 'postgresql',
-	schema: ['./src/lib/db/schema/links.ts', './src/lib/db/schema/auth.ts'],
+	schema: ['./src/lib/db/schema/links.ts'],
 	dbCredentials: {
 		url: process.env.DATABASE_PUBLIC_URL!,
 	},

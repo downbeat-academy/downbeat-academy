@@ -1,7 +1,26 @@
 import { createAuthClient } from 'better-auth/react'
+import { adminClient, organizationClient } from 'better-auth/client/plugins'
+import { ac, student, educator, admin, superAdmin } from '@/lib/auth/permissions'
 
 export const authClient = createAuthClient({
-	baseURL: process.env.NEXT_PUBLIC_APP_URL,
+	// Point to the centralized auth service
+	baseURL: process.env.NEXT_PUBLIC_AUTH_SERVICE_URL,
+	// Enable credentials for cross-origin requests
+	fetchOptions: {
+		credentials: 'include',
+	},
+	plugins: [
+		adminClient({
+			ac: ac,
+			roles: {
+				student,
+				educator,
+				admin,
+				superAdmin,
+			},
+		}),
+		organizationClient(),
+	],
 })
 
 export const { signIn, signUp, signOut, useSession } = authClient
