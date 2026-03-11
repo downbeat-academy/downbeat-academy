@@ -30,12 +30,18 @@ function SignOutButton() {
 interface NavContentProps {
 	links: any
 	isAuthenticated: boolean
+	isAuthLoading?: boolean
 }
 
-const NavContent = ({ links, isAuthenticated }: NavContentProps) => {
+const NavContent = ({ links, isAuthenticated, isAuthLoading }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
+
+	const authServiceUrl = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
+	const projectUrl = process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000'
+	const redirectUri = encodeURIComponent(`${projectUrl}${route}`)
+	const signInHref = `${authServiceUrl}/sign-in?redirect_uri=${redirectUri}`
 
 	const handleNavToggled = () => {
 		setNavToggled(!navToggled)
@@ -131,11 +137,11 @@ const NavContent = ({ links, isAuthenticated }: NavContentProps) => {
 					</ul>
 				</nav>
 				<div className={s.actions}>
-					{!isAuthenticated ? (
+					{isAuthLoading ? null : !isAuthenticated ? (
 						<Button
 							variant="primary"
 							size="large"
-							href="/sign-in"
+							href={signInHref}
 							isFullWidth
 						>
 							Sign in / Sign up

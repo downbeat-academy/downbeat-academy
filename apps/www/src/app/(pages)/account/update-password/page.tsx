@@ -1,18 +1,9 @@
-import { auth } from '@/lib/auth/auth'
-import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
+import { requireAuth } from '@/lib/auth/require-auth'
 import { UpdatePasswordForm } from './update-password-form'
 import { Text } from 'cadence-core'
 
 export default async function UpdatePasswordPage() {
-  // Check if user is authenticated
-  const session = await auth.api.getSession({
-    headers: await headers()
-  })
-
-  if (!session?.user) {
-    redirect('/sign-in')
-  }
+  await requireAuth('/account/update-password')
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">

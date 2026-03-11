@@ -14,8 +14,7 @@ import {
 } from '@/lib/auth/permissions'
 
 // Email templates from shared package
-import VerifyEmail from '../../../../../packages/email/emails/verify-email'
-import ResetPasswordEmail from '../../../../../packages/email/emails/reset-password'
+import { VerifyEmail, ResetPasswordEmail } from 'email/emails/index'
 
 // Security: Validate redirect URIs to prevent open redirect attacks
 const TRUSTED_DOMAINS = [

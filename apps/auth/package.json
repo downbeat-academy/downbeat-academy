@@ -24,6 +24,7 @@
 		"cadence-tokens": "workspace:^",
 		"classnames": "^2.5.1",
 		"drizzle-orm": "^0.45.1",
+		"email": "workspace:^",
 		"next": "^16.1.1",
 		"pg": "^8.16.3",
 		"react": "^19.2.3",

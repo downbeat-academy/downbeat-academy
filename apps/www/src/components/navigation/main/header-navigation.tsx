@@ -58,14 +58,14 @@ function SignOutButton() {
 
 // Render the component
 const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) => {
-	const { data: clientSession } = authClient.useSession()
+	const { data: clientSession, isPending } = authClient.useSession()
 	const [navData, setNavData] = useState<any>(null)
 	const [bannerData, setBannerData] = useState<any>(null)
 	const [error, setError] = useState<Error | null>(null)
 
-	// Use client session if available (reactive updates after sign-in/out),
-	// otherwise fall back to the server-provided initial session
-	const session = clientSession ?? initialSession
+	// Use the server-provided session until the client session has resolved.
+	// This prevents a flash where the auth buttons flicker during hydration.
+	const session = isPending ? initialSession : (clientSession ?? initialSession)
 
 	useEffect(() => {
 		const initData = async () => {
@@ -128,6 +128,9 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 	}
 
 	const isAuthenticated = !!session?.session
+	// While the client session is resolving and we have no server session,
+	// treat the auth UI as loading to avoid flashing the wrong state.
+	const isAuthLoading = isPending && !initialSession
 
 	return (
 		<header className={classes}>
@@ -144,7 +147,7 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 					</Text>
 				</BannerContent>
 				<BannerActions>
-					{!isAuthenticated ? (
+					{isAuthLoading ? null : !isAuthenticated ? (
 						<>
 							<Button
 								data-testid="sign-in-link"
@@ -172,7 +175,7 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 					)}
 				</BannerActions>
 			</Banner>
-			<NavContent links={navData} isAuthenticated={isAuthenticated} />
+			<NavContent links={navData} isAuthenticated={isAuthenticated} isAuthLoading={isAuthLoading} />
 		</header>
 	)
 }

@@ -5,11 +5,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Button } from '@components/ui/button'
 import { Form, Field, Input, Label, ValidationMessage, useToast } from 'cadence-core'
-import { updatePasswordAction } from '@/actions/auth/update-password'
-import { useEffect, useState } from 'react'
+import { authClient } from '@/lib/auth/auth-client'
 
 const updatePasswordSchema = z.object({
-  currentPassword: z.string().optional(),
+  currentPassword: z.string().min(1, 'Current password is required'),
   newPassword: z.string()
     .min(8, 'Password must be at least 8 characters')
     .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
@@ -25,22 +24,6 @@ type UpdatePasswordSchema = z.infer<typeof updatePasswordSchema>
 
 export function UpdatePasswordForm() {
   const { toast } = useToast()
-  const [hasPassword, setHasPassword] = useState<boolean | null>(null)
-  
-  useEffect(() => {
-    const checkPassword = async () => {
-      try {
-        const result = await updatePasswordAction({
-          newPassword: 'temp-check-only'
-        })
-        setHasPassword(!result.error || result.error !== 'No password set for this account')
-      } catch (error) {
-        console.error('Failed to check password status:', error)
-      }
-    }
-    
-    checkPassword()
-  }, [])
 
   const {
     register,
@@ -53,15 +36,15 @@ export function UpdatePasswordForm() {
 
   const onSubmit = async (data: UpdatePasswordSchema) => {
     try {
-      const result = await updatePasswordAction({
+      const result = await authClient.changePassword({
         currentPassword: data.currentPassword,
-        newPassword: data.newPassword
+        newPassword: data.newPassword,
       })
-      
+
       if (result.error) {
         toast({
           title: 'Failed to update password',
-          description: result.error,
+          description: result.error.message || 'Please check your current password and try again.',
           variant: 'error'
         })
         return
@@ -82,27 +65,21 @@ export function UpdatePasswordForm() {
     }
   }
 
-  if (hasPassword === null) {
-    return null // Loading state
-  }
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {hasPassword && (
-        <Field>
-          <Label htmlFor="currentPassword">Current Password</Label>
-          <Input
-            type="password"
-            id="currentPassword"
-            {...register('currentPassword')}
-            placeholder="Enter your current password"
-            isInvalid={!!errors.currentPassword}
-          />
-          {errors.currentPassword && (
-            <ValidationMessage type="error">{errors.currentPassword.message}</ValidationMessage>
-          )}
-        </Field>
-      )}
+      <Field>
+        <Label htmlFor="currentPassword">Current Password</Label>
+        <Input
+          type="password"
+          id="currentPassword"
+          {...register('currentPassword')}
+          placeholder="Enter your current password"
+          isInvalid={!!errors.currentPassword}
+        />
+        {errors.currentPassword && (
+          <ValidationMessage type="error">{errors.currentPassword.message}</ValidationMessage>
+        )}
+      </Field>
       <Field>
         <Label htmlFor="newPassword">New Password</Label>
         <Input
@@ -138,4 +115,4 @@ export function UpdatePasswordForm() {
       </Button>
     </Form>
   )
-} 
+}
