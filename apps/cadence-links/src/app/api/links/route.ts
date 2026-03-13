@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { headers } from 'next/headers'
+import { auth } from '@/lib/auth/auth'
 import { createLink, getAllLinks } from '@lib/db/queries/links'
 import { generateUniqueShortCode } from '@lib/utils/short-code'
 import { isValidUrl, normalizeUrl } from '@lib/utils/url-validator'
@@ -16,6 +18,14 @@ import type {
 export async function POST(
 	request: NextRequest
 ): Promise<NextResponse<CreateLinkResponse | ErrorResponse>> {
+	const session = await auth.api.getSession({ headers: await headers() })
+	if (!session) {
+		return NextResponse.json(
+			{ success: false, error: 'Unauthorized' },
+			{ status: 401 }
+		)
+	}
+
 	try {
 		const body = (await request.json()) as CreateLinkRequest
 		const { url, domain } = body
@@ -75,6 +85,14 @@ export async function POST(
  * GET /api/links - Get all links
  */
 export async function GET(): Promise<NextResponse<GetLinksResponse | ErrorResponse>> {
+	const session = await auth.api.getSession({ headers: await headers() })
+	if (!session) {
+		return NextResponse.json(
+			{ success: false, error: 'Unauthorized' },
+			{ status: 401 }
+		)
+	}
+
 	try {
 		const links = await getAllLinks()
 

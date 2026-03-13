@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { headers } from 'next/headers'
+import { auth } from '@/lib/auth/auth'
 import { deleteLink } from '@lib/db/queries/links'
 import type { DeleteLinkResponse, ErrorResponse } from '@/types/link'
 
@@ -15,6 +17,14 @@ export async function DELETE(
 	request: NextRequest,
 	{ params }: RouteParams
 ): Promise<NextResponse<DeleteLinkResponse | ErrorResponse>> {
+	const session = await auth.api.getSession({ headers: await headers() })
+	if (!session) {
+		return NextResponse.json(
+			{ success: false, error: 'Unauthorized' },
+			{ status: 401 }
+		)
+	}
+
 	try {
 		const { id } = await params
 

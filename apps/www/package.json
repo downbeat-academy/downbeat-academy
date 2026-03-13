@@ -79,7 +79,7 @@
 		"@sanity/image-url": "^2.0.2",
 		"@sentry/nextjs": "^10.32.1",
 		"@vercel/og": "^0.8.6",
-		"better-auth": "^1.4.9",
+		"better-auth": "^1.5.5",
 		"boring-avatars": "^2.0.4",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",

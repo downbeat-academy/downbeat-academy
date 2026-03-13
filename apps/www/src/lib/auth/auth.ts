@@ -62,7 +62,7 @@ export function createAuth() {
 }
 
 // Lazy initialize auth
-let authInstance: ReturnType<typeof betterAuth> | null = null
+let authInstance: ReturnType<typeof createAuth> | null = null
 
 export function getAuth() {
 	if (!authInstance) {

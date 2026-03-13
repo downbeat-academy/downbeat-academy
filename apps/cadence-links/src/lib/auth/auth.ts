@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth'
 import { nextCookies } from 'better-auth/next-js'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { admin, organization } from 'better-auth/plugins'
+import { admin, organization, genericOAuth } from 'better-auth/plugins'
 import { authDb } from '@/lib/db/drizzle'
 import { authSchema } from '@/lib/db/schema'
 import {
@@ -12,25 +12,17 @@ import {
 	superAdmin,
 } from '@/lib/auth/permissions'
 
-// This is a READ-ONLY configuration for session validation
-// All auth operations (sign-in, sign-up, etc.) are handled by the auth service
 export function createAuth() {
 	const isDev = process.env.NODE_ENV === 'development'
 	const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:3002'
+	const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'
 
 	return betterAuth({
 		appName: 'Cadence Links',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseUrl: authServiceUrl,
+		baseUrl: appUrl,
 
-		// Cross-subdomain cookie configuration (must match auth service)
 		advanced: {
-			crossSubDomainCookies: isDev
-				? { enabled: false }
-				: {
-					enabled: true,
-					domain: '.downbeatacademy.com',
-				},
 			defaultCookieAttributes: {
 				sameSite: 'lax',
 				secure: !isDev,
@@ -44,6 +36,17 @@ export function createAuth() {
 		}),
 
 		plugins: [
+			genericOAuth({
+				config: [{
+					providerId: 'downbeat-auth',
+					clientId: process.env.OAUTH_CLIENT_ID!,
+					clientSecret: process.env.OAUTH_CLIENT_SECRET!,
+					discoveryUrl: `${authServiceUrl}/api/auth/.well-known/openid-configuration`,
+					pkce: true,
+					scopes: ['openid', 'profile', 'email'],
+					redirectURI: `${appUrl}/api/auth/oauth2/callback/downbeat-auth`,
+				}],
+			}),
 			admin({
 				ac: ac,
 				roles: {
@@ -62,7 +65,7 @@ export function createAuth() {
 }
 
 // Lazy initialize auth
-let authInstance: ReturnType<typeof betterAuth> | null = null
+let authInstance: ReturnType<typeof createAuth> | null = null
 
 export function getAuth() {
 	if (!authInstance) {

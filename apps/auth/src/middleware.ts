@@ -5,6 +5,7 @@ const PRODUCTION_ORIGINS = [
 	'https://downbeatacademy.com',
 	'https://www.downbeatacademy.com',
 	'https://auth.downbeatacademy.com',
+	'https://links.downbeatacademy.services',
 ]
 
 const DEV_ORIGINS = [

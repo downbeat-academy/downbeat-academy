@@ -2,11 +2,9 @@ import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import { auth } from './auth'
 
-const AUTH_SERVICE_URL = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
-const PROJECT_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'
-
 /**
- * Require authentication for a page. If not authenticated, redirects to auth service.
+ * Require authentication for a page. If not authenticated, redirects to
+ * the local sign-in page which triggers the OAuth flow with the auth service.
  * @param currentPath The current path to redirect back to after authentication
  * @returns The session if authenticated
  */
@@ -16,8 +14,8 @@ export async function requireAuth(currentPath: string) {
 	})
 
 	if (!session) {
-		const redirectUrl = encodeURIComponent(`${PROJECT_URL}${currentPath}`)
-		redirect(`${AUTH_SERVICE_URL}/sign-in?redirect_uri=${redirectUrl}`)
+		const callbackUrl = encodeURIComponent(currentPath)
+		redirect(`/sign-in?callbackURL=${callbackUrl}`)
 	}
 
 	return session
@@ -31,22 +29,4 @@ export async function getOptionalSession() {
 	return auth.api.getSession({
 		headers: await headers(),
 	})
-}
-
-/**
- * Get the URL to redirect to the auth service sign-in page
- * @param returnPath The path to return to after authentication
- */
-export function getSignInUrl(returnPath: string = '/') {
-	const redirectUrl = encodeURIComponent(`${PROJECT_URL}${returnPath}`)
-	return `${AUTH_SERVICE_URL}/sign-in?redirect_uri=${redirectUrl}`
-}
-
-/**
- * Get the URL to redirect to the auth service sign-up page
- * @param returnPath The path to return to after authentication
- */
-export function getSignUpUrl(returnPath: string = '/') {
-	const redirectUrl = encodeURIComponent(`${PROJECT_URL}${returnPath}`)
-	return `${AUTH_SERVICE_URL}/sign-up?redirect_uri=${redirectUrl}`
 }
