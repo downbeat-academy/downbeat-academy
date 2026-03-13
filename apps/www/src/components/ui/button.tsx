@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import NextLink from 'next/link'
 import { Button as CadenceButton, ButtonWrapper as CadenceButtonWrapper } from 'cadence-core'

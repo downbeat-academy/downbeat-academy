@@ -7,10 +7,9 @@ import { LogoLockup } from 'cadence-core'
 import { Link } from '@components/link'
 import { Button } from '@components/ui/button'
 import s from './nav-content.module.css'
-import { signOut } from '@/actions/auth'
 import { useFormStatus } from 'react-dom'
 
-// Create a client component for the sign-out button
+// Client component for the sign-out button with pending state
 function SignOutButton() {
 	const { pending } = useFormStatus()
 
@@ -30,23 +29,17 @@ function SignOutButton() {
 interface NavContentProps {
 	links: any
 	isAuthenticated: boolean
+	signInHref: string
+	onSignOut: () => Promise<void>
 }
 
-const NavContent = ({ links, isAuthenticated }: NavContentProps) => {
+const NavContent = ({ links, isAuthenticated, signInHref, onSignOut }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
 
 	const handleNavToggled = () => {
 		setNavToggled(!navToggled)
-	}
-
-	const handleSignOut = async () => {
-		try {
-			await signOut()
-		} catch (error) {
-			// Sign-out failed
-		}
 	}
 
 	useEffect(() => {
@@ -135,14 +128,14 @@ const NavContent = ({ links, isAuthenticated }: NavContentProps) => {
 						<Button
 							variant="primary"
 							size="large"
-							href="/sign-in"
+							href={signInHref}
 							isFullWidth
 						>
 							Sign in / Sign up
 						</Button>
 					) : (
 						<>
-							<form action={handleSignOut}>
+							<form action={onSignOut}>
 								<SignOutButton />
 							</form>
 							<Button

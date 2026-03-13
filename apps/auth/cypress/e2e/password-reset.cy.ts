@@ -68,9 +68,9 @@ describe('Password Reset Flow', () => {
 			cy.visit('/update-password?token=valid-looking-token-abc123')
 
 			// The form should be visible (token validation may happen on submit)
-			cy.get('[data-testid="update-password-input"]').should('exist')
-			cy.get('[data-testid="update-password-confirm-input"]').should('exist')
-			cy.get('[data-testid="update-password-submit"]').should('exist')
+			cy.get('[data-testid="new-password-input"]').should('exist')
+			cy.get('[data-testid="confirm-new-password-input"]').should('exist')
+			cy.get('[data-testid="reset-password-submit"]').should('exist')
 		})
 	})
 
@@ -81,23 +81,23 @@ describe('Password Reset Flow', () => {
 		})
 
 		it('should show validation error for empty password', () => {
-			cy.get('[data-testid="update-password-submit"]').click()
+			cy.get('[data-testid="reset-password-submit"]').click()
 
 			cy.contains(/password|required/i).should('be.visible')
 		})
 
 		it('should show validation error for weak password', () => {
-			cy.get('[data-testid="update-password-input"]').type('weak')
-			cy.get('[data-testid="update-password-confirm-input"]').type('weak')
-			cy.get('[data-testid="update-password-submit"]').click()
+			cy.get('[data-testid="new-password-input"]').type('weak')
+			cy.get('[data-testid="confirm-new-password-input"]').type('weak')
+			cy.get('[data-testid="reset-password-submit"]').click()
 
 			cy.contains(/8 characters|uppercase|lowercase|number|special/i).should('be.visible')
 		})
 
 		it('should show validation error for mismatched passwords', () => {
-			cy.get('[data-testid="update-password-input"]').type('NewPassword123!')
-			cy.get('[data-testid="update-password-confirm-input"]').type('DifferentPassword123!')
-			cy.get('[data-testid="update-password-submit"]').click()
+			cy.get('[data-testid="new-password-input"]').type('NewPassword123!')
+			cy.get('[data-testid="confirm-new-password-input"]').type('DifferentPassword123!')
+			cy.get('[data-testid="reset-password-submit"]').click()
 
 			cy.contains(/don't match|do not match|mismatch/i).should('be.visible')
 		})
