@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const ALLOWED_ORIGINS = [
+const PRODUCTION_ORIGINS = [
 	'https://downbeatacademy.com',
 	'https://www.downbeatacademy.com',
 	'https://auth.downbeatacademy.com',
@@ -14,9 +14,15 @@ const DEV_ORIGINS = [
 ]
 
 function getAllowedOrigins() {
-	const origins = [...ALLOWED_ORIGINS]
+	const origins = [...PRODUCTION_ORIGINS]
 	if (process.env.NODE_ENV === 'development') {
 		origins.push(...DEV_ORIGINS)
+	}
+	// Allow additional origins via env var (comma-separated)
+	// Useful for preview deployments on Railway
+	const extra = process.env.ALLOWED_ORIGINS
+	if (extra) {
+		origins.push(...extra.split(',').map(o => o.trim()).filter(Boolean))
 	}
 	return origins
 }
