@@ -1,6 +1,0 @@
-{
-	"buildCommand": "turbo run build",
-	"devCommand": "pnpm dev",
-	"framework": "nextjs",
-	"redirects": []
-}
