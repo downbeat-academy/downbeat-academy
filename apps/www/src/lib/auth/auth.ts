@@ -24,14 +24,13 @@ export function createAuth() {
 		baseUrl: authServiceUrl,
 
 		// Cross-subdomain cookie configuration (must match auth service)
-		// Only enable in production when we have proper domains
+		// In dev, set domain to localhost so cookies are shared across ports (3000, 3002)
+		// In prod, use .downbeatacademy.com for all subdomains
 		advanced: {
-			crossSubDomainCookies: isDev
-				? { enabled: false }
-				: {
-					enabled: true,
-					domain: '.downbeatacademy.com',
-				},
+			crossSubDomainCookies: {
+				enabled: true,
+				domain: isDev ? 'localhost' : '.downbeatacademy.com',
+			},
 			defaultCookieAttributes: {
 				sameSite: 'lax',
 				secure: !isDev,

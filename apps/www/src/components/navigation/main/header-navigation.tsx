@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { authClient } from '@/lib/auth/auth-client'
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
@@ -38,8 +39,8 @@ async function getBannerData() {
 	return res
 }
 
-// Create a client component for the sign-out button
-function SignOutButton() {
+// Client component for the sign-out button with pending state
+function SignOutButton({ className }: { className?: string }) {
 	const { pending } = useFormStatus()
 
 	return (
@@ -48,7 +49,7 @@ function SignOutButton() {
 			data-testid="logout-button"
 			variant="ghost"
 			size="small"
-			className={s['sign-out-button']}
+			className={className}
 			disabled={pending}
 		>
 			{pending ? "Signing out..." : "Sign Out"}
@@ -58,14 +59,29 @@ function SignOutButton() {
 
 // Render the component
 const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) => {
+	const pathname = usePathname()
 	const { data: clientSession, isPending } = authClient.useSession()
 	const [navData, setNavData] = useState<any>(null)
 	const [bannerData, setBannerData] = useState<any>(null)
 	const [error, setError] = useState<Error | null>(null)
 
-	// Use the server-provided session until the client session has resolved.
-	// This prevents a flash where the auth buttons flicker during hydration.
+	// Use the server-provided session immediately, then swap to client session
+	// once resolved. This eliminates flash — we always have a definitive state.
 	const session = isPending ? initialSession : (clientSession ?? initialSession)
+	const isAuthenticated = !!session?.session
+
+	// Build sign-in URL once, shared by banner and nav
+	const authServiceUrl = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
+	const projectUrl = process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000'
+	const signInHref = `${authServiceUrl}/sign-in?redirect_uri=${encodeURIComponent(`${projectUrl}${pathname}`)}`
+
+	const handleSignOut = async () => {
+		try {
+			await signOut()
+		} catch (error) {
+			// Sign-out failed, session state will update reactively via useSession
+		}
+	}
 
 	useEffect(() => {
 		const initData = async () => {
@@ -106,62 +122,36 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 		)
 	}
 
-	// If data is still loading, render a minimal header
-	if (!navData || !bannerData) {
-		return (
-			<header className={classes}>
-				<div className={s.logo}>
-					<Link href="/">
-						<LogoLockup width={180} color='brand' />
-					</Link>
-				</div>
-			</header>
-		)
-	}
-
-	const handleSignOut = async () => {
-		try {
-			await signOut()
-		} catch (error) {
-			// Sign-out failed, session state will update reactively via useSession
-		}
-	}
-
-	const isAuthenticated = !!session?.session
-	// While the client session is resolving and we have no server session,
-	// treat the auth UI as loading to avoid flashing the wrong state.
-	const isAuthLoading = isPending && !initialSession
-
 	return (
 		<header className={classes}>
 			<Banner type="primary">
 				<BannerContent>
-					<Text
-						tag="p"
-						color="high-contrast"
-						type="productive-body"
-						size="body-small"
-						collapse
-					>
-						{bannerData.headline}
-					</Text>
+					{bannerData && (
+						<Text
+							tag="p"
+							color="high-contrast"
+							type="productive-body"
+							size="body-small"
+							collapse
+						>
+							{bannerData.headline}
+						</Text>
+					)}
 				</BannerContent>
 				<BannerActions>
-					{isAuthLoading ? null : !isAuthenticated ? (
-						<>
-							<Button
-								data-testid="sign-in-link"
-								variant="primary"
-								size="small"
-								href={`${process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'}/sign-in?redirect_uri=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '/')}`}
-							>
-								Sign in / Sign up
-							</Button>
-						</>
+					{!isAuthenticated ? (
+						<Button
+							data-testid="sign-in-link"
+							variant="primary"
+							size="small"
+							href={signInHref}
+						>
+							Sign in / Sign up
+						</Button>
 					) : (
 						<>
 							<form action={handleSignOut} data-testid="user-menu">
-								<SignOutButton />
+								<SignOutButton className={s['sign-out-button']} />
 							</form>
 							<Button
 								data-testid="account-link"
@@ -175,7 +165,14 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 					)}
 				</BannerActions>
 			</Banner>
-			<NavContent links={navData} isAuthenticated={isAuthenticated} isAuthLoading={isAuthLoading} />
+			{navData && (
+				<NavContent
+					links={navData}
+					isAuthenticated={isAuthenticated}
+					signInHref={signInHref}
+					onSignOut={handleSignOut}
+				/>
+			)}
 		</header>
 	)
 }

@@ -1,6 +1,5 @@
 "use server"
 
-import { redirect } from 'next/navigation'
 import { auth, validateRedirectUri } from '@/lib/auth/auth'
 import { headers } from 'next/headers'
 
@@ -12,7 +11,7 @@ export async function signIn(formData: FormData) {
   const redirectUri = formData.get('redirectUri')?.toString()
 
   if (!email || !password) {
-    throw new Error('Email and password are required')
+    return { error: 'Email and password are required' }
   }
 
   try {
@@ -24,20 +23,23 @@ export async function signIn(formData: FormData) {
       }
     })
   } catch (error: any) {
-    console.error('Sign in error:', error)
+    console.error('Sign in error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
+    console.error('Error body:', error.body)
+    console.error('Error status:', error.status)
+    console.error('Error message:', error.message)
     if (error.body?.code === 'INVALID_CREDENTIALS') {
-      throw new Error('Invalid email or password')
+      return { error: 'Invalid email or password' }
     }
     if (error.body?.code === 'USER_NOT_FOUND') {
-      throw new Error('This email is not registered. Please create an account first.')
+      return { error: 'This email is not registered. Please create an account first.' }
     }
     if (error.body?.code === 'EMAIL_NOT_VERIFIED') {
-      throw new Error('Please verify your email address.')
+      return { error: 'Please verify your email address.' }
     }
-    throw error
+    return { error: error.message || 'An unexpected error occurred. Please try again.' }
   }
 
-  // Validate and redirect to the provided URI or default
+  // Return the validated redirect URL for the client to navigate to
   const targetUrl = validateRedirectUri(redirectUri) || DEFAULT_REDIRECT
-  redirect(targetUrl)
+  return { redirectUrl: targetUrl }
 }

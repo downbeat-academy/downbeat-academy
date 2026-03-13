@@ -23,12 +23,19 @@ const TRUSTED_DOMAINS = [
 	'auth.downbeatacademy.com',
 ]
 
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 export function validateRedirectUri(uri?: string): string | null {
 	if (!uri) return null
 
 	try {
 		const url = new URL(uri)
 		const hostname = url.hostname.toLowerCase()
+
+		// In development, trust localhost on any port
+		if (isDevelopment && hostname === 'localhost') {
+			return uri
+		}
 
 		if (TRUSTED_DOMAINS.some(domain => hostname === domain || hostname.endsWith(`.${domain}`))) {
 			return uri
@@ -62,14 +69,13 @@ export function createAuth() {
 		],
 
 		// Cross-subdomain cookie configuration
-		// Only enable in production when we have proper domains
+		// In dev, set domain to localhost so cookies are shared across ports (3000, 3002)
+		// In prod, use .downbeatacademy.com for all subdomains
 		advanced: {
-			crossSubDomainCookies: isDev
-				? { enabled: false }
-				: {
-					enabled: true,
-					domain: '.downbeatacademy.com', // Leading dot for all subdomains
-				},
+			crossSubDomainCookies: {
+				enabled: true,
+				domain: isDev ? 'localhost' : '.downbeatacademy.com',
+			},
 			defaultCookieAttributes: {
 				sameSite: 'lax',
 				secure: !isDev,

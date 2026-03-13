@@ -3,4 +3,4 @@
 "www": patch
 ---
 
-Finalize auth service extraction: fix database env var fallback, replace fragile email template imports with workspace dependency, delegate password changes to auth service API, fix nav sign-in href and auth state flash, and align Cypress tests with centralized auth architecture.
+Finalize auth service extraction: fix cross-origin sign-in flow (return redirect URL instead of server-side redirect), enable cross-subdomain cookies for local dev, trust localhost in redirect URI validation, fix nav auth button flash by rendering banner immediately without waiting for Sanity data, consolidate auth UI logic between header-navigation and nav-content, update file-download sign-in link to use auth service, add 'use client' to Button wrapper, and remove update-password page from www (handled by auth service).

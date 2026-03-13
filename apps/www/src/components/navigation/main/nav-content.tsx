@@ -7,10 +7,9 @@ import { LogoLockup } from 'cadence-core'
 import { Link } from '@components/link'
 import { Button } from '@components/ui/button'
 import s from './nav-content.module.css'
-import { signOut } from '@/actions/auth'
 import { useFormStatus } from 'react-dom'
 
-// Create a client component for the sign-out button
+// Client component for the sign-out button with pending state
 function SignOutButton() {
 	const { pending } = useFormStatus()
 
@@ -30,29 +29,17 @@ function SignOutButton() {
 interface NavContentProps {
 	links: any
 	isAuthenticated: boolean
-	isAuthLoading?: boolean
+	signInHref: string
+	onSignOut: () => Promise<void>
 }
 
-const NavContent = ({ links, isAuthenticated, isAuthLoading }: NavContentProps) => {
+const NavContent = ({ links, isAuthenticated, signInHref, onSignOut }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
 
-	const authServiceUrl = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
-	const projectUrl = process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000'
-	const redirectUri = encodeURIComponent(`${projectUrl}${route}`)
-	const signInHref = `${authServiceUrl}/sign-in?redirect_uri=${redirectUri}`
-
 	const handleNavToggled = () => {
 		setNavToggled(!navToggled)
-	}
-
-	const handleSignOut = async () => {
-		try {
-			await signOut()
-		} catch (error) {
-			// Sign-out failed
-		}
 	}
 
 	useEffect(() => {
@@ -137,7 +124,7 @@ const NavContent = ({ links, isAuthenticated, isAuthLoading }: NavContentProps) 
 					</ul>
 				</nav>
 				<div className={s.actions}>
-					{isAuthLoading ? null : !isAuthenticated ? (
+					{!isAuthenticated ? (
 						<Button
 							variant="primary"
 							size="large"
@@ -148,7 +135,7 @@ const NavContent = ({ links, isAuthenticated, isAuthLoading }: NavContentProps) 
 						</Button>
 					) : (
 						<>
-							<form action={handleSignOut}>
+							<form action={onSignOut}>
 								<SignOutButton />
 							</form>
 							<Button

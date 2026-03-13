@@ -39,22 +39,23 @@ export const SignInForm = ({ redirectUri }: SignInFormProps) => {
   })
 
   const onSubmit = async (data: TSignInSchema) => {
-    try {
-      const formData = new FormData()
-      formData.append('email', data.email)
-      formData.append('password', data.password)
-      if (redirectUri) {
-        formData.append('redirectUri', redirectUri)
-      }
-      await signIn(formData)
-    } catch (error: any) {
-      if (error.message === 'Invalid email or password') {
+    const formData = new FormData()
+    formData.append('email', data.email)
+    formData.append('password', data.password)
+    if (redirectUri) {
+      formData.append('redirectUri', redirectUri)
+    }
+
+    const result = await signIn(formData)
+
+    if (result.error) {
+      if (result.error === 'Invalid email or password') {
         toast({
           title: "Sign in failed",
           description: "Please check your email and password and try again.",
           variant: "error"
         })
-      } else if (error.message === 'This email is not registered. Please create an account first.') {
+      } else if (result.error === 'This email is not registered. Please create an account first.') {
         toast({
           title: "Account not found",
           description: "This email is not registered. Would you like to create an account?",
@@ -68,13 +69,24 @@ export const SignInForm = ({ redirectUri }: SignInFormProps) => {
             </ToastAction>
           )
         })
-      } else if (error.message === 'Please verify your email address.') {
+      } else if (result.error === 'Please verify your email address.') {
         toast({
           title: "Email not verified",
           description: "Please verify your email address.",
           variant: "error"
         })
+      } else {
+        toast({
+          title: "Sign in failed",
+          description: result.error,
+          variant: "error"
+        })
       }
+      return
+    }
+
+    if (result.redirectUrl) {
+      window.location.href = result.redirectUrl
     }
   }
 
