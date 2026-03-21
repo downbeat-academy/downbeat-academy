@@ -6,7 +6,7 @@
 	"author": "Jory Tindall <jory@downbeatacademy.com>",
 	"license": "UNLICENSED",
 	"scripts": {
-		"dev": "infisical run --path=/auth -- next dev --port 3002",
+		"dev": "infisical run --env=dev --path=/auth -- next dev --port 3002",
 		"dev:ci": "next dev --port 3002",
 		"build": "next build",
 		"start": "next start",
@@ -15,10 +15,11 @@
 		"db:migrate": "drizzle-kit migrate --config=drizzle-auth.config.ts"
 	},
 	"dependencies": {
+		"@better-auth/oauth-provider": "^1.5.5",
 		"@hookform/resolvers": "^5.2.2",
 		"@radix-ui/react-tabs": "^1.1.13",
 		"@radix-ui/react-toast": "^1.2.15",
-		"better-auth": "^1.4.9",
+		"better-auth": "^1.5.5",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",
 		"cadence-tokens": "workspace:^",

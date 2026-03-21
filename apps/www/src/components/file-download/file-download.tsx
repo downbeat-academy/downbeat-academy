@@ -46,7 +46,7 @@ const FileDownload = async ({
 						color="faint"
 						collapse
 					>
-						<Link href={`${process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'}/sign-in`}>Login or create a free account</Link> to
+						<Link href="/sign-in">Login or create a free account</Link> to
 						download the files directly.
 					</Text>
 				</>

@@ -1,7 +1,8 @@
 import { betterAuth } from 'better-auth'
 import { nextCookies } from 'better-auth/next-js'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { admin, organization } from 'better-auth/plugins'
+import { admin, organization, jwt } from 'better-auth/plugins'
+import { oauthProvider } from '@better-auth/oauth-provider'
 import { Resend } from 'resend'
 import { authDb } from '@/lib/db/drizzle'
 import * as authSchema from '@/lib/db/schema'
@@ -20,7 +21,8 @@ import { VerifyEmail, ResetPasswordEmail } from 'email/emails/index'
 const TRUSTED_DOMAINS = [
 	'downbeatacademy.com',
 	'www.downbeatacademy.com',
-	'auth.downbeatacademy.com',
+	'auth.downbeatacademy.services',
+	'links.downbeatacademy.services',
 ]
 
 const isDevelopment = process.env.NODE_ENV === 'development'
@@ -55,16 +57,17 @@ export function createAuth() {
 	return betterAuth({
 		appName: 'Downbeat Academy',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseUrl: authServiceUrl,
+		baseURL: authServiceUrl,
 
 		// CRITICAL: Trusted origins for cross-origin requests
 		trustedOrigins: [
 			'https://downbeatacademy.com',
 			'https://www.downbeatacademy.com',
-			'https://auth.downbeatacademy.com',
+			'https://auth.downbeatacademy.services',
+			'https://links.downbeatacademy.services',
 			// Add localhost for development
 			...(isDev
-				? ['http://localhost:3000', 'http://localhost:3002']
+				? ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002']
 				: []),
 		],
 
@@ -148,6 +151,16 @@ export function createAuth() {
 		},
 
 		plugins: [
+			jwt(),
+			oauthProvider({
+				loginPage: '/sign-in',
+				consentPage: '/consent',
+				accessTokenExpiresIn: 3600,
+				refreshTokenExpiresIn: 30 * 24 * 3600,
+				silenceWarnings: {
+					oauthAuthServerConfig: true,
+				},
+			}),
 			admin({
 				ac: ac,
 				roles: {
@@ -166,7 +179,7 @@ export function createAuth() {
 }
 
 // Lazy initialize auth
-let authInstance: ReturnType<typeof betterAuth> | null = null
+let authInstance: ReturnType<typeof createAuth> | null = null
 
 export function getAuth() {
 	if (!authInstance) {

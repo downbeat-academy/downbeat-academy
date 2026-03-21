@@ -6,7 +6,7 @@ import { authClient } from '@/lib/auth/auth-client'
 
 function SignInRedirect() {
 	const searchParams = useSearchParams()
-	const callbackURL = searchParams.get('callbackURL') || '/'
+	const callbackURL = searchParams.get('callbackURL') || '/dashboard'
 
 	useEffect(() => {
 		authClient.signIn.oauth2({

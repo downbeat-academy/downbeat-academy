@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAuth } from '@/lib/auth/auth'
-import { getSignInUrl } from '@/lib/auth/require-auth'
 
 /**
  * Proxy for authentication checks using better-auth.
@@ -8,7 +7,9 @@ import { getSignInUrl } from '@/lib/auth/require-auth'
  * In Next.js 16+, proxy.ts replaces middleware.ts and runs on the Node.js runtime,
  * allowing direct database access for full session validation.
  *
- * Auth operations (sign-in, sign-up, etc.) are handled by the centralized auth service.
+ * Auth operations (sign-in, sign-up, etc.) are handled by the centralized auth service
+ * via OAuth 2.1 flow. Unauthenticated users are redirected to the local /sign-in page
+ * which triggers the OAuth flow.
  */
 export async function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl
@@ -26,9 +27,10 @@ export async function proxy(request: NextRequest) {
 		headers: request.headers,
 	})
 
-	// Redirect to auth service sign-in if accessing protected route without valid session
+	// Redirect to local sign-in page (which triggers OAuth flow) if not authenticated
 	if (isProtectedRoute && !session) {
-		const signInUrl = getSignInUrl(pathname)
+		const signInUrl = new URL('/sign-in', request.url)
+		signInUrl.searchParams.set('callbackURL', pathname)
 		return NextResponse.redirect(signInUrl)
 	}
 

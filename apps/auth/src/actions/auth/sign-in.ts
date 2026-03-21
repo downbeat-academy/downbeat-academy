@@ -23,10 +23,7 @@ export async function signIn(formData: FormData) {
       }
     })
   } catch (error: any) {
-    console.error('Sign in error:', JSON.stringify(error, Object.getOwnPropertyNames(error), 2))
-    console.error('Error body:', error.body)
-    console.error('Error status:', error.status)
-    console.error('Error message:', error.message)
+    console.error('Sign in error:', error.message)
     if (error.body?.code === 'INVALID_CREDENTIALS') {
       return { error: 'Invalid email or password' }
     }

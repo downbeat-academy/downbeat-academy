@@ -15,20 +15,44 @@ export const metadata: Metadata = {
 }
 
 interface SignInPageProps {
-  searchParams: Promise<{ redirect_uri?: string }>
+  searchParams: Promise<Record<string, string | undefined>>
 }
 
 export default async function SignInPage({ searchParams }: SignInPageProps) {
-  const { redirect_uri } = await searchParams
+  const params = await searchParams
   const session = await auth.api.getSession({
     headers: await headers()
   })
 
-  // If already logged in, redirect to the target or default
+  // Detect if this is an OAuth authorization flow (has client_id param)
+  const isOAuthFlow = !!params.client_id
+
+  // If already logged in during an OAuth flow, redirect back to the
+  // authorization endpoint so it can issue the code
+  if (session && isOAuthFlow) {
+    const authUrl = new URL('/api/auth/oauth2/authorize', process.env.AUTH_SERVICE_URL || 'http://localhost:3002')
+    for (const [key, value] of Object.entries(params)) {
+      if (value) authUrl.searchParams.set(key, value)
+    }
+    redirect(authUrl.toString())
+  }
+
+  // If already logged in (non-OAuth), redirect to the target or default
   if (session) {
     const defaultRedirect = process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000'
-    const targetUrl = validateRedirectUri(redirect_uri) || defaultRedirect
+    const targetUrl = validateRedirectUri(params.redirect_uri) || defaultRedirect
     redirect(targetUrl)
+  }
+
+  // Build the OAuth redirect URL for after sign-in
+  // This lets the sign-in form redirect back to the authorization endpoint
+  let oauthRedirectUrl: string | undefined
+  if (isOAuthFlow) {
+    const authUrl = new URL('/api/auth/oauth2/authorize', process.env.AUTH_SERVICE_URL || 'http://localhost:3002')
+    for (const [key, value] of Object.entries(params)) {
+      if (value) authUrl.searchParams.set(key, value)
+    }
+    oauthRedirectUrl = authUrl.toString()
   }
 
   return (
@@ -43,13 +67,13 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
             <Text type="expressive-headline" size="h4" tag="h1" color="brand">
               Login to your Downbeat Academy account
             </Text>
-            <SignInForm redirectUri={redirect_uri} />
+            <SignInForm redirectUri={oauthRedirectUrl || params.redirect_uri} />
           </Tabs.Content>
           <Tabs.Content value="Sign up" className={s['login--content']}>
             <Text type="expressive-headline" size="h4" tag="h1" color="brand">
               Sign up for a free Downbeat Academy account
             </Text>
-            <SignUpForm redirectUri={redirect_uri} />
+            <SignUpForm redirectUri={oauthRedirectUrl || params.redirect_uri} />
           </Tabs.Content>
         </Tabs.Root>
       </div>
