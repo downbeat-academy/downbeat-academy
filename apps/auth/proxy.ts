@@ -37,7 +37,7 @@ function getCorsHeaders(origin: string) {
 	}
 }
 
-export function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
 	const origin = request.headers.get('origin') ?? ''
 	const allowedOrigins = getAllowedOrigins()
 	const isAllowedOrigin = allowedOrigins.includes(origin)
