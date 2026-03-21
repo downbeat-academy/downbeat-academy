@@ -71,14 +71,9 @@ export function createAuth() {
 				: []),
 		],
 
-		// Cross-subdomain cookie configuration
-		// In dev, set domain to localhost so cookies are shared across ports (3000, 3002)
-		// In prod, use .downbeatacademy.com for all subdomains
+		// Cookie configuration
+		// No cross-subdomain sharing needed — all consumer apps use OAuth
 		advanced: {
-			crossSubDomainCookies: {
-				enabled: true,
-				domain: isDev ? 'localhost' : '.downbeatacademy.com',
-			},
 			defaultCookieAttributes: {
 				sameSite: 'lax',
 				secure: !isDev,
