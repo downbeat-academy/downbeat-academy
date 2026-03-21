@@ -2,7 +2,7 @@
  * Protected Routes and Role-Based Access Control Tests
  *
  * With the centralized auth service, protected routes now redirect
- * to the auth service (auth.downbeatacademy.com) for authentication.
+ * to the auth service (auth.downbeatacademy.services) for authentication.
  */
 describe('Protected Routes and Role-Based Access Control', () => {
 	const AUTH_SERVICE_URL = Cypress.env('AUTH_SERVICE_URL') || 'http://localhost:3002'

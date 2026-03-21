@@ -1,7 +1,7 @@
 /**
  * Authentication Flow Tests for www app
  *
- * With the centralized auth service at auth.downbeatacademy.com,
+ * With the centralized auth service at auth.downbeatacademy.services,
  * authentication UI has been moved to the auth service.
  * These tests verify:
  * 1. www correctly redirects to auth service for sign-in

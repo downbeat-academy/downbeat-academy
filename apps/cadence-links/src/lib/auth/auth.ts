@@ -20,7 +20,7 @@ export function createAuth() {
 	return betterAuth({
 		appName: 'Cadence Links',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseUrl: appUrl,
+		baseURL: appUrl,
 
 		advanced: {
 			defaultCookieAttributes: {

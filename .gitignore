@@ -5,6 +5,8 @@ DS_store
 .DS_Store
 .DS_STORE
 
+.mcp.json
+
 node_modules
 
 .turbo

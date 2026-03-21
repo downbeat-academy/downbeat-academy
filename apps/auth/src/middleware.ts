@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 const PRODUCTION_ORIGINS = [
 	'https://downbeatacademy.com',
 	'https://www.downbeatacademy.com',
-	'https://auth.downbeatacademy.com',
+	'https://auth.downbeatacademy.services',
 	'https://links.downbeatacademy.services',
 ]
 

@@ -13,7 +13,7 @@ import {
 } from '@/lib/auth/permissions'
 
 // This is a READ-ONLY configuration for session validation
-// All auth operations (sign-in, sign-up, etc.) are handled by the auth service at auth.downbeatacademy.com
+// All auth operations (sign-in, sign-up, etc.) are handled by the auth service at auth.downbeatacademy.services
 export function createAuth() {
 	const isDev = process.env.NODE_ENV === 'development'
 	const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:3002'
@@ -21,7 +21,7 @@ export function createAuth() {
 	return betterAuth({
 		appName: 'Downbeat Academy',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseUrl: authServiceUrl,
+		baseURL: authServiceUrl,
 
 		// Cross-subdomain cookie configuration (must match auth service)
 		// In dev, set domain to localhost so cookies are shared across ports (3000, 3002)

@@ -196,7 +196,7 @@ describe('Public Routes Coverage', () => {
 
 	describe('Authentication Pages', () => {
 		// Note: With the centralized auth service, sign-in and forgot-password
-		// pages are now hosted on the auth service (auth.downbeatacademy.com).
+		// pages are now hosted on the auth service (auth.downbeatacademy.services).
 		// These tests verify the www app correctly redirects to the auth service.
 
 		it('should redirect sign-in requests to auth service', () => {

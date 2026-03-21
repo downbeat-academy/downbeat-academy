@@ -21,7 +21,7 @@ import { VerifyEmail, ResetPasswordEmail } from 'email/emails/index'
 const TRUSTED_DOMAINS = [
 	'downbeatacademy.com',
 	'www.downbeatacademy.com',
-	'auth.downbeatacademy.com',
+	'auth.downbeatacademy.services',
 	'links.downbeatacademy.services',
 ]
 
@@ -57,13 +57,13 @@ export function createAuth() {
 	return betterAuth({
 		appName: 'Downbeat Academy',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseUrl: authServiceUrl,
+		baseURL: authServiceUrl,
 
 		// CRITICAL: Trusted origins for cross-origin requests
 		trustedOrigins: [
 			'https://downbeatacademy.com',
 			'https://www.downbeatacademy.com',
-			'https://auth.downbeatacademy.com',
+			'https://auth.downbeatacademy.services',
 			'https://links.downbeatacademy.services',
 			// Add localhost for development
 			...(isDev
