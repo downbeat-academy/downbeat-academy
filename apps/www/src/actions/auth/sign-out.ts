@@ -10,7 +10,7 @@ export async function signOut() {
     await auth.api.signOut({
       headers: await headers()
     })
-    
+
     revalidatePath('/')
   } catch (error: any) {
     console.error('Sign out error:', error)
@@ -18,4 +18,4 @@ export async function signOut() {
   }
 
   redirect('/')
-} 
+}

@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth'
 import { nextCookies } from 'better-auth/next-js'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
-import { admin, organization } from 'better-auth/plugins'
+import { admin, organization, genericOAuth } from 'better-auth/plugins'
 import { authDb } from '@/lib/db/drizzle'
 import { authSchema } from '@/lib/db/schema'
 import {
@@ -12,25 +12,18 @@ import {
 	superAdmin,
 } from '@/lib/auth/permissions'
 
-// This is a READ-ONLY configuration for session validation
-// All auth operations (sign-in, sign-up, etc.) are handled by the auth service at auth.downbeatacademy.services
+// OAuth-based authentication via the centralized auth service at auth.downbeatacademy.services
 export function createAuth() {
 	const isDev = process.env.NODE_ENV === 'development'
 	const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:3002'
+	const appUrl = process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000'
 
 	return betterAuth({
 		appName: 'Downbeat Academy',
 		secret: process.env.BETTER_AUTH_SECRET,
-		baseURL: authServiceUrl,
+		baseURL: appUrl,
 
-		// Cross-subdomain cookie configuration (must match auth service)
-		// In dev, set domain to localhost so cookies are shared across ports (3000, 3002)
-		// In prod, use .downbeatacademy.com for all subdomains
 		advanced: {
-			crossSubDomainCookies: {
-				enabled: true,
-				domain: isDev ? 'localhost' : '.downbeatacademy.com',
-			},
 			defaultCookieAttributes: {
 				sameSite: 'lax',
 				secure: !isDev,
@@ -44,6 +37,17 @@ export function createAuth() {
 		}),
 
 		plugins: [
+			genericOAuth({
+				config: [{
+					providerId: 'downbeat-auth',
+					clientId: process.env.OAUTH_CLIENT_ID!,
+					clientSecret: process.env.OAUTH_CLIENT_SECRET!,
+					discoveryUrl: `${authServiceUrl}/api/auth/.well-known/openid-configuration`,
+					pkce: true,
+					scopes: ['openid', 'profile', 'email'],
+					redirectURI: `${appUrl}/api/auth/oauth2/callback/downbeat-auth`,
+				}],
+			}),
 			admin({
 				ac: ac,
 				roles: {

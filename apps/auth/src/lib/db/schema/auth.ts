@@ -159,3 +159,12 @@ export const oauthConsent = pgTable('oauth_consent', {
 	createdAt: timestamp('created_at'),
 	updatedAt: timestamp('updated_at'),
 })
+
+// JWKS table (for jwt plugin)
+export const jwks = pgTable('jwks', {
+	id: text('id').primaryKey(),
+	publicKey: text('public_key').notNull(),
+	privateKey: text('private_key').notNull(),
+	createdAt: timestamp('created_at').notNull(),
+	expiresAt: timestamp('expires_at'),
+})

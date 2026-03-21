@@ -71,9 +71,7 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 	const isAuthenticated = !!session?.session
 
 	// Build sign-in URL once, shared by banner and nav
-	const authServiceUrl = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
-	const projectUrl = process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000'
-	const signInHref = `${authServiceUrl}/sign-in?redirect_uri=${encodeURIComponent(`${projectUrl}${pathname}`)}`
+	const signInHref = `/sign-in?callbackURL=${encodeURIComponent(pathname)}`
 
 	const handleSignOut = async () => {
 		try {
