@@ -157,6 +157,9 @@ export function createAuth() {
 				consentPage: '/consent',
 				accessTokenExpiresIn: 3600,
 				refreshTokenExpiresIn: 30 * 24 * 3600,
+				silenceWarnings: {
+					oauthAuthServerConfig: true,
+				},
 			}),
 			admin({
 				ac: ac,
