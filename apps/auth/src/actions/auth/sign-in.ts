@@ -2,6 +2,7 @@
 
 import { auth, validateRedirectUri } from '@/lib/auth/auth'
 import { headers } from 'next/headers'
+import { ADMIN_ROLES } from 'auth-permissions'
 
 const DEFAULT_REDIRECT = process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000'
 
@@ -36,7 +37,22 @@ export async function signIn(formData: FormData) {
     return { error: error.message || 'An unexpected error occurred. Please try again.' }
   }
 
-  // Return the validated redirect URL for the client to navigate to
-  const targetUrl = validateRedirectUri(redirectUri) || DEFAULT_REDIRECT
-  return { redirectUrl: targetUrl }
+  // If an explicit redirect was provided (OAuth flow or consumer app), use it
+  if (redirectUri) {
+    const targetUrl = validateRedirectUri(redirectUri) || DEFAULT_REDIRECT
+    return { redirectUrl: targetUrl }
+  }
+
+  // No redirect context — user logged in directly on the auth service.
+  // Check their role: admins go to the dashboard, everyone else goes to the main site.
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
+  const userRole = session?.user?.role as string | undefined
+  if (userRole && ADMIN_ROLES.includes(userRole as any)) {
+    return { redirectUrl: '/admin' }
+  }
+
+  return { redirectUrl: DEFAULT_REDIRECT }
 }

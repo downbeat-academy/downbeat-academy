@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { headers } from "next/headers"
 import { auth, validateRedirectUri } from "@/lib/auth/auth"
+import { ADMIN_ROLES } from 'auth-permissions'
 import * as Tabs from '@/components/tabs'
 import { Text } from 'cadence-core'
 import { Link } from '@/components/link'
@@ -39,9 +40,18 @@ export default async function SignInPage({ searchParams }: SignInPageProps) {
 
   // If already logged in (non-OAuth), redirect to the target or default
   if (session) {
-    const defaultRedirect = process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000'
-    const targetUrl = validateRedirectUri(params.redirect_uri) || defaultRedirect
-    redirect(targetUrl)
+    if (params.redirect_uri) {
+      const defaultRedirect = process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000'
+      redirect(validateRedirectUri(params.redirect_uri) || defaultRedirect)
+    }
+
+    // No redirect context — admins go to the dashboard, everyone else to the main site
+    const userRole = session.user?.role as string | undefined
+    if (userRole && ADMIN_ROLES.includes(userRole as any)) {
+      redirect('/admin')
+    }
+
+    redirect(process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000')
   }
 
   // Build the OAuth redirect URL for after sign-in
