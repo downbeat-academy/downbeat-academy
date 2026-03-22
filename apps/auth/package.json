@@ -12,7 +12,9 @@
 		"start": "next start",
 		"lint": "next lint",
 		"db:push": "drizzle-kit push --config=drizzle-auth.config.ts",
-		"db:migrate": "drizzle-kit migrate --config=drizzle-auth.config.ts"
+		"db:migrate": "drizzle-kit migrate --config=drizzle-auth.config.ts",
+		"db:verify-roles": "npx tsx scripts/verify-user-roles.ts",
+		"db:fix-roles": "npx tsx scripts/verify-user-roles.ts --fix"
 	},
 	"dependencies": {
 		"@better-auth/oauth-provider": "^1.5.5",
