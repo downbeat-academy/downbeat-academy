@@ -2,15 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { Text, Badge, DataTable, createTextColumn, createActionsColumn } from 'cadence-core'
+import { Text, Badge, Button, Select, Link, DataTable, createTextColumn, createActionsColumn } from 'cadence-core'
 import { authClient } from '@/lib/auth/auth-client'
 import { ROLES, type Role } from 'auth-permissions'
 import s from '../../../admin.module.css'
-
-interface UserDetailProps {
-	userId: string
-	currentUserRole?: string
-}
 
 interface UserData {
 	id: string
@@ -24,6 +19,12 @@ interface UserData {
 	image: string | null
 	createdAt: string
 	updatedAt: string
+}
+
+interface UserDetailProps {
+	userId: string
+	currentUserRole?: string
+	initialUser: UserData
 }
 
 interface SessionRow {
@@ -42,37 +43,17 @@ const roleBadgeType: Record<string, 'neutral' | 'info' | 'success' | 'highlight'
 	superAdmin: 'error',
 }
 
-export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
+export function UserDetail({ userId, currentUserRole, initialUser }: UserDetailProps) {
 	const router = useRouter()
-	const [user, setUser] = useState<UserData | null>(null)
+	const [user, setUser] = useState<UserData>(initialUser)
 	const [sessions, setSessions] = useState<SessionRow[]>([])
 	const [loading, setLoading] = useState(true)
 	const [actionLoading, setActionLoading] = useState(false)
 	const isSuperAdmin = currentUserRole === 'superAdmin'
 
-	const fetchUser = useCallback(async () => {
+	const fetchSessions = useCallback(async () => {
 		setLoading(true)
 		try {
-			const response = await authClient.admin.listUsers({
-				query: { searchValue: userId, searchField: 'id' as any, searchOperator: 'eq' as any, limit: 1 },
-			})
-			if (response.data?.users?.[0]) {
-				const u = response.data.users[0] as any
-				setUser({
-					id: u.id,
-					name: u.name,
-					email: u.email,
-					role: u.role,
-					banned: u.banned,
-					banReason: u.banReason,
-					banExpires: u.banExpires,
-					emailVerified: u.emailVerified,
-					image: u.image,
-					createdAt: new Date(u.createdAt).toLocaleString(),
-					updatedAt: new Date(u.updatedAt).toLocaleString(),
-				})
-			}
-
 			const sessionsResponse = await authClient.admin.listUserSessions({
 				userId,
 			})
@@ -89,15 +70,46 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 				)
 			}
 		} catch (err) {
-			console.error('Failed to fetch user:', err)
+			console.error('Failed to fetch sessions:', err)
 		} finally {
 			setLoading(false)
 		}
 	}, [userId])
 
+	const refreshUser = useCallback(async () => {
+		try {
+			const response = await authClient.admin.listUsers({
+				query: {
+					searchValue: user.email,
+					searchField: 'email' as const,
+					searchOperator: 'is' as const,
+					limit: 1,
+				},
+			})
+			if (response.data?.users?.[0]) {
+				const u = response.data.users[0] as any
+				setUser({
+					id: u.id,
+					name: u.name,
+					email: u.email,
+					role: u.role,
+					banned: u.banned,
+					banReason: u.banReason,
+					banExpires: u.banExpires,
+					emailVerified: u.emailVerified,
+					image: u.image,
+					createdAt: new Date(u.createdAt).toISOString(),
+					updatedAt: new Date(u.updatedAt).toISOString(),
+				})
+			}
+		} catch (err) {
+			console.error('Failed to refresh user:', err)
+		}
+	}, [user.email])
+
 	useEffect(() => {
-		fetchUser()
-	}, [fetchUser])
+		fetchSessions()
+	}, [fetchSessions])
 
 	const handleSetRole = async (newRole: string) => {
 		setActionLoading(true)
@@ -106,7 +118,7 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 				userId,
 				role: newRole as Role,
 			})
-			await fetchUser()
+			await refreshUser()
 		} catch (err) {
 			console.error('Failed to set role:', err)
 		} finally {
@@ -119,7 +131,7 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 		setActionLoading(true)
 		try {
 			await authClient.admin.banUser({ userId })
-			await fetchUser()
+			await refreshUser()
 		} catch (err) {
 			console.error('Failed to ban user:', err)
 		} finally {
@@ -131,7 +143,7 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 		setActionLoading(true)
 		try {
 			await authClient.admin.unbanUser({ userId })
-			await fetchUser()
+			await refreshUser()
 		} catch (err) {
 			console.error('Failed to unban user:', err)
 		} finally {
@@ -145,7 +157,7 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 			await authClient.admin.revokeUserSession({
 				sessionToken,
 			})
-			await fetchUser()
+			await refreshUser()
 		} catch (err) {
 			console.error('Failed to revoke session:', err)
 		} finally {
@@ -165,34 +177,20 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 		}
 	}
 
-	if (loading) {
-		return <Text type="productive-body" size="body-base" color="faint">Loading...</Text>
-	}
-
-	if (!user) {
-		return <Text type="productive-body" size="body-base" color="faint">User not found.</Text>
-	}
-
 	const sessionColumns = [
 		createTextColumn<SessionRow>('ipAddress', 'IP Address'),
 		createTextColumn<SessionRow>('userAgent', 'User Agent'),
 		createTextColumn<SessionRow>('createdAt', 'Created'),
 		createTextColumn<SessionRow>('expiresAt', 'Expires'),
 		createActionsColumn<SessionRow>('actions', (row) => (
-			<button
+			<Button
+				variant="secondary"
+				size="small"
 				onClick={() => handleRevokeSession(row.token)}
 				disabled={actionLoading}
-				style={{
-					background: 'none',
-					border: '1px solid var(--cds-color-border-primary)',
-					borderRadius: 'var(--cds-radii-soft)',
-					padding: 'var(--cds-scale-2x-small) var(--cds-scale-small)',
-					cursor: 'pointer',
-					fontSize: 'var(--cds-font-size-body-small)',
-				}}
 			>
 				Revoke
-			</button>
+			</Button>
 		)),
 	]
 
@@ -208,7 +206,9 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 					<Text type="expressive-headline" size="h4" tag="h2">
 						{user.name}
 					</Text>
-					<Text type="productive-body" size="body-base" color="faint">{user.email}</Text>
+					<Link href={`mailto:${user.email}`} type="secondary">
+						{user.email}
+					</Link>
 				</div>
 				<Badge
 					type={roleBadgeType[user.role ?? ''] ?? 'neutral'}
@@ -244,11 +244,11 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 					</div>
 					<div className={s['admin-detail-row']}>
 						<Text type="productive-body" size="body-small" color="faint">Created</Text>
-						<Text type="productive-body" size="body-small">{user.createdAt}</Text>
+						<Text type="productive-body" size="body-small">{new Date(user.createdAt).toLocaleString()}</Text>
 					</div>
 					<div className={s['admin-detail-row']}>
 						<Text type="productive-body" size="body-small" color="faint">Updated</Text>
-						<Text type="productive-body" size="body-small">{user.updatedAt}</Text>
+						<Text type="productive-body" size="body-small">{new Date(user.updatedAt).toLocaleString()}</Text>
 					</div>
 					{user.banned && user.banReason && (
 						<div className={s['admin-detail-row']}>
@@ -265,64 +265,46 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 
 					<div className={s['admin-detail-row']}>
 						<Text type="productive-body" size="body-small" color="faint">Role</Text>
-						<select
-							value={user.role ?? ''}
-							onChange={(e) => handleSetRole(e.target.value)}
-							disabled={actionLoading}
-							style={{
-								padding: 'var(--cds-scale-2x-small) var(--cds-scale-small)',
-								borderRadius: 'var(--cds-radii-soft)',
-								border: '1px solid var(--cds-color-border-primary)',
-								fontSize: 'var(--cds-font-size-body-small)',
-							}}
-						>
-							{assignableRoles.map((role) => (
-								<option key={role} value={role}>
-									{role}
-								</option>
-							))}
-						</select>
+						<div className={s['admin-select-fit']}>
+							<Select
+								value={user.role ?? ''}
+								onChange={(e) => handleSetRole(e.target.value)}
+								disabled={actionLoading}
+							>
+								{assignableRoles.map((role) => (
+									<option key={role} value={role}>
+										{role}
+									</option>
+								))}
+							</Select>
+						</div>
 					</div>
 
 					<div className={s['admin-detail-row']}>
 						<Text type="productive-body" size="body-small" color="faint">
 							{user.banned ? 'Unban User' : 'Ban User'}
 						</Text>
-						<button
+						<Button
+							variant={user.banned ? 'secondary' : 'destructive'}
+							size="small"
 							onClick={user.banned ? handleUnban : handleBan}
 							disabled={actionLoading}
-							style={{
-								background: user.banned ? 'var(--cds-color-surface-primary)' : 'var(--cds-color-status-error)',
-								color: user.banned ? 'var(--cds-color-text-primary)' : 'white',
-								border: '1px solid var(--cds-color-border-primary)',
-								borderRadius: 'var(--cds-radii-soft)',
-								padding: 'var(--cds-scale-2x-small) var(--cds-scale-base)',
-								cursor: 'pointer',
-								fontSize: 'var(--cds-font-size-body-small)',
-							}}
 						>
 							{user.banned ? 'Unban' : 'Ban'}
-						</button>
+						</Button>
 					</div>
 
 					{isSuperAdmin && (
 						<div className={s['admin-detail-row']}>
 							<Text type="productive-body" size="body-small" color="faint">Delete User</Text>
-							<button
+							<Button
+								variant="destructive"
+								size="small"
 								onClick={handleDeleteUser}
 								disabled={actionLoading}
-								style={{
-									background: 'var(--cds-color-status-error)',
-									color: 'white',
-									border: 'none',
-									borderRadius: 'var(--cds-radii-soft)',
-									padding: 'var(--cds-scale-2x-small) var(--cds-scale-base)',
-									cursor: 'pointer',
-									fontSize: 'var(--cds-font-size-body-small)',
-								}}
 							>
 								Delete Permanently
-							</button>
+							</Button>
 						</div>
 					)}
 				</div>
@@ -338,7 +320,6 @@ export function UserDetail({ userId, currentUserRole }: UserDetailProps) {
 						columns={sessionColumns}
 						contained
 						isStriped
-						caption="User sessions"
 						emptyState={{
 							title: 'No active sessions',
 							description: 'This user has no active sessions.',

@@ -8,7 +8,7 @@
 /* Native select element */
 .root {
   appearance: none;
-  width: 100%;
+  /* width: 100%; */
   font-family: var(--cds-typography-font-family-productive-body);
   font-size: var(--cds-typography-font-size-fixed-productive-base);
   line-height: var(--cds-typography-line-height-productive-body);
