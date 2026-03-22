@@ -75,8 +75,13 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 
 	const handleSignOut = async () => {
 		try {
+			// Clear local session
 			await authClient.signOut()
-			window.location.href = '/'
+			// Redirect to auth service end-session to clear the auth session too,
+			// then redirect back to the home page
+			const authServiceUrl = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
+			const appUrl = process.env.NEXT_PUBLIC_PROJECT_URL || 'http://localhost:3000'
+			window.location.href = `${authServiceUrl}/api/auth/oauth2/end-session?post_logout_redirect_uri=${encodeURIComponent(appUrl)}`
 		} catch (error) {
 			// Fallback to server action
 			await signOut()
