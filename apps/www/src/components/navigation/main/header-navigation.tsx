@@ -75,9 +75,11 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 
 	const handleSignOut = async () => {
 		try {
-			await signOut()
+			await authClient.signOut()
+			window.location.href = '/'
 		} catch (error) {
-			// Sign-out failed, session state will update reactively via useSession
+			// Fallback to server action
+			await signOut()
 		}
 	}
 
