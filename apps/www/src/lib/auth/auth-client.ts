@@ -7,7 +7,7 @@ export const authClient = createAuthClient({
     plugins: [
         genericOAuthClient(),
         adminClient({
-            ac: ac,
+            ac: ac as any,
             roles: {
                 student,
                 educator,

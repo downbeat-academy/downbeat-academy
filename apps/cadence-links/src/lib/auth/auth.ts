@@ -45,10 +45,13 @@ export function createAuth() {
 					pkce: true,
 					scopes: ['openid', 'profile', 'email'],
 					redirectURI: `${appUrl}/api/auth/oauth2/callback/downbeat-auth`,
+					mapProfileToUser: async (profile) => ({
+						role: profile.role,
+					} as any),
 				}],
 			}),
 			admin({
-				ac: ac,
+				ac: ac as any,
 				roles: {
 					student,
 					educator,

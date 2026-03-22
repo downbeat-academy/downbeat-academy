@@ -18,6 +18,7 @@
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
+		"auth-permissions": "workspace:^",
 		"better-auth": "^1.5.5",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",
