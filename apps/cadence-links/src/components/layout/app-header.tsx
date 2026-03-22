@@ -13,7 +13,7 @@ export function AppHeader() {
 		// then redirect back to the sign-in page
 		const authServiceUrl = process.env.NEXT_PUBLIC_AUTH_SERVICE_URL || 'http://localhost:3002'
 		const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001'
-		window.location.href = `${authServiceUrl}/api/auth/oauth2/end-session?post_logout_redirect_uri=${encodeURIComponent(`${appUrl}/sign-in`)}`
+		window.location.href = `${authServiceUrl}/sign-out?redirect_uri=${encodeURIComponent(appUrl)}`
 	}
 
 	return (
