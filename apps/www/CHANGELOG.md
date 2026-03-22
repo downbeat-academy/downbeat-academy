@@ -1,5 +1,16 @@
 # www
 
+## 4.7.2
+
+### Patch Changes
+
+- d927b23: Add OAuth 2.1 provider to auth service and integrate cadence-links via OAuth flow.
+
+  The auth service now acts as an OAuth 2.1 provider, enabling cross-domain authentication for apps that don't share the `.downbeatacademy.com` cookie domain. Cadence-links uses the generic OAuth plugin to authenticate via the auth service, with auto-consent for trusted first-party clients.
+
+- 20e1641: Finalize auth service extraction: fix cross-origin sign-in flow (return redirect URL instead of server-side redirect), enable cross-subdomain cookies for local dev, trust localhost in redirect URI validation, fix nav auth button flash by rendering banner immediately without waiting for Sanity data, consolidate auth UI logic between header-navigation and nav-content, update file-download sign-in link to use auth service, add 'use client' to Button wrapper, and remove update-password page from www (handled by auth service).
+- 02878ae: Fix navigation not showing authenticated state by fetching session server-side instead of relying on cross-origin client-side fetch
+
 ## 4.7.1
 
 ### Patch Changes
