@@ -1,7 +1,8 @@
 import { Text } from 'cadence-core'
 import { authDb } from '@/lib/db/drizzle'
 import * as schema from '@/lib/db/schema'
-import { count, eq, isNotNull, sql } from 'drizzle-orm'
+import { and, count, eq, isNotNull, not, ilike, sql } from 'drizzle-orm'
+import { RecentSignupsTable } from './recent-signups-table'
 import s from '../admin.module.css'
 
 async function getDashboardStats() {
@@ -37,6 +38,10 @@ async function getDashboardStats() {
 			createdAt: schema.user.createdAt,
 		})
 		.from(schema.user)
+		.where(and(
+			not(ilike(schema.user.name, '%test%')),
+			not(ilike(schema.user.email, '%test%')),
+		))
 		.orderBy(sql`${schema.user.createdAt} DESC`)
 		.limit(5)
 
@@ -89,19 +94,15 @@ export default async function AdminDashboardPage() {
 					Recent Signups
 				</Text>
 				<div style={{ marginTop: 'var(--cds-scale-base)' }}>
-					{stats.recentSignups.map((user) => (
-						<div key={user.id} className={s['admin-detail-row']}>
-							<div>
-								<Text type="productive-body" size="body-base">{user.name}</Text>
-								<Text type="productive-body" size="body-small" color="faint">{user.email}</Text>
-							</div>
-							<div>
-								<Text type="productive-body" size="body-small" color="faint">
-									{user.role ?? 'unset'} &middot; {user.createdAt.toLocaleDateString()}
-								</Text>
-							</div>
-						</div>
-					))}
+					<RecentSignupsTable
+						signups={stats.recentSignups.map((user) => ({
+							id: user.id,
+							name: user.name,
+							email: user.email,
+							role: user.role,
+							createdAt: user.createdAt.toLocaleDateString(),
+						}))}
+					/>
 				</div>
 			</div>
 		</div>

@@ -160,6 +160,7 @@ function DataTable<TData>({
 					value={globalFilter}
 					onChange={handleFilterChange}
 					placeholder={filtering.placeholder}
+					className={contained ? s.filterContained : undefined}
 				/>
 			)}
 			<table className={s.table} role="table">
@@ -191,6 +192,7 @@ function DataTable<TData>({
 					lastPage={() => table.setPageIndex(table.getPageCount() - 1)}
 					setPageSize={table.setPageSize}
 					showPageSizeSelector={pagination.showPageSizeSelector}
+					className={contained ? s.paginationContained : undefined}
 				/>
 			)}
 		</div>

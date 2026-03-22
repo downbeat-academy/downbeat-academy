@@ -14,6 +14,14 @@
 	overflow: hidden;
 }
 
+.filterContained {
+	padding: var(--cds-scale-base) var(--cds-scale-base) 0;
+}
+
+.paginationContained {
+	padding: var(--cds-scale-base);
+}
+
 /* Table */
 .table {
 	width: 100%;

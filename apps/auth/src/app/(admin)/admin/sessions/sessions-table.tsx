@@ -39,7 +39,7 @@ export function SessionsTable({ sessions }: SessionsTableProps) {
 			columns={columns}
 			contained
 			isStriped
-			caption="Active sessions"
+
 			sorting={{ enabled: true }}
 			pagination={{
 				enabled: true,
