@@ -155,6 +155,13 @@ export function createAuth() {
 				silenceWarnings: {
 					oauthAuthServerConfig: true,
 				},
+				// Include role in ID token and userinfo for consumer apps
+				customIdTokenClaims: ({ user }) => ({
+					role: user.role,
+				}),
+				customUserInfoClaims: ({ user }) => ({
+					role: user.role,
+				}),
 			}),
 			admin({
 				ac: ac as any,
