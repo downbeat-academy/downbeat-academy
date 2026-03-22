@@ -2,6 +2,9 @@
 
 import { auth, validateRedirectUri } from '@/lib/auth/auth'
 import { headers } from 'next/headers'
+import { eq } from 'drizzle-orm'
+import { authDb } from '@/lib/db/drizzle'
+import * as schema from '@/lib/db/schema'
 import { ADMIN_ROLES } from 'auth-permissions'
 
 const DEFAULT_REDIRECT = process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000'
@@ -45,12 +48,15 @@ export async function signIn(formData: FormData) {
 
   // No redirect context — user logged in directly on the auth service.
   // Check their role: admins go to the dashboard, everyone else goes to the main site.
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  })
+  // We query the DB directly because the session cookie isn't readable within
+  // the same server action that created it.
+  const [user] = await authDb
+    .select({ role: schema.user.role })
+    .from(schema.user)
+    .where(eq(schema.user.email, email))
+    .limit(1)
 
-  const userRole = session?.user?.role as string | undefined
-  if (userRole && ADMIN_ROLES.includes(userRole as any)) {
+  if (user?.role && ADMIN_ROLES.includes(user.role as any)) {
     return { redirectUrl: '/admin' }
   }
 
