@@ -46,7 +46,8 @@
     "node_modules",
     "cypress.config.ts",
     "cypress",
-    "drizzle-auth.config.ts"
+    "drizzle-auth.config.ts",
+    "scripts"
   ],
   "include": [
     "next-env.d.ts",

@@ -21,6 +21,7 @@
 		"@hookform/resolvers": "^5.2.2",
 		"@radix-ui/react-tabs": "^1.1.13",
 		"@radix-ui/react-toast": "^1.2.15",
+		"auth-permissions": "workspace:^",
 		"better-auth": "^1.5.5",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",

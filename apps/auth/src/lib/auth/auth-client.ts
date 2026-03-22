@@ -11,7 +11,7 @@ export const authClient = createAuthClient({
 	plugins: [
 		oauthProviderClient(),
 		adminClient({
-			ac: ac,
+			ac: ac as any,
 			roles: {
 				student,
 				educator,

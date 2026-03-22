@@ -49,7 +49,7 @@ export function createAuth() {
 				}],
 			}),
 			admin({
-				ac: ac,
+				ac: ac as any,
 				roles: {
 					student,
 					educator,
