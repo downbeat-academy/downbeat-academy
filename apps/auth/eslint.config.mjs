@@ -7,6 +7,7 @@ export default [
 		rules: {
 			"react-hooks/error-boundaries": "warn",
 			"react-hooks/set-state-in-effect": "warn",
+			"react-hooks/immutability": "warn",
 		},
 	},
 ];

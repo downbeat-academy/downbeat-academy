@@ -60,7 +60,7 @@
     "classnames": "^2.5.1",
     "postcss": "^8.5.14",
     "postcss-modules": "^6.0.1",
-    "postcss-preset-env": "^10.6.0",
+    "postcss-preset-env": "^10.6.1",
     "rollup": "^4.60.3",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",

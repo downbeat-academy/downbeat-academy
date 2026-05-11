@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Body as ReactEmailBody } from '@react-email/components'
+import { Body as ReactEmailBody } from 'react-email'
 import { getBodyStyles } from './styles'
 
 export interface BodyProps {

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Link as ReactEmailLink } from '@react-email/components'
+import { Link as ReactEmailLink } from 'react-email'
 import { getLinkStyles, type LinkColor } from './styles'
 
 export interface LinkProps {

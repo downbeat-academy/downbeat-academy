@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Button as ReactEmailButton } from '@react-email/components'
+import { Button as ReactEmailButton } from 'react-email'
 import { getButtonStyles, type ButtonType, type ButtonSize } from './styles'
 
 export interface ButtonProps {

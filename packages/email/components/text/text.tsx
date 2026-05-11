@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Text as ReactEmailText } from '@react-email/components'
+import { Text as ReactEmailText } from 'react-email'
 import { getTextStyles, type TextColor, type TextSize, type TextWeight } from './styles'
 
 export interface TextProps {
