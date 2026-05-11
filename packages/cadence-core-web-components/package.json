@@ -13,23 +13,23 @@
     "test": "vitest"
   },
   "dependencies": {
-    "lit": "^3.2.0",
-    "cadence-tokens": "workspace:^"
+    "cadence-tokens": "workspace:^",
+    "lit": "^3.2.0"
   },
   "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
     "@storybook/addon-essentials": "^8.6.15",
     "@storybook/addon-interactions": "^8.6.15",
     "@storybook/addon-links": "^8.6.15",
+    "@storybook/test": "^8.6.15",
     "@storybook/web-components": "^8.6.15",
     "@storybook/web-components-vite": "^8.6.15",
-    "@storybook/test": "^8.6.15",
-    "@open-wc/testing": "^4.0.0",
     "serve": "^14.2.6",
     "storybook": "^8.6.18",
     "typescript": "^5.9.3",
     "vite": "^6.3.5",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^4.0.16"
+    "vitest": "^4.1.6"
   },
   "files": [
     "dist"
