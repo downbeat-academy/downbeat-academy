@@ -30,7 +30,7 @@ export default defineConfig({
 			formats: ['es', 'umd'],
 			fileName: (format) => `cadence-icons.${format}.js`,
 		},
-		rollupOptions: {
+		rolldownOptions: {
 			external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
 			output: {
 				globals: {
