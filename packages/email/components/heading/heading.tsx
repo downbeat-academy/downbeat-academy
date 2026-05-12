@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Heading as ReactEmailHeading } from '@react-email/components'
+import { Heading as ReactEmailHeading } from 'react-email'
 import { getHeadingStyles, type HeadingLevel } from './styles'
 import type { TextColor } from '../text/styles'
 

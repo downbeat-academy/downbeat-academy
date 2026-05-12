@@ -1,5 +1,5 @@
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import {
 	dashboardTool,
@@ -49,7 +49,7 @@ export default defineConfig({
 				}),
 			],
 		}),
-		deskTool({ structure: deskStructure }),
+		structureTool({ structure: deskStructure }),
 		media(),
 		visionTool(),
 	],

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Container as ReactEmailContainer } from '@react-email/components'
+import { Container as ReactEmailContainer } from 'react-email'
 import { getContainerStyles, type ContainerBackground, type ContainerBorderColor, type ContainerPadding } from './styles'
 
 export interface ContainerProps {

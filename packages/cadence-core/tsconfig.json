@@ -5,7 +5,7 @@
 				"name": "typescript-plugin-css-modules"
 			}
 		],
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"target": "ESnext",
 		"module": "ESNext",
 		"allowJs": true,
