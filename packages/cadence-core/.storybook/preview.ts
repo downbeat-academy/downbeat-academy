@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/react-vite'
 import '../node_modules/cadence-tokens/dist/web/tokens.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Microphone } from 'cadence-icons'
 import { Text } from '../../../text'
 import { RadioCardGroup, RadioCardItem } from '../index'

@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from '../button'
 import { Check, ChevronRight, Download, PlayFill, X } from 'cadence-icons'
 

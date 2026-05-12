@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Form, Field, Input, Textarea, Label, HelperText, ValidationMessage, HorizontalWrapper, Switch } from '../'
 
 const meta: Meta<typeof Form> = {
