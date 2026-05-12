@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { HorizontalWrapper } from '../horizontal-wrapper'
 import { Field } from '../../field'
 import { Input } from '../../input'

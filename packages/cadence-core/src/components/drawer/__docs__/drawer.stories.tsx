@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Drawer } from '../drawer'
 import { DrawerContent } from '../drawer-content'
 import { DrawerTrigger } from '../drawer-trigger'

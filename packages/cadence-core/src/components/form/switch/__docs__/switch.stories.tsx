@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Switch } from '../switch'
 import { Field } from '../../field'
 import { Label } from '../../primitives/label'
