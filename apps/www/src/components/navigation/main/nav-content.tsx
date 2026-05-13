@@ -63,7 +63,11 @@ const NavContent = ({ links, isAuthenticated, signInHref, onSignOut }: NavConten
 		}
 	}, [navToggled])
 
-	useEffect(() => setNavToggled(false), [route])
+	const [prevRoute, setPrevRoute] = useState(route)
+	if (prevRoute !== route) {
+		setPrevRoute(route)
+		setNavToggled(false)
+	}
 
 	const staticLinks = [
 		{

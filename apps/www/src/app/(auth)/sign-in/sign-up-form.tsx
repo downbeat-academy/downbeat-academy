@@ -2,7 +2,7 @@
 
 import { signUp } from "@/actions/auth"
 import { Button } from "@components/ui/button"
-import { useForm } from "react-hook-form"
+import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpFormSchema, type TSignUpFormSchema } from "@/lib/types/auth/sign-up-form-schema"
 import { useToast } from "cadence-core"
@@ -16,7 +16,6 @@ import {
   HelperText
 } from "cadence-core"
 import { useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
 
 const checkPasswordRequirements = (password: string) => {
   if (!password) return false
@@ -33,23 +32,18 @@ const checkPasswordRequirements = (password: string) => {
 export const SignUpForm = () => {
   const { toast } = useToast()
   const router = useRouter()
-  const [passwordMeetsRequirements, setPasswordMeetsRequirements] = useState(false)
-  
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     reset,
     formState: { errors, isSubmitting }
   } = useForm<TSignUpFormSchema>({
     resolver: zodResolver(signUpFormSchema)
   })
 
-  // Watch password field to check requirements
-  const password = watch("password")
-  useEffect(() => {
-    setPasswordMeetsRequirements(checkPasswordRequirements(password || ''))
-  }, [password])
+  const password = useWatch({ control, name: "password" })
+  const passwordMeetsRequirements = checkPasswordRequirements(password || '')
 
   const onSubmit = async (data: TSignUpFormSchema) => {
     try {

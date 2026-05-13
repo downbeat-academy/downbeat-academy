@@ -50,107 +50,93 @@ export async function generateMetadata(
 
 // Generate static params
 export async function generateStaticParams() {
-	try {
-		const slugs = await sanityClient.fetch(
-			articlePaths,
-			{},
-			{ next: { revalidate: 60 } }
-		)
-		return slugs.map((slug: string) => ({ slug }))
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+	const slugs = await sanityClient.fetch(articlePaths, {}, { next: { revalidate: 60 } })
+	return slugs.map((slug: string) => ({ slug }))
 }
 
 // Render the article data
 export default async function ArticleSlugRoute({ params }: PageProps) {
 	const { slug } = await params
 
-	try {
-		const article = await sanityClient.fetch<ArticleData>(
-			articlesBySlugQuery,
-			{ slug },
-			{ next: { revalidate: 60 } }
-		)
+	const article = await sanityClient.fetch<ArticleData>(
+		articlesBySlugQuery,
+		{ slug },
+		{ next: { revalidate: 60 } }
+	)
 
-		if (!article) notFound()
+	if (!article) notFound()
 
-		const renderCategories = (
-			<Text tag="p" type="productive-body" size="body-small" collapse>
-				{article.categories.map((category, i) => (
-					<Fragment key={category.title}>
-						{i > 0 && ', '}
-						<Link href={linkResolver(category.slug, 'category')} type="secondary">
-							{category.title}
-						</Link>
-					</Fragment>
-				))}
-			</Text>
-		)
+	const renderCategories = (
+		<Text tag="p" type="productive-body" size="body-small" collapse>
+			{article.categories.map((category, i) => (
+				<Fragment key={category.title}>
+					{i > 0 && ', '}
+					<Link href={linkResolver(category.slug, 'category')} type="secondary">
+						{category.title}
+					</Link>
+				</Fragment>
+			))}
+		</Text>
+	)
 
-		return (
-			<>
-				<SectionContainer>
-					<FeaturedItem.Root>
-						<FeaturedItem.Title>
-							<Text
-								tag="h1"
-								type="expressive-headline"
-								size="h1"
-								color="high-contrast"
-								collapse
-							>
-								{article.title}
-							</Text>
-							<Text
-								tag="p"
-								type="expressive-body"
-								size="body-large"
-								color="high-contrast"
-								collapse
-							>
-								{article.excerpt}
-							</Text>
-						</FeaturedItem.Title>
-						<FeaturedItem.Image
-							image={getSanityImageUrl(article.featuredImage.image.asset).url()}
-							alt={article.featuredImage.alternativeText}
-						/>
-						<FeaturedItem.Description>
-							<AuthorMetadata
-								authors={article.authors}
-								date={prettyDate(article.date)}
-							>
-								{renderCategories}
-							</AuthorMetadata>
-							<ReadingLength
-								content={article.content.content}
-								preContent="Around a "
-							/>
-							{article.changelog && article.changelog.length > 0 && (
-								<ChangelogDrawer changelog={article.changelog} />
-							)}
-						</FeaturedItem.Description>
-					</FeaturedItem.Root>
-				</SectionContainer>
-				<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
-					<RichTextWrapper>
-						<RichText value={article.content.content} />
-						<NewsletterSignup
-							title="Enjoy this article?"
-							description="Get new and interesting articles directly in your inbox. Generally every few weeks or once a month."
-						/>
-					</RichTextWrapper>
-					<TableOfContents
-						content={article.content.content}
-						title="On this page"
+	return (
+		<>
+			<SectionContainer>
+				<FeaturedItem.Root>
+					<FeaturedItem.Title>
+						<Text
+							tag="h1"
+							type="expressive-headline"
+							size="h1"
+							color="high-contrast"
+							collapse
+						>
+							{article.title}
+						</Text>
+						<Text
+							tag="p"
+							type="expressive-body"
+							size="body-large"
+							color="high-contrast"
+							collapse
+						>
+							{article.excerpt}
+						</Text>
+					</FeaturedItem.Title>
+					<FeaturedItem.Image
+						image={getSanityImageUrl(article.featuredImage.image.asset).url()}
+						alt={article.featuredImage.alternativeText}
 					/>
-				</Flex>
-			</>
-		)
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+					<FeaturedItem.Description>
+						<AuthorMetadata
+							authors={article.authors}
+							date={prettyDate(article.date)}
+						>
+							{renderCategories}
+						</AuthorMetadata>
+						<ReadingLength
+							content={article.content.content}
+							preContent="Around a "
+						/>
+						{article.changelog && article.changelog.length > 0 && (
+							<ChangelogDrawer changelog={article.changelog} />
+						)}
+					</FeaturedItem.Description>
+				</FeaturedItem.Root>
+			</SectionContainer>
+			<Flex tag="div" direction="row" gap="2x-large" className={s.content}>
+				<RichTextWrapper>
+					<RichText value={article.content.content} />
+					<NewsletterSignup
+						title="Enjoy this article?"
+						description="Get new and interesting articles directly in your inbox. Generally every few weeks or once a month."
+					/>
+				</RichTextWrapper>
+				<TableOfContents
+					content={article.content.content}
+					title="On this page"
+				/>
+			</Flex>
+		</>
+	)
 }
