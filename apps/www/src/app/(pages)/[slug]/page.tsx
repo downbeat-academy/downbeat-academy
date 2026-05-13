@@ -56,13 +56,8 @@ export async function generateMetadata(
 
 // Generate the slugs/routes for each page
 export async function generateStaticParams(): Promise<SlugParams[]> {
-	try {
-		const slugs: SlugString[] = await client.fetch(pagePaths)
-		return slugs.map((slug: string) => ({ slug }))
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+	const slugs: SlugString[] = await client.fetch(pagePaths)
+	return slugs.map((slug: string) => ({ slug }))
 }
 
 // Render the page data
@@ -70,37 +65,31 @@ export default async function PageSlugRoute({ params }: { params: Promise<{ slug
 	const { slug } = await params
 	const preview = (await draftMode()).isEnabled ? { token: readToken } : undefined
 
-	try {
-		const page = await sanityClient.fetch(pagesBySlugQuery, {
-			slug,
-		})
+	const page = await sanityClient.fetch(pagesBySlugQuery, { slug })
 
-		if (!page && !preview) {
-			notFound()
-		}
-		return (
-			<>
-				<SectionContainer>
-					<SectionTitle
-						background="primary"
-						title={
-							<Text
-								tag="h1"
-								size="h1"
-								type="expressive-headline"
-								color="brand"
-								collapse
-							>
-								{page.title}
-							</Text>
-						}
-					/>
-					<ModuleRenderer modules={page.moduleContent} />
-				</SectionContainer>
-			</>
-		)
-	} catch (error) {
-		console.error(error)
-		throw error
+	if (!page && !preview) {
+		notFound()
 	}
+
+	return (
+		<>
+			<SectionContainer>
+				<SectionTitle
+					background="primary"
+					title={
+						<Text
+							tag="h1"
+							size="h1"
+							type="expressive-headline"
+							color="brand"
+							collapse
+						>
+							{page.title}
+						</Text>
+					}
+				/>
+				<ModuleRenderer modules={page.moduleContent} />
+			</SectionContainer>
+		</>
+	)
 }

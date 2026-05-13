@@ -43,63 +43,23 @@ export async function generateMetadata(
 
 // Generate slugs/routes for categories
 export async function generateStaticParams(): Promise<CategoryParams[]> {
-	try {
-		const slugs: CategorySlug[] = await client.fetch(categoryPaths,
-			{},
-			{
-				next: {
-					revalidate: 60,
-				}
-			}
-		)
-		return slugs.map((slug: string) => ({ slug }))
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
+	const slugs: CategorySlug[] = await client.fetch(categoryPaths, {}, { next: { revalidate: 60 } })
+	return slugs.map((slug: string) => ({ slug }))
 }
 
 // Render the category data
 export default async function CategorySlugRoute({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params
 
-	try {
-		const category = await client.fetch(
-			categoriesBySlugQuery,
-			{ slug },
-			{
-				next: {
-					revalidate: 60,
-				},
-			}
-		)
+	const category = await client.fetch(
+		categoriesBySlugQuery,
+		{ slug },
+		{ next: { revalidate: 60 } }
+	)
 
-		if (!category) notFound()
+	if (!category) notFound()
 
-		if (!category.references || category.references.length === 0) {
-			return (
-				<SectionContainer>
-					<SectionTitle
-						background="success"
-						title={
-							<Text
-								tag="h1"
-								type="expressive-headline"
-								size="h1"
-								collapse
-								color="high-contrast"
-							>
-								Category: {category.title}
-							</Text>
-						}
-					/>
-					<Text type="expressive-body" size="body-base" color="primary">
-						No references found in this category.
-					</Text>
-				</SectionContainer>
-			)
-		}
-
+	if (!category.references || category.references.length === 0) {
 		return (
 			<SectionContainer>
 				<SectionTitle
@@ -116,26 +76,44 @@ export default async function CategorySlugRoute({ params }: { params: Promise<{ 
 						</Text>
 					}
 				/>
-				{category.references.map((reference: CategoryReference) => {
-					// Handle potentially complex reference data
-					const title = typeof reference.title === 'string' ? reference.title : 'Untitled'
-					const description = typeof reference.excerpt === 'string' ? reference.excerpt : ''
-					const refType = reference._type || 'article'
-					const refSlug = typeof reference.slug === 'string' ? reference.slug : ''
-					
-					return (
-						<ListItem
-							key={reference._id}
-							title={title}
-							description={description}
-							url={linkResolver(refSlug, refType)}
-						/>
-					)
-				})}
+				<Text type="expressive-body" size="body-base" color="primary">
+					No references found in this category.
+				</Text>
 			</SectionContainer>
 		)
-	} catch (error) {
-		console.error('Error rendering category:', error)
-		throw error
 	}
+
+	return (
+		<SectionContainer>
+			<SectionTitle
+				background="success"
+				title={
+					<Text
+						tag="h1"
+						type="expressive-headline"
+						size="h1"
+						collapse
+						color="high-contrast"
+					>
+						Category: {category.title}
+					</Text>
+				}
+			/>
+			{category.references.map((reference: CategoryReference) => {
+				const title = typeof reference.title === 'string' ? reference.title : 'Untitled'
+				const description = typeof reference.excerpt === 'string' ? reference.excerpt : ''
+				const refType = reference._type || 'article'
+				const refSlug = typeof reference.slug === 'string' ? reference.slug : ''
+
+				return (
+					<ListItem
+						key={reference._id}
+						title={title}
+						description={description}
+						url={linkResolver(refSlug, refType)}
+					/>
+				)
+			})}
+		</SectionContainer>
+	)
 }

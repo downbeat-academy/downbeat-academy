@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo, useSyncExternalStore } from 'react'
 import classnames from 'classnames'
 import { Text } from 'cadence-core'
 import { Link } from '@components/link'
@@ -19,61 +19,59 @@ interface TableOfContentsProps {
 	className?: string
 }
 
+function subscribeToWindowResize(callback: () => void) {
+	window.addEventListener('resize', callback)
+	return () => window.removeEventListener('resize', callback)
+}
+
 const TableOfContents = ({
 	content,
 	title,
 	className,
 }: TableOfContentsProps) => {
-	const [headings, setHeadings] = useState<Heading[]>([])
 	const [activeId, setActiveId] = useState<string>('')
-	const [isExpanded, setIsExpanded] = useState(true)
-	const [hasMounted, setHasMounted] = useState(false)
+	const [manualExpanded, setManualExpanded] = useState<boolean | null>(null)
 
-	// Set initial expanded state based on viewport width
-	useEffect(() => {
-		setHasMounted(true)
-		setIsExpanded(window.innerWidth > 1200)
+	// Detects client-side mount without state-in-effect: false on server, true on client
+	const hasMounted = useSyncExternalStore(
+		() => () => {},
+		() => true,
+		() => false,
+	)
 
-		const handleResize = () => {
-			setIsExpanded(window.innerWidth > 1200)
-		}
+	// Viewport-based expansion — auto-syncs with window.innerWidth via subscription
+	const isWideViewport = useSyncExternalStore(
+		subscribeToWindowResize,
+		() => window.innerWidth > 1200,
+		() => true,
+	)
 
-		window.addEventListener('resize', handleResize)
-		return () => window.removeEventListener('resize', handleResize)
-	}, [])
+	const isExpanded = manualExpanded !== null ? manualExpanded : isWideViewport
+	// Use SSR-matching value (true) until after mount to avoid hydration mismatch
+	const effectiveExpanded = hasMounted ? isExpanded : true
 
-	// Extract headings from Portable Text content
-	useEffect(() => {
-		const extractTextFromChildren = (children: any[]): string => {
-			return children
+	// Headings are pure derivation from content — no state or effect needed
+	const headings = useMemo<Heading[]>(() => {
+		if (!content) return []
+
+		const extractTextFromChildren = (children: any[]): string =>
+			children
 				.map((child) => {
 					if (typeof child.text === 'string') return child.text
-					if (child.marks && child.marks.length > 0) {
-						// Handle formatted text (e.g., emphasis)
-						return child.text
-					}
 					return ''
 				})
 				.join('')
-		}
 
-		const extractHeadings = (blocks: any[]): Heading[] => {
-			return blocks
-				.filter((block) => block.style && block.style.startsWith('h'))
-				.map((block) => {
-					const text = extractTextFromChildren(block.children)
-					const id = slugify([text])
-					return {
-						id,
-						text,
-						level: parseInt(block.style.substring(1)),
-					}
-				})
-		}
-
-		if (content) {
-			setHeadings(extractHeadings(content))
-		}
+		return content
+			.filter((block: any) => block.style && block.style.startsWith('h'))
+			.map((block: any) => {
+				const text = extractTextFromChildren(block.children)
+				return {
+					id: slugify([text]),
+					text,
+					level: parseInt(block.style.substring(1)),
+				}
+			})
 	}, [content])
 
 	// Handle scroll spy
@@ -102,9 +100,6 @@ const TableOfContents = ({
 
 	if (headings.length === 0) return null
 
-	// Use SSR-matching value (true) until after mount to avoid hydration mismatch
-	const effectiveExpanded = hasMounted ? isExpanded : true
-
 	const classes = classnames(s.root, className, {
 		[s.collapsed]: !effectiveExpanded,
 		[s.expanded]: effectiveExpanded,
@@ -114,7 +109,7 @@ const TableOfContents = ({
 		<nav className={classes} aria-label="Table of contents">
 			<button
 				className={s.titleButton}
-				onClick={() => setIsExpanded(!isExpanded)}
+				onClick={() => setManualExpanded(!effectiveExpanded)}
 				aria-expanded={effectiveExpanded}
 			>
 				<Text
@@ -150,7 +145,7 @@ const TableOfContents = ({
 									})
 									// Close the bottom sheet after clicking a link on mobile
 									if (window.innerWidth <= 1200) {
-										setIsExpanded(false)
+										setManualExpanded(false)
 									}
 								}}
 							>

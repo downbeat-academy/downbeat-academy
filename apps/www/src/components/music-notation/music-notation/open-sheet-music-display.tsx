@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { OpenSheetMusicDisplayProps } from './types'
 import { Text, SkeletonLoader } from 'cadence-core'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react'
 
 const OSMDComponent = dynamic(
   () => import('./osmd-component'),
@@ -14,20 +14,22 @@ const OSMDComponent = dynamic(
 )
 
 export const OpenSheetMusicDisplay = (props: OpenSheetMusicDisplayProps) => {
-  const [hasMounted, setHasMounted] = useState(false)
+  // Detects client-side mount without state-in-effect: false on server, true on client
+  const hasMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
   const [isLoading, setIsLoading] = useState(true)
   const [isVisible, setIsVisible] = useState(false)
-  const [key, setKey] = useState(0) // Add key for forcing remount
+  const [prevFile, setPrevFile] = useState(props.file)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    setHasMounted(true)
-  }, [])
-
-  useEffect(() => {
+  // Reset loading state when file changes (during render, not in an effect)
+  if (prevFile !== props.file) {
+    setPrevFile(props.file)
     setIsLoading(true)
-    setKey(prev => prev + 1) // Force remount when file changes
-  }, [props.file])
+  }
 
   // Only load OSMD when the component is near the viewport
   useEffect(() => {
@@ -58,7 +60,7 @@ export const OpenSheetMusicDisplay = (props: OpenSheetMusicDisplayProps) => {
       {isVisible && (
         <div style={{ display: isLoading ? 'none' : 'block' }}>
           <OSMDComponent
-            key={key}
+            key={props.file}
             {...props}
             onRenderComplete={() => setIsLoading(false)}
           />
