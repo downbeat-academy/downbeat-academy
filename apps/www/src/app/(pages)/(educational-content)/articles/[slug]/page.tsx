@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { notFound } from 'next/navigation'
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { articlesBySlugQuery, articlePaths } from '@lib/queries'
 import { getSanityImageUrl } from '@utils/getSanityImage'
@@ -35,6 +36,8 @@ export async function generateMetadata(
 			{ next: { revalidate: 60 } }
 		)
 
+		if (!article) return {}
+
 		return {
 			title: getOgTitle(article.metadata.title),
 			description: article.metadata.description,
@@ -70,6 +73,8 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 			{ slug },
 			{ next: { revalidate: 60 } }
 		)
+
+		if (!article) notFound()
 
 		const renderCategories = (
 			<Text tag="p" type="productive-body" size="body-small" collapse>

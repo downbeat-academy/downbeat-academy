@@ -30,6 +30,8 @@ export async function generateMetadata(
 			slug,
 		})
 
+		if (!contributor) return {}
+
 		return {
 			title: getOgTitle(contributor.name),
 		}
