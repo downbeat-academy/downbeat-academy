@@ -13,4 +13,16 @@ Sentry.init({
 
 	// Setting this option to true will print useful information to the console while you're setting up Sentry.
 	debug: false,
+
+	beforeSend(event) {
+		const message = event.exception?.values?.[0]?.value ?? ''
+		if (
+			message.includes('Failed to find Server Action') ||
+			message.includes('Failed to parse body as FormData') ||
+			message === 'aborted'
+		) {
+			return null
+		}
+		return event
+	},
 })
