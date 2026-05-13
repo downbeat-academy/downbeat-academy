@@ -1,5 +1,11 @@
 # @downbeat-academy/cadence-tokens
 
+## 2.3.1
+
+### Patch Changes
+
+- 2ea6f1c: Update tier 1 and tier dependencies
+
 ## 2.3.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "cadence-core",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Core component library for Downbeat Academy and the Cadence Design System.",
   "scripts": {
     "start": "serve storybook-static -l tcp://0.0.0.0:$PORT",
