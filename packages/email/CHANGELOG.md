@@ -1,5 +1,11 @@
 # email
 
+## 1.5.3
+
+### Patch Changes
+
+- 2ea6f1c: Update tier 1 and tier dependencies
+
 ## 1.5.2
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # cadence-icons
 
+## 1.7.1
+
+### Patch Changes
+
+- 4d3d348: Dependency bump: Vite 8.0.12
+- 2ea6f1c: Update tier 1 and tier dependencies
+
 ## 1.7.0
 
 ### Minor Changes

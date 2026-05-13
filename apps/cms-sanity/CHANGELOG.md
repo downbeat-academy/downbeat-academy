@@ -1,5 +1,11 @@
 # sanity-cms
 
+## 2.6.1
+
+### Patch Changes
+
+- 2ea6f1c: Update tier 1 and tier dependencies
+
 ## 2.6.0
 
 ### Minor Changes
