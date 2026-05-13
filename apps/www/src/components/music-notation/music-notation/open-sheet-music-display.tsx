@@ -14,10 +14,15 @@ const OSMDComponent = dynamic(
 )
 
 export const OpenSheetMusicDisplay = (props: OpenSheetMusicDisplayProps) => {
+  const [hasMounted, setHasMounted] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isVisible, setIsVisible] = useState(false)
   const [key, setKey] = useState(0) // Add key for forcing remount
   const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
 
   useEffect(() => {
     setIsLoading(true)
@@ -45,7 +50,7 @@ export const OpenSheetMusicDisplay = (props: OpenSheetMusicDisplayProps) => {
 
   return (
     <div ref={containerRef}>
-      {(!isVisible || isLoading) && (
+      {hasMounted && (!isVisible || isLoading) && (
         <Text tag='h1' size='mega'>
           <SkeletonLoader count={1} />
         </Text>

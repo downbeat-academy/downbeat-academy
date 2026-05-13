@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { sanityClient } from '@lib/sanity/sanity.client'
 import { categoriesBySlugQuery, categoryPaths } from '@lib/queries'
 import { getOgTitle } from '@utils/metaHelpers'
@@ -28,6 +29,9 @@ export async function generateMetadata(
 				}
 			}
 		)
+
+		if (!category) return {}
+
 		return {
 			title: getOgTitle(category.title),
 		}
@@ -70,7 +74,9 @@ export default async function CategorySlugRoute({ params }: { params: Promise<{ 
 			}
 		)
 
-		if (!category?.references || category.references.length === 0) {
+		if (!category) notFound()
+
+		if (!category.references || category.references.length === 0) {
 			return (
 				<SectionContainer>
 					<SectionTitle
@@ -83,7 +89,7 @@ export default async function CategorySlugRoute({ params }: { params: Promise<{ 
 								collapse
 								color="high-contrast"
 							>
-								Category: {category?.title || 'Not Found'}
+								Category: {category.title}
 							</Text>
 						}
 					/>
