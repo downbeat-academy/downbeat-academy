@@ -15,3 +15,12 @@ export type { LinkType } from './components/link';
 
 export { CdsSkeletonLoader } from './components/skeleton-loader';
 export type { SkeletonDirection } from './components/skeleton-loader';
+
+export { CdsFlex } from './components/flex';
+export type { FlexDirection, FlexGap, FlexPadding, FlexAlign, FlexJustify, FlexBackground } from './components/flex';
+
+export { CdsGrid, CdsGridItem } from './components/grid';
+export type { GridColumns, GridSpan } from './components/grid';
+
+export { CdsSectionContainer } from './components/section-container';
+export type { SectionContainerBackground, SectionContainerBorderColor } from './components/section-container';
