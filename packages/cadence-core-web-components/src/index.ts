@@ -24,3 +24,14 @@ export type { GridColumns, GridSpan } from './components/grid';
 
 export { CdsSectionContainer } from './components/section-container';
 export type { SectionContainerBackground, SectionContainerBorderColor } from './components/section-container';
+
+export { CdsBanner } from './components/banner';
+export type { BannerType } from './components/banner';
+
+export { CdsSectionTitle } from './components/section-title';
+export type { SectionTitleAlignment, SectionTitleBackground } from './components/section-title';
+
+export { CdsBlockquote } from './components/blockquote';
+
+export { CdsSummary } from './components/summary';
+export type { SummaryType, SummarySize } from './components/summary';
