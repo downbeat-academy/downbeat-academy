@@ -2,7 +2,7 @@ const transformAccidental = (value: string) => {
 	switch (value) {
 		case 'flat':
 			return '𝄭'
-		case 'share':
+		case 'sharp':
 			return '𝄰'
 		case 'double-flat':
 			return '𝄫'
@@ -11,7 +11,7 @@ const transformAccidental = (value: string) => {
 		case 'natural':
 			return '♮'
 		default:
-			'Unsupported accidental.'
+			return null
 	}
 }
 

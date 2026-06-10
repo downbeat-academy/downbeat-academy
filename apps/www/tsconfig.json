@@ -33,6 +33,12 @@
 		],
 		"lib": ["dom", "dom.iterable", "esnext"]
 	},
-	"exclude": ["node_modules", "cypress/**/*"],
+	"exclude": [
+		"node_modules",
+		"cypress/**/*",
+		"src/**/__test__/**",
+		"vitest.config.ts",
+		"setup-tests.ts"
+	],
 	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "!cypress/**/*"]
 }
