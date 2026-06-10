@@ -32,13 +32,15 @@ export async function generateMetadata(
 			}
 		)
 
+		if (!article) return {}
+
 		return {
 			title: getOgTitle(article.title),
 			description: article.excerpt,
 		}
 	} catch (error) {
 		console.error(error)
-		throw error
+		return {}
 	}
 }
 

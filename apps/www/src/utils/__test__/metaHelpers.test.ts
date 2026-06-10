@@ -8,8 +8,8 @@ describe('getOgTitle', () => {
 		)
 	})
 
-	it('handles an empty title', () => {
-		expect(getOgTitle('')).toBe(' ♪ Downbeat Academy')
+	it('falls back to the bare brand name for an empty title', () => {
+		expect(getOgTitle('')).toBe('Downbeat Academy')
 	})
 })
 
