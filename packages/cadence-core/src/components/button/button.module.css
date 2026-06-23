@@ -73,7 +73,7 @@
 
 .secondary {
   background: transparent;
-  border-width: 1px;
+  border-width: var(--cds-border-width-thin);
   border-color: var(--cds-color-border-primary);
   border-style: solid;
   color: var(--cds-color-foreground-primary);

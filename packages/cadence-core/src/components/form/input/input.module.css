@@ -2,7 +2,7 @@
   font-family: var(--cds-typography-font-family-productive-body);
   font-size: var(--cds-typography-font-size-fixed-productive-base);
   border-radius: var(--cds-radii-medium);
-  border: 1px solid var(--cds-color-border-primary);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
   padding: var(--cds-scale-small);
 }
 
@@ -16,7 +16,7 @@
 }
 
 .isInvalid {
-  border: 2px solid var(--cds-color-border-critical);
+  border: var(--cds-border-width-medium) solid var(--cds-color-border-critical);
 }
 
 .isInvalid:focus {

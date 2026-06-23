@@ -1,0 +1,12 @@
+{
+	"border": {
+		"width": {
+			"thin": {
+				"value": "1px"
+			},
+			"medium": {
+				"value": "2px"
+			}
+		}
+	}
+}
