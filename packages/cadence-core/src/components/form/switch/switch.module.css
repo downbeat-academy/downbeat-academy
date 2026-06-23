@@ -6,7 +6,7 @@
   height: 24px;
   background-color: var(--cds-color-palette-blackberry-100);
   border-radius: var(--cds-radii-x-soft);
-  border: 1px solid var(--cds-color-border-primary);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
   cursor: pointer;
   transition: background-color 200ms ease, border-color 200ms ease;
 }
@@ -49,7 +49,7 @@
   width: 18px;
   height: 18px;
   background-color: var(--cds-color-foreground-high-contrast);
-  border: 1px solid var(--cds-color-border-primary);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
   border-radius: 18px;
   transition: transform 100ms ease;
   will-change: transform;

@@ -76,10 +76,10 @@
   display: flex;
   flex-direction: column;
   background-color: var(--cds-color-surface-primary);
-  border: 1px solid var(--cds-color-border-primary);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
   border-radius: var(--cds-radii-medium);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: all 150ms var(--cds-animation-easing-standard);
   overflow: hidden;
   min-height: 80px;
   padding: 0;
@@ -89,7 +89,7 @@
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-50);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--cds-elevation-box-shadow-floating);
 }
 
 .itemRoot:focus-visible {
@@ -104,12 +104,12 @@
 .itemRoot[data-state='checked'] {
   background-color: var(--cds-color-palette-blueberry-50);
   border-color: var(--cds-color-foreground-interactive-default);
-  box-shadow: 0 0 0 1px var(--cds-color-foreground-interactive-default);
+  box-shadow: 0 0 0 var(--cds-border-width-thin) var(--cds-color-foreground-interactive-default);
 }
 
 .itemRoot[data-state='checked']:hover:not([data-disabled]) {
   border-color: var(--cds-color-foreground-interactive-hover);
-  box-shadow: 0 0 0 1px var(--cds-color-foreground-interactive-hover);
+  box-shadow: 0 0 0 var(--cds-border-width-thin) var(--cds-color-foreground-interactive-hover);
   background-color: var(--cds-color-palette-blueberry-100);
 }
 
@@ -117,7 +117,7 @@
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
-  opacity: 0.6;
+  opacity: var(--cds-state-disabled-opacity);
 }
 
 .itemRoot[data-disabled]:hover {
@@ -193,9 +193,9 @@
   justify-content: center;
   align-items: center;
   padding: var(--cds-scale-small);
-  border-top: 1px solid var(--cds-color-border-faint);
+  border-top: var(--cds-border-width-thin) solid var(--cds-color-border-faint);
   background-color: var(--cds-color-palette-blackberry-100);
-  transition: all 150ms ease;
+  transition: all 150ms var(--cds-animation-easing-standard);
   padding: var(--cds-scale-x-small) 0;
 }
 
