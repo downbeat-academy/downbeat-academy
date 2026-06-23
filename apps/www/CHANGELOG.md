@@ -1,5 +1,24 @@
 # www
 
+## 4.7.3
+
+### Patch Changes
+
+- d4bdae8: Prevent dynamic page `generateMetadata` from throwing on missing content.
+
+  The articles, handbook, lexicon, categories, and contributors routes re-threw errors from their `catch` blocks and accessed Sanity fields without null checks, so a slug resolving to `null` (unpublished, deleted, draft-only, or stale ISR paths) surfaced as a thrown error in Sentry. These routes now null-check the fetched document (and nested metadata) and return empty metadata instead of throwing, mirroring the existing `[slug]` route. Also hardened the shared helpers: `getOgTitle` no longer emits `"undefined ♪ Downbeat Academy"` for missing titles, and `limitDescription` now correctly returns a truncated value.
+
+- 3921b5e: Add a Vitest unit/integration test layer for `apps/www` covering pure utilities,
+  Zod form schemas, the reading-length calculator, the music-notation transformers,
+  and the server actions (auth, email, profile). Fix bugs surfaced by the new tests:
+  - `limitDescription()` now returns its result and compares string length (it
+    previously returned `undefined` for every input).
+  - `transformAccidental()` handles the `"sharp"` accidental (was a `"share"`
+    typo) and returns `null` for unsupported input instead of `undefined`.
+  - `linkResolver()` drops a duplicate, unreachable `category` case.
+  - The update-password schema maps its "passwords do not match" error to the
+    real `confirmNewPassword` field.
+
 ## 4.7.2
 
 ### Patch Changes
