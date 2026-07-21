@@ -42,14 +42,14 @@
   background: var(--cds-color-palette-blackberry-500) !important;
 }
 
-.sign-out-button {
+.banner-ghost-button {
   color: var(--cds-color-foreground-high-contrast) !important;
 }
 
-.sign-out-button:hover {
+.banner-ghost-button:hover {
   background: var(--cds-color-palette-blackberry-600) !important;
 }
 
-.sign-out-button:active {
+.banner-ghost-button:active {
   background: var(--cds-color-palette-blackberry-500) !important;
 } 

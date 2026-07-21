@@ -8,7 +8,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
 			<aside className={s.sidebar}>
 				<AdminSidebar />
 			</aside>
-			<main className={s.main}>{children}</main>
+			<div className={s.main}>{children}</div>
 		</div>
 	)
 }

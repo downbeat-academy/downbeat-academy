@@ -9,3 +9,5 @@ Add admin dashboard at `/admin`, gated to `admin` and `superAdmin` roles.
 - Subscribers page listing the Resend audience with a remove action
 - Guards against self-modification and demoting the last super admin
 - Adds `recharts` for chart visualization
+- Admin button in the main header nav (banner + mobile menu), shown only to `admin` and `superAdmin` roles
+- Admin layout uses the shared `AppFrame` + `HeaderNavigation` shell, with a sticky in-page sidebar for section navigation

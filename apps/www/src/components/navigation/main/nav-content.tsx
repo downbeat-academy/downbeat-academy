@@ -29,11 +29,12 @@ function SignOutButton() {
 interface NavContentProps {
 	links: any
 	isAuthenticated: boolean
+	isAdmin?: boolean
 	signInHref: string
 	onSignOut: () => Promise<void>
 }
 
-const NavContent = ({ links, isAuthenticated, signInHref, onSignOut }: NavContentProps) => {
+const NavContent = ({ links, isAuthenticated, isAdmin = false, signInHref, onSignOut }: NavContentProps) => {
 	const route = usePathname()
 	const [navToggled, setNavToggled] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
@@ -142,6 +143,16 @@ const NavContent = ({ links, isAuthenticated, signInHref, onSignOut }: NavConten
 							<form action={onSignOut}>
 								<SignOutButton />
 							</form>
+							{isAdmin && (
+								<Button
+									size="large"
+									variant="secondary"
+									href="/admin"
+									isFullWidth
+								>
+									Admin
+								</Button>
+							)}
 							<Button
 								size="large"
 								variant="primary"
