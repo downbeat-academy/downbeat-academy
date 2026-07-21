@@ -43,7 +43,7 @@
   will-change: transform, opacity;
   box-shadow: var(--cds-elevation-box-shadow-popover);
   box-sizing: border-box;
-  z-index: 40;
+  z-index: var(--cds-z-index-dropdown);
 }
 
 /* Respect user's motion preferences for accessibility */

@@ -2,10 +2,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--cds-scale-base);
-	max-width: 600px;
+	max-width: var(--cds-content-width-form);
 	margin: 0 auto;
 	background: var(--cds-color-surface-primary);
 	padding: var(--cds-scale-3x-large);
 	border-radius: var(--cds-radii-soft);
-	border: 1px solid var(--cds-color-border-primary);
+	border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
 }

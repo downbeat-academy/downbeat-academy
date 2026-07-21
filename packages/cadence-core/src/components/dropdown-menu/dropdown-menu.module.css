@@ -7,7 +7,7 @@
   min-width: 160px;
   box-shadow: var(--cds-elevation-box-shadow-base);
   box-sizing: border-box;
-  z-index: 50;
+  z-index: var(--cds-z-index-overlay);
   animation-duration: 400ms;
   animation-timing-function: var(--cds-animation-easing-enter);
   will-change: transform, opacity;
@@ -44,7 +44,7 @@
   min-width: 160px;
   box-shadow: var(--cds-elevation-box-shadow-base);
   box-sizing: border-box;
-  z-index: 50;
+  z-index: var(--cds-z-index-overlay);
   animation-duration: 400ms;
   animation-timing-function: var(--cds-animation-easing-enter);
   will-change: transform, opacity;

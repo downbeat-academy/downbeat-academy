@@ -3,13 +3,13 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 100;
+  z-index: var(--cds-z-index-sticky);
   display: flex;
   flex-direction: column;
   gap: var(--cds-scale-base);
   padding: var(--cds-scale-large);
   height: fit-content;
-  transition: height 0.5s ease;
+  transition: height var(--cds-transition-07) var(--cds-animation-easing-standard);
 }
 
 /* Toast element */
@@ -48,32 +48,32 @@
 /* Variants */
 .toast--variant-default {
   background: var(--cds-color-palette-blackberry-100);
-  border: 1px solid var(--cds-color-palette-blackberry-400);
+  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-400);
   color: var(--cds-color-foreground-primary);
-  transition: all 0.5s ease;
+  transition: all var(--cds-transition-07) var(--cds-animation-easing-standard);
 }
 
 .toast--variant-success {
   background: var(--cds-color-palette-kale-100);
-  border: 1px solid var(--cds-color-palette-kale-600);
+  border: var(--cds-border-width-thin) solid var(--cds-color-palette-kale-600);
   color: var(--cds-color-foreground-primary);
 }
 
 .toast--variant-warning {
   background: var(--cds-color-palette-pineapple-100);
-  border: 1px solid var(--cds-color-palette-pineapple-600);
+  border: var(--cds-border-width-thin) solid var(--cds-color-palette-pineapple-600);
   color: var(--cds-color-foreground-primary);
 }
 
 .toast--variant-error {
   background: var(--cds-color-palette-peach-100);
-  border: 1px solid var(--cds-color-palette-peach-400);
+  border: var(--cds-border-width-thin) solid var(--cds-color-palette-peach-400);
   color: var(--cds-color-foreground-primary);
 }
 
 /* Direction */
 .toast--direction-from-bottom {
-  animation: slide-up 0.2s ease;
+  animation: slide-up var(--cds-transition-04) var(--cds-animation-easing-enter);
 }
 
 @keyframes slide-up {
@@ -86,7 +86,7 @@
 }
 
 .toast--direction-from-right {
-  animation: slide-left 0.2s ease;
+  animation: slide-left var(--cds-transition-04) var(--cds-animation-easing-enter);
 }
 
 @keyframes slide-left {
@@ -129,7 +129,7 @@
   background: var(--cds-color-palette-blackberry-100);
   color: var(--cds-color-palette-blackberry-500);
   border-radius: var(--cds-radii-hard);
-  border: 1px solid var(--cds-color-palette-blackberry-300);
+  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-300);
   padding: 2px;
   transition: var(--cds-transition-02);
 }
