@@ -122,6 +122,16 @@ export { SectionContainer } from './components/section-container';
 export { SectionTitle } from './components/section-title';
 export { SkeletonLoader } from './components/skeleton-loader';
 export { AudioPlayer, PlayerButton } from './components/audio-player';
+export {
+	Sidebar,
+	SidebarHeader,
+	SidebarFooter,
+	SidebarToggle,
+	SidebarSection,
+	SidebarLink,
+	SidebarSeparator,
+	useSidebar,
+} from './components/sidebar';
 
 // Utilities are now implemented directly in component CSS modules
 
@@ -236,3 +246,12 @@ export type { SectionContainerProps, SectionContainerBackground, SectionContaine
 export type { SectionTitleProps, SectionTitleAlignment, SectionTitleBackground } from './components/section-title';
 export type { SkeletonLoaderProps } from './components/skeleton-loader';
 export type { AudioPlayerProps, Track, PlayerButtonProps, PlayerButtonType } from './components/audio-player';
+export type {
+	SidebarProps,
+	SidebarHeaderProps,
+	SidebarFooterProps,
+	SidebarToggleProps,
+	SidebarSectionProps,
+	SidebarLinkProps,
+	SidebarSeparatorProps,
+} from './components/sidebar';
