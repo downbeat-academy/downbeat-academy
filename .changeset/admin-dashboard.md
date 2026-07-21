@@ -13,3 +13,4 @@ Add admin dashboard at `/admin`, gated to `admin` and `superAdmin` roles.
 - Admin layout uses the shared `AppFrame` + `HeaderNavigation` shell, with a sticky in-page sidebar for section navigation
 - Admin sidebar migrated to the new `Sidebar` primitive from `cadence-core` (uses `SidebarLink asChild` + Next `Link`, `usePathname`-driven active state, and a `SidebarToggle` for collapsing the rail)
 - Rename the header nav's on-dark-banner button CSS class from `.sign-out-button` to `.banner-ghost-button` in `header-navigation.module.css` so the name reflects intent (now shared by Sign Out + Admin buttons)
+- Switch admin server actions from `revalidateTag(tag)` to `updateTag(tag)` — Next.js 16 requires a second `profile` argument on `revalidateTag`, and `updateTag` is the read-your-own-writes-safe replacement for Server Actions
