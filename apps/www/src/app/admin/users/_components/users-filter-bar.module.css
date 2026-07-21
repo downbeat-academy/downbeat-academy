@@ -1,0 +1,12 @@
+.root {
+	display: grid;
+	grid-template-columns: 2fr repeat(3, minmax(160px, 1fr));
+	gap: var(--cds-scale-medium);
+	align-items: end;
+}
+
+@media (max-width: 900px) {
+	.root {
+		grid-template-columns: 1fr 1fr;
+	}
+}
