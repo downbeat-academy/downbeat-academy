@@ -5,9 +5,7 @@ import s from './admin-shell.module.css'
 export function AdminShell({ children }: { children: ReactNode }) {
 	return (
 		<div className={s.root}>
-			<aside className={s.sidebar}>
-				<AdminSidebar />
-			</aside>
+			<AdminSidebar className={s.sidebar} />
 			<div className={s.main}>{children}</div>
 		</div>
 	)

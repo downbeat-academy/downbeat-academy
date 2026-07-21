@@ -131,3 +131,12 @@ This project uses [changesets](https://github.com/changesets/changesets) to mana
 - Component files use .tsx extension
 - Module exports typically through index.ts files
 - Rich text content uses Portable Text (Sanity)
+
+### Typography: productive vs expressive
+
+The Cadence type system exposes two families. Pick the right one for the context:
+
+- **Productive** (`--cds-typography-font-family-productive-body`, `-headline`; `Text type="productive-body|productive-headline"`) — use for **UI and component surfaces**: dashboards, forms, buttons, tables, navigation, labels, tooltips, admin surfaces, settings pages, in-app microcopy. This is the default for anything utilitarian.
+- **Expressive** (`--cds-typography-font-family-expressive-body`, `-headline`; `Text type="expressive-body|expressive-headline"`) — use for **brand and editorial**: marketing page headlines, hero sections, long-form content (article/handbook/lexicon bodies), quotes, and other places where voice and craft matter more than density.
+
+If in doubt, ask "is this app chrome or is this content?" — chrome is productive, content is expressive. Do NOT mix within the same surface (e.g., don't use an expressive headline above productive-body form labels in a settings panel).
