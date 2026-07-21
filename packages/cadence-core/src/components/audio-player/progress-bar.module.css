@@ -9,8 +9,8 @@
 .progress-bar,
 .volume-slider {
 	--range-progress: 0%;
-	--track-height: 4px;
-	--thumb-size: 20px;
+	--track-height: var(--cds-scale-2x-small);
+	--thumb-size: var(--cds-scale-large);
 
 	-webkit-appearance: none;
 	appearance: none;
@@ -19,7 +19,7 @@
 	height: var(--track-height);
 	border-radius: 2px;
 	cursor: pointer;
-	margin: 8px 0;
+	margin: var(--cds-scale-x-small) 0;
 	padding: 0;
 	box-sizing: border-box;
 }

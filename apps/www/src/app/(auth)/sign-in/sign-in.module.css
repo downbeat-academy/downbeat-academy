@@ -8,9 +8,9 @@
 }
 
 .login--wrapper-inner {
-  max-width: 600px;
+  max-width: var(--cds-content-width-form);
   background: var(--cds-color-surface-primary);
-  border: 1px solid var(--cds-color-border-primary);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
   border-radius: var(--cds-radii-soft);
 }
 
@@ -22,4 +22,4 @@
   .login--content {
     padding: var(--cds-scale-2x-large);
   }
-} 
+}

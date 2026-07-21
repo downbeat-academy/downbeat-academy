@@ -1,0 +1,25 @@
+@use './dist/web/tokens.scss' as tokens;
+
+// Responsive breakpoint mixins (mobile-first)
+@mixin breakpoint-up($bp) {
+  @media (min-width: #{$bp}) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($bp) {
+  @media (max-width: #{$bp}) {
+    @content;
+  }
+}
+
+// Named breakpoint shortcuts
+@mixin bp-sm-up  { @include breakpoint-up(tokens.$cds-breakpoint-sm)  { @content; } }
+@mixin bp-md-up  { @include breakpoint-up(tokens.$cds-breakpoint-md)  { @content; } }
+@mixin bp-lg-up  { @include breakpoint-up(tokens.$cds-breakpoint-lg)  { @content; } }
+@mixin bp-xl-up  { @include breakpoint-up(tokens.$cds-breakpoint-xl)  { @content; } }
+
+@mixin bp-sm-down { @include breakpoint-down(tokens.$cds-breakpoint-sm) { @content; } }
+@mixin bp-md-down { @include breakpoint-down(tokens.$cds-breakpoint-md) { @content; } }
+@mixin bp-lg-down { @include breakpoint-down(tokens.$cds-breakpoint-lg) { @content; } }
+@mixin bp-xl-down { @include breakpoint-down(tokens.$cds-breakpoint-xl) { @content; } }

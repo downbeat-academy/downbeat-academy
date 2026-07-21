@@ -7,19 +7,19 @@
 }
 
 .size--small {
-	width: 32px;
-	height: 32px;
-	border-radius: 16px;
+	width: var(--cds-scale-2x-large);
+	height: var(--cds-scale-2x-large);
+	border-radius: 50%;
 }
 
 .size--medium {
-	width: 40px;
-	height: 40px;
-	border-radius: 20px;
+	width: var(--cds-scale-3x-large);
+	height: var(--cds-scale-3x-large);
+	border-radius: 50%;
 }
 
 .size--large {
-	width: 56px;
-	height: 56px;
-	border-radius: 28px;
+	width: var(--cds-scale-4x-large);
+	height: var(--cds-scale-4x-large);
+	border-radius: 50%;
 }

@@ -3,6 +3,21 @@
 		"boxShadow": {
 			"base": {
 				"value": "0 1px 16px 0 hsla(240, 36%, 22%, 5%)"
+			},
+			"raised": {
+				"value": "0 2px 4px 0 rgba(0, 0, 0, 0.10)"
+			},
+			"floating": {
+				"value": "0 4px 12px 0 rgba(0, 0, 0, 0.10)"
+			},
+			"overlay": {
+				"value": "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px"
+			},
+			"popover": {
+				"value": "1px 1px 4px 0 rgba(0, 0, 0, 0.10)"
+			},
+			"inset": {
+				"value": "0 -8px 24px -4px rgba(0, 0, 0, 0.10)"
 			}
 		}
 	}

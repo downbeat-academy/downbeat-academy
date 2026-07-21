@@ -5,5 +5,5 @@
 }
 
 .contact-form form {
-  width: 600px;
+  width: var(--cds-content-width-form);
 } 
