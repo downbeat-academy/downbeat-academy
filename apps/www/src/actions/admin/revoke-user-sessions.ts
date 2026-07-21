@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 import { headers } from 'next/headers'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { auth } from '@/lib/auth/auth'
 import { requireAdmin } from '@/lib/auth/require-auth'
 
@@ -25,7 +25,7 @@ export async function revokeUserSessions(
 			body: { userId: input.userId },
 			headers: await headers(),
 		})
-		revalidateTag('admin:users')
+		updateTag('admin:users')
 		revalidatePath('/admin/users')
 		return { ok: true }
 	} catch (err) {

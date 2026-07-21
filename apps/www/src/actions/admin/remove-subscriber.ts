@@ -1,7 +1,7 @@
 'use server'
 
 import { z } from 'zod'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { requireAdmin } from '@/lib/auth/require-auth'
 import { deleteContact } from '@/actions/email/delete-contact'
 
@@ -18,7 +18,7 @@ export async function removeSubscriber(
 		await requireAdmin('/admin')
 		const input = Input.parse(raw)
 		await deleteContact({ email: input.email })
-		revalidateTag('admin:subscribers')
+		updateTag('admin:subscribers')
 		revalidatePath('/admin/subscribers')
 		return { ok: true }
 	} catch (err) {

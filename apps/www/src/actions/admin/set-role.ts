@@ -3,7 +3,7 @@
 import { z } from 'zod'
 import { and, count, eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { auth } from '@/lib/auth/auth'
 import { requireAdmin } from '@/lib/auth/require-auth'
 import { authDb } from '@/lib/db/drizzle'
@@ -54,7 +54,7 @@ export async function setRole(raw: z.infer<typeof Input>): Promise<SetRoleResult
 			body: { userId: input.userId, role: input.role },
 			headers: await headers(),
 		})
-		revalidateTag('admin:users')
+		updateTag('admin:users')
 		revalidatePath('/admin/users')
 		return { ok: true }
 	} catch (err) {
