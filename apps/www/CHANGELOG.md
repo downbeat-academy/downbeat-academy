@@ -1,5 +1,64 @@
 # www
 
+## 4.8.0
+
+### Minor Changes
+
+- dc70942: Add admin dashboard at `/admin`, gated to `admin` and `superAdmin` roles.
+  - Overview page with user KPIs, users-over-time chart, auth provider breakdown, and recent-activity lists
+  - Users page with server-side paginated/filterable table and moderation actions (ban, unban, change role, revoke all sessions) backed by better-auth's admin plugin
+  - Subscribers page listing the Resend audience with a remove action
+  - Guards against self-modification and demoting the last super admin
+  - Adds `recharts` for chart visualization
+  - Admin button in the main header nav (banner + mobile menu), shown only to `admin` and `superAdmin` roles
+  - Admin layout uses the shared `AppFrame` + `HeaderNavigation` shell, with a sticky in-page sidebar for section navigation
+  - Admin sidebar migrated to the new `Sidebar` primitive from `cadence-core` (uses `SidebarLink asChild` + Next `Link`, `usePathname`-driven active state, and a `SidebarToggle` for collapsing the rail)
+  - Rename the header nav's on-dark-banner button CSS class from `.sign-out-button` to `.banner-ghost-button` in `header-navigation.module.css` so the name reflects intent (now shared by Sign Out + Admin buttons)
+  - Switch admin server actions from `revalidateTag(tag)` to `updateTag(tag)` — Next.js 16 requires a second `profile` argument on `revalidateTag`, and `updateTag` is the read-your-own-writes-safe replacement for Server Actions
+  - Extract admin action result types to a shared `apps/www/src/actions/admin/types.ts` (types declared inline in `'use server'` files were being lost during the Next.js 16 build type-check), and flatten the shape to `{ ok: boolean; error?: string }` so consumers don't rely on discriminated-union narrowing
+  - Minor admin UI fixes surfaced by the same type-check pass: swap invalid toast `variant: 'info'` → `'default'` in the two "copy to clipboard" toasts; use `type="text"` (not the invalid `"search"`) on the users filter search input
+
+### Patch Changes
+
+- d4bdae8: Prevent dynamic page `generateMetadata` from throwing on missing content.
+
+  The articles, handbook, lexicon, categories, and contributors routes re-threw errors from their `catch` blocks and accessed Sanity fields without null checks, so a slug resolving to `null` (unpublished, deleted, draft-only, or stale ISR paths) surfaced as a thrown error in Sentry. These routes now null-check the fetched document (and nested metadata) and return empty metadata instead of throwing, mirroring the existing `[slug]` route. Also hardened the shared helpers: `getOgTitle` no longer emits `"undefined ♪ Downbeat Academy"` for missing titles, and `limitDescription` now correctly returns a truncated value.
+
+- c284a74: Phase 3 tokenization: z-index, content widths, breakpoints, icon sizes, and SCSS mixins.
+
+  New tokens added to cadence-tokens:
+  - `--cds-z-index-{base,raised,dropdown,overlay,sticky}` — semantic z-index scale
+  - `--cds-content-width-{sidebar,dialog,form}` — common layout widths
+  - `--cds-breakpoint-{sm,md,lg,xl}` — responsive breakpoints (SCSS use only)
+  - `--cds-size-icon-{small,medium,large}` — icon sizing scale
+
+  New `mixins.scss` exported from cadence-tokens providing SCSS breakpoint helpers (`bp-sm-up`, `bp-md-down`, etc.).
+
+  cadence-core components updated to use `--cds-z-index-overlay` and `--cds-z-index-dropdown` tokens in dialog, drawer, dropdown-menu, hover-card, and toast. Restored accidentally removed `max-width: 450px` on dialog content.
+
+  www app updated to replace hardcoded `600px` form widths, `400px` dialog widths, `300px` sidebar widths, and `1px` border declarations with their corresponding design tokens.
+
+- 3921b5e: Add a Vitest unit/integration test layer for `apps/www` covering pure utilities,
+  Zod form schemas, the reading-length calculator, the music-notation transformers,
+  and the server actions (auth, email, profile). Fix bugs surfaced by the new tests:
+  - `limitDescription()` now returns its result and compares string length (it
+    previously returned `undefined` for every input).
+  - `transformAccidental()` handles the `"sharp"` accidental (was a `"share"`
+    typo) and returns `null` for unsupported input instead of `undefined`.
+  - `linkResolver()` drops a duplicate, unreachable `category` case.
+  - The update-password schema maps its "passwords do not match" error to the
+    real `confirmNewPassword` field.
+
+- Updated dependencies [279b512]
+- Updated dependencies [fa814d3]
+- Updated dependencies [d054a3d]
+- Updated dependencies [9a1d49a]
+- Updated dependencies [c284a74]
+- Updated dependencies [f9cbbd0]
+  - cadence-core@3.3.0
+  - cadence-icons@1.8.0
+  - cadence-tokens@2.4.0
+
 ## 4.7.2
 
 ### Patch Changes
