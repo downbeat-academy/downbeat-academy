@@ -2,6 +2,8 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { RadioCardGroup, RadioCardItem } from '../index'
 import { describe, it, expect, vi } from 'vitest'
+// Assert against the CSS module rather than literal names — class names are hashed.
+import s from '../radio-card.module.css'
 
 describe('RadioCardGroup', () => {
   it('renders correctly', () => {
@@ -122,7 +124,7 @@ describe('RadioCardGroup', () => {
     )
 
     const radioGroup = screen.getByRole('radiogroup')
-    expect(radioGroup.className).toContain('cds-radio-card-group--columns-3')
+    expect(radioGroup.className).toContain(s.groupColumns3)
   })
 
   it('applies gap classes', () => {
@@ -133,7 +135,7 @@ describe('RadioCardGroup', () => {
     )
 
     const radioGroup = screen.getByRole('radiogroup')
-    expect(radioGroup.className).toContain('cds-radio-card-group--gap-large')
+    expect(radioGroup.className).toContain(s.groupGapLarge)
   })
 })
 
@@ -195,7 +197,7 @@ describe('RadioCardItem', () => {
     )
 
     const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain('cds-radio-card-item--is-invalid')
+    expect(radioItem.className).toContain(s.itemIsInvalid)
   })
 
   it('applies size classes', () => {
@@ -206,7 +208,7 @@ describe('RadioCardItem', () => {
     )
 
     const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain('cds-radio-card-item--size-large')
+    expect(radioItem.className).toContain(s.itemSizeLarge)
   })
 
   it('applies variant classes', () => {
@@ -217,7 +219,7 @@ describe('RadioCardItem', () => {
     )
 
     const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain('cds-radio-card-item--variant-outlined')
+    expect(radioItem.className).toContain(s.itemVariantOutlined)
   })
 
   it('applies custom className', () => {

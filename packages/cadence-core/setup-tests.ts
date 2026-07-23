@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
 
-// Basic vitest setup - using simpler approach without jest-dom matchers
-import { expect } from "vitest";
+// jest-dom matchers (toBeInTheDocument, toHaveAttribute, toHaveClass, …). Several
+// suites already depend on these; without them vitest reports "Invalid Chai property".
+import "@testing-library/jest-dom/vitest";
 
 // Mock ResizeObserver for tests
 global.ResizeObserver = global.ResizeObserver || class ResizeObserver {

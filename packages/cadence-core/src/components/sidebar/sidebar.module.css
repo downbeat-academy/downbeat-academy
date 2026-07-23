@@ -7,9 +7,13 @@
 	flex-direction: column;
 	gap: var(--cds-scale-x-small);
 	width: var(--sidebar-width-expanded);
+	height: 100%;
+	min-height: 0;
+	overflow-y: auto;
 	padding: var(--cds-scale-small);
 	background: var(--cds-color-page-secondary);
-	border-right: 1px solid var(--cds-color-border-faint);
+	border: 1px solid var(--cds-color-border-faint);
+	border-radius: var(--cds-radii-medium);
 	font-family: var(--cds-typography-font-family-productive-body);
 	transition: width 200ms ease;
 	box-sizing: border-box;
@@ -40,9 +44,11 @@
 	margin-top: auto;
 }
 
+/* The collapsed rail leaves a 32px content box (56px − root padding), which is exactly
+   the toggle's width — so the header/footer can't add horizontal padding of their own. */
 .root[data-collapsed='true'] .header,
 .root[data-collapsed='true'] .footer {
-	padding: var(--cds-scale-x-small);
+	padding: var(--cds-scale-x-small) 0;
 	justify-content: center;
 }
 
@@ -51,6 +57,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	flex-shrink: 0;
 	width: 32px;
 	height: 32px;
 	padding: 0;
@@ -63,7 +70,7 @@
 }
 
 .toggle:hover {
-	background: var(--cds-color-palette-blackberry-100);
+	background: var(--cds-color-surface-faint);
 }
 
 .toggle:focus-visible {
@@ -110,7 +117,7 @@
 }
 
 .sectionTrigger:hover {
-	background: var(--cds-color-palette-blackberry-100);
+	background: var(--cds-color-surface-faint);
 }
 
 .sectionTrigger:focus-visible {
@@ -153,7 +160,8 @@
 	gap: var(--cds-scale-3x-small);
 }
 
-.linkItem {
+.linkItem,
+.separatorItem {
 	list-style: none;
 }
 
@@ -174,7 +182,7 @@
 }
 
 .link:hover {
-	background: var(--cds-color-palette-blackberry-100);
+	background: var(--cds-color-surface-faint);
 }
 
 .link:focus-visible {
@@ -182,6 +190,9 @@
 	outline-offset: var(--cds-focus-ring-offset);
 }
 
+/* NOTE: no semantic token exists for a light brand tint — `--cds-color-surface-brand`
+   is #0d0783 (a dark fill), which would bury `foreground-brand-default`. Using the
+   palette directly until a `surface-brand-faint`-style token lands. */
 .linkActive {
 	background: var(--cds-color-palette-violet-50);
 	color: var(--cds-color-foreground-brand-default);
@@ -284,10 +295,12 @@
 	}
 }
 
-/* Responsive: mobile stays in-flow at its natural width */
+/* Responsive: mobile stays in-flow at its natural width and height */
 @media (max-width: 768px) {
 	.root {
 		width: 100%;
+		height: auto;
+		overflow-y: visible;
 	}
 
 	.root[data-collapsed='true'] {

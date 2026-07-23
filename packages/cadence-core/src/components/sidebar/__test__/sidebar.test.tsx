@@ -196,6 +196,87 @@ describe('SidebarLink', () => {
 		expect(custom.getAttribute('aria-current')).toBe('page')
 	})
 
+	it('wraps the asChild label in a hideable span so the collapsed rail can hide it', () => {
+		// Regression: Radix promotes the consumer's element to the DOM root and injects
+		// its children as bare text, which left the collapsed hide rule with no target.
+		render(
+			<Wrap>
+				<Sidebar ariaLabel="Nav" defaultCollapsed>
+					<SidebarSection>
+						<SidebarLink asChild leadingIcon={<span />}>
+							<a href="#custom" data-testid="custom-link">
+								Overview
+							</a>
+						</SidebarLink>
+					</SidebarSection>
+				</Sidebar>
+			</Wrap>
+		)
+		const link = screen.getByTestId('custom-link')
+		const labelSpan = Array.from(link.querySelectorAll('span')).find(
+			(el) => el.textContent === 'Overview'
+		)
+		expect(labelSpan).toBeInstanceOf(HTMLElement)
+		// The text must not be a bare text node directly under the anchor.
+		const bareText = Array.from(link.childNodes).some(
+			(n) => n.nodeType === Node.TEXT_NODE && n.textContent?.trim() === 'Overview'
+		)
+		expect(bareText).toBe(false)
+	})
+
+	it('keeps an accessible name when collapsed', () => {
+		render(
+			<Wrap>
+				<Sidebar ariaLabel="Nav" defaultCollapsed>
+					<SidebarSection>
+						<SidebarLink asChild>
+							<a href="#custom">Overview</a>
+						</SidebarLink>
+					</SidebarSection>
+				</Sidebar>
+			</Wrap>
+		)
+		expect(screen.getByRole('link', { name: 'Overview' })).toBeInstanceOf(HTMLElement)
+	})
+
+	it('renders collapsed tooltip content as plain text, not a link', () => {
+		// Regression: passing `children` straight into TooltipContent rendered the
+		// consumer's <a>/<Link> a second time, nesting an anchor inside the tooltip.
+		render(
+			<Wrap>
+				<Sidebar ariaLabel="Nav" defaultCollapsed>
+					<SidebarSection>
+						<SidebarLink asChild>
+							<a href="#custom" data-testid="custom-link">
+								Overview
+							</a>
+						</SidebarLink>
+					</SidebarSection>
+				</Sidebar>
+			</Wrap>
+		)
+		fireEvent.focus(screen.getByTestId('custom-link'))
+		// Only the trigger anchor should exist — the tooltip must not add another.
+		expect(screen.getAllByRole('link', { hidden: true })).toHaveLength(1)
+	})
+
+	it('uses the explicit label prop for the collapsed tooltip', () => {
+		render(
+			<Wrap>
+				<Sidebar ariaLabel="Nav" defaultCollapsed>
+					<SidebarSection>
+						<SidebarLink asChild label="Overview">
+							<a href="#custom" data-testid="custom-link">
+								<strong>Overview</strong>
+							</a>
+						</SidebarLink>
+					</SidebarSection>
+				</Sidebar>
+			</Wrap>
+		)
+		expect(screen.getByTestId('custom-link').getAttribute('aria-label')).toBe('Overview')
+	})
+
 	it('wraps the link with a Tooltip when sidebar is collapsed', () => {
 		render(
 			<Wrap>

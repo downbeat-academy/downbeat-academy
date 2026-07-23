@@ -116,8 +116,9 @@ describe('Checkbox', () => {
     const checkbox = screen.getByRole('checkbox')
     expect(checkbox.getAttribute('id')).toBe('test-checkbox')
     expect(checkbox.getAttribute('value')).toBe('test-value')
-    expect(checkbox.hasAttribute('required')).toBe(true)
-    // Note: name attribute may not be set on Radix checkbox primitive
+    // Radix exposes `required` on the trigger as aria-required — the bare `required`
+    // attribute only lands on the hidden bubble input, and only inside a <form>.
+    expect(checkbox.getAttribute('aria-required')).toBe('true')
   })
 
   it('supports aria attributes', () => {

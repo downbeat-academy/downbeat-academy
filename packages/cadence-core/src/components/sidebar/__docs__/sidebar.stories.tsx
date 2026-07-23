@@ -45,7 +45,8 @@ Renders a native \`<nav>\` with \`aria-label\` and \`aria-current="page"\` on th
 	decorators: [
 		(Story) => (
 			<TooltipProvider>
-				<div style={{ display: 'flex', minHeight: '480px', background: '#f7f7fb' }}>
+				{/* The Sidebar is `height: 100%`, so the frame needs a definite height. */}
+				<div style={{ display: 'flex', height: '100dvh', padding: '16px', background: '#f7f7fb' }}>
 					<Story />
 					<div style={{ flex: 1, padding: '24px' }}>
 						<p style={{ color: '#666' }}>Main content area</p>
@@ -242,6 +243,41 @@ export const Collapsed: Story = {
 			description: {
 				story:
 					'When collapsed, labels/badges/trailing icons hide and hovering a link surfaces the label via a right-side Tooltip.',
+			},
+		},
+	},
+}
+
+export const CollapsedAsChild: Story = {
+	render: () => (
+		<Sidebar ariaLabel="Collapsed asChild rail" defaultCollapsed>
+			<SidebarHeader>
+				<SidebarToggle />
+			</SidebarHeader>
+			<SidebarSection title="Content">
+				<SidebarLink asChild leadingIcon={<Logs />} isActive>
+					<a href="#articles" data-mock-router-link="true">
+						Articles
+					</a>
+				</SidebarLink>
+				<SidebarLink asChild leadingIcon={<Music />}>
+					<a href="#handbook" data-mock-router-link="true">
+						Handbook
+					</a>
+				</SidebarLink>
+				<SidebarLink asChild label="Help centre" leadingIcon={<QuestionCircleOutline />}>
+					<a href="#help" data-mock-router-link="true">
+						<span>Help centre</span>
+					</a>
+				</SidebarLink>
+			</SidebarSection>
+		</Sidebar>
+	),
+	parameters: {
+		docs: {
+			description: {
+				story:
+					'The `asChild` path in the collapsed rail — labels hide just like plain links, and the tooltip renders plain text rather than a nested anchor. The third item shows the explicit `label` prop, needed when the child wraps non-string content.',
 			},
 		},
 	},

@@ -50,6 +50,12 @@ export interface SidebarLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement
 	badge?: ReactNode
 	/** Radix Slot passthrough — renders the child element (e.g., Next.js `<Link>`) instead of `<a>`. */
 	asChild?: boolean
+	/**
+	 * Plain-text label used for the collapsed tooltip and the collapsed accessible name.
+	 * Falls back to `children` when it resolves to a string. Supply this when `asChild`
+	 * wraps non-string content.
+	 */
+	label?: string
 	children?: ReactNode
 }
 
