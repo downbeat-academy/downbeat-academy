@@ -1,6 +1,8 @@
 .root {
   display: flex;
   flex-direction: column;
+  /* Keeps CardImage and any other child from spilling past the rounded corners */
+  overflow: hidden;
 }
 
 .borderPrimary {
@@ -17,4 +19,60 @@
 
 .borderNone {
   outline-color: none;
+}
+
+/* Radius */
+
+.radiusNone {
+  border-radius: var(--cds-radii-none);
+}
+
+.radiusHard {
+  border-radius: var(--cds-radii-hard);
+}
+
+.radiusMedium {
+  border-radius: var(--cds-radii-medium);
+}
+
+.radiusSoft {
+  border-radius: var(--cds-radii-soft);
+}
+
+.radiusXSoft {
+  border-radius: var(--cds-radii-x-soft);
+}
+
+/* Background */
+
+.backgroundPrimary {
+  background: var(--cds-color-surface-primary);
+}
+
+.backgroundFaint {
+  background: var(--cds-color-surface-faint);
+}
+
+.backgroundHighContrast {
+  background: var(--cds-color-surface-high-contrast);
+}
+
+.backgroundBrand {
+  background: var(--cds-color-surface-brand);
+}
+
+.backgroundInteractive {
+  background: var(--cds-color-surface-interactive);
+}
+
+.backgroundSuccess {
+  background: var(--cds-color-surface-success);
+}
+
+.backgroundWarning {
+  background: var(--cds-color-surface-warning);
+}
+
+.backgroundCritical {
+  background: var(--cds-color-surface-critical);
 }

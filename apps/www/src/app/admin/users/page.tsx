@@ -61,7 +61,7 @@ export default async function AdminUsersPage({
 
 	return (
 		<Flex direction="column" gap="x-large">
-			<Text type="expressive-headline" size="h2" color="brand" collapse tag="h1">
+			<Text type="productive-headline" size="h2" color="brand" collapse tag="h1">
 				Users
 			</Text>
 

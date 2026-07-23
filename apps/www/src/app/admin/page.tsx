@@ -52,11 +52,11 @@ export default async function AdminOverviewPage() {
 
 	return (
 		<Flex direction="column" gap="x-large">
-			<Text type="expressive-headline" size="h2" color="brand" collapse tag="h1">
+			<Text type="productive-headline" size="h2" color="brand" collapse tag="h1">
 				Overview
 			</Text>
 
-			<Grid columns={4}>
+			<Grid columns={4} gap="medium" minColumnWidth="200px">
 				<MetricCard
 					label="Total users"
 					value={totalUsers}
@@ -87,7 +87,7 @@ export default async function AdminOverviewPage() {
 				/>
 			</Grid>
 
-			<Grid columns={2}>
+			<Grid columns={2} gap="medium" minColumnWidth="360px">
 				<ChartCard title="Users over time" description="Last 90 days">
 					<UsersOverTimeChart data={signupTimeline} />
 				</ChartCard>
@@ -99,7 +99,7 @@ export default async function AdminOverviewPage() {
 				</ChartCard>
 			</Grid>
 
-			<Grid columns={2}>
+			<Grid columns={2} gap="medium" minColumnWidth="360px">
 				<RecentListCard
 					title="Recent signups"
 					emptyLabel="No signups yet"

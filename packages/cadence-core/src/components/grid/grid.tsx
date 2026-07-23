@@ -19,16 +19,49 @@ const columnsMap = {
 	12: s.columns12,
 } as const
 
-const Grid = ({ children, tag = 'div', columns, className }: GridProps) => {
+const gapMap = {
+	none: s.gapNone,
+	'2x-small': s.gap2xSmall,
+	'x-small': s.gapXSmall,
+	small: s.gapSmall,
+	medium: s.gapMedium,
+	large: s.gapLarge,
+	'x-large': s.gapXLarge,
+	'2x-large': s.gap2xLarge,
+	'3x-large': s.gap3xLarge,
+} as const
+
+const Grid = ({
+	children,
+	tag = 'div',
+	columns,
+	gap = 'none',
+	minColumnWidth,
+	className,
+	style,
+	...restProps
+}: GridProps) => {
 	const classes = classnames(
 		s.root,
 		columns && columnsMap[columns],
+		gapMap[gap],
 		className
 	)
 
 	const Tag = tag
 
-	return <Tag className={classes}>{children}</Tag>
+	const styles = minColumnWidth
+		? ({
+				...style,
+				'--cds-grid-min-column-width': minColumnWidth,
+			} as React.CSSProperties)
+		: style
+
+	return (
+		<Tag className={classes} style={styles} {...restProps}>
+			{children}
+		</Tag>
+	)
 }
 
 export { Grid }

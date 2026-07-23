@@ -3,7 +3,7 @@
 }
 
 .header {
-	margin-bottom: var(--cds-scale-medium);
+	margin-bottom: var(--cds-scale-base);
 }
 
 .body {

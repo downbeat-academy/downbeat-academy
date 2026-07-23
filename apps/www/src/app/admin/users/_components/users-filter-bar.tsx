@@ -3,7 +3,7 @@
 import { useTransition } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Field, Input, Label, Select } from 'cadence-core'
-import s from './users-filter-bar.module.css'
+import s from '../../_components/filter-bar.module.css'
 
 type Props = {
 	initialQuery: string

@@ -1,0 +1,10 @@
+/* Rotates the trailing chevron while the dropdown is open. Radix sets
+   data-state="open" on the trigger, and Button forwards unknown props to the
+   underlying element. */
+.trigger [class*='iconContainer'] {
+	transition: transform 100ms ease;
+}
+
+.trigger[data-state='open'] [class*='iconContainer'] {
+	transform: rotate(180deg);
+}

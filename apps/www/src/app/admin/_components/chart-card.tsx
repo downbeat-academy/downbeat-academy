@@ -10,7 +10,7 @@ type ChartCardProps = {
 
 export function ChartCard({ title, description, children }: ChartCardProps) {
 	return (
-		<Card borderColor="faint">
+		<Card borderColor="faint" background="primary">
 			<div className={s.root}>
 				<div className={s.header}>
 					<Flex direction="column" gap="2x-small">

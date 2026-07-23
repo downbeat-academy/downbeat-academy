@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import {
 	DataTable,
 	Badge,
+	SectionContainer,
 	createTextColumn,
 	createCustomColumn,
 	createActionsColumn,
@@ -74,17 +75,18 @@ export function UsersTable({ rows, currentUserId }: Props) {
 	)
 
 	return (
-		<DataTable
-			data={rows}
-			columns={columns}
-			isStriped
-			sorting={false}
-			pagination={false}
-			filtering={false}
-			emptyState={{
-				title: 'No users match these filters',
-				description: 'Try clearing filters or changing the search term.',
-			}}
-		/>
+		<SectionContainer background="primary">
+			<DataTable
+				data={rows}
+				columns={columns}
+				sorting={false}
+				pagination={false}
+				filtering={false}
+				emptyState={{
+					title: 'No users match these filters',
+					description: 'Try clearing filters or changing the search term.',
+				}}
+			/>
+		</SectionContainer>
 	)
 }

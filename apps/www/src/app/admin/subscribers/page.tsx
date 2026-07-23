@@ -1,4 +1,4 @@
-import { Flex, Grid, Text } from 'cadence-core'
+import { Card, Flex, Grid, Text } from 'cadence-core'
 import { MetricCard } from '../_components/metric-card'
 import { SubscribersTable } from './_components/subscribers-table'
 import { listSubscribers } from '@/lib/admin/queries/subscribers'
@@ -10,7 +10,7 @@ function daysAgo(days: number): Date {
 }
 
 export default async function AdminSubscribersPage() {
-	const subscribers = await listSubscribers()
+	const { subscribers, error } = await listSubscribers()
 
 	const subscribedCount = subscribers.filter((s) => !s.unsubscribed).length
 	const unsubscribedCount = subscribers.filter((s) => s.unsubscribed).length
@@ -21,12 +21,29 @@ export default async function AdminSubscribersPage() {
 
 	return (
 		<Flex direction="column" gap="x-large">
-			<Text type="expressive-headline" size="h2" color="brand" collapse tag="h1">
+			<Text type="productive-headline" size="h2" color="brand" collapse tag="h1">
 				Subscribers
 			</Text>
 
-			<Grid columns={3}>
-				<MetricCard label="Total subscribers" value={subscribedCount} hint="Currently subscribed" />
+			{error && (
+				<Card borderColor="faint" background="primary">
+					<Flex direction="column" gap="2x-small" padding="large">
+						<Text type="productive-headline" size="h6" color="critical" collapse>
+							Couldn&rsquo;t load subscribers
+						</Text>
+						<Text type="productive-body" size="body-small" color="faint" collapse>
+							{error}
+						</Text>
+					</Flex>
+				</Card>
+			)}
+
+			<Grid columns={3} gap="medium" minColumnWidth="220px">
+				<MetricCard
+					label="Total subscribers"
+					value={subscribedCount}
+					hint="Currently subscribed"
+				/>
 				<MetricCard label="Unsubscribed" value={unsubscribedCount} hint="Opted out" />
 				<MetricCard label="New (30d)" value={newLast30d} hint="Recently added" />
 			</Grid>
