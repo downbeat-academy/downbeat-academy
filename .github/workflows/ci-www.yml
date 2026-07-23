@@ -35,6 +35,35 @@ jobs:
         run: pnpm run lint
         working-directory: apps/www
 
+  unit-tests:
+    name: 'Unit Tests'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Install Dependencies
+        run: pnpm install
+        env:
+          # Unit tests are fully mocked and never launch a browser, so skip the
+          # Cypress binary download to keep this job fast and self-contained.
+          CYPRESS_INSTALL_BINARY: '0'
+      - name: Run unit tests with coverage
+        run: pnpm --filter www test:coverage
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: www-unit-coverage
+          path: apps/www/coverage
+
   # E2E tests moved to separate workflow for better control
   # See .github/workflows/ci-www-e2e.yml
   e2e-tests:

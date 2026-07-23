@@ -36,7 +36,7 @@ export async function generateMetadata(
 			{ next: { revalidate: 60 } }
 		)
 
-		if (!article) return {}
+		if (!article || !article.metadata) return {}
 
 		return {
 			title: getOgTitle(article.metadata.title),
@@ -44,7 +44,7 @@ export async function generateMetadata(
 		}
 	} catch (error) {
 		console.error(error)
-		throw error
+		return {}
 	}
 }
 

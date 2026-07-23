@@ -7,7 +7,7 @@ export const updatePasswordSchema = z
 	})
 	.refine((data) => data.newPassword === data.confirmNewPassword, {
 		message: 'Passwords do not match',
-		path: ['confirmPassword'],
+		path: ['confirmNewPassword'],
 	})
 	.superRefine(({ newPassword }, checkPassComplexity) => {
 		const containsUppercase = (ch: string) => /[A-Z]/.test(ch)

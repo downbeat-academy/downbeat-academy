@@ -32,16 +32,21 @@ export async function generateMetadata({
 			}
 		)
 
+		if (!lexicon) return {}
+
+		const titleParts = [lexicon.artist, lexicon.album, lexicon.track]
+		if (lexicon.timestamp) {
+			titleParts.push(formatTime(lexicon.timestamp).totalTime)
+		}
+		const lexiconTitle = titleParts.filter(Boolean).join(' - ')
+
 		return {
-			title: getOgTitle(
-				`${lexicon.artist} - ${lexicon.album} - ${lexicon.track} - ${formatTime(lexicon.timestamp).totalTime
-				}`
-			),
+			title: getOgTitle(lexiconTitle || 'Lexicon'),
 			description: lexicon.excerpt,
 		}
 	} catch (error) {
 		console.error(error)
-		throw error
+		return {}
 	}
 }
 

@@ -1,0 +1,19 @@
+{
+	"z-index": {
+		"base": {
+			"value": "1"
+		},
+		"raised": {
+			"value": "10"
+		},
+		"dropdown": {
+			"value": "40"
+		},
+		"overlay": {
+			"value": "50"
+		},
+		"sticky": {
+			"value": "100"
+		}
+	}
+}

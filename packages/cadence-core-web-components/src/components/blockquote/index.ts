@@ -1,0 +1,1 @@
+export { CdsBlockquote } from './blockquote';

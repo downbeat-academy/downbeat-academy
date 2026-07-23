@@ -6,14 +6,14 @@
   padding: var(--cds-scale-base) var(--cds-scale-x-large);
   background: var(--cds-color-surface-primary);
   top: 0;
-  z-index: 100;
-  transition: box-shadow 0.2s ease-in-out;
+  z-index: var(--cds-z-index-sticky);
+  transition: box-shadow var(--cds-transition-04) var(--cds-animation-easing-standard);
   width: 100%;
   border-radius: 0 0 var(--cds-radii-x-soft) var(--cds-radii-x-soft);
 }
 
 .root.scrolled {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--cds-elevation-box-shadow-raised);
 }
 
 .nav-links-wrapper {
@@ -31,7 +31,7 @@
     height: calc(100dvh - 105.42px);
     top: 105.42px;
     left: 0;
-    z-index: 100;
+    z-index: var(--cds-z-index-sticky);
     background: var(--cds-color-surface-primary);
     padding: var(--cds-scale-2x-large);
     display: flex;

@@ -37,7 +37,7 @@ export async function generateMetadata(
 		}
 	} catch (error) {
 		console.error(error)
-		throw error
+		return {}
 	}
 }
 

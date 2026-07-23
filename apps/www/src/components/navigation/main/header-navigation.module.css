@@ -2,16 +2,16 @@
   grid-area: header;
   position: relative;
   border-radius: 0;
-  border: 1px solid var(--cds-color-border-faint);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-faint);
   overflow: visible;
   margin: 0;
   background: var(--cds-color-surface-primary);
-  border-width: 0 0 1px 0;
+  border-width: 0 0 var(--cds-border-width-thin) 0;
 }
 
 @media (min-width: 768px) {
   .root {
-    border-width: 0 1px 1px 1px;
+    border-width: 0 var(--cds-border-width-thin) var(--cds-border-width-thin) var(--cds-border-width-thin);
     border-radius: 0 0 var(--cds-radii-x-soft) var(--cds-radii-x-soft);
     margin: 0 var(--cds-scale-x-large);
   }

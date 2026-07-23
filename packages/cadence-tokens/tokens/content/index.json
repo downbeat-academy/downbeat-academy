@@ -1,0 +1,15 @@
+{
+	"content": {
+		"width": {
+			"sidebar": {
+				"value": "300px"
+			},
+			"dialog": {
+				"value": "400px"
+			},
+			"form": {
+				"value": "600px"
+			}
+		}
+	}
+}
