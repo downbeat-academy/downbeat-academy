@@ -1,0 +1,28 @@
+.root {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: start;
+	width: 100%;
+}
+
+.sidebar {
+	position: sticky;
+	top: var(--cds-scale-large);
+	align-self: start;
+}
+
+.main {
+	min-width: 0;
+	padding: var(--cds-scale-large);
+}
+
+@media (max-width: 768px) {
+	.root {
+		grid-template-columns: 1fr;
+		gap: var(--cds-scale-medium);
+	}
+
+	.sidebar {
+		position: static;
+	}
+}

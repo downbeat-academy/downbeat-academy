@@ -25,8 +25,7 @@ describe('deslugify', () => {
 
 	it('returns empty strings for falsy input', () => {
 		expect(deslugify('')).toEqual({ string: '', sentence: '' })
-		// @ts-expect-error exercising the runtime guard with a nullish value
-		expect(deslugify(undefined)).toEqual({ string: '', sentence: '' })
+		expect(deslugify(undefined as unknown as string)).toEqual({ string: '', sentence: '' })
 	})
 
 	it('preserves empty segments created by consecutive hyphens', () => {

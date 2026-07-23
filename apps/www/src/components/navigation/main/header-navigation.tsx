@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { authClient } from '@/lib/auth/auth-client'
+import { isAdmin } from 'auth-permissions'
 import classnames from 'classnames'
 import { mainNavQuery, bannerQuery } from '@lib/queries'
 import { sanityClient } from '@lib/sanity/sanity.client'
@@ -69,6 +70,7 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 	// once resolved. This eliminates flash — we always have a definitive state.
 	const session = isPending ? initialSession : (clientSession ?? initialSession)
 	const isAuthenticated = !!session?.session
+	const isAdminUser = isAdmin(session)
 
 	// Build sign-in URL once, shared by banner and nav
 	const signInHref = `/sign-in?callbackURL=${encodeURIComponent(pathname)}`
@@ -156,8 +158,19 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 					) : (
 						<>
 							<form action={handleSignOut} data-testid="user-menu">
-								<SignOutButton className={s['sign-out-button']} />
+								<SignOutButton className={s['banner-ghost-button']} />
 							</form>
+							{isAdminUser && (
+								<Button
+									data-testid="admin-link"
+									variant="ghost"
+									size="small"
+									href="/admin"
+									className={s['banner-ghost-button']}
+								>
+									Admin
+								</Button>
+							)}
 							<Button
 								data-testid="account-link"
 								size="small"
@@ -174,6 +187,7 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 				<NavContent
 					links={navData}
 					isAuthenticated={isAuthenticated}
+					isAdmin={isAdminUser}
 					signInHref={signInHref}
 					onSignOut={handleSignOut}
 				/>

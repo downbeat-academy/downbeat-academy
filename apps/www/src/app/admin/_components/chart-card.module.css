@@ -1,0 +1,12 @@
+.root {
+	padding: var(--cds-scale-large);
+}
+
+.header {
+	margin-bottom: var(--cds-scale-medium);
+}
+
+.body {
+	width: 100%;
+	height: 260px;
+}

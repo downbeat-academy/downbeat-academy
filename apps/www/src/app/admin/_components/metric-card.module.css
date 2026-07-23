@@ -1,0 +1,15 @@
+.root {
+	padding: var(--cds-scale-large);
+	min-height: 128px;
+}
+
+.value {
+	font-family: var(--cds-typography-font-family-expressive-headline);
+	font-size: var(--cds-typography-font-size-fixed-expressive-4x-large);
+	line-height: 1.1;
+	color: var(--cds-color-foreground-strong);
+}
+
+.placeholder {
+	color: var(--cds-color-foreground-disabled);
+}
