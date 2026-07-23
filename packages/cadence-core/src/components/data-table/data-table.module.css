@@ -85,7 +85,7 @@
 .skeletonCell {
 	height: 1em;
 	background-color: var(--cds-color-surface-faint);
-	border-radius: var(--cds-radii-small);
+	border-radius: var(--cds-radii-hard);
 }
 
 /* Header cell */

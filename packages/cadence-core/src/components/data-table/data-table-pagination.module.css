@@ -38,7 +38,7 @@
 	height: 32px;
 	padding: 0;
 	border: 1px solid var(--cds-color-border-faint);
-	border-radius: var(--cds-radii-small);
+	border-radius: var(--cds-radii-hard);
 	background-color: var(--cds-color-surface-primary);
 	color: var(--cds-color-foreground-primary);
 	cursor: pointer;
@@ -78,7 +78,7 @@
 	font-family: var(--cds-typography-font-family-productive-body);
 	font-size: var(--cds-typography-font-size-fixed-productive-small);
 	border: 1px solid var(--cds-color-border-faint);
-	border-radius: var(--cds-radii-small);
+	border-radius: var(--cds-radii-hard);
 	background-color: var(--cds-color-surface-primary);
 	color: var(--cds-color-foreground-primary);
 	cursor: pointer;

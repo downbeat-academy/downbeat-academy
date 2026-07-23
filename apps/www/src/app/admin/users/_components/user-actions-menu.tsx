@@ -10,7 +10,9 @@ import {
 	DropdownMenuSeparator,
 	toast,
 } from 'cadence-core'
+import { ChevronDown } from 'cadence-icons'
 import type { UserRow } from '@/lib/admin/types'
+import t from '../../_components/actions-trigger.module.css'
 import { unbanUser } from '@/actions/admin/unban-user'
 import { BanUserDialog } from './ban-user-dialog'
 import { RoleChangeDialog } from './role-change-dialog'
@@ -45,7 +47,14 @@ export function UserActionsMenu({ user, isSelf }: Props) {
 		<>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant="ghost" size="small" disabled={isSelf}>
+					<Button
+						variant="ghost"
+						size="small"
+						disabled={isSelf}
+						icon={<ChevronDown />}
+						iconPosition="trailing"
+						className={t.trigger}
+					>
 						Actions
 					</Button>
 				</DropdownMenuTrigger>

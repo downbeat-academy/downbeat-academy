@@ -4,51 +4,83 @@
 	align-items: stretch;
 }
 
-/* Grid columns classes */
+/* Grid columns classes.
+   `--cds-grid-min-column-width` (set by the `minColumnWidth` prop) overrides the
+   auto-fit threshold; `min(…, 100%)` keeps the track from overflowing narrow parents. */
 .columns1 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 1), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 1)), 100%), 1fr));
 }
 
 .columns2 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 2), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 2)), 100%), 1fr));
 }
 
 .columns3 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 3), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 3)), 100%), 1fr));
 }
 
 .columns4 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 4), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 4)), 100%), 1fr));
 }
 
 .columns5 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 5), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 5)), 100%), 1fr));
 }
 
 .columns6 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 6), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 6)), 100%), 1fr));
 }
 
 .columns7 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 7), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 7)), 100%), 1fr));
 }
 
 .columns8 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 8), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 8)), 100%), 1fr));
 }
 
 .columns9 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 9), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 9)), 100%), 1fr));
 }
 
 .columns10 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 10), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 10)), 100%), 1fr));
 }
 
 .columns11 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 11), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 11)), 100%), 1fr));
 }
 
 .columns12 {
-	grid-template-columns: repeat(auto-fit, minmax(calc(1200px / 12), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min-column-width, calc(1200px / 12)), 100%), 1fr));
+}
+
+/* Gap */
+
+.gapNone {
+	gap: 0;
+}
+.gap2xSmall {
+	gap: var(--cds-scale-2x-small);
+}
+.gapXSmall {
+	gap: var(--cds-scale-x-small);
+}
+.gapSmall {
+	gap: var(--cds-scale-small);
+}
+.gapMedium {
+	gap: var(--cds-scale-base);
+}
+.gapLarge {
+	gap: var(--cds-scale-large);
+}
+.gapXLarge {
+	gap: var(--cds-scale-x-large);
+}
+.gap2xLarge {
+	gap: var(--cds-scale-2x-large);
+}
+.gap3xLarge {
+	gap: var(--cds-scale-3x-large);
 }

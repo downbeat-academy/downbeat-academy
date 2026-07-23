@@ -9,7 +9,9 @@ import {
 	DropdownMenuItem,
 	toast,
 } from 'cadence-core'
+import { ChevronDown } from 'cadence-icons'
 import { RemoveSubscriberDialog } from './remove-subscriber-dialog'
+import t from '../../_components/actions-trigger.module.css'
 
 type Props = {
 	email: string
@@ -27,7 +29,13 @@ export function SubscriberActionsMenu({ email }: Props) {
 		<>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant="ghost" size="small">
+					<Button
+						variant="ghost"
+						size="small"
+						icon={<ChevronDown />}
+						iconPosition="trailing"
+						className={t.trigger}
+					>
 						Actions
 					</Button>
 				</DropdownMenuTrigger>

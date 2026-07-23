@@ -14,7 +14,7 @@ export function RecentListCard({
 	emptyLabel = 'No recent activity',
 }: RecentListCardProps) {
 	return (
-		<Card borderColor="faint">
+		<Card borderColor="faint" background="primary">
 			<div className={s.root}>
 				<div className={s.title}>
 					<Text type="productive-headline" size="h6" color="primary" collapse>

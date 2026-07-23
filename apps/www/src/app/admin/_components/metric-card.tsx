@@ -31,7 +31,7 @@ export function MetricCard({ label, value, delta, hint }: MetricCardProps) {
 	const displayValue = isPlaceholder ? '—' : formatValue(value as string | number)
 
 	return (
-		<Card borderColor="faint">
+		<Card borderColor="faint" background="primary">
 			<Flex direction="column" gap="small" padding="large">
 				<Text type="productive-body" size="body-small" color="faint" collapse>
 					{label}

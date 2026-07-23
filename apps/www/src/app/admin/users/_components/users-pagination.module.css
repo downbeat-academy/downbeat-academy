@@ -2,8 +2,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: var(--cds-scale-medium);
-	padding-top: var(--cds-scale-medium);
+	gap: var(--cds-scale-base);
+	padding-top: var(--cds-scale-base);
 	border-top: 1px solid var(--cds-color-border-faint);
 }
 

@@ -3,14 +3,14 @@
 }
 
 .title {
-	margin-bottom: var(--cds-scale-medium);
+	margin-bottom: var(--cds-scale-base);
 }
 
 .row {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	gap: var(--cds-scale-medium);
+	gap: var(--cds-scale-base);
 	padding: var(--cds-scale-small) 0;
 	border-bottom: 1px solid var(--cds-color-border-faint);
 }
