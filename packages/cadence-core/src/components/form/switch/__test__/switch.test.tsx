@@ -77,17 +77,21 @@ describe('Switch', () => {
   })
 
   it('supports name attribute for forms', () => {
-    render(
-      <Switch 
-        aria-label="Test switch" 
-        name="notifications"
-        value="enabled"
-      />
+    const { container } = render(
+      <form>
+        <Switch
+          aria-label="Test switch"
+          name="notifications"
+          value="enabled"
+        />
+      </form>
     )
-    
-    const switchElement = screen.getByRole('switch')
-    expect(switchElement).toHaveAttribute('name', 'notifications')
-    expect(switchElement).toHaveAttribute('value', 'enabled')
+
+    // Radix carries form attributes on a hidden bubble input (rendered only inside a
+    // <form>), not on the switch trigger itself.
+    const input = container.querySelector('input[type="checkbox"]')
+    expect(input).toHaveAttribute('name', 'notifications')
+    expect(input).toHaveAttribute('value', 'enabled')
   })
 
   it('applies invalid styles when isInvalid is true', () => {

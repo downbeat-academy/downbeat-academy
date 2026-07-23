@@ -61,7 +61,7 @@ describe('Button component', () => {
       const icon = screen.getByTestId('leading-icon')
       const buttonText = screen.getByText('Button text')
 
-      expect(icon).toBeInstanceOf(HTMLElement)
+      expect(icon).toBeInstanceOf(SVGElement)
       expect(buttonText).toBeInstanceOf(HTMLElement)
 
       // Check DOM order: icon should come before label
@@ -182,7 +182,7 @@ describe('Button component', () => {
       const icon = screen.getByTestId('icon-only')
 
       expect(button).toBeInstanceOf(HTMLElement)
-      expect(icon).toBeInstanceOf(HTMLElement)
+      expect(icon).toBeInstanceOf(SVGElement)
       expect(button).toHaveAttribute('aria-label', 'Icon button')
     })
 
@@ -274,7 +274,7 @@ describe('Button component', () => {
         )
 
         const icon = screen.getByTestId(`icon-${variant}`)
-        expect(icon).toBeInstanceOf(HTMLElement)
+        expect(icon).toBeInstanceOf(SVGElement)
       })
     })
   })

@@ -5,7 +5,7 @@ import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
 import classnames from 'classnames'
 import { ChevronDown } from 'cadence-icons'
 import s from './sidebar.module.css'
-import { useSidebar } from './sidebar-context'
+import { useSidebar, SidebarListContext } from './sidebar-context'
 import type { SidebarSectionProps } from './types'
 
 const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(
@@ -48,7 +48,11 @@ const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(
 						</CollapsiblePrimitive.Trigger>
 					)}
 					<CollapsiblePrimitive.Content className={s.sectionContent}>
-						<ul className={s.linkList}>{children}</ul>
+						<ul className={s.linkList}>
+							<SidebarListContext.Provider value={true}>
+								{children}
+							</SidebarListContext.Provider>
+						</ul>
 					</CollapsiblePrimitive.Content>
 				</CollapsiblePrimitive.Root>
 			)
@@ -59,7 +63,11 @@ const SidebarSection = forwardRef<HTMLDivElement, SidebarSectionProps>(
 				{title !== undefined && !sidebarCollapsed && (
 					<div className={s.sectionTitle}>{title}</div>
 				)}
-				<ul className={s.linkList}>{children}</ul>
+				<ul className={s.linkList}>
+					<SidebarListContext.Provider value={true}>
+						{children}
+					</SidebarListContext.Provider>
+				</ul>
 			</div>
 		)
 	}

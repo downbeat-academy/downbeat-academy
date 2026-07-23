@@ -5,10 +5,14 @@
 	width: 100%;
 }
 
+/* The Sidebar itself is height: 100% — the consumer owns the viewport math. Pinning
+   it to the viewport minus the top offset (and an equal bottom gutter) keeps the rail
+   full-height once the page scrolls past the header. */
 .sidebar {
 	position: sticky;
 	top: var(--cds-scale-large);
 	align-self: start;
+	height: calc(100dvh - (var(--cds-scale-large) * 2));
 }
 
 .main {
@@ -24,5 +28,6 @@
 
 	.sidebar {
 		position: static;
+		height: auto;
 	}
 }

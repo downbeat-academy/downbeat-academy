@@ -9,7 +9,7 @@ import {
 	SidebarLink,
 	SidebarToggle,
 } from 'cadence-core'
-import { Logs, Playlist, Headpones } from 'cadence-icons'
+import { Layout, UserPlus, MailPlus } from 'cadence-icons'
 
 type NavItem = {
 	href: string
@@ -18,12 +18,10 @@ type NavItem = {
 	icon: React.ReactNode
 }
 
-// NOTE: icons are placeholders — cadence-icons is currently music-focused and
-// lacks admin-flavored glyphs. Swap once a proper icon set lands.
 const NAV_ITEMS: NavItem[] = [
-	{ href: '/admin', label: 'Overview', exact: true, icon: <Logs /> },
-	{ href: '/admin/users', label: 'Users', icon: <Playlist /> },
-	{ href: '/admin/subscribers', label: 'Subscribers', icon: <Headpones /> },
+	{ href: '/admin', label: 'Overview', exact: true, icon: <Layout /> },
+	{ href: '/admin/users', label: 'Users', icon: <UserPlus /> },
+	{ href: '/admin/subscribers', label: 'Subscribers', icon: <MailPlus /> },
 ]
 
 function isActiveMatch(pathname: string, href: string, exact?: boolean) {

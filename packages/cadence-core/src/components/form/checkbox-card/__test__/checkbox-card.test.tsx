@@ -2,6 +2,8 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { CheckboxCardGroup, CheckboxCardItem } from '../index'
 import { describe, it, expect, vi } from 'vitest'
+// Assert against the CSS module rather than literal names — class names are hashed.
+import s from '../checkbox-card.module.css'
 
 describe('CheckboxCardGroup', () => {
   it('renders correctly', () => {
@@ -96,7 +98,7 @@ describe('CheckboxCardGroup', () => {
     )
 
     const checkboxGroup = screen.getByRole('group')
-    expect(checkboxGroup.className).toContain('group-columns-3')
+    expect(checkboxGroup.className).toContain(s.groupColumns3)
   })
 
   it('applies gap class', () => {
@@ -107,7 +109,7 @@ describe('CheckboxCardGroup', () => {
     )
 
     const checkboxGroup = screen.getByRole('group')
-    expect(checkboxGroup.className).toContain('group-gap-large')
+    expect(checkboxGroup.className).toContain(s.groupGapLarge)
   })
 
   it('supports orientation attribute', () => {
@@ -199,7 +201,7 @@ describe('CheckboxCardItem', () => {
     )
 
     const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain('item-size-large')
+    expect(checkbox.className).toContain(s.itemSizeLarge)
   })
 
   it('applies alignment classes', () => {
@@ -266,7 +268,7 @@ describe('CheckboxCardItem', () => {
     )
 
     const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain('item-is-invalid')
+    expect(checkbox.className).toContain(s.itemIsInvalid)
   })
 
   it('applies custom className', () => {
