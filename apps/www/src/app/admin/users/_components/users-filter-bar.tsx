@@ -38,7 +38,7 @@ export function UsersFilterBar({ initialQuery, initialRole, initialStatus }: Pro
 				<Label>Search</Label>
 				<Input
 					name="q"
-					type="search"
+					type="text"
 					placeholder="Name or email"
 					defaultValue={initialQuery}
 					onChange={(e) => {

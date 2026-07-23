@@ -20,7 +20,7 @@ export function SubscriberActionsMenu({ email }: Props) {
 
 	async function handleCopy() {
 		await navigator.clipboard.writeText(email)
-		toast({ title: 'Email copied', description: email, variant: 'info' })
+		toast({ title: 'Email copied', description: email, variant: 'default' })
 	}
 
 	return (

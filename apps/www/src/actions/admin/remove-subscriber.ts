@@ -4,12 +4,11 @@ import { z } from 'zod'
 import { revalidatePath, updateTag } from 'next/cache'
 import { requireAdmin } from '@/lib/auth/require-auth'
 import { deleteContact } from '@/actions/email/delete-contact'
+import type { RemoveSubscriberResult } from './types'
 
 const Input = z.object({
 	email: z.string().email(),
 })
-
-export type RemoveSubscriberResult = { ok: true } | { ok: false; error: string }
 
 export async function removeSubscriber(
 	raw: z.infer<typeof Input>

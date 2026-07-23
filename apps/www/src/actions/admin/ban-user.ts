@@ -5,6 +5,7 @@ import { headers } from 'next/headers'
 import { revalidatePath, updateTag } from 'next/cache'
 import { auth } from '@/lib/auth/auth'
 import { requireAdmin } from '@/lib/auth/require-auth'
+import type { BanUserResult } from './types'
 
 const BAN_REASONS_MAX = 500
 
@@ -13,8 +14,6 @@ const Input = z.object({
 	banReason: z.string().max(BAN_REASONS_MAX).optional(),
 	banExpiresIn: z.number().int().positive().optional(),
 })
-
-export type BanUserResult = { ok: true } | { ok: false; error: string }
 
 export async function banUser(raw: z.infer<typeof Input>): Promise<BanUserResult> {
 	try {

@@ -5,12 +5,11 @@ import { headers } from 'next/headers'
 import { revalidatePath, updateTag } from 'next/cache'
 import { auth } from '@/lib/auth/auth'
 import { requireAdmin } from '@/lib/auth/require-auth'
+import type { RevokeUserSessionsResult } from './types'
 
 const Input = z.object({
 	userId: z.string().min(1),
 })
-
-export type RevokeUserSessionsResult = { ok: true } | { ok: false; error: string }
 
 export async function revokeUserSessions(
 	raw: z.infer<typeof Input>

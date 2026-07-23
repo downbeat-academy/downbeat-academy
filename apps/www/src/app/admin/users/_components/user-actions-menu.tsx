@@ -38,7 +38,7 @@ export function UserActionsMenu({ user, isSelf }: Props) {
 
 	async function handleCopyId() {
 		await navigator.clipboard.writeText(user.id)
-		toast({ title: 'User ID copied', description: user.id, variant: 'info' })
+		toast({ title: 'User ID copied', description: user.id, variant: 'default' })
 	}
 
 	return (

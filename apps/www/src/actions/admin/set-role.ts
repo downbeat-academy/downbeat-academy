@@ -9,13 +9,12 @@ import { requireAdmin } from '@/lib/auth/require-auth'
 import { authDb } from '@/lib/db/drizzle'
 import { user } from '@/lib/db/schema/auth'
 import { ROLES, type Role } from '@/lib/auth/permissions'
+import type { SetRoleResult } from './types'
 
 const Input = z.object({
 	userId: z.string().min(1),
 	role: z.enum(ROLES as unknown as readonly [Role, ...Role[]]),
 })
-
-export type SetRoleResult = { ok: true } | { ok: false; error: string }
 
 export async function setRole(raw: z.infer<typeof Input>): Promise<SetRoleResult> {
 	try {

@@ -5,12 +5,11 @@ import { headers } from 'next/headers'
 import { revalidatePath, updateTag } from 'next/cache'
 import { auth } from '@/lib/auth/auth'
 import { requireAdmin } from '@/lib/auth/require-auth'
+import type { UnbanUserResult } from './types'
 
 const Input = z.object({
 	userId: z.string().min(1),
 })
-
-export type UnbanUserResult = { ok: true } | { ok: false; error: string }
 
 export async function unbanUser(raw: z.infer<typeof Input>): Promise<UnbanUserResult> {
 	try {
