@@ -1,5 +1,6 @@
 'use client'
 
+import posthog from 'posthog-js'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { authClient } from '@/lib/auth/auth-client'
@@ -76,6 +77,7 @@ const HeaderNavigation = ({ className, initialSession }: HeaderNavigationProps) 
 	const signInHref = `/sign-in?callbackURL=${encodeURIComponent(pathname)}`
 
 	const handleSignOut = async () => {
+		posthog.reset()
 		try {
 			// Clear local session
 			await authClient.signOut()
