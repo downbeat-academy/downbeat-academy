@@ -27,18 +27,53 @@ export type ListUsersResult = {
 }
 
 
-export const countUsers = cache(async (): Promise<number> => {
-	const [row] = await authDb.select({ value: count() }).from(user)
-	return row?.value ?? 0
-})
+export type DashboardStats = {
+	totalUsers: number
+	newUsersRecent: number
+	newUsersExtended: number
+	activeSessions: number
+}
 
-export const countUsersSince = cache(async (since: Date): Promise<number> => {
-	const [row] = await authDb
-		.select({ value: count() })
-		.from(user)
-		.where(gte(user.createdAt, since))
-	return row?.value ?? 0
-})
+/**
+ * The overview cards need four independent scalars. Issued as separate queries they
+ * cost four pool connections per render — and because the page fans them out through
+ * `Promise.all`, four *concurrent* ones, which forces the pool to open new physical
+ * connections. As scalar subqueries they cost a single round trip.
+ *
+ * `count(*)` is bigint, which node-postgres hands back as a string, so the `::int`
+ * casts are load-bearing: without them the metric cards render `"12"` and the delta
+ * arithmetic on the overview page concatenates instead of adding.
+ */
+export const dashboardStats = cache(
+	async (recentDays: number, extendedDays: number): Promise<DashboardStats> => {
+		const result = await authDb.execute<{
+			total_users: number
+			new_users_recent: number
+			new_users_extended: number
+			active_sessions: number
+		}>(sql`
+			select
+				(select count(*)::int from ${user}) as total_users,
+				(select count(*)::int from ${user}
+					where ${user.createdAt} >= now() - (${recentDays}::int * interval '1 day')
+				) as new_users_recent,
+				(select count(*)::int from ${user}
+					where ${user.createdAt} >= now() - (${extendedDays}::int * interval '1 day')
+				) as new_users_extended,
+				(select count(*)::int from ${session}
+					where ${session.expiresAt} > now()
+				) as active_sessions
+		`)
+
+		const row = result.rows[0]
+		return {
+			totalUsers: row?.total_users ?? 0,
+			newUsersRecent: row?.new_users_recent ?? 0,
+			newUsersExtended: row?.new_users_extended ?? 0,
+			activeSessions: row?.active_sessions ?? 0,
+		}
+	}
+)
 
 export const countByRole = cache(async (): Promise<Record<string, number>> => {
 	const rows = await authDb
@@ -163,8 +198,10 @@ async function fetchUsersOverTime(days: number): Promise<MetricPoint[]> {
 	return points
 }
 
+// Versioned key — see the note on `cachedFetch` in ./subscribers. `MetricPoint` is
+// JSON-native today, so a stale entry is harmless, but bump `v1` if its shape changes.
 export const usersOverTime = cache(
-	unstable_cache(fetchUsersOverTime, ['admin', 'users-over-time'], {
+	unstable_cache(fetchUsersOverTime, ['admin', 'users-over-time', 'v1'], {
 		tags: ['admin:users'],
 		revalidate: 60,
 	})

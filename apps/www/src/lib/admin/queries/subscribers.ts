@@ -72,10 +72,28 @@ async function fetchSubscribersRaw(): Promise<CachedSubscribers> {
 	return { subscribers, error: null }
 }
 
-const cachedFetch = unstable_cache(fetchSubscribersRaw, ['admin', 'subscribers'], {
+// The version suffix is part of the contract: this function's return shape changed once
+// already (from `Subscriber[]` to `{ subscribers, error }`) without the key changing,
+// which lets two deployments read each other's incompatible entries. Bump the suffix
+// whenever `CachedSubscribers` changes shape.
+const cachedFetch = unstable_cache(fetchSubscribersRaw, ['admin', 'subscribers', 'v2'], {
 	tags: [SUBSCRIBERS_TAG],
 	revalidate: 600,
 })
+
+/**
+ * A cache entry written by a different version of this module can be any shape at all,
+ * so narrow before trusting it. Returning the `error` envelope rather than throwing
+ * keeps a bad entry contained: the subscribers page renders its error banner, and the
+ * admin overview — which calls `countSubscribers` — still renders.
+ */
+async function readCache(): Promise<CachedSubscribers> {
+	const cached = await cachedFetch()
+	if (!cached || !Array.isArray(cached.subscribers)) {
+		return { subscribers: [], error: 'Subscriber cache returned an unexpected shape.' }
+	}
+	return { subscribers: cached.subscribers, error: cached.error ?? null }
+}
 
 function hydrate(record: SubscriberRecord): Subscriber {
 	return {
@@ -85,11 +103,11 @@ function hydrate(record: SubscriberRecord): Subscriber {
 }
 
 export const listSubscribers = cache(async (): Promise<SubscribersResult> => {
-	const { subscribers, error } = await cachedFetch()
+	const { subscribers, error } = await readCache()
 	return { subscribers: subscribers.map(hydrate), error }
 })
 
 export const countSubscribers = cache(async (): Promise<number> => {
-	const { subscribers } = await cachedFetch()
+	const { subscribers } = await readCache()
 	return subscribers.filter((s) => !s.unsubscribed).length
 })

@@ -1,17 +1,12 @@
 import 'server-only'
 import { cache } from 'react'
-import { count, desc, eq, gt, sql } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 import { authDb } from '@/lib/db/drizzle'
 import { session, user } from '@/lib/db/schema/auth'
 import type { RecentSession } from '../types'
 
-export const activeSessionCount = cache(async (): Promise<number> => {
-	const [row] = await authDb
-		.select({ value: count() })
-		.from(session)
-		.where(gt(session.expiresAt, sql`now()`))
-	return row?.value ?? 0
-})
+// The active-session count lives in `dashboardStats` (./users), folded into the same
+// round trip as the user counts so the overview page doesn't spend a connection on it.
 
 export const recentSessions = cache(async (limit = 10): Promise<RecentSession[]> => {
 	const rows = await authDb

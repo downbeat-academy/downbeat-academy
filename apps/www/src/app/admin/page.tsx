@@ -5,9 +5,7 @@ import { ChartCard } from './_components/chart-card'
 import { UsersOverTimeChart } from './_components/charts/users-over-time-chart'
 import { ProviderBreakdownChart } from './_components/charts/provider-breakdown-chart'
 import {
-	countUsers,
-	countUsersSince,
-	activeSessionCount,
+	dashboardStats,
 	recentUsers,
 	recentSessions,
 	countSubscribers,
@@ -16,39 +14,22 @@ import {
 } from '@/lib/admin/queries'
 import { formatRelativeTime, truncate } from '@/lib/admin/format'
 
-function daysAgo(days: number): Date {
-	const d = new Date()
-	d.setDate(d.getDate() - days)
-	return d
-}
+const RECENT_WINDOW_DAYS = 7
+const EXTENDED_WINDOW_DAYS = 30
 
 export default async function AdminOverviewPage() {
-	const sevenDaysAgo = daysAgo(7)
-	const thirtyDaysAgo = daysAgo(30)
+	const [stats, subscriberCount, latestUsers, latestSessions, signupTimeline, providers] =
+		await Promise.all([
+			dashboardStats(RECENT_WINDOW_DAYS, EXTENDED_WINDOW_DAYS),
+			countSubscribers(),
+			recentUsers(10),
+			recentSessions(10),
+			usersOverTime(90),
+			authProviderBreakdown(),
+		])
 
-	const [
-		totalUsers,
-		usersLast7d,
-		usersLast30d,
-		activeSessions,
-		subscriberCount,
-		latestUsers,
-		latestSessions,
-		signupTimeline,
-		providers,
-	] = await Promise.all([
-		countUsers(),
-		countUsersSince(sevenDaysAgo),
-		countUsersSince(thirtyDaysAgo),
-		activeSessionCount(),
-		countSubscribers(),
-		recentUsers(10),
-		recentSessions(10),
-		usersOverTime(90),
-		authProviderBreakdown(),
-	])
-
-	const monthlyDelta = usersLast30d
+	const { totalUsers, newUsersRecent, newUsersExtended, activeSessions } = stats
+	const monthlyDelta = newUsersExtended
 
 	return (
 		<Flex direction="column" gap="x-large">
@@ -66,14 +47,14 @@ export default async function AdminOverviewPage() {
 							: {
 									value: monthlyDelta,
 									direction: monthlyDelta > 0 ? 'up' : 'down',
-									label: 'in 30d',
+									label: `in ${EXTENDED_WINDOW_DAYS}d`,
 								}
 					}
 				/>
 				<MetricCard
-					label="New users (7d)"
-					value={usersLast7d}
-					hint={`${usersLast30d} in last 30d`}
+					label={`New users (${RECENT_WINDOW_DAYS}d)`}
+					value={newUsersRecent}
+					hint={`${newUsersExtended} in last ${EXTENDED_WINDOW_DAYS}d`}
 				/>
 				<MetricCard
 					label="Active sessions"
