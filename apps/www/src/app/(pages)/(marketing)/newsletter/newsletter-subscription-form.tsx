@@ -1,5 +1,6 @@
 'use client'
 
+import posthog from 'posthog-js'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -34,6 +35,7 @@ const NewsletterSubscriptionForm = () => {
 				email: formData.email || '',
 			}
 			await subscribeToNewsletter(formDataObject)
+			posthog.capture('newsletter_subscribed', { source: 'newsletter_page' })
 			toast({
 				title: 'Subscribed to newsletter',
 				description: 'Check your inbox for a confirmation email.',

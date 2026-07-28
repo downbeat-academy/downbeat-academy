@@ -1,5 +1,6 @@
 'use client'
 
+import posthog from 'posthog-js'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -40,6 +41,7 @@ export function ContactForm() {
 				message: formData.message || '',
 			}
 			await sendEmail(contactFormObject)
+			posthog.capture('contact_form_submitted')
 			toast({
 				title: 'Message sent!',
 				description: "Thank you for the note, we'll be in touch soon!",
