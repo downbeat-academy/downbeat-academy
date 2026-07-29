@@ -29,6 +29,26 @@ The typical loop:
 /plan-feature  →  build (reading the workspace AGENTS.md)  →  /ship
 ```
 
+## Agents
+
+Domain specialists. Three map onto the systems that carry the most repo-specific
+knowledge; the rest are general disciplines tuned to this codebase.
+
+| Agent | Owns |
+| --- | --- |
+| `cadence-design-system` | Tokens, components, icons, the build pipeline, Storybook |
+| `sanity-content` | Schema → GROQ → route → Portable Text, and its silent failure modes |
+| `auth-security` | The OAuth provider, consumers, roles, guards, the shared database |
+| `javascript-engineer` | App code — App Router, server actions, data fetching, CSS Modules |
+| `accessibility-engineer` | Keyboard operation, ARIA semantics, focus, contrast |
+| `test-engineer` | vitest and Cypress, and the jsdom traps that make tests lie |
+| `code-reviewer` | Review before a PR. Read-only by design |
+| `technical-docs-writer` | `AGENTS.md`, `docs/`, ADRs, READMEs |
+| `tech-project-manager` | Roadmap triage and sequencing. Read-only |
+
+Each declares an explicit `model` and a scoped `tools` list. `code-reviewer` and
+`tech-project-manager` deliberately have no write access.
+
 ## Permissions
 
 `settings.json` is deliberately conservative, because it is shared and applies to
