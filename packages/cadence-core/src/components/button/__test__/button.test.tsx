@@ -2,7 +2,7 @@ import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Button } from '../Button'
+import { Button } from '../button'
 
 // Mock icon component that captures props for testing
 const MockIcon = ({

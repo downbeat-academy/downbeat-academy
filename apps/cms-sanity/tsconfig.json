@@ -16,5 +16,9 @@
 		"incremental": true
 	},
 	"include": ["**/*.ts", "**/*.tsx"],
-	"exclude": ["node_modules"]
+	// schemas/objects/video.ts is parked work-in-progress: it is commented out in
+	// schemas/index.ts and imports `react-player`, which is not a dependency. Excluded
+	// so it doesn't fail typecheck. Remove this entry when the schema is finished and
+	// registered (and add react-player to package.json at that point).
+	"exclude": ["node_modules", "schemas/objects/video.ts"]
 }

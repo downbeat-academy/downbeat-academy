@@ -10,7 +10,9 @@
     "build": "pnpm run clean && vite build && tsc --emitDeclarationOnly --outDir dist",
     "storybook": "storybook dev -p 6007 --ci",
     "build:storybook": "storybook build",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "cadence-tokens": "workspace:^",

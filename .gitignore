@@ -7,6 +7,15 @@ DS_store
 
 .mcp.json
 
+# Environment files — secrets live in Infisical, never in git
+.env
+.env.local
+.env.*.local
+.env.test
+apps/**/.env
+apps/**/.env.local
+apps/**/.env.*.local
+
 node_modules
 
 .turbo

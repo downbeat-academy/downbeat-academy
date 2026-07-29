@@ -10,12 +10,14 @@
 	},
 	"scripts": {
 		"test": "vitest run",
-		"test:watch": "vitest"
+		"test:watch": "vitest",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"better-auth": "^1.6.10"
 	},
 	"devDependencies": {
-		"vitest": "^3.2.4"
+		"typescript": "^5.9.3",
+		"vitest": "^4.1.6"
 	}
 }
