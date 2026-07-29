@@ -25,6 +25,12 @@ These documents explain *why* things are the way they are.
 | [`adr/0001-record-architecture-decisions.md`](./adr/0001-record-architecture-decisions.md) | Why this repo keeps ADRs, and the format |
 | [`adr/0002-known-gaps.md`](./adr/0002-known-gaps.md) | **The known-gaps register.** Read before "fixing" anything that looks broken |
 
+## Workflows
+
+| Document | Covers |
+| --- | --- |
+| [`workflows/sdlc.md`](./workflows/sdlc.md) | The development loop end to end — Notion task → plan → build → verify → ship → review → merge |
+
 ## Proposals
 
 [`proposals/`](./proposals/) holds design work that has not been decided on yet.
