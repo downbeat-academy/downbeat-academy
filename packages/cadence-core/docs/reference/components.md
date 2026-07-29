@@ -372,5 +372,5 @@ Full TypeScript coverage with:
 ## Related Documentation
 
 - [Development Guide](../setup/development-guide.md) - Local development setup
-- [Component Architecture](../implementation/component-architecture.md) - Implementation details
-- [Storybook Guide](../setup/storybook-guide.md) - Interactive documentation
+- [`AGENTS.md`](../../AGENTS.md) — component anatomy, conventions, and gotchas
+- [Design system architecture](../../../../docs/architecture/design-system.md)

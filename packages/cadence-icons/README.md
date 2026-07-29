@@ -1,17 +1,10 @@
-# Cadence Icons Documentation
+# cadence-icons
 
-This directory contains comprehensive documentation for the Cadence Icons library, part of the Downbeat Academy design system.
+The icon library for the Cadence Design System. 79 icons, generated from SVG source
+into React components with SVGR.
 
-## Documentation Structure
-
-### 📁 [setup/](./setup/)
-Development environment and build configuration guides
-- [development-guide.md](./setup/development-guide.md) - Local development setup and icon creation workflow
-
-### 📁 [reference/](./reference/)
-Icon library reference and usage guides  
-- [icons.md](./reference/icons.md) - Complete icon library reference with examples
-- [usage-guide.md](./reference/usage-guide.md) - Implementation patterns and best practices
+> Working in this package? Read [`AGENTS.md`](./AGENTS.md) first — in particular, that
+> `src/components/` is generated output and must never be hand-edited.
 
 ## Package Overview
 
@@ -349,7 +342,6 @@ When working with cadence-icons:
 
 ## Related Documentation
 
-- [Usage Guide](./reference/usage-guide.md) - Implementation patterns
-- [Icon Reference](./reference/icons.md) - Complete icon list
-- [Development Guide](./setup/development-guide.md) - Development workflows
-- [Root agents.md](../../../agents.md) - Monorepo development guide
+- [`AGENTS.md`](./AGENTS.md) — conventions and gotchas for this package
+- [Root `AGENTS.md`](../../AGENTS.md) — monorepo-wide contract
+- [Design system architecture](../../docs/architecture/design-system.md)
