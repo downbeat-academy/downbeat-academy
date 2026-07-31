@@ -11,6 +11,10 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "eslint .",
+		"typecheck": "tsc --noEmit",
+		"cypress": "cypress open",
+		"cypress:run": "cypress run",
+		"test:e2e": "start-server-and-test dev:ci http://localhost:3002 cypress:run",
 		"db:push": "drizzle-kit push --config=drizzle-auth.config.ts",
 		"db:migrate": "drizzle-kit migrate --config=drizzle-auth.config.ts",
 		"db:verify-roles": "npx tsx scripts/verify-user-roles.ts",
@@ -44,9 +48,11 @@
 		"@types/pg": "^8.20.0",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.1.6",
+		"cypress": "^15.14.2",
 		"drizzle-kit": "^0.31.10",
 		"eslint": "^9.39.2",
 		"eslint-config-next": "^16.2.6",
+		"start-server-and-test": "^2.1.5",
 		"typescript": "^5.9.3"
 	}
 }

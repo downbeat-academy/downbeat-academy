@@ -1,0 +1,94 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    versioning-strategy: increase
+    commit-message:
+      prefix: chore
+      include: scope
+    labels:
+      - dependencies
+    # Grouped to match how these updates have been batched by hand
+    # (see the may-2026-dep-updates-group-a/b/c branches in the history).
+    # One PR per coherent area beats twenty single-package PRs for a solo maintainer.
+    groups:
+      next:
+        patterns:
+          - 'next'
+          - '@next/*'
+          - 'eslint-config-next'
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react'
+          - '@types/react-dom'
+      sanity:
+        patterns:
+          - 'sanity'
+          - '@sanity/*'
+          - 'sanity-plugin-*'
+          - 'next-sanity'
+          - '@portabletext/*'
+      auth:
+        patterns:
+          - 'better-auth'
+          - '@better-auth/*'
+      database:
+        patterns:
+          - 'drizzle-orm'
+          - 'drizzle-kit'
+          - 'pg'
+          - '@types/pg'
+          - 'postgres'
+      radix:
+        patterns:
+          - '@radix-ui/*'
+      storybook:
+        patterns:
+          - 'storybook'
+          - '@storybook/*'
+          - 'chromatic'
+      testing:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+          - 'cypress'
+          - 'cypress-axe'
+          - '@testing-library/*'
+          - 'jsdom'
+          - '@open-wc/testing'
+      build-tooling:
+        patterns:
+          - 'vite'
+          - 'vite-*'
+          - 'rollup'
+          - 'rollup-*'
+          - '@rollup/*'
+          - 'turbo'
+          - 'typescript'
+          - 'style-dictionary'
+      observability:
+        patterns:
+          - '@sentry/*'
+          - 'posthog-js'
+          - 'posthog-node'
+          - 'fathom-client'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore
+    labels:
+      - dependencies
+    groups:
+      actions:
+        patterns:
+          - '*'

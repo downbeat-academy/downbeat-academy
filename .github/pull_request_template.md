@@ -1,25 +1,53 @@
-# Pull Request Description
+<!--
+Keep this short. The commit message carries the detail; this is for the reviewer.
+-->
 
-## What does this PR do?
-Brief description of your changes
+## What and why
 
-## Related Issues
-Fixes #[issue-number]
+<!-- One or two sentences. Lead with the problem, not the diff. -->
 
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Documentation
+**Notion task:** <!-- link, or "n/a" -->
 
-## Testing
-Describe how you tested these changes
+## Affected workspaces
 
-## Checklist
-- [ ] I have tested my changes
-- [ ] I have updated documentation
-- [ ] I have added tests (if applicable)
-- [ ] All tests pass
+<!-- Tick what this touches. Package changes affect every consuming app. -->
 
-## Notes
-Any additional context or notes for reviewers
+- [ ] `apps/www`
+- [ ] `apps/auth` ⚠️ OAuth provider — affects sign-in for every app
+- [ ] `apps/cadence-links`
+- [ ] `apps/cms-sanity`
+- [ ] `packages/cadence-core`
+- [ ] `packages/cadence-tokens` ⚠️ requires rebuilding `cadence-core`
+- [ ] `packages/cadence-icons`
+- [ ] `packages/auth-permissions` ⚠️ lands in all three Next apps at once
+- [ ] `packages/email`
+- [ ] Other / docs only
+
+## Verification
+
+<!-- What you actually ran and looked at. Be specific; "tested locally" says nothing. -->
+
+- [ ] `pnpm verify` passes
+- [ ] Changeset added (or: docs-only, none needed)
+
+Beyond the gate:
+
+<!--
+Delete what does not apply.
+- Storybook: rendered the component, tabbed through it
+- App: ran `pnpm www:dev` and checked the page
+- Sanity: created a real document and confirmed it renders
+- Auth: walked sign-in AND sign-out across apps
+- DB: reviewed the `drizzle-kit push` diff
+-->
+
+## Screenshots
+
+<!-- Required for anything visual. Before/after if it is a change. -->
+
+## Notes for the reviewer
+
+<!--
+Anything deliberately left undone, a trade-off you made, or a part you are unsure
+about. If this is part of a stack, say what it is stacked on.
+-->

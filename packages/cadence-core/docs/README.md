@@ -5,25 +5,14 @@ This directory contains comprehensive documentation for the Cadence Core compone
 ## Documentation Structure
 
 ### 📁 [setup/](./setup/)
-Development environment and build configuration guides
-- [development-guide.md](./setup/development-guide.md) - Local development setup and workflows
-- [storybook-guide.md](./setup/storybook-guide.md) - Storybook development and deployment
-
-### 📁 [testing/](./testing/)
-Testing strategies and component testing guides
-- [component-testing.md](./testing/component-testing.md) - Testing strategy and best practices
-- [storybook-testing.md](./testing/storybook-testing.md) - Visual regression and story testing
-
-### 📁 [implementation/](./implementation/)
-Implementation details and architectural decisions
-- [component-architecture.md](./implementation/component-architecture.md) - Component structure and patterns
-- [styling-system.md](./implementation/styling-system.md) - CSS modules and design token integration
+- [development-guide.md](./setup/development-guide.md) — local development setup and workflows
 
 ### 📁 [reference/](./reference/)
-Component API reference and quick guides
-- [components.md](./reference/components.md) - Complete component library reference
-- [design-tokens.md](./reference/design-tokens.md) - Available design tokens and usage
-- [commands.md](./reference/commands.md) - Build and development commands
+- [components.md](./reference/components.md) — component library reference
+
+> Conventions, testing rules, the build pipeline, and gotchas live in
+> [`../AGENTS.md`](../AGENTS.md). Design-system-wide context is in
+> [`../../../docs/architecture/design-system.md`](../../../docs/architecture/design-system.md).
 
 ## Package Overview
 
@@ -175,6 +164,6 @@ This component library is structured for efficient AI development:
 
 ## Related Documentation
 
-- [Root agents.md](../../../agents.md) - Monorepo development guide
+- [Root agents.md](../../../AGENTS.md) - Monorepo development guide
 - [WWW App Docs](../../../apps/www/docs/) - Implementation examples
 - [Storybook Deployment](https://cadence-storybook.vercel.app) - Live component library

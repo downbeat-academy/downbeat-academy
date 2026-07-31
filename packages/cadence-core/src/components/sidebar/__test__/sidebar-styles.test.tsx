@@ -17,10 +17,42 @@ import s from '../sidebar.module.css'
  * tests in sidebar.test.tsx cannot see. They rely on `test.css: true` in vite.config.ts
  * so the CSS module is compiled and injected into jsdom.
  *
- * Caveat: jsdom resolves the cascade but performs no layout, so these verify *declared*
- * computed values (`display`, `border-radius`, `flex-shrink`) — not painted geometry.
+ * Caveat 1: jsdom resolves the cascade but performs no layout, so these verify *declared*
+ * computed values (`display`, `flex-shrink`) — not painted geometry.
  * Visual regressions still need Storybook/Chromatic.
+ *
+ * Caveat 2: jsdom does not resolve `var()`. A declaration written as
+ * `border: 1px solid var(--cds-color-border-faint)` computes to `borderTopStyle: 'none'`,
+ * and `borderRadius` reads back as the literal string `"var(--cds-radii-medium)"` —
+ * the same rule written with a literal colour computes correctly. So any assertion on a
+ * token-driven property must inspect the *declared rule*, not `getComputedStyle`.
+ * `declaredRootRule()` below exists for exactly that case.
  */
+
+/**
+ * Finds the `.root` rule text for the sidebar CSS module in the stylesheets vite injected.
+ * Class names are hashed (`cds-sidebar-root--xxxxx`), so match on the imported binding.
+ */
+const declaredRootRule = (): string => {
+	const rootClass = s.root.split(' ')[0]
+	for (const sheet of Array.from(document.styleSheets)) {
+		let rules: CSSRule[]
+		try {
+			rules = Array.from(sheet.cssRules)
+		} catch {
+			continue // cross-origin sheet; not ours
+		}
+		for (const rule of rules) {
+			if (
+				rule instanceof CSSStyleRule &&
+				rule.selectorText === `.${rootClass}`
+			) {
+				return rule.style.cssText
+			}
+		}
+	}
+	throw new Error(`No declared rule found for .${rootClass}`)
+}
 
 const Wrap = ({ children }: { children: React.ReactNode }) => (
 	<TooltipProvider>{children}</TooltipProvider>
@@ -135,12 +167,13 @@ describe('Sidebar panel styling', () => {
 				<Sidebar ariaLabel="Nav" data-testid="nav" />
 			</Wrap>
 		)
-		const styles = getComputedStyle(screen.getByTestId('nav'))
-		for (const side of ['Top', 'Right', 'Bottom', 'Left'] as const) {
-			expect(styles[`border${side}Style` as 'borderTopStyle']).toBe('solid')
-		}
-		expect(styles.borderRadius).not.toBe('')
-		expect(styles.borderRadius).not.toBe('0')
+		// Asserted against the declared rule, not getComputedStyle — see Caveat 2 above.
+		const declared = declaredRootRule()
+
+		// A `border` shorthand applies to all four sides; the per-side longhands would
+		// only appear if something overrode them, which is what this guards against.
+		expect(declared).toMatch(/border:\s*1px\s+solid\s+var\(--cds-color-border-faint\)/)
+		expect(declared).toMatch(/border-radius:\s*var\(--cds-radii-[a-z]+\)/)
 	})
 
 	it('fills the height of its container', () => {

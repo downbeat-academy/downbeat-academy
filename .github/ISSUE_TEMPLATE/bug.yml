@@ -1,0 +1,64 @@
+name: Bug
+description: Something is broken
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing: check [`docs/adr/0002-known-gaps.md`](../blob/main/docs/adr/0002-known-gaps.md).
+        Several things in this repo are broken on purpose and already recorded there.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens
+      description: The actual behaviour, and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …
+        3. Observe …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: workspace
+    attributes:
+      label: Where
+      multiple: true
+      options:
+        - apps/www
+        - apps/auth
+        - apps/cadence-links
+        - apps/cms-sanity
+        - packages/cadence-core
+        - packages/cadence-tokens
+        - packages/cadence-icons
+        - packages/auth-permissions
+        - packages/email
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Production
+        - Local development
+        - Both
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Errors, logs, screenshots
+      description: Console output, a Sentry link, or a screenshot. Redact any secrets.

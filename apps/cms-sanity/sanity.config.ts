@@ -22,20 +22,20 @@ export default defineConfig({
 		dashboardTool({
 			widgets: [
 				projectInfoWidget({
-					layout: 'medium',
+					layout: { width: 'medium' },
 				}),
 				projectUsersWidget({
-					layout: 'medium',
+					layout: { width: 'medium' },
 				}),
 				documentListWidget({
-					layout: 'large',
+					layout: { width: 'large' },
 					showCreateButton: true,
 					limit: 5,
 					title: 'Recent articles',
 					types: ['article'],
 				}),
 				documentListWidget({
-					layout: 'large',
+					layout: { width: 'large' },
 					limit: 10,
 					title: 'Recently updated docuemnts',
 					types: [

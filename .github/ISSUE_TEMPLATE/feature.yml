@@ -1,0 +1,42 @@
+name: Feature
+description: Something new, or a change to how something works
+labels: ['feature']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What is hard or impossible today, and for whom. Not the solution — the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you have in mind
+      description: Optional. A sketch of the solution, if you have one.
+
+  - type: dropdown
+    id: workspace
+    attributes:
+      label: Likely area
+      multiple: true
+      options:
+        - apps/www
+        - apps/auth
+        - apps/cadence-links
+        - apps/cms-sanity
+        - Cadence design system
+        - Content modelling
+        - Infrastructure
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: How we would know it works
+      description: What should be true when this is finished.
+    validations:
+      required: true

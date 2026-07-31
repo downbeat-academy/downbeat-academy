@@ -1,0 +1,25 @@
+name: Chore
+description: Maintenance, dependencies, tooling, or technical debt
+labels: ['chore']
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What needs doing
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why now
+      description: What it unblocks, or what it costs to keep deferring.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: gaps
+    attributes:
+      label: Known gaps register
+      options:
+        - label: I have checked whether this is already recorded in docs/adr/0002-known-gaps.md

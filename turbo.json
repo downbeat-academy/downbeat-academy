@@ -8,9 +8,17 @@
 		},
 		"test": {
 			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"test:coverage": {
+			"dependsOn": ["^build"],
 			"outputs": ["coverage/**"]
 		},
 		"lint": {
+			"outputs": []
+		},
+		"typecheck": {
+			"dependsOn": ["^build"],
 			"outputs": []
 		},
 		"dev": {

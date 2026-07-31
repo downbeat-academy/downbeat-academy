@@ -486,5 +486,5 @@ pnpm core:build-storybook
 ## Related Documentation
 
 - [Component Reference](../reference/components.md) - Complete API documentation
-- [Storybook Guide](./storybook-guide.md) - Interactive documentation setup
-- [Component Architecture](../implementation/component-architecture.md) - Design patterns
+- [`AGENTS.md`](../../AGENTS.md) — component anatomy, conventions, and gotchas
+- [Design system architecture](../../../../docs/architecture/design-system.md)

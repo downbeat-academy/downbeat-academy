@@ -3,6 +3,21 @@ import { student, educator, admin, superAdmin, ac } from '../index'
 import { hasRole, isAdmin } from '../hooks'
 import { ROLES, ADMIN_ROLES, DEFAULT_ROLE } from '../types'
 
+/**
+ * `ac.newRole()` narrows `authorize()`'s parameter to only the resources that role
+ * actually declares. That makes a negative assertion — "a student cannot manage users" —
+ * a compile error, even though it is precisely what we want to verify and returns
+ * `{ success: false }` at runtime.
+ *
+ * This helper keeps the real runtime call and sidesteps the narrowed parameter type.
+ * Use it only for resources a role does NOT declare; positive assertions stay fully
+ * typed via a direct `role.authorize(...)` call so genuine typos still fail to compile.
+ */
+const denies = (
+	role: { authorize: (statement: never) => { success: boolean } },
+	statement: Record<string, readonly string[]>
+) => role.authorize(statement as never).success === false
+
 describe('Role definitions', () => {
 	it('exports all four roles', () => {
 		expect(student).toBeDefined()
@@ -40,11 +55,11 @@ describe('Student permissions', () => {
 	})
 
 	it('cannot manage users', () => {
-		expect(student.authorize({ user: ['list'] }).success).toBe(false)
+		expect(denies(student, { user: ['list'] })).toBe(true)
 	})
 
 	it('cannot manage links', () => {
-		expect(student.authorize({ link: ['create'] }).success).toBe(false)
+		expect(denies(student, { link: ['create'] })).toBe(true)
 	})
 })
 
@@ -69,12 +84,12 @@ describe('Educator permissions', () => {
 	})
 
 	it('cannot manage users', () => {
-		expect(educator.authorize({ user: ['list'] }).success).toBe(false)
-		expect(educator.authorize({ user: ['ban'] }).success).toBe(false)
+		expect(denies(educator, { user: ['list'] })).toBe(true)
+		expect(denies(educator, { user: ['ban'] })).toBe(true)
 	})
 
 	it('cannot manage sessions', () => {
-		expect(educator.authorize({ session: ['list'] }).success).toBe(false)
+		expect(denies(educator, { session: ['list'] })).toBe(true)
 	})
 })
 

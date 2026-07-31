@@ -1,0 +1,20 @@
+# Every change is reviewed by the maintainer.
+# Explicit paths below are for clarity about which areas carry the most risk,
+# not because ownership differs — see docs/adr/0002-known-gaps.md.
+
+*                               @jorytindall
+
+# OAuth provider — a mistake here signs every user out of every app
+/apps/auth/                     @jorytindall
+/packages/auth-permissions/     @jorytindall
+
+# Design system — changes propagate to all three apps at once
+/packages/cadence-core/         @jorytindall
+/packages/cadence-tokens/       @jorytindall
+
+# Agent-facing contracts and CI
+/AGENTS.md                      @jorytindall
+/CLAUDE.md                      @jorytindall
+/.claude/                       @jorytindall
+/.github/                       @jorytindall
+/docs/                          @jorytindall
