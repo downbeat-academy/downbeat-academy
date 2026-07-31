@@ -1,6 +1,6 @@
 {
 	"name": "auth-permissions",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"private": true,
 	"description": "Shared RBAC permissions, roles, and access control for Downbeat Academy",
 	"main": "./src/index.ts",
