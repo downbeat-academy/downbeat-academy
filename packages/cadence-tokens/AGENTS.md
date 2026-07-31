@@ -1,7 +1,7 @@
 # AGENTS.md — `packages/cadence-tokens`
 
 Design tokens for Cadence, built with style-dictionary v5. The root of the design system:
-every colour, space, radius, and type value in the product originates here.
+every color, space, radius, and type value in the product originates here.
 
 Repo-wide rules live in [`../../AGENTS.md`](../../AGENTS.md). Pipeline context is in
 [`../../docs/architecture/design-system.md`](../../docs/architecture/design-system.md).
