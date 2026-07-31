@@ -8,7 +8,7 @@ on:
       - '.github/workflows/ci-www-e2e.yml'
       - 'packages/cadence-**/**'
       - 'pnpm-lock.yaml'
-  
+
   # Run on push to main only if www files changed
   push:
     branches: [main]
@@ -16,7 +16,7 @@ on:
       - 'apps/www/**'
       - '.github/workflows/ci-www-e2e.yml'
       - 'packages/cadence-**/**'
-  
+
   # Allow manual triggering
   workflow_dispatch:
     inputs:
@@ -35,19 +35,56 @@ on:
 
 env:
   NODE_VERSION: '20.x'
-  PNPM_VERSION: '9'
+  # pnpm's version is NOT set here. `pnpm/action-setup` v6 hard-errors if it finds a
+  # version in both the `version:` input and `packageManager` in package.json, so
+  # `packageManager: pnpm@9.15.4` is the single source of truth.
 
 concurrency:
   group: e2e-tests-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # Quick smoke tests for every PR
+  # Quick smoke tests for every PR.
+  #
+  # This job deliberately uses NO repository secrets. Dependabot-triggered `pull_request`
+  # runs read from the *Dependabot* secrets store, not the Actions one, and that store is
+  # empty — so every `${{ secrets.* }}` here used to resolve to an empty string and every
+  # Dependabot PR went red while human PRs stayed green. Rather than mirror production
+  # credentials into a second store (a job that runs `pnpm install` on not-yet-reviewed
+  # package versions, with lifecycle scripts enabled, should not hold real tokens), the
+  # job runs on throwaway values. It only visits public routes against a locally built
+  # app and a disposable Postgres, so it never needed the real ones.
+  #
+  # `full-tests` below still uses secrets: it runs on push/workflow_dispatch, where they
+  # are available.
   smoke-tests:
     name: 'Smoke Tests'
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
-    
+
+    env:
+      # Postgres service container, below.
+      CI_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+      # Any non-empty string satisfies Better Auth, but cypress/plugins/env-validator.ts
+      # separately enforces >= 32 characters and throws when CI is set.
+      CI_BETTER_AUTH_SECRET: ci-smoke-test-secret-not-a-production-value
+      # src/actions/email/{send-email,newsletter-subscription}.ts call `new Resend(key)`
+      # at module scope, which throws on an empty key and would 500 the /contact and
+      # /newsletter routes this spec asserts on. env-validator.ts requires the `re_`
+      # prefix if the var is set at all.
+      CI_RESEND_API_KEY: re_ci_smoke_test_key_not_real
+      # Not secrets — these exact values are already committed in
+      # apps/cms-sanity/sanity.config.ts. They are needed rather than merely nice to have:
+      # with the project id unset, sanity.client.ts patches `fetch` to return [], the
+      # homepage then renders nothing, and `cy.get('main').should('be.visible')` fails.
+      # NEXT_PUBLIC_* is inlined at build time, so these must be set before `pnpm build`.
+      CI_SANITY_PROJECT_ID: v5w3t766
+      CI_SANITY_DATASET: production
+      CI_SANITY_API_VERSION: '2022-11-15'
+      # The app under test is the one we just built, on localhost. This must never point
+      # at a deployed environment.
+      CI_APP_URL: http://localhost:3000
+
     services:
       postgres:
         image: postgres:15
@@ -62,23 +99,21 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-    
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
-      
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       - name: Install Cypress binary
         run: pnpm --filter www cypress:install
-      
+
       - name: Build packages
         run: |
           pnpm --filter cadence-tokens build
@@ -88,23 +123,21 @@ jobs:
       - name: Setup test environment
         working-directory: apps/www
         env:
-          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
-          TEST_DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL: ${{ env.CI_DATABASE_URL }}
+          DATABASE_URL_AUTH: ${{ env.CI_DATABASE_URL }}
+          TEST_DATABASE_URL: ${{ env.CI_DATABASE_URL }}
         run: |
           cat > .env.local << EOF
-          DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
-          DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
-          TEST_DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
-          BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
-          NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
-          RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
-          NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-          NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
-          NEXT_PUBLIC_SANITY_API_VERSION=${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
-          SANITY_API_TOKEN=${{ secrets.SANITY_API_TOKEN }}
-          SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
+          DATABASE_URL=${{ env.CI_DATABASE_URL }}
+          DATABASE_URL_AUTH=${{ env.CI_DATABASE_URL }}
+          TEST_DATABASE_URL=${{ env.CI_DATABASE_URL }}
+          BETTER_AUTH_SECRET=${{ env.CI_BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL=${{ env.CI_APP_URL }}
+          NEXT_PUBLIC_PROJECT_URL=${{ env.CI_APP_URL }}
+          RESEND_API_KEY=${{ env.CI_RESEND_API_KEY }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID=${{ env.CI_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET=${{ env.CI_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION=${{ env.CI_SANITY_API_VERSION }}
           EOF
 
           # Setup database schema, seed test data, and verify test users
@@ -115,11 +148,11 @@ jobs:
         run: pnpm build
 
       - name: Run smoke tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           start: pnpm start
           working-directory: apps/www
-          wait-on: 'http://localhost:3000'
+          wait-on: ${{ env.CI_APP_URL }}
           wait-on-timeout: 180
           browser: chrome
           headed: false
@@ -128,18 +161,24 @@ jobs:
           config-file: cypress.config.ts
           spec: cypress/e2e/routes/public-routes.cy.ts
         env:
-          DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
-          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
-          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
-          CYPRESS_BASE_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          DATABASE_URL: ${{ env.CI_DATABASE_URL }}
+          DATABASE_URL_AUTH: ${{ env.CI_DATABASE_URL }}
+          BETTER_AUTH_SECRET: ${{ env.CI_BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL: ${{ env.CI_APP_URL }}
+          NEXT_PUBLIC_PROJECT_URL: ${{ env.CI_APP_URL }}
+          RESEND_API_KEY: ${{ env.CI_RESEND_API_KEY }}
+          # Was `secrets.NEXT_PUBLIC_PROJECT_URL` — a deployed URL. Had that secret ever
+          # been populated, Cypress would have tested the deployed site instead of the
+          # build under review, and the PR would have gone green having exercised none of
+          # its own code.
+          CYPRESS_BASE_URL: ${{ env.CI_APP_URL }}
 
   # Full test suite for main branch and manual triggers
   full-tests:
     name: 'Full E2E Tests'
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    
+
     services:
       postgres:
         image: postgres:15
@@ -156,27 +195,28 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
-      
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       - name: Install Cypress binary
         run: pnpm --filter www cypress:install
-      
+
       - name: Build packages
         run: |
           pnpm --filter cadence-tokens build
           pnpm --filter cadence-icons build
           pnpm --filter cadence-core build
 
+      # BETTER_AUTH_URL / NEXT_PUBLIC_PROJECT_URL are localhost, not the secrets they used
+      # to read: this job builds and starts its own copy of the app below, so pointing
+      # them at a deployed environment would test something we did not build.
       - name: Setup test environment
         working-directory: apps/www
         env:
@@ -189,8 +229,8 @@ jobs:
           DATABASE_URL_AUTH=postgresql://postgres:test_password@localhost:5432/test_db
           TEST_DATABASE_URL=postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
-          BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
-          NEXT_PUBLIC_PROJECT_URL=${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
+          BETTER_AUTH_URL=http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL=http://localhost:3000
           RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
           NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
@@ -216,7 +256,7 @@ jobs:
           fi
 
       - name: Run E2E tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         continue-on-error: true
         with:
           start: pnpm start
@@ -231,13 +271,17 @@ jobs:
           spec: ${{ steps.test-suite.outputs.suite == 'all' && 'cypress/e2e/**/*.cy.ts' || format('cypress/e2e/{0}/**/*.cy.ts', steps.test-suite.outputs.suite) }}
         env:
           DATABASE_URL: postgresql://postgres:test_password@localhost:5432/test_db
+          DATABASE_URL_AUTH: postgresql://postgres:test_password@localhost:5432/test_db
           BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
-          BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
-          NEXT_PUBLIC_PROJECT_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
-          CYPRESS_BASE_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_URL }}
-      
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          # Localhost, not a deployed URL — this job builds and starts its own copy of the
+          # app above, and pointing Cypress elsewhere would test something we did not build.
+          BETTER_AUTH_URL: http://localhost:3000
+          NEXT_PUBLIC_PROJECT_URL: http://localhost:3000
+          CYPRESS_BASE_URL: http://localhost:3000
+
       - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: cypress-artifacts
