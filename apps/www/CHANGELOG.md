@@ -1,5 +1,56 @@
 # www
 
+## 4.8.1
+
+### Patch Changes
+
+- b4e0250: Fix the two Sentry issues raised by the admin dashboard work: connection churn on `/admin` and a subscriber cache shape hazard.
+
+  `DOWNBEATACADEMY-4E` was filed as an N+1 query, but there is no per-row loop — `/admin` issues nine distinct queries and the repeated span is the connection acquire, one per query. The cost came from those acquires missing a warm pool: in production `/admin` averaged 30ms per `pg-pool.connect` while `GET /api/auth/[...all]` on the same pool averaged 0.23ms.
+  - `lib/db/drizzle.ts` passed a connection string straight to `drizzle()`, which builds a `pg.Pool` with zero options and so inherited pg's 30s idle timeout. Connections were dropped between page views and the next render paid a fresh TCP+TLS+auth handshake per query. The pools are now built explicitly with a 60s idle timeout, a 10s connection timeout, and `keepAlive`.
+  - There was also no `globalThis` guard, so dev HMR leaked a new pool on every edit and connections were never warm locally — the reason development connects averaged 180–260ms against the remote database versus 30ms in production. Guarded following the pattern already used in `cadence-links`.
+  - better-auth shares `authDb`, so session lookups get the warm pool too — a win on every authenticated route, not just `/admin`.
+  - The four scalar counts (`countUsers`, `countUsersSince` ×2, `activeSessionCount`) collapse into a single `dashboardStats()` round trip. Because the page fans them out through `Promise.all`, four separate queries meant four _concurrent_ acquires against an empty pool, which is what forced new physical connections. `/admin` drops from ~9 queries to ~6.
+  - `requireAdmin` / `requireAuth` are wrapped in React `cache()`. `/admin/users` guards in both the admin layout and the page itself, and each call was a full better-auth session lookup.
+
+  `DOWNBEATACADEMY-4F` (`subscribers.filter is not a function`) was already fixed, but the change that fixed it altered `listSubscribers` from returning `Subscriber[]` to `{ subscribers, error }` without changing its `unstable_cache` key. Two versions reading the same persistent cache therefore collide in both directions: old code on a new-shape entry throws exactly the reported error, and new code on an old-shape entry destructures an array into `undefined` and throws instead.
+  - The cache key is now versioned, which is what makes a rollback safe.
+  - A shared `readCache()` narrows the entry with `Array.isArray` before use, so an unexpected shape degrades into the existing error banner rather than throwing. `countSubscribers` goes through it too — it runs on the overview page, so an unguarded throw there took down the whole dashboard and not just `/admin/subscribers`.
+  - `usersOverTime` gets the same versioned-key treatment. `MetricPoint` is JSON-native so a stale entry is harmless today, but the hazard is identical if its shape ever changes.
+
+  Sentry SDK configuration, which is why both issues were raised from localhost in the first place:
+  - `sentry.edge.config.ts` existed but nothing imported it, so edge-runtime errors went unreported. `instrumentation.ts` now uses the canonical `register()` runtime split and the server init moves to `sentry.server.config.ts`.
+  - Neither server config set `environment` — only `instrumentation-client.ts` did. Both set it now.
+  - `tracesSampleRate` drops to 0.1 outside production. Sampling every local request burns quota and distorts triage: a dev machine reaches the database over the internet, so its spans run roughly an order of magnitude slower than production and trip detectors production would not.
+
+- 927c0b8: Repair the repo-wide verification loop so `lint`, `typecheck`, and `test` are trustworthy gates.
+
+  **`pnpm test` now terminates.** `www`, `cadence-core`, `cadence-core-web-components`, and `cadence-icons` defined `test` as bare `vitest` (watch mode), so the root task hung forever and no exit code was ever observed. All four now run `vitest run`, with `test:watch` kept for interactive use.
+
+  **Typechecking exists.** Every workspace gained a `typecheck` script and a matching `typecheck` task in `turbo.json`. Previously type errors only surfaced during `next build`.
+
+  **CI covers the whole monorepo.** New `ci-monorepo.yml` runs lint + typecheck + test across all workspaces. `ci-www.yml` is removed: its lint/unit jobs are superseded, and its E2E job duplicated `ci-www-e2e.yml`, so PRs touching `apps/www` ran Cypress twice.
+
+  Fixes surfaced by turning the gates on:
+  - `cms-sanity` — migrated the legacy `.eslintrc` to flat config (ESLint 9 could not read it, so `eslint .` exited 2). Corrected four `dashboardTool` widget `layout` props from `'medium'`/`'large'` to `{ width: … }`, matching `@sanity/dashboard` v5's `LayoutConfig`.
+  - `cadence-core` — the sidebar border assertion tested something jsdom cannot evaluate: jsdom does not resolve `var()`, so `border: 1px solid var(--cds-color-border-faint)` computes as `borderStyle: 'none'`. Now asserted against the declared CSS rule.
+  - `auth-permissions` — negative permission assertions ("a student cannot manage users") were type errors, because `ac.newRole()` narrows `authorize()` to the resources a role declares. Added a `denies()` helper that keeps the runtime check.
+  - `apps/auth` — added the missing `cypress` dependency and scripts; five E2E specs had been unrunnable.
+  - Removed a malformed `packages/cadence-core/.prettierrc` (`"printWidth": "80"` as a string, `tabWidht` misspelled) and a dead `.eslintrc` referencing six uninstalled plugins.
+  - Aligned pnpm on 9 across `packageManager` and both workflows (was 8 / 9 / 8).
+  - Added `.env*` to `.gitignore`; removed the stale `scripts/test-vercel-build.sh`.
+
+  Also fixed: `button.test.tsx` imported `'../Button'` where the file is `button.tsx`.
+  macOS is case-insensitive so it resolved locally; Linux CI is not, and this suite had
+  never run there before. The new workflow caught it on its first run.
+
+  Known gaps deliberately left, documented in code where they live: 14 `radio-card` tests are quarantined pending an accessibility fix to `RadioCardItem`; `cadence-core` has no lint setup; `pnpm format:check` is not yet gated in CI.
+
+- Updated dependencies [927c0b8]
+  - cadence-core@3.3.1
+  - cadence-icons@1.8.1
+  - auth-permissions@1.1.1
+
 ## 4.8.0
 
 ### Minor Changes
