@@ -11,10 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react": "^19.2.6",
+    "react": "^19.2.8",
     "react-email": "^6.1.1"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14"
+    "@types/react": "^19.2.17"
   }
 }
