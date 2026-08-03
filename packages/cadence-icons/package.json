@@ -42,8 +42,8 @@
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
     "@testing-library/react": "^16.3.2",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.1.6",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.0.1",
     "postcss": "^8.5.14",
     "postcss-nesting": "^13.0.2",
