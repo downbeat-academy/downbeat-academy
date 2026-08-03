@@ -21,12 +21,12 @@
 		"db:fix-roles": "npx tsx scripts/verify-user-roles.ts --fix"
 	},
 	"dependencies": {
-		"@better-auth/oauth-provider": "^1.6.10",
+		"@better-auth/oauth-provider": "^1.6.25",
 		"@hookform/resolvers": "^5.2.2",
 		"@radix-ui/react-tabs": "^1.1.13",
 		"@radix-ui/react-toast": "^1.2.15",
 		"auth-permissions": "workspace:^",
-		"better-auth": "^1.6.10",
+		"better-auth": "^1.6.25",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",
 		"cadence-tokens": "workspace:^",

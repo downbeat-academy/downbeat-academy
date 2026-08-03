@@ -85,7 +85,7 @@
 		"@sentry/nextjs": "^10.52.0",
 		"@vercel/og": "^0.8.6",
 		"auth-permissions": "workspace:^",
-		"better-auth": "^1.6.10",
+		"better-auth": "^1.6.25",
 		"boring-avatars": "^2.0.4",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",
