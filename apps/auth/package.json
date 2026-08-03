@@ -34,7 +34,7 @@
 		"drizzle-orm": "^0.45.2",
 		"email": "workspace:^",
 		"next": "^16.2.12",
-		"pg": "^8.20.0",
+		"pg": "^8.22.0",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"react-hook-form": "^7.75.0",
@@ -45,7 +45,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^25.6.2",
-		"@types/pg": "^8.20.0",
+		"@types/pg": "^8.20.1",
 		"@types/react": "^19.2.18",
 		"@types/react-dom": "^19.2.4",
 		"cypress": "^15.14.2",
