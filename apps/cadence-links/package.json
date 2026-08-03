@@ -28,7 +28,7 @@
 		"date-fns": "^4.1.0",
 		"drizzle-orm": "^0.45.2",
 		"nanoid": "^5.1.11",
-		"next": "^16.2.6",
+		"next": "^16.2.12",
 		"pg": "^8.20.0",
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",
@@ -44,7 +44,7 @@
 		"@types/react-dom": "^19.1.6",
 		"drizzle-kit": "^0.31.10",
 		"eslint": "^9.39.2",
-		"eslint-config-next": "^16.2.6",
+		"eslint-config-next": "^16.2.12",
 		"typescript": "^5.9.3",
 		"vitest": "^4.1.6"
 	}
