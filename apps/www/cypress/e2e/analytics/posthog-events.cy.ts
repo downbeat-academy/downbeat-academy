@@ -22,26 +22,62 @@
  * depends on how PostHog happens to encode a payload this month.
  */
 
+type CaptureCall = [event: string, properties?: Record<string, unknown>]
+
 type PostHogWindow = Window & {
 	posthog?: {
 		__loaded?: boolean
 		capture: (event: string, properties?: Record<string, unknown>) => void
 	}
+	__captureCalls?: CaptureCall[]
 }
 
-/** Spies on the live SDK instance. Must run after the page has loaded. */
-const spyOnCapture = () =>
-	cy.window().then((win) => {
-		const posthog = (win as PostHogWindow).posthog
+/**
+ * Records every `capture` call, installed *before* the page script runs.
+ *
+ * Attaching a spy after load does not work for content events: they fire from a
+ * `useEffect` on mount, so they are already gone by the time the test can reach
+ * `window`. Worse, whether that is even possible depends on how the user got
+ * there — the articles index navigates with a full document load, which
+ * discards any spy along with the old document. (That cost a CI run: the spy
+ * recorded `$pageleave` and nothing else.)
+ *
+ * Defining the property up front means the wrapper is in place the instant
+ * `instrumentation-client.ts` assigns `window.posthog`, regardless of
+ * navigation type. Deliberately plain JS — Cypress commands must not be
+ * invoked inside `onBeforeLoad`.
+ */
+const installCaptureRecorder = (win: Window) => {
+	const calls: CaptureCall[] = []
+	;(win as PostHogWindow).__captureCalls = calls
 
-		expect(posthog, 'posthog should be initialised and exposed in debug mode').to
-			.exist
+	let instance: PostHogWindow['posthog']
 
-		cy.spy(posthog!, 'capture').as('capture')
+	Object.defineProperty(win, 'posthog', {
+		configurable: true,
+		get: () => instance,
+		set: (value: NonNullable<PostHogWindow['posthog']>) => {
+			instance = value
+
+			const original = value.capture.bind(value)
+			value.capture = (event, properties) => {
+				calls.push([event, properties])
+				return original(event, properties)
+			}
+		},
 	})
+}
+
+const visitRecording = (url: string) =>
+	cy.visit(url, { onBeforeLoad: installCaptureRecorder })
+
+const capturedCalls = () =>
+	cy.window().its('__captureCalls') as Cypress.Chainable<CaptureCall[]>
 
 const expectCaptured = (event: string) =>
-	cy.get('@capture').should('have.been.calledWith', event)
+	capturedCalls().should((calls) => {
+		expect(calls.map(([name]) => name)).to.include(event)
+	})
 
 describe('PostHog analytics', () => {
 	beforeEach(() => {
@@ -105,34 +141,51 @@ describe('PostHog analytics', () => {
 
 	describe('content events', () => {
 		it('captures article_viewed with a real slug and title', () => {
+			// Take a real slug from the index, then load that article directly
+			// with the recorder installed. Going via a click would couple this to
+			// whether the index happens to link client-side or with a full load.
 			cy.visit('/articles')
-			spyOnCapture()
+			cy.get('a[href^="/articles/"]')
+				.first()
+				.invoke('attr', 'href')
+				.then((href) => {
+					visitRecording(href as string)
 
-			cy.get('a[href^="/articles/"]').first().click()
-			cy.url().should('match', /\/articles\/.+/)
+					expectCaptured('article_viewed')
 
-			expectCaptured('article_viewed')
+					capturedCalls().should((calls) => {
+						const [, properties] =
+							calls.find(([name]) => name === 'article_viewed') ?? []
 
-			cy.get('@capture').should((spy) => {
-				const call = (spy as unknown as sinon.SinonSpy)
-					.getCalls()
-					.find((c) => c.args[0] === 'article_viewed')
-
-				// An event arriving with an empty slug is as useless as one that
-				// never arrives, and reports built on it would look plausible.
-				expect(call?.args[1]?.slug, 'slug').to.be.a('string').and.not.be.empty
-				expect(call?.args[1]?.title, 'title').to.be.a('string').and.not.be.empty
-			})
+						// An event arriving with an empty slug is as useless as one
+						// that never arrives, and reports built on it would look
+						// perfectly plausible.
+						expect(properties?.slug, 'slug').to.be.a('string').and.not.be.empty
+						expect(properties?.title, 'title').to.be.a('string').and.not.be
+							.empty
+					})
+				})
 		})
 
 		it('captures handbook_page_viewed with a real slug and title', () => {
 			cy.visit('/handbook')
-			spyOnCapture()
+			cy.get('a[href^="/handbook/"]')
+				.first()
+				.invoke('attr', 'href')
+				.then((href) => {
+					visitRecording(href as string)
 
-			cy.get('a[href^="/handbook/"]').first().click()
-			cy.url().should('match', /\/handbook\/.+/)
+					expectCaptured('handbook_page_viewed')
 
-			expectCaptured('handbook_page_viewed')
+					capturedCalls().should((calls) => {
+						const [, properties] =
+							calls.find(([name]) => name === 'handbook_page_viewed') ?? []
+
+						expect(properties?.slug, 'slug').to.be.a('string').and.not.be.empty
+						expect(properties?.title, 'title').to.be.a('string').and.not.be
+							.empty
+					})
+				})
 		})
 
 		it('captures a pageview on client-side navigation', () => {
@@ -141,8 +194,7 @@ describe('PostHog analytics', () => {
 			// preset — which cannot be determined by reading the config, only
 			// observed. If this fails, SPA navigation is invisible in reporting
 			// and needs an explicit usePathname-driven capture.
-			cy.visit('/')
-			spyOnCapture()
+			visitRecording('/')
 
 			cy.get('[data-testid="nav-articles"]').click()
 			cy.url().should('include', '/articles')
