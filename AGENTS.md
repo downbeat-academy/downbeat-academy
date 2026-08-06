@@ -7,7 +7,8 @@ Each app and package also has its own `AGENTS.md` with local detail. Read the on
 the workspace you are changing — this file covers only what is true repo-wide.
 
 Deep dives live in [`docs/`](./docs/README.md). Start with
-[`docs/architecture/monorepo.md`](./docs/architecture/monorepo.md).
+[`docs/architecture/monorepo.md`](./docs/architecture/monorepo.md). For anything with a
+visual surface, start instead with [`DESIGN.md`](./DESIGN.md).
 
 ---
 
@@ -238,4 +239,7 @@ commit `.env*` (now gitignored). `.mcp.json` is gitignored and holds local crede
 - [`docs/architecture/content.md`](./docs/architecture/content.md) — Sanity → GROQ → route → Portable Text
 - [`docs/architecture/design-system.md`](./docs/architecture/design-system.md) — tokens → core → apps
 - [`docs/architecture/infrastructure.md`](./docs/architecture/infrastructure.md) — Railway, Cloudflare, Infisical, observability
+- [`DESIGN.md`](./DESIGN.md) — the ladder for making a visual decision
+- [`docs/design/design-language.md`](./docs/design/design-language.md) — which token to use and why: ramps, semantic families, contrast, space, motion, iconography
+- [`docs/design/figma-workflow.md`](./docs/design/figma-workflow.md) — how design and code stay in sync
 - [`docs/adr/`](./docs/adr/) — architecture decisions and the known-gaps register

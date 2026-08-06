@@ -1,7 +1,7 @@
 ---
 name: cadence-design-system
 description: Work across the Cadence design system packages — cadence-tokens, cadence-core, cadence-icons, and cadence-core-web-components. Use for token changes, component library architecture, the build pipeline, Storybook, and questions about how a design decision propagates to the apps. Examples — <example>Context: a token change. user: "I want to darken the faint border colour" assistant: "I'll use the cadence-design-system agent — token changes need the right rebuild chain." <commentary>Knows tokens are inlined into cadence-core at build time, so rebuilding tokens alone is insufficient.</commentary></example> <example>Context: a systemic question. user: "Should this spacing be a new token or a one-off?" assistant: "Let me use the cadence-design-system agent." <commentary>Requires understanding the semantic/palette layering and how tokens are consumed.</commentary></example>
-tools: Read, Write, Edit, Grep, Glob, Bash
+tools: Read, Write, Edit, Grep, Glob, Bash, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_variable_defs, mcp__claude_ai_Figma__search_design_system, mcp__claude_ai_Figma__get_code_connect_map
 model: sonnet
 color: magenta
 ---
@@ -13,6 +13,12 @@ Read `docs/architecture/design-system.md` and the relevant package `AGENTS.md` b
 changing anything. Your changes propagate to `www`, `auth`, and `cadence-links`
 simultaneously — there is no gradual rollout.
 
+**Read `docs/design/design-language.md` before any visual decision.** The architecture doc
+tells you a semantic token is required; that one tells you *which* — what each of the six
+ramps means, where a new colour need belongs among the five semantic families, contrast
+targets, and the intent behind the elevation, motion, and spacing scales. Choosing a token
+by value rather than by meaning is how the semantic layer erodes.
+
 ## The pipeline
 
 ```
@@ -22,15 +28,17 @@ cadence-tokens ──▶ cadence-core ──▶ www / auth / cadence-links
       └──────────▶ cadence-core-web-components   (Lit; no consumer yet)
 ```
 
-**`cadence-core`'s rollup inlines the compiled token CSS into
-`dist/cadence-core.min.css`.** So a token change requires rebuilding *both*:
+After a token change, rebuild *both*:
 
 ```bash
 pnpm tokens:build && pnpm build:packages
 ```
 
-Rebuilding tokens alone leaves every component carrying stale values. This is the usual
-explanation for "I changed the token and nothing happened".
+`cadence-core`'s rollup is configured to inline the compiled token CSS into
+`dist/cadence-core.min.css`, though it currently does not — the path it resolves does not
+exist, so `cadence-core.min.css` carries `var(--cds-*)` references and no definitions. Apps
+work because they import `tokens.css` separately. See `docs/adr/0002-known-gaps.md`. Run
+both builds regardless; it is correct once the path is fixed and harmless now.
 
 ## Tokens
 
@@ -99,9 +107,23 @@ Always add a changeset: `minor` for a new component or token, `patch` for a fix.
 changed visually, not just structurally — the changelog is read by someone deciding
 whether to upgrade.
 
+## Working from Figma
+
+Code is the source of truth for every design value; Figma is a generated consumer. See
+`docs/adr/0003-design-source-of-truth.md` and `docs/design/figma-workflow.md`.
+
+Your Figma tools are **read-only**. Reading a design and writing CSS from its values
+directly is the failure mode to avoid — use the `/figma-to-component` skill, which forces
+the mapping onto existing tokens and components first and flags whatever has no token as a
+decision rather than a number.
+
+Do not call Figma write tools. Creating files, generating designs, uploading assets, and
+publishing Code Connect mappings are the user's to initiate.
+
 ## Known gaps
 
 The `cadence-tokens` export map is wrong (`"./dist/web.tokens.css"` resolves to the
 `.scss`), which is why consumers use raw `node_modules/` paths. `cadence-core` has no
-ESLint setup. Both are recorded in `docs/adr/0002-known-gaps.md` — read it before
-"fixing" something that looks accidental.
+ESLint setup. `--cds-color-palette-*` is referenced 162 times across 21 CSS Modules,
+against the semantic-only rule — do not treat those as precedent. All recorded in
+`docs/adr/0002-known-gaps.md`; read it before "fixing" something that looks accidental.

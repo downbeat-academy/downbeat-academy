@@ -16,6 +16,17 @@ These documents explain *why* things are the way they are.
 | [`architecture/design-system.md`](./architecture/design-system.md) | Tokens → components → apps, the build pipeline, styling conventions |
 | [`architecture/infrastructure.md`](./architecture/infrastructure.md) | Railway, Cloudflare, Infisical, and the observability stack |
 
+## Design
+
+[`design/`](./design/) covers design *intent* — which token to use and why — where
+`architecture/design-system.md` covers the mechanism.
+
+| Document | Covers |
+| --- | --- |
+| [`design/design-language.md`](./design/design-language.md) | The palette ramps and semantic families, contrast targets, space, layout, elevation, motion, typography, iconography |
+| [`design/figma-workflow.md`](./design/figma-workflow.md) | The design ↔ code pipeline, direction of truth, and Figma plan-tier constraints |
+| [`design/component-inventory.md`](./design/component-inventory.md) | Component ↔ Figma variant mapping; the interim stand-in for Code Connect |
+
 ## Decisions
 
 [`adr/`](./adr/) holds architecture decision records.
@@ -24,6 +35,7 @@ These documents explain *why* things are the way they are.
 | --- | --- |
 | [`adr/0001-record-architecture-decisions.md`](./adr/0001-record-architecture-decisions.md) | Why this repo keeps ADRs, and the format |
 | [`adr/0002-known-gaps.md`](./adr/0002-known-gaps.md) | **The known-gaps register.** Read before "fixing" anything that looks broken |
+| [`adr/0003-design-source-of-truth.md`](./adr/0003-design-source-of-truth.md) | Code is authoritative for design values; Figma and Notion boundaries |
 
 ## Workflows
 

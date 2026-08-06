@@ -3,6 +3,10 @@
 Four packages, one pipeline: tokens define the values, components consume them, apps
 consume the components.
 
+This file covers the **mechanism** — what holds what, in which order it builds, and the
+conventions for changing it. For the **intent** — which token to use and why — read
+[`../design/design-language.md`](../design/design-language.md).
+
 ```
 cadence-tokens ──▶ cadence-core ──▶ www / auth / cadence-links
       │                 ▲
@@ -186,6 +190,11 @@ When adding or changing a component:
 
 ## Related
 
+- [`../design/design-language.md`](../design/design-language.md) — what each ramp and
+  semantic family *means*, and how to choose between them
+- [`../design/figma-workflow.md`](../design/figma-workflow.md) — the design ↔ code pipeline
+- [`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md) — why
+  the token files are authoritative and Figma is generated
 - [`monorepo.md`](./monorepo.md) — build order and why tokens must precede core
 - [`../proposals/tokenization-proposal.md`](../proposals/tokenization-proposal.md) —
   planned shadow, border-width, easing, overlay, icon-size, breakpoint and z-index tokens

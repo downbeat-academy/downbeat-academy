@@ -147,6 +147,94 @@ API routes, and configure the Studio's presentation tool to point at them. Then 
 the legacy monolith `src/lib/sanity/sanity.queries.ts`, which duplicates the article
 queries that already live in `src/lib/queries/`.
 
+### Four status colour pairings fail WCAG AA
+
+**What.** Measured 2026-08-05 against `packages/cadence-tokens/tokens/color/`. The neutral
+foregrounds are all comfortably safe; the status roles are not:
+
+| Pairing | Ratio | Needs |
+| --- | --- | --- |
+| `foreground.warning` on any light ground | 1.9 | 4.5 text / 3.0 non-text — fails both |
+| `foreground.success` on any light ground | 2.3 | 4.5 / 3.0 — fails both |
+| `foreground.critical` on any light ground | 3.2 | 4.5 for text — fails |
+| `foreground.interactive` on any light ground | 4.1 | 4.5 for text — fails |
+| `foreground.high-contrast` on `surface.warning` | 3.7 | 4.5 for text — fails |
+| `foreground.high-contrast` on `surface.success` | 3.7 | 4.5 for text — fails |
+
+`foreground.brand` (9.1) and `foreground.high-contrast` on `surface.brand` (15.3),
+`surface.interactive` (5.6), and `surface.critical` (4.8) pass.
+
+**Why it matters.** `foreground.interactive` is the link colour, so the most common
+coloured text on the site is below AA. `warning` and `success` fail even the 3:1 non-text
+bar, which means they are not usable as icon or border colours either — a status
+communicated by those colours alone is not communicated at all to a significant number of
+readers.
+
+**Why it is still like this.** The palette was tuned for hue relationships across six
+ramps at consistent steps, and contrast was not measured per semantic pairing afterwards.
+Nothing checks it: `pnpm verify` has no contrast step, and jsdom cannot resolve `var()`, so
+a unit test could not check it either.
+
+**To fix.** Retune the affected semantic tokens — most likely mapping the failing
+`foreground.*` roles to a darker step (600 or 700) and the failing `surface.*` roles
+darker, rather than changing the palette itself. Verify every pairing after, not just the
+ones changed. Longer term, add a contrast check over the built `tokens.css` to CI; it is
+one of the few design properties that can be tested deterministically. Do not work around
+individual failures in component CSS.
+
+### `cadence-core` references palette tokens directly in 21 CSS Modules
+
+**What.** `--cds-color-palette-*` appears 162 times across 21 of the 51 CSS Modules in
+`packages/cadence-core`, against the rule — stated in the root `AGENTS.md`,
+`docs/architecture/design-system.md`, `packages/cadence-tokens/AGENTS.md`, and the
+`/new-component` skill — that components consume semantic tokens only. Affected:
+`audio-player` (3 files), `badge`, `blockquote`, `button`, `data-table`, `dialog`,
+`drawer`, `dropdown-menu`, `hover-card`, `link`, `sidebar`, `summary`, `tabs`, `toast`,
+and `form/{checkbox,checkbox-card,radio,radio-card,switch}`.
+
+**Why it matters.** The semantic layer exists so a palette re-tune or a theme can change
+values in one place. A component bound to a palette step will not follow either. This is
+the single largest obstacle to the theming architecture in
+`docs/proposals/tokenization-proposal.md` — dark mode requires the indirection these files
+skip. It also means generating a Figma library from these components would bind Figma
+variants to raw colours rather than to semantic variables.
+
+**Why it is still like this.** The semantic layer was extended after several of these
+components were written, and nothing enforces the rule — `cadence-core` has no linting, so
+there is no check that would catch a new occurrence either.
+
+**To fix.** Per component, map each palette reference to the semantic role it is standing
+in for, adding semantic tokens where none exists (`badge`'s `light` style needs
+surface-tint roles that the system does not currently have). Then add a stylelint rule
+banning `--cds-color-palette-*` outside `cadence-tokens`, which depends on the
+`cadence-core` linting gap above. Do this per component, not in one sweep — several
+require a design decision, not a rename.
+
+### `cadence-core`'s rollup does not inline token CSS, though the docs say it does
+
+**What.** `packages/cadence-core/rollup.config.js` resolves
+`../cadence-tokens/dist/tokens.css`. The real path is
+`../cadence-tokens/dist/web/tokens.css`; `dist/` contains only `web/`. The token CSS is
+therefore never inlined — `dist/cadence-core.min.css` contains 135 `var(--cds-*)`
+references and zero `--cds-*` definitions.
+
+**Why it matters.** Three documents assert the opposite.
+`docs/architecture/design-system.md` and `packages/cadence-tokens/AGENTS.md` both explain
+that a token change requires rebuilding `cadence-core` *because* tokens are inlined — the
+instruction is harmless but the reason given is wrong. More consequentially,
+`packages/cadence-core/README.md` advertises importing `cadence-core/styles.css` on its
+own, which yields completely unstyled components. Apps work only because
+`apps/www/src/styles/index.css` and its equivalents import `tokens.css` on the line above.
+
+**Why it is still like this.** It fails silently and in the direction that looks fine:
+every existing consumer already imports both files.
+
+**To fix.** Correct the path in `rollup.config.js`, rebuild, and confirm
+`dist/cadence-core.min.css` contains a `:root` block. Then the three documents become
+true. Best done together with the export-map fix below, since both change how the package
+is consumed. Do not fix the docs to match the bug — the inlining is the intended
+behaviour.
+
 ---
 
 ## Severity: low
@@ -224,10 +312,43 @@ not marked `private`, and changesets bumps their versions, but `release.yml` pas
 and coordination. Recorded only so nobody "fixes" it by wiring up a publish step that
 was never wanted.
 
+### Two `transition` tokens carry the same duration
+
+**What.** In `packages/cadence-tokens/tokens/animation/transition.json`, `transition.09`
+and `transition.03` are both `100ms ease-in-out`. The ladder is otherwise monotonic, so
+`09` reads as the slowest step and behaves as one of the fastest.
+
+**Why it matters.** Only mildly — nothing is broken, but anything reaching for `09`
+expecting the top of the scale gets the wrong feel, and the duplicate makes the scale
+untrustworthy to read.
+
+**To fix.** Either give `09` a distinct duration above `08`, or remove it and migrate any
+consumer. Check usage before changing the value: a consumer relying on the current
+behaviour would change visibly.
+
+### The `transition` and `easing` tokens do not compose
+
+**What.** `transition.*` tokens are complete `all <duration> ease-in-out` shorthands with
+the curve baked in; `easing.*` tokens are standalone curves. There is no way to use an
+`easing` token with a `transition` token without overriding the shorthand.
+
+**Why it is like this.** The `transition` ladder predates the `easing` tokens, which were
+added by `docs/proposals/tokenization-proposal.md`.
+
+**To fix.** Split the ladder into `duration.*` tokens and compose duration, property, and
+easing at the call site — the direction the tokenization proposal already points. Until
+then, `docs/design/design-language.md` documents the workaround.
+
+**Note.** The `@divriots/style-dictionary-to-figma` devDependency in `cadence-tokens` is
+unused and unwired — that is not a gap, it is the intended Figma export target, pending
+the work in `docs/design/figma-workflow.md`.
+
 ---
 
 ## Related
 
 - [`0001-record-architecture-decisions.md`](./0001-record-architecture-decisions.md)
+- [`0003-design-source-of-truth.md`](./0003-design-source-of-truth.md)
 - [`../architecture/monorepo.md`](../architecture/monorepo.md)
+- [`../design/design-language.md`](../design/design-language.md)
 - [`../../AGENTS.md`](../../AGENTS.md)
