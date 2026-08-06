@@ -116,7 +116,7 @@ repo; see [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 
 PostHog and Fathom currently overlap. Consolidating onto PostHog is under consideration.
 
-Sentry and PostHog are both initialised in the same file (`instrumentation-client.ts`),
+Sentry and PostHog are both initialized in the same file (`instrumentation-client.ts`),
 which is easy to miss when debugging one of them.
 
 ## CI

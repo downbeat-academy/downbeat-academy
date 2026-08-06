@@ -68,7 +68,7 @@ These carry real variant surface and are what most designs are composed from.
 | `form/select`, `form/checkbox`, `form/radio`, `form/switch`, `form/textarea` | state axes only (checked, disabled, invalid) | _tbd_ |
 
 > `form/radio-card` has a known accessibility defect with 14 quarantined tests. Do not
-> treat its current behaviour as the specification — see
+> treat its current behavior as the specification — see
 > [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 
 ---
@@ -77,7 +77,7 @@ These carry real variant surface and are what most designs are composed from.
 
 | Component | Why |
 | --- | --- |
-| `flex` | `direction`, `alignItems`, `alignContent`, `justifyItems` — these are Figma auto-layout properties, not variants. Modelling them as a component set produces a combinatorial explosion that describes nothing |
+| `flex` | `direction`, `alignItems`, `alignContent`, `justifyItems` — these are Figma auto-layout properties, not variants. Modeling them as a component set produces a combinatorial explosion that describes nothing |
 | `grid` | Same |
 | `section-container`, `section-title` | Page-composition wrappers. Use them in Figma page layouts; do not make them library components |
 
@@ -86,16 +86,16 @@ These carry real variant surface and are what most designs are composed from.
 ## Overlays and interactive surfaces
 
 Generate as component sets only when a static representation is genuinely useful. Their
-value in Figma is the *content* frame, not the trigger behaviour.
+value in Figma is the *content* frame, not the trigger behavior.
 
 | Component | Variant axes | Note |
 | --- | --- | --- |
 | `dialog` | width from `content.width.dialog` | `overlay` elevation and z-index |
 | `drawer` | `side` → right, left (`DrawerSide`) | `overlay` elevation |
-| `toast` | `variant` → default, success, error, warning · `direction` → from-right, from-bottom | Note: `variant` uses `error`, while the colour system's role is `critical` |
+| `toast` | `variant` → default, success, error, warning · `direction` → from-right, from-bottom | Note: `variant` uses `error`, while the color system's role is `critical` |
 | `dropdown-menu` | item states only | `dropdown` z-index |
 | `hover-card`, `tooltip` | none | `popover` elevation |
-| `tabs` | `orientation` → vertical, horizontal · `dir` → ltr, rtl · `activationMode` → automatic, manual | `activationMode` is behaviour, not a visual variant — omit from Figma |
+| `tabs` | `orientation` → vertical, horizontal · `dir` → ltr, rtl · `activationMode` → automatic, manual | `activationMode` is behavior, not a visual variant — omit from Figma |
 | `sidebar` | width from `content.width.sidebar` | |
 | `data-table` | `alignment` → start, center, end · `backgroundColor` → none, primary | Wraps `@tanstack/react-table`; the Figma version is presentational only |
 | `brand` | none — SVG logo components | Ship as Figma assets, not a variant set |
@@ -111,7 +111,7 @@ value in Figma is the *content* frame, not the trigger behaviour.
 and five `form/` controls (`checkbox`, `checkbox-card`, `radio`, `radio-card`, `switch`).
 
 This matters here specifically: **a component that references a palette token generates a
-Figma component bound to a raw colour rather than to a semantic variable.** The generated
+Figma component bound to a raw color rather than to a semantic variable.** The generated
 library would encode the drift and make it look intentional.
 
 Two options when generating, both acceptable:
@@ -127,12 +127,12 @@ Do not bind to a palette variable to match the code. Tracked in
 When mapping, keep the **code** name and note the divergence rather than renaming either
 side. Renaming to make the map tidy breaks the mapping it exists to record.
 
-- `toast` uses `variant="error"`; the colour system's semantic role is `critical`. Both are correct in their own layer.
+- `toast` uses `variant="error"`; the color system's semantic role is `critical`. Both are correct in their own layer.
 - `badge` uses `type="info"` and `type="highlight"`; neither is a `color.foreground.*` role. They map to `interactive` and `brand` respectively.
-- `button` uses `variant="destructive"`; the colour role is `critical`.
+- `button` uses `variant="destructive"`; the color role is `critical`.
 
 ## Related
 
 - [`figma-workflow.md`](./figma-workflow.md) — how this file becomes Code Connect
-- [`design-language.md`](./design-language.md) — what the colour roles referenced above mean
+- [`design-language.md`](./design-language.md) — what the color roles referenced above mean
 - [`../architecture/design-system.md`](../architecture/design-system.md) — the barrel export rule and component anatomy

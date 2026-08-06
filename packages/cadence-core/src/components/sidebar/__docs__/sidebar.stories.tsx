@@ -265,9 +265,9 @@ export const CollapsedAsChild: Story = {
 						Handbook
 					</a>
 				</SidebarLink>
-				<SidebarLink asChild label="Help centre" leadingIcon={<QuestionCircleOutline />}>
+				<SidebarLink asChild label="Help center" leadingIcon={<QuestionCircleOutline />}>
 					<a href="#help" data-mock-router-link="true">
-						<span>Help centre</span>
+						<span>Help center</span>
 					</a>
 				</SidebarLink>
 			</SidebarSection>

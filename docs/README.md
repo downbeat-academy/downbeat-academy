@@ -54,6 +54,9 @@ These documents explain *why* things are the way they are.
 ## Writing docs here
 
 - One topic per file, kebab-case names.
+- **US English** — `color`, not `colour`; `behavior`, `license`, `optimize`. The code is
+  US English (`--cds-color-*`, `currentColor`), so prose that diverges cannot be grepped
+  alongside it. See [`../AGENTS.md`](../AGENTS.md#spelling-us-english).
 - Explain *why*, not just *what* — the code already says what.
 - State facts that can be checked against the code, and give the path when you do.
 - If something is broken or deliberately unfinished, record it in the known-gaps

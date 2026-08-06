@@ -53,7 +53,7 @@ email ────────────→ auth only                     (raw
 cms-sanity ── no workspace dependencies at all
 ```
 
-Three consequences worth internalising:
+Three consequences worth internalizing:
 
 1. **`cms-sanity` is fully isolated.** It does not use Cadence. Changing a component
    cannot break the Studio, and vice versa. Its coupling to `www` is by *convention* —
@@ -139,12 +139,12 @@ Do not assume a green `verify` means everything is checked:
 | You want to… | Go to | Then |
 | --- | --- | --- |
 | Add or change a UI component | `packages/cadence-core/src/components/` | Add to the `src/index.ts` barrel, `pnpm core:build`, check Storybook |
-| Change a colour, space, radius, type scale | `packages/cadence-tokens/tokens/` | `pnpm tokens:build && pnpm build:packages` |
+| Change a color, space, radius, type scale | `packages/cadence-tokens/tokens/` | `pnpm tokens:build && pnpm build:packages` |
 | Add an icon | `packages/cadence-icons/src/assets/` (drop the SVG) | `pnpm icons:build` |
 | Add or change a content type | `apps/cms-sanity/schemas/` | Register in `schemas/index.ts`, add to `deskStructure.ts`, then add the GROQ query in `www` |
 | Render new content on the site | `apps/www/src/lib/queries/`, then the route | Wire Portable Text types in `src/components/rich-text/components.tsx` |
 | Change roles or permissions | `packages/auth-permissions/src/` | Affects all three Next apps at once — no rebuild, but re-run `pnpm typecheck` |
-| Change sign-in / OAuth behaviour | `apps/auth/src/lib/auth/auth.ts` | Consumers must keep matching `genericOAuth` config |
+| Change sign-in / OAuth behavior | `apps/auth/src/lib/auth/auth.ts` | Consumers must keep matching `genericOAuth` config |
 | Change a transactional email | `packages/email/emails/` | `pnpm email:dev` to preview. Note: `www` does **not** use this package |
 
 **Do not** add a component to an app when Cadence should own it. If `www` needs a
@@ -169,13 +169,35 @@ content?"**
 Never mix the two within one surface. An expressive headline above productive-body form
 labels in a settings panel is a bug.
 
+### Spelling: US English
+
+**Write `color`, not `colour`.** US English throughout — prose, comments, commit messages,
+PR descriptions, docs, skills, and agent definitions, not just code.
+
+This is not a style preference. The code is US English and cannot be otherwise: the CSS
+property is `color`, the tokens are `--cds-color-*`, the props are `color` and
+`backgroundColor`, and `currentColor` is a keyword. Prose that says "colour" cannot be
+grepped alongside the thing it describes, and an agent that reads "colour" in a doc will
+write `--cds-colour-*` in a stylesheet.
+
+The same applies to every other British form: `behavior`, `license`, `optimize`,
+`initialize`, `analyze`, `recognize`, `organize`, `normalize`, `center`, `catalog`,
+`modeling`, `labeled`.
+
+Two exceptions, both about not breaking identifiers:
+
+- **Never rewrite an identifier to match.** `aria-labelledby` is an ARIA attribute and
+  `@img/colour` is a real npm package. Spelling is a rule about prose.
+- **Never edit a `CHANGELOG.md`.** They are generated records of what was written at the
+  time.
+
 ### Components
 
 - Prefer a `cadence-core` component over hand-rolled markup, always.
 - Folder-per-component: `x.tsx`, `x.module.css`, `types.ts`, `index.ts`, `__test__/`,
   `__docs__/`.
 - Styling is CSS Modules referencing `--cds-*` custom properties. Never hardcode a
-  colour, spacing value, or font stack.
+  color, spacing value, or font stack.
 - A new component is invisible to consumers until it is re-exported from
   `packages/cadence-core/src/index.ts` — both the component *and* its `*Props` type.
 

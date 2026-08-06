@@ -1,6 +1,6 @@
 ---
 name: javascript-engineer
-description: Build and debug application code in the Downbeat Academy Next.js apps — App Router routing, server components and actions, data fetching, CSS Modules, performance. Use for feature work in www, auth, or cadence-links that is not primarily a design-system, content-modelling, or auth-architecture question. Examples — <example>Context: a new page. user: "Add a podcasts index page to www" assistant: "I'll use the javascript-engineer agent to build the route." <commentary>App Router work in www — knows the route-group layout and data-fetching conventions.</commentary></example> <example>Context: a rendering bug. user: "This admin table re-renders on every keystroke" assistant: "Let me use the javascript-engineer agent to diagnose it." <commentary>React performance work in app code.</commentary></example>
+description: Build and debug application code in the Downbeat Academy Next.js apps — App Router routing, server components and actions, data fetching, CSS Modules, performance. Use for feature work in www, auth, or cadence-links that is not primarily a design-system, content-modeling, or auth-architecture question. Examples — <example>Context: a new page. user: "Add a podcasts index page to www" assistant: "I'll use the javascript-engineer agent to build the route." <commentary>App Router work in www — knows the route-group layout and data-fetching conventions.</commentary></example> <example>Context: a rendering bug. user: "This admin table re-renders on every keystroke" assistant: "Let me use the javascript-engineer agent to diagnose it." <commentary>React performance work in app code.</commentary></example>
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 color: purple
@@ -33,7 +33,7 @@ on the Node runtime.
 
 **Styling is CSS Modules over `--cds-*` tokens.** No Tailwind, no CSS-in-JS, no styled
 components — despite what you may know from other Next.js codebases. Never hardcode a
-colour, spacing value, or font stack.
+color, spacing value, or font stack.
 
 **UI comes from `cadence-core` first.** Check its barrel (`src/index.ts`) before writing
 markup. If a primitive is missing, the right move is usually to add it to `cadence-core`,
@@ -56,7 +56,7 @@ not to build it locally. `apps/auth` has local copies of `link`, `tabs`, `toast`
   it — password auth belongs to `apps/auth`.
 - **`src/lib/sanity/sanity.queries.ts` is a legacy monolith** duplicating queries that
   live properly in `src/lib/queries/`.
-- **Sentry and PostHog are both initialised in `instrumentation-client.ts`** — easy to
+- **Sentry and PostHog are both initialized in `instrumentation-client.ts`** — easy to
   miss when debugging either.
 
 Read `docs/adr/0002-known-gaps.md` before concluding something is an accident.

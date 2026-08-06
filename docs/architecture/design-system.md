@@ -29,7 +29,7 @@ Two outputs into `dist/web/`: `tokens.css` (custom properties) and `tokens.scss`
 `elevation`, `focus`, `radii`, `scale`, `size`, `state`, `typography` (font-family,
 font-size, line-height), `z-index`.
 
-### The colour layering matters
+### The color layering matters
 
 `tokens/color/palette.json` holds raw numeric ramps — `blackberry.400`, `violet.700`, and
 so on. The other five files (`foreground`, `surface`, `border`, `page`, `overlay`) are the
@@ -169,7 +169,7 @@ Two families. Choose by asking **"is this app chrome, or is this content?"**
 | Token | `--cds-typography-font-family-productive-{body,headline}` | `--cds-typography-font-family-expressive-{body,headline}` |
 | `<Text type>` | `productive-body`, `productive-headline` | `expressive-body`, `expressive-headline` |
 | Use for | Dashboards, forms, buttons, tables, navigation, admin, settings, microcopy | Marketing headlines, heroes, article/handbook/lexicon bodies, quotes |
-| Optimised for | Density and legibility | Voice and craft |
+| Optimized for | Density and legibility | Voice and craft |
 
 Productive is the default for anything utilitarian. **Never mix the two inside one
 surface** — an expressive headline over productive-body form labels in a settings panel
@@ -181,8 +181,8 @@ When adding or changing a component:
 
 - [ ] Folder-per-component layout, including `__test__/` and `__docs__/`
 - [ ] Exported from `src/index.ts` — component *and* `*Props` type
-- [ ] CSS Module only; every value a `--cds-*` token, no hardcoded colours or spacing
-- [ ] Semantic colour tokens, never palette tokens
+- [ ] CSS Module only; every value a `--cds-*` token, no hardcoded colors or spacing
+- [ ] Semantic color tokens, never palette tokens
 - [ ] Correct type family for the surface
 - [ ] Keyboard accessible and announced correctly — verify with a real role query in the test
 - [ ] `pnpm core:build` and check it in Storybook

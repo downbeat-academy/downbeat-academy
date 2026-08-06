@@ -42,10 +42,10 @@ Only what genuinely has no existing component moves to step 5.
 
 ## 3. Map every value to a semantic token
 
-For each colour, spacing, radius, shadow, duration, and type size in the design, find the
+For each color, spacing, radius, shadow, duration, and type size in the design, find the
 token whose **meaning** matches — not merely the token whose value is closest.
 
-- Colour → the semantic role, using the five families in `design-language.md`. `--cds-color-foreground-strong`, never `--cds-color-palette-*`. A palette reference in component CSS is a defect.
+- Color → the semantic role, using the five families in `design-language.md`. `--cds-color-foreground-strong`, never `--cds-color-palette-*`. A palette reference in component CSS is a defect.
 - Spacing, gap, padding → a `scale` step. Never interpolate between steps.
 - Radius → a `radii` step, chosen by how soft the component should feel.
 - Shadow → an `elevation` step, chosen by what the element *is* (resting, lifted, out of flow), and paired with the matching `z-index` role.
@@ -87,7 +87,7 @@ pnpm verify
 pnpm core:storybook      # or pnpm www:dev — look at it against the design
 ```
 
-Check by hand: no hardcoded colour, spacing, radius, or font stack in any new CSS Module;
+Check by hand: no hardcoded color, spacing, radius, or font stack in any new CSS Module;
 semantic tokens only; correct type family for the surface; keyboard operable.
 
 ## Output format

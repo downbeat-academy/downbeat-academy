@@ -12,7 +12,7 @@ by three Next apps. None of it originated in a design tool — the last Figma de
 of record was retired in 2021.
 
 Design tooling is now being added: a Figma account, the Figma MCP server, and eventually
-Code Connect. That introduces a second place where a colour, a spacing step, or a
+Code Connect. That introduces a second place where a color, a spacing step, or a
 component variant can be *defined*, and therefore a second place it can be *wrong*.
 
 The industry default for a design system that starts in Figma is design-first: variables
@@ -44,7 +44,7 @@ Notion, which is where it is already maintained and where non-engineers can reac
 repo does not duplicate it, and cites it where design decisions depend on it.
 
 **No file in this repo restates a token value.** `DESIGN.md` at the root is a router: it
-names where values live and how to decide between them, and contains no colours, sizes, or
+names where values live and how to decide between them, and contains no colors, sizes, or
 font stacks. `docs/design/design-language.md` records design *intent* — what each palette
 ramp means, why the semantic families are drawn where they are — by referencing token
 paths rather than reproducing them.

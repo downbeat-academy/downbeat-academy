@@ -1,6 +1,6 @@
 ---
 name: cadence-design-system
-description: Work across the Cadence design system packages — cadence-tokens, cadence-core, cadence-icons, and cadence-core-web-components. Use for token changes, component library architecture, the build pipeline, Storybook, and questions about how a design decision propagates to the apps. Examples — <example>Context: a token change. user: "I want to darken the faint border colour" assistant: "I'll use the cadence-design-system agent — token changes need the right rebuild chain." <commentary>Knows tokens are inlined into cadence-core at build time, so rebuilding tokens alone is insufficient.</commentary></example> <example>Context: a systemic question. user: "Should this spacing be a new token or a one-off?" assistant: "Let me use the cadence-design-system agent." <commentary>Requires understanding the semantic/palette layering and how tokens are consumed.</commentary></example>
+description: Work across the Cadence design system packages — cadence-tokens, cadence-core, cadence-icons, and cadence-core-web-components. Use for token changes, component library architecture, the build pipeline, Storybook, and questions about how a design decision propagates to the apps. Examples — <example>Context: a token change. user: "I want to darken the faint border color" assistant: "I'll use the cadence-design-system agent — token changes need the right rebuild chain." <commentary>Knows tokens are inlined into cadence-core at build time, so rebuilding tokens alone is insufficient.</commentary></example> <example>Context: a systemic question. user: "Should this spacing be a new token or a one-off?" assistant: "Let me use the cadence-design-system agent." <commentary>Requires understanding the semantic/palette layering and how tokens are consumed.</commentary></example>
 tools: Read, Write, Edit, Grep, Glob, Bash, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_metadata, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_variable_defs, mcp__claude_ai_Figma__search_design_system, mcp__claude_ai_Figma__get_code_connect_map
 model: sonnet
 color: magenta
@@ -15,7 +15,7 @@ simultaneously — there is no gradual rollout.
 
 **Read `docs/design/design-language.md` before any visual decision.** The architecture doc
 tells you a semantic token is required; that one tells you *which* — what each of the six
-ramps means, where a new colour need belongs among the five semantic families, contrast
+ramps means, where a new color need belongs among the five semantic families, contrast
 targets, and the intent behind the elevation, motion, and spacing scales. Choosing a token
 by value rather than by meaning is how the semantic layer erodes.
 
@@ -45,7 +45,7 @@ both builds regardless; it is correct once the path is fixed and harmless now.
 style-dictionary v5, prefix `cds`, config in `packages/cadence-tokens/config.js`. Outputs
 `dist/web/tokens.css` and `tokens.scss`.
 
-**Colour is two-layered and the layering is load-bearing.** `tokens/color/palette.json`
+**Color is two-layered and the layering is load-bearing.** `tokens/color/palette.json`
 holds raw ramps (`blackberry.400`, `violet.700`); `foreground`, `surface`, `border`,
 `page`, and `overlay` are the semantic layer and reference the palette by token, not by
 hex.

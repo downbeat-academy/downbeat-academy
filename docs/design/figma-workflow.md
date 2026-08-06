@@ -36,7 +36,7 @@ Cadence began in code, and the ADR records why inverting it was rejected.
 **Yes:** composition, page layout, flows, exploration of things that do not exist yet,
 review artefacts, anything that benefits from being seen before it is built.
 
-**No:** defining a colour, a spacing step, a type size, a shadow, or a component variant
+**No:** defining a color, a spacing step, a type size, a shadow, or a component variant
 that the token files and `types.ts` do not already contain. A value that appears only in
 Figma is a *proposal*, not a definition — it belongs in [`../proposals/`](../proposals/)
 until it is a token.

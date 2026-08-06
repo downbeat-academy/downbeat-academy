@@ -9,7 +9,7 @@ to find out how a token reaches a component; read these to find out which token 
 
 | Document | Covers |
 | --- | --- |
-| [`design-language.md`](./design-language.md) | The six palette ramps and what each means, the five semantic colour families and where a new need belongs, contrast targets, spacing rhythm, layout and breakpoints, elevation, motion, typography beyond the productive/expressive split, iconography rules |
+| [`design-language.md`](./design-language.md) | The six palette ramps and what each means, the five semantic color families and where a new need belongs, contrast targets, spacing rhythm, layout and breakpoints, elevation, motion, typography beyond the productive/expressive split, iconography rules |
 | [`figma-workflow.md`](./figma-workflow.md) | The design ↔ code pipeline: direction of truth, what Figma is allowed to be authoritative about, the design → code and code → design paths, and what plan tier gates what |
 | [`component-inventory.md`](./component-inventory.md) | The `cadence-core` component ↔ Figma component map and the prop ↔ variant axes for each. The interim stand-in for Code Connect |
 
@@ -36,7 +36,7 @@ paraphrase it. If it is a picture, it is in Figma and it is not authoritative.
 Same rules as [`../README.md`](../README.md), plus one:
 
 **No file in this directory restates a token value.** Cite the token name and the file it
-lives in. A colour, size, duration, or font stack written here is a second source of truth
+lives in. A color, size, duration, or font stack written here is a second source of truth
 that will drift silently — see the ADR. If you need to show a value to make a point, link
 to the token file instead.
 

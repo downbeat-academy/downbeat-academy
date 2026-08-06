@@ -39,7 +39,7 @@ dist/                     vite output: cadence-icons.{es,umd}.js + index.d.ts
 
 ## Adding an icon
 
-1. Drop the optimised SVG into `src/assets/`. Name it kebab-case — SVGR converts it to
+1. Drop the optimized SVG into `src/assets/`. Name it kebab-case — SVGR converts it to
    PascalCase (`chevron-down.svg` → `ChevronDown`).
 2. `pnpm icons:build` — regenerates every component from every asset.
 3. `pnpm --filter cadence-icons build` — compiles to `dist/`.

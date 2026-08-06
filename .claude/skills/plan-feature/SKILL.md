@@ -31,7 +31,7 @@ Quick routing:
 | Change | Workspace |
 | --- | --- |
 | UI component, anything reusable | `packages/cadence-core` |
-| Colour, spacing, radius, type value | `packages/cadence-tokens` |
+| Color, spacing, radius, type value | `packages/cadence-tokens` |
 | Icon | `packages/cadence-icons` |
 | Content type / CMS schema | `apps/cms-sanity` → then `apps/www` |
 | Page, route, rendering | `apps/www` |

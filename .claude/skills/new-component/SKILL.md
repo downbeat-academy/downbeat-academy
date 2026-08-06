@@ -19,7 +19,7 @@ doubt, it belongs here — app-local UI has a habit of being copy-pasted.
 
 **Decide whether to wrap Radix.** Anything with interaction semantics — a menu, dialog,
 popover, disclosure, selection control — should wrap the Radix primitive rather than
-reimplement keyboard and focus behaviour. Many components already do.
+reimplement keyboard and focus behavior. Many components already do.
 
 ## Scaffold
 
@@ -48,9 +48,9 @@ has a known accessibility defect.
 
 ### `<name>.module.css`
 
-- **Every value comes from a `--cds-*` token.** No hardcoded colours, spacing, radii,
+- **Every value comes from a `--cds-*` token.** No hardcoded colors, spacing, radii,
   font stacks, or durations.
-- Use **semantic** colour tokens (`--cds-color-foreground-strong`), never palette tokens
+- Use **semantic** color tokens (`--cds-color-foreground-strong`), never palette tokens
   (`--cds-color-palette-blackberry-800`).
 - Pick the right type family: **productive** for app chrome, **expressive** for editorial
   and brand surfaces. See the root [`AGENTS.md`](../../../AGENTS.md).

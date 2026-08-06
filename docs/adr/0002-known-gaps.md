@@ -70,7 +70,7 @@ moves selection onto a bare `<div onClick>` with no role, no `tabIndex`, and no 
 handler.
 
 **Why it matters.** The control is not announced as a radio group to assistive
-technology and cannot be operated by keyboard. Radix's roving-tabindex behaviour is
+technology and cannot be operated by keyboard. Radix's roving-tabindex behavior is
 defeated by the `tabIndex={-1}`. This is a shipped accessibility defect in the design
 system, so every consumer inherits it.
 
@@ -147,7 +147,7 @@ API routes, and configure the Studio's presentation tool to point at them. Then 
 the legacy monolith `src/lib/sanity/sanity.queries.ts`, which duplicates the article
 queries that already live in `src/lib/queries/`.
 
-### Four status colour pairings fail WCAG AA
+### Six status color pairings fail WCAG AA
 
 **What.** Measured 2026-08-05 against `packages/cadence-tokens/tokens/color/`. The neutral
 foregrounds are all comfortably safe; the status roles are not:
@@ -164,10 +164,10 @@ foregrounds are all comfortably safe; the status roles are not:
 `foreground.brand` (9.1) and `foreground.high-contrast` on `surface.brand` (15.3),
 `surface.interactive` (5.6), and `surface.critical` (4.8) pass.
 
-**Why it matters.** `foreground.interactive` is the link colour, so the most common
-coloured text on the site is below AA. `warning` and `success` fail even the 3:1 non-text
-bar, which means they are not usable as icon or border colours either — a status
-communicated by those colours alone is not communicated at all to a significant number of
+**Why it matters.** `foreground.interactive` is the link color, so the most common
+colored text on the site is below AA. `warning` and `success` fail even the 3:1 non-text
+bar, which means they are not usable as icon or border colors either — a status
+communicated by those colors alone is not communicated at all to a significant number of
 readers.
 
 **Why it is still like this.** The palette was tuned for hue relationships across six
@@ -197,7 +197,7 @@ values in one place. A component bound to a palette step will not follow either.
 the single largest obstacle to the theming architecture in
 `docs/proposals/tokenization-proposal.md` — dark mode requires the indirection these files
 skip. It also means generating a Figma library from these components would bind Figma
-variants to raw colours rather than to semantic variables.
+variants to raw colors rather than to semantic variables.
 
 **Why it is still like this.** The semantic layer was extended after several of these
 components were written, and nothing enforces the rule — `cadence-core` has no linting, so
@@ -233,7 +233,7 @@ every existing consumer already imports both files.
 `dist/cadence-core.min.css` contains a `:root` block. Then the three documents become
 true. Best done together with the export-map fix below, since both change how the package
 is consumed. Do not fix the docs to match the bug — the inlining is the intended
-behaviour.
+behavior.
 
 ---
 
@@ -324,7 +324,7 @@ untrustworthy to read.
 
 **To fix.** Either give `09` a distinct duration above `08`, or remove it and migrate any
 consumer. Check usage before changing the value: a consumer relying on the current
-behaviour would change visibly.
+behavior would change visibly.
 
 ### The `transition` and `easing` tokens do not compose
 

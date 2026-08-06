@@ -14,7 +14,7 @@ path. If this file and the token files disagree, the token files are right — s
 
 ---
 
-## Colour
+## Color
 
 ### The six ramps
 
@@ -31,11 +31,11 @@ the layer. Picking a ramp is a decision about *meaning*, not about hue.
 | `pineapple` | **Warning**, and the default page ground. | Something needs attention but is not an error — and, at its lightest step, the warm paper the site sits on |
 | `peach` | **Critical.** | Something failed, or is destructive |
 
-Two consequences worth internalising:
+Two consequences worth internalizing:
 
 **Brand and interactive are different ramps on purpose.** `violet` is identity; `blueberry`
 is affordance. A link is blueberry because it can be clicked, not because it belongs to
-the brand. Collapsing the two — making every interactive element brand-coloured — is the
+the brand. Collapsing the two — making every interactive element brand-colored — is the
 most common way a design system loses the ability to signal interactivity at all.
 
 **The page is warm, not white.** `color.page.primary` resolves to the lightest `pineapple`
@@ -46,7 +46,7 @@ step, an off-white that reads as paper. `color.page.secondary` is the true white
 ### The five semantic families
 
 `tokens/color/` splits the semantic layer five ways. Each answers a different question, and
-a new colour need belongs to whichever question it answers:
+a new color need belongs to whichever question it answers:
 
 | File | Question | Contains |
 | --- | --- | --- |
@@ -68,14 +68,14 @@ arbitrary:
 
 | Family | Ramp step | Why |
 | --- | --- | --- |
-| `foreground.*` | `500` default, `600` hover, `700` active | Coloured text on a light ground. Darkens as it is engaged |
+| `foreground.*` | `500` default, `600` hover, `700` active | Colored text on a light ground. Darkens as it is engaged |
 | `surface.*` | `600` | A fill that light text will sit on, so it must be darker than the foreground equivalent |
-| `border.*` | `500` | Matches the foreground so an outlined and a filled variant of the same component read as the same colour |
+| `border.*` | `500` | Matches the foreground so an outlined and a filled variant of the same component read as the same color |
 
 `foreground.interactive` and `foreground.brand` carry all three of default/hover/active.
 `critical`, `warning`, and `success` carry default/hover only — they are states being
-reported, not controls being pressed. If a status colour needs an `active` step, that is a
-signal the component is doing something a status colour should not be used for.
+reported, not controls being pressed. If a status color needs an `active` step, that is a
+signal the component is doing something a status color should not be used for.
 
 **Adding a status role means adding it to all three families, at the matching steps.** A
 role present in `foreground` but missing from `border` produces components that cannot be
@@ -111,7 +111,7 @@ ground (`page.primary`, `page.secondary`, `page.faint`, `surface.primary`, `surf
 `foreground.high-contrast` on `surface.high-contrast` is 19.7. `border.primary` (18.5) and
 `border.faint` (11.1) clear the 3:1 non-text bar with enormous margin.
 
-**Not safe — status colours.** This is where the system currently fails, and the failures
+**Not safe — status colors.** This is where the system currently fails, and the failures
 are not marginal:
 
 | Pairing | Ratio | AA text (4.5) | AA non-text (3.0) |
@@ -127,19 +127,19 @@ are not marginal:
 | `foreground.success` on a light ground | 2.3 | **fail** | **fail** |
 | `foreground.warning` on a light ground | 1.9 | **fail** | **fail** |
 
-Read that carefully before using a status colour for text:
+Read that carefully before using a status color for text:
 
-- **`foreground.warning` and `foreground.success` are not text colours.** At under 3:1 they fail even as icons and borders. Use the `surface.*` fill with `foreground.high-contrast` on it, or pair the colour with a shape or label that carries the meaning independently.
-- **`foreground.interactive` fails AA for body text**, which matters most because it is the link colour. Links currently rely on underline and context as well as colour, which is the right belt-and-braces answer, but the colour alone is not sufficient signal.
+- **`foreground.warning` and `foreground.success` are not text colors.** At under 3:1 they fail even as icons and borders. Use the `surface.*` fill with `foreground.high-contrast` on it, or pair the color with a shape or label that carries the meaning independently.
+- **`foreground.interactive` fails AA for body text**, which matters most because it is the link color. Links currently rely on underline and context as well as color, which is the right belt-and-braces answer, but the color alone is not sufficient signal.
 - **White on `surface.warning` and `surface.success` fails.** A badge or banner in those roles needs a darker fill or a dark foreground.
-- **`foreground.brand` is the only status colour that is comfortably safe as text.**
+- **`foreground.brand` is the only status color that is comfortably safe as text.**
 
 **Never pair a status foreground with its own status surface** — `foreground.warning` on
 `surface.warning` measures 1.9. Every same-ramp pairing lands between 1.4 and 1.9. They are
 adjacent steps of one ramp and were never intended to combine.
 
 `foreground.disabled` at 6.3 is legible. Disabled text is conventionally exempt from AA;
-this system does not need the exemption, so do not treat it as licence to darken the
+this system does not need the exemption, so do not treat it as license to darken the
 ground behind it.
 
 These are tracked as a gap, not accepted as correct — see
@@ -304,8 +304,8 @@ Drawing rules:
 
 - Draw on a square viewBox and keep the optical weight consistent with the existing set — a new icon that is visibly heavier or lighter than its neighbours will read as broken even when it is correct in isolation.
 - Strokes, not fills, unless the concept is genuinely a solid shape. Keep stroke weight uniform across the set.
-- Do not embed colour. Icons inherit `currentColor` so they follow the foreground token of whatever contains them. A hardcoded fill breaks that everywhere at once.
-- Optical alignment beats geometric alignment: centre the icon by eye against a cap-height label, not by bounding box.
+- Do not embed color. Icons inherit `currentColor` so they follow the foreground token of whatever contains them. A hardcoded fill breaks that everywhere at once.
+- Optical alignment beats geometric alignment: center the icon by eye against a cap-height label, not by bounding box.
 
 `tokens/size/index.json` provides three icon sizes. They correspond to the productive type
 sizes an icon is most often set beside, so an icon and its label share a cap height. Use

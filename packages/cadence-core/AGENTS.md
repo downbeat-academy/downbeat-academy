@@ -46,8 +46,8 @@ Compound components nest: `form/` contains `input/`, `select/`, `checkbox/`, `ra
 ## Adding a component
 
 1. Create the folder above.
-2. Style with CSS Modules against `--cds-*` tokens. **Never hardcode** a colour, spacing
-   value, radius, or font stack. Use **semantic** colour tokens
+2. Style with CSS Modules against `--cds-*` tokens. **Never hardcode** a color, spacing
+   value, radius, or font stack. Use **semantic** color tokens
    (`--cds-color-foreground-strong`), never palette tokens
    (`--cds-color-palette-blackberry-800`).
 3. Pick the right type family — productive for chrome, expressive for content. See
@@ -81,7 +81,7 @@ expect(el).toHaveClass('root')   // never matches
 **jsdom does not resolve `var()`.** A declaration like
 `border: 1px solid var(--cds-color-border-faint)` computes to `borderStyle: 'none'`, and
 `borderRadius` reads back as the literal string `"var(--cds-radii-medium)"`. The same
-rule with a literal colour computes correctly. So a `getComputedStyle` assertion on any
+rule with a literal color computes correctly. So a `getComputedStyle` assertion on any
 token-driven property is meaningless — assert the **declared rule** instead. See
 `src/components/sidebar/__test__/sidebar-styles.test.tsx` for the `declaredRootRule()`
 pattern.

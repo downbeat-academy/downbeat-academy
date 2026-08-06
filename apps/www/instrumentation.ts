@@ -12,7 +12,7 @@ export async function register() {
   }
 }
 
-// Messages that represent expected infrastructure behaviour, not application bugs.
+// Messages that represent expected infrastructure behavior, not application bugs.
 const IGNORED_SERVER_ERRORS = [
   // Client has a stale bundle from a previous deployment and POSTs a Server
   // Action ID that no longer exists. Next.js throws this; nothing we can fix.
@@ -20,7 +20,7 @@ const IGNORED_SERVER_ERRORS = [
   // Client sent a malformed FormData body — same root cause as above.
   'Failed to parse body as FormData',
   // TCP-level abort: the client disconnected before the response completed.
-  // This is normal browser navigation behaviour, not an application error.
+  // This is normal browser navigation behavior, not an application error.
   'aborted',
 ]
 

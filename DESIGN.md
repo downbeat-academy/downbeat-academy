@@ -2,7 +2,7 @@
 
 Entry point for visual and design decisions in this repo.
 
-**This file contains no design values.** No colours, no sizes, no font stacks. Every value
+**This file contains no design values.** No colors, no sizes, no font stacks. Every value
 lives in [`packages/cadence-tokens/tokens/`](./packages/cadence-tokens/tokens/) and is
 built to `--cds-*` custom properties by style-dictionary. A markdown copy of those values
 would drift the first time `pnpm tokens:build` runs, and would be trusted anyway — see
@@ -20,7 +20,7 @@ Work down this ladder. Stop at the first step that answers the question.
    `--cds-color-foreground-strong`, never `--cds-color-palette-blackberry-800`. Reaching
    into the palette defeats the layer that makes theming possible.
 3. **Does [`docs/design/design-language.md`](./docs/design/design-language.md) say which
-   token?** It covers what each palette ramp means, where a new colour need belongs among
+   token?** It covers what each palette ramp means, where a new color need belongs among
    the five semantic families, contrast targets, spacing rhythm, layout, elevation,
    motion, typography, and iconography.
 4. **None of the above?** Then this is a design decision, not an implementation detail.

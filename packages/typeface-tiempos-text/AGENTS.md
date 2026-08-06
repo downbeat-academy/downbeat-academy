@@ -42,7 +42,7 @@ Rarely necessary. If you add a weight or style:
 
 1. Add the binary to `files/`.
 2. Add the matching `@font-face` block to `index.css` (and the SCSS partial if used).
-3. Confirm the licence covers the new cut.
+3. Confirm the license covers the new cut.
 4. Add a changeset.
 
 No rebuild is needed — consumers import the CSS directly.

@@ -47,7 +47,7 @@ export default defineConfig({
     setupFiles: "./setup-tests.ts",
     // Process CSS through Vite's pipeline so tests see the same `cds-*` class names as
     // the published bundle, and so stylesheets are injected into jsdom — without this
-    // every CSS-driven behaviour (collapsed rails, hidden labels) is untestable.
+    // every CSS-driven behavior (collapsed rails, hidden labels) is untestable.
     css: true,
   }
 });

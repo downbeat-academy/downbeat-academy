@@ -24,8 +24,8 @@ trusting names. Look for unhandled errors, race conditions, and incorrect async 
 - **A new `cadence-core` component missing from `src/index.ts`** — both the component and
   its `*Props` type. It is invisible to consumers otherwise, and this is the most common
   miss in the repo.
-- **Hardcoded style values.** Every colour, spacing, radius, font stack, and duration must
-  be a `--cds-*` token, and colours must be **semantic**
+- **Hardcoded style values.** Every color, spacing, radius, font stack, and duration must
+  be a `--cds-*` token, and colors must be **semantic**
   (`--cds-color-foreground-strong`), never palette (`--cds-color-palette-blackberry-800`).
 - **Wrong type family.** Productive for app chrome, expressive for editorial and brand.
   Mixing them within one surface is a bug.
@@ -54,6 +54,11 @@ written to a file or logged.
 
 **5. Simplification.** Point out genuinely simpler equivalents. Do not restructure working
 code for taste.
+
+**6. Spelling.** Flag British spellings in prose, comments, and docs — `colour`,
+`behaviour`, `licence`, `optimise`, `initialise`, `analyse`, `recognise`. The repo is US
+English because the code is (`--cds-color-*`, `currentColor`). Do **not** flag
+`aria-labelledby` or the `@img/colour` package name; those are identifiers.
 
 ## How to report
 
