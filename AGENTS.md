@@ -202,6 +202,14 @@ Two exceptions, both about not breaking identifiers:
 - A new component is invisible to consumers until it is re-exported from
   `packages/cadence-core/src/index.ts` — both the component *and* its `*Props` type.
 
+### Browser support
+
+- The floor is **Baseline Newly Available**. A feature at that level may be used directly.
+- Anything below the floor is an enhancement over a working fallback, never the mechanism
+  a component depends on to function. Say what happens without it.
+- Nothing enforces this yet — there is no `browserslist` config. See
+  [`docs/adr/0003-browser-support-floor.md`](./docs/adr/0003-browser-support-floor.md).
+
 ### TypeScript
 
 - `apps/www` and `apps/auth` are `strict: false`; `cadence-links`, `cadence-core`, and

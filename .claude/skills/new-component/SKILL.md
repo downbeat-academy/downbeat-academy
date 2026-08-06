@@ -17,9 +17,25 @@ the authoritative list.
 composition specific to a single app belongs in that app's `src/components/`. If in
 doubt, it belongs here — app-local UI has a habit of being copy-pasted.
 
-**Decide whether to wrap Radix.** Anything with interaction semantics — a menu, dialog,
-popover, disclosure, selection control — should wrap the Radix primitive rather than
-reimplement keyboard and focus behavior. Many components already do.
+**Decide what implements the interaction.** In order of preference:
+
+1. **The native element, where one exists.** Form controls, `<dialog>` with `showModal()`,
+   `<details>`, the Popover API, CSS anchor positioning. Native gives you form
+   participation, focus trapping, top-layer placement, and keyboard behavior for free —
+   usually with *less* code than a wrapper, not more.
+2. **Hand-rolled against the WAI-ARIA APG**, for well-specified patterns the platform does
+   not cover — tabs with roving tabindex, for instance. Only with tests written first.
+3. **A dependency**, only for patterns the platform genuinely does not cover and the APG
+   does not make safe to hand-roll. Right now that means menus, with typeahead, submenu
+   safe-triangle tracking, and collision-aware positioning.
+
+The browser-support floor is **Baseline Newly Available**, with progressive enhancement
+below it — see [`docs/adr/0003-browser-support-floor.md`](../../../docs/adr/0003-browser-support-floor.md).
+That is what makes option 1 viable for overlays and positioning.
+
+**Do not add a new Radix dependency.** `cadence-core` is actively removing them; see the
+Remove Radix Dependencies epic. `dropdown-menu` is the one deliberate retention, recorded
+in [`docs/adr/0002-known-gaps.md`](../../../docs/adr/0002-known-gaps.md).
 
 ## Scaffold
 
@@ -36,8 +52,12 @@ packages/cadence-core/src/components/<name>/
 ```
 
 Copy the shape of an existing component of similar complexity. `badge/` is a good simple
-reference; `dialog/` is a good Radix-wrapping reference; `form/radio-card/` is not — it
-has a known accessibility defect.
+reference, and `form/select/` and `summary/` are the references for building on a native
+element — a styled `<select>` and a native `<details>` respectively.
+
+Do **not** copy `form/radio-card/`, which has a known accessibility defect, and do not
+copy the Radix-wrapping components as a pattern — they are what this package is migrating
+away from.
 
 ### `<name>.tsx`
 
@@ -126,6 +146,8 @@ Add <Name> — one line on what it is for.
 
 ## Checklist
 
+- [ ] Built on the native element where one exists; no new Radix dependency
+- [ ] Anything below the browser-support floor degrades to a working fallback
 - [ ] Folder layout complete, including `__test__/` and `__docs__/`
 - [ ] Exported from `src/index.ts` — component **and** `*Props`
 - [ ] Every CSS value is a `--cds-*` token; semantic, not palette

@@ -63,7 +63,7 @@ them first makes every later design cheaper to map.
 | `avatar` | `size` → small, medium, large · `spacing` → large, small, overlap-small, overlap-large · `direction` → vertical, horizontal | _tbd_ |
 | `summary` | `type` → contained, flush · `size` → small, medium, large | _tbd_ |
 | `link` | `type` → primary, secondary, brand, inherit (`LinkType`) · `isUnderline` → boolean · polymorphic via `as` | _tbd_ |
-| `separator` | `color` → primary, faint, brand, interactive, success, warning, critical, high-contrast (`SeparatorColor`) · `orientation` from Radix | _tbd_ |
+| `separator` | `color` → primary, faint, brand, interactive, success, warning, critical, high-contrast (`SeparatorColor`) · `orientation` from the underlying primitive | _tbd_ |
 | `skeleton-loader` | `direction` → ltr, rtl | _tbd_ |
 | `blockquote` | no variant axis. Content slots: `quote`, `attribution`, `link` | _tbd_ |
 | `audio-player` | `size` → small, medium, large | _tbd_ |

@@ -68,7 +68,10 @@ before designing in those areas.
 ## Components
 
 27 top-level components in `cadence-core`, folder-per-component with `__test__/` and
-`__docs__/`. Radix primitives are wrapped for anything with interaction semantics.
+`__docs__/`. Twelve currently wrap Radix primitives, and are being migrated off them onto
+native elements — build new interaction on the platform first, and do not add a Radix
+dependency. `dropdown-menu` is the one deliberate retention
+(`docs/adr/0002-known-gaps.md`).
 
 The rules that matter:
 
