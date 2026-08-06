@@ -1,7 +1,6 @@
 import React from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, renderHook } from '@testing-library/react'
-import axe from 'axe-core'
 import {
 	Sidebar,
 	SidebarHeader,
@@ -12,21 +11,11 @@ import {
 	useSidebar,
 } from '../index'
 import { TooltipProvider } from '../../tooltip'
+import { axeViolations } from '../../../test-utils'
 
 const Wrap = ({ children }: { children: React.ReactNode }) => (
 	<TooltipProvider>{children}</TooltipProvider>
 )
-
-/**
- * jsdom has no layout, so axe's colour-contrast rule can't run here — that one still
- * needs a real browser. Everything structural (list nesting, names, roles) is covered.
- */
-async function findViolations(container: HTMLElement) {
-	const results = await axe.run(container, {
-		rules: { 'color-contrast': { enabled: false } },
-	})
-	return results.violations
-}
 
 const Example = ({ collapsed = false }: { collapsed?: boolean }) => (
 	<Wrap>
@@ -50,12 +39,12 @@ const Example = ({ collapsed = false }: { collapsed?: boolean }) => (
 describe('Sidebar accessibility', () => {
 	it('has no axe violations when expanded', async () => {
 		const { container } = render(<Example />)
-		expect(await findViolations(container)).toEqual([])
+		expect(await axeViolations(container)).toEqual([])
 	})
 
 	it('has no axe violations when collapsed', async () => {
 		const { container } = render(<Example collapsed />)
-		expect(await findViolations(container)).toEqual([])
+		expect(await axeViolations(container)).toEqual([])
 	})
 })
 

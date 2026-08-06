@@ -11,6 +11,7 @@ import {
 import { Badge } from '../../badge'
 import { TooltipProvider } from '../../tooltip'
 import s from '../sidebar.module.css'
+import { declaredRule } from '../../../test-utils'
 
 /**
  * These assert the CSS-driven behaviour of the collapsed rail, which the DOM-level
@@ -26,33 +27,8 @@ import s from '../sidebar.module.css'
  * and `borderRadius` reads back as the literal string `"var(--cds-radii-medium)"` —
  * the same rule written with a literal colour computes correctly. So any assertion on a
  * token-driven property must inspect the *declared rule*, not `getComputedStyle`.
- * `declaredRootRule()` below exists for exactly that case.
+ * `declaredRule()` from `test-utils` exists for exactly that case.
  */
-
-/**
- * Finds the `.root` rule text for the sidebar CSS module in the stylesheets vite injected.
- * Class names are hashed (`cds-sidebar-root--xxxxx`), so match on the imported binding.
- */
-const declaredRootRule = (): string => {
-	const rootClass = s.root.split(' ')[0]
-	for (const sheet of Array.from(document.styleSheets)) {
-		let rules: CSSRule[]
-		try {
-			rules = Array.from(sheet.cssRules)
-		} catch {
-			continue // cross-origin sheet; not ours
-		}
-		for (const rule of rules) {
-			if (
-				rule instanceof CSSStyleRule &&
-				rule.selectorText === `.${rootClass}`
-			) {
-				return rule.style.cssText
-			}
-		}
-	}
-	throw new Error(`No declared rule found for .${rootClass}`)
-}
 
 const Wrap = ({ children }: { children: React.ReactNode }) => (
 	<TooltipProvider>{children}</TooltipProvider>
@@ -168,7 +144,7 @@ describe('Sidebar panel styling', () => {
 			</Wrap>
 		)
 		// Asserted against the declared rule, not getComputedStyle — see Caveat 2 above.
-		const declared = declaredRootRule()
+		const declared = declaredRule(s.root)
 
 		// A `border` shorthand applies to all four sides; the per-side longhands would
 		// only appear if something overrode them, which is what this guards against.

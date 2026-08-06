@@ -25,7 +25,10 @@ const config: StorybookConfig = {
 	staticDirs: ['../public'],
 	addons: [
         getAbsolutePath('@storybook/addon-links'),
-        getAbsolutePath("@storybook/addon-docs")
+        getAbsolutePath("@storybook/addon-docs"),
+        // Reports axe violations per story, including colour contrast — which the vitest
+        // suites cannot check, since jsdom has no layout engine.
+        getAbsolutePath("@storybook/addon-a11y")
     ],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
