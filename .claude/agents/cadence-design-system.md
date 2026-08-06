@@ -75,7 +75,9 @@ The rules that matter:
 - **The barrel is the public API.** `src/index.ts` must export the component *and* its
   `*Props` type. Absent from the barrel, it does not exist.
 - **CSS Modules only, tokens only.** Class names are hashed at build time.
-- **Productive vs expressive type.** Chrome versus content — never mixed in one surface.
+- **Productive vs expressive type.** Productive for traditional web application elements
+  (forms, buttons, tables, navigation, settings); expressive for brand-oriented and
+  editorial surfaces. Never mixed in one surface.
 - **Accessibility is not optional.** `form/radio-card/` currently ships an inaccessible
   control with 14 quarantined tests; do not use it as a reference.
 
@@ -109,8 +111,22 @@ whether to upgrade.
 
 ## Working from Figma
 
-Code is the source of truth for every design value; Figma is a generated consumer. See
-`docs/adr/0003-design-source-of-truth.md` and `docs/design/figma-workflow.md`.
+**Figma is the intent; the repo is the record.** Design is decided in Figma and flows down
+into code through a reviewed PR. Once merged, the repo is what ships. A Figma file that
+differs from `main` is a design **not yet built** — do not "fix" code to match one unless
+that is the work. See `docs/adr/0003-design-source-of-truth.md` and
+`docs/design/figma-workflow.md`.
+
+**Tokens travel in different directions by layer**, and this is the thing to get right:
+
+- **Palette** — the six raw ramps — is authored in **Figma**, then transcribed into `tokens/color/palette.json` and reviewed as a PR diff. A new primitive value originates in the design, not here.
+- **Semantic** — `foreground`, `surface`, `border`, `page`, `overlay` — is authored in **code** and mirrored into Figma as variables. It is a mapping with obligations attached: theming switches it, and WCAG contrast is measured on it.
+
+So: a new color arrives from Figma as a palette entry, and **you give it a semantic role**.
+A palette value with no semantic token above it is unusable by components. Never invent a
+semantic role to match a Figma layer name without checking it against the five families in
+`docs/design/design-language.md`, and check contrast for any pairing it introduces — six
+already fail AA.
 
 Your Figma tools are **read-only**. Reading a design and writing CSS from its values
 directly is the failure mode to avoid — use the `/figma-to-component` skill, which forces
@@ -118,7 +134,8 @@ the mapping onto existing tokens and components first and flags whatever has no 
 decision rather than a number.
 
 Do not call Figma write tools. Creating files, generating designs, uploading assets, and
-publishing Code Connect mappings are the user's to initiate.
+publishing Code Connect mappings are the user's to initiate. Agents read Figma; they do not
+design in it.
 
 ## Known gaps
 

@@ -162,13 +162,14 @@ a change in `cadence-core` needs mirroring here.
 
 ## Typography: productive vs expressive
 
-Two families. Choose by asking **"is this app chrome, or is this content?"**
+Two families. Choose by asking **"is this application UI, or is this brand and
+editorial?"**
 
 | | Productive | Expressive |
 | --- | --- | --- |
 | Token | `--cds-typography-font-family-productive-{body,headline}` | `--cds-typography-font-family-expressive-{body,headline}` |
 | `<Text type>` | `productive-body`, `productive-headline` | `expressive-body`, `expressive-headline` |
-| Use for | Dashboards, forms, buttons, tables, navigation, admin, settings, microcopy | Marketing headlines, heroes, article/handbook/lexicon bodies, quotes |
+| Use for | Traditional web application elements — forms, buttons, tables, navigation, dashboards, settings, admin, microcopy | Brand-oriented and editorial — marketing headlines, heroes, article/handbook/lexicon bodies, quotes |
 | Optimized for | Density and legibility | Voice and craft |
 
 Productive is the default for anything utilitarian. **Never mix the two inside one

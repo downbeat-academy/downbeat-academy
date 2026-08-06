@@ -26,7 +26,8 @@ Tiempos Text backs the **expressive** family —
 
 Expressive type is for brand and editorial surfaces: marketing headlines, hero sections,
 long-form article / handbook / lexicon bodies, and quotes — anywhere voice and craft
-matter more than density. App chrome uses *productive* type, which is
+matter more than density. Traditional web application elements — forms, buttons, tables,
+navigation — use *productive* type, which is
 [`../typeface-favorit/`](../typeface-favorit/). See [`../../AGENTS.md`](../../AGENTS.md)
 for the full rule.
 

@@ -3,13 +3,28 @@
 The map between `cadence-core` components and their Figma counterparts, and the prop ↔
 variant axes for each.
 
-This is the interim stand-in for Code Connect, which needs an Organization plan (see
-[`figma-workflow.md`](./figma-workflow.md)). It is deliberately written in the shape Code
-Connect consumes — component, variant axes, prop mapping — so that converting it to
-`.figma.tsx` files is mechanical rather than a fresh analysis.
+Components are **drawn in Figma**, not generated from code — see
+[`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md). None of
+the 27 has a Figma counterpart yet. This file is what lets the two be matched up as the
+library fills in: it records what each code component's variant surface actually is, so a
+newly drawn Figma component can be mapped to the code it corresponds to rather than
+re-derived from scratch.
 
-**Source of truth for every row is the component's `types.ts`.** When a variant axis
-changes there, this file is wrong until updated. Update it in the same PR.
+It is also the interim stand-in for Code Connect, which needs an Organization plan (see
+[`figma-workflow.md`](./figma-workflow.md)), and is deliberately written in the shape Code
+Connect consumes — component, variant axes, prop mapping.
+
+**What each column means:**
+
+- *Variant axes* — the component's current variant surface **in code**. This is the record of what ships today.
+- *Figma node* — filled in when that component is drawn. `_tbd_` means it does not exist in Figma yet, which is expected.
+
+**Source of truth for the axes is the component's `types.ts`.** When one changes there,
+this file is wrong until updated. Update it in the same PR.
+
+A newly drawn Figma component may deliberately carry variants the code does not. That is a
+design not yet built, not a discrepancy to reconcile — note it in the row and leave the
+code column describing what ships.
 
 ---
 
@@ -33,9 +48,10 @@ to do nothing in code.
 
 ---
 
-## Primitives — generate these first
+## Primitives — the highest-value ones to draw first
 
-These carry real variant surface and are what most designs are composed from.
+These carry real variant surface and are what most designs are composed from, so drawing
+them first makes every later design cheaper to map.
 
 | Component | Variant axes (prop → values) | Figma node |
 | --- | --- | --- |
@@ -73,7 +89,7 @@ These carry real variant surface and are what most designs are composed from.
 
 ---
 
-## Layout components — do not generate as Figma components
+## Layout components — do not draw as Figma components
 
 | Component | Why |
 | --- | --- |
@@ -85,8 +101,8 @@ These carry real variant surface and are what most designs are composed from.
 
 ## Overlays and interactive surfaces
 
-Generate as component sets only when a static representation is genuinely useful. Their
-value in Figma is the *content* frame, not the trigger behavior.
+Worth drawing as component sets only when a static representation is genuinely useful.
+Their value in Figma is the *content* frame, not the trigger behavior.
 
 | Component | Variant axes | Note |
 | --- | --- | --- |
@@ -102,7 +118,7 @@ value in Figma is the *content* frame, not the trigger behavior.
 
 ---
 
-## Before generating: 21 components reference palette tokens directly
+## Watch out: 21 components reference palette tokens directly
 
 `--cds-color-palette-*` appears 162 times across 21 of the 51 CSS Modules in
 `cadence-core`, against the rule that components consume semantic tokens only. Affected:
@@ -110,16 +126,13 @@ value in Figma is the *content* frame, not the trigger behavior.
 `drawer`, `dropdown-menu`, `hover-card`, `link`, `sidebar`, `summary`, `tabs`, `toast`,
 and five `form/` controls (`checkbox`, `checkbox-card`, `radio`, `radio-card`, `switch`).
 
-This matters here specifically: **a component that references a palette token generates a
-Figma component bound to a raw color rather than to a semantic variable.** The generated
-library would encode the drift and make it look intentional.
+This matters when drawing any of these: **the shipped component is bound to a raw color,
+not to a semantic role.** If the Figma version is drawn to match what currently renders,
+it inherits the drift and makes it look intentional.
 
-Two options when generating, both acceptable:
-
-- Bind the Figma variant to the semantic variable the palette reference *should* be, and record the divergence in that component's row.
-- Skip the affected variant until the component is corrected.
-
-Do not bind to a palette variable to match the code. Tracked in
+**Draw against the semantic variable the component should be using**, not the palette
+value it currently resolves to, and note the divergence in that component's row. The Figma
+version is the intent; the palette reference in code is a defect awaiting a fix. Tracked in
 [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 
 ## Naming mismatches to preserve

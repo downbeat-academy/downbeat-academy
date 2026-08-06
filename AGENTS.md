@@ -156,15 +156,16 @@ precedent.
 
 ### Typography: productive vs expressive
 
-Cadence has two type families. Pick by asking **"is this app chrome, or is this
-content?"**
+Cadence has two type families. Pick by asking **"is this application UI, or is this brand
+and editorial?"**
 
 - **Productive** (`--cds-typography-font-family-productive-*`;
-  `<Text type="productive-body" | "productive-headline">`) — dashboards, forms, buttons,
-  tables, navigation, admin surfaces, settings, in-app microcopy. The default for UI.
+  `<Text type="productive-body" | "productive-headline">`) — traditional web application
+  elements: forms, buttons, tables, navigation, dashboards, settings, admin surfaces,
+  in-app microcopy. **The default for UI.**
 - **Expressive** (`--cds-typography-font-family-expressive-*`;
-  `<Text type="expressive-body" | "expressive-headline">`) — marketing headlines, hero
-  sections, long-form article/handbook/lexicon bodies, quotes.
+  `<Text type="expressive-body" | "expressive-headline">`) — brand-oriented and editorial:
+  marketing headlines, hero sections, long-form article/handbook/lexicon bodies, quotes.
 
 Never mix the two within one surface. An expressive headline above productive-body form
 labels in a settings panel is a bug.

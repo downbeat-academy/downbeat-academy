@@ -24,8 +24,9 @@ Favorit backs the **productive** family —
 `--cds-typography-font-family-productive-body` and `-productive-headline` in
 `packages/cadence-tokens/tokens/typography/font-family.json`.
 
-Productive type is for app chrome: dashboards, forms, buttons, tables, navigation, admin
-surfaces, settings, microcopy. Content and marketing use *expressive* type, which is
+Productive type is for traditional web application elements: forms, buttons, tables,
+navigation, dashboards, admin surfaces, settings, microcopy. Brand-oriented and editorial
+surfaces use *expressive* type, which is
 [`../typeface-tiempos-text/`](../typeface-tiempos-text/). See
 [`../../AGENTS.md`](../../AGENTS.md) for the full rule.
 

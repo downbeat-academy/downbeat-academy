@@ -1,14 +1,17 @@
 ---
 name: figma-to-component
-description: Turn a Figma design into Cadence code without hardcoding values — read the node, map every value onto an existing --cds-* token, map structure onto existing cadence-core components, and flag whatever has no token as a design decision. Use whenever work starts from a Figma frame, node, or link.
+description: Turn a Figma design into a `cadence-core` component, pattern, or element, without hardcoding values — read the node, map every value onto an existing --cds-* token, map structure onto existing cadence-core components, and flag whatever has no token as a design decision. Use whenever work starts from a Figma frame, node, or link.
 ---
 
 # Figma → Cadence
 
-The Figma MCP server returns concrete values: a hex, a pixel padding, a shadow string, a
-font size. Pasting those into a CSS Module produces code that looks correct, passes review,
-and silently stops following the design system. Every hardcoded value is a component that
-will not respond to a token change and will not survive theming.
+The Figma MCP server returns concrete values: a variable, a hex, a pixel padding, a shadow
+string, a font size. Pasting those into a CSS Module produces code that looks correct,
+passes review, and silently stops following the design system. Every hardcoded value is a
+component that will not respond to a token change and will not survive theming.
+
+A **bound variable** is the good case — it names the intent, so it maps to a token
+directly. A raw value is the case this skill exists for.
 
 **This skill exists to force the mapping step.** Do not write CSS from a Figma node
 directly. Work the order below.
@@ -45,14 +48,47 @@ Only what genuinely has no existing component moves to step 5.
 For each color, spacing, radius, shadow, duration, and type size in the design, find the
 token whose **meaning** matches — not merely the token whose value is closest.
 
-- Color → the semantic role, using the five families in `design-language.md`. `--cds-color-foreground-strong`, never `--cds-color-palette-*`. A palette reference in component CSS is a defect.
-- Spacing, gap, padding → a `scale` step. Never interpolate between steps.
-- Radius → a `radii` step, chosen by how soft the component should feel.
-- Shadow → an `elevation` step, chosen by what the element *is* (resting, lifted, out of flow), and paired with the matching `z-index` role.
-- Type → the productive/expressive split first, then size. Productive has no fluid scale; if the design scales chrome type with the viewport, the design is wrong.
-- Motion → a `transition` step, or a duration composed with an `easing` token for enter/exit.
+- **Color** → the semantic role, using the five families in `design-language.md`. `--cds-color-foreground-strong`, never `--cds-color-palette-*`. A palette reference in component CSS is a defect.
+- **Spacing, gap, padding** → a `scale` step. A token is the default; see *When a step is not right* below.
+- **Radius** → a `radii` step, chosen by how soft the component should feel.
+- **Shadow** → an `elevation` step, chosen by what the element *is* (resting, lifted, out of flow), and paired with the matching `z-index` role.
+- **Type** → the productive/expressive split first, then size.
+  - **Productive** — traditional web application elements: forms, buttons, tables, navigation, dashboards, settings, admin surfaces, in-app microcopy. The default for UI.
+  - **Expressive** — brand-oriented and editorial: marketing headlines, hero sections, long-form article/handbook/lexicon bodies, quotes.
+  - Never mix the two inside one surface. Productive has no fluid scale — if the design scales application UI type with the viewport, the design is wrong, not the system.
+- **Motion** → a `transition` step, or a duration composed with an `easing` token for enter/exit.
 
 Record the mapping as you go. It is the output of this step and the input to review.
+
+### When there is no semantic token for a value
+
+Do not substitute the nearest palette token, and do not hardcode. Decide which of three
+situations you are in, and say which:
+
+1. **A semantic token exists that you missed.** Most common. Re-read the five families in `design-language.md` — the right token is often named for a meaning rather than an appearance.
+2. **The system has a real gap.** Which layer it belongs in depends on what is missing:
+   - A **new primitive value** — a color the palette does not contain at all — is a design decision, and the palette is authored in Figma. Say so; it goes into the Figma palette and is transcribed back into `tokens/color/palette.json`. Do not add it to the palette JSON directly to unblock yourself.
+   - A **new role** for values that already exist belongs in the semantic layer, which *is* authored in code. Name it for its meaning, place it in the family it belongs to, and check the contrast of every pairing it introduces.
+   
+   A value used once is a one-off; a value used three times across two components is a token. Record the reasoning in [`docs/proposals/`](../../../docs/proposals/) following `tokenization-proposal.md`. Never expose a palette step to components directly — every palette value needs a semantic role above it.
+3. **The design drifted.** The value has no meaning the system recognizes, and the honest answer is that the design should change.
+
+**Ask rather than guess.** Where the choice between these is genuinely open, put the
+question to the user with the options and a recommendation, rather than picking one
+silently. This is a design decision, and it is cheap to ask and expensive to unwind.
+
+### When a step is not right
+
+Prefer the token. The scale exists so that spacing is consistent and re-tunable, and most
+"this needs to be between two steps" instincts are worth resisting.
+
+But **the visual result decides.** Optical corrections are real — a value that is
+technically on-scale can still look wrong against a specific typeface, icon, or border,
+and forcing the nearest step to preserve tidiness is the wrong trade. When you depart from
+the scale:
+
+- Say so explicitly in the report, with what you tried and why it did not work.
+- Keep it local to the one component. A repeated departure is a missing token, and belongs in case 2 above.
 
 ## 4. Flag every value with no token — this is the important output
 

@@ -165,9 +165,21 @@ the step by what you are separating:
 - `x-large`–`2x-large` — between distinct components
 - `3x-large` and up — between page sections
 
-**Never interpolate.** If the right value seems to be between two steps, the answer is one
-of the two steps, not a hardcoded value. A genuine gap in the scale is a token to propose,
-not a number to inline.
+**A token is the default.** If the right value seems to be between two steps, it is usually
+one of the two steps. Most "this needs to be in between" instincts are worth resisting —
+the scale exists so spacing stays consistent and re-tunable, and a repeated departure from
+it is a missing token to propose, not a number to inline.
+
+**But the visual result decides.** Optical corrections are real. A value that is
+technically on-scale can still look wrong against a particular typeface, icon, or border
+weight, and forcing the nearest step to keep the arithmetic tidy is the wrong trade —
+the scale serves the design, not the reverse.
+
+When you do depart from the scale:
+
+- Keep it local to one component. If the same off-scale value shows up in a second place, it is a token, and the honest fix is to propose one.
+- Say why in the PR. "Optically centered against the cap height" is a reason; silence reads as carelessness and will be corrected later by someone who assumes it was.
+- Never reach for a palette token or an inline color to solve a spacing problem.
 
 `radii` aliases the same scale rather than defining its own values, which is why a
 `radii` step and a `scale` step of the same nominal size stay in sync. The names are
@@ -259,10 +271,17 @@ statically, and `prefers-reduced-motion` must leave the interface fully usable.
 
 ## Typography
 
-The productive/expressive split is the primary typographic decision and is documented in
+The productive/expressive split is the primary typographic decision:
+
+- **Productive** — traditional web application elements. Forms, buttons, tables,
+  navigation, dashboards, settings, admin surfaces, in-app microcopy. The default for UI.
+- **Expressive** — brand-oriented and editorial. Marketing headlines, hero sections,
+  long-form article/handbook/lexicon bodies, quotes.
+
+Never mix the two inside one surface. Full detail in
 [`../../AGENTS.md`](../../AGENTS.md#typography-productive-vs-expressive) and
 [`../architecture/design-system.md`](../architecture/design-system.md#typography-productive-vs-expressive).
-Read one of those first. What follows is only what they do not cover.
+What follows is only what those do not cover.
 
 ### Fluid versus fixed
 
@@ -270,15 +289,15 @@ Read one of those first. What follows is only what they do not cover.
 **`fluid` exists only for `expressive`**. There is no fluid productive scale, and that is
 deliberate rather than an omission:
 
-- **Expressive type is fluid** because it is editorial. A hero headline should fill the viewport it is given, and article bodies read better when they scale with the space available.
-- **Productive type is fixed** because it is chrome. A button label that changes size with the viewport makes controls feel unstable and breaks the density that dense interfaces depend on.
+- **Expressive type is fluid** because it is brand and editorial. A hero headline should fill the viewport it is given, and article bodies read better when they scale with the space available.
+- **Productive type is fixed** because it is application UI. A button label that changes size with the viewport makes controls feel unstable and breaks the density that dense interfaces depend on.
 
 In `cadence-core`, this is the `isFluid` prop on `Text`. Setting `isFluid` on a productive
 type is a no-op at best and a bug at worst; if you want a productive size to change at a
 breakpoint, change the `size` at that breakpoint.
 
 The expressive scale runs two steps further at the top than the productive scale. There is
-no productive equivalent of the largest display sizes because no piece of app chrome
+no productive equivalent of the largest display sizes because no application UI element
 should be that large.
 
 ### Line height
@@ -316,9 +335,18 @@ these rather than sizing an icon to a specific label.
 ## Making a decision this file does not cover
 
 If the value you need exists as a semantic token, use it. If it exists only in the palette,
-you need a semantic token, not a palette reference. If it exists nowhere, you are making a
-design decision — record it in [`../proposals/`](../proposals/) alongside the work, and
-propose the token. `../proposals/tokenization-proposal.md` is the exemplar for that shape.
+you need a semantic token above it, not a palette reference.
+
+If it exists nowhere, you are making a **design decision**, and design decisions are made
+in Figma — see [`figma-workflow.md`](./figma-workflow.md). A genuinely new primitive value
+belongs in the palette, which is authored there and transcribed back here. A new *role* for
+values that already exist belongs in the semantic layer, which is authored here — name it
+for its meaning, place it in the family it belongs to, and check the contrast of every
+pairing it introduces.
+
+Either way, record the reasoning in [`../proposals/`](../proposals/) alongside the work;
+`../proposals/tokenization-proposal.md` is the exemplar for that shape. Where the choice is
+genuinely open, ask rather than pick silently.
 
 Inventing a value inline is the one option that is never correct.
 

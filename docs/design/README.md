@@ -23,13 +23,20 @@ rather than restating them.
 
 | System | Holds | Authoritative for |
 | --- | --- | --- |
-| **This repo** | `packages/cadence-tokens/tokens/**`, `packages/cadence-core`, and these docs | Every design *value*, every component contract, and the rules governing both |
-| **Figma** | Composition, exploration, unbuilt work, and a library generated from the tokens | Nothing the repo defines. Layouts and ideas only |
+| **Figma** | Brainstorming, scaffolding, UI and component design, composition, the raw palette | **Design intent.** What something *should* be. Where new visual decisions are made |
+| **This repo** | `packages/cadence-tokens/tokens/**`, `packages/cadence-core`, and these docs | **The record.** What currently ships, and the semantic layer that theming and contrast depend on |
 | **Notion** | Company → Brand (mission, positioning, voice), Inspiration (the reference library), Content (editorial strategy) | Brand strategy and taste — the *why* behind decisions this repo records the *what* of |
 
-The practical rule: if it has a value, it is in the repo. If it has a rationale that is not
-about implementation, it may be in Notion, and this directory should cite it rather than
-paraphrase it. If it is a picture, it is in Figma and it is not authoritative.
+The practical rule: **Figma is the intent, the repo is the record.** Design is decided in
+Figma and reaches the repo through a reviewed PR; once merged, the repo is what ships and
+what agents read. A Figma file that has drifted from `main` is a design not yet built, not
+a defect.
+
+Tokens are the exception worth knowing: the **palette** is authored in Figma and
+transcribed into code, while the **semantic layer** is authored in code and mirrored into
+Figma as variables. [`figma-workflow.md`](./figma-workflow.md) explains why.
+
+Brand rationale stays in Notion — cite it here rather than paraphrasing it.
 
 ## Writing docs here
 

@@ -52,8 +52,10 @@ has a known accessibility defect.
   font stacks, or durations.
 - Use **semantic** color tokens (`--cds-color-foreground-strong`), never palette tokens
   (`--cds-color-palette-blackberry-800`).
-- Pick the right type family: **productive** for app chrome, **expressive** for editorial
-  and brand surfaces. See the root [`AGENTS.md`](../../../AGENTS.md).
+- Pick the right type family: **productive** for traditional web application elements
+  (forms, buttons, tables, navigation, settings), **expressive** for brand-oriented and
+  editorial surfaces (marketing headlines, heroes, long-form bodies). Productive is the
+  default for UI. See the root [`AGENTS.md`](../../../AGENTS.md).
 
 ### `types.ts`
 

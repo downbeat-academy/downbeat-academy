@@ -50,7 +50,8 @@ Compound components nest: `form/` contains `input/`, `select/`, `checkbox/`, `ra
    value, radius, or font stack. Use **semantic** color tokens
    (`--cds-color-foreground-strong`), never palette tokens
    (`--cds-color-palette-blackberry-800`).
-3. Pick the right type family — productive for chrome, expressive for content. See
+3. Pick the right type family — productive for traditional web application elements
+   (forms, buttons, tables, navigation), expressive for brand-oriented and editorial. See
    [`../../AGENTS.md`](../../AGENTS.md).
 4. Write the test in `__test__/` and the story in `__docs__/`.
 5. **Add both the component and its `*Props` type to `src/index.ts`.**
