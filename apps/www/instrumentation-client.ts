@@ -69,6 +69,14 @@ if (
 		capture_exceptions: false,
 		debug: posthogDebug,
 	})
+
+	// In debug mode only, put the instance on `window`. The module build of
+	// posthog-js does not do this (only the CDN snippet does), and without it
+	// there is no way to inspect capture calls — from the browser console
+	// during manual QA, or from Cypress. Not exposed in production.
+	if (posthogDebug) {
+		;(window as typeof window & { posthog?: typeof posthog }).posthog = posthog
+	}
 } else if (process.env.NODE_ENV === 'development') {
 	console.info(
 		posthogToken
