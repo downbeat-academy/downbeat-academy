@@ -31,15 +31,25 @@ Everything below needs the real project, the real domain, and a real browser.
 ## 2. Establish what `defaults: '2026-01-30'` actually does
 
 **This cannot be determined by reading the code**, and everything downstream depends on it.
-Record the answers here and in `packages/analytics`.
 
-- [ ] Does a full page load produce `$pageview`? …
-- [ ] Does client-side navigation (clicking a nav link) produce another `$pageview`? …
-      This is the classic App Router failure. There is no `usePathname`-driven capture as a
-      backstop, so if the preset does not do it, SPA navigations are invisible.
-- [ ] Does leaving a page produce `$pageleave`? …
+Three of these are already settled — the Cypress spec
+(`cypress/e2e/analytics/posthog-events.cy.ts`) established them empirically against a real
+build, so do not re-derive them:
+
+- ✅ **A full page load produces `$pageview`.**
+- ✅ **Client-side navigation produces another `$pageview`.** This was the open risk — the
+      classic App Router failure, with no `usePathname`-driven capture as a backstop. The
+      preset handles it, and there is now a test that fails if that ever stops being true.
+- ✅ **Leaving a page produces `$pageleave`.** Observed incidentally while debugging the
+      spec: a full-document navigation away from a page fires it.
+
+Still to confirm against the real project:
+
 - [ ] Does clicking produce `$autocapture`? …
 - [ ] Are person profiles created for anonymous visitors, or only identified ones? …
+- [ ] Is session recording on? It should not be — Sentry owns replay. …
+
+Record the answers here.
 
 ## 3. Identity
 
