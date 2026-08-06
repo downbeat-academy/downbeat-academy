@@ -1,6 +1,5 @@
 'use client'
 
-import posthog from 'posthog-js'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -36,7 +35,6 @@ export function ForgotPasswordForm() {
       const result = await forgotPasswordAction(data.email)
       
       if (result.success) {
-        posthog.capture('password_reset_requested')
         toast({
           title: "Check your email",
           description: "We've sent you a link to reset your password.",

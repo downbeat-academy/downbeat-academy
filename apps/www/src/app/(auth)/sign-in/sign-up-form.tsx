@@ -1,6 +1,5 @@
 'use client'
 
-import posthog from 'posthog-js'
 import { signUp } from "@/actions/auth"
 import { Button } from "@components/ui/button"
 import { useForm, useWatch } from "react-hook-form"
@@ -66,8 +65,6 @@ export const SignUpForm = () => {
         } catch (error) {
           console.error('Failed to add contact to Resend:', error)
         }
-
-        posthog.capture('user_signed_up', { registration_method: 'email' })
 
         reset()
         toast({

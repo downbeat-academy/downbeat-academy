@@ -120,6 +120,12 @@ production project. In development the console says which of the two reasons app
 `auth.api.getSession()` database lookup for every path it matches; leaving `/ingest` in means one
 per analytics event.
 
+**Capture events through `src/lib/posthog/capture.ts`, never `posthog.capture` directly.** The
+wrapper types against the taxonomy in `packages/analytics`, so only real event names with their
+declared properties compile. `posthog.capture` accepts any string. `posthog.reset()` on sign-out
+(`components/navigation/main/header-navigation.tsx`) is a legitimate direct use — it is not a
+capture.
+
 ## Gotchas
 
 - **Sanity failures are silent.** `src/lib/sanity/sanity.client.ts` monkey-patches

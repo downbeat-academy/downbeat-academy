@@ -113,7 +113,7 @@ repo; see [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 | Tool | Scope | Wiring |
 | --- | --- | --- |
 | **Sentry** | `apps/www` | `withSentryConfig` in `next.config.js` (org `hype-creative-studios`, project `downbeatacademy`); `instrumentation.ts` lazily loads `sentry.server.config.ts` / `sentry.edge.config.ts`; `onRequestError` ignores stale Server Action IDs and aborted requests |
-| **PostHog** | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Server side via `src/lib/posthog-server.ts` (`createPostHogClient`, `flushAt: 1`). Identification in `src/components/posthog-identify/` |
+| **PostHog** | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
 | **Fathom** | `apps/www` | `src/lib/fathom.tsx`, `includedDomains` restricted to `downbeatacademy.com` |
 | **Resend** | `apps/auth`, `apps/www` | `auth` sends verification and reset mail using the `email` package's templates. `www` has its own templates in `src/actions/email/` and does **not** depend on the `email` package |
 
@@ -136,6 +136,12 @@ which is easy to miss when debugging one of them.
 - **Exception capture belongs to Sentry.** PostHog's `capture_exceptions` is off deliberately;
   turning it on sends every error to two vendors. See the "Evaluate consolidating Sentry into
   PostHog" task before changing this.
+- **Event names are not free-form.** They live in `packages/analytics` and are enforced by the
+  typed `capture` wrapper. Do not call `posthog.capture` directly — it accepts any string, which
+  is how the same concept once shipped as both `registration_method` and `method`.
+- **A `capture` call that typechecks is not a capture that fires.** Four events in the original
+  wizard integration sat on the dead email-auth path and never once ran. Reachability is proven
+  by the Cypress `/ingest` spec, not by the type system.
 
 ## CI
 

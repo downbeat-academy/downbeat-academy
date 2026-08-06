@@ -34,6 +34,7 @@ Cadence — the design system it is built on. Maintained by a single developer.
 | `packages/cadence-tokens` | Design tokens via style-dictionary. Emits `--cds-*` CSS custom properties. | Yes — style-dictionary |
 | `packages/cadence-icons` | 79 icons, SVG → SVGR → React components. | Yes — vite |
 | `packages/cadence-core-web-components` | Lit port of a 13-component subset. **No consumer yet.** | Yes — vite |
+| `packages/analytics` | Shared analytics event taxonomy: event names and property types. No runtime. | **No** — consumed as raw TypeScript source |
 | `packages/auth-permissions` | Shared RBAC: roles, permission statements, route guards. | **No** — consumed as raw TypeScript source |
 | `packages/email` | react-email templates. | **No** — consumed as raw source |
 | `packages/typeface-favorit` | Favorit font files + CSS. | **No** — plain CSS |
@@ -48,6 +49,7 @@ typeface-* ─────┘                  └─→ cadence-links
 
 cadence-tokens ───→ cadence-core-web-components   (no consumer)
 auth-permissions ─→ www, auth, cadence-links      (raw source, no build)
+analytics ────────→ www                           (raw source, no build)
 email ────────────→ auth only                     (raw source, no build)
 
 cms-sanity ── no workspace dependencies at all
@@ -105,7 +107,8 @@ It should finish in roughly 10 seconds warm and exit 0. Individually:
 pnpm lint          # eslint — www, auth, cadence-links, cms-sanity
 pnpm typecheck     # tsc --noEmit — every workspace
 pnpm test          # vitest run — www, cadence-links, cadence-core,
-                   #   cadence-core-web-components, cadence-icons, auth-permissions
+                   #   cadence-core-web-components, cadence-icons, auth-permissions,
+                   #   analytics
 ```
 
 `pnpm test` runs **once and exits**. If you ever see it hang, something has
