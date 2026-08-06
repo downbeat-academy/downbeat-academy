@@ -14,6 +14,7 @@ Testing-related documentation and guides
 - [test-users.md](./testing/test-users.md) - Test user configuration and management
 - [troubleshooting.md](./testing/troubleshooting.md) - Common issues and solutions
 - [ci-cd.md](./testing/ci-cd.md) - CI/CD pipeline configuration
+- [analytics-qa.md](./testing/analytics-qa.md) - Manual PostHog live-event checklist, run against a deployed environment
 
 ### 📁 [implementation/](./implementation/)
 Implementation details and technical summaries
