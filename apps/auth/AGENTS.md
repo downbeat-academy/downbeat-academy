@@ -32,7 +32,39 @@ pnpm --filter auth db:verify-roles
 pnpm --filter auth db:fix-roles
 ```
 
-There is no `test` script — this app has no unit tests, only the five Cypress specs.
+`pnpm --filter auth test` runs vitest in a **node** environment (everything unit-tested here
+is server-side), over `src/**/__test__/**/*.test.ts`. Coverage is currently the analytics
+gate and auth-method resolution only — the five Cypress specs remain the main safety net.
+
+## Analytics
+
+This app owns the **authentication funnel**. Sign-in happens here, in the OAuth provider,
+not in the consumer apps — `apps/www` only ever receives the resulting session. Events
+previously lived in `www` on its disabled email-auth path and never fired once.
+
+Capture goes through `src/lib/analytics`, never `posthog-node` directly:
+
+- `sign_up_completed` and `sign_in_completed` hang off better-auth `databaseHooks`
+  (`user.create.after`, `session.create.after`). Hooking the database rather than the route
+  handlers means every entry point is covered — email and OAuth alike — with nothing to
+  remember when a new one is added.
+- `session.create.after` fires for reasons other than someone signing in. `resolveAuthMethod`
+  returns `null` for any path that is not a recognised sign-in entry point, and the hook
+  bails on `null`. Removing that guard silently inflates the sign-in count with session
+  refreshes.
+- `sign_out_completed` is captured in `src/app/sign-out/page.tsx`, reading the session
+  *before* `auth.api.signOut()` destroys it. That page is the real sign-out path — consumer
+  apps redirect to it — so instrumenting it covers all of them.
+- `captureAuthEvent` never throws and is never awaited. It runs on the critical path of
+  signing in; analytics must not be able to fail an authentication.
+- `distinctId` is always the better-auth `user.id`. That shared id is the *only* thing
+  stitching these events to `www`'s — the two apps are on different domains, so there is no
+  shared cookie and no common anonymous id.
+
+Like `www`, capture is gated by host: `shouldCaptureAuthAnalytics` requires `AUTH_SERVICE_URL`
+to be the production auth service. Gating on `NODE_ENV` would not work, because preview
+deploys also run with `NODE_ENV=production`. Set `POSTHOG_DEBUG=true` to capture from a local
+run — those events go to the production project.
 
 ## Layout
 

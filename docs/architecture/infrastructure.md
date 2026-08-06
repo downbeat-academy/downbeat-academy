@@ -114,6 +114,7 @@ repo; see [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 | --- | --- | --- |
 | **Sentry** | `apps/www` | `withSentryConfig` in `next.config.js` (org `hype-creative-studios`, project `downbeatacademy`); `instrumentation.ts` lazily loads `sentry.server.config.ts` / `sentry.edge.config.ts`; `onRequestError` ignores stale Server Action IDs and aborted requests |
 | **PostHog** | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
+| **PostHog** | `apps/auth` | Server-side only (`posthog-node`), no client init. The authentication funnel: `sign_up_completed` / `sign_in_completed` via better-auth `databaseHooks`, `sign_out_completed` in `src/app/sign-out/page.tsx`, `password_reset_requested` in `sendResetPassword`. Gated by `shouldCaptureAuthAnalytics` on `AUTH_SERVICE_URL` |
 | **Fathom** | `apps/www` | `src/lib/fathom.tsx`, `includedDomains` restricted to `downbeatacademy.com` |
 | **Resend** | `apps/auth`, `apps/www` | `auth` sends verification and reset mail using the `email` package's templates. `www` has its own templates in `src/actions/email/` and does **not** depend on the `email` package |
 
@@ -142,6 +143,13 @@ which is easy to miss when debugging one of them.
 - **A `capture` call that typechecks is not a capture that fires.** Four events in the original
   wizard integration sat on the dead email-auth path and never once ran. Reachability is proven
   by the Cypress `/ingest` spec, not by the type system.
+- **`apps/auth` deliberately has no client-side PostHog.** It is on
+  `auth.downbeatacademy.services` while `www` is on `downbeatacademy.com` — different domains,
+  so a browser SDK there would create a second anonymous-identity pool with nothing to stitch it
+  to the first. Cross-subdomain cookies are not an option either; see
+  [`auth.md`](./auth.md). Capturing server-side against the better-auth `user.id` — the same id
+  `www` identifies with — sidesteps the problem. The cost is that anonymous pre-auth steps on the
+  auth domain are invisible, so drop-off *within* the sign-in page is not measurable.
 
 ## CI
 
