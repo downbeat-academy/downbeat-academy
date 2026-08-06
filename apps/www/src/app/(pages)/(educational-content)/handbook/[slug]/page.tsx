@@ -6,6 +6,7 @@ import { Text, SectionContainer, SectionTitle } from 'cadence-core'
 import { Link } from '@components/link'
 import { RichText, RichTextWrapper } from '@components/rich-text'
 import { ChangelogDrawer } from '@components/changelog'
+import { TrackContentView } from '@components/analytics'
 import s from './handbook-page.module.css'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -108,6 +109,11 @@ export default async function HandbookSlugRoute({ params }: { params: Promise<{ 
 					<RichText value={handbook.content.content} />
 				</RichTextWrapper>
 			</SectionContainer>
+			<TrackContentView
+				event="handbook_page_viewed"
+				slug={slug}
+				title={handbook.title}
+			/>
 		</>
 	)
 }

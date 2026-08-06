@@ -10,6 +10,7 @@ import { Text, Flex, SectionContainer, SectionTitle } from 'cadence-core'
 import { RichText } from '@components/rich-text'
 import * as FeaturedItem from '@components/featured-item'
 import { ListItem } from '@components/list'
+import { TrackContentView } from '@components/analytics'
 import { linkResolver } from '@utils/link-resolver'
 
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -115,6 +116,11 @@ export default async function ContributorSlugRoute({ params }: { params: Promise
 					))}
 				</Flex>
 			</SectionContainer>
+			<TrackContentView
+				event="contributor_viewed"
+				slug={slug}
+				title={contributor.name}
+			/>
 		</>
 	)
 }
