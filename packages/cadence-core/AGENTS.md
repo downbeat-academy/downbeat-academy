@@ -83,9 +83,27 @@ expect(el).toHaveClass('root')   // never matches
 `border: 1px solid var(--cds-color-border-faint)` computes to `borderStyle: 'none'`, and
 `borderRadius` reads back as the literal string `"var(--cds-radii-medium)"`. The same
 rule with a literal color computes correctly. So a `getComputedStyle` assertion on any
-token-driven property is meaningless — assert the **declared rule** instead. See
-`src/components/sidebar/__test__/sidebar-styles.test.tsx` for the `declaredRootRule()`
-pattern.
+token-driven property is meaningless — assert the **declared rule** instead, via
+`declaredRule()` from `src/test-utils`.
+
+### Shared test helpers
+
+`src/test-utils/` holds helpers used across component suites. Import them by relative
+path; they are **not** re-exported from `src/index.ts` and must not be — the barrel is the
+public API. The folder is excluded from `tsconfig.json` exactly as `__test__/` is, so
+nothing here reaches `dist/`.
+
+| Helper | Use |
+| --- | --- |
+| `axeViolations(container, rules?)` | Runs axe and returns violations. Assert `toEqual([])` — a failure then names the rule and the node |
+| `declaredRule(className)` | Declared `cssText` for one class. Pass the CSS-module binding, never a literal |
+| `declaredRules(className)` | Every rule whose selector contains the class — for `:hover`, `[data-state]`, and other modifiers |
+| `formatViolations(violations)` | Readable violation output when the raw array is too noisy |
+
+`axeViolations` disables `color-contrast` and does not let you re-enable it: jsdom has no
+layout engine, so axe cannot resolve computed colors and would report a false pass.
+**Contrast is checked in a real browser** through the Storybook a11y addon panel, which is
+registered in `.storybook/main.ts`.
 
 ## Build
 
