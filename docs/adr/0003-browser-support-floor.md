@@ -47,12 +47,12 @@ is acceptable. An overlay that renders in the wrong place is not.
 Nothing enforces this yet. `browserslist@4.28.2` is already in the lockfile and does
 support a literal `baseline newly available` query, so the floor can be encoded rather
 than only described. That is deliberately left as follow-up work: adding the key changes
-compilation targets across every app and package, which is a behaviour change needing its
+compilation targets across every app and package, which is a behavior change needing its
 own verification, not a line smuggled into a documentation change.
 
 ## Consequences
 
-The design system can own behaviour it previously delegated. Native `<dialog>` with
+The design system can own behavior it previously delegated. Native `<dialog>` with
 `showModal()` replaces a portal, an overlay, a focus scope, and presence tracking in one
 move. Native form controls replace hand-rolled ARIA. This is what makes dependency removal
 worth doing rather than merely a lateral trade.

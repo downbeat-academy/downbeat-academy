@@ -58,7 +58,7 @@ rebase through the stack; `gh stack modify` restructures it (drop, fold, insert,
 
 **Already have a chain of branches?** You probably do not need to do anything —
 branch-off-branch produces exactly the topology a native stack requires, and GitHub
-recognises a correctly-chained set of PRs on its own. `gh stack link` adopts existing
+recognizes a correctly-chained set of PRs on its own. `gh stack link` adopts existing
 branches and PRs explicitly if it does not.
 
 ### What changes semantically

@@ -64,4 +64,11 @@ Direct and factual. Prefer the active voice. Say "this fails" rather than "this 
 potentially cause issues". Where something is genuinely uncertain, say what is known and
 what is not, rather than hedging everything uniformly.
 
+**US English.** `color`, not `colour`; also `behavior`, `license`, `optimize`,
+`initialize`, `analyze`, `recognize`, `center`, `modeling`. The code is US English and
+cannot be otherwise (`--cds-color-*`, `currentColor`, `backgroundColor`), so prose that
+diverges cannot be grepped alongside what it describes. Never rewrite an identifier to
+match — `aria-labelledby` stays — and never edit a `CHANGELOG.md`. See the root
+`AGENTS.md`.
+
 Do not add changesets for documentation-only changes to `docs/` or `AGENTS.md` files.

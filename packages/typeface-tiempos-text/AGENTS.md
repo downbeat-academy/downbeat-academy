@@ -26,7 +26,8 @@ Tiempos Text backs the **expressive** family —
 
 Expressive type is for brand and editorial surfaces: marketing headlines, hero sections,
 long-form article / handbook / lexicon bodies, and quotes — anywhere voice and craft
-matter more than density. App chrome uses *productive* type, which is
+matter more than density. Traditional web application elements — forms, buttons, tables,
+navigation — use *productive* type, which is
 [`../typeface-favorit/`](../typeface-favorit/). See [`../../AGENTS.md`](../../AGENTS.md)
 for the full rule.
 
@@ -42,7 +43,7 @@ Rarely necessary. If you add a weight or style:
 
 1. Add the binary to `files/`.
 2. Add the matching `@font-face` block to `index.css` (and the SCSS partial if used).
-3. Confirm the licence covers the new cut.
+3. Confirm the license covers the new cut.
 4. Add a changeset.
 
 No rebuild is needed — consumers import the CSS directly.

@@ -106,7 +106,7 @@ Prefer `cadence-core` components. Where `www` has a local wrapper it aliases the
 
 ### Observability
 
-`instrumentation-client.ts` initialises **both** Sentry and PostHog — easy to miss when
+`instrumentation-client.ts` initializes **both** Sentry and PostHog — easy to miss when
 debugging either. PostHog uses `api_host: '/ingest'`, reverse-proxied by a `rewrites()`
 rule in `next.config.js`.
 

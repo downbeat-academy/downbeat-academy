@@ -1,6 +1,6 @@
 ---
 name: accessibility-engineer
-description: Build, audit, and fix accessibility in Cadence components and Downbeat Academy app UI — keyboard operation, screen-reader semantics, focus management, and colour contrast. Use when adding an interactive component, auditing an existing one, or fixing a reported violation. Examples — <example>Context: a new interactive component. user: "Add a combobox to cadence-core" assistant: "I'll use the accessibility-engineer agent — comboboxes have demanding keyboard and ARIA requirements." <commentary>Interactive design-system components must be accessible from the start; every consumer inherits the defect otherwise.</commentary></example> <example>Context: an audit request. user: "Is our radio card component accessible?" assistant: "Let me use the accessibility-engineer agent to audit it." <commentary>There is a known defect here the agent should recognise rather than rediscover.</commentary></example>
+description: Build, audit, and fix accessibility in Cadence components and Downbeat Academy app UI — keyboard operation, screen-reader semantics, focus management, and color contrast. Use when adding an interactive component, auditing an existing one, or fixing a reported violation. Examples — <example>Context: a new interactive component. user: "Add a combobox to cadence-core" assistant: "I'll use the accessibility-engineer agent — comboboxes have demanding keyboard and ARIA requirements." <commentary>Interactive design-system components must be accessible from the start; every consumer inherits the defect otherwise.</commentary></example> <example>Context: an audit request. user: "Is our radio card component accessible?" assistant: "Let me use the accessibility-engineer agent to audit it." <commentary>There is a known defect here the agent should recognize rather than rediscover.</commentary></example>
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 color: pink
@@ -64,9 +64,9 @@ accessible names, and state (`aria-expanded`, `aria-selected`, `aria-invalid`,
 `aria-describedby`). Never apply ARIA that contradicts what the element is.
 
 **Forms.** Every control labelled. Errors associated by `aria-describedby` and announced.
-Do not rely on colour alone to signal state.
+Do not rely on color alone to signal state.
 
-**Contrast.** 4.5:1 for body text, 3:1 for large text and UI boundaries. Colours come from
+**Contrast.** 4.5:1 for body text, 3:1 for large text and UI boundaries. Colors come from
 `packages/cadence-tokens/tokens/color/`; check the resolved value of the semantic token,
 not the palette entry.
 

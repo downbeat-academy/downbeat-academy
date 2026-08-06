@@ -74,7 +74,7 @@ this is how consumers learn a user's permissions.
 
 ### Sign-in must continue the OAuth flow
 
-The single most important behaviour in this app. When `oauthProvider` redirects to
+The single most important behavior in this app. When `oauthProvider` redirects to
 `loginPage`, it appends the OAuth params. After authenticating, the page must redirect
 back to **`/api/auth/oauth2/authorize` with those same params** — not to `redirect_uri`.
 Redirecting straight to the app bypasses the code-grant step and produces

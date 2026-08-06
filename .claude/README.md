@@ -17,6 +17,7 @@ settings.local.json  personal overrides — gitignored, never commit
 | `plan-feature` | Starting any non-trivial work — turns a Notion task or description into a plan and a branch |
 | `new-component` | Adding a component to `cadence-core` |
 | `new-sanity-type` | Adding a CMS content type and wiring it through to `www` |
+| `figma-to-component` | Work starts from a Figma frame — maps the design onto existing tokens and components before any code is written |
 | `ship` | Work is done — verify, changeset, commit, PR, update Notion |
 | `stack` | A change depends on unmerged work, or large work needs splitting |
 | `sync-notion` | Reading or updating the Product Roadmap |

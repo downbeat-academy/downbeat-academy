@@ -13,4 +13,4 @@ installed. Marking them external drops the ESM bundle from 317,829 to 285,457 by
 `www` declared six `@radix-ui/*` dependencies it never imported — it consumes Radix only
 indirectly through `cadence-core`. Removed.
 
-No API or behaviour change in either package.
+No API or behavior change in either package.

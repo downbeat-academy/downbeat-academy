@@ -18,7 +18,7 @@ const Wrap = ({ children }: { children: React.ReactNode }) => (
 )
 
 /**
- * jsdom has no layout, so axe's colour-contrast rule can't run here — that one still
+ * jsdom has no layout, so axe's color-contrast rule can't run here — that one still
  * needs a real browser. Everything structural (list nesting, names, roles) is covered.
  */
 async function findViolations(container: HTMLElement) {

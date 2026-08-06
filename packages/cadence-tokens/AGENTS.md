@@ -42,12 +42,12 @@ So `tokens/color/foreground.json` → `--cds-color-foreground-strong`.
 `@divriots/style-dictionary-to-figma` is a devDependency but is **not wired into
 `config.js`** — there is currently no Figma export.
 
-## The two-layer colour model
+## The two-layer color model
 
 This is the most important convention in the package.
 
 `tokens/color/palette.json` holds raw numeric ramps — `blackberry.400`, `violet.700`.
-The other five colour files are the **semantic layer** and reference the palette rather
+The other five color files are the **semantic layer** and reference the palette rather
 than restating values:
 
 ```json
@@ -60,7 +60,7 @@ than restating values:
 `var(--cds-color-palette-blackberry-800)` bypasses the abstraction, and will break when
 the palette is re-tuned or when theming lands.
 
-When adding a colour: add the raw value to `palette.json` **only** if it is genuinely a
+When adding a color: add the raw value to `palette.json` **only** if it is genuinely a
 new hue or step, then expose it through a semantic name. A semantic token with a
 hardcoded hex is a bug.
 

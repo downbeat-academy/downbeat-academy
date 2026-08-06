@@ -45,6 +45,20 @@ needs two builds.
 **Check the gaps register.** Several things look broken and are, deliberately. Planning a
 fix for one as a side effect of unrelated work makes both harder to review.
 
+**If the work has a visual surface, decide what it looks like before branching.** The rest
+of this loop assumes that question is settled; nothing downstream will ask it. Work down
+the ladder in [`../../DESIGN.md`](../../DESIGN.md) — existing component, then existing
+token, then [`../design/design-language.md`](../design/design-language.md). If all three
+come up empty, you are making a design decision, and it needs an artifact:
+
+- Small work — a paragraph in the Notion task body naming the components and tokens involved.
+- Anything needing a new token, a new component, or a new pattern — a note in
+  [`../proposals/`](../proposals/), in the shape of
+  [`../proposals/tokenization-proposal.md`](../proposals/tokenization-proposal.md).
+
+Coming from a Figma design instead, use `/figma-to-component` rather than reading values
+off the node — see [`../design/figma-workflow.md`](../design/figma-workflow.md).
+
 ## 2. Build
 
 Work in dependency order: packages before apps, schema before query before route.
@@ -53,10 +67,12 @@ Reach for the agent that owns the area — `cadence-design-system`, `sanity-cont
 `auth-security`, `javascript-engineer`, `accessibility-engineer`, `test-engineer`.
 They carry the failure modes so you do not have to hold them in your head.
 
-Two skills cover the mechanical chains:
+Three skills cover the mechanical chains:
 
 - `/new-component` — the `cadence-core` scaffold, and the two rules that reliably bite
 - `/new-sanity-type` — the five-step chain across `cms-sanity` and `www`
+- `/figma-to-component` — mapping a Figma node onto existing components and tokens before
+  any code is written
 
 ## 3. Verify
 
