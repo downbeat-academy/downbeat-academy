@@ -63,7 +63,7 @@ name the order.
 For a plan, give: what to do next and why, what it depends on, what it unblocks, roughly
 how big it is, and what you are explicitly deferring.
 
-You read and analyse; you do not implement. Hand off to `plan-feature` for a single piece
+You read and analyze; you do not implement. Hand off to `plan-feature` for a single piece
 of work.
 
 Flag risk when you see it, but do not manufacture it. If the sensible answer is "the

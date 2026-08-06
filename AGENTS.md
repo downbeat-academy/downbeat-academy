@@ -7,7 +7,8 @@ Each app and package also has its own `AGENTS.md` with local detail. Read the on
 the workspace you are changing — this file covers only what is true repo-wide.
 
 Deep dives live in [`docs/`](./docs/README.md). Start with
-[`docs/architecture/monorepo.md`](./docs/architecture/monorepo.md).
+[`docs/architecture/monorepo.md`](./docs/architecture/monorepo.md). For anything with a
+visual surface, start instead with [`DESIGN.md`](./DESIGN.md).
 
 ---
 
@@ -52,7 +53,7 @@ email ────────────→ auth only                     (raw
 cms-sanity ── no workspace dependencies at all
 ```
 
-Three consequences worth internalising:
+Three consequences worth internalizing:
 
 1. **`cms-sanity` is fully isolated.** It does not use Cadence. Changing a component
    cannot break the Studio, and vice versa. Its coupling to `www` is by *convention* —
@@ -138,12 +139,12 @@ Do not assume a green `verify` means everything is checked:
 | You want to… | Go to | Then |
 | --- | --- | --- |
 | Add or change a UI component | `packages/cadence-core/src/components/` | Add to the `src/index.ts` barrel, `pnpm core:build`, check Storybook |
-| Change a colour, space, radius, type scale | `packages/cadence-tokens/tokens/` | `pnpm tokens:build && pnpm build:packages` |
+| Change a color, space, radius, type scale | `packages/cadence-tokens/tokens/` | `pnpm tokens:build && pnpm build:packages` |
 | Add an icon | `packages/cadence-icons/src/assets/` (drop the SVG) | `pnpm icons:build` |
 | Add or change a content type | `apps/cms-sanity/schemas/` | Register in `schemas/index.ts`, add to `deskStructure.ts`, then add the GROQ query in `www` |
 | Render new content on the site | `apps/www/src/lib/queries/`, then the route | Wire Portable Text types in `src/components/rich-text/components.tsx` |
 | Change roles or permissions | `packages/auth-permissions/src/` | Affects all three Next apps at once — no rebuild, but re-run `pnpm typecheck` |
-| Change sign-in / OAuth behaviour | `apps/auth/src/lib/auth/auth.ts` | Consumers must keep matching `genericOAuth` config |
+| Change sign-in / OAuth behavior | `apps/auth/src/lib/auth/auth.ts` | Consumers must keep matching `genericOAuth` config |
 | Change a transactional email | `packages/email/emails/` | `pnpm email:dev` to preview. Note: `www` does **not** use this package |
 
 **Do not** add a component to an app when Cadence should own it. If `www` needs a
@@ -155,18 +156,41 @@ precedent.
 
 ### Typography: productive vs expressive
 
-Cadence has two type families. Pick by asking **"is this app chrome, or is this
-content?"**
+Cadence has two type families. Pick by asking **"is this application UI, or is this brand
+and editorial?"**
 
 - **Productive** (`--cds-typography-font-family-productive-*`;
-  `<Text type="productive-body" | "productive-headline">`) — dashboards, forms, buttons,
-  tables, navigation, admin surfaces, settings, in-app microcopy. The default for UI.
+  `<Text type="productive-body" | "productive-headline">`) — traditional web application
+  elements: forms, buttons, tables, navigation, dashboards, settings, admin surfaces,
+  in-app microcopy. **The default for UI.**
 - **Expressive** (`--cds-typography-font-family-expressive-*`;
-  `<Text type="expressive-body" | "expressive-headline">`) — marketing headlines, hero
-  sections, long-form article/handbook/lexicon bodies, quotes.
+  `<Text type="expressive-body" | "expressive-headline">`) — brand-oriented and editorial:
+  marketing headlines, hero sections, long-form article/handbook/lexicon bodies, quotes.
 
 Never mix the two within one surface. An expressive headline above productive-body form
 labels in a settings panel is a bug.
+
+### Spelling: US English
+
+**Write `color`, not `colour`.** US English throughout — prose, comments, commit messages,
+PR descriptions, docs, skills, and agent definitions, not just code.
+
+This is not a style preference. The code is US English and cannot be otherwise: the CSS
+property is `color`, the tokens are `--cds-color-*`, the props are `color` and
+`backgroundColor`, and `currentColor` is a keyword. Prose that says "colour" cannot be
+grepped alongside the thing it describes, and an agent that reads "colour" in a doc will
+write `--cds-colour-*` in a stylesheet.
+
+The same applies to every other British form: `behavior`, `license`, `optimize`,
+`initialize`, `analyze`, `recognize`, `organize`, `normalize`, `center`, `catalog`,
+`modeling`, `labeled`.
+
+Two exceptions, both about not breaking identifiers:
+
+- **Never rewrite an identifier to match.** `aria-labelledby` is an ARIA attribute and
+  `@img/colour` is a real npm package. Spelling is a rule about prose.
+- **Never edit a `CHANGELOG.md`.** They are generated records of what was written at the
+  time.
 
 ### Components
 
@@ -174,7 +198,7 @@ labels in a settings panel is a bug.
 - Folder-per-component: `x.tsx`, `x.module.css`, `types.ts`, `index.ts`, `__test__/`,
   `__docs__/`.
 - Styling is CSS Modules referencing `--cds-*` custom properties. Never hardcode a
-  colour, spacing value, or font stack.
+  color, spacing value, or font stack.
 - A new component is invisible to consumers until it is re-exported from
   `packages/cadence-core/src/index.ts` — both the component *and* its `*Props` type.
 
@@ -246,4 +270,7 @@ commit `.env*` (now gitignored). `.mcp.json` is gitignored and holds local crede
 - [`docs/architecture/content.md`](./docs/architecture/content.md) — Sanity → GROQ → route → Portable Text
 - [`docs/architecture/design-system.md`](./docs/architecture/design-system.md) — tokens → core → apps
 - [`docs/architecture/infrastructure.md`](./docs/architecture/infrastructure.md) — Railway, Cloudflare, Infisical, observability
+- [`DESIGN.md`](./DESIGN.md) — the ladder for making a visual decision
+- [`docs/design/design-language.md`](./docs/design/design-language.md) — which token to use and why: ramps, semantic families, contrast, space, motion, iconography
+- [`docs/design/figma-workflow.md`](./docs/design/figma-workflow.md) — how design and code stay in sync
 - [`docs/adr/`](./docs/adr/) — architecture decisions and the known-gaps register

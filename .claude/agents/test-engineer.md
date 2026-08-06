@@ -1,6 +1,6 @@
 ---
 name: test-engineer
-description: Write, run, and analyse tests in the Downbeat Academy monorepo — vitest unit tests and Cypress E2E. Use when adding tests for new code, closing coverage gaps, or diagnosing failing or misleading tests. Examples — <example>Context: a new utility was written. user: "I added a slug-collision helper in www" assistant: "I'll use the test-engineer agent to write vitest coverage for it." <commentary>Knows where tests live per workspace and the conventions each uses.</commentary></example> <example>Context: a test asserts something odd. user: "This style test passes but I don't think it's checking anything" assistant: "Let me use the test-engineer agent — jsdom has a known limitation here." <commentary>The agent knows jsdom cannot resolve var(), which makes whole classes of style assertions vacuous.</commentary></example>
+description: Write, run, and analyze tests in the Downbeat Academy monorepo — vitest unit tests and Cypress E2E. Use when adding tests for new code, closing coverage gaps, or diagnosing failing or misleading tests. Examples — <example>Context: a new utility was written. user: "I added a slug-collision helper in www" assistant: "I'll use the test-engineer agent to write vitest coverage for it." <commentary>Knows where tests live per workspace and the conventions each uses.</commentary></example> <example>Context: a test asserts something odd. user: "This style test passes but I don't think it's checking anything" assistant: "Let me use the test-engineer agent — jsdom has a known limitation here." <commentary>The agent knows jsdom cannot resolve var(), which makes whole classes of style assertions vacuous.</commentary></example>
 tools: Read, Write, Edit, Grep, Glob, Bash
 model: sonnet
 color: yellow
@@ -74,7 +74,7 @@ transformers, and one calculator. A green coverage run says very little about th
 
 ## What makes a good test here
 
-Test behaviour, not implementation. For components that means: **query by role**, operate
+Test behavior, not implementation. For components that means: **query by role**, operate
 by keyboard, and assert what a user would observe. A test that only checks class names
 would not have caught the `radio-card` accessibility defect — a `getByRole('radio')` query
 did.

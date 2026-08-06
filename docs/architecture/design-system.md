@@ -3,6 +3,10 @@
 Four packages, one pipeline: tokens define the values, components consume them, apps
 consume the components.
 
+This file covers the **mechanism** — what holds what, in which order it builds, and the
+conventions for changing it. For the **intent** — which token to use and why — read
+[`../design/design-language.md`](../design/design-language.md).
+
 ```
 cadence-tokens ──▶ cadence-core ──▶ www / auth / cadence-links
       │                 ▲
@@ -25,7 +29,7 @@ Two outputs into `dist/web/`: `tokens.css` (custom properties) and `tokens.scss`
 `elevation`, `focus`, `radii`, `scale`, `size`, `state`, `typography` (font-family,
 font-size, line-height), `z-index`.
 
-### The colour layering matters
+### The color layering matters
 
 `tokens/color/palette.json` holds raw numeric ramps — `blackberry.400`, `violet.700`, and
 so on. The other five files (`foreground`, `surface`, `border`, `page`, `overlay`) are the
@@ -162,14 +166,15 @@ a change in `cadence-core` needs mirroring here.
 
 ## Typography: productive vs expressive
 
-Two families. Choose by asking **"is this app chrome, or is this content?"**
+Two families. Choose by asking **"is this application UI, or is this brand and
+editorial?"**
 
 | | Productive | Expressive |
 | --- | --- | --- |
 | Token | `--cds-typography-font-family-productive-{body,headline}` | `--cds-typography-font-family-expressive-{body,headline}` |
 | `<Text type>` | `productive-body`, `productive-headline` | `expressive-body`, `expressive-headline` |
-| Use for | Dashboards, forms, buttons, tables, navigation, admin, settings, microcopy | Marketing headlines, heroes, article/handbook/lexicon bodies, quotes |
-| Optimised for | Density and legibility | Voice and craft |
+| Use for | Traditional web application elements — forms, buttons, tables, navigation, dashboards, settings, admin, microcopy | Brand-oriented and editorial — marketing headlines, heroes, article/handbook/lexicon bodies, quotes |
+| Optimized for | Density and legibility | Voice and craft |
 
 Productive is the default for anything utilitarian. **Never mix the two inside one
 surface** — an expressive headline over productive-body form labels in a settings panel
@@ -181,8 +186,8 @@ When adding or changing a component:
 
 - [ ] Folder-per-component layout, including `__test__/` and `__docs__/`
 - [ ] Exported from `src/index.ts` — component *and* `*Props` type
-- [ ] CSS Module only; every value a `--cds-*` token, no hardcoded colours or spacing
-- [ ] Semantic colour tokens, never palette tokens
+- [ ] CSS Module only; every value a `--cds-*` token, no hardcoded colors or spacing
+- [ ] Semantic color tokens, never palette tokens
 - [ ] Correct type family for the surface
 - [ ] Keyboard accessible and announced correctly — verify with a real role query in the test
 - [ ] `pnpm core:build` and check it in Storybook
@@ -190,6 +195,11 @@ When adding or changing a component:
 
 ## Related
 
+- [`../design/design-language.md`](../design/design-language.md) — what each ramp and
+  semantic family *means*, and how to choose between them
+- [`../design/figma-workflow.md`](../design/figma-workflow.md) — the design ↔ code pipeline
+- [`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md) — why
+  the token files are authoritative and Figma is generated
 - [`monorepo.md`](./monorepo.md) — build order and why tokens must precede core
 - [`../proposals/tokenization-proposal.md`](../proposals/tokenization-proposal.md) —
   planned shadow, border-width, easing, overlay, icon-size, breakpoint and z-index tokens

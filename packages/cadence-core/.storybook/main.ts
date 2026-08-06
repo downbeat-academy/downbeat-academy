@@ -26,7 +26,7 @@ const config: StorybookConfig = {
 	addons: [
         getAbsolutePath('@storybook/addon-links'),
         getAbsolutePath("@storybook/addon-docs"),
-        // Reports axe violations per story, including colour contrast — which the vitest
+        // Reports axe violations per story, including color contrast — which the vitest
         // suites cannot check, since jsdom has no layout engine.
         getAbsolutePath("@storybook/addon-a11y")
     ],

@@ -4,7 +4,7 @@ import axe from 'axe-core'
  * Runs axe against a rendered container and returns its violations.
  *
  * `color-contrast` is disabled and cannot be enabled here. jsdom has no layout engine, so
- * axe cannot resolve computed colours and the rule either throws or reports nothing
+ * axe cannot resolve computed colors and the rule either throws or reports nothing
  * useful — an "empty violations" result would be a false pass, not a real one. Contrast is
  * checked in a real browser via the Storybook a11y addon panel.
  *

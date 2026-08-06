@@ -16,6 +16,17 @@ These documents explain *why* things are the way they are.
 | [`architecture/design-system.md`](./architecture/design-system.md) | Tokens → components → apps, the build pipeline, styling conventions |
 | [`architecture/infrastructure.md`](./architecture/infrastructure.md) | Railway, Cloudflare, Infisical, and the observability stack |
 
+## Design
+
+[`design/`](./design/) covers design *intent* — which token to use and why — where
+`architecture/design-system.md` covers the mechanism.
+
+| Document | Covers |
+| --- | --- |
+| [`design/design-language.md`](./design/design-language.md) | The palette ramps and semantic families, contrast targets, space, layout, elevation, motion, typography, iconography |
+| [`design/figma-workflow.md`](./design/figma-workflow.md) | The design ↔ code pipeline, direction of truth, and Figma plan-tier constraints |
+| [`design/component-inventory.md`](./design/component-inventory.md) | Component ↔ Figma variant mapping; the interim stand-in for Code Connect |
+
 ## Decisions
 
 [`adr/`](./adr/) holds architecture decision records.
@@ -25,6 +36,7 @@ These documents explain *why* things are the way they are.
 | [`adr/0001-record-architecture-decisions.md`](./adr/0001-record-architecture-decisions.md) | Why this repo keeps ADRs, and the format |
 | [`adr/0002-known-gaps.md`](./adr/0002-known-gaps.md) | **The known-gaps register.** Read before "fixing" anything that looks broken |
 | [`adr/0003-browser-support-floor.md`](./adr/0003-browser-support-floor.md) | Baseline Newly Available, with progressive enhancement below it |
+| [`adr/0004-design-source-of-truth.md`](./adr/0004-design-source-of-truth.md) | Figma is the intent, the repo is the record; which token layer is authored where |
 
 ## Workflows
 
@@ -43,6 +55,9 @@ These documents explain *why* things are the way they are.
 ## Writing docs here
 
 - One topic per file, kebab-case names.
+- **US English** — `color`, not `colour`; `behavior`, `license`, `optimize`. The code is
+  US English (`--cds-color-*`, `currentColor`), so prose that diverges cannot be grepped
+  alongside it. See [`../AGENTS.md`](../AGENTS.md#spelling-us-english).
 - Explain *why*, not just *what* — the code already says what.
 - State facts that can be checked against the code, and give the path when you do.
 - If something is broken or deliberately unfinished, record it in the known-gaps

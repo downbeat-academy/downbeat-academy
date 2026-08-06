@@ -126,7 +126,7 @@ The full set is in [`AGENTS.md`](./AGENTS.md). The ones most often missed:
 
 - A new `cadence-core` component must be exported from `src/index.ts` — the component
   **and** its `*Props` type. Otherwise it does not exist to consumers.
-- Every style value is a `--cds-*` token. Semantic colour tokens, never palette tokens.
+- Every style value is a `--cds-*` token. Semantic color tokens, never palette tokens.
 - **Productive** type for app chrome, **expressive** for editorial and brand. Never mixed
   within one surface.
 - Prefer a `cadence-core` component over hand-rolled markup.

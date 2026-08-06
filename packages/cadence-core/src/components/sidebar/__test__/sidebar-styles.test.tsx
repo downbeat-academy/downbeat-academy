@@ -14,7 +14,7 @@ import s from '../sidebar.module.css'
 import { declaredRule } from '../../../test-utils'
 
 /**
- * These assert the CSS-driven behaviour of the collapsed rail, which the DOM-level
+ * These assert the CSS-driven behavior of the collapsed rail, which the DOM-level
  * tests in sidebar.test.tsx cannot see. They rely on `test.css: true` in vite.config.ts
  * so the CSS module is compiled and injected into jsdom.
  *
@@ -25,7 +25,7 @@ import { declaredRule } from '../../../test-utils'
  * Caveat 2: jsdom does not resolve `var()`. A declaration written as
  * `border: 1px solid var(--cds-color-border-faint)` computes to `borderTopStyle: 'none'`,
  * and `borderRadius` reads back as the literal string `"var(--cds-radii-medium)"` —
- * the same rule written with a literal colour computes correctly. So any assertion on a
+ * the same rule written with a literal color computes correctly. So any assertion on a
  * token-driven property must inspect the *declared rule*, not `getComputedStyle`.
  * `declaredRule()` from `test-utils` exists for exactly that case.
  */

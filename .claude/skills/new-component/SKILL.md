@@ -21,7 +21,7 @@ doubt, it belongs here — app-local UI has a habit of being copy-pasted.
 
 1. **The native element, where one exists.** Form controls, `<dialog>` with `showModal()`,
    `<details>`, the Popover API, CSS anchor positioning. Native gives you form
-   participation, focus trapping, top-layer placement, and keyboard behaviour for free —
+   participation, focus trapping, top-layer placement, and keyboard behavior for free —
    usually with *less* code than a wrapper, not more.
 2. **Hand-rolled against the WAI-ARIA APG**, for well-specified patterns the platform does
    not cover — tabs with roving tabindex, for instance. Only with tests written first.
@@ -68,12 +68,14 @@ away from.
 
 ### `<name>.module.css`
 
-- **Every value comes from a `--cds-*` token.** No hardcoded colours, spacing, radii,
+- **Every value comes from a `--cds-*` token.** No hardcoded colors, spacing, radii,
   font stacks, or durations.
-- Use **semantic** colour tokens (`--cds-color-foreground-strong`), never palette tokens
+- Use **semantic** color tokens (`--cds-color-foreground-strong`), never palette tokens
   (`--cds-color-palette-blackberry-800`).
-- Pick the right type family: **productive** for app chrome, **expressive** for editorial
-  and brand surfaces. See the root [`AGENTS.md`](../../../AGENTS.md).
+- Pick the right type family: **productive** for traditional web application elements
+  (forms, buttons, tables, navigation, settings), **expressive** for brand-oriented and
+  editorial surfaces (marketing headlines, heroes, long-form bodies). Productive is the
+  default for UI. See the root [`AGENTS.md`](../../../AGENTS.md).
 
 ### `types.ts`
 
