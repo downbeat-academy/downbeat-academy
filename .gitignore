@@ -31,3 +31,5 @@ cypress/videos
 apps/**/cypress/screenshots
 apps/**/cypress/videos
 *.mp4
+# Agent worktrees — local scratch checkouts, never part of the repo
+.claude/worktrees/
