@@ -224,10 +224,41 @@ not marked `private`, and changesets bumps their versions, but `release.yml` pas
 and coordination. Recorded only so nobody "fixes" it by wiring up a publish step that
 was never wanted.
 
+### `dropdown-menu` stays on Radix while everything else leaves
+
+**What.** `cadence-core` is removing Radix from 9 of its 12 wrapping components.
+`packages/cadence-core/src/components/dropdown-menu/` is deliberately excluded and keeps
+`@radix-ui/react-dropdown-menu`. As that work lands, the package will look half-migrated:
+most components on the platform, one still wrapping a dependency.
+
+**Why it is fine.** A menu needs typeahead, submenu safe-triangle tracking, roving focus,
+and collision-aware positioning. That is an estimated 5–8 days with real accessibility
+risk, and this repo has one maintainer. The `RadioCardItem` entry above is what happens
+when interaction semantics get hand-rolled here without that budget.
+
+The cost is honest and was accepted: because `react-menu` depends on popper, roving-focus,
+collection, dismissable-layer, focus-scope, portal, and presence, retaining this one
+package retains roughly 25 of the ~38 transitive `@radix-ui/*` packages. Most of the
+dependency-count win is deferred with it. This is a trade of dependency hygiene against
+accessibility risk, not an oversight.
+
+**Recorded so nobody finishes the job unprompted.** An agent seeing eleven components
+migrated and one not will try to close the gap.
+
+**To fix.** Only after native positioning has proven itself in `Tooltip`. Tracked as
+`Radix C.4 — Re-decide whether to rebuild DropdownMenu` on the Remove Radix Dependencies
+epic. Deleting this entry requires that re-decision, not just an implementation.
+
+Relatedly: consolidating the remaining Radix packages onto the single `radix-ui` package
+was considered and **rejected** — it declares all 56 primitives, which enlarges the
+installed set rather than shrinking it, and `.github/dependabot.yml` already batches
+`@radix-ui/*` updates into one PR.
+
 ---
 
 ## Related
 
 - [`0001-record-architecture-decisions.md`](./0001-record-architecture-decisions.md)
+- [`0003-browser-support-floor.md`](./0003-browser-support-floor.md)
 - [`../architecture/monorepo.md`](../architecture/monorepo.md)
 - [`../../AGENTS.md`](../../AGENTS.md)
