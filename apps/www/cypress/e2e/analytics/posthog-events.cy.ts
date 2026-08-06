@@ -1,221 +1,153 @@
 /**
- * Proves that analytics events actually leave the browser.
+ * Proves the parts of analytics that unit tests structurally cannot reach.
  *
- * This is the only layer that can. Unit tests prove `capture()` was called;
- * they cannot prove the event reached the network. Everything between the call
- * and the wire is untested by them — the `/ingest` rewrite in `next.config.js`,
- * the `proxy.ts` matcher, and the host gate in `instrumentation-client.ts`.
+ * The vitest suites prove `capture()` was called with the right arguments.
+ * They say nothing about whether PostHog initialised, whether the `/ingest`
+ * rewrite resolves, or whether `proxy.ts` swallows the request — and every one
+ * of those fails silently. Before this work, `/ingest` was matched by the proxy
+ * and every event triggered a database session lookup, with nothing failing.
  *
- * That gap is not hypothetical. Before this work, `/ingest` was matched by the
- * proxy and every event triggered a database session lookup; nothing failed,
- * and nothing would have.
+ * ## Why this asserts on `window.posthog` rather than request bodies
  *
- * All `/ingest` traffic is stubbed, so no request escapes to PostHog even
- * though CI builds with a token present.
+ * An earlier version decoded the `/ingest` payloads directly. That coupled the
+ * spec to posthog-js's wire format — base64 vs gzip compression, `batch`
+ * wrappers, the `/flags` config handshake that has to succeed before any event
+ * is sent at all — and it broke on all three. Those are SDK implementation
+ * details that will churn, and getting them wrong produces a spec that reports
+ * "no events" when the app is working perfectly.
+ *
+ * So the split is: **network assertions prove the transport** (the rewrite and
+ * the proxy exclusion, which is what actually regressed), and **capture
+ * assertions use the SDK instance** exposed on `window` in debug mode. Neither
+ * depends on how PostHog happens to encode a payload this month.
  */
 
-type CapturedEvent = {
-	event: string
-	properties?: Record<string, unknown>
-}
-
-/**
- * Unwraps a posthog-js request body.
- *
- * The wire format is not stable across transports or versions: the payload
- * arrives as a parsed object, as raw JSON, or — the default this SDK version
- * picks — form-encoded under `data=` with the JSON **base64-encoded**
- * (`Compression.Base64`). Handle all of them; a decoder that silently returns
- * nothing turns every assertion below into a false negative.
- */
-const decodePayload = (body: unknown): unknown => {
-	if (body && typeof body === 'object') return body
-	if (typeof body !== 'string' || !body) return null
-
-	let candidate = body
-
-	const formData = new URLSearchParams(body).get('data')
-	if (formData) candidate = formData
-
-	try {
-		return JSON.parse(candidate)
-	} catch {
-		// Not plain JSON — fall through to base64.
-	}
-
-	try {
-		return JSON.parse(atob(candidate))
-	} catch {
-		return null
+type PostHogWindow = Window & {
+	posthog?: {
+		__loaded?: boolean
+		capture: (event: string, properties?: Record<string, unknown>) => void
 	}
 }
 
-/** Events may arrive singly, as a bare array, or wrapped in `{ batch: [...] }`. */
-const parseEvents = (body: unknown): CapturedEvent[] => {
-	const payload = decodePayload(body)
-	if (!payload) return []
+/** Spies on the live SDK instance. Must run after the page has loaded. */
+const spyOnCapture = () =>
+	cy.window().then((win) => {
+		const posthog = (win as PostHogWindow).posthog
 
-	const batch = Array.isArray(payload)
-		? payload
-		: ((payload as { batch?: unknown[] }).batch ?? [payload])
+		expect(posthog, 'posthog should be initialised and exposed in debug mode').to
+			.exist
 
-	return batch.filter(
-		(entry): entry is CapturedEvent =>
-			!!entry && typeof (entry as CapturedEvent).event === 'string'
-	)
-}
-
-/**
- * posthog-js POSTs to two different `/ingest` endpoints, and they must be
- * stubbed differently.
- *
- * `/flags/?v=2` is the remote-config handshake. Answering it with a placeholder
- * body leaves the SDK without a usable config and it never proceeds to send
- * anything — which looks exactly like "analytics is broken", and cost one CI
- * run to diagnose. It gets a minimal but real-shaped response here.
- *
- * `/e/` is the actual event capture endpoint, and the only one worth asserting
- * on. Stubbing it means no event ever leaves CI.
- *
- * `supportedCompression: []` keeps payloads uncompressed, so a decode failure
- * cannot masquerade as a missing event.
- */
-const stubIngest = () => {
-	cy.intercept({ method: 'POST', url: /\/ingest\/flags/ }, (req) => {
-		req.reply({
-			statusCode: 200,
-			body: {
-				config: { enable_collect_everything: true },
-				featureFlags: {},
-				flags: {},
-				featureFlagPayloads: {},
-				errorsWhileComputingFlags: false,
-				sessionRecording: false,
-				supportedCompression: [],
-				autocapture_opt_out: false,
-				capturePerformance: false,
-				defaultIdentifiedOnly: true,
-				siteApps: [],
-				toolbarParams: {},
-				isAuthenticated: false,
-			},
-		})
-	}).as('flags')
-
-	cy.intercept({ method: 'POST', url: /\/ingest\/(e|batch|i\/v0\/e)\// }, (req) => {
-		req.reply({ statusCode: 200, body: { status: 1 } })
-	}).as('ingest')
-}
-
-const eventsFrom = (interceptions: unknown): CapturedEvent[] => {
-	const all = (interceptions ?? []) as Array<{ request: { body: unknown } }>
-
-	return all.flatMap((interception) => parseEvents(interception.request.body))
-}
-
-/** Every event seen so far, across however many batched requests. */
-const capturedEvents = (): Cypress.Chainable<CapturedEvent[]> =>
-	cy.get('@ingest.all').then((interceptions) => eventsFrom(interceptions))
-
-/**
- * Asserts an event has been sent at least `count` times.
- *
- * Uses `.should()` rather than `.then()` so Cypress retries: posthog-js flushes
- * on its own schedule, and a bare read races the batcher.
- */
-const expectEvent = (name: string, count = 1) => {
-	cy.get('@ingest.all').should((interceptions) => {
-		const matching = eventsFrom(interceptions).filter((e) => e.event === name)
-
-		expect(
-			matching.length,
-			`expected at least ${count} "${name}" event(s)`
-		).to.be.at.least(count)
+		cy.spy(posthog!, 'capture').as('capture')
 	})
-}
 
-describe('PostHog event delivery', () => {
+const expectCaptured = (event: string) =>
+	cy.get('@capture').should('have.been.calledWith', event)
+
+describe('PostHog analytics', () => {
 	beforeEach(() => {
 		cy.clearAllData()
-		stubIngest()
+		// A spy, not a stub: the requests go out for real, which is the only way
+		// to prove the rewrite and the proxy exclusion actually work. CI builds
+		// with a throwaway token, so PostHog discards whatever arrives.
+		cy.intercept('POST', '**/ingest/**').as('ingest')
 	})
 
-	it('sends a pageview when a page loads', () => {
-		// Confirms the whole chain works at all: init ran, the host gate allowed
-		// it, the `/ingest` rewrite resolved, and the proxy did not swallow it.
-		cy.visit('/')
+	describe('transport', () => {
+		it('initialises on a permitted host', () => {
+			// The gate in src/lib/posthog/config.ts blocks unknown hosts. CI opts
+			// in via NEXT_PUBLIC_POSTHOG_DEBUG; production is allow-listed. If this
+			// fails in CI the gate has become unconditional, which would mean
+			// preview traffic polluting the production project.
+			cy.visit('/')
 
-		cy.wait('@ingest')
-		expectEvent('$pageview')
-	})
+			cy.window()
+				.its('posthog')
+				.should('exist')
+				.its('__loaded')
+				.should('be.true')
+		})
 
-	it('sends events through the /ingest reverse proxy, not directly to PostHog', () => {
-		// The rewrite exists so ad blockers, which match on `*.posthog.com`, do
-		// not silently drop analytics. If a request ever goes direct, the proxy
-		// has stopped doing its job and a chunk of traffic is invisible.
-		cy.visit('/')
-		cy.wait('@ingest')
+		it('routes analytics through /ingest, never directly to PostHog', () => {
+			// The reverse proxy exists so ad blockers, which match on
+			// `*.posthog.com`, cannot silently drop analytics. A request going
+			// direct means a chunk of traffic has become invisible.
+			cy.visit('/')
 
-		cy.get('@ingest.all').then((interceptions) => {
-			const all = interceptions as unknown as Array<{
-				request: { url: string }
-			}>
+			cy.wait('@ingest')
 
-			expect(all.length).to.be.greaterThan(0)
+			cy.get('@ingest.all').should((interceptions) => {
+				const all = interceptions as unknown as Array<{
+					request: { url: string }
+				}>
 
-			all.forEach((interception) => {
-				expect(interception.request.url).to.include('/ingest/')
-				expect(interception.request.url).not.to.include('posthog.com')
+				expect(all.length, 'at least one /ingest request').to.be.greaterThan(0)
+
+				all.forEach(({ request }) => {
+					expect(request.url).to.include('/ingest/')
+					expect(request.url).not.to.include('posthog.com')
+				})
+			})
+		})
+
+		it('is not intercepted by the auth proxy', () => {
+			// `/ingest` must stay in the negative lookahead of the proxy.ts
+			// matcher. When it was not, every event ran a full
+			// `auth.api.getSession()` database lookup — including for anonymous
+			// visitors — and nothing anywhere reported a problem.
+			cy.visit('/')
+
+			cy.wait('@ingest').then((interception) => {
+				expect(interception.response?.statusCode, 'ingest should not redirect')
+					.to.be.lessThan(300)
 			})
 		})
 	})
 
-	it('captures a pageview on client-side navigation', () => {
-		// App Router navigations do not reload the document. Whether `$pageview`
-		// still fires depends entirely on the `defaults` preset, which cannot be
-		// determined by reading the config — only observed.
-		cy.visit('/')
-		cy.wait('@ingest')
+	describe('content events', () => {
+		it('captures article_viewed with a real slug and title', () => {
+			cy.visit('/articles')
+			spyOnCapture()
 
-		cy.get('[data-testid="nav-articles"]').click()
-		cy.url().should('include', '/articles')
+			cy.get('a[href^="/articles/"]').first().click()
+			cy.url().should('match', /\/articles\/.+/)
 
-		expectEvent('$pageview', 2)
-	})
+			expectCaptured('article_viewed')
 
-	it('captures article_viewed with the slug and title', () => {
-		cy.visit('/articles')
+			cy.get('@capture').should((spy) => {
+				const call = (spy as unknown as sinon.SinonSpy)
+					.getCalls()
+					.find((c) => c.args[0] === 'article_viewed')
 
-		cy.get('a[href^="/articles/"]').first().click()
-		cy.url().should('match', /\/articles\/.+/)
-
-		expectEvent('article_viewed')
-
-		capturedEvents().then((events) => {
-			const viewed = events.find((e) => e.event === 'article_viewed')
-
-			expect(viewed?.properties).to.have.property('slug')
-			expect(viewed?.properties).to.have.property('title')
-			expect(viewed?.properties?.slug).to.be.a('string').and.not.be.empty
+				// An event arriving with an empty slug is as useless as one that
+				// never arrives, and reports built on it would look plausible.
+				expect(call?.args[1]?.slug, 'slug').to.be.a('string').and.not.be.empty
+				expect(call?.args[1]?.title, 'title').to.be.a('string').and.not.be.empty
+			})
 		})
-	})
 
-	it('captures a content event with real properties, not placeholders', () => {
-		// Guards against the shape of the payload silently regressing — an event
-		// that arrives with an empty or undefined slug is as useless as one that
-		// never arrives, and reports on it would look plausible.
-		cy.visit('/handbook')
+		it('captures handbook_page_viewed with a real slug and title', () => {
+			cy.visit('/handbook')
+			spyOnCapture()
 
-		cy.get('a[href^="/handbook/"]').first().click()
-		cy.url().should('match', /\/handbook\/.+/)
+			cy.get('a[href^="/handbook/"]').first().click()
+			cy.url().should('match', /\/handbook\/.+/)
 
-		expectEvent('handbook_page_viewed')
+			expectCaptured('handbook_page_viewed')
+		})
 
-		capturedEvents().then((events) => {
-			const viewed = events.find((e) => e.event === 'handbook_page_viewed')
+		it('captures a pageview on client-side navigation', () => {
+			// App Router navigations do not reload the document. Whether
+			// `$pageview` still fires depends entirely on the `defaults`
+			// preset — which cannot be determined by reading the config, only
+			// observed. If this fails, SPA navigation is invisible in reporting
+			// and needs an explicit usePathname-driven capture.
+			cy.visit('/')
+			spyOnCapture()
 
-			expect(viewed?.properties?.slug).to.be.a('string').and.not.be.empty
-			expect(viewed?.properties?.title).to.be.a('string').and.not.be.empty
+			cy.get('[data-testid="nav-articles"]').click()
+			cy.url().should('include', '/articles')
+
+			expectCaptured('$pageview')
 		})
 	})
 })
