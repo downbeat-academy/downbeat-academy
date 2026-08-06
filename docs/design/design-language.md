@@ -10,7 +10,7 @@ mechanism can tell you that you must use a semantic token and cannot tell you *w
 **No values appear here.** Every value lives in
 [`packages/cadence-tokens/tokens/`](../../packages/cadence-tokens/tokens/) and is cited by
 path. If this file and the token files disagree, the token files are right — see
-[`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md).
+[`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md).
 
 ---
 
@@ -355,5 +355,5 @@ Inventing a value inline is the one option that is never correct.
 - [`README.md`](./README.md) — what else lives in this directory, and the Notion boundary
 - [`figma-workflow.md`](./figma-workflow.md) — how design and code stay in sync
 - [`../architecture/design-system.md`](../architecture/design-system.md) — the mechanism
-- [`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md) — why values live in one place
+- [`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md) — why values live in one place
 - [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md) — what is deliberately unfinished

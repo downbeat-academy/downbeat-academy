@@ -6,7 +6,7 @@ Entry point for visual and design decisions in this repo.
 lives in [`packages/cadence-tokens/tokens/`](./packages/cadence-tokens/tokens/) and is
 built to `--cds-*` custom properties by style-dictionary. A markdown copy of those values
 would drift the first time `pnpm tokens:build` runs, and would be trusted anyway — see
-[`docs/adr/0003-design-source-of-truth.md`](./docs/adr/0003-design-source-of-truth.md).
+[`docs/adr/0004-design-source-of-truth.md`](./docs/adr/0004-design-source-of-truth.md).
 
 ## Making a visual decision
 

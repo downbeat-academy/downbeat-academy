@@ -1,4 +1,4 @@
-# 3. Design source of truth
+# 4. Design source of truth
 
 **Status:** Accepted
 **Date:** 2026-08-05

@@ -14,7 +14,7 @@ to find out how a token reaches a component; read these to find out which token 
 | [`component-inventory.md`](./component-inventory.md) | The `cadence-core` component ↔ Figma component map and the prop ↔ variant axes for each. The interim stand-in for Code Connect |
 
 The decision underpinning all three is
-[`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md).
+[`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md).
 
 ## Where design information lives
 

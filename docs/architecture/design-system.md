@@ -194,7 +194,7 @@ When adding or changing a component:
 - [`../design/design-language.md`](../design/design-language.md) — what each ramp and
   semantic family *means*, and how to choose between them
 - [`../design/figma-workflow.md`](../design/figma-workflow.md) — the design ↔ code pipeline
-- [`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md) — why
+- [`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md) — why
   the token files are authoritative and Figma is generated
 - [`monorepo.md`](./monorepo.md) — build order and why tokens must precede core
 - [`../proposals/tokenization-proposal.md`](../proposals/tokenization-proposal.md) —

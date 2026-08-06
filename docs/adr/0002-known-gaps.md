@@ -348,7 +348,7 @@ the work in `docs/design/figma-workflow.md`.
 ## Related
 
 - [`0001-record-architecture-decisions.md`](./0001-record-architecture-decisions.md)
-- [`0003-design-source-of-truth.md`](./0003-design-source-of-truth.md)
+- [`0004-design-source-of-truth.md`](./0004-design-source-of-truth.md)
 - [`../architecture/monorepo.md`](../architecture/monorepo.md)
 - [`../design/design-language.md`](../design/design-language.md)
 - [`../../AGENTS.md`](../../AGENTS.md)

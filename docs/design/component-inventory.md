@@ -4,7 +4,7 @@ The map between `cadence-core` components and their Figma counterparts, and the 
 variant axes for each.
 
 Components are **drawn in Figma**, not generated from code — see
-[`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md). None of
+[`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md). None of
 the 27 has a Figma counterpart yet. This file is what lets the two be matched up as the
 library fills in: it records what each code component's variant surface actually is, so a
 newly drawn Figma component can be mapped to the code it corresponds to rather than

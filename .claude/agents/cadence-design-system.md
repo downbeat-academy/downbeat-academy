@@ -114,7 +114,7 @@ whether to upgrade.
 **Figma is the intent; the repo is the record.** Design is decided in Figma and flows down
 into code through a reviewed PR. Once merged, the repo is what ships. A Figma file that
 differs from `main` is a design **not yet built** — do not "fix" code to match one unless
-that is the work. See `docs/adr/0003-design-source-of-truth.md` and
+that is the work. See `docs/adr/0004-design-source-of-truth.md` and
 `docs/design/figma-workflow.md`.
 
 **Tokens travel in different directions by layer**, and this is the thing to get right:

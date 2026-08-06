@@ -35,7 +35,7 @@ These documents explain *why* things are the way they are.
 | --- | --- |
 | [`adr/0001-record-architecture-decisions.md`](./adr/0001-record-architecture-decisions.md) | Why this repo keeps ADRs, and the format |
 | [`adr/0002-known-gaps.md`](./adr/0002-known-gaps.md) | **The known-gaps register.** Read before "fixing" anything that looks broken |
-| [`adr/0003-design-source-of-truth.md`](./adr/0003-design-source-of-truth.md) | Code is authoritative for design values; Figma and Notion boundaries |
+| [`adr/0004-design-source-of-truth.md`](./adr/0004-design-source-of-truth.md) | Figma is the intent, the repo is the record; which token layer is authored where |
 
 ## Workflows
 

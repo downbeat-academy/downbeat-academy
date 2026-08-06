@@ -4,7 +4,7 @@ How Figma and this repo stay in sync, in which direction, and what is gated behi
 Figma plan.
 
 The governing decision is
-[`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md):
+[`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md):
 **Figma is the intent, the repo is the record.** Everything below follows from that.
 
 ---
@@ -183,5 +183,5 @@ Agents read Figma. They do not design in it.
 
 - [`design-language.md`](./design-language.md) — how to choose the right token when mapping
 - [`component-inventory.md`](./component-inventory.md) — the Figma ↔ code component map
-- [`../adr/0003-design-source-of-truth.md`](../adr/0003-design-source-of-truth.md) — why this direction
+- [`../adr/0004-design-source-of-truth.md`](../adr/0004-design-source-of-truth.md) — why this direction
 - [`../architecture/design-system.md`](../architecture/design-system.md) — the build pipeline this feeds
