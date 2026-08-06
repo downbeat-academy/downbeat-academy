@@ -142,7 +142,9 @@ which is easy to miss when debugging one of them.
   is how the same concept once shipped as both `registration_method` and `method`.
 - **A `capture` call that typechecks is not a capture that fires.** Four events in the original
   wizard integration sat on the dead email-auth path and never once ran. Reachability is proven
-  by the Cypress `/ingest` spec, not by the type system.
+  by `apps/www/cypress/e2e/analytics/posthog-events.cy.ts`, not by the type system — and whether
+  events reach *PostHog* is proven by neither. That needs the deployed environment and the
+  checklist in [`apps/www/docs/testing/analytics-qa.md`](../../apps/www/docs/testing/analytics-qa.md).
 - **`apps/auth` deliberately has no client-side PostHog.** It is on
   `auth.downbeatacademy.services` while `www` is on `downbeatacademy.com` — different domains,
   so a browser SDK there would create a second anonymous-identity pool with nothing to stitch it
