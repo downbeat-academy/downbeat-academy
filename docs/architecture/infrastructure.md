@@ -20,8 +20,11 @@ Folklore Studios.
 | Auth DB | PostgreSQL | — | `shuttle.proxy.rlwy.net:20199` |
 | Cadence Links DB | PostgreSQL | — | `interchange.proxy.rlwy.net:14685` |
 | Sanity | Studio | `sanity start --host 0.0.0.0` | — |
-| Cadence React Storybook | Static | `serve storybook-static -l tcp://0.0.0.0:$PORT` | — |
-| Cadence Web Components Storybook | Static | same | — |
+| Cadence React Storybook | Static | `serve storybook-static -l tcp://0.0.0.0:$PORT` | `cadence.downbeatacademy.com` |
+| Cadence Web Components Storybook | Static | same | `cadence-web.downbeatacademy.com` |
+
+Both Storybook services build on Railway (`build:storybook`) and serve the result, so
+`storybook-static/` is gitignored in both packages rather than committed.
 
 ### Two networking rules learned the hard way
 

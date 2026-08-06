@@ -103,6 +103,11 @@ Storybook 10 + react-vite on 6006. `.storybook/main.ts` globs `../src/**/*.stori
 `cadence-icons` to its `dist/` (falling back to source if unbuilt) and `cadence-tokens`
 to its `dist/`. Published via Chromatic; served on Railway from `storybook-static`.
 
+**`storybook-static/` is build output and is gitignored.** Railway runs
+`build:storybook` at deploy time and serves the result, so the directory never needs to be
+committed — it was, once, before the ignore rule existed. If a local Storybook build makes
+it reappear in `git status`, that is a bug in the ignore rule, not something to commit.
+
 ## Gotchas
 
 - **14 `radio-card` tests are quarantined** (`it.skip`) pending an accessibility fix.
