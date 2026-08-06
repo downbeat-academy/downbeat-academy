@@ -5,6 +5,7 @@ import { getOgTitle } from '@utils/metaHelpers'
 import { linkResolver } from '@utils/link-resolver'
 import { Text, SectionContainer, SectionTitle } from 'cadence-core'
 import { ListItem } from '@components/list'
+import { TrackContentView } from '@components/analytics'
 
 import type { Metadata, ResolvingMetadata } from 'next'
 import type { MetaProps } from '../../../../../types/meta'
@@ -114,6 +115,11 @@ export default async function CategorySlugRoute({ params }: { params: Promise<{ 
 					/>
 				)
 			})}
+			<TrackContentView
+				event="category_browsed"
+				slug={slug}
+				title={category.title}
+			/>
 		</SectionContainer>
 	)
 }

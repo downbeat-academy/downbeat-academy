@@ -8,6 +8,7 @@ import { getSanityUrl } from '@utils/getSanityUrl'
 import { RichText } from '@components/rich-text'
 import { MusicNotation } from '@components/music-notation'
 import { ChangelogDrawer } from '@components/changelog'
+import { TrackContentView } from '@components/analytics'
 
 import s from './lexicon-page.module.css'
 import type { SlugParams, SlugString } from '../../../../../types/common'
@@ -86,6 +87,12 @@ export default async function LexiconSlugRoute({ params }: { params: Promise<{ s
 		excerpt,
 		audio,
 	} = lexicon
+
+	// A lexicon entry has no single title field — the same artist/album/track
+	// composition used for the page metadata, so analytics and the OG title
+	// agree on what this entry is called.
+	const lexiconEntryTitle =
+		[artist, album, track].filter(Boolean).join(' - ') || 'Lexicon'
 
 	const lexiconMetadata = [
 		{
@@ -170,6 +177,11 @@ export default async function LexiconSlugRoute({ params }: { params: Promise<{ s
 					</Flex>
 				</section>
 			</SectionContainer>
+			<TrackContentView
+				event="lexicon_term_viewed"
+				slug={slug}
+				title={lexiconEntryTitle}
+			/>
 		</>
 	)
 }

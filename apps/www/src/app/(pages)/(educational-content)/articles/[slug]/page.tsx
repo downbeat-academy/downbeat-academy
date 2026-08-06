@@ -14,6 +14,8 @@ import { RichText, RichTextWrapper } from '@components/rich-text'
 import { NewsletterSignup } from '@components/newsletter-signup'
 import { TableOfContents } from '@components/table-of-contents'
 import { ReadingLength } from '@components/reading-length'
+import calculateReadingLength from '@components/reading-length/calculateReadingLength'
+import { TrackArticleRead, TrackContentView } from '@components/analytics'
 import { ChangelogDrawer } from '@components/changelog'
 import s from './page.module.css'
 
@@ -137,6 +139,16 @@ export default async function ArticleSlugRoute({ params }: PageProps) {
 					title="On this page"
 				/>
 			</Flex>
+			<TrackContentView
+				event="article_viewed"
+				slug={slug}
+				title={article.title}
+			/>
+			<TrackArticleRead
+				slug={slug}
+				title={article.title}
+				readingTimeMinutes={calculateReadingLength(article.content.content)}
+			/>
 		</>
 	)
 }

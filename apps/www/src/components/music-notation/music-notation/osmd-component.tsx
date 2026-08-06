@@ -1,11 +1,13 @@
 'use client'
 
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react'
+import { usePathname } from 'next/navigation'
 import {
 	EngravingRules,
 	OpenSheetMusicDisplay as OSMD,
 	TransposeCalculator,
 } from 'opensheetmusicdisplay'
+import { capture } from '@lib/posthog/capture'
 import type { OpenSheetMusicDisplayProps } from './types'
 
 interface ExtendedOpenSheetMusicDisplayProps
@@ -40,6 +42,13 @@ const OpenSheetMusicDisplay = ({
 	const osmd = useRef<OSMD | null>(null)
 	const initialRenderComplete = useRef(false)
 	const loadComplete = useRef(false)
+	const analyticsCapturedFor = useRef<typeof file | null>(null)
+
+	// The slug of the page the notation sits on. Derived from the path rather
+	// than threaded down as a prop, so this stays a drop-in for every caller —
+	// `MusicNotation` is used from both article and lexicon routes.
+	const pathname = usePathname()
+	const currentSlug = pathname?.split('/').filter(Boolean).pop() ?? null
 
 	const osmdOptions = useMemo(() => ({
 		autoResize,
@@ -142,6 +151,16 @@ const OpenSheetMusicDisplay = ({
 							await osmd.current.render()
 							initialRenderComplete.current = true
 							setError(null)
+
+							// Only the first successful render of a given file.
+							// The resize and transpose effects below also call
+							// `render()`, and `onRenderComplete` fires on failure
+							// too — neither is a "the reader saw notation" signal.
+							if (analyticsCapturedFor.current !== file) {
+								analyticsCapturedFor.current = file
+								capture('notation_rendered', { slug: currentSlug })
+							}
+
 							onRenderComplete?.()
 						} catch (renderError) {
 							console.error('Render error:', renderError)
