@@ -15,8 +15,11 @@
  *   authenticate".
  * - Content events carry `slug` and `title` so a report can be read without
  *   joining back to Sanity.
- * - Do not add a `$`-prefixed name. Those are PostHog's own (`$pageview`,
- *   `$autocapture`) and are captured by the SDK, not by us.
+ * - Do not add a `$`-prefixed name. Those are PostHog's own and are captured by
+ *   the SDK, not by us. `apps/www` pins `defaults: '2026-01-30'`, which has been
+ *   confirmed to emit `$pageview` on both full loads and client-side App Router
+ *   navigations, plus `$pageleave`. Do not add a hand-rolled pageview event on
+ *   top of those.
  *
  * ## Every event here must be captured somewhere
  *
