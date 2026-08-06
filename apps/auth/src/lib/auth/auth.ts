@@ -17,6 +17,8 @@ import {
 // Email templates from shared package
 import { VerifyEmail, ResetPasswordEmail } from 'email/emails/index'
 
+import { captureAuthEvent, resolveAuthMethod } from '@/lib/analytics'
+
 // Security: Validate redirect URIs to prevent open redirect attacks
 const TRUSTED_DOMAINS = [
 	'downbeatacademy.com',
@@ -87,6 +89,50 @@ export function createAuth() {
 			schema: authSchema,
 		}),
 
+		// Analytics for the authentication funnel.
+		//
+		// These hooks are the reason the funnel is measurable at all: sign-in
+		// happens here, in the OAuth provider, not in the consumer apps. The
+		// previous instrumentation lived in `apps/www` on its disabled
+		// email-auth path and never fired once.
+		//
+		// Hooking the database rather than the route handlers means every entry
+		// point is covered — email and OAuth alike — without having to find and
+		// annotate each one.
+		databaseHooks: {
+			user: {
+				create: {
+					async after(user, context) {
+						captureAuthEvent({
+							distinctId: user.id,
+							event: 'sign_up_completed',
+							properties: {
+								method: resolveAuthMethod(context?.path) ?? 'email',
+							},
+						})
+					},
+				},
+			},
+			session: {
+				create: {
+					async after(session, context) {
+						const method = resolveAuthMethod(context?.path)
+
+						// A session created by anything other than a recognised
+						// sign-in entry point is not a sign-in — session refreshes
+						// would otherwise inflate the count.
+						if (!method) return
+
+						captureAuthEvent({
+							distinctId: session.userId,
+							event: 'sign_in_completed',
+							properties: { method },
+						})
+					},
+				},
+			},
+		},
+
 		emailAndPassword: {
 			enabled: true,
 			autoSignIn: true,
@@ -94,6 +140,11 @@ export function createAuth() {
 			resetPasswordPath: '/update-password',
 			forgetPasswordPath: '/api/auth/forget-password',
 			sendResetPassword: async ({ user, url, token }, request) => {
+				captureAuthEvent({
+					distinctId: user.id,
+					event: 'password_reset_requested',
+				})
+
 				try {
 					const resend = new Resend(process.env.RESEND_API_KEY)
 					const baseUrl = authServiceUrl.replace(/\/$/, '')
