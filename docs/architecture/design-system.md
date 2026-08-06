@@ -108,8 +108,12 @@ expect(el).toHaveClass(s.root)      // correct
 expect(el).toHaveClass('root')      // wrong — never matches
 ```
 
-Many components wrap Radix UI primitives (dialog, drawer, dropdown-menu, tabs, toast,
-tooltip, hover-card, switch, checkbox, radio-group, separator, collapsible, slot).
+Twelve components currently wrap Radix UI primitives (dialog, drawer, dropdown-menu, tabs,
+toast, tooltip, hover-card, switch, checkbox, radio-group, separator, collapsible, slot),
+and are being migrated onto native elements. New interaction should be built on the
+platform first — see the `new-component` skill for the order of preference, and
+[`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md) for why `dropdown-menu` keeps its
+dependency.
 `DataTable` wraps `@tanstack/react-table` and supports manual/server-side sorting,
 pagination, and filtering — use it for any list or table view rather than hand-rolling.
 

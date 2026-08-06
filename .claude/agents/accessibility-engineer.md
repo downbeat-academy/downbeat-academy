@@ -18,16 +18,29 @@ than React. ARIA semantics, keyboard interaction, focus order, and contrast are
 framework-independent — only the implementation vehicle differs. Nothing consumes that
 package yet, so treat it as lower priority, not out of scope.
 
-## Prefer Radix, and do not undermine it
+## Prefer the platform, then the APG, then a dependency
 
-Many Cadence components wrap Radix UI primitives — dialog, drawer, dropdown-menu, tabs,
-toast, tooltip, hover-card, switch, checkbox, radio-group, separator, collapsible. Radix
-already implements the keyboard interaction, focus trapping, and ARIA semantics correctly.
+**Reach for the native element first.** Native form controls, `<dialog>` with
+`showModal()`, `<details>`, and the Popover API provide form participation, focus
+trapping, top-layer placement, `::backdrop`, background inerting, arrow-key group
+navigation, and roving tabindex — correctly, in every engine, with no code. The browser
+support floor is Baseline Newly Available with progressive enhancement below it
+(`docs/adr/0003-browser-support-floor.md`), which is what makes this viable for overlays
+and positioning.
 
-**For anything with interaction semantics, wrap the Radix primitive rather than
-reimplementing it.** Reimplementation is where accessibility gets lost.
+Where the platform has no answer, implement the WAI-ARIA APG pattern directly, with tests
+written first. Where neither is safe — menus, with typeahead, submenu safe-triangle
+tracking, and collision-aware positioning — a dependency is the right call.
 
-Just as important: do not defeat the primitive you wrapped. The known defect in this repo
+`cadence-core` is actively migrating off Radix for this reason: several wrappers are
+measurably *worse* than the native element they replace. `Checkbox`, `Radio`, and `Switch`
+render `<button role="checkbox">` with a hidden input bubbled in purely for form
+participation, which native inputs do properly. `dropdown-menu` is the one deliberate
+retention (`docs/adr/0002-known-gaps.md`). **Do not recommend adding a Radix dependency to
+a new component.**
+
+Where a wrapper still exists, do not defeat the primitive underneath it. The known defect
+in this repo
 is exactly that — `packages/cadence-core/src/components/form/radio-card/radio-card-item.tsx`
 renders the Radix `RadioGroup.Item` with `aria-hidden="true"` and `tabIndex={-1}`, and
 moves selection onto a bare `<div onClick>` with no role, no `tabIndex`, and no key
