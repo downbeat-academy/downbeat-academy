@@ -65,8 +65,44 @@ const parseEvents = (body: unknown): CapturedEvent[] => {
 	)
 }
 
+/**
+ * posthog-js POSTs to two different `/ingest` endpoints, and they must be
+ * stubbed differently.
+ *
+ * `/flags/?v=2` is the remote-config handshake. Answering it with a placeholder
+ * body leaves the SDK without a usable config and it never proceeds to send
+ * anything — which looks exactly like "analytics is broken", and cost one CI
+ * run to diagnose. It gets a minimal but real-shaped response here.
+ *
+ * `/e/` is the actual event capture endpoint, and the only one worth asserting
+ * on. Stubbing it means no event ever leaves CI.
+ *
+ * `supportedCompression: []` keeps payloads uncompressed, so a decode failure
+ * cannot masquerade as a missing event.
+ */
 const stubIngest = () => {
-	cy.intercept('POST', '**/ingest/**', (req) => {
+	cy.intercept({ method: 'POST', url: /\/ingest\/flags/ }, (req) => {
+		req.reply({
+			statusCode: 200,
+			body: {
+				config: { enable_collect_everything: true },
+				featureFlags: {},
+				flags: {},
+				featureFlagPayloads: {},
+				errorsWhileComputingFlags: false,
+				sessionRecording: false,
+				supportedCompression: [],
+				autocapture_opt_out: false,
+				capturePerformance: false,
+				defaultIdentifiedOnly: true,
+				siteApps: [],
+				toolbarParams: {},
+				isAuthenticated: false,
+			},
+		})
+	}).as('flags')
+
+	cy.intercept({ method: 'POST', url: /\/ingest\/(e|batch|i\/v0\/e)\// }, (req) => {
 		req.reply({ statusCode: 200, body: { status: 1 } })
 	}).as('ingest')
 }
