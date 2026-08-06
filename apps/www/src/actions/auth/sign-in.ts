@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
 import { headers } from 'next/headers'
-import { getPostHogClient } from '@/lib/posthog-server'
+import { createPostHogClient } from '@/lib/posthog-server'
 
 export async function signIn(formData: FormData) {
   const email = formData.get('email')?.toString()
@@ -39,7 +39,7 @@ export async function signIn(formData: FormData) {
   try {
     const session = await auth.api.getSession({ headers: await headers() })
     if (session?.user?.id) {
-      const posthog = getPostHogClient()
+      const posthog = createPostHogClient()
       posthog.capture({
         distinctId: session.user.id,
         event: 'user_signed_in',

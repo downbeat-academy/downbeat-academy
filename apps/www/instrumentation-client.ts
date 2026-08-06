@@ -3,6 +3,12 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs'
+import posthog from 'posthog-js'
+
+import {
+	POSTHOG_ALLOWED_HOSTS,
+	shouldInitPostHog,
+} from './src/lib/posthog/config'
 
 Sentry.init({
 	dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
@@ -44,20 +50,29 @@ Sentry.init({
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart
 
-import posthog from 'posthog-js'
+const posthogToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
+const posthogDebug = process.env.NEXT_PUBLIC_POSTHOG_DEBUG === 'true'
 
-if (!process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN) {
-  if (process.env.NODE_ENV === 'development') {
-    console.error(
-      'NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN variable required by PostHog is missing or un-configured, this causes events to be silently missed. This error stops appearing once NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN is configured'
-    )
-  }
-} else {
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN, {
-    api_host: '/ingest',
-    ui_host: 'https://us.posthog.com',
-    defaults: '2026-01-30',
-    capture_exceptions: true,
-    debug: process.env.NODE_ENV === 'development',
-  })
+if (
+	shouldInitPostHog({
+		hostname: window.location.hostname,
+		token: posthogToken,
+		forceEnable: posthogDebug,
+	})
+) {
+	posthog.init(posthogToken as string, {
+		api_host: '/ingest',
+		ui_host: 'https://us.posthog.com',
+		defaults: '2026-01-30',
+		// Sentry owns exception capture. Running both pipelines duplicates every
+		// error across two vendors — see docs/architecture/infrastructure.md.
+		capture_exceptions: false,
+		debug: posthogDebug,
+	})
+} else if (process.env.NODE_ENV === 'development') {
+	console.info(
+		posthogToken
+			? `[posthog] not initialised on "${window.location.hostname}" — capture is restricted to ${POSTHOG_ALLOWED_HOSTS.join(', ')}. Set NEXT_PUBLIC_POSTHOG_DEBUG=true to capture from here.`
+			: '[posthog] NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN is not set — no events will be captured.'
+	)
 }

@@ -110,6 +110,16 @@ Prefer `cadence-core` components. Where `www` has a local wrapper it aliases the
 debugging either. PostHog uses `api_host: '/ingest'`, reverse-proxied by a `rewrites()`
 rule in `next.config.js`.
 
+**PostHog does not run locally.** `shouldInitPostHog` (`src/lib/posthog/config.ts`) restricts
+capture to the production hosts, mirroring Fathom's `includedDomains`, so dev and preview traffic
+cannot pollute the project. If you are verifying instrumentation and expect to see events, set
+`NEXT_PUBLIC_POSTHOG_DEBUG=true` — and unset it afterwards, because those events go to the
+production project. In development the console says which of the two reasons applied.
+
+`/ingest` is excluded from the `proxy.ts` matcher on purpose. The proxy does a full
+`auth.api.getSession()` database lookup for every path it matches; leaving `/ingest` in means one
+per analytics event.
+
 ## Gotchas
 
 - **Sanity failures are silent.** `src/lib/sanity/sanity.client.ts` monkey-patches
