@@ -126,6 +126,12 @@ declared properties compile. `posthog.capture` accepts any string. `posthog.rese
 (`components/navigation/main/header-navigation.tsx`) is a legitimate direct use — it is not a
 capture.
 
+Content routes are instrumented with `<TrackContentView>` from `components/analytics`, mounted
+from the server component that already fetched the record. Pass the slug and title from that same
+fetch rather than re-deriving them, so the event cannot disagree with what was rendered. The
+component is keyed on `event:slug`, not a boolean, because App Router reuses it across
+navigations within a route — a boolean would swallow every article after the first.
+
 ## Gotchas
 
 - **Sanity failures are silent.** `src/lib/sanity/sanity.client.ts` monkey-patches
