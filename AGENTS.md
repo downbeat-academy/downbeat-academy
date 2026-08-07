@@ -49,7 +49,7 @@ typeface-* ─────┘                  └─→ cadence-links
 
 cadence-tokens ───→ cadence-core-web-components   (no consumer)
 auth-permissions ─→ www, auth, cadence-links      (raw source, no build)
-analytics ────────→ www                           (raw source, no build)
+analytics ────────→ www, auth                     (raw source, no build)
 email ────────────→ auth only                     (raw source, no build)
 
 cms-sanity ── no workspace dependencies at all
@@ -108,7 +108,7 @@ pnpm lint          # eslint — www, auth, cadence-links, cms-sanity
 pnpm typecheck     # tsc --noEmit — every workspace
 pnpm test          # vitest run — www, cadence-links, cadence-core,
                    #   cadence-core-web-components, cadence-icons, auth-permissions,
-                   #   analytics
+                   #   analytics, auth
 ```
 
 `pnpm test` runs **once and exits**. If you ever see it hang, something has
