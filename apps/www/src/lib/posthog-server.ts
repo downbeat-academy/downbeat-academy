@@ -1,6 +1,14 @@
 import { PostHog } from 'posthog-node'
 
-export function getPostHogClient(): PostHog {
+/**
+ * Constructs a new PostHog client. This is deliberately not a singleton — with
+ * `flushAt: 1, flushInterval: 0` each event is sent immediately, and callers are
+ * expected to `await client.shutdown()` when done.
+ *
+ * Named `create*` rather than `get*` because the previous name implied a cached
+ * instance that never existed.
+ */
+export function createPostHogClient(): PostHog {
   const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
 
   if (!token) {

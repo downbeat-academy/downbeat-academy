@@ -47,11 +47,17 @@ export const config = {
 		/*
 		 * Match all request paths except for:
 		 * - api/auth (auth endpoints need to be accessible)
+		 * - ingest (PostHog reverse proxy — see next.config.js rewrites)
 		 * - _next/static (static files)
 		 * - _next/image (image optimization files)
 		 * - favicon.ico, sitemap.xml, robots.txt
 		 * - public assets (images, fonts, etc.)
+		 *
+		 * `ingest` matters more than it looks: every analytics event and every
+		 * proxied PostHog asset is a request through this matcher, and this proxy
+		 * runs `auth.api.getSession()` — a database round trip — on each one,
+		 * including for anonymous visitors.
 		 */
-		'/((?!api/auth|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|woff|woff2)$).*)',
+		'/((?!api/auth|ingest|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|woff|woff2)$).*)',
 	],
 }
