@@ -84,6 +84,12 @@ jobs:
       # The app under test is the one we just built, on localhost. This must never point
       # at a deployed environment.
       CI_APP_URL: http://localhost:3000
+      # Not a real project token. PostHog only reports from the production hosts
+      # (see src/lib/posthog/config.ts), so the analytics spec has to opt in via
+      # NEXT_PUBLIC_POSTHOG_DEBUG to make the app emit anything at all on localhost.
+      # The spec stubs every /ingest request, so nothing reaches PostHog either way —
+      # but a fake token means a leak would be inert rather than pollute real data.
+      CI_POSTHOG_TOKEN: phc_ci_not_a_real_token
 
     services:
       postgres:
@@ -138,6 +144,8 @@ jobs:
           NEXT_PUBLIC_SANITY_PROJECT_ID=${{ env.CI_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET=${{ env.CI_SANITY_DATASET }}
           NEXT_PUBLIC_SANITY_API_VERSION=${{ env.CI_SANITY_API_VERSION }}
+          NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN=${{ env.CI_POSTHOG_TOKEN }}
+          NEXT_PUBLIC_POSTHOG_DEBUG=true
           EOF
 
           # Setup database schema, seed test data, and verify test users
@@ -159,7 +167,13 @@ jobs:
           install: false
           record: false
           config-file: cypress.config.ts
-          spec: cypress/e2e/routes/public-routes.cy.ts
+          # The analytics spec is in the blocking smoke set on purpose. It is the
+          # only check that proves events reach the network at all — the rewrite,
+          # the proxy matcher, and the init gate are invisible to every other
+          # layer, and they fail silently.
+          spec: |
+            cypress/e2e/routes/public-routes.cy.ts
+            cypress/e2e/analytics/posthog-events.cy.ts
         env:
           DATABASE_URL: ${{ env.CI_DATABASE_URL }}
           DATABASE_URL_AUTH: ${{ env.CI_DATABASE_URL }}
