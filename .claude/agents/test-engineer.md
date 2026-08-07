@@ -46,8 +46,18 @@ for months.
 `borderRadius` reads back as the literal string `"var(--cds-radii-medium)"`. The identical
 rule written with a literal value computes correctly. So **any `getComputedStyle`
 assertion on a token-driven property is vacuous or wrong**. Assert the declared CSS rule
-instead — see the `declaredRootRule()` helper in
-`packages/cadence-core/src/components/sidebar/__test__/sidebar-styles.test.tsx`.
+instead, with `declaredRule()` from `packages/cadence-core/src/test-utils`.
+
+**`cadence-core` has shared test helpers.** `src/test-utils/` holds `axeViolations()`,
+`declaredRule()`, `declaredRules()`, and `formatViolations()`. Import them by relative
+path — they are deliberately not re-exported from `src/index.ts`, and the folder is
+excluded from `tsconfig.json` so nothing reaches `dist/`. Reach for these before writing a
+local `axe.run` wrapper or a private stylesheet walker; both used to exist per-suite.
+
+`axeViolations()` disables axe's `color-contrast` rule and does not let you re-enable it.
+jsdom has no layout engine, so axe cannot resolve computed colors there and the rule can
+only produce a false pass. **Contrast is checked in a real browser** through the Storybook
+a11y addon panel, not in vitest.
 
 **Class names are hashed at build time** into `cds-<component>-<name>--<hash>`. Assert
 against the imported module binding, never a string literal:

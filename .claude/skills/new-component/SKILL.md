@@ -97,7 +97,21 @@ consumers**, and the error they see is an unhelpful module resolution failure.
 
 ## Test
 
-vitest + Testing Library, jsdom. Two rules specific to this package:
+vitest + Testing Library, jsdom.
+
+**Use the shared helpers in `src/test-utils/`** rather than writing your own:
+
+| Helper | Use |
+| --- | --- |
+| `axeViolations(container, rules?)` | Runs axe; assert `toEqual([])` so a failure names the rule and node |
+| `declaredRule(className)` | Declared `cssText` for one class |
+| `declaredRules(className)` | Every rule containing the class — `:hover`, `[data-state]`, other modifiers |
+| `formatViolations(violations)` | Readable output when the raw array is too noisy |
+
+Import by relative path (`../../../test-utils`). They are deliberately **not** exported
+from `src/index.ts` — the barrel is the public API.
+
+Two rules specific to this package:
 
 **Class names are hashed at build time.** Assert against the imported module binding:
 
@@ -109,14 +123,18 @@ expect(el).toHaveClass('root')   // never matches
 
 **jsdom does not resolve `var()`.** `getComputedStyle` on any token-driven property
 returns the CSS initial value — `border: 1px solid var(--cds-color-border-faint)` reads
-back as `borderStyle: 'none'`. To assert token-driven styling, inspect the *declared*
-rule; see `src/components/sidebar/__test__/sidebar-styles.test.tsx` for the
-`declaredRootRule()` helper.
+back as `borderStyle: 'none'`. To assert token-driven styling, inspect the *declared* rule
+with `declaredRule(s.root)`. `src/components/sidebar/__test__/sidebar-styles.test.tsx` is
+the worked example.
 
 Cover: renders, variants and sizes apply the right classes, disabled/invalid states,
 `className` passthrough, ref forwarding, and — for anything interactive — **a real
 `getByRole` query and keyboard operation**. That last one is not optional; it is exactly
 what was missing when `radio-card` shipped inaccessible.
+
+For anything interactive, add an `-a11y.test.tsx` alongside it using `axeViolations()`.
+Note that `color-contrast` cannot run under jsdom and is disabled — check contrast in the
+Storybook a11y addon panel instead.
 
 ## Story
 

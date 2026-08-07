@@ -112,6 +112,12 @@ expect(el).toHaveClass(s.root)      // correct
 expect(el).toHaveClass('root')      // wrong — never matches
 ```
 
+Shared test helpers live in `packages/cadence-core/src/test-utils/` — `axeViolations()`
+for axe runs, `declaredRule()` and `declaredRules()` for asserting token-driven CSS that
+`getComputedStyle` cannot see under jsdom. They are imported by relative path and are
+deliberately absent from the barrel. Storybook carries `@storybook/addon-a11y`, which is
+where `color-contrast` is actually checked — that rule cannot run under jsdom.
+
 Twelve components currently wrap Radix UI primitives (dialog, drawer, dropdown-menu, tabs,
 toast, tooltip, hover-card, switch, checkbox, radio-group, separator, collapsible, slot),
 and are being migrated onto native elements. New interaction should be built on the
@@ -190,6 +196,7 @@ When adding or changing a component:
 - [ ] Semantic color tokens, never palette tokens
 - [ ] Correct type family for the surface
 - [ ] Keyboard accessible and announced correctly — verify with a real role query in the test
+- [ ] Interactive components carry an `-a11y.test.tsx` using `axeViolations()`
 - [ ] `pnpm core:build` and check it in Storybook
 - [ ] Changeset added
 

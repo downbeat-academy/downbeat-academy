@@ -61,7 +61,7 @@ cadence-core/
 │   └── global.d.ts         # Global type definitions
 ├── docs/                   # Package documentation
 ├── dist/                   # Build output
-├── storybook-static/       # Storybook build output
+├── storybook-static/       # Storybook build output (gitignored; built on Railway)
 ├── package.json
 ├── rollup.config.js        # Build configuration
 ├── vite.config.ts          # Vite/Vitest configuration

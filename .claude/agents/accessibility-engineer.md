@@ -86,9 +86,22 @@ await user.keyboard('{ArrowDown}')
 A test that only checks class names cannot catch a missing role — that is precisely how
 the radio-card defect shipped.
 
+**Use the shared helpers in `packages/cadence-core/src/test-utils/`.** `axeViolations()`
+runs axe and returns the violations array — assert `toEqual([])` so a failure names the
+rule and the offending node rather than `expected false to be true`. `declaredRule()` and
+`declaredRules()` read declared CSS rule text. Import by relative path; they are not
+re-exported from the barrel. Interactive components should carry an `-a11y.test.tsx`
+alongside their behaviour suite.
+
 Two jsdom limitations to keep in mind: it performs no layout, so anything geometric must
 be verified in a browser; and it does not resolve `var()`, so `getComputedStyle` on any
 token-driven property returns the CSS initial value. Assert declared rules instead.
+
+**The first limitation has teeth for contrast.** `axeViolations()` disables axe's
+`color-contrast` rule and does not permit re-enabling it — without layout, axe cannot
+resolve computed colors, so the rule reports nothing and yields a false pass. A green
+vitest run says nothing about contrast. **Check it in the Storybook a11y addon panel**,
+which runs in a real browser; the addon is registered in `.storybook/main.ts`.
 
 `apps/www` has `cypress-axe` available for automated auditing in E2E, but automated checks
 catch a minority of real problems. Tab through the component yourself in Storybook
