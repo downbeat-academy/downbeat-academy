@@ -1,5 +1,29 @@
 # cadence-core
 
+## 3.3.2
+
+### Patch Changes
+
+- 50af95d: Adds the accessibility test harness the Radix removal work depends on: registers
+  `@storybook/addon-a11y`, and extracts the ad-hoc `axe.run` and declared-rule helpers from
+  the sidebar suite into `src/test-utils/` so every component suite shares one
+  implementation.
+
+  Tooling only — no component, API, or bundle change. `src/test-utils/` is excluded from
+  `tsconfig.json` alongside `__test__/`, so nothing reaches `dist/`.
+
+- b46f883: Two Radix dependency-hygiene fixes, found while auditing the Radix removal epic.
+
+  `@radix-ui/react-collapsible` and `@radix-ui/react-slot` were missing from the Rollup
+  `external` array, so both were bundled into `dist/index.esm.js` while the other ten Radix
+  packages stayed external. Consumers were shipping a second copy of code they already had
+  installed. Marking them external drops the ESM bundle from 317,829 to 285,457 bytes.
+
+  `www` declared six `@radix-ui/*` dependencies it never imported — it consumes Radix only
+  indirectly through `cadence-core`. Removed.
+
+  No API or behavior change in either package.
+
 ## 3.3.1
 
 ### Patch Changes
