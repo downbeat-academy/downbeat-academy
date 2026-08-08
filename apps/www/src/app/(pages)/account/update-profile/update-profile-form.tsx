@@ -1,6 +1,6 @@
 'use client'
 
-import posthog from 'posthog-js'
+import { capture } from '@lib/posthog/capture'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -51,7 +51,7 @@ const UpdateProfileForm = ({
 				name: formData.name || '',
 			}
 			await updateProfile(formDataObject)
-			posthog.capture('profile_updated')
+			capture('profile_updated')
 			toast({
 				title: 'Profile updated',
 				variant: 'success',

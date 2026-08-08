@@ -3,7 +3,6 @@
 import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
 import { headers } from 'next/headers'
-import { createPostHogClient } from '@/lib/posthog-server'
 
 export async function signIn(formData: FormData) {
   const email = formData.get('email')?.toString()
@@ -33,22 +32,6 @@ export async function signIn(formData: FormData) {
       throw new Error('Please verify your email address.')
     }
     throw error
-  }
-
-  // Capture server-side sign-in event using the newly created session
-  try {
-    const session = await auth.api.getSession({ headers: await headers() })
-    if (session?.user?.id) {
-      const posthog = createPostHogClient()
-      posthog.capture({
-        distinctId: session.user.id,
-        event: 'user_signed_in',
-        properties: { method: 'email' },
-      })
-      await posthog.shutdown()
-    }
-  } catch {
-    // Non-blocking: don't prevent redirect on analytics failure
   }
 
   // Redirect to account page after successful sign in

@@ -1,6 +1,6 @@
 'use client'
 
-import posthog from 'posthog-js'
+import { capture } from '@lib/posthog/capture'
 import { useForm } from 'react-hook-form'
 import { useQueryState } from 'nuqs'
 import {
@@ -35,7 +35,7 @@ export function UnsubscribeForm() {
 				email: formData.email,
 				// audienceId is optional - server action will use default
 			})
-			posthog.capture('newsletter_unsubscribed')
+			capture('newsletter_unsubscribed')
 			toast({
 				title: 'Unsubscribed',
 				description: 'You have been unsubscribed from our newsletter.',
