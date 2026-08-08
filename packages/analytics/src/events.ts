@@ -17,6 +17,14 @@
  *   joining back to Sanity.
  * - Do not add a `$`-prefixed name. Those are PostHog's own (`$pageview`,
  *   `$autocapture`) and are captured by the SDK, not by us.
+ *
+ * ## Every event here must be captured somewhere
+ *
+ * This is a registry of what *is* instrumented, not a wishlist. An event
+ * declared but never captured is indistinguishable, in a PostHog dashboard,
+ * from an event that is broken — which is exactly how four dead events in the
+ * original integration went unnoticed. Add the name when you add the call site,
+ * not before.
  */
 
 /** How a user authenticated. */
@@ -37,9 +45,6 @@ export interface AnalyticsEventMap {
 	sign_in_completed: { method: AuthMethod }
 	sign_out_completed: never
 	password_reset_requested: never
-	password_reset_completed: never
-	/** Which downstream app the user authorised through the OAuth provider. */
-	oauth_authorization_granted: { client_id: string }
 
 	// --- Conversion ----------------------------------------------------------
 	contact_form_submitted: never
@@ -92,8 +97,6 @@ export const ANALYTICS_EVENT_NAMES = [
 	'sign_in_completed',
 	'sign_out_completed',
 	'password_reset_requested',
-	'password_reset_completed',
-	'oauth_authorization_granted',
 	'contact_form_submitted',
 	'newsletter_subscribed',
 	'newsletter_unsubscribed',
