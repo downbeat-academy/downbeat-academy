@@ -1,2 +1,6 @@
 export { Separator } from './separator'
-export type { SeparatorProps, SeparatorColor } from './types'
+export type {
+	SeparatorProps,
+	SeparatorColor,
+	SeparatorOrientation,
+} from './types'
