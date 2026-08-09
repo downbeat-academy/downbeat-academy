@@ -11,9 +11,21 @@
   gap: var(--cds-scale-base);
 }
 
+/* Positioning context for the indicator, which is overlaid on the input because a native
+   radio is a void element and cannot contain its own dot. */
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 /* Radio styles */
 .root {
-  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +39,7 @@
   flex-shrink: 0;
 }
 
-.root:hover:not([data-disabled]) {
+.root:hover:not(:disabled) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-100);
 }
@@ -37,23 +49,23 @@
   outline-offset: var(--cds-focus-ring-offset);
 }
 
-.root[data-state='checked'] {
+.root:checked {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-foreground-interactive-default);
 }
 
-.root[data-state='checked']:hover:not([data-disabled]) {
+.root:checked:hover:not(:disabled) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-foreground-interactive-hover);
 }
 
-.root[data-disabled] {
+.root:disabled {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.root[data-state='checked'][data-disabled] {
+.root:checked:disabled {
   background-color: var(--cds-color-palette-blueberry-300);
   border-color: var(--cds-color-palette-blueberry-400);
 }
@@ -68,18 +80,28 @@
 
 /* Radio Indicator styles */
 .indicator {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  position: relative;
+  /* The input beneath owns every interaction — the dot must never intercept a click. */
+  pointer-events: none;
 }
 
 .indicator::after {
   content: '';
+  /* Deliberately 8x6, not 8x8: this reproduces the existing dimensions exactly so the
+     migration produces no Chromatic diff. The dot is a slight ellipse today. */
   width: 8px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--cds-color-foreground-high-contrast);
+}
+
+/* The dot is present at all times and revealed by state, so uncontrolled groups work
+   without React knowing which radio the browser selected. */
+.root:not(:checked) ~ .indicator {
+  visibility: hidden;
 }

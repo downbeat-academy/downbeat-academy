@@ -93,6 +93,12 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   )
 
   return (
+    // KNOWN DEFECT (Radix A.4, ADR-0002): selection lives on this bare div while the real
+    // radio below is `aria-hidden` and removed from the tab order, so the control is
+    // invisible to assistive technology and unreachable by keyboard. The 14 quarantined
+    // `it.skip` tests in __test__/ are its acceptance criteria — they are correct and this
+    // component is wrong. Now that Radio is a native input, the fix is to let the browser
+    // own selection and roving tabindex rather than re-implementing them here.
     <div
       ref={ref}
       className={rootClasses}
@@ -106,9 +112,13 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
     >
       {content}
       <div className={s.itemIndicatorArea}>
+        {/* Presentational only — the wrapping div owns interaction, so the input is
+            `readOnly` to keep React from warning about a controlled field with no
+            change handler. See the a11y note on that div above. */}
         <Radio
           value={value}
           checked={isSelected}
+          readOnly
           disabled={finalDisabled}
           required={finalRequired}
           id={id}

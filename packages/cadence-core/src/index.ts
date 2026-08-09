@@ -150,6 +150,7 @@ export type {
   SwitchProps,
   RadioGroupProps,
   RadioProps,
+  RadioGroupOrientation,
   RadioCardGroupProps,
   RadioCardItemProps,
   CheckboxProps,

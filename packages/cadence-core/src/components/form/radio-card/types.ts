@@ -1,13 +1,16 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-export interface RadioCardGroupProps extends ComponentPropsWithoutRef<'div'> {
+// `onChange` is omitted deliberately: this component's change API is `onValueChange`, and
+// the div's DOM handler would otherwise collide with the group-level callback that
+// `RadioGroup` now takes under that same name.
+export interface RadioCardGroupProps
+  extends Omit<ComponentPropsWithoutRef<'div'>, 'onChange'> {
   value?: string
   onValueChange?: (value: string) => void
   disabled?: boolean
   required?: boolean
   name?: string
   orientation?: 'horizontal' | 'vertical'
-  loop?: boolean
   isInvalid?: boolean
   className?: string
   children: ReactNode
