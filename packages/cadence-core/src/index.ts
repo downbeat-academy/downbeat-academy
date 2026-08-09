@@ -211,7 +211,11 @@ export type {
   TooltipContentProps,
   TooltipTriggerProps,
 } from './components/tooltip';
-export type { SeparatorProps, SeparatorColor } from './components/separator';
+export type {
+  SeparatorProps,
+  SeparatorColor,
+  SeparatorOrientation,
+} from './components/separator';
 export type {
   DropdownMenuContentProps,
   DropdownMenuItemProps,
