@@ -44,10 +44,6 @@ const meta: Meta<typeof RadioCardGroup> = {
       options: ['small', 'base', 'large'],
       description: 'Gap between radio cards',
     },
-    loop: {
-      control: 'boolean',
-      description: 'Whether keyboard navigation should loop',
-    },
   },
 }
 

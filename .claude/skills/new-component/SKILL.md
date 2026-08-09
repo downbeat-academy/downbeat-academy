@@ -55,9 +55,10 @@ Copy the shape of an existing component of similar complexity. `badge/` is a goo
 reference, and `form/select/` and `summary/` are the references for building on a native
 element — a styled `<select>` and a native `<details>` respectively.
 
-Do **not** copy `form/radio-card/`, which has a known accessibility defect, and do not
+Do **not** copy `form/checkbox-card/`, which has a known accessibility defect, and do not
 copy the Radix-wrapping components as a pattern — they are what this package is migrating
-away from.
+away from. For a selectable card, copy `form/radio-card/`: a `<label>` around a real
+input, styled off `:has()`.
 
 ### `<name>.tsx`
 
