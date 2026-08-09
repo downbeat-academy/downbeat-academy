@@ -1,181 +1,345 @@
-import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { Checkbox } from '../checkbox'
+import React, { useState } from 'react'
 import { describe, it, expect, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { Checkbox } from '../checkbox'
+import s from '../checkbox.module.css'
+import {
+	declaredRule,
+	declaredRules,
+	declaredSelectors,
+} from '../../../../test-utils'
 
-describe('Checkbox', () => {
-  it('renders correctly', () => {
-    render(<Checkbox aria-label="Test checkbox" />)
+/**
+ * Rewritten for Radix A.2. The previous suite asserted the Radix surface — `onCheckedChange`,
+ * `checked="indeterminate"`, `aria-checked`, `data-disabled` — none of which a native
+ * `<input type="checkbox">` emits, because the browser tracks all of it as element state
+ * rather than as attributes. Two of those tests were also vacuous: they queried for the
+ * indicator and asserted `toBeDefined()`, which passes on `null`.
+ *
+ * The contract now is the native one:
+ *
+ *   checked        → the `checked` DOM property, not an attribute
+ *   indeterminate  → the `indeterminate` DOM property, set imperatively via ref
+ *   disabled       → the `disabled` attribute, and the browser suppresses the click
+ *   form entry     → real participation via FormData, with no hidden bubble input
+ */
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox).toBeDefined()
-    expect(checkbox.getAttribute('aria-label')).toBe('Test checkbox')
-  })
+/** The rendered `<input>`, which is the element carrying `role="checkbox"`. */
+const checkbox = () => screen.getByRole('checkbox') as HTMLInputElement
 
-  it('can be checked and unchecked', () => {
-    const handleChange = vi.fn()
-    render(
-      <Checkbox 
-        aria-label="Test checkbox"
-        onCheckedChange={handleChange}
-      />
-    )
+describe('Checkbox role and labelling', () => {
+	it('renders a real input with role checkbox', () => {
+		render(<Checkbox aria-label="Subscribe" />)
+		const el = checkbox()
+		expect(el.tagName).toBe('INPUT')
+		expect(el.type).toBe('checkbox')
+		expect(el).toHaveAccessibleName('Subscribe')
+	})
 
-    const checkbox = screen.getByRole('checkbox')
-    
-    // Initially unchecked
-    expect(checkbox.getAttribute('aria-checked')).toBe('false')
+	it('associates with a native label element', () => {
+		// The whole point of migrating: a native input is labellable, so a plain <label>
+		// works without any aria wiring. The Radix button could not do this.
+		render(
+			<>
+				<label htmlFor="terms">Accept terms</label>
+				<Checkbox id="terms" />
+			</>
+		)
+		expect(screen.getByLabelText('Accept terms')).toBe(checkbox())
+	})
 
-    // Click to check
-    fireEvent.click(checkbox)
-    expect(handleChange).toHaveBeenCalledWith(true)
+	it('supports aria-describedby and aria-labelledby passthrough', () => {
+		render(
+			<Checkbox
+				aria-label="Accessible checkbox"
+				aria-describedby="helper-text"
+				aria-labelledby="label-text"
+			/>
+		)
+		expect(checkbox()).toHaveAttribute('aria-describedby', 'helper-text')
+		expect(checkbox()).toHaveAttribute('aria-labelledby', 'label-text')
+	})
+})
 
-    // Click again to uncheck
-    fireEvent.click(checkbox)
-    expect(handleChange).toHaveBeenCalledWith(false)
-  })
+describe('Checkbox checked state', () => {
+	it('is unchecked by default', () => {
+		render(<Checkbox aria-label="Subscribe" />)
+		expect(checkbox().checked).toBe(false)
+	})
 
-  it('respects controlled state', () => {
-    const { rerender } = render(
-      <Checkbox aria-label="Test checkbox" checked={false} />
-    )
+	it('honours defaultChecked and toggles uncontrolled', async () => {
+		const user = userEvent.setup()
+		render(<Checkbox aria-label="Subscribe" defaultChecked />)
+		expect(checkbox().checked).toBe(true)
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-checked')).toBe('false')
+		await user.click(checkbox())
+		expect(checkbox().checked).toBe(false)
+	})
 
-    rerender(
-      <Checkbox aria-label="Test checkbox" checked={true} />
-    )
-    expect(checkbox.getAttribute('aria-checked')).toBe('true')
-  })
+	it('reports each toggle through onChange', async () => {
+		const user = userEvent.setup()
+		const onChange = vi.fn()
+		render(<Checkbox aria-label="Subscribe" onChange={onChange} />)
 
-  it('supports indeterminate state', () => {
-    render(
-      <Checkbox 
-        aria-label="Indeterminate checkbox"
-        checked="indeterminate"
-      />
-    )
+		await user.click(checkbox())
+		expect(onChange).toHaveBeenCalledTimes(1)
+		expect(onChange.mock.calls[0][0].target.checked).toBe(true)
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-checked')).toBe('mixed')
-  })
+		await user.click(checkbox())
+		expect(onChange).toHaveBeenCalledTimes(2)
+		expect(onChange.mock.calls[1][0].target.checked).toBe(false)
+	})
 
-  it('can be disabled', () => {
-    const handleChange = vi.fn()
-    render(
-      <Checkbox 
-        aria-label="Disabled checkbox"
-        disabled
-        onCheckedChange={handleChange}
-      />
-    )
+	it('stays pinned to a controlled checked prop', async () => {
+		// A controlled input must not drift: clicking it without the owner updating state
+		// leaves it where the prop says it is.
+		const user = userEvent.setup()
+		const { rerender } = render(
+			<Checkbox aria-label="Subscribe" checked={false} onChange={() => {}} />
+		)
+		expect(checkbox().checked).toBe(false)
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('data-disabled')).toBe('')
+		await user.click(checkbox())
+		expect(checkbox().checked).toBe(false)
 
-    fireEvent.click(checkbox)
-    expect(handleChange).not.toHaveBeenCalled()
-  })
+		rerender(
+			<Checkbox aria-label="Subscribe" checked={true} onChange={() => {}} />
+		)
+		expect(checkbox().checked).toBe(true)
+	})
 
-  it('applies invalid styles when isInvalid is true', () => {
-    render(
-      <Checkbox
-        aria-label="Invalid checkbox"
-        isInvalid
-      />
-    )
+	it('drives a controlled checkbox from parent state', async () => {
+		const user = userEvent.setup()
+		const Controlled = () => {
+			const [on, setOn] = useState(false)
+			return (
+				<Checkbox
+					aria-label="Subscribe"
+					checked={on}
+					onChange={(e) => setOn(e.target.checked)}
+				/>
+			)
+		}
+		render(<Controlled />)
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain('isInvalid')
-  })
+		await user.click(checkbox())
+		expect(checkbox().checked).toBe(true)
+	})
+})
 
-  it('applies custom className', () => {
-    render(
-      <Checkbox
-        aria-label="Custom checkbox"
-        className="custom-checkbox-class"
-      />
-    )
+describe('Checkbox indeterminate state', () => {
+	it('sets the DOM property, which has no HTML attribute', () => {
+		render(<Checkbox aria-label="Select all" indeterminate />)
+		expect(checkbox().indeterminate).toBe(true)
+		// The distinction that makes the imperative ref necessary in the first place.
+		expect(checkbox()).not.toHaveAttribute('indeterminate')
+	})
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain('custom-checkbox-class')
-  })
+	it('is false by default', () => {
+		render(<Checkbox aria-label="Select all" />)
+		expect(checkbox().indeterminate).toBe(false)
+	})
 
-  it('supports form attributes', () => {
-    render(
-      <Checkbox
-        aria-label="Form checkbox"
-        id="test-checkbox"
-        name="test-name"
-        value="test-value"
-        required
-      />
-    )
+	it('is independent of checked', () => {
+		render(<Checkbox aria-label="Select all" checked readOnly indeterminate />)
+		expect(checkbox().checked).toBe(true)
+		expect(checkbox().indeterminate).toBe(true)
+	})
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('id')).toBe('test-checkbox')
-    expect(checkbox.getAttribute('value')).toBe('test-value')
-    // Radix exposes `required` on the trigger as aria-required — the bare `required`
-    // attribute only lands on the hidden bubble input, and only inside a <form>.
-    expect(checkbox.getAttribute('aria-required')).toBe('true')
-  })
+	it('clears when the prop goes false', () => {
+		const { rerender } = render(
+			<Checkbox aria-label="Select all" indeterminate />
+		)
+		expect(checkbox().indeterminate).toBe(true)
 
-  it('supports aria attributes', () => {
-    render(
-      <Checkbox
-        aria-label="Accessible checkbox"
-        aria-describedby="helper-text"
-        aria-labelledby="label-text"
-      />
-    )
+		rerender(<Checkbox aria-label="Select all" indeterminate={false} />)
+		expect(checkbox().indeterminate).toBe(false)
+	})
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-label')).toBe('Accessible checkbox')
-    expect(checkbox.getAttribute('aria-describedby')).toBe('helper-text')
-    expect(checkbox.getAttribute('aria-labelledby')).toBe('label-text')
-  })
+	it('renders the Minus mark instead of the Check mark', () => {
+		const { container, rerender } = render(
+			<Checkbox aria-label="Select all" indeterminate />
+		)
+		const indicator = container.querySelector(`.${s.indicator}`)
+		expect(indicator).not.toBeNull()
+		const indeterminateMark = indicator!.innerHTML
 
-  it('works with uncontrolled state using defaultChecked', () => {
-    const handleChange = vi.fn()
-    render(
-      <Checkbox
-        aria-label="Uncontrolled checkbox"
-        defaultChecked={true}
-        onCheckedChange={handleChange}
-      />
-    )
+		rerender(<Checkbox aria-label="Select all" indeterminate={false} />)
+		const checkedMark = container.querySelector(`.${s.indicator}`)!.innerHTML
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-checked')).toBe('true')
+		// Asserting they differ, rather than on icon internals, keeps this from breaking
+		// every time cadence-icons changes its SVG output.
+		expect(indeterminateMark).not.toBe(checkedMark)
+	})
+})
 
-    fireEvent.click(checkbox)
-    expect(handleChange).toHaveBeenCalledWith(false)
-  })
+describe('Checkbox disabled state', () => {
+	it('sets the disabled attribute and blocks interaction', async () => {
+		const user = userEvent.setup()
+		const onChange = vi.fn()
+		render(
+			<Checkbox aria-label="Subscribe" disabled onChange={onChange} />
+		)
+		expect(checkbox()).toBeDisabled()
 
-  it('shows correct icon for checked state', () => {
-    const { container } = render(
-      <Checkbox
-        aria-label="Checked checkbox"
-        checked={true}
-      />
-    )
+		await user.click(checkbox())
+		expect(onChange).not.toHaveBeenCalled()
+		expect(checkbox().checked).toBe(false)
+	})
 
-    // Check that the indicator contains the check icon (not minus)
-    const indicator = container.querySelector('[class*="indicator"]')
-    expect(indicator).toBeDefined()
-  })
+	it('is skipped by Tab', async () => {
+		const user = userEvent.setup()
+		render(
+			<>
+				<button type="button">before</button>
+				<Checkbox aria-label="Subscribe" disabled />
+				<button type="button">after</button>
+			</>
+		)
+		await user.tab()
+		expect(screen.getByRole('button', { name: 'before' })).toHaveFocus()
+		await user.tab()
+		expect(screen.getByRole('button', { name: 'after' })).toHaveFocus()
+	})
+})
 
-  it('shows correct icon for indeterminate state', () => {
-    const { container } = render(
-      <Checkbox
-        aria-label="Indeterminate checkbox"
-        checked="indeterminate"
-      />
-    )
+describe('Checkbox keyboard operation', () => {
+	it('is reachable by Tab and toggles on Space', async () => {
+		const user = userEvent.setup()
+		render(<Checkbox aria-label="Subscribe" />)
 
-    // Check that the indicator contains the minus icon
-    const indicator = container.querySelector('[class*="indicator"]')
-    expect(indicator).toBeDefined()
-  })
+		await user.tab()
+		expect(checkbox()).toHaveFocus()
+
+		await user.keyboard(' ')
+		expect(checkbox().checked).toBe(true)
+
+		await user.keyboard(' ')
+		expect(checkbox().checked).toBe(false)
+	})
+
+	it('does not toggle on Enter, matching native behaviour', async () => {
+		// Enter submits the form; it does not tick the box. Radix's button-based control
+		// got this wrong for free, because buttons activate on Enter.
+		const user = userEvent.setup()
+		render(<Checkbox aria-label="Subscribe" />)
+
+		await user.tab()
+		await user.keyboard('{Enter}')
+		expect(checkbox().checked).toBe(false)
+	})
+})
+
+describe('Checkbox form participation', () => {
+	it('submits its value with no hidden bubble input', () => {
+		// The hack this migration deletes: Radix rendered a second, hidden <input> purely
+		// so the control would appear in FormData. There is now exactly one input.
+		const { container } = render(
+			<form aria-label="Preferences">
+				<Checkbox aria-label="Subscribe" name="subscribe" value="yes" defaultChecked />
+			</form>
+		)
+		expect(container.querySelectorAll('input')).toHaveLength(1)
+
+		const data = new FormData(screen.getByRole('form') as HTMLFormElement)
+		expect(data.get('subscribe')).toBe('yes')
+	})
+
+	it('is omitted from FormData when unchecked', () => {
+		render(
+			<form aria-label="Preferences">
+				<Checkbox aria-label="Subscribe" name="subscribe" value="yes" />
+			</form>
+		)
+		const data = new FormData(screen.getByRole('form') as HTMLFormElement)
+		expect(data.get('subscribe')).toBeNull()
+	})
+
+	it('carries required as a real constraint, not just an aria attribute', () => {
+		render(<Checkbox aria-label="Subscribe" name="subscribe" required />)
+		expect(checkbox()).toBeRequired()
+		expect(checkbox().validity.valueMissing).toBe(true)
+	})
+
+	it('passes id, name and value straight through', () => {
+		render(
+			<Checkbox
+				aria-label="Subscribe"
+				id="test-checkbox"
+				name="test-name"
+				value="test-value"
+			/>
+		)
+		expect(checkbox()).toHaveAttribute('id', 'test-checkbox')
+		expect(checkbox()).toHaveAttribute('name', 'test-name')
+		expect(checkbox()).toHaveAttribute('value', 'test-value')
+	})
+})
+
+describe('Checkbox styling hooks', () => {
+	it('applies the root class to the input', () => {
+		render(<Checkbox aria-label="Subscribe" />)
+		expect(checkbox()).toHaveClass(s.root)
+	})
+
+	it('applies the invalid class only when isInvalid is set', () => {
+		const { rerender } = render(<Checkbox aria-label="Subscribe" />)
+		expect(checkbox()).not.toHaveClass(s.isInvalid)
+
+		rerender(<Checkbox aria-label="Subscribe" isInvalid />)
+		expect(checkbox()).toHaveClass(s.isInvalid)
+	})
+
+	it('merges a consumer className with its own', () => {
+		render(<Checkbox aria-label="Subscribe" className="custom-checkbox-class" />)
+		expect(checkbox()).toHaveClass('custom-checkbox-class', s.root)
+	})
+
+	it('styles state from native pseudo-classes, not from data-state', () => {
+		// jsdom cannot resolve var() and has no layout, so neither computed styles nor
+		// rendering can verify this — assert the declared selectors instead. This pins the
+		// A.2 swap: Radix drove styling off [data-state='checked'] / [data-disabled], the
+		// native input drives it off :checked, :indeterminate and :disabled.
+		const selectors = declaredSelectors(s.root).join('\n')
+		expect(selectors).toMatch(/:checked/)
+		expect(selectors).toMatch(/:indeterminate/)
+		expect(selectors).toMatch(/:disabled/)
+		expect(selectors).not.toMatch(/data-state/)
+		expect(selectors).not.toMatch(/data-disabled/)
+
+		// `appearance: none` is what makes the native control styleable at all.
+		expect(declaredRule(s.root)).toMatch(/appearance:\s*none/)
+	})
+
+	it('keeps the mark out of the accessibility tree and out of the hit target', () => {
+		const { container } = render(<Checkbox aria-label="Subscribe" defaultChecked />)
+		const indicator = container.querySelector(`.${s.indicator}`)
+		expect(indicator).toHaveAttribute('aria-hidden', 'true')
+		expect(declaredRules(s.indicator).join('\n')).toMatch(
+			/pointer-events:\s*none/
+		)
+	})
+})
+
+describe('Checkbox element contract', () => {
+	it('forwards a ref to the input itself', () => {
+		const ref = React.createRef<HTMLInputElement>()
+		render(<Checkbox aria-label="Subscribe" ref={ref} />)
+		expect(ref.current).toBeInstanceOf(HTMLInputElement)
+		expect(ref.current).toBe(checkbox())
+	})
+
+	it('exposes the indeterminate property through the forwarded ref', () => {
+		// The ref has to reach the real input, not the wrapper — otherwise a consumer
+		// could not read or set indeterminate themselves.
+		const ref = React.createRef<HTMLInputElement>()
+		render(<Checkbox aria-label="Select all" ref={ref} indeterminate />)
+		expect(ref.current!.indeterminate).toBe(true)
+	})
+
+	it('passes arbitrary props through to the input', () => {
+		render(<Checkbox aria-label="Subscribe" data-testid="cb" />)
+		expect(screen.getByTestId('cb')).toBe(checkbox())
+	})
 })
