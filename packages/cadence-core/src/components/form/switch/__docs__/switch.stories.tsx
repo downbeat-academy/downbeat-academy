@@ -46,7 +46,7 @@ export const Default: Story = {
 export const Checked: Story = {
   args: {
     id: 'switch-checked',
-    checked: true,
+    defaultChecked: true,
     'aria-label': 'Toggle setting',
   },
 }
@@ -63,7 +63,7 @@ export const DisabledChecked: Story = {
   args: {
     id: 'switch-disabled-checked',
     disabled: true,
-    checked: true,
+    defaultChecked: true,
     'aria-label': 'Toggle setting',
   },
 }
@@ -86,7 +86,7 @@ export const WithLabel: Story = {
           <Switch
             id="switch-with-label"
             checked={checked}
-            onCheckedChange={setChecked}
+            onChange={(e) => setChecked(e.target.checked)}
           />
           <Label htmlFor="switch-with-label">Enable notifications</Label>
         </div>
@@ -105,7 +105,7 @@ export const WithHelperText: Story = {
           <Switch
             id="switch-with-helper"
             checked={checked}
-            onCheckedChange={setChecked}
+            onChange={(e) => setChecked(e.target.checked)}
             aria-describedby="switch-helper"
           />
           <Label htmlFor="switch-with-helper">Marketing emails</Label>
@@ -129,7 +129,8 @@ export const WithValidation: Story = {
           <Switch
             id="switch-with-validation"
             checked={checked}
-            onCheckedChange={(value) => {
+            onChange={(e) => {
+              const value = e.target.checked
               setChecked(value)
               setShowError(!value)
             }}
@@ -164,7 +165,7 @@ export const HorizontalLayout: Story = {
           <Switch
             id="switch-email"
             checked={emailChecked}
-            onCheckedChange={setEmailChecked}
+            onChange={(e) => setEmailChecked(e.target.checked)}
           />
         </Field>
 
@@ -173,7 +174,7 @@ export const HorizontalLayout: Story = {
           <Switch
             id="switch-sms"
             checked={smsChecked}
-            onCheckedChange={setSmsChecked}
+            onChange={(e) => setSmsChecked(e.target.checked)}
           />
         </Field>
 
@@ -182,7 +183,7 @@ export const HorizontalLayout: Story = {
           <Switch
             id="switch-push"
             checked={pushChecked}
-            onCheckedChange={setPushChecked}
+            onChange={(e) => setPushChecked(e.target.checked)}
           />
         </Field>
       </div>
@@ -267,7 +268,7 @@ export const CompleteExample: Story = {
             <Switch
               id="switch-notifications"
               checked={settings.notifications}
-              onCheckedChange={(value) => handleChange('notifications', value)}
+              onChange={(e) => handleChange('notifications', e.target.checked)}
               aria-describedby="notifications-helper"
             />
             <Label htmlFor="switch-notifications">Enable all notifications</Label>
@@ -282,7 +283,7 @@ export const CompleteExample: Story = {
             <Switch
               id="switch-marketing"
               checked={settings.marketing}
-              onCheckedChange={(value) => handleChange('marketing', value)}
+              onChange={(e) => handleChange('marketing', e.target.checked)}
               disabled={!settings.notifications}
             />
             <Label htmlFor="switch-marketing">Marketing communications</Label>
@@ -294,7 +295,7 @@ export const CompleteExample: Story = {
             <Switch
               id="switch-analytics"
               checked={settings.analytics}
-              onCheckedChange={(value) => handleChange('analytics', value)}
+              onChange={(e) => handleChange('analytics', e.target.checked)}
             />
             <Label htmlFor="switch-analytics">Share usage analytics</Label>
           </div>
@@ -307,7 +308,7 @@ export const CompleteExample: Story = {
             <Switch
               id="switch-terms"
               checked={settings.terms}
-              onCheckedChange={(value) => handleChange('terms', value)}
+              onChange={(e) => handleChange('terms', e.target.checked)}
               isInvalid={errors.terms}
               aria-describedby={errors.terms ? 'terms-error' : undefined}
               required

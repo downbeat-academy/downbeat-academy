@@ -86,7 +86,6 @@ export default {
     'react/jsx-runtime',
     'react/jsx-dev-runtime',
     'cadence-icons',
-    '@radix-ui/react-switch',
     '@radix-ui/react-hover-card',
     '@radix-ui/react-tooltip',
     '@radix-ui/react-dialog',

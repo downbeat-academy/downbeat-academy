@@ -1,4 +1,15 @@
+/* Positioning context for the thumb and check mark, which are overlaid on the input
+   because it is a void element and cannot contain them. */
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .root {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -11,7 +22,7 @@
   transition: background-color 200ms ease, border-color 200ms ease;
 }
 
-.root:hover:not([data-disabled]) {
+.root:hover:not(:disabled) {
   background-color: var(--cds-color-palette-blackberry-200);
 }
 
@@ -20,17 +31,17 @@
   outline-offset: var(--cds-focus-ring-offset);
 }
 
-.root[data-state='checked'] {
+.root:checked {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-palette-blueberry-700);
 }
 
-.root[data-state='checked']:hover:not([data-disabled]) {
+.root:checked:hover:not(:disabled) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-background-brand-hover);
 }
 
-.root[data-disabled] {
+.root:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -53,13 +64,19 @@
   border-radius: 18px;
   transition: transform 100ms ease;
   will-change: transform;
+  /* The input beneath owns every interaction — the thumb must never intercept a click. */
+  pointer-events: none;
 }
 
-.thumb:hover {
+/* Was `.thumb:hover`, which worked because the thumb used to be a child of the button.
+   As a pointer-events-free sibling it can no longer be hovered directly, so this keys off
+   the track instead. Specificity is deliberately left higher than the `:checked` rule
+   below, exactly as `.thumb:hover` outranked `.thumbChecked` before. */
+.root:hover:not(:disabled) ~ .thumb {
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.thumbChecked {
+.root:checked ~ .thumb {
   background-color: var(--cds-color-foreground-high-contrast);
   transform: translateX(17px);
 }
@@ -75,6 +92,6 @@
   pointer-events: none;
 }
 
-.checkIconVisible {
+.root:checked ~ .checkIcon {
   display: flex;
 }
