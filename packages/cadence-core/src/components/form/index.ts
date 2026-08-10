@@ -20,7 +20,11 @@ export type { FieldProps } from './field'
 export type { InputProps } from './input'
 export type { TextareaProps } from './textarea'
 export type { SwitchProps } from './switch'
-export type { RadioGroupProps, RadioProps } from './radio'
+export type {
+  RadioGroupProps,
+  RadioProps,
+  RadioGroupOrientation,
+} from './radio'
 export type { RadioCardGroupProps, RadioCardItemProps } from './radio-card'
 export type { CheckboxProps } from './checkbox'
 // export type { CheckboxCardGroupProps, CheckboxCardItemProps } from './checkbox-card'

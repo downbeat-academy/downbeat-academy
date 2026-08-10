@@ -26,7 +26,6 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
   required,
   name,
   orientation = 'vertical',
-  loop = true,
   isInvalid,
   className,
   children,
@@ -68,12 +67,11 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
       ref={ref}
       value={value}
       defaultValue={typeof defaultValue === 'string' ? defaultValue : undefined}
-      onValueChange={onValueChange}
+      onChange={onValueChange}
       disabled={disabled}
       required={required}
       name={name}
       orientation={orientation}
-      loop={loop}
       className={rootClasses}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}
