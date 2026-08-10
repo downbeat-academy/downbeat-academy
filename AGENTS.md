@@ -115,6 +115,13 @@ pnpm test          # vitest run — www, cadence-links, cadence-core,
 regressed a `test` script back to bare `vitest` (watch mode) — fix that, don't
 work around it.
 
+**`pnpm --filter <pkg> <task>` bypasses turbo.** `turbo.json` gives `typecheck`, `test`
+and `build` a `dependsOn: ["^build"]`, so the top-level `pnpm typecheck` rebuilds
+dependencies first. `pnpm --filter www typecheck` runs the raw package script instead, and
+`www` typechecks against `cadence-core`'s **built `dist/`** — so after changing a
+`cadence-core` type you will see failures that are stale output, not real errors. Run
+`pnpm core:build` first, or just use the top-level task.
+
 E2E is separate and needs a database and real secrets; it does not run in `verify`:
 
 ```bash
@@ -126,9 +133,18 @@ pnpm --filter auth test:e2e
 
 Do not assume a green `verify` means everything is checked:
 
-- **`pnpm format:check` is not gated.** 1063 files currently fail it. Do not run
-  `pnpm format` across the repo as a side effect of another change; it belongs in a
-  dedicated commit added to `.git-blame-ignore-revs`.
+- **`pnpm format:check` is not gated, and prettier is effectively unusable here.** 1063
+  files fail it, so running prettier on any *existing* file rewrites the whole file —
+  turning a two-line change into a hundred-line diff. `pnpm format` is **denied in
+  `.claude/settings.json`** for that reason: it rewrites ~786 files and buries the actual
+  change. A per-branch variant is no safer; on a stacked branch it reformats every file in
+  every parent PR.
+
+  **So: match the style of the file you are editing, not prettier's opinion of it.** Leave
+  pre-existing `format:check` failures alone — they are not yours to fix in passing.
+  `pnpm format:new` is safe and formats only files your branch *adds*, which have no prior
+  style to churn. A one-time repo-wide normalization plus a CI gate is tracked separately;
+  until that lands, prettier is opt-in per new file only.
 - **`cadence-core` has no linting.** It is the largest package and the only one with no
   ESLint setup at all.
 - **`cms-sanity` has no tests.** Neither do `cadence-tokens`, `email`, or the typefaces.

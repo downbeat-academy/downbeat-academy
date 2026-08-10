@@ -1,7 +1,7 @@
 ---
 name: tech-project-manager
 description: Triage and sequence work on the Downbeat Academy roadmap — read the Notion Product Roadmap, assess what is in flight against the repo's actual state, sequence work by real dependency, and weigh technical debt against feature work. Use for planning across multiple tasks, not for implementing one. Examples — <example>Context: prioritisation. user: "What should I pick up next?" assistant: "I'll use the tech-project-manager agent to review the roadmap and the known-gaps register." <commentary>Needs both the Notion backlog and the repo's recorded debt.</commentary></example> <example>Context: sequencing. user: "I want to ship courses. What has to happen first?" assistant: "Let me use the tech-project-manager agent to map the dependency chain." <commentary>Requires knowing which schema work exists and what the rendering chain needs.</commentary></example>
-tools: Read, Grep, Glob, Bash, WebFetch
+tools: Read, Grep, Glob, Bash, WebFetch, mcp__claude_ai_Notion__notion-fetch, mcp__claude_ai_Notion__notion-search, mcp__claude_ai_Notion__notion-query-data-sources
 model: sonnet
 color: cyan
 ---

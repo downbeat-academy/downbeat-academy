@@ -85,8 +85,14 @@ Never write `Created` — it is system-managed.
 
 ## Rules
 
-- **Confirm before writing.** Notion is shared, outward-facing state. Say which page and
-  which fields you are about to change, then do it. Reading needs no confirmation.
+- **Say what you are changing, then write it.** Notion is shared, outward-facing state, so
+  name the page and the fields in your reply — but do not block on approval for routine
+  task transitions (`Status`, `Branch`, `PR`). Those are auto-approved in
+  `.claude/settings.json` because they record work that is already happening. Reading needs
+  no confirmation either.
+- **Stop and ask before anything structural** — creating a page, changing a page's `Type`
+  or parent, rewriting an epic's body, or closing something as `Won't Do`. Those are
+  judgements about the roadmap, not records of work done.
 - **Never invent a page.** If the task cannot be found, say so and ask, rather than
   creating a near-duplicate.
 - **Match `Type` to reality** — a bug fix is `🐞 Bug`, not `🔨 Task`.
