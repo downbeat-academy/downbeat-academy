@@ -73,3 +73,42 @@ export function declaredRules(className: string): string[] {
 
 	return found
 }
+
+/**
+ * Returns the `selectorText` of every rule mentioning the class, in document order.
+ *
+ * `declaredRules` deliberately returns only rule *bodies*, which cannot answer "what state
+ * is this styled off?". That question is the whole substance of the Radix Tier A
+ * migrations: each one moves styling from Radix's `[data-state]` / `[data-disabled]`
+ * attributes onto the native `:checked`, `:indeterminate` and `:disabled` pseudo-classes,
+ * and jsdom cannot verify the swap by rendering — it has no layout or paint.
+ *
+ * ```ts
+ * const selectors = declaredSelectors(s.root).join('\n')
+ * expect(selectors).toMatch(/:checked/)
+ * expect(selectors).not.toMatch(/data-state/)
+ * ```
+ *
+ * This proves the stylesheet *targets* the right state. It cannot prove the result looks
+ * right — that is the Storybook a11y addon and Chromatic's job.
+ */
+export function declaredSelectors(className: string): string[] {
+	const target = className.split(' ')[0]
+	const found: string[] = []
+
+	for (const sheet of Array.from(document.styleSheets)) {
+		let rules: CSSRule[]
+		try {
+			rules = Array.from(sheet.cssRules)
+		} catch {
+			continue
+		}
+		for (const rule of rules) {
+			if (rule instanceof CSSStyleRule && rule.selectorText.includes(`.${target}`)) {
+				found.push(rule.selectorText)
+			}
+		}
+	}
+
+	return found
+}

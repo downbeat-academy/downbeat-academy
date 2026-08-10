@@ -127,6 +127,11 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   }
 
   return (
+    // KNOWN DEFECT, unchanged by the Radix migration: selection lives on this bare
+    // `div role="checkbox"` while the real input below is `aria-hidden` and removed
+    // from the tab order — the same pattern that quarantined 14 `radio-card` tests.
+    // This component is commented out of the form barrel and does not ship. Fixing it
+    // is tracked separately; do not treat its passing tests as evidence it is correct.
     <div
       ref={ref}
       id={id}
@@ -146,8 +151,13 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
     >
       {content}
       <div className={s.itemIndicatorArea}>
+        {/* Presentational only — the wrapping div owns interaction, so the input is
+            `readOnly` to keep React from warning about a controlled field with no
+            change handler. */}
         <Checkbox
-          checked={finalChecked}
+          checked={finalChecked === true}
+          indeterminate={finalChecked === 'indeterminate'}
+          readOnly
           disabled={finalDisabled}
           required={finalRequired}
           name={_groupName}

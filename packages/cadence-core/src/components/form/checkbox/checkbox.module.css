@@ -1,6 +1,19 @@
 /* Checkbox styles */
-.root {
+
+/* Positioning context for the indicator, which is overlaid on the input because a
+   native checkbox is a void element and cannot contain the icon. */
+.wrapper {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.root {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +27,7 @@
   flex-shrink: 0;
 }
 
-.root:hover:not([data-disabled]) {
+.root:hover:not(:disabled) {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-100);
 }
@@ -24,38 +37,26 @@
   outline-offset: var(--cds-focus-ring-offset);
 }
 
-.root[data-state='checked'] {
+.root:checked,
+.root:indeterminate {
   background-color: var(--cds-color-foreground-interactive-default);
   border-color: var(--cds-color-foreground-interactive-default);
 }
 
-.root[data-state='indeterminate'] {
-  background-color: var(--cds-color-foreground-interactive-default);
-  border-color: var(--cds-color-foreground-interactive-default);
-}
-
-.root[data-state='checked']:hover:not([data-disabled]) {
+.root:checked:hover:not(:disabled),
+.root:indeterminate:hover:not(:disabled) {
   background-color: var(--cds-color-foreground-interactive-hover);
   border-color: var(--cds-color-foreground-interactive-hover);
 }
 
-.root[data-state='indeterminate']:hover:not([data-disabled]) {
-  background-color: var(--cds-color-foreground-interactive-hover);
-  border-color: var(--cds-color-foreground-interactive-hover);
-}
-
-.root[data-disabled] {
+.root:disabled {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
 }
 
-.root[data-state='checked'][data-disabled] {
-  background-color: var(--cds-color-palette-blueberry-300);
-  border-color: var(--cds-color-palette-blueberry-400);
-}
-
-.root[data-state='indeterminate'][data-disabled] {
+.root:checked:disabled,
+.root:indeterminate:disabled {
   background-color: var(--cds-color-palette-blueberry-300);
   border-color: var(--cds-color-palette-blueberry-400);
 }
@@ -70,11 +71,19 @@
 
 /* Checkbox Indicator styles */
 .indicator {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 12px;
   height: 12px;
-  position: relative;
   color: var(--cds-color-foreground-high-contrast);
+  /* The input beneath owns every interaction — the mark must never intercept a click. */
+  pointer-events: none;
+}
+
+/* The mark is present in the DOM at all times and revealed by state, so that
+   uncontrolled checkboxes work without React knowing the current value. */
+.root:not(:checked):not(:indeterminate) ~ .indicator {
+  visibility: hidden;
 }

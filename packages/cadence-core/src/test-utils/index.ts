@@ -6,4 +6,4 @@
  * from `src/index.ts` and must not be — the barrel is the public API.
  */
 export { axeViolations, formatViolations } from './axe'
-export { declaredRule, declaredRules } from './styles'
+export { declaredRule, declaredRules, declaredSelectors } from './styles'

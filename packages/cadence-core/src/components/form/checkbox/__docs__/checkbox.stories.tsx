@@ -15,9 +15,13 @@ const meta: Meta<typeof Checkbox> = {
   tags: ['autodocs'],
   argTypes: {
     checked: {
-      control: { type: 'radio' },
-      options: [true, false, 'indeterminate'],
+      control: 'boolean',
       description: 'The checked state of the checkbox',
+    },
+    indeterminate: {
+      control: 'boolean',
+      description:
+        'The third, mixed state. Native checkboxes model this as a DOM property rather than a value of `checked`, so the two are independent.',
     },
     disabled: {
       control: 'boolean',
@@ -50,16 +54,47 @@ export const Default: Story = {
 
 export const Indeterminate: Story = {
   render: () => {
-    const [checked, setChecked] = useState<boolean | 'indeterminate'>('indeterminate')
+    // The canonical use: a parent whose state is derived from its children. `checked` and
+    // `indeterminate` are separate props because that is how the DOM models them.
+    const [items, setItems] = useState([true, false, false])
+    const allChecked = items.every(Boolean)
+    const someChecked = items.some(Boolean) && !allChecked
 
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <Checkbox
-          checked={checked}
-          onCheckedChange={(value) => setChecked(value)}
-          id="indeterminate-checkbox"
-        />
-        <Label htmlFor="indeterminate-checkbox">Indeterminate checkbox</Label>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Checkbox
+            id="indeterminate-parent"
+            checked={allChecked}
+            indeterminate={someChecked}
+            onChange={(e) => setItems(items.map(() => e.target.checked))}
+          />
+          <Label htmlFor="indeterminate-parent">Select all</Label>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+            paddingLeft: '24px',
+          }}
+        >
+          {['Technology', 'Design', 'Music'].map((label, i) => (
+            <div
+              key={label}
+              style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+            >
+              <Checkbox
+                id={`indeterminate-child-${i}`}
+                checked={items[i]}
+                onChange={(e) =>
+                  setItems(items.map((v, j) => (i === j ? e.target.checked : v)))
+                }
+              />
+              <Label htmlFor={`indeterminate-child-${i}`}>{label}</Label>
+            </div>
+          ))}
+        </div>
       </div>
     )
   },
@@ -73,11 +108,11 @@ export const Disabled: Story = {
         <Label htmlFor="disabled-unchecked">Disabled unchecked</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <Checkbox disabled checked id="disabled-checked" />
+        <Checkbox disabled defaultChecked id="disabled-checked" />
         <Label htmlFor="disabled-checked">Disabled checked</Label>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <Checkbox disabled checked="indeterminate" id="disabled-indeterminate" />
+        <Checkbox disabled indeterminate id="disabled-indeterminate" />
         <Label htmlFor="disabled-indeterminate">Disabled indeterminate</Label>
       </div>
     </div>
@@ -86,13 +121,9 @@ export const Disabled: Story = {
 
 export const Invalid: Story = {
   render: () => {
-
     return (
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <Checkbox
-          isInvalid
-          id="invalid-checkbox"
-        />
+        <Checkbox isInvalid id="invalid-checkbox" />
         <Label htmlFor="invalid-checkbox">Invalid checkbox</Label>
       </div>
     )
@@ -101,17 +132,15 @@ export const Invalid: Story = {
 
 export const WithField: Story = {
   render: () => {
-
     return (
       <Field>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Checkbox
-            id="field-checkbox"
-            aria-describedby="field-helper"
-          />
-          <Label htmlFor="field-checkbox">I agree to the terms and conditions</Label>
+          <Checkbox id="field-checkbox" aria-describedby="field-helper" />
+          <Label htmlFor="field-checkbox">
+            I agree to the terms and conditions
+          </Label>
         </div>
-        <HelperText>
+        <HelperText id="field-helper">
           Please read and accept our terms and conditions to continue.
         </HelperText>
       </Field>
@@ -139,15 +168,17 @@ export const WithValidation: Story = {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Checkbox
               checked={checked}
-              onCheckedChange={(value) => {
-                setChecked(!!value)
+              onChange={(e) => {
+                setChecked(e.target.checked)
                 setShowError(false)
               }}
               isInvalid={showError}
               id="validation-checkbox"
               aria-describedby={showError ? 'validation-error' : undefined}
             />
-            <Label htmlFor="validation-checkbox">I agree to receive marketing emails</Label>
+            <Label htmlFor="validation-checkbox">
+              I agree to receive marketing emails
+            </Label>
           </div>
           {showError && (
             <ValidationMessage id="validation-error" type="error">
@@ -177,19 +208,25 @@ export const WithValidation: Story = {
 
 export const CheckboxGroup: Story = {
   render: () => {
+    const options = [
+      { value: 'option1', label: 'Technology' },
+      { value: 'option2', label: 'Design' },
+      { value: 'option3', label: 'Music' },
+      { value: 'option4', label: 'Sports' },
+    ]
     const [selectedItems, setSelectedItems] = useState<string[]>(['option2'])
 
     const handleItemChange = (value: string, checked: boolean) => {
-      if (checked) {
-        setSelectedItems(prev => [...prev, value])
-      } else {
-        setSelectedItems(prev => prev.filter(item => item !== value))
-      }
+      setSelectedItems((prev) =>
+        checked ? [...prev, value] : prev.filter((item) => item !== value)
+      )
     }
 
     return (
       <Field>
-        <Label style={{ fontWeight: 'bold', marginBottom: '12px', display: 'block' }}>
+        <Label
+          style={{ fontWeight: 'bold', marginBottom: '12px', display: 'block' }}
+        >
           Select your interests
         </Label>
         <div
@@ -197,38 +234,21 @@ export const CheckboxGroup: Story = {
           aria-label="Select your interests"
           style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Checkbox
-              checked={selectedItems.includes('option1')}
-              onCheckedChange={(checked) => handleItemChange('option1', !!checked)}
-              id="group-option1"
-            />
-            <Label htmlFor="group-option1">Technology</Label>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Checkbox
-              checked={selectedItems.includes('option2')}
-              onCheckedChange={(checked) => handleItemChange('option2', !!checked)}
-              id="group-option2"
-            />
-            <Label htmlFor="group-option2">Design</Label>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Checkbox
-              checked={selectedItems.includes('option3')}
-              onCheckedChange={(checked) => handleItemChange('option3', !!checked)}
-              id="group-option3"
-            />
-            <Label htmlFor="group-option3">Music</Label>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Checkbox
-              checked={selectedItems.includes('option4')}
-              onCheckedChange={(checked) => handleItemChange('option4', !!checked)}
-              id="group-option4"
-            />
-            <Label htmlFor="group-option4">Sports</Label>
-          </div>
+          {options.map(({ value, label }) => (
+            <div
+              key={value}
+              style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+            >
+              <Checkbox
+                id={`group-${value}`}
+                name="interests"
+                value={value}
+                checked={selectedItems.includes(value)}
+                onChange={(e) => handleItemChange(value, e.target.checked)}
+              />
+              <Label htmlFor={`group-${value}`}>{label}</Label>
+            </div>
+          ))}
         </div>
         <HelperText>
           Select all topics that interest you. You can select multiple options.
@@ -246,19 +266,22 @@ export const FocusStates: Story = {
           Keyboard Focus Demonstration
         </h4>
         <p style={{ marginBottom: '16px', fontSize: '12px', color: '#666' }}>
-          Use Tab key to navigate and see focus rings appear on keyboard navigation only
+          Use Tab key to navigate and see focus rings appear on keyboard navigation
+          only
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Checkbox id="focus-normal" />
-            <Label htmlFor="focus-normal">Normal checkbox (standard focus ring)</Label>
+            <Label htmlFor="focus-normal">
+              Normal checkbox (standard focus ring)
+            </Label>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Checkbox checked id="focus-checked" />
+            <Checkbox defaultChecked id="focus-checked" />
             <Label htmlFor="focus-checked">Checked checkbox</Label>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Checkbox checked="indeterminate" id="focus-indeterminate" />
+            <Checkbox indeterminate id="focus-indeterminate" />
             <Label htmlFor="focus-indeterminate">Indeterminate checkbox</Label>
           </div>
         </div>
@@ -268,7 +291,8 @@ export const FocusStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. All checkbox states (unchecked, checked, indeterminate) use the standard blue focus ring.',
+        story:
+          'Focus rings appear when navigating with keyboard (Tab key) but not when clicking with mouse. All checkbox states (unchecked, checked, indeterminate) use the standard blue focus ring.',
       },
     },
   },
