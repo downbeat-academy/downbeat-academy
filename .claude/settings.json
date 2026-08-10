@@ -92,6 +92,8 @@
       "mcp__claude_ai_Notion__notion-fetch",
       "mcp__claude_ai_Notion__notion-search",
       "mcp__claude_ai_Notion__notion-query-data-sources",
+      "mcp__claude_ai_Notion__notion-update-page",
+      "mcp__claude_ai_Notion__notion-create-pages",
       "mcp__claude_ai_Sentry__find_organizations",
       "mcp__claude_ai_Sentry__find_projects",
       "mcp__claude_ai_Sentry__search_issues",
@@ -120,8 +122,6 @@
       "Bash(pnpm --filter * db:push)",
       "Bash(pnpm --filter * db:migrate)",
       "Bash(pnpm --filter cms-sanity deploy)",
-      "mcp__claude_ai_Notion__notion-update-page",
-      "mcp__claude_ai_Notion__notion-create-pages",
       "mcp__claude_ai_Figma__use_figma",
       "mcp__claude_ai_Figma__create_new_file",
       "mcp__claude_ai_Figma__upload_assets",
@@ -139,7 +139,12 @@
       "Read(./.mcp.json)",
       "Bash(git push --force*)",
       "Bash(pnpm publish:*)",
-      "Bash(npm publish:*)"
+      "Bash(npm publish:*)",
+
+      "Bash(pnpm format)",
+      "Bash(pnpm run format)",
+      "Bash(prettier --write:*)",
+      "Bash(npx prettier --write:*)"
     ]
   }
 }

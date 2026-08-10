@@ -18,6 +18,7 @@
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "format:new": "git ls-files --others --exclude-standard | xargs -r prettier --write --ignore-unknown",
     "build": "turbo run build",
     "build:packages": "turbo run build --filter='./packages/*'",
     "test": "turbo run test",

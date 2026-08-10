@@ -85,9 +85,41 @@ workspaces, what you actually verified, and screenshots for anything visual.
 ## 5. Update Notion
 
 Use the `sync-notion` skill: set `PR` to the pull request URL, and confirm `Branch` and
-`Status` (`In Progress`) are correct. Confirm with the user before writing.
+`Status` (`In Progress`) are correct.
 
 Set `Status` → `Completed` only once the PR is actually merged, not when it is opened.
+
+## 6. Retrospective — close the loop on friction
+
+**Do this before you call the work shipped, every time.** Ask: what in this session cost
+time that should not have?
+
+Look for concrete things, not vibes:
+
+- A command that did the wrong thing, or had a destructive side effect
+- Work redone because a doc, comment, or register was stale or simply wrong
+- A test that was misleading, vacuous, or asserted the wrong mechanism
+- A recipe re-derived that you had already worked out earlier in the same session
+- Repeated tool calls or searches a helper, script, or one-line note would have collapsed
+- A permission prompt, a missing tool grant, or an agent lacking what its own description
+  promised
+
+For each one, do **exactly one** of:
+
+1. **Fix it now** — if it is small and lives in code or docs you are already touching. A
+   stale comment, a missing `AGENTS.md` line, a shared test helper, a `deny` entry.
+2. **File it in Notion** via `sync-notion`, as a `🔨 Task` or `🐞 Bug` under the relevant
+   epic, if it is bigger or would push the PR past its stated scope.
+
+Never both, never silently neither. "I noticed X was confusing", with no fix and no task,
+is how the same hour gets lost twice.
+
+State in your final message which you chose for each. If nothing came up, say so plainly
+rather than inventing something.
+
+**Whatever you add here is itself a change, and gets verified like one.** A script or
+config tweak written during a retrospective must be run and its actual effect checked — a
+"safety" script that quietly rewrites 42 files is worse than the problem it was added for.
 
 ## Checklist
 
@@ -97,6 +129,7 @@ Set `Status` → `Completed` only once the PR is actually merged, not when it is
 - [ ] Commit message explains why
 - [ ] Pushed, PR opened against the right base
 - [ ] Notion task updated
+- [ ] Retrospective done — each friction point either fixed or filed
 
 ## Related
 
