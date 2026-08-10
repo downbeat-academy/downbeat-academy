@@ -93,7 +93,6 @@ export default {
     '@radix-ui/react-tabs',
     '@radix-ui/react-toast',
     '@radix-ui/react-collapsible',
-    '@radix-ui/react-slot',
     'react-loading-skeleton',
     'react-loading-skeleton/dist/skeleton.css'
   ],

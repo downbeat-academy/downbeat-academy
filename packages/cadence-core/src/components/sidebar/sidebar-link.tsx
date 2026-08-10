@@ -1,7 +1,7 @@
 'use client'
 
 import React, { forwardRef, isValidElement } from 'react'
-import { Slot, Slottable } from '@radix-ui/react-slot'
+import { Slot, Slottable } from '../slot'
 import classnames from 'classnames'
 import s from './sidebar.module.css'
 import { Tooltip } from '../tooltip/tooltip'
@@ -30,7 +30,7 @@ function resolveLabel(
 }
 
 /**
- * With `asChild`, Radix promotes the consumer's element to be the DOM root and injects
+ * With `asChild`, `Slot` promotes the consumer's element to be the DOM root and injects
  * its original children as bare text — leaving nothing for the collapsed-state hide rule
  * to target. Re-wrap those children in the label span before promotion.
  */
@@ -71,12 +71,14 @@ const SidebarLink = forwardRef<HTMLAnchorElement, SidebarLinkProps>(
 		)
 
 		// When `asChild` is set, the consumer's element (e.g. a Next.js <Link>) is the
-		// real DOM root. Slottable tells Radix Slot to promote it, then inject our
-		// icon/badge spans around the consumer's original label text.
+		// real DOM root. Slottable marks it for promotion, and our icon/badge spans are
+		// injected around the consumer's original label text.
 		//
-		// IMPORTANT: children must be spread as siblings (not wrapped in a Fragment) —
-		// Slot's SlotClone uses React.cloneElement on the children prop, and a Fragment
-		// would swallow className/aria-* etc. because Fragments only accept key/children.
+		// IMPORTANT: children must be spread as siblings, not wrapped in a Fragment. Slot
+		// clones the promoted element and merges props onto it, and a Fragment would
+		// swallow className/aria-* etc. because Fragments only accept key/children. This
+		// is now a documented property of `../slot`, covered by its tests, rather than an
+		// implementation detail of a third-party package.
 		const labelNode = asChild ? (
 			<Slottable>{wrapAsChildLabel(children)}</Slottable>
 		) : (
