@@ -1,13 +1,16 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-export interface RadioCardGroupProps extends ComponentPropsWithoutRef<'div'> {
+// `onChange` is omitted deliberately: this component's change API is `onValueChange`, and
+// the div's DOM handler would otherwise collide with the group-level callback that
+// `RadioGroup` now takes under that same name.
+export interface RadioCardGroupProps
+  extends Omit<ComponentPropsWithoutRef<'div'>, 'onChange'> {
   value?: string
   onValueChange?: (value: string) => void
   disabled?: boolean
   required?: boolean
   name?: string
   orientation?: 'horizontal' | 'vertical'
-  loop?: boolean
   isInvalid?: boolean
   className?: string
   children: ReactNode
@@ -19,7 +22,9 @@ export interface RadioCardGroupProps extends ComponentPropsWithoutRef<'div'> {
   gap?: 'small' | 'base' | 'large'
 }
 
-export interface RadioCardItemProps extends ComponentPropsWithoutRef<'div'> {
+// The card is a `<label>`, which is what lets a click anywhere on it activate the radio
+// natively — no click handler, and no separate control to keep in sync.
+export interface RadioCardItemProps extends ComponentPropsWithoutRef<'label'> {
   value: string
   disabled?: boolean
   required?: boolean
@@ -37,11 +42,12 @@ export interface RadioCardItemProps extends ComponentPropsWithoutRef<'div'> {
   icon?: ReactNode
   title?: string
   badge?: ReactNode
-  // Internal props passed from RadioCardGroup (prefixed with _)
-  _groupValue?: string
-  _groupOnValueChange?: (value: string) => void
+  // Internal props passed from RadioCardGroup (prefixed with _).
+  //
+  // `_groupValue`, `_groupOnValueChange` and `_groupName` are gone: selection, the shared
+  // `name`, and the change callback now travel through RadioGroup's context to the native
+  // input, so the card no longer mirrors group state in JavaScript.
   _groupDisabled?: boolean
   _groupRequired?: boolean
-  _groupName?: string
   _groupIsInvalid?: boolean
 }

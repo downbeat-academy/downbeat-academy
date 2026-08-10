@@ -134,7 +134,8 @@ Do not assume a green `verify` means everything is checked:
 - **`cms-sanity` has no tests.** Neither do `cadence-tokens`, `email`, or the typefaces.
 - **`www` coverage is below its own thresholds** (72.5% lines against 80%), so the
   coverage job is non-blocking.
-- **14 `radio-card` tests are quarantined** pending an accessibility fix. See
+- **`checkbox-card` ships the accessibility defect `radio-card` used to have**, but is
+  commented out of the form barrel so it does not reach consumers. See
   [`docs/adr/0002-known-gaps.md`](./docs/adr/0002-known-gaps.md).
 
 ## Where to make a change

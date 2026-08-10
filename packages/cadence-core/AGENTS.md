@@ -98,6 +98,7 @@ nothing here reaches `dist/`.
 | `axeViolations(container, rules?)` | Runs axe and returns violations. Assert `toEqual([])` — a failure then names the rule and the node |
 | `declaredRule(className)` | Declared `cssText` for one class. Pass the CSS-module binding, never a literal |
 | `declaredRules(className)` | Every rule whose selector contains the class — for `:hover`, `[data-state]`, and other modifiers |
+| `declaredSelectors(className)` | The `selectorText` of those same rules. Use to assert *what state* drives styling — e.g. that a migrated control keys off `:checked` and no longer off `[data-state]` |
 | `formatViolations(violations)` | Readable violation output when the raw array is too noisy |
 
 `axeViolations` disables `color-contrast` and does not let you re-enable it: jsdom has no
@@ -128,11 +129,13 @@ it reappear in `git status`, that is a bug in the ignore rule, not something to 
 
 ## Gotchas
 
-- **14 `radio-card` tests are quarantined** (`it.skip`) pending an accessibility fix.
-  `RadioCardItem` renders the Radix radio with `aria-hidden="true"` and `tabIndex={-1}`
-  and moves selection onto a bare `<div onClick>`, so the control is invisible to
-  assistive technology and unreachable by keyboard. **The tests are correct; the
-  component is wrong.** Do not weaken or delete them — they are the acceptance criteria.
+- **`checkbox-card` repeats the defect `radio-card` used to have.** `CheckboxCardItem`
+  puts selection on a bare `<div role="checkbox" onClick>` while the real input is
+  `aria-hidden` and untabbable, so it is invisible to assistive technology and
+  unreachable by keyboard. It is commented out of the form barrel and does not ship, so
+  its passing tests are not evidence it is correct. `radio-card` was fixed in Radix A.4
+  by making the card a `<label>` around a native input — copy that, not the current
+  `checkbox-card`.
 - **No linting exists here.** The old `.eslintrc` referenced six uninstalled plugins and
   was removed.
 - `cadence-icons` and `cadence-tokens` appear in both `dependencies` and

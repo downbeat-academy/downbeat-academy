@@ -81,8 +81,10 @@ The rules that matter:
 - **Productive vs expressive type.** Productive for traditional web application elements
   (forms, buttons, tables, navigation, settings); expressive for brand-oriented and
   editorial surfaces. Never mixed in one surface.
-- **Accessibility is not optional.** `form/radio-card/` currently ships an inaccessible
-  control with 14 quarantined tests; do not use it as a reference.
+- **Accessibility is not optional.** `form/radio-card/` is the reference for a selectable
+  card: a `<label>` wrapping a real `<input type="radio">`, with selected and disabled
+  styling expressed via `:has()` rather than mirrored onto `data-*` attributes.
+  `form/checkbox-card/` still has the defect `radio-card` was fixed for — do not copy it.
 
 ## Icons
 

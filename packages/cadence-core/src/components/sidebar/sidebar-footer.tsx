@@ -1,3 +1,5 @@
+'use client'
+
 import React, { forwardRef } from 'react'
 import classnames from 'classnames'
 import s from './sidebar.module.css'

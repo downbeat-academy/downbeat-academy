@@ -31,10 +31,6 @@ const meta: Meta<typeof RadioGroup> = {
       options: ['horizontal', 'vertical'],
       description: 'The orientation of the radio group',
     },
-    loop: {
-      control: 'boolean',
-      description: 'Whether keyboard navigation should loop',
-    },
   },
 }
 
@@ -217,7 +213,7 @@ export const WithValidation: Story = {
         <Field>
           <RadioGroup
             value={selectedPlan}
-            onValueChange={(value) => {
+            onChange={(value) => {
               setSelectedPlan(value)
               setShowError(false)
             }}
@@ -364,7 +360,7 @@ export const CompleteExample: Story = {
           </Label>
           <RadioGroup
             value={formData.paymentMethod}
-            onValueChange={(value) => handleFieldChange('paymentMethod', value)}
+            onChange={(value) => handleFieldChange('paymentMethod', value)}
             required
             aria-describedby={errors.paymentMethod ? 'payment-error' : undefined}
           >
@@ -406,7 +402,7 @@ export const CompleteExample: Story = {
           </Label>
           <RadioGroup
             value={formData.shippingSpeed}
-            onValueChange={(value) => handleFieldChange('shippingSpeed', value)}
+            onChange={(value) => handleFieldChange('shippingSpeed', value)}
             orientation="horizontal"
             aria-describedby="shipping-helper"
           >
@@ -434,7 +430,7 @@ export const CompleteExample: Story = {
           </Label>
           <RadioGroup
             value={formData.newsletter}
-            onValueChange={(value) => handleFieldChange('newsletter', value)}
+            onChange={(value) => handleFieldChange('newsletter', value)}
             required
             aria-describedby={errors.newsletter ? 'newsletter-error' : 'newsletter-helper'}
           >

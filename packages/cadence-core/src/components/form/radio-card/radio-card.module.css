@@ -83,44 +83,47 @@
   overflow: hidden;
   min-height: 80px;
   padding: 0;
+  /* A <label> is inline by default; the card relied on the div's block layout. */
+  display: flex;
+  flex-direction: column;
 }
 
-.itemRoot:hover:not([data-disabled]) {
+.itemRoot:not(:has(input:disabled)):hover {
   border-color: var(--cds-color-border-interactive-hover);
   background-color: var(--cds-color-palette-blackberry-50);
   transform: translateY(-2px);
   box-shadow: var(--cds-elevation-box-shadow-floating);
 }
 
-.itemRoot:focus-visible {
+.itemRoot:has(input:focus-visible) {
   outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
   outline-offset: var(--cds-focus-ring-offset);
 }
 
-.itemRoot:focus-visible .itemIndicatorArea {
+.itemRoot:has(input:focus-visible) .itemIndicatorArea {
   border-top-color: var(--cds-color-border-focus);
 }
 
-.itemRoot[data-state='checked'] {
+.itemRoot:has(input:checked) {
   background-color: var(--cds-color-palette-blueberry-50);
   border-color: var(--cds-color-foreground-interactive-default);
   box-shadow: 0 0 0 var(--cds-border-width-thin) var(--cds-color-foreground-interactive-default);
 }
 
-.itemRoot[data-state='checked']:hover:not([data-disabled]) {
+.itemRoot:has(input:checked):not(:has(input:disabled)):hover {
   border-color: var(--cds-color-foreground-interactive-hover);
   box-shadow: 0 0 0 var(--cds-border-width-thin) var(--cds-color-foreground-interactive-hover);
   background-color: var(--cds-color-palette-blueberry-100);
 }
 
-.itemRoot[data-disabled] {
+.itemRoot:has(input:disabled) {
   cursor: not-allowed;
   border-color: var(--cds-color-palette-blackberry-200);
   background-color: var(--cds-color-palette-blackberry-100);
   opacity: var(--cds-state-disabled-opacity);
 }
 
-.itemRoot[data-disabled]:hover {
+.itemRoot:has(input:disabled):hover {
   transform: none;
   box-shadow: none;
 }
@@ -129,7 +132,7 @@
   border-color: var(--cds-color-border-critical);
 }
 
-.itemIsInvalid:focus-visible {
+.itemIsInvalid:has(input:focus-visible) {
   outline-color: var(--cds-focus-ring-color-critical);
 }
 
@@ -183,7 +186,7 @@
   color: var(--cds-color-foreground-secondary);
 }
 
-.itemRoot[data-state='checked'] .itemIcon {
+.itemRoot:has(input:checked) .itemIcon {
   color: var(--cds-color-foreground-interactive-default);
 }
 
@@ -199,12 +202,12 @@
   padding: var(--cds-scale-x-small) 0;
 }
 
-.itemRoot[data-state='checked'] .itemIndicatorArea {
+.itemRoot:has(input:checked) .itemIndicatorArea {
   background-color: var(--cds-color-palette-blueberry-50);
   border-top-color: var(--cds-color-palette-blueberry-600);
 }
 
-.itemRoot[data-disabled] .itemIndicatorArea {
+.itemRoot:has(input:disabled) .itemIndicatorArea {
   background-color: var(--cds-color-palette-blackberry-50);
   border-top-color: var(--cds-color-palette-blackberry-200);
 }

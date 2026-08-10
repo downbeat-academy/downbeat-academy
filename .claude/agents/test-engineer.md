@@ -103,7 +103,15 @@ the sidebar border test was wrong (it asserted something jsdom cannot evaluate);
 
 **Never weaken a correct test to make it pass.** If a test documents a real defect that is
 not being fixed now, quarantine it with `it.skip` and an explanatory comment naming the
-defect and what un-skipping requires — see `radio-card.test.tsx` for the pattern.
+defect and what un-skipping requires.
+
+The `radio-card` quarantine ran that cycle end to end and is worth learning from: fourteen
+tests were skipped against a real defect, and when the fix landed in Radix A.4 twelve of
+them passed after translating Radix-specific assertions to their native equivalents. The
+other two turned out to be mis-specified — one asserted a `variant` prop that was never
+built, the other queried a hard-coded hashed class name and asserted `toBeDefined()`,
+which passes on `null`. **A quarantined test is not automatically a correct test.** Read
+each one against the fixed component rather than assuming the skip was the only problem.
 
 Report honestly: if tests fail, say so and show the output. If you skipped something, say
 which and why.

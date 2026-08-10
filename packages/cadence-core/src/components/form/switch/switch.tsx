@@ -1,25 +1,14 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import * as SwitchPrimitive from '@radix-ui/react-switch'
 import classnames from 'classnames'
 import s from './switch.module.css'
 import { Check } from 'cadence-icons'
 import type { SwitchProps } from './types'
 
-const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({
-  checked,
-  onCheckedChange,
-  disabled,
-  required,
-  name,
-  value,
-  id,
+const Switch = forwardRef<HTMLInputElement, SwitchProps>(({
   className,
   isInvalid,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  'aria-describedby': ariaDescribedby,
   ...props
 }, ref) => {
   const rootClasses = classnames(
@@ -28,37 +17,28 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({
     className
   )
 
-  const thumbClasses = classnames(
-    s.thumb,
-    checked && s.thumbChecked
-  )
-
-  const checkIconClasses = classnames(
-    s.checkIcon,
-    checked && s.checkIconVisible
-  )
-
+  // A checkbox carrying `role="switch"` is the standard native switch: it keeps the
+  // checkbox's form participation, label association and Space-to-toggle, while being
+  // announced as an on/off control. Radix used a `<button role="switch">` and bubbled a
+  // hidden input in for form submission — that workaround is gone.
+  //
+  // The track is the input itself, styled with `appearance: none`. The thumb and check
+  // mark cannot be children of a void element, so they are aria-hidden siblings moved by
+  // CSS off `:checked`, which is also what keeps uncontrolled usage working.
   return (
-    <SwitchPrimitive.Root
-      ref={ref}
-      checked={checked}
-      onCheckedChange={onCheckedChange}
-      disabled={disabled}
-      required={required}
-      name={name}
-      value={value}
-      id={id}
-      className={rootClasses}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledby}
-      aria-describedby={ariaDescribedby}
-      {...props}
-    >
-      <span className={checkIconClasses}>
+    <span className={s.wrapper}>
+      <input
+        type="checkbox"
+        role="switch"
+        ref={ref}
+        className={rootClasses}
+        {...props}
+      />
+      <span className={s.checkIcon} aria-hidden="true">
         <Check width={14} color="var(--cds-color-foreground-high-contrast)" />
       </span>
-      <SwitchPrimitive.Thumb className={thumbClasses} />
-    </SwitchPrimitive.Root>
+      <span className={s.thumb} aria-hidden="true" />
+    </span>
   )
 })
 

@@ -1,26 +1,48 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { RadioCardGroup, RadioCardItem } from '../index'
 import { describe, it, expect, vi } from 'vitest'
 // Assert against the CSS module rather than literal names — class names are hashed.
 import s from '../radio-card.module.css'
 
 /**
- * QUARANTINED: the 14 `it.skip` cases below all query `getAllByRole('radio')` and fail.
+ * DEQUARANTINED in Radix A.4. Every `it.skip` in this file is gone.
  *
- * They are NOT wrong — they document an accessibility defect in RadioCardItem that
- * shipped unnoticed because this package's `test` script ran vitest in watch mode and
- * CI never executed it. Specifically, `radio-card-item.tsx` renders the Radix
- * `RadioGroup.Item` with `aria-hidden="true"` and `tabIndex={-1}`, and moves selection
- * onto a bare `<div onClick>` that has no role, no tabIndex, and no key handler. Net
- * effect: RadioCardGroup is not announced as a radio group to assistive technology and
- * cannot be operated by keyboard — Radix's roving tabindex is defeated.
+ * These tests documented a real defect: `radio-card-item.tsx` rendered the radio with
+ * `aria-hidden="true"` and `tabIndex={-1}` and moved selection onto a bare `<div onClick>`,
+ * so the group was invisible to assistive technology and unreachable by keyboard. The card
+ * is now a `<label>` wrapping a real `<input type="radio">`, which fixes it.
  *
- * Fixing it means restructuring the card so the Radix Item *is* the card (rather than a
- * hidden control inside a click-handling div), which is a component + CSS change needing
- * its own changeset and visual review — deliberately out of scope for the repo-health PR
- * that first surfaced it. Un-skip these as the acceptance criteria for that fix.
+ * Two mechanical changes were needed to un-skip them, neither of which weakens what they
+ * check:
+ *
+ *  1. They asserted the Radix surface — `aria-checked` and `data-disabled`. A native input
+ *     exposes neither; selection is the `checked` DOM property and disabled is a real
+ *     attribute. Translated accordingly.
+ *  2. They asserted card modifier classes (`itemSizeLarge`, `itemIsInvalid`) on the
+ *     `role="radio"` element. That element is now the `<input>`, which cannot carry them —
+ *     an input cannot contain the title, icon and badge. Those assertions moved to the
+ *     card, which is what they were always about.
+ *
+ * Two were dropped rather than translated, because they were mis-specified from the start
+ * and were never about the accessibility defect:
+ *
+ *  - `applies variant classes` asserted `s.itemVariantOutlined` for a `variant` prop that
+ *    has never existed on `RadioCardItem` — no prop, no stylesheet rule. It could only
+ *    ever have passed against an API nobody built.
+ *  - `has proper indicator element` queried a hard-coded `.cds-radio-card-item--indicator`,
+ *    which cannot match the hashed name, and asserted `toBeDefined()` — which passes on
+ *    `null`. It is rewritten below to assert the indicator actually renders.
  */
+
+const cards = () => screen.getAllByRole('radio') as HTMLInputElement[]
+
+const byValue = (value: string) =>
+  cards().find((r) => r.value === value) as HTMLInputElement
+
+/** The `<label>` card wrapping a given radio. */
+const cardFor = (radio: HTMLElement) => radio.closest('label') as HTMLElement
 
 describe('RadioCardGroup', () => {
   it('renders correctly', () => {
@@ -36,7 +58,7 @@ describe('RadioCardGroup', () => {
     expect(radioGroup.getAttribute('aria-label')).toBe('Test radio card group')
   })
 
-  it.skip('renders radio card items correctly', () => {
+  it('renders radio card items correctly', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem value="option1" title="Option 1" />
@@ -44,13 +66,14 @@ describe('RadioCardGroup', () => {
       </RadioCardGroup>
     )
 
-    const radioItems = screen.getAllByRole('radio')
+    const radioItems = cards()
     expect(radioItems.length).toBe(2)
     expect(radioItems[0].getAttribute('value')).toBe('option1')
     expect(radioItems[1].getAttribute('value')).toBe('option2')
   })
 
-  it.skip('can select radio card items', () => {
+  it('can select radio card items', async () => {
+    const user = userEvent.setup()
     const handleChange = vi.fn()
     render(
       <RadioCardGroup aria-label="Test radio card group" onValueChange={handleChange}>
@@ -59,14 +82,27 @@ describe('RadioCardGroup', () => {
       </RadioCardGroup>
     )
 
-    const radioItems = screen.getAllByRole('radio')
-    const firstRadio = radioItems.find(item => item.getAttribute('value') === 'option1')
-    fireEvent.click(firstRadio!)
-
+    await user.click(byValue('option1'))
     expect(handleChange).toHaveBeenCalledWith('option1')
   })
 
-  it.skip('respects controlled state', () => {
+  it('selects when the card, not the radio, is clicked', async () => {
+    // The reason the card is a <label>: the whole card is the hit target, natively, with
+    // no click handler mirroring the control.
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
+    render(
+      <RadioCardGroup aria-label="Test radio card group" onValueChange={handleChange}>
+        <RadioCardItem value="option1" title="Option 1" />
+      </RadioCardGroup>
+    )
+
+    await user.click(screen.getByText('Option 1'))
+    expect(handleChange).toHaveBeenCalledWith('option1')
+    expect(byValue('option1').checked).toBe(true)
+  })
+
+  it('respects controlled state', () => {
     const { rerender } = render(
       <RadioCardGroup aria-label="Test radio card group" value="option1">
         <RadioCardItem value="option1" title="Option 1" />
@@ -74,12 +110,8 @@ describe('RadioCardGroup', () => {
       </RadioCardGroup>
     )
 
-    const radioItems = screen.getAllByRole('radio')
-    const firstRadio = radioItems.find(item => item.getAttribute('value') === 'option1')!
-    const secondRadio = radioItems.find(item => item.getAttribute('value') === 'option2')!
-
-    expect(firstRadio.getAttribute('aria-checked')).toBe('true')
-    expect(secondRadio.getAttribute('aria-checked')).toBe('false')
+    expect(byValue('option1').checked).toBe(true)
+    expect(byValue('option2').checked).toBe(false)
 
     rerender(
       <RadioCardGroup aria-label="Test radio card group" value="option2">
@@ -88,11 +120,12 @@ describe('RadioCardGroup', () => {
       </RadioCardGroup>
     )
 
-    expect(firstRadio.getAttribute('aria-checked')).toBe('false')
-    expect(secondRadio.getAttribute('aria-checked')).toBe('true')
+    expect(byValue('option1').checked).toBe(false)
+    expect(byValue('option2').checked).toBe(true)
   })
 
-  it.skip('can be disabled', () => {
+  it('can be disabled', async () => {
+    const user = userEvent.setup()
     const handleChange = vi.fn()
     render(
       <RadioCardGroup aria-label="Test radio card group" disabled onValueChange={handleChange}>
@@ -101,12 +134,9 @@ describe('RadioCardGroup', () => {
       </RadioCardGroup>
     )
 
-    const radioItems = screen.getAllByRole('radio')
-    radioItems.forEach(radio => {
-      expect(radio.getAttribute('data-disabled')).toBe('')
-    })
+    cards().forEach((radio) => expect(radio).toBeDisabled())
 
-    fireEvent.click(radioItems[0])
+    await user.click(byValue('option1'))
     expect(handleChange).not.toHaveBeenCalled()
   })
 
@@ -156,22 +186,95 @@ describe('RadioCardGroup', () => {
   })
 })
 
+describe('RadioCardGroup keyboard operation', () => {
+  // The defect this task exists to fix. None of this worked before: the real control was
+  // `tabIndex={-1}` and `aria-hidden`, so Tab skipped it and arrows did nothing.
+
+  const Group = () => (
+    <RadioCardGroup aria-label="Plan">
+      <RadioCardItem value="free" title="Free" />
+      <RadioCardItem value="pro" title="Pro" />
+      <RadioCardItem value="team" title="Team" />
+    </RadioCardGroup>
+  )
+
+  it('is reachable by Tab as a single stop', async () => {
+    const user = userEvent.setup()
+    render(
+      <>
+        <button type="button">before</button>
+        <Group />
+        <button type="button">after</button>
+      </>
+    )
+
+    await user.tab()
+    expect(screen.getByRole('button', { name: 'before' })).toHaveFocus()
+
+    await user.tab()
+    expect(byValue('free')).toHaveFocus()
+
+    await user.tab()
+    expect(screen.getByRole('button', { name: 'after' })).toHaveFocus()
+  })
+
+  it('moves selection with arrow keys', async () => {
+    const user = userEvent.setup()
+    render(<Group />)
+
+    await user.tab()
+    await user.keyboard('{ArrowDown}')
+    expect(byValue('pro').checked).toBe(true)
+
+    await user.keyboard('{ArrowDown}')
+    expect(byValue('team').checked).toBe(true)
+
+    await user.keyboard('{ArrowUp}')
+    expect(byValue('pro').checked).toBe(true)
+  })
+
+  it('selects with Space', async () => {
+    const user = userEvent.setup()
+    render(<Group />)
+
+    await user.tab()
+    await user.keyboard(' ')
+    expect(byValue('free').checked).toBe(true)
+  })
+
+  it('reports keyboard selection through onValueChange', async () => {
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
+    render(
+      <RadioCardGroup aria-label="Plan" onValueChange={handleChange}>
+        <RadioCardItem value="free" title="Free" />
+        <RadioCardItem value="pro" title="Pro" />
+      </RadioCardGroup>
+    )
+
+    await user.tab()
+    await user.keyboard('{ArrowDown}')
+    expect(handleChange).toHaveBeenCalledWith('pro')
+  })
+})
+
 describe('RadioCardItem', () => {
-  it.skip('renders correctly with title and description', () => {
+  it('renders correctly with title and description', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
-        <RadioCardItem 
-          value="test" 
-          title="Test Title" 
-          description="Test Description" 
-        />
+        <RadioCardItem
+          value="test"
+          title="Test Title"
+        >
+          <span>Test Description</span>
+        </RadioCardItem>
       </RadioCardGroup>
     )
 
     const radioItem = screen.getByRole('radio')
     expect(radioItem).toBeDefined()
     expect(radioItem.getAttribute('value')).toBe('test')
-    
+
     expect(screen.getByText('Test Title')).toBeDefined()
     expect(screen.getByText('Test Description')).toBeDefined()
   })
@@ -190,7 +293,18 @@ describe('RadioCardItem', () => {
     expect(customContent.textContent).toBe('Custom Content')
   })
 
-  it.skip('can be individually disabled', () => {
+  it('takes its accessible name from the card title', () => {
+    // The payoff of wrapping in a <label>: the visible title labels the control, with no
+    // aria-label to keep in sync.
+    render(
+      <RadioCardGroup aria-label="Plan">
+        <RadioCardItem value="free" title="Free plan" />
+      </RadioCardGroup>
+    )
+    expect(screen.getByRole('radio')).toHaveAccessibleName('Free plan')
+  })
+
+  it('can be individually disabled', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem value="option1" title="Option 1" />
@@ -198,48 +312,31 @@ describe('RadioCardItem', () => {
       </RadioCardGroup>
     )
 
-    const radioItems = screen.getAllByRole('radio')
-    const firstRadio = radioItems.find(item => item.getAttribute('value') === 'option1')!
-    const secondRadio = radioItems.find(item => item.getAttribute('value') === 'option2')!
-
-    expect(firstRadio.getAttribute('data-disabled')).toBeNull()
-    expect(secondRadio.getAttribute('data-disabled')).toBe('')
+    expect(byValue('option1')).toBeEnabled()
+    expect(byValue('option2')).toBeDisabled()
   })
 
-  it.skip('applies invalid styles when isInvalid is true', () => {
+  it('applies invalid styles when isInvalid is true', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem value="test" title="Test option" isInvalid />
       </RadioCardGroup>
     )
 
-    const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain(s.itemIsInvalid)
+    expect(cardFor(screen.getByRole('radio')).className).toContain(s.itemIsInvalid)
   })
 
-  it.skip('applies size classes', () => {
+  it('applies size classes', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem value="test" title="Test option" size="large" />
       </RadioCardGroup>
     )
 
-    const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain(s.itemSizeLarge)
+    expect(cardFor(screen.getByRole('radio')).className).toContain(s.itemSizeLarge)
   })
 
-  it.skip('applies variant classes', () => {
-    render(
-      <RadioCardGroup aria-label="Test radio card group">
-        <RadioCardItem value="test" title="Test option" variant="outlined" />
-      </RadioCardGroup>
-    )
-
-    const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain(s.itemVariantOutlined)
-  })
-
-  it.skip('applies custom className', () => {
+  it('applies custom className', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem
@@ -250,11 +347,10 @@ describe('RadioCardItem', () => {
       </RadioCardGroup>
     )
 
-    const radioItem = screen.getByRole('radio')
-    expect(radioItem.className).toContain('custom-item-class')
+    expect(cardFor(screen.getByRole('radio')).className).toContain('custom-item-class')
   })
 
-  it.skip('supports form attributes', () => {
+  it('supports form attributes', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group" required>
         <RadioCardItem
@@ -266,14 +362,30 @@ describe('RadioCardItem', () => {
     )
 
     const radioItem = screen.getByRole('radio')
-    const radioGroup = screen.getByRole('radiogroup')
-    
+
     expect(radioItem.getAttribute('id')).toBe('test-radio')
     expect(radioItem.getAttribute('value')).toBe('test')
-    expect(radioGroup.getAttribute('aria-required')).toBe('true')
+    // `required` is now a real constraint on the control rather than `aria-required` on a
+    // div, so the group is genuinely unsubmittable without a selection.
+    expect(radioItem).toBeRequired()
+    expect((radioItem as HTMLInputElement).validity.valueMissing).toBe(true)
   })
 
-  it.skip('supports aria attributes', () => {
+  it('submits the selected value with the group name', () => {
+    render(
+      <form aria-label="Signup">
+        <RadioCardGroup aria-label="Plan" name="plan" value="pro">
+          <RadioCardItem value="free" title="Free" />
+          <RadioCardItem value="pro" title="Pro" />
+        </RadioCardGroup>
+      </form>
+    )
+
+    const data = new FormData(screen.getByRole('form') as HTMLFormElement)
+    expect(data.get('plan')).toBe('pro')
+  })
+
+  it('supports aria attributes', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem
@@ -294,12 +406,12 @@ describe('RadioCardItem', () => {
 
   it('renders icon when provided', () => {
     const TestIcon = () => <div data-testid="test-icon">Icon</div>
-    
+
     render(
       <RadioCardGroup aria-label="Test radio card group">
-        <RadioCardItem 
-          value="test" 
-          title="Test option" 
+        <RadioCardItem
+          value="test"
+          title="Test option"
           icon={<TestIcon />}
         />
       </RadioCardGroup>
@@ -311,12 +423,12 @@ describe('RadioCardItem', () => {
 
   it('renders badge when provided', () => {
     const TestBadge = () => <div data-testid="test-badge">Badge</div>
-    
+
     render(
       <RadioCardGroup aria-label="Test radio card group">
-        <RadioCardItem 
-          value="test" 
-          title="Test option" 
+        <RadioCardItem
+          value="test"
+          title="Test option"
           badge={<TestBadge />}
         />
       </RadioCardGroup>
@@ -326,19 +438,20 @@ describe('RadioCardItem', () => {
     expect(badge).toBeDefined()
   })
 
-  it.skip('has proper indicator element', () => {
-    render(
+  it('renders the selection indicator', () => {
+    // Rewritten: the original queried a hard-coded `.cds-radio-card-item--indicator`,
+    // which never matches the hashed name, and used `toBeDefined()` — which passes on
+    // `null`. Both bugs made it assert nothing.
+    const { container } = render(
       <RadioCardGroup aria-label="Test radio card group">
         <RadioCardItem value="test" title="Test option" />
       </RadioCardGroup>
     )
 
-    const radioItem = screen.getByRole('radio')
-    const indicator = radioItem.querySelector('.cds-radio-card-item--indicator')
-    expect(indicator).toBeDefined()
+    expect(container.querySelector(`.${s.itemIndicatorArea}`)).toBeInTheDocument()
   })
 
-  it.skip('shows selected state correctly', () => {
+  it('shows selected state correctly', () => {
     render(
       <RadioCardGroup aria-label="Test radio card group" value="test">
         <RadioCardItem value="test" title="Test option" />
@@ -346,11 +459,29 @@ describe('RadioCardItem', () => {
       </RadioCardGroup>
     )
 
-    const radioItems = screen.getAllByRole('radio')
-    const selectedRadio = radioItems.find(item => item.getAttribute('value') === 'test')!
-    const unselectedRadio = radioItems.find(item => item.getAttribute('value') === 'other')!
+    expect(byValue('test').checked).toBe(true)
+    expect(byValue('other').checked).toBe(false)
+  })
 
-    expect(selectedRadio.getAttribute('aria-checked')).toBe('true')
-    expect(unselectedRadio.getAttribute('aria-checked')).toBe('false')
+  it('styles the card from the input state rather than a mirrored attribute', () => {
+    // The structural guarantee behind the fix: the card cannot drift out of sync with the
+    // control, because it has no state of its own to drift.
+    const { container } = render(
+      <RadioCardGroup aria-label="Test radio card group" value="test">
+        <RadioCardItem value="test" title="Test option" />
+      </RadioCardGroup>
+    )
+
+    const card = cardFor(screen.getByRole('radio'))
+    expect(card.tagName).toBe('LABEL')
+    expect(card).not.toHaveAttribute('data-state')
+    expect(card).not.toHaveAttribute('data-disabled')
+    expect(card).not.toHaveAttribute('role')
+
+    // Exactly one element is exposed as a radio, and it earns that role implicitly by
+    // being an `<input type="radio">` — nothing in the card asserts `role="radio"` by
+    // hand any more, which is what made the old control a shell around a hidden one.
+    expect(screen.getAllByRole('radio')).toHaveLength(1)
+    expect(container.querySelectorAll('[role="radio"]')).toHaveLength(0)
   })
 })

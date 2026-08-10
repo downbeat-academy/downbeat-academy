@@ -26,7 +26,6 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
   required,
   name,
   orientation = 'vertical',
-  loop = true,
   isInvalid,
   className,
   children,
@@ -46,16 +45,18 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
 
   const { defaultValue, dir, ...restProps } = props
 
-  // Clone children and pass down group props
+  // Clone children and pass down the group props that are purely presentational.
+  //
+  // Selection, the shared `name`, and the change callback are no longer cloned down —
+  // `RadioGroup` puts them on context and the native input inside each card reads them
+  // directly. Only `isInvalid` needs to reach the card itself, because it styles the card
+  // border rather than the control; `disabled` and `required` are forwarded so a card used
+  // outside a group still behaves.
   const clonedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement<Record<string, unknown>>(child)) {
       return React.cloneElement(child, {
-        // Pass down group props to each RadioCardItem
-        _groupValue: value,
-        _groupOnValueChange: onValueChange,
         _groupDisabled: disabled,
         _groupRequired: required,
-        _groupName: name,
         _groupIsInvalid: isInvalid,
         ...(child.props as Record<string, unknown>) // Keep existing child props, they take precedence
       })
@@ -68,12 +69,11 @@ const RadioCardGroup = forwardRef<HTMLDivElement, RadioCardGroupProps>(({
       ref={ref}
       value={value}
       defaultValue={typeof defaultValue === 'string' ? defaultValue : undefined}
-      onValueChange={onValueChange}
+      onChange={onValueChange}
       disabled={disabled}
       required={required}
       name={name}
       orientation={orientation}
-      loop={loop}
       className={rootClasses}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}

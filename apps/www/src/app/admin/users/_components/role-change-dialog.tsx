@@ -74,7 +74,7 @@ export function RoleChangeDialog({
 					</DialogHeader>
 					<Field>
 						<Label>Role</Label>
-						<RadioGroup value={selected} onValueChange={(v) => setSelected(v as Role)}>
+						<RadioGroup value={selected} onChange={(v) => setSelected(v as Role)}>
 							{ROLE_OPTIONS.map((opt) => (
 								<label key={opt.value} htmlFor={`role-${opt.value}`} className={s.option}>
 									<Radio value={opt.value} id={`role-${opt.value}`} />

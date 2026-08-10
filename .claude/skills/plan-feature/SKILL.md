@@ -52,7 +52,7 @@ Watch for changes that cross a boundary — those are where the real work is:
 Read [`docs/adr/0002-known-gaps.md`](../../../docs/adr/0002-known-gaps.md) before
 planning around anything that looks broken. Several things are deliberately unfinished —
 push-based Drizzle, the duplicated auth schema, the unused draft-mode path, the dead
-email sign-in actions, the quarantined `radio-card` tests. Do not plan a fix for one of
+email sign-in actions, the `checkbox-card` defect. Do not plan a fix for one of
 these as a side effect of unrelated work; if the task genuinely requires it, say so
 explicitly and scope it.
 
