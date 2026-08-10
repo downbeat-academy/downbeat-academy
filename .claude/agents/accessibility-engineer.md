@@ -39,14 +39,20 @@ participation, which native inputs do properly. `dropdown-menu` is the one delib
 retention (`docs/adr/0002-known-gaps.md`). **Do not recommend adding a Radix dependency to
 a new component.**
 
-Where a wrapper still exists, do not defeat the primitive underneath it. The known defect
-in this repo
-is exactly that — `packages/cadence-core/src/components/form/radio-card/radio-card-item.tsx`
-renders the Radix `RadioGroup.Item` with `aria-hidden="true"` and `tabIndex={-1}`, and
-moves selection onto a bare `<div onClick>` with no role, no `tabIndex`, and no key
-handler. The result is a control that assistive technology cannot see and a keyboard
-cannot reach, with Radix's roving tabindex neutralised. Fourteen tests document this and
-are quarantined with `it.skip`.
+Where a wrapper still exists, do not defeat the control underneath it. The canonical
+defect in this repo is exactly that —
+`packages/cadence-core/src/components/form/checkbox-card/checkbox-card-item.tsx` renders
+the real input with `aria-hidden="true"` and `tabIndex={-1}`, and moves selection onto a
+bare `<div role="checkbox" onClick>`. The result is a control that assistive technology
+cannot see and a keyboard cannot reach.
+
+`radio-card` had the identical defect, with fourteen tests quarantined against it. It was
+fixed in Radix A.4 by making the card a `<label>` wrapping a real `<input type="radio">`,
+so a click anywhere on the card activates the control natively and arrow keys work because
+the inputs share a `name`. Selected, focused and disabled styling is expressed with
+`:has()` against that input rather than mirrored onto `data-*` attributes, so the card
+cannot drift out of sync with the control. **That is the pattern to reach for** — and
+`checkbox-card` is still waiting for it.
 
 Treat that as the canonical anti-pattern. Watch for `aria-hidden` on a focusable element,
 `tabIndex={-1}` on the only interactive control, and click handlers on non-interactive

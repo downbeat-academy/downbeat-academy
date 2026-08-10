@@ -62,29 +62,6 @@ migrations gap above. Sequence it after migrations exist.
 
 ## Severity: medium
 
-### `RadioCardItem` is inaccessible; 14 tests are quarantined
-
-**What.** `packages/cadence-core/src/components/form/radio-card/radio-card-item.tsx`
-renders the Radix `RadioGroup.Item` with `aria-hidden="true"` and `tabIndex={-1}`, and
-moves selection onto a bare `<div onClick>` with no role, no `tabIndex`, and no key
-handler.
-
-**Why it matters.** The control is not announced as a radio group to assistive
-technology and cannot be operated by keyboard. Radix's roving-tabindex behavior is
-defeated by the `tabIndex={-1}`. This is a shipped accessibility defect in the design
-system, so every consumer inherits it.
-
-**Why it is still like this.** It was found when `pnpm test` was repaired and cadence-core
-tests ran for the first time in CI — 14 of the file's 22 tests fail on
-`getAllByRole('radio')`. They are marked `it.skip` with an explanatory block at the top of
-`__test__/radio-card.test.tsx`. **The tests are correct; the component is wrong.** Fixing
-it properly means restructuring the card so the Radix `Item` *is* the card rather than a
-hidden control inside a click-handling div — a component and CSS change needing its own
-changeset and visual review.
-
-**To fix.** Restructure as above, then remove every `it.skip` in that file. The skipped
-tests are the acceptance criteria — do not weaken them.
-
 ### `cadence-core` has no linting
 
 **What.** The largest package in the repo, ~142 source files, has no ESLint setup. Its

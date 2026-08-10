@@ -16,7 +16,7 @@ const alignmentClassMap: Record<string, string> = {
   center: s.itemContentAlignmentCenter,
 }
 
-const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
+const RadioCardItem = forwardRef<HTMLLabelElement, RadioCardItemProps>(({
   value,
   disabled,
   required,
@@ -32,11 +32,8 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
   'aria-describedby': ariaDescribedby,
-  _groupValue,
-  _groupOnValueChange,
   _groupDisabled,
   _groupRequired,
-  _groupName,
   _groupIsInvalid,
   ...props
 }, ref) => {
@@ -48,9 +45,6 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   const finalDisabled = disabled ?? _groupDisabled
   const finalRequired = required ?? _groupRequired
   const finalIsInvalid = isInvalid ?? _groupIsInvalid
-
-  // Check if this item is selected based on group value
-  const isSelected = _groupValue === value
 
   const rootClasses = classnames(
     s.itemRoot,
@@ -93,41 +87,35 @@ const RadioCardItem = forwardRef<HTMLDivElement, RadioCardItemProps>(({
   )
 
   return (
-    // KNOWN DEFECT (Radix A.4, ADR-0002): selection lives on this bare div while the real
-    // radio below is `aria-hidden` and removed from the tab order, so the control is
-    // invisible to assistive technology and unreachable by keyboard. The 14 quarantined
-    // `it.skip` tests in __test__/ are its acceptance criteria — they are correct and this
-    // component is wrong. Now that Radio is a native input, the fix is to let the browser
-    // own selection and roving tabindex rather than re-implementing them here.
-    <div
+    // The card is a `<label>` wrapping the real radio. That single change is the whole
+    // accessibility fix: a click anywhere on the card activates the input natively, the
+    // input stays in the tab order, and arrow keys move between cards because the inputs
+    // share a `name` — all behaviour the browser provides. Previously this was a bare
+    // `div role="radio"` with an onClick, holding an `aria-hidden`, `tabIndex={-1}` radio
+    // that assistive technology could not see and the keyboard could not reach.
+    //
+    // Selected, focused and disabled styling is expressed with `:has()` against that
+    // input rather than mirrored onto `data-state` / `data-disabled` attributes, so the
+    // DOM cannot drift out of sync with the control.
+    <label
       ref={ref}
       className={rootClasses}
-      onClick={() => !finalDisabled && _groupOnValueChange?.(value)}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledby}
-      aria-describedby={ariaDescribedby}
-      data-state={isSelected ? 'checked' : 'unchecked'}
-      data-disabled={finalDisabled || undefined}
       {...props}
     >
       {content}
       <div className={s.itemIndicatorArea}>
-        {/* Presentational only — the wrapping div owns interaction, so the input is
-            `readOnly` to keep React from warning about a controlled field with no
-            change handler. See the a11y note on that div above. */}
         <Radio
           value={value}
-          checked={isSelected}
-          readOnly
           disabled={finalDisabled}
           required={finalRequired}
           id={id}
           isInvalid={finalIsInvalid}
-          tabIndex={-1}
-          aria-hidden="true"
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          aria-describedby={ariaDescribedby}
         />
       </div>
-    </div>
+    </label>
   )
 })
 
