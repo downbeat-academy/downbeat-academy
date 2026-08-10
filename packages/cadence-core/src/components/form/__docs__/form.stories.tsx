@@ -128,7 +128,7 @@ export const FormWithSwitches: Story = {
 
       <Field>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Switch name="marketing" id="marketing-switch" checked />
+          <Switch name="marketing" id="marketing-switch" defaultChecked />
           <Label htmlFor="marketing-switch">Marketing emails</Label>
         </div>
         <HelperText>Receive promotional offers and newsletters</HelperText>
@@ -280,7 +280,7 @@ export const CompleteFormExample: Story = {
 
       <Field>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Switch name="terms" id="terms-switch" checked required />
+          <Switch name="terms" id="terms-switch" defaultChecked required />
           <Label htmlFor="terms-switch">I agree to the terms and conditions</Label>
         </div>
         <ValidationMessage type="success">Thank you for agreeing to our terms</ValidationMessage>
