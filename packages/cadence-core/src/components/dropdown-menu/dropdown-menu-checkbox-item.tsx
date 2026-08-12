@@ -30,7 +30,6 @@ const DropdownMenuCheckboxItem = forwardRef<
 	</DropdownMenuPrimitive.CheckboxItem>
 ))
 
-DropdownMenuCheckboxItem.displayName =
-	DropdownMenuPrimitive.CheckboxItem.displayName
+DropdownMenuCheckboxItem.displayName = 'DropdownMenuCheckboxItem'
 
 export { DropdownMenuCheckboxItem }

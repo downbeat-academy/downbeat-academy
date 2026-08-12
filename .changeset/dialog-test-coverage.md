@@ -14,8 +14,8 @@ more than the rule names suggest: initial focus lands on that button, so opening
 announced an unnamed control. `DrawerContent` carried the identical defect and is fixed
 alongside. The close button now has `aria-label="Close"` and the icon is `aria-hidden`.
 
-**Thirteen `undefined` display names.** `@radix-ui/react-dialog` 1.1.23 — arriving in the
-dependabot bump #310 — stopped setting `displayName` on its primitives. Thirteen components
+**Eighteen `undefined` display names.** `@radix-ui/react-dialog` 1.1.23 — arriving in the
+dependabot bump #310 — stopped setting `displayName` on its primitives. Eighteen components
 across `dialog`, `tooltip`, `hover-card`, and `dropdown-menu` assigned theirs by copying
 (`DialogContent.displayName = DialogPrimitive.Content.displayName`), so every one silently
 became `undefined`, shifting Storybook's docgen output. All are now hand-set to the strings
