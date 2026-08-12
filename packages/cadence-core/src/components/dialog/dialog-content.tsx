@@ -21,8 +21,8 @@ const DialogContent = forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className={s.close}>
-        <X width={24} />
+      <DialogPrimitive.Close className={s.close} aria-label="Close">
+        <X width={24} aria-hidden="true" />
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
