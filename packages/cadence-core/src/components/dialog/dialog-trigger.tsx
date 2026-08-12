@@ -15,6 +15,6 @@ const DialogTrigger = forwardRef<
   />
 ))
 
-DialogTrigger.displayName = DialogPrimitive.Trigger.displayName
+DialogTrigger.displayName = 'DialogTrigger'
 
 export { DialogTrigger }

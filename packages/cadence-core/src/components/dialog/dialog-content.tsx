@@ -28,6 +28,6 @@ const DialogContent = forwardRef<
   </DialogPortal>
 ))
 
-DialogContent.displayName = DialogPrimitive.Content.displayName
+DialogContent.displayName = 'DialogContent'
 
 export { DialogContent }

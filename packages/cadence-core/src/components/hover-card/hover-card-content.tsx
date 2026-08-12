@@ -23,6 +23,6 @@ const HoverCardContent = forwardRef<
   </HoverCardPrimitive.Portal>
 ))
 
-HoverCardContent.displayName = HoverCardPrimitive.Content.displayName
+HoverCardContent.displayName = 'HoverCardContent'
 
 export { HoverCardContent }

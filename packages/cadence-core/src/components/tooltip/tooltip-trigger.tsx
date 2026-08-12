@@ -17,6 +17,6 @@ const TooltipTrigger = forwardRef<
   />
 ))
 
-TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
+TooltipTrigger.displayName = 'TooltipTrigger'
 
 export { TooltipTrigger }

@@ -17,6 +17,6 @@ const DialogDescription = forwardRef<
   />
 ))
 
-DialogDescription.displayName = DialogPrimitive.Description.displayName
+DialogDescription.displayName = 'DialogDescription'
 
 export { DialogDescription }

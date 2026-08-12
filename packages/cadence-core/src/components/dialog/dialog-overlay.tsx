@@ -17,6 +17,6 @@ const DialogOverlay = forwardRef<
   />
 ))
 
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+DialogOverlay.displayName = 'DialogOverlay'
 
 export { DialogOverlay }

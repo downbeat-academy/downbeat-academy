@@ -128,7 +128,18 @@ describe('Dialog', () => {
 			expect(trigger).toHaveAttribute('type', 'button')
 			expect(trigger).toHaveAttribute('aria-haspopup', 'dialog')
 			expect(trigger).toHaveAttribute('aria-expanded', 'false')
-			expect(trigger).toHaveAttribute('aria-controls')
+		})
+
+		it('omits aria-controls while closed', () => {
+			// Changed in @radix-ui/react-dialog 1.1.23 (bumped in #310): the closed
+			// trigger no longer carries `aria-controls`, because the element it named
+			// does not exist until the dialog opens. That is the correct behaviour — a
+			// dangling IDREF — so it is pinned rather than restored.
+			render(<Basic />)
+
+			expect(screen.getByRole('button', { name: 'Open' })).not.toHaveAttribute(
+				'aria-controls'
+			)
 		})
 
 		it('flips aria-expanded when the dialog opens', async () => {
@@ -399,9 +410,12 @@ describe('Dialog', () => {
 	})
 
 	describe('display names', () => {
-		// Storybook's docgen keys its output off these. They currently read as clean
-		// human strings because Radix's own displayNames happen to match — B.1 must set
-		// them by hand to exactly these values or the Storybook docs pages shift.
+		// Storybook's docgen keys its output off these, and until #310 six of them were
+		// copied straight off the Radix primitive — `DialogPrimitive.Content.displayName`
+		// and friends. @radix-ui/react-dialog 1.1.23 stopped setting them, so every one
+		// silently became `undefined`. These tests caught it; all thirteen copied
+		// displayNames across dialog, tooltip, hover-card and dropdown-menu are now
+		// hand-set. B.1 must keep them at exactly these strings.
 		it.each([
 			[Dialog, 'Dialog'],
 			[DialogTrigger, 'DialogTrigger'],

@@ -21,6 +21,6 @@ const DropdownMenuLabel = forwardRef<
 	/>
 ))
 
-DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
+DropdownMenuLabel.displayName = 'DropdownMenuLabel'
 
 export { DropdownMenuLabel }
