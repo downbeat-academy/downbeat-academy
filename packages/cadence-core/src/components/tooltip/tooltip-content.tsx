@@ -22,6 +22,6 @@ const TooltipContent = forwardRef<
   </TooltipPrimitive.Portal>
 ))
 
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+TooltipContent.displayName = 'TooltipContent'
 
 export { TooltipContent }

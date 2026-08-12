@@ -33,7 +33,6 @@ const DropdownMenuSubTrigger = forwardRef<
 	</DropdownMenuPrimitive.SubTrigger>
 ))
 
-DropdownMenuSubTrigger.displayName =
-	DropdownMenuPrimitive.SubTrigger.displayName
+DropdownMenuSubTrigger.displayName = 'DropdownMenuSubTrigger'
 
 export { DropdownMenuSubTrigger }

@@ -15,6 +15,6 @@ const DialogClose = forwardRef<
   />
 ))
 
-DialogClose.displayName = DialogPrimitive.Close.displayName
+DialogClose.displayName = 'DialogClose'
 
 export { DialogClose }

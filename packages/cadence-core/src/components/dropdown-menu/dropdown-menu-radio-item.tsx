@@ -29,7 +29,6 @@ const DropdownMenuRadioItem = forwardRef<
 	</DropdownMenuPrimitive.RadioItem>
 ))
 
-DropdownMenuRadioItem.displayName =
-	DropdownMenuPrimitive.RadioItem.displayName
+DropdownMenuRadioItem.displayName = 'DropdownMenuRadioItem'
 
 export { DropdownMenuRadioItem }

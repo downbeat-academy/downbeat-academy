@@ -21,7 +21,6 @@ const DropdownMenuSeparator = forwardRef<
 	/>
 ))
 
-DropdownMenuSeparator.displayName =
-	DropdownMenuPrimitive.Separator.displayName
+DropdownMenuSeparator.displayName = 'DropdownMenuSeparator'
 
 export { DropdownMenuSeparator }

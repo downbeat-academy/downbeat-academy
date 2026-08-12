@@ -23,7 +23,6 @@ const DropdownMenuSubContent = forwardRef<
 	</DropdownMenuPrimitive.Portal>
 ))
 
-DropdownMenuSubContent.displayName =
-	DropdownMenuPrimitive.SubContent.displayName
+DropdownMenuSubContent.displayName = 'DropdownMenuSubContent'
 
 export { DropdownMenuSubContent }

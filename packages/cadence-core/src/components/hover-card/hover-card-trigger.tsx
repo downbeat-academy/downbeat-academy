@@ -35,6 +35,6 @@ const HoverCardTrigger = forwardRef<
   )
 })
 
-HoverCardTrigger.displayName = HoverCardPrimitive.Trigger.displayName
+HoverCardTrigger.displayName = 'HoverCardTrigger'
 
 export { HoverCardTrigger }
