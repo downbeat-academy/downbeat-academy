@@ -2,6 +2,7 @@
 
 import React, { forwardRef } from 'react'
 import * as ToastPrimitive from '@radix-ui/react-toast'
+import classnames from 'classnames'
 import type { ToastViewportProps } from './types'
 import s from './toast.module.css'
 
@@ -11,7 +12,7 @@ const ToastViewport = forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitive.Viewport
     ref={ref}
-    className={s['toast--viewport']}
+    className={classnames(s['toast--viewport'], className)}
     {...props}
   />
 ))

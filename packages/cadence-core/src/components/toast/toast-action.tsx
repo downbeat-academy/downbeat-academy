@@ -8,7 +8,7 @@ const ToastAction = forwardRef<
   React.ElementRef<typeof ToastPrimitive.Action>,
   ToastActionProps
 >(({ className, ...props }, ref) => (
-  <ToastPrimitive.Action ref={ref} {...props} />
+  <ToastPrimitive.Action ref={ref} className={className} {...props} />
 ))
 
 ToastAction.displayName = 'ToastAction'
