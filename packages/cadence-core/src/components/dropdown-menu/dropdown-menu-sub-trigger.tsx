@@ -28,7 +28,7 @@ const DropdownMenuSubTrigger = forwardRef<
 	>
 		{children}
 		<span className={s.subTriggerIcon}>
-			<ChevronRight width={16} />
+			<ChevronRight width={16} aria-hidden="true" />
 		</span>
 	</DropdownMenuPrimitive.SubTrigger>
 ))

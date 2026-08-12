@@ -23,7 +23,7 @@ const DropdownMenuCheckboxItem = forwardRef<
 	>
 		<span className={s.indicator}>
 			<DropdownMenuPrimitive.ItemIndicator>
-				<Check width={16} />
+				<Check width={16} aria-hidden="true" />
 			</DropdownMenuPrimitive.ItemIndicator>
 		</span>
 		{children}
