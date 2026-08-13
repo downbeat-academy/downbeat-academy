@@ -10,6 +10,37 @@
   padding: var(--cds-scale-large);
   height: fit-content;
   transition: height var(--cds-transition-07) var(--cds-animation-easing-standard);
+
+  /*
+   * The viewport is a manual popover so it can enter the top layer and stay above a modal
+   * `<dialog>` — see `toast/toast-viewport.tsx` for why.
+   *
+   * That brings the UA `[popover]` rules with it, and they would otherwise move it: the
+   * UA sets `inset: 0` plus `margin: auto`, which together with the `bottom`/`right` above
+   * would stretch the box across the viewport, and adds a `border` and its own `padding`.
+   * These four declarations undo exactly that and nothing else, so the rendered result is
+   * identical to the inline element this replaces.
+   *
+   * `width: auto` matters too: `inset: 0` on a fixed element makes it fill the width
+   * before `fit-content` gets a say.
+   */
+  top: auto;
+  left: auto;
+  margin: 0;
+  border: none;
+  width: fit-content;
+  overflow: visible;
+}
+
+/*
+ * A popover is `display: none` until shown. The viewport is shown on mount, but between
+ * first paint and that effect — and in any engine without the Popover API, where
+ * `showPopover()` is never called — it must stay visible, or toasts silently stop
+ * appearing. `:popover-open` cannot express "not yet shown", so the display is restated
+ * unconditionally.
+ */
+.toast--viewport[popover] {
+  display: flex;
 }
 
 /* Toast element */

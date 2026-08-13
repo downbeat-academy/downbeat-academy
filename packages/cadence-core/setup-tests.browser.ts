@@ -18,6 +18,16 @@
 // pass in Chromium, that is a finding about the component, not a gap in this file.
 import '@testing-library/jest-dom/vitest'
 
+// The design tokens, exactly as `.storybook/preview.ts` loads them.
+//
+// This project exists to test things that need real layout, and without the `--cds-*`
+// custom properties every token-driven dimension resolves to nothing: a dialog whose
+// `padding: var(--cds-scale-2x-large)` silently becomes zero is 18px tall, and a test
+// that clicks "inside the padding gutter" lands on the title instead and proves the
+// opposite of what it claims. Measured, not hypothetical — it is how the padding
+// assertion in dialog.browser.test.tsx was found to be vacuous.
+import './node_modules/cadence-tokens/dist/web/tokens.css'
+
 // Silence React's act(...) warning — in this project only, and only this message.
 //
 // These specs drive components with **trusted** browser events on purpose, so every

@@ -49,8 +49,6 @@ export {
 } from './components/data-table';
 export {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
   DialogContent,
   DialogTrigger,
   DialogClose,
@@ -187,8 +185,8 @@ export type {
   PaginationState,
 } from './components/data-table';
 export type {
+  DialogProps,
   DialogContentProps,
-  DialogOverlayProps,
   DialogTitleProps,
   DialogDescriptionProps,
   DialogTriggerProps,

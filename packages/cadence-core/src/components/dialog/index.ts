@@ -1,5 +1,4 @@
-export { Dialog, DialogPortal } from './dialog'
-export { DialogOverlay } from './dialog-overlay'
+export { Dialog } from './dialog'
 export { DialogContent } from './dialog-content'
 export { DialogTrigger } from './dialog-trigger'
 export { DialogClose } from './dialog-close'
@@ -9,8 +8,8 @@ export { DialogTitle } from './dialog-title'
 export { DialogDescription } from './dialog-description'
 
 export type {
+  DialogProps,
   DialogContentProps,
-  DialogOverlayProps,
   DialogTitleProps,
   DialogDescriptionProps,
   DialogTriggerProps,

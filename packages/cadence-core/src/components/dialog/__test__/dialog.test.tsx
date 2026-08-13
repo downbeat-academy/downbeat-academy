@@ -4,8 +4,6 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {
 	Dialog,
-	DialogPortal,
-	DialogOverlay,
 	DialogTrigger,
 	DialogContent,
 	DialogHeader,
@@ -15,32 +13,34 @@ import {
 	DialogClose,
 } from '../index'
 import s from '../dialog.module.css'
+import { declaredSelectors } from '../../../test-utils'
 
 /**
- * The regression contract for `Dialog`, written against the **current Radix
- * implementation** so the B.1 rewrite onto native `<dialog>` + `showModal()` has something
- * to satisfy. Task 0.3 makes this a hard gate: no component is migrated before it has
- * tests, because `form/radio-card/` shipped inaccessible for want of exactly this.
+ * The markup-and-wiring contract for `Dialog`.
  *
- * Two facts about this component drive how everything below is written, and both were
- * established by probing the real markup rather than assumed:
+ * Written against the Radix implementation as the 0.3 backfill gate, and carried through
+ * the B.1b rewrite onto native `<dialog>` + `showModal()`. The attribute surface it pins
+ * — `aria-haspopup`, `aria-expanded`, `aria-controls` and `data-state` on the trigger,
+ * `tabindex="-1"` and generated `aria-labelledby`/`aria-describedby` on the content — was
+ * reproduced deliberately rather than dropped by accident, which is what it was for.
  *
- * 1. **The content is portalled to `document.body`.** It is *not* inside the container
- *    `render()` returns. Every query here goes through `screen`, and the a11y suite passes
- *    `document.body` to axe — passing `container` reports zero violations on a dialog that
- *    has two, which is the vacuous-test failure this suite exists to prevent.
- * 2. **Radix contributes a large attribute surface** — `aria-haspopup`, `aria-expanded`,
- *    `aria-controls`, and `data-state` on the trigger; `tabindex="-1"` and generated
- *    `aria-labelledby`/`aria-describedby` on the content. These are pinned below so B.1
- *    reproduces them deliberately rather than dropping them by accident.
+ * Three tests changed with the rewrite, each saying so where it sits: the content is no
+ * longer portalled (the top layer makes that unnecessary), the scrim moved from an
+ * `.overlay` element onto `::backdrop`, and `aria-describedby` is now emitted only when a
+ * `DialogDescription` actually exists.
  *
  * **Modal behaviour is not in this file.** Focus trapping, `Escape`, the top layer and
- * background inerting live in `dialog.browser.test.tsx`, which runs under
- * Playwright/Chromium, because jsdom does not implement `HTMLDialogElement` —
- * `showModal` and `close` are `undefined` on every installed version (26.1.0, 28.1.0,
- * 29.1.1). Those four are the browser's responsibility once B.1b moves onto native
- * `<dialog>`, and stubbing `showModal` in `setup-tests.ts` would assert against the
- * stub. What remains here is markup and wiring, which jsdom checks well and quickly.
+ * background inerting live in `dialog.browser.test.tsx` under Playwright/Chromium,
+ * because jsdom does not implement `HTMLDialogElement` — `showModal` and `close` are
+ * `undefined` on every installed version (26.1.0, 28.1.0, 29.1.1), and stubbing them in
+ * `setup-tests.ts` would assert against the stub.
+ *
+ * What makes the open/closed assertions below still mean something in jsdom: jsdom hides
+ * an unopened `<dialog>` through its UA stylesheet, and `DialogContent` feature-detects
+ * `showModal` and falls back to setting the `open` attribute where it is missing. So the
+ * DOM here tracks the logical state — `open` present means open — and
+ * `queryByRole('dialog')` discriminates rather than returning null either way. What it
+ * does *not* prove is modality; that is the browser file's job.
  */
 
 const Basic = ({ open }: { open?: boolean }) => (
@@ -111,20 +111,43 @@ describe('Dialog', () => {
 			).toBeInTheDocument()
 		})
 
-		it('portals the content out of the render container', () => {
-			// Pinned deliberately. B.1 replaces the portal with the top layer, and this
-			// test is what tells the next reader the content was never a descendant of
-			// the trigger's tree to begin with.
+		it('renders the content in place rather than portalling it', () => {
+			// The inverse of what Radix did, and deliberate. A portal existed to escape
+			// ancestor stacking and overflow; the top layer does that without moving the
+			// element, so the `<dialog>` is an ordinary descendant of wherever it was
+			// written. Being "on top" is now a paint concern, not a tree position.
 			const { container } = render(<Basic open />)
 
-			expect(container.querySelector('[role="dialog"]')).toBeNull()
-			expect(document.body.querySelector('[role="dialog"]')).not.toBeNull()
+			expect(container.querySelector('dialog')).not.toBeNull()
 		})
 
-		it('renders an overlay behind the content', () => {
-			const { baseElement } = render(<Basic open />)
+		it('paints the scrim with ::backdrop instead of an overlay element', () => {
+			// `.overlay` is gone: `::backdrop` already is a full-viewport box painted
+			// beneath its originating element, so the element that used to fake one has
+			// no job left. `declaredSelectors` reads the rule selectors, which is what
+			// proves the scrim moved rather than disappeared — jsdom has no layout engine
+			// and cannot be asked what it looks like.
+			const selectors = declaredSelectors(s.content)
 
-			expect(baseElement.querySelector(`.${s.overlay}`)).not.toBeNull()
+			expect(selectors.some((sel) => sel.includes('::backdrop'))).toBe(true)
+		})
+
+		it('omits aria-describedby when there is no DialogDescription', () => {
+			// Radix emitted `aria-describedby` unconditionally, so a dialog without a
+			// description pointed at an id that named nothing. Axe does not flag a
+			// dangling IDREF, which is why this went unnoticed; #312 left it for this
+			// rewrite to fix.
+			render(
+				<Dialog open>
+					<DialogContent>
+						<DialogTitle>No description here</DialogTitle>
+					</DialogContent>
+				</Dialog>
+			)
+
+			const dialog = screen.getByRole('dialog')
+			expect(dialog).not.toHaveAttribute('aria-describedby')
+			expect(dialog).toHaveAttribute('aria-labelledby')
 		})
 	})
 
@@ -306,8 +329,6 @@ describe('Dialog', () => {
 		})
 
 		it.each([
-			['DialogContent', DialogContent],
-			['DialogOverlay', DialogOverlay],
 			['DialogTitle', DialogTitle],
 			['DialogDescription', DialogDescription],
 			['DialogHeader', DialogHeader],
@@ -316,11 +337,9 @@ describe('Dialog', () => {
 			const Component = Part as React.ElementType
 			render(
 				<Dialog open>
-					<DialogPortal>
-						<Component className="custom-class">
-							{name === 'DialogOverlay' ? undefined : 'content'}
-						</Component>
-					</DialogPortal>
+					<DialogContent>
+						<Component className="custom-class">content</Component>
+					</DialogContent>
 				</Dialog>
 			)
 
@@ -428,7 +447,6 @@ describe('Dialog', () => {
 			[Dialog, 'Dialog'],
 			[DialogTrigger, 'DialogTrigger'],
 			[DialogContent, 'DialogContent'],
-			[DialogOverlay, 'DialogOverlay'],
 			[DialogTitle, 'DialogTitle'],
 			[DialogDescription, 'DialogDescription'],
 			[DialogClose, 'DialogClose'],

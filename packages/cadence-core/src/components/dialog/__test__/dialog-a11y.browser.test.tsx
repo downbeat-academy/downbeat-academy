@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { userEvent } from 'vitest/browser'
 import {
 	Dialog,
 	DialogTrigger,
@@ -15,18 +15,21 @@ import {
 import { axeViolations } from '../../../test-utils'
 
 /**
- * Axe coverage for the current Radix implementation, so the B.1 rewrite onto native
- * `<dialog>` has a baseline to hold.
+ * Axe coverage for `Dialog`.
  *
- * **Every assertion here passes `document.body`, never the `container` that `render()`
- * returns.** `DialogContent` portals itself out of that container, so `axeViolations(
- * container)` inspects a tree holding nothing but the trigger and reports zero violations
- * — on a dialog that in fact had two. That was measured, not assumed, and it is precisely
- * the vacuous-green suite task 0.3 exists to prevent.
+ * **This file runs in the browser project, and has to.** Under jsdom a `<dialog>` that was
+ * never opened is `display: none` from the UA stylesheet, and `showModal()` does not exist
+ * there to open it — so axe would walk a hidden subtree, skip almost every rule, and
+ * report a clean bill of health for a dialog it never really looked at. That is the
+ * vacuous-green suite the 0.3 gate exists to prevent, arrived at from a new direction.
  *
- * `axeViolations` disables `color-contrast` and does not allow re-enabling it — jsdom has
- * no layout engine, so that rule can only produce a false pass. Contrast on the overlay and
- * the close button is checked in the Storybook a11y addon panel instead.
+ * **Every assertion passes `document.body`, never the `container` that `render()`
+ * returns.** That was necessary under Radix because the content was portalled out of the
+ * container; it is kept now because a modal dialog's relationship to the rest of the page
+ * — inerting in particular — is only visible from the document root.
+ *
+ * `axeViolations` disables `color-contrast` and does not allow re-enabling it. Contrast on
+ * the scrim and the close button is checked in the Storybook a11y addon panel instead.
  */
 
 describe('Dialog accessibility', () => {
@@ -98,7 +101,6 @@ describe('Dialog accessibility', () => {
 	})
 
 	it('has no axe violations after opening from the trigger', async () => {
-		const user = userEvent.setup()
 		render(
 			<Dialog>
 				<DialogTrigger>Open</DialogTrigger>
@@ -111,7 +113,7 @@ describe('Dialog accessibility', () => {
 			</Dialog>
 		)
 
-		await user.click(screen.getByRole('button', { name: 'Open' }))
+		await userEvent.click(screen.getByRole('button', { name: 'Open' }))
 
 		expect(await axeViolations(document.body)).toEqual([])
 	})

@@ -1,18 +1,33 @@
-/* Content */
+/*
+ * Content — the `<dialog>` element itself.
+ *
+ * A modal `<dialog>` is placed by the UA stylesheet: `position: fixed; inset: 0;
+ * margin: auto`, which centres it on both axes. So the manual centring this rule used to
+ * do (`top/left: 50%` plus `translate(-50%, -50%)`) is gone, along with `position: fixed`
+ * and `z-index` — the top layer supersedes both, and a z-index on a top-layer element
+ * does nothing. `margin: auto` is restated rather than inherited so the centring does not
+ * depend on a UA default.
+ *
+ * Every dimension is unchanged: max-width, max-height, width, padding, radius, shadow and
+ * border are byte-for-byte what they were. This is a behaviour migration, not a redesign.
+ */
 .content {
-  position: fixed;
-  display: flex;
+  /*
+   * The UA hides a closed dialog with `dialog:not([open]) { display: none }`, but that is
+   * a *user-agent* rule and any author `display` beats it. The old version got away with
+   * a bare `display: flex` because Radix unmounted the content entirely when closed; a
+   * native `<dialog>` stays in the DOM, so the same declaration would leave an empty
+   * padded box sitting in the page on every closed dialog. Restate the hiding here and
+   * apply the layout only when open.
+   */
+  display: none;
   flex-direction: column;
   gap: var(--cds-scale-base);
-  top: 50%;
-  left: 50%;
-  margin: 0 auto;
+  margin: auto;
   background: var(--cds-color-surface-primary);
   padding: var(--cds-scale-2x-large);
-  z-index: var(--cds-z-index-overlay);
   max-width: 450px;
   max-height: 85vh;
-  transform: translate(-50%, -50%);
   border-radius: var(--cds-radii-medium);
   box-shadow: var(--cds-elevation-box-shadow-overlay);
   width: 90vw;
@@ -20,17 +35,29 @@
   border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
 }
 
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--cds-z-index-overlay);
+.content[open] {
+  display: flex;
+}
+
+/*
+ * The scrim. This replaces the `.overlay` element outright: `::backdrop` already *is* a
+ * full-viewport box painted directly beneath its originating element in the top layer, so
+ * everything the old rule declared to achieve that — position, inset, width/height,
+ * z-index — is what the pseudo-element is. Only the paint survives.
+ */
+.content::backdrop {
   background: var(--cds-color-overlay-scrim);
-  height: 100vh;
-  width: 100vw;
-  inset: 0;
   animation: overlayShow 150ms var(--cds-animation-easing-enter);
+}
+
+/*
+ * `showModal()` does not lock background scroll — it inerts the document but leaves it
+ * scrollable. `html` is an element selector, so CSS Modules leaves it global, while
+ * `.content` is hashed: this fires only for a Cadence dialog, not for any stray
+ * `<dialog open>` on the page.
+ */
+html:has(.content[open]) {
+  overflow: hidden;
 }
 
 /* Header */
@@ -98,13 +125,24 @@
   }
 }
 
+/*
+ * The same motion as before, re-expressed against `margin: auto` centring rather than the
+ * old translate-based centring: the dialog rose by 25% of its own height while scaling up
+ * from 0.8. Under UA centring that is `translateY(25%) -> none`.
+ *
+ * A CSS animation is used rather than a transition with `@starting-style` because
+ * `showModal()` takes the element from `display: none` to displayed, which restarts a
+ * keyframe animation on its own. There is deliberately no exit animation — there was none
+ * before either, and adding one means keeping children mounted through a `transitionend`
+ * so the exit has something to paint. That is scope this migration does not owe.
+ */
 @keyframes contentShow {
   from {
     opacity: 0;
-    transform: translate(-50%, -25%) scale(0.8);
+    transform: translateY(25%) scale(0.8);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: none;
   }
 }
