@@ -11,7 +11,7 @@ const meta: Meta<typeof Tabs> = {
     docs: {
       description: {
         component: `
-Tabs organize content into separate views where only one view is visible at a time. Built on Radix UI's Tabs primitive and styled with Cadence Design System tokens.
+Tabs organize content into separate views where only one view is visible at a time. Implemented on the [WAI-ARIA APG tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) with no third-party dependency, and styled with Cadence Design System tokens.
 
 ## Components
 
@@ -22,10 +22,10 @@ Tabs organize content into separate views where only one view is visible at a ti
 
 ## Accessibility
 
-- Full keyboard navigation support (arrow keys between triggers)
+- Full keyboard navigation: arrow keys between triggers, \`Home\`/\`End\` to jump to the ends, both skipping disabled tabs
+- Roving tabindex — the selected tab is the single tab stop, so the group is one stop in the page's tab order
 - Automatic or manual activation modes
-- ARIA roles and attributes are handled by Radix UI
-- Supports horizontal and vertical orientations
+- Supports horizontal and vertical orientations, in both \`ltr\` and \`rtl\`
         `,
       },
     },

@@ -33,6 +33,7 @@ interface TabsContentProps {
 	forceMount?: boolean
 	padding?:
 	| 'none'
+	| '2x-small'
 	| 'x-small'
 	| 'small'
 	| 'medium'

@@ -6,26 +6,31 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '../index'
 import s from '../tabs.module.css'
 
 /**
- * The regression contract for `Tabs`, written against the **current Radix implementation**
- * so the B.3 rewrite onto the WAI-ARIA APG roving-tabindex pattern has something to
- * satisfy. Task 0.3 makes this a hard gate: no component is migrated before it has tests.
+ * The behaviour contract for `Tabs`.
  *
- * Unlike most of this epic, B.3 is **not** a breaking type change — `tabs/types.ts` is
+ * Written against the Radix implementation as the 0.3 backfill gate, and **carried
+ * through the B.3 rewrite onto the WAI-ARIA APG roving-tabindex pattern**. All but two
+ * of these tests passed unchanged against the in-house implementation; the two that did
+ * not are the two decisions the backfill deliberately left open, and each says so at the
+ * point where the decision was taken:
+ *
+ * 1. **Roving tabindex is now eager** (`gives the selected tab the tab stop from first
+ *    render`). Radix left every tab at `tabindex="-1"` and put the stop on the `tablist`,
+ *    handing off on the first keypress. The APG form puts it on the selected tab from the
+ *    start and leaves the tablist unfocusable.
+ * 2. **`forceMount` no longer un-hides the panel** (`keeps a force-mounted panel hidden
+ *    while it is unselected`). It means "keep the children mounted" and nothing else.
+ *
+ * Unlike most of this epic, B.3 was **not** a breaking type change — `tabs/types.ts` was
  * already hand-written and Radix-free.
  *
- * Two things probing the real markup settled before any of this was written:
+ * One thing probing the real markup settled before any of this was written: **`Home`/`End`
+ * and the arrow keys skip disabled tabs**, and wrapping is `loop` on `TabsList`
+ * (default `true`), not a prop on the root.
  *
- * 1. **Roving tabindex is lazy.** On first render *every* tab has `tabindex="-1"` and the
- *    `tablist` itself holds `tabindex="0"`. That looks like a defect against the APG, but
- *    it is Radix's entry-point mechanism: the first `Tab` keypress hands off, and the
- *    selected tab takes `tabindex="0"` and receives focus. Verified below rather than
- *    assumed, because the naive reading would have filed a bug that does not exist.
- * 2. **`Home`/`End` and the arrow keys skip disabled tabs**, and wrapping is `loop` on
- *    `TabsList` (default `true`), not a prop on the root.
- *
- * Entry is always driven through a preceding button and `user.tab()` rather than a direct
- * `.focus()` call — that exercises the real hand-off, and avoids the `act()` warnings a
- * bare `.focus()` provokes from Radix's RovingFocusGroup.
+ * Entry is driven through a preceding button and `user.tab()` rather than a direct
+ * `.focus()` call, so the tests exercise the real tab order rather than asserting against
+ * a focus call they made themselves.
  */
 
 const Fixture = ({
@@ -137,16 +142,45 @@ describe('Tabs', () => {
 	})
 
 	describe('roving tabindex', () => {
-		it('starts with no tab in the tab order and the tablist as the entry point', () => {
-			// Radix's lazy entry point. Pinned because it is surprising, and because B.3
-			// may legitimately choose the plain APG form instead — in which case this
-			// test is the place that decision gets made rather than drifted into.
+		it('gives the selected tab the tab stop from first render', () => {
+			// **This is where B.3 took the decision the backfill left open.** Radix used a
+			// lazy entry point: every tab at `tabindex="-1"` with the stop on the tablist
+			// itself, handed off on the first keypress. This is the plain APG form
+			// instead — the selected tab carries the stop immediately and the tablist is
+			// not focusable at all, because a focusable non-interactive container is a
+			// defect in its own right. Keyboard entry is unchanged either way.
 			render(<Fixture />)
 
-			for (const tab of screen.getAllByRole('tab')) {
-				expect(tab).toHaveAttribute('tabindex', '-1')
-			}
-			expect(screen.getByRole('tablist')).toHaveAttribute('tabindex', '0')
+			expect(screen.getByRole('tab', { name: 'Alpha' })).toHaveAttribute(
+				'tabindex',
+				'0'
+			)
+			expect(screen.getByRole('tab', { name: 'Bravo' })).toHaveAttribute(
+				'tabindex',
+				'-1'
+			)
+			expect(screen.getByRole('tablist')).not.toHaveAttribute('tabindex')
+		})
+
+		it('falls back to the tablist as the entry point when nothing is selected', () => {
+			// The one case where the tablist does take a tab stop: with no selection
+			// there is no tab to carry it, and the whole group would otherwise drop out
+			// of the tab order. Focus lands on the list and forwards to the first tab.
+			render(
+				<Tabs>
+					<TabsList>
+						<TabsTrigger value="a">Alpha</TabsTrigger>
+						<TabsTrigger value="b">Bravo</TabsTrigger>
+					</TabsList>
+					<TabsContent value="a">Panel A</TabsContent>
+				</Tabs>
+			)
+			const list = screen.getByRole('tablist')
+			expect(list).toHaveAttribute('tabindex', '0')
+
+			list.focus()
+
+			expect(document.activeElement).toHaveTextContent('Alpha')
 		})
 
 		it('gives the selected tab the tab stop once focus enters', async () => {
@@ -462,13 +496,15 @@ describe('Tabs', () => {
 			expect(screen.getByText('Panel B forced')).toBeInTheDocument()
 		})
 
-		it('leaves a force-mounted panel exposed rather than hidden', () => {
-			// Pinned as current behaviour, not endorsed. `forceMount` drops the `hidden`
-			// attribute, so an unselected panel stays in the accessibility tree — two
-			// tabpanels are reachable at once. `tabs-content.tsx` also passes
-			// `forceMount={false}` unconditionally behind a `@ts-ignore`, because Radix
-			// types the prop as `true | undefined`. B.3 should decide deliberately what
-			// this prop means rather than reproducing the quirk by accident.
+		it('keeps a force-mounted panel hidden while it is unselected', () => {
+			// **The second decision B.3 took.** Radix's `forceMount` also dropped the
+			// `hidden` attribute, so an unselected panel stayed in the accessibility tree
+			// and two tabpanels were reachable at once — pinned by the backfill as
+			// current behaviour and explicitly not endorsed.
+			//
+			// `forceMount` now means what it says and no more: keep the children mounted.
+			// `hidden` tracks selection alone. So the element and its children are still
+			// in the DOM, and exactly one tabpanel is exposed.
 			const { container } = render(
 				<Tabs defaultValue="a">
 					<TabsList>
@@ -483,8 +519,10 @@ describe('Tabs', () => {
 			)
 
 			const forced = container.querySelectorAll('[role="tabpanel"]')[1]
-			expect(forced).not.toHaveAttribute('hidden')
-			expect(screen.getAllByRole('tabpanel')).toHaveLength(2)
+			expect(forced).toHaveAttribute('hidden')
+			expect(forced).toHaveTextContent('Panel B forced')
+			// `getAllByRole` skips hidden elements, so only the selected panel is exposed.
+			expect(screen.getAllByRole('tabpanel')).toHaveLength(1)
 		})
 	})
 

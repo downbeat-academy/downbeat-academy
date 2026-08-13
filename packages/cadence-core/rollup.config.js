@@ -90,7 +90,6 @@ export default {
     '@radix-ui/react-tooltip',
     '@radix-ui/react-dialog',
     '@radix-ui/react-dropdown-menu',
-    '@radix-ui/react-tabs',
     '@radix-ui/react-toast',
     'react-loading-skeleton',
     'react-loading-skeleton/dist/skeleton.css'
