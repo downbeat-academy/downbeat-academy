@@ -33,6 +33,14 @@ import s from '../dialog.module.css'
  *    `aria-controls`, and `data-state` on the trigger; `tabindex="-1"` and generated
  *    `aria-labelledby`/`aria-describedby` on the content. These are pinned below so B.1
  *    reproduces them deliberately rather than dropping them by accident.
+ *
+ * **Modal behaviour is not in this file.** Focus trapping, `Escape`, the top layer and
+ * background inerting live in `dialog.browser.test.tsx`, which runs under
+ * Playwright/Chromium, because jsdom does not implement `HTMLDialogElement` —
+ * `showModal` and `close` are `undefined` on every installed version (26.1.0, 28.1.0,
+ * 29.1.1). Those four are the browser's responsibility once B.1b moves onto native
+ * `<dialog>`, and stubbing `showModal` in `setup-tests.ts` would assert against the
+ * stub. What remains here is markup and wiring, which jsdom checks well and quickly.
  */
 
 const Basic = ({ open }: { open?: boolean }) => (
@@ -462,78 +470,4 @@ describe('Dialog', () => {
 		})
 	})
 
-	/**
-	 * Everything below passes today only because Radix implements it in JavaScript.
-	 *
-	 * jsdom does not implement `HTMLDialogElement` — `showModal` and `close` are
-	 * `undefined` on every installed version (26.1.0, 28.1.0, 29.1.1) and the element
-	 * degrades to a plain `HTMLElement`. So once B.1 moves onto native `<dialog>`, these
-	 * four behaviours become the browser's responsibility and can no longer be verified
-	 * here. Stubbing `showModal` in `setup-tests.ts` would assert against the stub.
-	 *
-	 * **B.1 must relocate this block to a real browser** and choose the runner. See the
-	 * B.1 task in Notion.
-	 */
-	describe('modal behaviour — relocates to a real browser at B.1', () => {
-		it('moves focus into the dialog when it opens', async () => {
-			const user = userEvent.setup()
-			render(<Basic />)
-			const trigger = screen.getByRole('button', { name: 'Open' })
-
-			await user.click(trigger)
-
-			const dialog = screen.getByRole('dialog')
-			expect(dialog.contains(document.activeElement)).toBe(true)
-			expect(document.activeElement).not.toBe(trigger)
-		})
-
-		it('closes on Escape', async () => {
-			const user = userEvent.setup()
-			render(<Basic />)
-			await user.click(screen.getByRole('button', { name: 'Open' }))
-
-			await user.keyboard('{Escape}')
-
-			await waitFor(() =>
-				expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-			)
-		})
-
-		it('returns focus to the trigger when it closes', async () => {
-			const user = userEvent.setup()
-			render(<Basic />)
-			const trigger = screen.getByRole('button', { name: 'Open' })
-			await user.click(trigger)
-
-			await user.keyboard('{Escape}')
-
-			await waitFor(() => expect(document.activeElement).toBe(trigger))
-		})
-
-		it('inerts the background from assistive technology', async () => {
-			const user = userEvent.setup()
-			render(<Basic />)
-			const trigger = screen.getByRole('button', { name: 'Open' })
-
-			await user.click(trigger)
-
-			// The trigger's own subtree is hidden from AT while the dialog is up, so the
-			// dialog is the only thing a screen reader can reach.
-			expect(trigger.closest('[aria-hidden="true"]')).not.toBeNull()
-			expect(screen.getByRole('dialog').closest('[aria-hidden="true"]')).toBeNull()
-		})
-
-		it('keeps Tab within the dialog', async () => {
-			const user = userEvent.setup()
-			render(<Basic />)
-			await user.click(screen.getByRole('button', { name: 'Open' }))
-			const dialog = screen.getByRole('dialog')
-
-			// Tab through more stops than the dialog contains; focus must never escape.
-			for (let i = 0; i < 8; i++) {
-				await user.tab()
-				expect(dialog.contains(document.activeElement)).toBe(true)
-			}
-		})
-	})
 })

@@ -61,12 +61,37 @@ Compound components nest: `form/` contains `input/`, `select/`, `checkbox/`, `ra
 ## Testing
 
 `vite.config.ts` holds the vitest config (not a separate `vitest.config.ts` — that
-differs from the apps): `environment: 'jsdom'`, `globals: true`,
-`setupFiles: './setup-tests.ts'`, and **`css: true`** so CSS Modules compile and are
-injected.
+differs from the apps). It defines **two projects**, both `extends: true` so they inherit
+the `css.modules` hashing block:
+
+| Project | Command | Environment | Setup | Matches |
+| --- | --- | --- | --- | --- |
+| `jsdom` | `pnpm test` | jsdom | `setup-tests.ts` | everything except `*.browser.test.*` |
+| `browser` | `pnpm test:browser` | Playwright/Chromium | `setup-tests.browser.ts` | `src/**/*.browser.test.{ts,tsx}` |
+
+Both set **`css: true`** so CSS Modules compile and are injected.
+
+**`pnpm test` runs only the jsdom project.** That is deliberate: it keeps the shared
+`Lint, Typecheck & Test` CI job from ever downloading a browser. The browser project runs
+in its own workflow, `.github/workflows/ci-cadence-browser.yml`.
+
+**Write a `*.browser.test.tsx` only for behaviour jsdom cannot host** — anything needing
+real layout, the top layer, or a platform API jsdom stubs out. jsdom does not implement
+`HTMLDialogElement` (`showModal`/`close` are `undefined`), and it cannot compute CSS
+anchor positioning at all. Markup and wiring belong in the jsdom suite, which is far
+faster.
+
+In a browser spec, import `userEvent` from **`vitest/browser`**, not
+`@testing-library/user-event`. Testing Library dispatches *untrusted* events, which do
+not drive user-agent behaviour — a spec built on them can pass against your own React
+handler while proving nothing about the platform.
 
 `setup-tests.ts` loads jest-dom matchers and mocks `ResizeObserver`, `scrollIntoView`,
-and the pointer-capture APIs that Radix needs.
+and the pointer-capture APIs that Radix needs. **It must not be reused by the browser
+project**: it assigns to the bare `global` identifier, which Vite does not shim for a
+browser bundle, and its mocks would stub the very platform that project exists to test.
+`setup-tests.browser.ts` carries the matchers and an `act(...)`-warning filter, nothing
+else.
 
 ### Two testing rules that will bite you
 
