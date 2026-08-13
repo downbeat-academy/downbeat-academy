@@ -22,6 +22,7 @@
     "build": "turbo run build",
     "build:packages": "turbo run build --filter='./packages/*'",
     "test": "turbo run test",
+    "test:browser": "turbo run test:browser",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "verify": "turbo run lint typecheck test",

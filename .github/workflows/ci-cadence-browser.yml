@@ -1,0 +1,89 @@
+name: Browser Tests - cadence-core
+
+# Browser-mode vitest for `cadence-core`, in its own workflow rather than a job in
+# `ci-monorepo.yml`.
+#
+# That file's env block states that no job in it launches a browser, and sets
+# `CYPRESS_INSTALL_BINARY: '0'` on that basis to keep every install fast. Adding a
+# Playwright job there would make the comment false and slow the shared setup down for
+# jobs that gain nothing from it. `ci-www-e2e.yml` already established the separate-
+# workflow pattern for browser work; this follows it, and gets path filtering for free.
+#
+# What runs here cannot run anywhere else: jsdom does not implement `HTMLDialogElement`,
+# so focus trapping, `Escape`, the top layer and background inerting are unverifiable in
+# the default project. Phase C reuses this workflow for CSS anchor positioning, which
+# jsdom equally cannot compute.
+
+on:
+  pull_request:
+    paths:
+      - 'packages/cadence-**/**'
+      - '.github/workflows/ci-cadence-browser.yml'
+      - 'pnpm-lock.yaml'
+
+  push:
+    branches: [main]
+    paths:
+      - 'packages/cadence-**/**'
+      - '.github/workflows/ci-cadence-browser.yml'
+
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+  # pnpm's version is NOT set here. `pnpm/action-setup` v6 hard-errors if it finds a
+  # version in both the `version:` input and `packageManager` in package.json, so
+  # `packageManager: pnpm@9.15.4` is the single source of truth.
+
+concurrency:
+  group: cadence-browser-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser-tests:
+    name: 'cadence-core Browser Tests'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - name: Install Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Key the browser cache on the resolved Playwright version, not on the lockfile
+      # hash — otherwise every unrelated dependency bump re-downloads Chromium.
+      - name: Resolve Playwright version
+        id: playwright
+        working-directory: packages/cadence-core
+        run: echo "version=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}
+
+      - name: Install Chromium and its system dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm --filter cadence-core exec playwright install --with-deps chromium
+
+      # The apt libraries Chromium needs live outside ~/.cache/ms-playwright, so a cache
+      # hit restores the browser but not the system packages it links against. Install
+      # those separately rather than paying for the whole download again.
+      - name: Install Chromium system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm --filter cadence-core exec playwright install-deps chromium
+
+      # Through turbo rather than `pnpm --filter … test:browser`, so the `test:browser`
+      # task's `dependsOn: ["^build"]` builds cadence-tokens and cadence-icons first.
+      - name: Browser tests
+        run: pnpm exec turbo run test:browser --filter=cadence-core
