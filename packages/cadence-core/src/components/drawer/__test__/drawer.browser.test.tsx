@@ -160,6 +160,17 @@ describe('Drawer modal behaviour', () => {
 		)
 	})
 
+	it('locks background scroll while open', async () => {
+		// `showModal()` inerts the document but does not stop it scrolling — the
+		// `html:has(.content[open])` rule in drawer.module.css is what does. Added after
+		// a mutation check found that removing that rule broke nothing: `Dialog` had this
+		// assertion and `Drawer` did not.
+		render(<Basic />)
+		await openDrawer()
+
+		expect(getComputedStyle(document.documentElement).overflow).toBe('hidden')
+	})
+
 	it('renders on the side it was given', async () => {
 		// The one layout assertion worth making in a real browser: `side` is the whole
 		// reason `Drawer` exists separately from `Dialog`, and jsdom cannot compute it.

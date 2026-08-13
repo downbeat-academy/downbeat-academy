@@ -1,23 +1,23 @@
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--cds-z-index-overlay);
-  background: var(--cds-color-overlay-scrim);
-  height: 100vh;
-  width: 100vw;
-  inset: 0;
-  animation: overlayShow 200ms var(--cds-animation-easing-enter);
-}
-
-/* Content - base */
+/*
+ * Content — the `<dialog>` element itself.
+ *
+ * The `.overlay` element is gone: `::backdrop` already is a full-viewport box painted
+ * beneath its originating element in the top layer, so everything the old rule declared
+ * to fake that — position, inset, width/height, z-index — is what the pseudo-element is.
+ *
+ * `position: fixed` and `z-index` are dropped for the same reason as in `dialog`: the top
+ * layer supersedes both, and a z-index on a top-layer element does nothing. Every visual
+ * dimension is unchanged.
+ */
 .content {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: var(--cds-z-index-overlay);
-  display: flex;
+  /*
+   * The UA hides a closed dialog with `dialog:not([open]) { display: none }`, but that is
+   * a *user-agent* rule and any author `display` beats it. Radix unmounted the content
+   * when closed, so a bare `display: flex` was harmless; a native `<dialog>` stays in the
+   * DOM, and the same declaration would leave a full-height panel sitting on the page.
+   * The same trap `dialog` hit — restate the hiding, apply layout only when open.
+   */
+  display: none;
   flex-direction: column;
   background: var(--cds-color-surface-primary);
   border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
@@ -25,18 +25,49 @@
   width: 400px;
   max-width: 90vw;
   height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+
+  /*
+   * A modal `<dialog>` is centred by the UA with `inset: 0; margin: auto`. A drawer is
+   * pinned to an edge instead, so the block margins are zeroed here and the inline
+   * margins are set per side below. Without this the drawer floats in the middle of the
+   * viewport — which is why `drawer.browser.test.tsx` measures the real box rather than
+   * trusting the class names.
+   */
+  margin-block: 0;
+  padding: 0;
+}
+
+.content[open] {
+  display: flex;
+}
+
+.content::backdrop {
+  background: var(--cds-color-overlay-scrim);
+  animation: overlayShow 200ms var(--cds-animation-easing-enter);
+}
+
+/*
+ * `showModal()` inerts the document but does not stop it scrolling. `html` is an element
+ * selector so CSS Modules leaves it global, while `.content` is hashed — this fires only
+ * for a Cadence drawer, never for a stray `<dialog open>`.
+ */
+html:has(.content[open]) {
   overflow: hidden;
 }
 
 /* Right side */
 .contentRight {
-  right: 0;
+  margin-inline-start: auto;
+  margin-inline-end: 0;
   animation: slideInRight 200ms var(--cds-animation-easing-enter);
 }
 
 /* Left side */
 .contentLeft {
-  left: 0;
+  margin-inline-start: 0;
+  margin-inline-end: auto;
   animation: slideInLeft 200ms var(--cds-animation-easing-enter);
 }
 

@@ -4,8 +4,6 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {
 	Drawer,
-	DrawerPortal,
-	DrawerOverlay,
 	DrawerTrigger,
 	DrawerContent,
 	DrawerHeader,
@@ -16,6 +14,7 @@ import {
 	DrawerClose,
 } from '../index'
 import s from '../drawer.module.css'
+import { declaredSelectors } from '../../../test-utils'
 
 /**
  * The regression contract for `Drawer`, written against the **current Radix
@@ -128,19 +127,38 @@ describe('Drawer', () => {
 			expect(screen.getByRole('dialog')).toHaveAttribute('tabindex', '-1')
 		})
 
-		it('portals the content out of the render container', () => {
-			// Pinned deliberately. B.2b replaces the portal with the top layer, and this
-			// records that the content was never a descendant of the trigger's tree.
+		it('renders the content in place rather than portalling it', () => {
+			// The inverse of what Radix did, and deliberate. A portal existed to escape
+			// ancestor stacking and overflow; the top layer does that without moving the
+			// element, so the `<dialog>` is an ordinary descendant of wherever it was
+			// written.
 			const { container } = render(<Basic open />)
 
-			expect(container.querySelector('[role="dialog"]')).toBeNull()
-			expect(document.body.querySelector('[role="dialog"]')).not.toBeNull()
+			expect(container.querySelector('dialog')).not.toBeNull()
 		})
 
-		it('renders an overlay behind the content', () => {
-			const { baseElement } = render(<Basic open />)
+		it('paints the scrim with ::backdrop instead of an overlay element', () => {
+			// `.overlay` is gone — `::backdrop` already is a full-viewport box painted
+			// beneath the drawer, so the element that faked one has no job left.
+			const selectors = declaredSelectors(s.content)
 
-			expect(baseElement.querySelector(`.${s.overlay}`)).not.toBeNull()
+			expect(selectors.some((sel) => sel.includes('::backdrop'))).toBe(true)
+		})
+
+		it('omits aria-describedby when there is no DrawerDescription', () => {
+			// Radix emitted it unconditionally, leaving a dangling IDREF on any drawer
+			// without a description. Axe does not flag that; it is still wrong.
+			render(
+				<Drawer open>
+					<DrawerContent>
+						<DrawerTitle>No description here</DrawerTitle>
+					</DrawerContent>
+				</Drawer>
+			)
+
+			const drawer = screen.getByRole('dialog')
+			expect(drawer).not.toHaveAttribute('aria-describedby')
+			expect(drawer).toHaveAttribute('aria-labelledby')
 		})
 	})
 
@@ -330,8 +348,6 @@ describe('Drawer', () => {
 		})
 
 		it.each([
-			['DrawerContent', DrawerContent],
-			['DrawerOverlay', DrawerOverlay],
 			['DrawerTitle', DrawerTitle],
 			['DrawerDescription', DrawerDescription],
 			['DrawerHeader', DrawerHeader],
@@ -341,11 +357,9 @@ describe('Drawer', () => {
 			const Component = Part as React.ElementType
 			render(
 				<Drawer open>
-					<DrawerPortal>
-						<Component className="custom-class">
-							{name === 'DrawerOverlay' ? undefined : 'content'}
-						</Component>
-					</DrawerPortal>
+					<DrawerContent>
+						<Component className="custom-class">content</Component>
+					</DrawerContent>
 				</Drawer>
 			)
 
@@ -451,7 +465,6 @@ describe('Drawer', () => {
 			[Drawer, 'Drawer'],
 			[DrawerTrigger, 'DrawerTrigger'],
 			[DrawerContent, 'DrawerContent'],
-			[DrawerOverlay, 'DrawerOverlay'],
 			[DrawerTitle, 'DrawerTitle'],
 			[DrawerDescription, 'DrawerDescription'],
 			[DrawerClose, 'DrawerClose'],

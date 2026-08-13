@@ -59,8 +59,6 @@ export {
 } from './components/dialog';
 export {
   Drawer,
-  DrawerPortal,
-  DrawerOverlay,
   DrawerContent,
   DrawerTrigger,
   DrawerClose,
@@ -195,8 +193,8 @@ export type {
   DialogFooterProps,
 } from './components/dialog';
 export type {
+  DrawerProps,
   DrawerContentProps,
-  DrawerOverlayProps,
   DrawerTitleProps,
   DrawerDescriptionProps,
   DrawerTriggerProps,

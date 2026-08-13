@@ -1,19 +1,12 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
+import { ModalClose } from '../modal'
 import type { DrawerCloseProps } from './types'
 
-const DrawerClose = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Close>,
-  DrawerCloseProps
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Close
-    className={className}
-    ref={ref}
-    {...props}
-  />
-))
+const DrawerClose = forwardRef<HTMLButtonElement, DrawerCloseProps>(
+	(props, ref) => <ModalClose ref={ref} {...props} />
+)
 
 DrawerClose.displayName = 'DrawerClose'
 

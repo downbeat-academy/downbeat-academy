@@ -100,7 +100,13 @@ describe('Drawer accessibility', () => {
 					<DrawerBody>
 						<label htmlFor="name">Name</label>
 						<input id="name" type="text" />
-						<a href="#somewhere">A link</a>
+						{/*
+						 * An absolute href, not a fragment. `href="#somewhere"` makes axe
+						 * treat this as a skip link and flag the missing target — a defect
+						 * in the fixture rather than in `Drawer`, and one that only
+						 * surfaces depending on what else is in the document.
+						 */}
+						<a href="https://example.com">A link</a>
 					</DrawerBody>
 					<DrawerFooter>
 						<DrawerClose>Cancel</DrawerClose>
