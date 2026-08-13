@@ -33,3 +33,8 @@ apps/**/cypress/videos
 *.mp4
 # Agent worktrees — local scratch checkouts, never part of the repo
 .claude/worktrees/
+
+# vitest browser mode failure captures — written next to the specs on a failing run,
+# same category as the Cypress screenshots above.
+.vitest-attachments/
+**/__test__/__screenshots__/

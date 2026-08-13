@@ -23,20 +23,18 @@ const meta: Meta<typeof Dialog> = {
     docs: {
       description: {
         component: `
-Dialog displays a modal overlay that requires user attention or interaction. It's built on Radix UI's Dialog primitive and styled with Cadence Design System tokens.
+Dialog displays a modal that requires user attention or interaction. It is built on the native `<dialog>` element with `showModal()` — which supplies focus trapping, `Escape` to dismiss, top-layer placement, `::backdrop` and background inerting — and styled with Cadence Design System tokens.
 
 ## Components
 
 - **Dialog**: Root component that manages open/close state
 - **DialogTrigger**: Element that opens the dialog
-- **DialogContent**: The modal content container (includes overlay and close button)
+- **DialogContent**: The `<dialog>` element itself (includes the close button)
 - **DialogHeader**: Container for the dialog header area
 - **DialogTitle**: Accessible title for the dialog
 - **DialogDescription**: Accessible description text
 - **DialogFooter**: Container for action buttons
 - **DialogClose**: Wraps elements that close the dialog
-- **DialogPortal**: Renders dialog content into a portal
-- **DialogOverlay**: The backdrop overlay (automatically included in DialogContent)
 
 ## Accessibility
 
