@@ -118,12 +118,26 @@ for axe runs, `declaredRule()` and `declaredRules()` for asserting token-driven 
 deliberately absent from the barrel. Storybook carries `@storybook/addon-a11y`, which is
 where `color-contrast` is actually checked — that rule cannot run under jsdom.
 
-Twelve components currently wrap Radix UI primitives (dialog, drawer, dropdown-menu, tabs,
-toast, tooltip, hover-card, switch, checkbox, radio-group, separator, collapsible, slot),
-and are being migrated onto native elements. New interaction should be built on the
-platform first — see the `new-component` skill for the order of preference, and
-[`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md) for why `dropdown-menu` keeps its
-dependency.
+**Four components still wrap Radix UI primitives** — `dropdown-menu`, `toast`, `tooltip`
+and `hover-card` — down from twelve. Everything else is built on the platform:
+`dialog` and `drawer` on native `<dialog>` with `showModal()`, `tabs` on the WAI-ARIA APG
+roving-tabindex pattern, `separator` on `role="separator"`, the form controls on native
+inputs, the sidebar's collapsible on a native disclosure, and `slot` on an in-house
+implementation.
+
+The four that remain are a **deliberate retention, not a backlog item**: they need
+collision-aware positioning, typeahead and submenu tracking that the platform does not yet
+supply cheaply. See [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md) before
+"finishing the job" on any of them.
+
+New interaction should be built on the platform first — see the `new-component` skill for
+the order of preference, and [`../adr/0003-browser-support-floor.md`](../adr/0003-browser-support-floor.md)
+for what "the platform" is allowed to mean.
+
+`Dialog` and `Drawer` share their machinery through an internal `modal/` module —
+`ModalRoot`, `ModalSurface` and the trigger/close/title/description parts. It is not
+exported from the package barrel; a third modal shape should be added there rather than
+assembled by a consumer.
 `DataTable` wraps `@tanstack/react-table` and supports manual/server-side sorting,
 pagination, and filtering — use it for any list or table view rather than hand-rolling.
 
