@@ -1,5 +1,4 @@
-export { Drawer, DrawerPortal } from './drawer'
-export { DrawerOverlay } from './drawer-overlay'
+export { Drawer } from './drawer'
 export { DrawerContent } from './drawer-content'
 export { DrawerTrigger } from './drawer-trigger'
 export { DrawerClose } from './drawer-close'
@@ -10,8 +9,8 @@ export { DrawerTitle } from './drawer-title'
 export { DrawerDescription } from './drawer-description'
 
 export type {
+  DrawerProps,
   DrawerContentProps,
-  DrawerOverlayProps,
   DrawerTitleProps,
   DrawerDescriptionProps,
   DrawerTriggerProps,

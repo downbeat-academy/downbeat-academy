@@ -88,7 +88,6 @@ export default {
     'cadence-icons',
     '@radix-ui/react-hover-card',
     '@radix-ui/react-tooltip',
-    '@radix-ui/react-dialog',
     '@radix-ui/react-dropdown-menu',
     '@radix-ui/react-toast',
     'react-loading-skeleton',

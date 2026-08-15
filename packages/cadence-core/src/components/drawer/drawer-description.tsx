@@ -1,21 +1,20 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
 import classnames from 'classnames'
+import { ModalDescription } from '../modal'
 import s from './drawer.module.css'
 import type { DrawerDescriptionProps } from './types'
 
-const DrawerDescription = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Description>,
-  DrawerDescriptionProps
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    className={classnames(s.description, className)}
-    ref={ref}
-    {...props}
-  />
-))
+const DrawerDescription = forwardRef<HTMLParagraphElement, DrawerDescriptionProps>(
+	({ className, ...props }, ref) => (
+		<ModalDescription
+			ref={ref}
+			className={classnames(s.description, className)}
+			{...props}
+		/>
+	)
+)
 
 DrawerDescription.displayName = 'DrawerDescription'
 

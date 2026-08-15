@@ -1,36 +1,25 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
 import classnames from 'classnames'
-import { X } from 'cadence-icons'
+import { ModalSurface } from '../modal'
 import s from './drawer.module.css'
-import { DrawerPortal } from './drawer'
-import { DrawerOverlay } from './drawer-overlay'
 import type { DrawerContentProps } from './types'
 
-const DrawerContent = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  DrawerContentProps
->(({ className, children, side = 'right', ...props }, ref) => (
-  <DrawerPortal>
-    <DrawerOverlay />
-    <DialogPrimitive.Content
-      className={classnames(
-        s.content,
-        side === 'right' ? s.contentRight : s.contentLeft,
-        className
-      )}
-      ref={ref}
-      {...props}
-    >
-      {children}
-      <DialogPrimitive.Close className={s.close} aria-label="Close">
-        <X width={24} aria-hidden="true" />
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
-  </DrawerPortal>
-))
+const DrawerContent = forwardRef<HTMLDialogElement, DrawerContentProps>(
+	({ className, side = 'right', ...props }, ref) => (
+		<ModalSurface
+			ref={ref}
+			className={classnames(
+				s.content,
+				side === 'right' ? s.contentRight : s.contentLeft,
+				className
+			)}
+			closeClassName={s.close}
+			{...props}
+		/>
+	)
+)
 
 DrawerContent.displayName = 'DrawerContent'
 
