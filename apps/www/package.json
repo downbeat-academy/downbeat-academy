@@ -79,7 +79,7 @@
 		"@vercel/og": "^0.8.6",
 		"analytics": "workspace:^",
 		"auth-permissions": "workspace:^",
-		"better-auth": "^1.6.25",
+		"better-auth": "^1.6.27",
 		"boring-avatars": "^2.0.4",
 		"cadence-core": "workspace:^",
 		"cadence-icons": "workspace:^",
