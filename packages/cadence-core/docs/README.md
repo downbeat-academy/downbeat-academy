@@ -112,7 +112,9 @@ pnpm core:storybook
 - `typeface-tiempos-text` - Secondary font family
 
 ### External Dependencies
-- `@radix-ui/*` - Accessible primitive components
+- `@radix-ui/*` - Accessible primitives for `dropdown-menu`, `toast`, `tooltip` and
+  `hover-card` only. Everything else is built on the platform — see
+  `docs/adr/0002-known-gaps.md` before reaching for a new one.
 - `classnames` - Conditional CSS class utilities
 
 ## Development Workflow

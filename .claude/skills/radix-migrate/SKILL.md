@@ -5,11 +5,18 @@ description: Migrate a cadence-core component off a @radix-ui/* primitive onto t
 
 # Migrate a component off Radix
 
-The recipe behind Radix A.1–A.7. Six components remain (`dialog`, `drawer`, `tabs`,
-`toast`, `tooltip`, `hover-card`), and they fail in the same places.
+The recipe behind Radix A.1–A.7 and B.1–B.3. **Four components remain** — `toast`,
+`tooltip`, `hover-card` and `dropdown-menu` — and all four are **Phase C, which is
+deliberately deferred**. `separator`, the form controls, the sidebar collapsible, `slot`,
+`dialog`, `drawer` and `tabs` are done.
 
 Read the epic and the task in Notion first via `sync-notion` — the epic records _why_ each
-component is tiered where it is, and Tier C retentions are deliberate, not oversights.
+component is tiered where it is, and Tier C retentions are deliberate, not oversights. Do
+not migrate one of the remaining four just because this skill exists.
+
+Two of them need something the earlier work did not: `tooltip` and `hover-card` move onto
+CSS anchor positioning, which jsdom cannot compute at all. Use the **browser project**
+(`*.browser.test.tsx`, `pnpm test:browser`) for anything positional — see §5.
 
 ## 0. The gate
 
@@ -130,6 +137,26 @@ Two helpers, and the difference matters:
 jsdom has no layout engine and does not resolve `var()`, so `getComputedStyle` assertions
 on token-driven properties are vacuous, and `axeViolations` disables `color-contrast`
 permanently. Contrast is a Storybook a11y panel job.
+
+**When jsdom cannot host the behaviour, use the browser project** — a second vitest
+project running Playwright/Chromium. Name the spec `*.browser.test.tsx`, co-locate it in
+the same `__test__/` folder, and run it with `pnpm test:browser`; `pnpm test` stays jsdom
+and stays fast. Reach for it when the thing under test needs real layout, the top layer,
+or a platform API jsdom stubs out — `HTMLDialogElement`, the Popover API, and CSS anchor
+positioning are all absent there.
+
+Three rules for those specs, each learned the hard way:
+
+- **Import `userEvent` from `vitest/browser`**, never `@testing-library/user-event`. The
+  latter dispatches *untrusted* events, which do not drive user-agent behaviour — a spec
+  built on them passes against your own React handler while proving nothing.
+- **Assert behaviour, not the library's mechanism.** Radix marks background content
+  `aria-hidden`; a native modal inerts through the top layer and marks nothing. A test
+  pinning the attribute has to be rewritten by the very migration it exists to protect.
+  Assert what a user can reach — focus, `elementFromPoint` — instead.
+- **Wait for animations before measuring.** `await Promise.all(el.getAnimations().map(a => a.finished))`.
+  A box read mid-animation is tens of pixels from where the element lands, and every
+  coordinate derived from it is wrong.
 
 **Native elements have implicit roles.** `getByRole('radio')` finds an
 `<input type="radio">`, but `querySelectorAll('[role="radio"]')` returns **zero** — there
