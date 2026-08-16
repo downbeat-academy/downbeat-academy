@@ -231,6 +231,8 @@ export type {
 } from './components/dropdown-menu';
 export type {
   ToastProps,
+  ToastProviderProps,
+  ToastType,
   ToastVariant,
   ToastDirection,
   ToastViewportProps,

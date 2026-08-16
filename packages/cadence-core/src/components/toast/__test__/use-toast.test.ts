@@ -143,6 +143,8 @@ describe('use-toast reducer', () => {
 		reducer(original, { type: 'DISMISS_TOAST', toastId: '1' })
 
 		expect(original.toasts).toBe(toasts)
-		expect((original.toasts as unknown as { open: boolean }[])[0].open).toBe(true)
+		expect((original.toasts as unknown as { open: boolean }[])[0].open).toBe(
+			true
+		)
 	})
 })
