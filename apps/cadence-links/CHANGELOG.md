@@ -1,5 +1,31 @@
 # cadence-links
 
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies [50af95d]
+- Updated dependencies [213053c]
+- Updated dependencies [17303d1]
+- Updated dependencies [dc2e8fc]
+- Updated dependencies [1eabdb6]
+- Updated dependencies [1c94d3d]
+- Updated dependencies [908a01d]
+- Updated dependencies [6690786]
+- Updated dependencies [84b5bf8]
+- Updated dependencies [dc2e8fc]
+- Updated dependencies [dc2e8fc]
+- Updated dependencies [dc2e8fc]
+- Updated dependencies [b46f883]
+- Updated dependencies [85d321b]
+- Updated dependencies [cb7e26c]
+- Updated dependencies [dc2e8fc]
+- Updated dependencies [dc2e8fc]
+- Updated dependencies [a918b1d]
+- Updated dependencies [1a08d62]
+- Updated dependencies [2afdc0e]
+  - cadence-core@4.0.0
+
 ## 1.2.1
 
 ### Patch Changes
