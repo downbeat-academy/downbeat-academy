@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpFormSchema, type TSignUpFormSchema } from "@/types/auth/sign-up-form-schema"
-import { useToast } from "@/components/toast"
 import {
   Form,
   Field,
   Input,
   Label,
   ValidationMessage,
-  HelperText
+  HelperText,
+  useToast
 } from "cadence-core"
 import { useState, useEffect } from "react"
 
