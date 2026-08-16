@@ -13,6 +13,7 @@ import {
 	TooltipProviderContext,
 	useTooltipProvider,
 } from './tooltip-context'
+import { useAnchorName } from '../overlay'
 
 import type { TooltipProps, TooltipProviderProps } from './types'
 import type {
@@ -112,17 +113,27 @@ const Tooltip = ({
 	const open = isControlled ? openProp : uncontrolledOpen
 
 	const baseId = useId()
-	// `useId` produces `:r1:` style values, which are not valid in a dashed-ident. Strip
-	// everything a custom-ident cannot carry rather than hoping the shape never changes.
-	const anchorName = useMemo(
-		() => `--cds-tooltip-${baseId.replace(/[^a-zA-Z0-9_-]/g, '')}`,
-		[baseId]
-	)
+	const anchorName = useAnchorName(baseId, 'tooltip')
 	const contentId = `${baseId}-content`
 
 	const triggerRef = useRef<HTMLElement | null>(null)
 	const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 	const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+	/**
+	 * Set when Escape dismisses the tooltip, and cleared when the pointer leaves the
+	 * trigger or focus moves away.
+	 *
+	 * Without it, Escape does not work at all for a mouse user. Dismissing removes the
+	 * tooltip from the top layer, the browser re-runs hit-testing, and the trigger still
+	 * under the resting cursor receives a fresh `pointerenter` — which reopens the tooltip
+	 * in the same frame. APG is explicit that Escape dismisses a tooltip and that it stays
+	 * dismissed until hover or focus is re-established; this is what implements that.
+	 *
+	 * Found by a browser spec that failed only when a previous spec had physically moved
+	 * the mouse over the trigger first, which is also the only condition a real user hits.
+	 */
+	const dismissed = useRef(false)
 
 	const resolvedDelay = delayDuration ?? provider.delayDuration
 	const resolvedHoverable =
@@ -149,6 +160,7 @@ const Tooltip = ({
 	)
 
 	const openImmediately = useCallback(() => {
+		if (dismissed.current) return
 		clearOpenTimer()
 		cancelClose()
 		provider.cancelSkipWindow()
@@ -156,6 +168,7 @@ const Tooltip = ({
 	}, [clearOpenTimer, cancelClose, provider, setOpen])
 
 	const openWithDelay = useCallback(() => {
+		if (dismissed.current) return
 		clearOpenTimer()
 		// Inside the skip window a neighbouring tooltip just closed, so this one is a
 		// continuation of the same gesture and opens at once.
@@ -169,16 +182,25 @@ const Tooltip = ({
 		}, resolvedDelay)
 	}, [clearOpenTimer, provider, resolvedDelay, openImmediately, setOpen])
 
-	const close = useCallback(() => {
-		clearOpenTimer()
-		cancelClose()
-		// Only start the skip window if something was actually open — otherwise merely
-		// sweeping the pointer across a trigger would make the next tooltip instant.
-		if (open) provider.startSkipWindow()
-		setOpen(false)
-	}, [clearOpenTimer, cancelClose, open, provider, setOpen])
+	const close = useCallback(
+		(options?: { dismiss?: boolean }) => {
+			clearOpenTimer()
+			cancelClose()
+			// Only Escape latches. Blur and click close for reasons that do not survive the
+			// pointer moving away and back.
+			if (options?.dismiss) dismissed.current = true
+			// Only start the skip window if something was actually open — otherwise merely
+			// sweeping the pointer across a trigger would make the next tooltip instant.
+			if (open) provider.startSkipWindow()
+			setOpen(false)
+		},
+		[clearOpenTimer, cancelClose, open, provider, setOpen]
+	)
 
 	const closeWithGrace = useCallback(() => {
+		// The pointer has left the trigger, so an Escape dismissal has served its purpose
+		// and the tooltip may open again on the next hover.
+		dismissed.current = false
 		clearOpenTimer()
 		cancelClose()
 		// The skip window opens now, not when the close lands. The pointer leaving this

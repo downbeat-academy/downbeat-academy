@@ -79,6 +79,9 @@ const TooltipTrigger = forwardRef<HTMLButtonElement, TooltipTriggerProps>(
 		const handleBlur = useCallback(
 			(event: React.FocusEvent<HTMLButtonElement>) => {
 				onBlur?.(event)
+				// Not a dismissal: focus has left, so the next focus or hover should open
+				// normally. Passing no options also clears nothing, which is correct —
+				// `closeWithGrace` on pointer-out is what releases an Escape latch.
 				close()
 			},
 			[onBlur, close]

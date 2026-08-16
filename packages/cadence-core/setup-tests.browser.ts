@@ -17,6 +17,22 @@
 // So this file carries the matchers and nothing else. If something needs a polyfill to
 // pass in Chromium, that is a finding about the component, not a gap in this file.
 import '@testing-library/jest-dom/vitest'
+import { configure } from '@testing-library/react'
+
+// Testing Library's async helpers default to a 1000ms timeout, which is generous under
+// jsdom and tight here. This project now runs every spec three times over — Chromium,
+// WebKit and Firefox — and a real browser under that much contention can take longer than
+// a second to commit a React update and repaint.
+//
+// The symptom was two specs failing perhaps one run in three, always by timing out rather
+// than by asserting the wrong thing, and always passing when their file ran alone. One of
+// them (`drawer.browser.test.tsx`) predates the third engine entirely, which is what
+// identified this as scheduling pressure rather than a defect in either component.
+//
+// Raised here rather than per-spec so the next timing-sensitive spec inherits it instead
+// of rediscovering the problem. It only extends how long a helper is willing to wait; a
+// genuinely broken assertion still fails, just five seconds later.
+configure({ asyncUtilTimeout: 5000 })
 
 // The design tokens, exactly as `.storybook/preview.ts` loads them.
 //
@@ -42,7 +58,10 @@ import './node_modules/cadence-tokens/dist/web/tokens.css'
 // component genuinely misbehaves in a browser, this will not hide it.
 const consoleError = console.error
 console.error = (...args: unknown[]) => {
-	if (typeof args[0] === 'string' && args[0].includes('was not wrapped in act(...)')) {
+	if (
+		typeof args[0] === 'string' &&
+		args[0].includes('was not wrapped in act(...)')
+	) {
 		return
 	}
 	consoleError(...args)

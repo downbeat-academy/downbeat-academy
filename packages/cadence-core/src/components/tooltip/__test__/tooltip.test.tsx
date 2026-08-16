@@ -170,6 +170,36 @@ describe('Tooltip hover delay', () => {
 		fireEvent.keyDown(document, { key: 'Escape' })
 		expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
 	})
+
+	it('stays dismissed after Escape while the pointer rests on the trigger', () => {
+		render(<Basic delayDuration={0} />)
+		const trigger = screen.getByRole('button', { name: 'Save' })
+		openTooltip(trigger)
+		fireEvent.keyDown(document, { key: 'Escape' })
+		expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+
+		// The real failure this pins: closing removes the tooltip from the top layer, the
+		// browser re-hit-tests, and the trigger under the resting cursor receives a fresh
+		// `pointerenter`. Without the dismissal latch that reopens it in the same frame and
+		// Escape does nothing at all for a mouse user.
+		openTooltip(trigger)
+		expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+	})
+
+	it('opens again once the pointer has left and returned', () => {
+		render(<Basic delayDuration={0} />)
+		const trigger = screen.getByRole('button', { name: 'Save' })
+		openTooltip(trigger)
+		fireEvent.keyDown(document, { key: 'Escape' })
+
+		fireEvent.pointerLeave(trigger, { pointerType: 'mouse' })
+		act(() => {
+			vi.advanceTimersByTime(200)
+		})
+		openTooltip(trigger)
+		// Dismissal is not permanent — it lasts until hover is re-established, per APG.
+		expect(screen.getByRole('tooltip')).toBeInTheDocument()
+	})
 })
 
 describe('TooltipProvider', () => {

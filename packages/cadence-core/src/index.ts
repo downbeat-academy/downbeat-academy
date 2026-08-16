@@ -30,7 +30,6 @@ export { Grid } from './components/grid';
 export { Summary } from './components/summary';
 export {
   HoverCard,
-  HoverCardArrow,
   HoverCardContent,
   HoverCardTrigger,
   HoverCardTitle,
@@ -160,11 +159,14 @@ export type {
 export type { TextProps } from './components/text';
 export type { SummaryProps, SummaryTitleConfig } from './components/summary';
 export type {
+  HoverCardProps,
   HoverCardContentProps,
   HoverCardTriggerProps,
   HoverCardTitleProps,
   HoverCardMainProps,
   HoverCardFooterProps,
+  HoverCardSide,
+  HoverCardAlign,
 } from './components/hover-card';
 export type {
   DataTableProps,

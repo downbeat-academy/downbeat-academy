@@ -47,8 +47,14 @@ interface TooltipContextValue {
 	openWithDelay: () => void
 	/** Open now, no delay — focus and programmatic opens. */
 	openImmediately: () => void
-	/** Close now — blur, Escape, click. */
-	close: () => void
+	/**
+	 * Close now — blur, Escape, click.
+	 *
+	 * `dismiss` latches the tooltip shut until the pointer leaves the trigger. Escape sets
+	 * it; nothing else does. See the `dismissed` ref in `tooltip.tsx` for why Escape is
+	 * otherwise a no-op for anyone using a mouse.
+	 */
+	close: (options?: { dismiss?: boolean }) => void
 	/**
 	 * Close after a short grace period, cancellable by `cancelClose`.
 	 *

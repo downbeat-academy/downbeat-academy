@@ -234,6 +234,13 @@ describe('Tooltip keyboard and pointer behaviour in a real engine', () => {
 		// Queried by id rather than by role, so a stray tooltip left by another spec
 		// cannot make this one fail for a reason that has nothing to do with Escape.
 		await waitFor(() => expect(document.getElementById(id)).toBeNull())
+
+		// And it stays dismissed. Earlier specs leave the physical mouse resting over the
+		// trigger, so without the dismissal latch the browser re-hit-tests as the tooltip
+		// leaves the top layer, fires a fresh `pointerenter`, and reopens it in the same
+		// frame — which is exactly what a real mouse user would see.
+		await new Promise((r) => setTimeout(r, 300))
+		expect(document.getElementById(id)).toBeNull()
 	})
 
 	it('does not steal the pointer from the trigger beneath it', async () => {

@@ -1,4 +1,4 @@
-import type { TooltipSide, TooltipAlign } from './types'
+import type { OverlaySide, OverlayAlign } from './types'
 
 /**
  * Whether this engine can place the tooltip with CSS alone.
@@ -29,8 +29,8 @@ export const supportsAnchorPositioning = (): boolean => {
 export function computeFallbackPosition(
 	trigger: DOMRect,
 	content: DOMRect,
-	side: TooltipSide,
-	align: TooltipAlign,
+	side: OverlaySide,
+	align: OverlayAlign,
 	sideOffset: number
 ): { top: number; left: number } {
 	let top = 0
