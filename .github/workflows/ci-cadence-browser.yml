@@ -77,7 +77,12 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}
+          # The browser set is part of the key, not just the Playwright version. Without
+          # it, adding an engine hits the cache entry written when only Chromium was
+          # installed, the download step is skipped as a cache hit, and the run fails with
+          # "Executable doesn't exist" for the new browser. Change this list and the key
+          # changes with it.
+          key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}-chromium-webkit-firefox
 
       # Three engines, matching the multi-engine support floor in
       # docs/adr/0003-browser-support-floor.md. WebKit is the one that earns its cost: it
