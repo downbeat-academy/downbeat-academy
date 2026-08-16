@@ -91,7 +91,17 @@ export default defineConfig({
             headless: true,
             // vitest 4 takes a provider factory here, not the v3 `'playwright'` string.
             provider: playwright(),
-            instances: [{ browser: "chromium" }],
+            // Three engines, not one. The support floor is multi-engine
+            // (docs/adr/0003-browser-support-floor.md), and Chromium is the engine least
+            // likely to disagree — it leads on every platform feature this package uses.
+            // WebKit is the one that matters: it has no CSS anchor positioning below
+            // Safari 26, so it is where a progressive-enhancement fallback either works or
+            // is revealed as absent. Firefox catches the middle cases.
+            instances: [
+              { browser: "chromium" },
+              { browser: "webkit" },
+              { browser: "firefox" },
+            ],
           },
         },
       },

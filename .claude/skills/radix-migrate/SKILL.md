@@ -209,4 +209,8 @@ should state the before/after API as a table. Then do its retrospective step.
 - `ship` — verification, changeset, PR, retrospective
 - `stack` — these migrations usually stack
 - [`docs/adr/0003-browser-support-floor.md`](../../../docs/adr/0003-browser-support-floor.md)
-  — Baseline Newly Available; `:has()` is fine, `::details-content` is not
+  — Baseline Newly Available; `:has()` is fine, `::details-content` is not.
+  **CSS anchor positioning always needs an `@supports` fallback.** It is absent below
+  Safari 26, Firefox 147 and Chrome 125 — not partial, absent — so without one the overlay
+  renders in normal flow rather than merely failing to flip. The browser project runs
+  WebKit, which is where that shows up; Chromium will not tell you.

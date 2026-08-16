@@ -13,6 +13,9 @@ name: Browser Tests - cadence-core
 # so focus trapping, `Escape`, the top layer and background inerting are unverifiable in
 # the default project. Phase C reuses this workflow for CSS anchor positioning, which
 # jsdom equally cannot compute.
+#
+# It runs Chromium, WebKit and Firefox. One engine cannot verify a multi-engine support
+# floor, and Chromium is the engine least likely to disagree about anything.
 
 on:
   pull_request:
@@ -20,12 +23,16 @@ on:
       - 'packages/cadence-**/**'
       - '.github/workflows/ci-cadence-browser.yml'
       - 'pnpm-lock.yaml'
+      # The root manifest carries the `browserslist` key. A change to the support floor
+      # changes the compiled CSS these tests run against, so it has to trigger them.
+      - 'package.json'
 
   push:
     branches: [main]
     paths:
       - 'packages/cadence-**/**'
       - '.github/workflows/ci-cadence-browser.yml'
+      - 'package.json'
 
   workflow_dispatch:
 
@@ -72,16 +79,21 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}
 
-      - name: Install Chromium and its system dependencies
+      # Three engines, matching the multi-engine support floor in
+      # docs/adr/0003-browser-support-floor.md. WebKit is the one that earns its cost: it
+      # has no CSS anchor positioning below Safari 26, and its Tab order skips buttons, so
+      # it is where progressive-enhancement fallbacks are actually exercised. Chromium
+      # alone agrees with everything and proves the least.
+      - name: Install browsers and their system dependencies
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm --filter cadence-core exec playwright install --with-deps chromium
+        run: pnpm --filter cadence-core exec playwright install --with-deps chromium webkit firefox
 
-      # The apt libraries Chromium needs live outside ~/.cache/ms-playwright, so a cache
-      # hit restores the browser but not the system packages it links against. Install
+      # The apt libraries the browsers need live outside ~/.cache/ms-playwright, so a cache
+      # hit restores the browsers but not the system packages they link against. Install
       # those separately rather than paying for the whole download again.
-      - name: Install Chromium system dependencies
+      - name: Install browser system dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: pnpm --filter cadence-core exec playwright install-deps chromium
+        run: pnpm --filter cadence-core exec playwright install-deps chromium webkit firefox
 
       # Through turbo rather than `pnpm --filter … test:browser`, so the `test:browser`
       # task's `dependsOn: ["^build"]` builds cadence-tokens and cadence-icons first.
