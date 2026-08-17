@@ -1,25 +1,22 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import classnames from 'classnames'
 import s from './dropdown-menu.module.css'
 
-export interface DropdownMenuLabelProps
-	extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> {
-	inset?: boolean
-}
+import type { DropdownMenuLabelProps } from './types'
 
-const DropdownMenuLabel = forwardRef<
-	React.ElementRef<typeof DropdownMenuPrimitive.Label>,
-	DropdownMenuLabelProps
->(({ className, inset, ...props }, ref) => (
-	<DropdownMenuPrimitive.Label
-		ref={ref}
-		className={classnames(s.label, inset && s.labelInset, className)}
-		{...props}
-	/>
-))
+const DropdownMenuLabel = forwardRef<HTMLDivElement, DropdownMenuLabelProps>(
+	({ className, inset = false, ...props }, ref) => (
+		<div
+			ref={ref}
+			// `presentation`, so a group heading is not announced as a selectable item.
+			role="presentation"
+			className={classnames(s.label, inset && s.labelInset, className)}
+			{...props}
+		/>
+	)
+)
 
 DropdownMenuLabel.displayName = 'DropdownMenuLabel'
 

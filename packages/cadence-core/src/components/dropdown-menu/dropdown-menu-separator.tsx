@@ -1,21 +1,19 @@
 'use client'
 
 import React, { forwardRef } from 'react'
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 import classnames from 'classnames'
 import s from './dropdown-menu.module.css'
 
-export interface DropdownMenuSeparatorProps
-	extends React.ComponentPropsWithoutRef<
-		typeof DropdownMenuPrimitive.Separator
-	> {}
+import type { DropdownMenuSeparatorProps } from './types'
 
 const DropdownMenuSeparator = forwardRef<
-	React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
+	HTMLDivElement,
 	DropdownMenuSeparatorProps
 >(({ className, ...props }, ref) => (
-	<DropdownMenuPrimitive.Separator
+	<div
 		ref={ref}
+		role="separator"
+		aria-orientation="horizontal"
 		className={classnames(s.separator, className)}
 		{...props}
 	/>

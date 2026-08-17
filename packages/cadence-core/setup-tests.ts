@@ -2,20 +2,22 @@
 
 // jest-dom matchers (toBeInTheDocument, toHaveAttribute, toHaveClass, …). Several
 // suites already depend on these; without them vitest reports "Invalid Chai property".
-import "@testing-library/jest-dom/vitest";
+import '@testing-library/jest-dom/vitest'
 
-// Mock ResizeObserver for tests
-global.ResizeObserver = global.ResizeObserver || class ResizeObserver {
-  constructor(callback: ResizeObserverCallback) {}
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
-
-// Mock scrollIntoView for Radix UI Select tests
-Element.prototype.scrollIntoView = Element.prototype.scrollIntoView || function() {};
-
-// Mock hasPointerCapture for Radix UI components
-Element.prototype.hasPointerCapture = Element.prototype.hasPointerCapture || function() { return false; };
-Element.prototype.setPointerCapture = Element.prototype.setPointerCapture || function() {};
-Element.prototype.releasePointerCapture = Element.prototype.releasePointerCapture || function() {};
+// jsdom does not implement ResizeObserver, and a component that constructs one throws on
+// mount. This is the only platform gap the jsdom project still papers over.
+//
+// The pointer-capture trio and `scrollIntoView` used to be shimmed here too, both
+// commented "for Radix UI". They were removed in C.4 once nothing wrapped a Radix
+// primitive, and the whole suite passes without them — verified, not assumed. Do not
+// reintroduce a shim here without checking the same way: this file is the jsdom project's
+// only lever for hiding a real defect, which is exactly what the `form/radio-card/`
+// failure looked like.
+global.ResizeObserver =
+	global.ResizeObserver ||
+	class ResizeObserver {
+		constructor(callback: ResizeObserverCallback) {}
+		observe() {}
+		unobserve() {}
+		disconnect() {}
+	}
