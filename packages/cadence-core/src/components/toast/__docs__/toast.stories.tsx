@@ -82,7 +82,7 @@ toast({ title: "Success!", variant: "success" })
 
 - Toasts are announced through a persistent live region that excludes the close button
 - Close button is always available for keyboard and mouse dismissal
-- Toasts auto-dismiss after `duration`, pausing while hovered or focused; `Infinity` pins one open
+- Toasts auto-dismiss after \`duration\`, pausing while hovered or focused; \`Infinity\` pins one open
         `,
       },
     },
