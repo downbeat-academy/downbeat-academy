@@ -30,7 +30,6 @@ export { Grid } from './components/grid';
 export { Summary } from './components/summary';
 export {
   HoverCard,
-  HoverCardArrow,
   HoverCardContent,
   HoverCardTrigger,
   HoverCardTitle,
@@ -71,7 +70,6 @@ export {
 export {
   Tooltip,
   TooltipProvider,
-  TooltipArrow,
   TooltipContent,
   TooltipTrigger,
 } from './components/tooltip';
@@ -79,18 +77,10 @@ export { Separator } from './components/separator';
 export {
   DropdownMenu,
   DropdownMenuTrigger,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuRadioGroup,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
   DropdownMenuShortcut,
 } from './components/dropdown-menu';
 export {
@@ -161,11 +151,14 @@ export type {
 export type { TextProps } from './components/text';
 export type { SummaryProps, SummaryTitleConfig } from './components/summary';
 export type {
+  HoverCardProps,
   HoverCardContentProps,
   HoverCardTriggerProps,
   HoverCardTitleProps,
   HoverCardMainProps,
   HoverCardFooterProps,
+  HoverCardSide,
+  HoverCardAlign,
 } from './components/hover-card';
 export type {
   DataTableProps,
@@ -205,8 +198,12 @@ export type {
   DrawerSide,
 } from './components/drawer';
 export type {
+  TooltipProps,
+  TooltipProviderProps,
   TooltipContentProps,
   TooltipTriggerProps,
+  TooltipSide,
+  TooltipAlign,
 } from './components/tooltip';
 export type {
   SeparatorProps,
@@ -214,18 +211,20 @@ export type {
   SeparatorOrientation,
 } from './components/separator';
 export type {
+  DropdownMenuProps,
+  DropdownMenuTriggerProps,
   DropdownMenuContentProps,
   DropdownMenuItemProps,
-  DropdownMenuCheckboxItemProps,
-  DropdownMenuRadioItemProps,
   DropdownMenuLabelProps,
   DropdownMenuSeparatorProps,
-  DropdownMenuSubTriggerProps,
-  DropdownMenuSubContentProps,
   DropdownMenuShortcutProps,
+  DropdownMenuSide,
+  DropdownMenuAlign,
 } from './components/dropdown-menu';
 export type {
   ToastProps,
+  ToastProviderProps,
+  ToastType,
   ToastVariant,
   ToastDirection,
   ToastViewportProps,

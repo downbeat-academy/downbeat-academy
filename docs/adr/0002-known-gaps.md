@@ -129,14 +129,14 @@ queries that already live in `src/lib/queries/`.
 **What.** Measured 2026-08-05 against `packages/cadence-tokens/tokens/color/`. The neutral
 foregrounds are all comfortably safe; the status roles are not:
 
-| Pairing | Ratio | Needs |
-| --- | --- | --- |
-| `foreground.warning` on any light ground | 1.9 | 4.5 text / 3.0 non-text — fails both |
-| `foreground.success` on any light ground | 2.3 | 4.5 / 3.0 — fails both |
-| `foreground.critical` on any light ground | 3.2 | 4.5 for text — fails |
-| `foreground.interactive` on any light ground | 4.1 | 4.5 for text — fails |
-| `foreground.high-contrast` on `surface.warning` | 3.7 | 4.5 for text — fails |
-| `foreground.high-contrast` on `surface.success` | 3.7 | 4.5 for text — fails |
+| Pairing                                         | Ratio | Needs                                |
+| ----------------------------------------------- | ----- | ------------------------------------ |
+| `foreground.warning` on any light ground        | 1.9   | 4.5 text / 3.0 non-text — fails both |
+| `foreground.success` on any light ground        | 2.3   | 4.5 / 3.0 — fails both               |
+| `foreground.critical` on any light ground       | 3.2   | 4.5 for text — fails                 |
+| `foreground.interactive` on any light ground    | 4.1   | 4.5 for text — fails                 |
+| `foreground.high-contrast` on `surface.warning` | 3.7   | 4.5 for text — fails                 |
+| `foreground.high-contrast` on `surface.success` | 3.7   | 4.5 for text — fails                 |
 
 `foreground.brand` (9.1) and `foreground.high-contrast` on `surface.brand` (15.3),
 `surface.interactive` (5.6), and `surface.critical` (4.8) pass.
@@ -197,7 +197,7 @@ references and zero `--cds-*` definitions.
 
 **Why it matters.** Three documents assert the opposite.
 `docs/architecture/design-system.md` and `packages/cadence-tokens/AGENTS.md` both explain
-that a token change requires rebuilding `cadence-core` *because* tokens are inlined — the
+that a token change requires rebuilding `cadence-core` _because_ tokens are inlined — the
 instruction is harmless but the reason given is wrong. More consequentially,
 `packages/cadence-core/README.md` advertises importing `cadence-core/styles.css` on its
 own, which yields completely unstyled components. Apps work only because
@@ -320,35 +320,80 @@ then, `docs/design/design-language.md` documents the workaround.
 unused and unwired — that is not a gap, it is the intended Figma export target, pending
 the work in `docs/design/figma-workflow.md`.
 
-### `dropdown-menu` stays on Radix while everything else leaves
+### A toast raised from a modal dialog is painted behind it
 
-**What.** `cadence-core` is removing Radix from 9 of its 12 wrapping components.
-`packages/cadence-core/src/components/dropdown-menu/` is deliberately excluded and keeps
-`@radix-ui/react-dropdown-menu`. As that work lands, the package will look half-migrated:
-most components on the platform, one still wrapping a dependency.
+**What.** `ToastViewport` promotes itself into the top layer as `popover="manual"` and
+re-asserts that promotion whenever `modal/modal-surface.tsx` dispatches `cds-dialog-open`.
+The intent, from task B.1b, was that a toast raised while a modal `<dialog>` is open stays
+readable. **It does not.** A modal dialog paints above a manual popover regardless of
+insertion order, and re-showing the popover does not lift it.
 
-**Why it is fine.** A menu needs typeahead, submenu safe-triangle tracking, roving focus,
-and collision-aware positioning. That is an estimated 5–8 days with real accessibility
-risk, and this repo has one maintainer. The `RadioCardItem` entry above is what happens
-when interaction semantics get hand-rolled here without that budget.
+Measured against the raw platform in C.1, with no components involved, identically in
+Chromium, WebKit and Firefox:
 
-The cost is honest and was accepted: because `react-menu` depends on popper, roving-focus,
-collection, dismissable-layer, focus-scope, portal, and presence, retaining this one
-package retains roughly 25 of the ~38 transitive `@radix-ui/*` packages. Most of the
-dependency-count win is deferred with it. This is a trade of dependency hygiene against
-accessibility risk, not an oversight.
+```
+popover alone            → the popover is the topmost element
+after dlg.showModal()    → the DIALOG is topmost, popover still :popover-open
+after hide + showPopover → the DIALOG is still topmost
+```
 
-**Recorded so nobody finishes the job unprompted.** An agent seeing eleven components
-migrated and one not will try to close the gap.
+Opening a modal dialog makes everything outside it inert, and an inert top-layer element
+renders below the modal. Insertion order cannot beat that.
 
-**To fix.** Only after native positioning has proven itself in `Tooltip`. Tracked as
-`Radix C.4 — Re-decide whether to rebuild DropdownMenu` on the Remove Radix Dependencies
-epic. Deleting this entry requires that re-decision, not just an implementation.
+**Why it matters.** Three admin dialogs call `toast()` on their failure path —
+`admin/users/_components/ban-user-dialog.tsx`, `role-change-dialog.tsx` and
+`admin/subscribers/_components/remove-subscriber-dialog.tsx`. That is precisely when the
+user needs to read the message, and it is behind the backdrop.
 
-Relatedly: consolidating the remaining Radix packages onto the single `radix-ui` package
-was considered and **rejected** — it declares all 56 primitives, which enlarges the
-installed set rather than shrinking it, and `.github/dependabot.yml` already batches
-`@radix-ui/*` updates into one PR.
+**Why it is still like this.** It was believed fixed. B.1b reasoned about top-layer
+ordering and shipped the promotion without a test, and both the epic and
+`packages/cadence-core/CHANGELOG.md` record it as resolved. C.1 wrote the first test that
+checks it, which is how the claim was found to be wrong. The promotion is kept because it
+genuinely works against ordinary stacked content — that half is real and is covered by a
+passing spec.
+
+**To fix.** Options, none of them free: render the viewport inside the topmost open
+`<dialog>` while one exists; make those three dialogs report failure inline instead of
+through a toast; or stop using modal dialogs for flows that can fail. The first is the
+smallest behavioural change and the most invasive structurally. Pinned by
+`toast.browser.test.tsx`, which asserts the _current_ behaviour — if an engine ever fixes
+this, that spec fails and this entry should be deleted rather than the expectation
+relaxed.
+
+---
+
+### `DropdownMenu` ships a narrower API than it used to
+
+**What.** C.4 rebuilt `DropdownMenu` on the platform and removed
+`@radix-ui/react-dropdown-menu`, the last Radix package in `cadence-core`. The rebuild is
+scoped to what the package actually uses. These exports are **gone**, not deprecated:
+
+`DropdownMenuGroup`, `DropdownMenuPortal`, `DropdownMenuSub`, `DropdownMenuSubTrigger`,
+`DropdownMenuSubContent`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`,
+`DropdownMenuCheckboxItem`.
+
+**Why it is fine.** Nothing in the repo rendered any of them. The two consumers —
+`admin/users/_components/user-actions-menu.tsx` and
+`admin/subscribers/_components/subscriber-actions-menu.tsx` — use five exports between
+them: root, trigger, content, item and separator. The removed parts are also exactly where
+a menu's hard behaviour lives: safe-triangle tracking between a submenu trigger and its
+content, and checkbox/radio indicator state. Rebuilding them would have meant carrying the
+accessibility risk the original retention decision was right to avoid, for an API surface
+with no callers.
+
+What _was_ rebuilt is the part with callers, and it is covered: roving tabindex with
+wrapping arrow keys, Home/End, typeahead that cycles on a repeated character, Escape and
+outside-press dismissal with focus return, and keyboard-versus-pointer open behaviour per
+APG. 46 jsdom specs and 12 browser specs across Chromium, WebKit and Firefox.
+
+**To fix, if a submenu is ever genuinely needed.** Build it on `components/overlay/`, which
+already provides anchored placement and top-layer promotion for `Tooltip`, `HoverCard` and
+this component. The safe-triangle logic is the real work; the positioning is not. Do not
+reach back for Radix to get one submenu.
+
+Relatedly: consolidating the Radix packages onto the single `radix-ui` package was
+considered and **rejected** during this epic — it declares all 56 primitives, which
+enlarges the installed set rather than shrinking it.
 
 ---
 

@@ -1,77 +1,214 @@
+/*
+ * The trigger contributes nothing but an anchor name. No layout, no box, no colour —
+ * `asChild` puts this class on a consumer's own element (see `sidebar/sidebar-link.tsx`),
+ * so anything else here would leak into their design.
+ */
+@supports (anchor-name: --probe) {
+	.trigger {
+		anchor-name: var(--cds-tooltip-anchor);
+	}
+}
+
 .content {
-  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
-  background: var(--cds-color-surface-high-contrast);
-  color: var(--cds-color-foreground-high-contrast);
-  font-size: var(--cds-typography-font-size-fixed-productive-x-small);
-  font-family: var(--cds-typography-font-family-productive-body);
-  border-radius: var(--cds-radii-medium);
-  max-width: 300px;
-  animation-duration: 400ms;
-  animation-timing-function: var(--cds-animation-easing-enter);
-  will-change: transform, opacity;
-  box-shadow: var(--cds-elevation-box-shadow-base);
+	/*
+   * `fixed` on both paths. In the top layer it is what anchor positioning resolves
+   * against; on the fallback path it is what makes the JS-computed viewport coordinates
+   * mean what they say.
+   */
+	position: fixed;
+	z-index: 9999;
+	width: max-content;
+	max-width: 300px;
+	margin: 0;
+	padding: var(--cds-scale-2x-small) var(--cds-scale-base);
+	background: var(--cds-color-surface-high-contrast);
+	color: var(--cds-color-foreground-high-contrast);
+	font-size: var(--cds-typography-font-size-fixed-productive-x-small);
+	font-family: var(--cds-typography-font-family-productive-body);
+	border-radius: var(--cds-radii-medium);
+	box-shadow: var(--cds-elevation-box-shadow-base);
+	border: 0;
+	/*
+   * A tooltip is never the pointer's target — it describes the thing under the pointer.
+   * Re-enabled below only when the content is hoverable, which is what lets a tooltip
+   * hold a link without the pointer having to cross a dead gap to reach it.
+   */
+	pointer-events: none;
+	animation-duration: 400ms;
+	animation-timing-function: var(--cds-animation-easing-enter);
+	will-change: transform, opacity;
 }
 
-.content[data-state='delayed-open'][data-side='top'] {
-  animation-name: slideDownAndFade;
+/*
+ * NO `display` declaration on `.content`.
+ *
+ * A `[popover]` element is `display: none` until shown, and a `display` here would
+ * override that UA rule and paint the tooltip before `showPopover()` runs — the trap that
+ * bit both `Dialog` and `Drawer` in Phase B. The element is unmounted when closed, so
+ * there is nothing to hide anyway.
+ */
+
+.content:popover-open {
+	pointer-events: auto;
 }
 
-.content[data-state='delayed-open'][data-side='right'] {
-  animation-name: slideLeftAndFade;
+/* ── Placement, where the engine can do it in CSS ────────────────────────────────── */
+
+@supports (anchor-name: --probe) {
+	.content {
+		position-anchor: var(--cds-tooltip-anchor);
+	}
+
+	.content[data-side='top'] {
+		margin-bottom: var(--cds-tooltip-offset);
+	}
+
+	.content[data-side='bottom'] {
+		margin-top: var(--cds-tooltip-offset);
+	}
+
+	.content[data-side='left'] {
+		margin-right: var(--cds-tooltip-offset);
+	}
+
+	.content[data-side='right'] {
+		margin-left: var(--cds-tooltip-offset);
+	}
+
+	/*
+   * `position-area` expresses side and alignment together. The `span-*` values read
+   * backwards at first: `top span-right` means "above the anchor, spanning rightwards
+   * from its left edge", which is what `align='start'` means for a horizontal side.
+   */
+	.content[data-side='top'][data-align='center'] {
+		position-area: top center;
+	}
+
+	.content[data-side='top'][data-align='start'] {
+		position-area: top span-right;
+	}
+
+	.content[data-side='top'][data-align='end'] {
+		position-area: top span-left;
+	}
+
+	.content[data-side='bottom'][data-align='center'] {
+		position-area: bottom center;
+	}
+
+	.content[data-side='bottom'][data-align='start'] {
+		position-area: bottom span-right;
+	}
+
+	.content[data-side='bottom'][data-align='end'] {
+		position-area: bottom span-left;
+	}
+
+	.content[data-side='left'][data-align='center'] {
+		position-area: left center;
+	}
+
+	.content[data-side='left'][data-align='start'] {
+		position-area: left span-bottom;
+	}
+
+	.content[data-side='left'][data-align='end'] {
+		position-area: left span-top;
+	}
+
+	.content[data-side='right'][data-align='center'] {
+		position-area: right center;
+	}
+
+	.content[data-side='right'][data-align='start'] {
+		position-area: right span-bottom;
+	}
+
+	.content[data-side='right'][data-align='end'] {
+		position-area: right span-top;
+	}
 }
 
-.content[data-state='delayed-open'][data-side='bottom'] {
-  animation-name: slideUpAndFade;
+/*
+ * Viewport flipping is an enhancement on top of an enhancement, and is gated separately.
+ * Safari 26 ships `anchor()` and `position-area` without `position-try-fallbacks`, so
+ * without this guard the whole placement block would be lost there. ADR-0003: an overlay
+ * that cannot flip is acceptable; one that renders in the wrong place is not.
+ */
+@supports (position-try-fallbacks: flip-block) {
+	.content {
+		position-try-fallbacks: flip-block, flip-inline;
+	}
 }
 
-.content[data-state='delayed-open'][data-side='left'] {
-  animation-name: slideRightAndFade;
+/* ── Entry animation ─────────────────────────────────────────────────────────────── */
+
+.content[data-side='top'] {
+	animation-name: slideDownAndFade;
+}
+
+.content[data-side='right'] {
+	animation-name: slideLeftAndFade;
+}
+
+.content[data-side='bottom'] {
+	animation-name: slideUpAndFade;
+}
+
+.content[data-side='left'] {
+	animation-name: slideRightAndFade;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.content {
+		animation: none;
+	}
 }
 
 @keyframes slideUpAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(2px);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideRightAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(-2px);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes slideDownAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideLeftAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(2px);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(2px);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

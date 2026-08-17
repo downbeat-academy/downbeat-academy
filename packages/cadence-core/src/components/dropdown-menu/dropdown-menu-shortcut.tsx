@@ -2,16 +2,13 @@ import React from 'react'
 import classnames from 'classnames'
 import s from './dropdown-menu.module.css'
 
-export interface DropdownMenuShortcutProps
-	extends React.HTMLAttributes<HTMLSpanElement> {}
+import type { DropdownMenuShortcutProps } from './types'
 
 const DropdownMenuShortcut = ({
 	className,
 	...props
 }: DropdownMenuShortcutProps) => {
-	return (
-		<span className={classnames(s.shortcut, className)} {...props} />
-	)
+	return <span className={classnames(s.shortcut, className)} {...props} />
 }
 
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut'

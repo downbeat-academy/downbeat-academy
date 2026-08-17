@@ -1,8 +1,12 @@
-export { Tooltip, TooltipProvider, TooltipArrow } from './tooltip'
+export { Tooltip, TooltipProvider } from './tooltip'
 export { TooltipContent } from './tooltip-content'
 export { TooltipTrigger } from './tooltip-trigger'
 
 export type {
-  TooltipContentProps,
-  TooltipTriggerProps,
+	TooltipProps,
+	TooltipProviderProps,
+	TooltipContentProps,
+	TooltipTriggerProps,
+	TooltipSide,
+	TooltipAlign,
 } from './types'

@@ -1,315 +1,257 @@
 /* Content */
 .content {
-  background: var(--cds-color-surface-primary);
-  border-radius: var(--cds-radii-medium);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-200);
-  padding: var(--cds-scale-3x-small) 0;
-  min-width: 160px;
-  box-shadow: var(--cds-elevation-box-shadow-base);
-  box-sizing: border-box;
-  z-index: var(--cds-z-index-overlay);
-  animation-duration: 400ms;
-  animation-timing-function: var(--cds-animation-easing-enter);
-  will-change: transform, opacity;
+	/*
+   * `fixed` on both placement paths — what CSS anchor positioning resolves against, and
+   * what makes the JS fallback's viewport coordinates mean what they say.
+   *
+   * No `display` declaration: a `[popover]` element is `display: none` until shown, and a
+   * `display` here would override the UA rule and paint the menu before `showPopover()`
+   * runs. The element is unmounted while closed, so there is nothing to hide.
+   */
+	position: fixed;
+	margin: 0;
+	width: max-content;
+	background: var(--cds-color-surface-primary);
+	border-radius: var(--cds-radii-medium);
+	border: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-blackberry-200);
+	padding: var(--cds-scale-3x-small) 0;
+	min-width: 160px;
+	box-shadow: var(--cds-elevation-box-shadow-base);
+	box-sizing: border-box;
+	z-index: var(--cds-z-index-overlay);
+	animation-duration: 400ms;
+	animation-timing-function: var(--cds-animation-easing-enter);
+	will-change: transform, opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .content {
-    animation-duration: 0ms;
-  }
+	.content {
+		animation-duration: 0ms;
+	}
+}
+
+/* Trigger — nothing but an anchor name, so `asChild` cannot leak layout into a
+   consumer's own element. */
+@supports (anchor-name: --probe) {
+	.trigger {
+		anchor-name: var(--cds-dropdown-menu-anchor);
+	}
+}
+
+/* ── Placement, where the engine can do it in CSS ────────────────────────────────── */
+
+@supports (anchor-name: --probe) {
+	.content {
+		position-anchor: var(--cds-dropdown-menu-anchor);
+	}
+
+	.content[data-side='top'] {
+		margin-bottom: var(--cds-dropdown-menu-offset);
+	}
+
+	.content[data-side='bottom'] {
+		margin-top: var(--cds-dropdown-menu-offset);
+	}
+
+	.content[data-side='left'] {
+		margin-right: var(--cds-dropdown-menu-offset);
+	}
+
+	.content[data-side='right'] {
+		margin-left: var(--cds-dropdown-menu-offset);
+	}
+
+	.content[data-side='bottom'][data-align='start'] {
+		position-area: bottom span-right;
+	}
+
+	.content[data-side='bottom'][data-align='center'] {
+		position-area: bottom center;
+	}
+
+	.content[data-side='bottom'][data-align='end'] {
+		position-area: bottom span-left;
+	}
+
+	.content[data-side='top'][data-align='start'] {
+		position-area: top span-right;
+	}
+
+	.content[data-side='top'][data-align='center'] {
+		position-area: top center;
+	}
+
+	.content[data-side='top'][data-align='end'] {
+		position-area: top span-left;
+	}
+
+	.content[data-side='right'][data-align='start'] {
+		position-area: right span-bottom;
+	}
+
+	.content[data-side='right'][data-align='center'] {
+		position-area: right center;
+	}
+
+	.content[data-side='right'][data-align='end'] {
+		position-area: right span-top;
+	}
+
+	.content[data-side='left'][data-align='start'] {
+		position-area: left span-bottom;
+	}
+
+	.content[data-side='left'][data-align='center'] {
+		position-area: left center;
+	}
+
+	.content[data-side='left'][data-align='end'] {
+		position-area: left span-top;
+	}
+}
+
+/* Gated separately: Safari 26 ships `anchor()` and `position-area` without
+   `position-try-fallbacks`, and one combined guard would lose the block above there. */
+@supports (position-try-fallbacks: flip-block) {
+	.content {
+		position-try-fallbacks: flip-block, flip-inline;
+	}
 }
 
 .content[data-side='top'] {
-  animation-name: slideDownAndFade;
+	animation-name: slideDownAndFade;
 }
 
 .content[data-side='right'] {
-  animation-name: slideLeftAndFade;
+	animation-name: slideLeftAndFade;
 }
 
 .content[data-side='bottom'] {
-  animation-name: slideUpAndFade;
+	animation-name: slideUpAndFade;
 }
 
 .content[data-side='left'] {
-  animation-name: slideRightAndFade;
-}
-
-/* Sub content */
-.subContent {
-  background: var(--cds-color-surface-primary);
-  border-radius: var(--cds-radii-medium);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-200);
-  padding: var(--cds-scale-3x-small) 0;
-  min-width: 160px;
-  box-shadow: var(--cds-elevation-box-shadow-base);
-  box-sizing: border-box;
-  z-index: var(--cds-z-index-overlay);
-  animation-duration: 400ms;
-  animation-timing-function: var(--cds-animation-easing-enter);
-  will-change: transform, opacity;
+	animation-name: slideRightAndFade;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .subContent {
-    animation-duration: 0ms;
-  }
-}
-
-.subContent[data-side='top'] {
-  animation-name: slideDownAndFade;
-}
-
-.subContent[data-side='right'] {
-  animation-name: slideLeftAndFade;
-}
-
-.subContent[data-side='bottom'] {
-  animation-name: slideUpAndFade;
-}
-
-.subContent[data-side='left'] {
-  animation-name: slideRightAndFade;
 }
 
 /* Item */
 .item {
-  display: flex;
-  align-items: center;
-  gap: var(--cds-scale-x-small);
-  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
-  font-size: var(--cds-typography-font-size-fixed-productive-small);
-  font-family: var(--cds-typography-font-family-productive-body);
-  color: var(--cds-color-foreground-primary);
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-  transition: background-color 100ms ease, color 100ms ease;
+	display: flex;
+	align-items: center;
+	gap: var(--cds-scale-x-small);
+	padding: var(--cds-scale-2x-small) var(--cds-scale-base);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
+	font-family: var(--cds-typography-font-family-productive-body);
+	color: var(--cds-color-foreground-primary);
+	cursor: pointer;
+	outline: none;
+	user-select: none;
+	transition:
+		background-color 100ms ease,
+		color 100ms ease;
 }
 
 .item:hover {
-  background: var(--cds-color-palette-blackberry-100);
+	background: var(--cds-color-palette-blackberry-100);
 }
 
 .item:active {
-  background: var(--cds-color-palette-blackberry-200);
+	background: var(--cds-color-palette-blackberry-200);
 }
 
 .item:focus-visible:not(:hover) {
-  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
-  outline-offset: calc(-1 * var(--cds-focus-ring-width));
+	outline: var(--cds-focus-ring-width) solid
+		var(--cds-focus-ring-color-standard);
+	outline-offset: calc(-1 * var(--cds-focus-ring-width));
 }
 
 .item[data-highlighted] {
-  background: var(--cds-color-palette-blackberry-100);
+	background: var(--cds-color-palette-blackberry-100);
 }
 
 .item[data-disabled] {
-  color: var(--cds-color-foreground-disabled);
-  pointer-events: none;
+	color: var(--cds-color-foreground-disabled);
+	pointer-events: none;
 }
 
 .itemInset {
-  padding-left: var(--cds-scale-large);
-}
-
-/* Checkbox item */
-.checkboxItem {
-  display: flex;
-  align-items: center;
-  gap: var(--cds-scale-x-small);
-  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
-  font-size: var(--cds-typography-font-size-fixed-productive-small);
-  font-family: var(--cds-typography-font-family-productive-body);
-  color: var(--cds-color-foreground-primary);
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-  transition: background-color 100ms ease, color 100ms ease;
-}
-
-.checkboxItem:hover {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.checkboxItem:active {
-  background: var(--cds-color-palette-blackberry-200);
-}
-
-.checkboxItem:focus-visible:not(:hover) {
-  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
-  outline-offset: calc(-1 * var(--cds-focus-ring-width));
-}
-
-.checkboxItem[data-highlighted] {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.checkboxItem[data-disabled] {
-  color: var(--cds-color-foreground-disabled);
-  pointer-events: none;
-}
-
-/* Radio item */
-.radioItem {
-  display: flex;
-  align-items: center;
-  gap: var(--cds-scale-x-small);
-  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
-  font-size: var(--cds-typography-font-size-fixed-productive-small);
-  font-family: var(--cds-typography-font-family-productive-body);
-  color: var(--cds-color-foreground-primary);
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-  transition: background-color 100ms ease, color 100ms ease;
-}
-
-.radioItem:hover {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.radioItem:active {
-  background: var(--cds-color-palette-blackberry-200);
-}
-
-.radioItem:focus-visible:not(:hover) {
-  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
-  outline-offset: calc(-1 * var(--cds-focus-ring-width));
-}
-
-.radioItem[data-highlighted] {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.radioItem[data-disabled] {
-  color: var(--cds-color-foreground-disabled);
-  pointer-events: none;
-}
-
-/* Indicator span */
-.indicator {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
+	padding-left: var(--cds-scale-large);
 }
 
 /* Label */
 .label {
-  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
-  font-size: var(--cds-typography-font-size-fixed-productive-x-small);
-  font-family: var(--cds-typography-font-family-productive-body);
-  font-weight: 600;
-  color: var(--cds-color-foreground-secondary);
-  user-select: none;
+	padding: var(--cds-scale-2x-small) var(--cds-scale-base);
+	font-size: var(--cds-typography-font-size-fixed-productive-x-small);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-weight: 600;
+	color: var(--cds-color-foreground-secondary);
+	user-select: none;
 }
 
 .labelInset {
-  padding-left: var(--cds-scale-large);
+	padding-left: var(--cds-scale-large);
 }
 
 /* Separator */
 .separator {
-  height: var(--cds-border-width-thin);
-  margin: var(--cds-scale-3x-small) 0;
-  background: var(--cds-color-palette-blackberry-200);
-}
-
-/* Sub trigger */
-.subTrigger {
-  display: flex;
-  align-items: center;
-  gap: var(--cds-scale-x-small);
-  padding: var(--cds-scale-2x-small) var(--cds-scale-base);
-  font-size: var(--cds-typography-font-size-fixed-productive-small);
-  font-family: var(--cds-typography-font-family-productive-body);
-  color: var(--cds-color-foreground-primary);
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-  transition: background-color 100ms ease, color 100ms ease;
-}
-
-.subTrigger:hover {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.subTrigger:active {
-  background: var(--cds-color-palette-blackberry-200);
-}
-
-.subTrigger:focus-visible:not(:hover) {
-  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
-  outline-offset: calc(-1 * var(--cds-focus-ring-width));
-}
-
-.subTrigger[data-highlighted] {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.subTrigger[data-state='open'] {
-  background: var(--cds-color-palette-blackberry-100);
-}
-
-.subTriggerInset {
-  padding-left: var(--cds-scale-large);
-}
-
-.subTriggerIcon {
-  margin-left: auto;
+	height: var(--cds-border-width-thin);
+	margin: var(--cds-scale-3x-small) 0;
+	background: var(--cds-color-palette-blackberry-200);
 }
 
 /* Shortcut */
 .shortcut {
-  margin-left: auto;
-  font-size: var(--cds-typography-font-size-fixed-productive-x-small);
-  color: var(--cds-color-foreground-secondary);
-  letter-spacing: 0.05em;
+	margin-left: auto;
+	font-size: var(--cds-typography-font-size-fixed-productive-x-small);
+	color: var(--cds-color-foreground-secondary);
+	letter-spacing: 0.05em;
 }
 
 /* Animations */
 @keyframes slideUpAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideRightAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(-2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes slideDownAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideLeftAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

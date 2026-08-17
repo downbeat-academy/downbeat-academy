@@ -5,18 +5,24 @@ description: Migrate a cadence-core component off a @radix-ui/* primitive onto t
 
 # Migrate a component off Radix
 
-The recipe behind Radix A.1–A.7 and B.1–B.3. **Four components remain** — `toast`,
-`tooltip`, `hover-card` and `dropdown-menu` — and all four are **Phase C, which is
-deliberately deferred**. `separator`, the form controls, the sidebar collapsible, `slot`,
-`dialog`, `drawer` and `tabs` are done.
+The recipe behind the Remove Radix Dependencies epic, which is **complete**. No component
+in `cadence-core` wraps a `@radix-ui/*` primitive any more.
 
-Read the epic and the task in Notion first via `sync-notion` — the epic records _why_ each
-component is tiered where it is, and Tier C retentions are deliberate, not oversights. Do
-not migrate one of the remaining four just because this skill exists.
+**So there is nothing here left to migrate.** Keep this skill for the next time a component
+stops wrapping *any* dependency — the method generalises, and the traps below were all paid
+for. Do not go looking for a Radix component to apply it to; there isn't one.
 
-Two of them need something the earlier work did not: `tooltip` and `hover-card` move onto
-CSS anchor positioning, which jsdom cannot compute at all. Use the **browser project**
-(`*.browser.test.tsx`, `pnpm test:browser`) for anything positional — see §5.
+What the epic ended up establishing, and what a similar migration should reuse:
+
+- **`components/overlay/`** — anchored placement and top-layer promotion, shared by
+  `Tooltip`, `HoverCard` and `DropdownMenu`. CSS anchor positioning where the engine has
+  it, a small JS fallback where it does not. Placement is shared there; interaction timing
+  deliberately is not.
+- **`components/modal/`** — the `<dialog>` + `showModal()` lifecycle behind `Dialog` and
+  `Drawer`.
+- **`components/slot/`** — the in-house `asChild` implementation.
+- **The browser project** — `*.browser.test.tsx`, `pnpm test:browser`, running Chromium,
+  WebKit and Firefox. Anything positional or top-layer belongs there; jsdom cannot host it.
 
 ## 0. The gate
 
@@ -209,4 +215,8 @@ should state the before/after API as a table. Then do its retrospective step.
 - `ship` — verification, changeset, PR, retrospective
 - `stack` — these migrations usually stack
 - [`docs/adr/0003-browser-support-floor.md`](../../../docs/adr/0003-browser-support-floor.md)
-  — Baseline Newly Available; `:has()` is fine, `::details-content` is not
+  — Baseline Newly Available; `:has()` is fine, `::details-content` is not.
+  **CSS anchor positioning always needs an `@supports` fallback.** It is absent below
+  Safari 26, Firefox 147 and Chrome 125 — not partial, absent — so without one the overlay
+  renders in normal flow rather than merely failing to flip. The browser project runs
+  WebKit, which is where that shows up; Chromium will not tell you.

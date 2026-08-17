@@ -40,12 +40,12 @@ const meta: Meta<typeof Toast> = {
     docs: {
       description: {
         component: `
-Toast displays brief, non-intrusive notifications to the user. It's built on Radix UI's Toast primitive and styled with Cadence Design System tokens.
+Toast displays brief, non-intrusive notifications to the user. It is built on the platform — a real `<ol>` in a labelled region, promoted into the top layer with the Popover API — and styled with Cadence Design System tokens.
 
 ## Components
 
 - **Toast**: The notification element with variant styling
-- **ToastProvider**: Radix UI provider for toast context (included in Toaster)
+- **ToastProvider**: supplies timing and the shared live region (included in Toaster)
 - **ToastAction**: An action button within the toast
 - **ToastClose**: Close button with X icon (included in Toaster)
 - **ToastTitle**: Title text for the toast
@@ -80,9 +80,9 @@ toast({ title: "Success!", variant: "success" })
 
 ## Accessibility
 
-- Toasts are announced by screen readers via Radix UI's accessible primitives
+- Toasts are announced through a persistent live region that excludes the close button
 - Close button is always available for keyboard and mouse dismissal
-- Toasts auto-dismiss based on Radix UI's built-in timing
+- Toasts auto-dismiss after \`duration\`, pausing while hovered or focused; \`Infinity\` pins one open
         `,
       },
     },

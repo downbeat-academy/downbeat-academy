@@ -86,10 +86,6 @@ export default {
     'react/jsx-runtime',
     'react/jsx-dev-runtime',
     'cadence-icons',
-    '@radix-ui/react-hover-card',
-    '@radix-ui/react-tooltip',
-    '@radix-ui/react-dropdown-menu',
-    '@radix-ui/react-toast',
     'react-loading-skeleton',
     'react-loading-skeleton/dist/skeleton.css'
   ],

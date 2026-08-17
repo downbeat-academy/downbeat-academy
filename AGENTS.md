@@ -224,11 +224,22 @@ Two exceptions, both about not breaking identifiers:
 
 ### Browser support
 
-- The floor is **Baseline Newly Available**. A feature at that level may be used directly.
+- The floor is **Baseline Newly Available**. A feature at that level may be reached for.
 - Anything below the floor is an enhancement over a working fallback, never the mechanism
   a component depends on to function. Say what happens without it.
-- Nothing enforces this yet — there is no `browserslist` config. See
-  [`docs/adr/0003-browser-support-floor.md`](./docs/adr/0003-browser-support-floor.md).
+- Two different things, do not conflate them: the `browserslist` key in the root
+  `package.json` is the **support target** — what compiled output must run on
+  (`chrome/edge >= 121`, `firefox >= 122`, `safari/ios_saf >= 17.2`). Baseline Newly
+  Available is the **authoring policy** — what you may write. A feature between the two
+  needs a fallback.
+- Editing the floor changes compiled output across every app and package. Rebuild and
+  compare rather than assuming; `turbo.json` lists the root `package.json` in
+  `globalDependencies` so the cache actually invalidates.
+- **CSS anchor positioning needs a fallback.** It is unsupported below Safari 26, Firefox
+  147 and Chrome 125. Without one the overlay does not merely fail to flip, it renders in
+  the wrong place. Browser tests run Chromium, WebKit and Firefox — WebKit is where this
+  shows up.
+- See [`docs/adr/0003-browser-support-floor.md`](./docs/adr/0003-browser-support-floor.md).
 
 ### TypeScript
 

@@ -118,17 +118,18 @@ for axe runs, `declaredRule()` and `declaredRules()` for asserting token-driven 
 deliberately absent from the barrel. Storybook carries `@storybook/addon-a11y`, which is
 where `color-contrast` is actually checked — that rule cannot run under jsdom.
 
-**Four components still wrap Radix UI primitives** — `dropdown-menu`, `toast`, `tooltip`
-and `hover-card` — down from twelve. Everything else is built on the platform:
-`dialog` and `drawer` on native `<dialog>` with `showModal()`, `tabs` on the WAI-ARIA APG
-roving-tabindex pattern, `separator` on `role="separator"`, the form controls on native
-inputs, the sidebar's collapsible on a native disclosure, and `slot` on an in-house
-implementation.
+**No component wraps Radix UI**, down from twelve at the start of the removal epic. The
+whole library is built on the platform: `dialog` and `drawer` on native `<dialog>` with
+`showModal()`, `tabs` on the WAI-ARIA APG roving-tabindex pattern, `separator` on
+`role="separator"`, the form controls on native inputs, the sidebar's collapsible on a
+native disclosure, `slot` on an in-house implementation, `toast` on a real list in a
+labelled region promoted to the top layer, and `tooltip`, `hover-card` and `dropdown-menu`
+on the Popover API with CSS anchor positioning.
 
-The four that remain are a **deliberate retention, not a backlog item**: they need
-collision-aware positioning, typeahead and submenu tracking that the platform does not yet
-supply cheaply. See [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md) before
-"finishing the job" on any of them.
+`DropdownMenu` ships a **narrower API** than the Radix version did — no submenus, checkbox
+items or radio items, none of which had a consumer. See
+[`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md) before assuming that is an
+oversight.
 
 New interaction should be built on the platform first — see the `new-component` skill for
 the order of preference, and [`../adr/0003-browser-support-floor.md`](../adr/0003-browser-support-floor.md)
@@ -138,6 +139,12 @@ for what "the platform" is allowed to mean.
 `ModalRoot`, `ModalSurface` and the trigger/close/title/description parts. It is not
 exported from the package barrel; a third modal shape should be added there rather than
 assembled by a consumer.
+`Tooltip`, `HoverCard` and `DropdownMenu` share their placement through an internal
+`overlay/` module — `useAnchoredOverlay` and `useAnchorName`, covering CSS anchor
+positioning where the engine has it and a small JS fallback where it does not. Like
+`modal/`, it is absent from the barrel. Placement is shared there; interaction timing
+deliberately is not.
+
 `DataTable` wraps `@tanstack/react-table` and supports manual/server-side sorting,
 pagination, and filtering — use it for any list or table view rather than hand-rolling.
 
