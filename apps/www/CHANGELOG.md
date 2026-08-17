@@ -1,5 +1,16 @@
 # www
 
+## 4.9.1
+
+### Patch Changes
+
+- Updated dependencies [ba91571]
+- Updated dependencies [b678cb1]
+- Updated dependencies [3aab1c6]
+- Updated dependencies [2961de4]
+- Updated dependencies [51280f3]
+  - cadence-core@5.0.0
+
 ## 4.9.0
 
 ### Minor Changes

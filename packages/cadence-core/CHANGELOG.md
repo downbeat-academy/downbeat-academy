@@ -1,5 +1,324 @@
 # cadence-core
 
+## 5.0.0
+
+### Major Changes
+
+- b678cb1: Rebuild `DropdownMenu` on the platform and remove `@radix-ui/react-dropdown-menu`.
+
+  **No component in `cadence-core` wraps a Radix primitive any more.** Twelve at the start of
+  the removal epic, zero now, and the built output contains no `@radix-ui` reference except
+  two comments describing what was replaced.
+
+  ## The API is deliberately narrower
+
+  Removed, not deprecated — **nothing in the repo rendered any of them**:
+
+  `DropdownMenuGroup`, `DropdownMenuPortal`, `DropdownMenuSub`, `DropdownMenuSubTrigger`,
+  `DropdownMenuSubContent`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`,
+  `DropdownMenuCheckboxItem`.
+
+  The two consumers use five exports between them: root, trigger, content, item and
+  separator. `DropdownMenuLabel` and `DropdownMenuShortcut` are kept because they are
+  non-interactive and cost nothing.
+
+  That scoping is the whole reason this was reversible. C.4 was recorded as a re-decision
+  whose estimate was 5–8 days at real accessibility risk — but that estimate was for full
+  Radix parity, and the expensive parts of it are precisely the parts with no callers:
+  submenu safe-triangle tracking and checkbox/radio indicator state. Positioning, which the
+  re-decision was gated on, was already solved by `components/overlay/` in C.2 and C.3.
+
+  ## What was built
+
+  Roving tabindex with wrapping arrow keys, Home and End; typeahead that cycles when the same
+  character is repeated rather than searching for `"dd"` and matching nothing; Escape and
+  outside-press dismissal, both returning focus to the trigger; and the APG distinction
+  between a keyboard open (focuses the first item) and a pointer open (does not, so a mouse
+  user gets no focus ring they did not ask for). A disabled item keeps `aria-disabled` and
+  stays in the menu for a screen reader to find, while focus movement skips it.
+
+  Placement and top-layer promotion come from `components/overlay/`, now shared by three
+  components.
+
+  ## Also in this change
+
+  `setup-tests.ts` loses the `scrollIntoView` and pointer-capture shims, both commented "for
+  Radix UI". The whole jsdom suite passes without them — verified, not assumed. Only the
+  `ResizeObserver` mock remains.
+
+  The previous 864-line suite went with the exports it tested. Replacing it: **46 jsdom
+  specs** and **12 browser specs** across Chromium, WebKit and Firefox. The a11y suite is
+  also now meaningful — it previously scanned the render container while Radix portalled the
+  menu to `document.body`, so it reported zero violations on a menu that had three.
+
+- 3aab1c6: Rebuild `HoverCard` on the shared anchored-overlay base, removing
+  `@radix-ui/react-hover-card`.
+
+  ## The shared `overlay/` module
+
+  Placement is now extracted into an internal `components/overlay/` module that `Tooltip`
+  and `HoverCard` both consume — `useAnchoredOverlay`, `useAnchorName`,
+  `computeFallbackPosition` and `supportsAnchorPositioning`. Not barrel-exported, the same
+  status as `modal/`, `slot/` and `test-utils/`.
+
+  The boundary is deliberate: **placement is shared, interaction timing is not.** A tooltip's
+  hover delay and a hover card's open/close grace period look alike and are different
+  behaviours; merging them would produce a component that is neither. If `DropdownMenu` ever
+  leaves Radix (task C.4), this is where its positioning belongs.
+
+  ## API
+
+  | Before                     | After                                                                                           |
+  | -------------------------- | ----------------------------------------------------------------------------------------------- |
+  | `HoverCardArrow`           | **Removed** — a bare Radix alias with no consumer in the repo                                   |
+  | Props inherited from Radix | Hand-written: `open`, `defaultOpen`, `onOpenChange`, `openDelay`, `closeDelay`, `side`, `align` |
+  | —                          | `HoverCardProps`, `HoverCardSide`, `HoverCardAlign` now exported                                |
+
+  `openDelay` (300), `closeDelay` (150), `align` (`center`) and `sideOffset` (4) keep their
+  defaults, and `hasIcon` / `iconAriaLabel` are unchanged. `asChild` is retained on the
+  in-house `Slot` — this is the only component whose public API documents it, and
+  `handbook-reference.tsx` in `www` passes a `Link` through it.
+
+  The content is now `role="dialog"` with `aria-labelledby` pointing at the trigger. Radix
+  rendered a plain `div` with no role, so a screen reader had nothing to announce the card
+  as. A hover card holds links and is meant to be entered, which is what separates it from a
+  tooltip and what makes `dialog` the right role.
+
+  ## A real bug this found, in both components
+
+  Escape did not work for anyone using a mouse.
+
+  Dismissing removes the overlay from the top layer, the browser re-runs hit-testing, and a
+  trigger still sitting under a resting cursor receives a fresh `pointerenter` — which
+  reopens the overlay in the same frame. Closing was never enough on its own.
+
+  Both components now latch dismissed until the pointer leaves the trigger, which is what
+  APG describes. It surfaced as a browser spec that failed only when an earlier spec had
+  physically moved the mouse over the trigger first — which is also the only condition a real
+  user is ever in. Diagnosing it took ruling out event delivery (the trusted keydown _did_
+  reach `document`) and refocusing (no `focus` event fired) before the hit-test explanation
+  was the only one left.
+
+  ## Tests
+
+  The previous 576-line suite is not carried over wholesale, for the same reason the
+  tooltip's was not: seven of its assertions were `not.toThrow()`, and `renders within a
+Portal` checked no portal. The parts that asserted something — `Title`/`Main`/`Footer`,
+  `hasIcon`, `asChild` — are kept and extended.
+
+  What replaces it: **35 jsdom specs**, a new `hover-card-a11y.test.tsx`, and **9 browser
+  specs** covering placement on all three engines plus the interactivity that defines the
+  component — that the pointer can leave the trigger, cross the gap, and use a link inside
+  the card.
+
+  `setup-tests.browser.ts` now raises Testing Library's `asyncUtilTimeout` to 5s. With every
+  spec running three times over, a real browser under that contention can take longer than
+  the 1s default to commit and repaint; one of the specs this fixed (`drawer.browser.test.tsx`)
+  predates the third engine entirely, which is what identified it as scheduling pressure
+  rather than a defect.
+
+- 2961de4: Rebuild `Toast` without `@radix-ui/react-toast`. `cadence-core` now declares **one** Radix
+  package — `react-dropdown-menu`, the deliberate Tier C retention.
+
+  ## API
+
+  The public surface is unchanged for every existing call site. `Toast`, `ToastProvider`,
+  `ToastViewport`, `ToastTitle`, `ToastDescription`, `ToastClose`, `ToastAction`, `Toaster`,
+  `useToast` and `toast()` all keep their names and behaviour — this was the constraint, with
+  11 call sites in `apps/www` plus `apps/auth`.
+
+  | Before                                                                | After                                                                                                                                         |
+  | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Props inherited from Radix                                            | Hand-written; nothing Radix-shaped reaches `dist/*.d.ts`                                                                                      |
+  | `ToastProvider` was a bare Radix alias                                | Owns `duration`, `label`, `swipeDirection`, `swipeThreshold`, and the live region                                                             |
+  | `ToastActionElement` was `ReactElement<typeof ToastPrimitive.Action>` | `ReactElement<ToastActionProps>` — the old form was wrong on its own terms, `typeof Component` being the component type rather than its props |
+  | —                                                                     | `ToastProviderProps` and `ToastType` exported                                                                                                 |
+
+  `duration` now accepts `Infinity` to pin a toast open, and `altText` on `ToastAction` keeps
+  the meaning Radix gave it: it is folded into the announcement rather than being decorative.
+
+  ## What was rebuilt
+
+  Auto-dismiss timers that **pause on hover and on focus** and bank elapsed time rather than
+  restarting, so a toast cannot expire while it is being read or while the user is tabbing
+  towards its action. They also pause when the tab is hidden — a toast that times out in a
+  background tab is a message nobody saw. Tab visibility only, not window blur: another
+  application taking focus leaves the toast on screen. Swipe-to-dismiss for touch and pen, ignoring mouse
+  drags so text stays selectable. The F8 hotkey, which the viewport's own accessible label
+  promises. And announcement through a **persistent** live region built from the title and
+  description only, so the close button is excluded by construction rather than by a marker
+  attribute.
+
+  Toasts portal into the viewport's `<ol>`. The documented composition puts `<Toast>` as a
+  sibling of `<ToastViewport>`, so rendering in place left a bare `<li>` outside any list —
+  invalid HTML, an axe `listitem` violation, and no list semantics. `Toaster` reverses the
+  array before mapping, because the reducer prepends and DOM order must stay oldest-first;
+  the 0.3 backfill predicted precisely this as the thing a rewrite would get wrong.
+
+  ## A defect this uncovered — B.1b's fix does not work
+
+  `ToastViewport` promotes itself to `popover="manual"` and re-asserts on `cds-dialog-open`,
+  which task B.1b concluded would keep a toast above a modal `<dialog>`. **It does not, and
+  never did.** Measured against the raw platform, identically in Chromium, WebKit and
+  Firefox:
+
+  ```
+  popover alone            → the popover is topmost
+  after dlg.showModal()    → the DIALOG is topmost, popover still :popover-open
+  after hide + showPopover → the DIALOG is still topmost
+  ```
+
+  Opening a modal dialog makes everything outside it inert, and an inert top-layer element
+  paints below the modal. Insertion order cannot beat that.
+
+  This rebuild neither caused nor cured it — B.1b shipped without a test, and C.1 wrote the
+  first one that checked. Three admin dialogs call `toast()` on their failure path, so the
+  message is behind the backdrop exactly when it is needed. Now recorded in
+  `docs/adr/0002-known-gaps.md` and pinned by a spec that asserts the _current_ behaviour, so
+  it fails loudly if an engine ever changes it. The promotion is kept, because it genuinely
+  does keep toasts above ordinary stacked content.
+
+  ## Tests
+
+  The 0.3 backfill's 61 specs are kept and satisfied — unlike `tooltip` and `hover-card`,
+  this suite was a real regression contract and earned its description. Two assertions were
+  rewritten rather than relocated, both because they named Radix's mechanism: one required
+  `data-radix-toast-announce-exclude`, which cannot survive the removal of Radix and is now
+  asserted as the behaviour it protected (the announcement contains the title and
+  description and not "Close"); the other queried text that the live region legitimately
+  duplicates, and is now scoped to the list.
+
+  Added: **10 browser specs** for what jsdom cannot host — real-clock auto-dismiss, pausing
+  on hover and focus, `Infinity`, the F8 hotkey, top-layer promotion, and the modal-dialog
+  gap above.
+
+- 51280f3: Rebuild `Tooltip` on the Popover API and CSS anchor positioning, removing
+  `@radix-ui/react-tooltip`.
+
+  This was Phase C's proving ground: whether the platform can carry a positioned overlay. It
+  can, but not on its own — see the fallback below.
+
+  ## API
+
+  | Before                                               | After                                                                                                            |
+  | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+  | `TooltipArrow`                                       | **Removed.** A bare Radix alias with no consumer anywhere in the repo                                            |
+  | `Tooltip` props inherited from Radix                 | Hand-written: `open`, `defaultOpen`, `onOpenChange`, `delayDuration`, `disableHoverableContent`, `side`, `align` |
+  | `TooltipContent` props inherited from Radix          | Hand-written: `sideOffset`, `side`, `align`, plus `HTMLAttributes<HTMLDivElement>`                               |
+  | `TooltipTrigger` props inherited from Radix          | `ButtonHTMLAttributes<HTMLButtonElement>` plus `asChild`                                                         |
+  | `TooltipProvider` required — Radix threw without one | Optional; falls back to a 700ms default                                                                          |
+  | No exported types beyond content/trigger props       | `TooltipProps`, `TooltipProviderProps`, `TooltipSide`, `TooltipAlign` also exported                              |
+
+  `asChild` is retained on `TooltipTrigger`, on the in-house `Slot` from A.6 —
+  `sidebar-link.tsx` depends on it. `delayDuration`, `sideOffset`, `side` and `align` keep
+  their previous defaults, so both apps' `<TooltipProvider delayDuration={500}>` behaves
+  exactly as before.
+
+  ## Placement, and why there are two mechanisms
+
+  CSS anchor positioning does the work where the engine has it: `anchor-name` on the trigger,
+  `position-anchor` and `position-area` on the content, and `position-try-fallbacks` for
+  viewport flipping — gated separately, because Safari 26 ships `anchor()` without it.
+
+  **It is not usable alone.** Anchor positioning is absent below Chrome 125, Edge 125,
+  Firefox 147 and Safari 26.0 — not partial, absent. ADR-0003 originally recorded that Safari
+  18.2/18.3 supported `anchor()` without `@position-try`, which was wrong, and the correction
+  changes what a fallback has to do: below the floor the whole positioning mechanism is
+  missing and the tooltip would render in normal flow, which that ADR calls the unacceptable
+  case. So there is a ~40-line JS fallback that measures the trigger and sets viewport
+  coordinates. It does no collision detection and does not flip, which the ADR explicitly
+  permits.
+
+  The content is promoted into the top layer with `popover="manual"` — manual rather than
+  auto, because an auto popover joins the light-dismiss group and force-closes every other
+  open auto popover, so a tooltip inside a menu would dismiss the menu.
+
+  ## Behaviour
+
+  Pointer-out now closes after a 150ms grace period rather than immediately. There is a real
+  `sideOffset` gap between trigger and tooltip, so reaching the tooltip means leaving the
+  trigger first; closing on that event unmounted the content before the pointer could arrive
+  and made hoverable content unreachable. `TooltipProvider` also gained `skipDelayDuration`
+  (300ms), so moving along a row of triggers does not re-pay the delay each time.
+
+  Otherwise: focus opens with no delay, blur/Escape/click close immediately, touch pointers
+  are ignored (a tap fires `pointerenter` before `click` and would leave an undismissable
+  tooltip), and `aria-describedby` is set only while open so it never dangles.
+
+  ## Tests
+
+  The previous 732-line suite is replaced rather than ported, and most of it did not survive
+  review rather than the migration. `accepts and forwards props to Radix provider` asserted
+  only `not.toThrow()`, which passes against an empty component; `renders within a Portal`
+  asserted that a trigger was an `HTMLElement` and the content's text existed somewhere, both
+  true of an implementation with no portal. It was described as a strong regression contract
+  and largely was not one.
+
+  What replaces it: 38 jsdom specs for wiring, delay, controlled/uncontrolled and `asChild`;
+  a new `tooltip-a11y.test.tsx`, which this component never had; and 11 browser specs for
+  placement. The browser specs assert geometry rather than mechanism, so the same assertions
+  cover both paths — Chromium and Firefox take the CSS route, WebKit the JS fallback, and a
+  fallback that silently did nothing would fail them.
+
+  Two implementation bugs those tests caught, both of which would have shipped: a consumer's
+  `style` prop replaced the anchor custom property wholesale, leaving the tooltip unanchored
+  at its static position; and the popover-promotion effect ran once against a null ref and
+  never again, so the content was correctly positioned but never entered the top layer.
+
+### Patch Changes
+
+- ba91571: Encode the browser-support floor as a `browserslist` config, and correct two facts in
+  ADR-0003 that were wrong.
+
+  The floor has been written down since ADR-0003 (2026-08-05) but nothing enforced it, so
+  every tool picked its own compilation target. The root `package.json` now carries:
+
+  ```json
+  "browserslist": ["baseline widely available on 2026-08-16"]
+  ```
+
+  resolving to `chrome/edge >= 121`, `firefox >= 122`, `safari/ios_saf >= 17.2`.
+
+  **The literal `baseline newly available` query, which ADR-0003 and task 0.6 both specified,
+  could not be used.** It parses, but browserslist implements it as "widely available on
+  `new Date()` + 30 months": it re-resolves on every build, and today matches Chrome, Edge
+  and Chrome for Android only — Safari 26.5 and Firefox 152 do not qualify. As a compilation
+  target it would tell autoprefixer and postcss-preset-env that no engine but Chromium
+  matters. The pinned `widely available on <date>` form is deterministic and broad, and the
+  Newly Available policy is retained as the _authoring_ rule, which is what it always
+  described. The ADR now states that split explicitly.
+
+  **ADR-0003 also claimed Safari 18.2/18.3 support `anchor()` without `@position-try`.** They
+  support neither; CSS anchor positioning is absent below Safari 26.0. That matters for the
+  Tooltip and HoverCard work, where the consequence is not a missing viewport flip but an
+  overlay rendering in normal flow — the case the ADR itself calls unacceptable. Anchor
+  positioning now requires an `@supports` fallback.
+
+  Effects, measured rather than assumed. `dist/cadence-core.min.css` goes 87,335 → 85,822
+  bytes (12,589 → 12,483 gzipped), entirely from Firefox prefixes that are no longer
+  generated (`-moz-appearance`, `-moz-user-select`, `-moz-fit-content`) plus three
+  `-webkit-appearance` declarations. Vendor pseudo-elements with no standard equivalent are
+  untouched, as are the `-webkit-` prefixes Safari still needs. `::backdrop`, `:has()` and
+  `[popover]` all survive the changed postcss and cssnano pass. `apps/www` is unchanged to
+  within eight bytes — Next 16 already defaulted to a modern target and only consults
+  browserslist when a config exists.
+
+  Two supporting fixes this required:
+  - `turbo.json` had no `globalDependencies`, so the root `package.json` was not in the build
+    hash — editing the floor and rebuilding returned `FULL TURBO` and served a `dist` built
+    against the old target. Verified fixed in both directions.
+  - The browser-test project ran Chromium only, which cannot verify a multi-engine floor. It
+    now runs Chromium, WebKit and Firefox. WebKit immediately surfaced that its Tab order
+    skips buttons entirely (macOS full keyboard access is off by default), so the `Dialog`
+    and `Drawer` focus-trap specs were asserting an engine preference rather than component
+    behaviour. The modals themselves are correct on WebKit. That half of the assertion is now
+    gated on a runtime probe, `tabVisitsButtons()` in `src/test-utils/keyboard.ts`; the half
+    that matters, focus never escaping, stays unconditional.
+
+  `transpileClientSDK: true` is removed from `apps/www/next.config.js`. It declared IE11
+  support, which contradicts any modern floor, though it saved nothing — the option was
+  dropped in `@sentry/nextjs` v8 and this repo is on v10.
+
 ## 4.0.0
 
 ### Major Changes
