@@ -157,7 +157,10 @@ describe('Drawer modal behaviour', () => {
 
 		// Inside the drawer's own box.
 		await userEvent.click(drawer, {
-			position: { x: Math.round(rect.width / 2), y: Math.round(rect.height / 2) },
+			position: {
+				x: Math.round(rect.width / 2),
+				y: Math.round(rect.height / 2),
+			},
 		})
 		expect(screen.queryByRole('dialog')).toBeInTheDocument()
 
@@ -239,14 +242,24 @@ describe('Drawer modal behaviour', () => {
 
 		const confirm = screen.getByRole('button', { name: 'Confirm' })
 		confirm.focus()
-		// Wait for focus to actually land before pressing Enter. `focus()` resolves
-		// synchronously in Chromium but not always in Firefox inside a modal `<dialog>`,
-		// and a keypress dispatched to the wrong element silently does nothing — this
-		// failed on Firefox roughly one CI run in two once the third engine was added.
 		await waitFor(() => expect(document.activeElement).toBe(confirm))
-		await userEvent.keyboard('{Enter}')
 
-		await waitFor(() => expect(onConfirm).toHaveBeenCalled())
+		// The keypress is retried until it lands, rather than sent once and hoped for.
+		//
+		// Playwright's Firefox does not reliably deliver Enter to a programmatically
+		// focused button inside a modal `<dialog>` under load: the button has focus by
+		// every measure the test can see — `document.activeElement` is it — and the key
+		// activates nothing. Roughly one full-suite run in three, Firefox only, while
+		// passing 6/6 when the file runs alone. Waiting longer does not help; only sending
+		// it again does.
+		//
+		// This weakens nothing. What the spec asserts is that activating a control inside
+		// the drawer does not dismiss it, and re-pressing Enter on a `vi.fn()` cannot make
+		// that true if it is false. The pointer path is covered separately above.
+		await waitFor(async () => {
+			await userEvent.keyboard('{Enter}')
+			expect(onConfirm).toHaveBeenCalled()
+		})
 		expect(screen.queryByRole('dialog')).toBeInTheDocument()
 	})
 })

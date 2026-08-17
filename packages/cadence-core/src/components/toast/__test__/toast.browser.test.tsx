@@ -26,6 +26,27 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle } from '../../dialog'
 afterEach(() => {
 	const active = document.activeElement
 	if (active instanceof HTMLElement) active.blur()
+
+	/**
+	 * Force any surviving viewport out of the top layer.
+	 *
+	 * Every spec here mounts a viewport at `fixed; bottom: 0; right: 0`, so two of them
+	 * stack exactly. A viewport left open by the previous spec therefore covers the next
+	 * one's toast, and `userEvent.hover` — which waits for the element to actually receive
+	 * pointer events — blocks until the 15s test timeout rather than failing an assertion.
+	 * That is what it looked like on CI: `does not dismiss while the pointer is over it`
+	 * timing out at 15,077ms, on a spec that passes in isolation every time.
+	 *
+	 * Testing Library's cleanup unmounts the tree, but this runs first and does not depend
+	 * on unmount ordering to get the element out of the top layer.
+	 */
+	document.querySelectorAll('[popover]').forEach((el) => {
+		try {
+			if (el.matches(':popover-open')) (el as HTMLElement).hidePopover()
+		} catch {
+			/* already gone */
+		}
+	})
 })
 
 const Fixture = ({
