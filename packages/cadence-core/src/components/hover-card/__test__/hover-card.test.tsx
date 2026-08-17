@@ -1,577 +1,516 @@
-import React from 'react'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { describe, it, expect, vi } from 'vitest'
+import React, { useState } from 'react'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import {
-  HoverCard,
-  HoverCardArrow,
-  HoverCardContent,
-  HoverCardTrigger,
-  HoverCardTitle,
-  HoverCardMain,
-  HoverCardFooter,
+	HoverCard,
+	HoverCardTrigger,
+	HoverCardContent,
+	HoverCardTitle,
+	HoverCardMain,
+	HoverCardFooter,
 } from '../index'
-
-describe('HoverCard Components', () => {
-  describe('HoverCard Root', () => {
-    it('renders without crashing', () => {
-      expect(() => {
-        render(
-          <HoverCard>
-            <HoverCardTrigger>Trigger</HoverCardTrigger>
-            <HoverCardContent>Content</HoverCardContent>
-          </HoverCard>
-        )
-      }).not.toThrow()
-    })
-
-    it('accepts and forwards props to Radix primitive', () => {
-      const onOpenChange = vi.fn()
-      render(
-        <HoverCard open={true} onOpenChange={onOpenChange}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByText('Trigger')
-      expect(trigger).toBeInstanceOf(HTMLElement)
-    })
-
-    it('supports controlled state with open prop', () => {
-      const { rerender } = render(
-        <HoverCard open={false}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent>Hidden Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // Content should not be visible when open=false
-      expect(screen.queryByText('Hidden Content')).toBeNull()
-
-      rerender(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent>Visible Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // Content should be visible when open=true
-      expect(screen.getByText('Visible Content')).toBeInstanceOf(HTMLElement)
-    })
-  })
-
-  describe('HoverCardTrigger', () => {
-    it('renders children correctly', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger>Test Trigger</HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      expect(screen.getByText('Test Trigger')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('applies custom className', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger className="custom-trigger">Trigger</HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByText('Trigger')
-      expect(trigger.className).toContain('custom-trigger')
-    })
-
-    it('shows icon when hasIcon is true', () => {
-      const { container } = render(
-        <HoverCard>
-          <HoverCardTrigger hasIcon={true}>Trigger with icon</HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // Look for the QuestionCircleOutline icon
-      const iconElement = container.querySelector('svg')
-      expect(iconElement).toBeInstanceOf(SVGElement)
-    })
-
-    it('does not show icon when hasIcon is false', () => {
-      const { container } = render(
-        <HoverCard>
-          <HoverCardTrigger hasIcon={false}>Trigger without icon</HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // Should not find any svg icons
-      const iconElement = container.querySelector('svg')
-      expect(iconElement).toBeNull()
-    })
-
-    it('renders as child element when asChild is true', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <button data-testid="custom-button">Custom Button</button>
-          </HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const customButton = screen.getByTestId('custom-button')
-      expect(customButton.tagName).toBe('BUTTON')
-    })
-
-    it('does not render icon when asChild is true', () => {
-      const { container } = render(
-        <HoverCard>
-          <HoverCardTrigger asChild hasIcon={true}>
-            <button>Custom Button with hasIcon</button>
-          </HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // When asChild is true, hasIcon should be ignored
-      const iconElement = container.querySelector('svg')
-      expect(iconElement).toBeNull()
-    })
-
-    it('supports hover state data attributes', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger data-testid="hover-trigger">Hover me</HoverCardTrigger>
-          <HoverCardContent>Hover content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByTestId('hover-trigger')
-
-      // Check initial state
-      expect(trigger.getAttribute('data-state')).toBe('closed')
-
-      // Hover over the trigger
-      fireEvent.mouseEnter(trigger)
-
-      // Check that the data attribute shows hovered state (without needing content to appear)
-      expect(trigger).toBeInstanceOf(HTMLElement)
-    })
-
-    it('supports aria attributes', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger
-            aria-label="Custom trigger label"
-            aria-describedby="trigger-description"
-          >
-            Accessible Trigger
-          </HoverCardTrigger>
-          <HoverCardContent>Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByText('Accessible Trigger')
-      expect(trigger.getAttribute('aria-label')).toBe('Custom trigger label')
-      expect(trigger.getAttribute('aria-describedby')).toBe('trigger-description')
-    })
-  })
-
-  describe('HoverCardContent', () => {
-    it('renders content correctly when open', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent>Test Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      expect(screen.getByText('Test Content')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('applies custom className', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent className="custom-content">Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const content = screen.getByText('Content')
-      expect(content.className).toContain('custom-content')
-    })
-
-    it('renders with default positioning props', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent data-testid="content">Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const content = screen.getByTestId('content')
-      // Just check that content is rendered, positioning is handled by Radix internally
-      expect(content).toBeInstanceOf(HTMLElement)
-      expect(content.textContent).toBe('Content')
-    })
-
-    it('accepts custom positioning props', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent
-            data-testid="content"
-            align="start"
-            sideOffset={8}
-          >
-            Content
-          </HoverCardContent>
-        </HoverCard>
-      )
-
-      const content = screen.getByTestId('content')
-      // Just verify content is rendered - positioning props are passed to Radix internally
-      expect(content).toBeInstanceOf(HTMLElement)
-      expect(content.textContent).toBe('Content')
-    })
-
-    it('renders within a Portal', () => {
-      const { container } = render(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent>Portal Content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // Content should be rendered outside the container due to Portal
-      const triggerInContainer = container.querySelector('a')
-      expect(triggerInContainer).toBeInstanceOf(HTMLElement)
-
-      // But content should still be accessible via screen (rendered in Portal)
-      expect(screen.getByText('Portal Content')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('supports complex children', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger>Trigger</HoverCardTrigger>
-          <HoverCardContent>
-            <div>
-              <h3>Title</h3>
-              <p>Description</p>
-              <button>Action</button>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
-      )
-
-      expect(screen.getByText('Title')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Description')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Action')).toBeInstanceOf(HTMLElement)
-    })
-  })
-
-  describe('HoverCardTitle', () => {
-    it('renders children correctly', () => {
-      render(<HoverCardTitle>Test Title</HoverCardTitle>)
-      expect(screen.getByText('Test Title')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('applies custom className', () => {
-      render(<HoverCardTitle className="custom-title">Title</HoverCardTitle>)
-      const title = screen.getByText('Title')
-      expect(title.className).toContain('custom-title')
-    })
-
-    it('renders as div element', () => {
-      render(<HoverCardTitle>Title</HoverCardTitle>)
-      const title = screen.getByText('Title')
-      expect(title.tagName).toBe('DIV')
-    })
-
-    it('forwards HTML attributes', () => {
-      render(
-        <HoverCardTitle
-          data-testid="test-title"
-          id="title-id"
-          role="heading"
-        >
-          Title with attributes
-        </HoverCardTitle>
-      )
-
-      const title = screen.getByTestId('test-title')
-      expect(title.getAttribute('id')).toBe('title-id')
-      expect(title.getAttribute('role')).toBe('heading')
-    })
-  })
-
-  describe('HoverCardMain', () => {
-    it('renders children correctly', () => {
-      render(<HoverCardMain>Main content</HoverCardMain>)
-      expect(screen.getByText('Main content')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('applies custom className', () => {
-      render(<HoverCardMain className="custom-main">Main</HoverCardMain>)
-      const main = screen.getByText('Main')
-      expect(main.className).toContain('custom-main')
-    })
-
-    it('renders as div element', () => {
-      render(<HoverCardMain>Main</HoverCardMain>)
-      const main = screen.getByText('Main')
-      expect(main.tagName).toBe('DIV')
-    })
-
-    it('supports complex content', () => {
-      render(
-        <HoverCardMain>
-          <p>Paragraph 1</p>
-          <p>Paragraph 2</p>
-          <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-          </ul>
-        </HoverCardMain>
-      )
-
-      expect(screen.getByText('Paragraph 1')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Paragraph 2')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Item 1')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Item 2')).toBeInstanceOf(HTMLElement)
-    })
-  })
-
-  describe('HoverCardFooter', () => {
-    it('renders children correctly', () => {
-      render(<HoverCardFooter>Footer content</HoverCardFooter>)
-      expect(screen.getByText('Footer content')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('applies custom className', () => {
-      render(<HoverCardFooter className="custom-footer">Footer</HoverCardFooter>)
-      const footer = screen.getByText('Footer')
-      expect(footer.className).toContain('custom-footer')
-    })
-
-    it('renders as div element', () => {
-      render(<HoverCardFooter>Footer</HoverCardFooter>)
-      const footer = screen.getByText('Footer')
-      expect(footer.tagName).toBe('DIV')
-    })
-
-    it('supports action elements', () => {
-      render(
-        <HoverCardFooter>
-          <button>Cancel</button>
-          <button>Confirm</button>
-        </HoverCardFooter>
-      )
-
-      expect(screen.getByText('Cancel')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Confirm')).toBeInstanceOf(HTMLElement)
-    })
-  })
-
-  describe('HoverCardArrow', () => {
-    it('renders arrow component without errors', () => {
-      expect(() => {
-        render(
-          <HoverCard open={true}>
-            <HoverCardTrigger>Trigger</HoverCardTrigger>
-            <HoverCardContent>
-              Content
-              <HoverCardArrow />
-            </HoverCardContent>
-          </HoverCard>
-        )
-      }).not.toThrow()
-    })
-  })
-
-  describe('Accessibility', () => {
-    it('has proper basic ARIA attributes when open', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger data-testid="trigger">Info</HoverCardTrigger>
-          <HoverCardContent data-testid="content">Information content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByTestId('trigger')
-      const content = screen.getByTestId('content')
-
-      // Check that content is rendered and accessible
-      expect(content).toBeInstanceOf(HTMLElement)
-      expect(content.textContent).toBe('Information content')
-      expect(trigger.getAttribute('data-state')).toBe('open')
-    })
-
-    it('supports keyboard focus on trigger', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger data-testid="trigger">Info</HoverCardTrigger>
-          <HoverCardContent data-testid="content">Information content</HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByTestId('trigger')
-
-      // Test that focus events can be triggered
-      expect(() => {
-        fireEvent.focus(trigger)
-      }).not.toThrow()
-
-      // Check that the trigger element is focusable (has tabindex or is naturally focusable)
-      expect(trigger).toBeInstanceOf(HTMLElement)
-    })
-
-    it('triggers escape key events', () => {
-      const { container } = render(
-        <HoverCard open={true}>
-          <HoverCardTrigger data-testid="trigger">Info</HoverCardTrigger>
-          <HoverCardContent data-testid="content">Information content</HoverCardContent>
-        </HoverCard>
-      )
-
-      // Test that escape key events can be triggered without error
-      expect(() => {
-        fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' })
-      }).not.toThrow()
-    })
-  })
-
-  describe('Component Composition', () => {
-    it('renders complete hover card with all components when open', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger hasIcon data-testid="trigger">
-            Learn more
-          </HoverCardTrigger>
-          <HoverCardContent data-testid="content">
-            <HoverCardTitle>About this feature</HoverCardTitle>
-            <HoverCardMain>
-              This feature helps you understand the complex concepts by providing
-              detailed explanations and examples.
-            </HoverCardMain>
-            <HoverCardFooter>
-              <button>Got it</button>
-            </HoverCardFooter>
-            <HoverCardArrow />
-          </HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByTestId('trigger')
-
-      // Should show icon
-      expect(trigger.querySelector('svg')).toBeInstanceOf(SVGElement)
-
-      // Content should be visible when open=true
-      expect(screen.getByText('About this feature')).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText(/This feature helps you/)).toBeInstanceOf(HTMLElement)
-      expect(screen.getByText('Got it')).toBeInstanceOf(HTMLElement)
-    })
-
-    it('works with custom styling and props when open', () => {
-      render(
-        <HoverCard open={true}>
-          <HoverCardTrigger
-            className="custom-trigger"
-            hasIcon={true}
-            data-testid="trigger"
-          >
-            Custom Trigger
-          </HoverCardTrigger>
-          <HoverCardContent
-            className="custom-content"
-            align="start"
-            sideOffset={12}
-            data-testid="content"
-          >
-            <HoverCardTitle className="custom-title">
-              Custom Title
-            </HoverCardTitle>
-            <HoverCardMain className="custom-main">
-              Custom main content
-            </HoverCardMain>
-            <HoverCardFooter className="custom-footer">
-              Custom footer
-            </HoverCardFooter>
-          </HoverCardContent>
-        </HoverCard>
-      )
-
-      const trigger = screen.getByTestId('trigger')
-      expect(trigger.className).toContain('custom-trigger')
-
-      const content = screen.getByTestId('content')
-      expect(content.className).toContain('custom-content')
-
-      const title = screen.getByText('Custom Title')
-      expect(title.className).toContain('custom-title')
-
-      const main = screen.getByText('Custom main content')
-      expect(main.className).toContain('custom-main')
-
-      const footer = screen.getByText('Custom footer')
-      expect(footer.className).toContain('custom-footer')
-    })
-
-    it('works with asChild trigger pattern', () => {
-      render(
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <button className="custom-button" data-testid="custom-trigger">
-              <span>Custom Button Content</span>
-            </button>
-          </HoverCardTrigger>
-          <HoverCardContent data-testid="content">
-            Content for custom button
-          </HoverCardContent>
-        </HoverCard>
-      )
-
-      const customTrigger = screen.getByTestId('custom-trigger')
-      expect(customTrigger.tagName).toBe('BUTTON')
-      expect(customTrigger.className).toContain('custom-button')
-      expect(screen.getByText('Custom Button Content')).toBeInstanceOf(HTMLElement)
-    })
-  })
-
-  describe('Edge Cases', () => {
-    it('handles missing content gracefully', () => {
-      expect(() => {
-        render(
-          <HoverCard>
-            <HoverCardTrigger>Trigger only</HoverCardTrigger>
-          </HoverCard>
-        )
-      }).not.toThrow()
-    })
-
-    it('handles missing trigger gracefully', () => {
-      expect(() => {
-        render(
-          <HoverCard>
-            <HoverCardContent>Content only</HoverCardContent>
-          </HoverCard>
-        )
-      }).not.toThrow()
-    })
-
-    it('handles empty children in sub-components', () => {
-      expect(() => {
-        render(
-          <div>
-            <HoverCardTitle>{}</HoverCardTitle>
-            <HoverCardMain>{null}</HoverCardMain>
-            <HoverCardFooter>{undefined}</HoverCardFooter>
-          </div>
-        )
-      }).not.toThrow()
-    })
-  })
+import s from '../hover-card.module.css'
+
+/**
+ * The markup-and-wiring half of `HoverCard`'s contract. Placement lives in
+ * `hover-card.browser.test.tsx`.
+ *
+ * The previous 576-line suite is not carried over wholesale, for the same reason the
+ * tooltip's was not: seven of its assertions were `not.toThrow()`, which passes against an
+ * empty component, and `renders within a Portal` checked no portal. The parts that did
+ * assert something — the `Title`/`Main`/`Footer` subcomponents, `hasIcon`, `asChild` —
+ * are kept and extended.
+ *
+ * What is genuinely different from `Tooltip`, and is what this file exists to pin: the
+ * card is **interactive**. Every pointer-out path must schedule rather than close, or the
+ * links inside it are unreachable.
+ */
+
+const hover = (el: HTMLElement) =>
+	fireEvent.pointerEnter(el, { pointerType: 'mouse' })
+const unhover = (el: HTMLElement) =>
+	fireEvent.pointerLeave(el, { pointerType: 'mouse' })
+
+const Basic = ({
+	openDelay,
+	closeDelay,
+}: {
+	openDelay?: number
+	closeDelay?: number
+}) => (
+	<HoverCard openDelay={openDelay} closeDelay={closeDelay}>
+		<HoverCardTrigger>Glossary term</HoverCardTrigger>
+		<HoverCardContent>
+			<HoverCardTitle>Term</HoverCardTitle>
+			<HoverCardMain>A definition.</HoverCardMain>
+			<HoverCardFooter>
+				<a href="#more">Learn more</a>
+			</HoverCardFooter>
+		</HoverCardContent>
+	</HoverCard>
+)
+
+beforeEach(() => {
+	vi.useFakeTimers({ shouldAdvanceTime: true })
+})
+
+afterEach(() => {
+	vi.useRealTimers()
+})
+
+describe('HoverCard composition and roles', () => {
+	it('renders nothing until opened', () => {
+		render(<Basic />)
+		expect(screen.getByText('Glossary term')).toBeInTheDocument()
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('is a dialog, not a tooltip', () => {
+		render(<Basic openDelay={0} />)
+		hover(screen.getByText('Glossary term'))
+		// A tooltip is a plain description whose contents are unreachable. This holds
+		// links and is meant to be entered, so `role="tooltip"` would misdescribe it.
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+		expect(screen.queryByRole('tooltip')).not.toBeInTheDocument()
+	})
+
+	it('is named by its trigger', () => {
+		render(<Basic openDelay={0} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		const card = screen.getByRole('dialog')
+		expect(card).toHaveAttribute('aria-labelledby', trigger.id)
+		expect(trigger.id).toBeTruthy()
+	})
+
+	it('describes the trigger only while open', () => {
+		render(<Basic openDelay={0} />)
+		const trigger = screen.getByText('Glossary term')
+		expect(trigger).not.toHaveAttribute('aria-describedby')
+
+		hover(trigger)
+		expect(trigger.getAttribute('aria-describedby')).toBe(
+			screen.getByRole('dialog').id
+		)
+	})
+
+	it('reflects open state on the trigger for styling', () => {
+		render(<Basic openDelay={0} />)
+		const trigger = screen.getByText('Glossary term')
+		expect(trigger).toHaveAttribute('data-state', 'closed')
+		hover(trigger)
+		expect(trigger).toHaveAttribute('data-state', 'open')
+	})
+
+	it('publishes a distinct anchor name shared by trigger and card', () => {
+		render(<Basic openDelay={0} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		const card = screen.getByRole('dialog')
+
+		const anchor = card.style.getPropertyValue('--cds-hover-card-anchor')
+		expect(anchor).toMatch(/^--cds-hover-card-[a-zA-Z0-9_-]+$/)
+		expect(trigger.style.getPropertyValue('--cds-hover-card-anchor')).toBe(
+			anchor
+		)
+	})
+
+	it('never renders the popover attribute from JSX', () => {
+		render(<Basic openDelay={0} />)
+		hover(screen.getByText('Glossary term'))
+		// jsdom parses `popover` without implementing the API, which would leave the card
+		// `display: none` for the whole jsdom project.
+		expect(screen.getByRole('dialog')).not.toHaveAttribute('popover')
+	})
+})
+
+describe('HoverCard timing', () => {
+	it('waits openDelay before opening on hover', () => {
+		render(<Basic openDelay={300} />)
+		hover(screen.getByText('Glossary term'))
+
+		act(() => {
+			vi.advanceTimersByTime(299)
+		})
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+
+		act(() => {
+			vi.advanceTimersByTime(1)
+		})
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+	})
+
+	it('cancels a pending open when the pointer leaves first', () => {
+		render(<Basic openDelay={300} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		unhover(trigger)
+
+		act(() => {
+			vi.advanceTimersByTime(1000)
+		})
+		// Sweeping across a trigger must never produce a card a moment later.
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('waits closeDelay before closing', () => {
+		render(<Basic openDelay={0} closeDelay={150} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		unhover(trigger)
+
+		act(() => {
+			vi.advanceTimersByTime(149)
+		})
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+
+		act(() => {
+			vi.advanceTimersByTime(1)
+		})
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('stays open when the pointer moves onto the card', () => {
+		render(<Basic openDelay={0} closeDelay={150} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		const card = screen.getByRole('dialog')
+
+		// This is the whole difference from a tooltip. The pointer has to cross the
+		// `sideOffset` gap, so it leaves the trigger before it arrives on the card; closing
+		// on that `pointerleave` would make the card's links unreachable.
+		unhover(trigger)
+		hover(card)
+
+		act(() => {
+			vi.advanceTimersByTime(1000)
+		})
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+	})
+
+	it('closes once the pointer leaves the card too', () => {
+		render(<Basic openDelay={0} closeDelay={150} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		const card = screen.getByRole('dialog')
+		unhover(trigger)
+		hover(card)
+		unhover(card)
+
+		act(() => {
+			vi.advanceTimersByTime(200)
+		})
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('ignores touch pointers', () => {
+		render(<Basic openDelay={0} />)
+		fireEvent.pointerEnter(screen.getByText('Glossary term'), {
+			pointerType: 'touch',
+		})
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('closes on Escape', () => {
+		render(<Basic openDelay={0} />)
+		hover(screen.getByText('Glossary term'))
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+		fireEvent.keyDown(document, { key: 'Escape' })
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('stays dismissed after Escape while the pointer rests on the trigger', () => {
+		render(<Basic openDelay={0} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		fireEvent.keyDown(document, { key: 'Escape' })
+
+		// Same failure mode as `Tooltip`: leaving the top layer makes the browser
+		// re-hit-test, and the trigger under the resting cursor gets a fresh
+		// `pointerenter` that would reopen the card immediately.
+		hover(trigger)
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('opens again once the pointer has left and returned', () => {
+		render(<Basic openDelay={0} closeDelay={150} />)
+		const trigger = screen.getByText('Glossary term')
+		hover(trigger)
+		fireEvent.keyDown(document, { key: 'Escape' })
+
+		unhover(trigger)
+		act(() => {
+			vi.advanceTimersByTime(200)
+		})
+		hover(trigger)
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+	})
+})
+
+describe('HoverCard keyboard access', () => {
+	it('opens on focus and keeps the card open while focus is inside it', () => {
+		render(<Basic openDelay={0} closeDelay={150} />)
+		const trigger = screen.getByText('Glossary term')
+		fireEvent.focus(trigger)
+		const card = screen.getByRole('dialog')
+
+		// Focus leaving the trigger for the card must not close it, or the card's links
+		// could never be reached by keyboard at all.
+		fireEvent.blur(trigger)
+		fireEvent.focus(card)
+
+		act(() => {
+			vi.advanceTimersByTime(1000)
+		})
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+	})
+
+	it('does not close when focus moves between elements inside the card', () => {
+		render(
+			<HoverCard openDelay={0} closeDelay={150}>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent>
+					<a href="#one">One</a>
+					<a href="#two">Two</a>
+				</HoverCardContent>
+			</HoverCard>
+		)
+		fireEvent.focus(screen.getByText('Term'))
+		const card = screen.getByRole('dialog')
+		const [one, two] = screen.getAllByRole('link')
+
+		fireEvent.blur(card, { relatedTarget: two })
+		act(() => {
+			vi.advanceTimersByTime(1000)
+		})
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+		expect(one).toBeInTheDocument()
+	})
+
+	it('closes when focus leaves the card entirely', () => {
+		render(
+			<>
+				<Basic openDelay={0} closeDelay={150} />
+				<button type="button">Elsewhere</button>
+			</>
+		)
+		fireEvent.focus(screen.getByText('Glossary term'))
+		const card = screen.getByRole('dialog')
+		fireEvent.blur(card, {
+			relatedTarget: screen.getByRole('button', { name: 'Elsewhere' }),
+		})
+
+		act(() => {
+			vi.advanceTimersByTime(200)
+		})
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+})
+
+describe('HoverCardTrigger', () => {
+	it('renders the consumer element with asChild, adding no wrapper', () => {
+		render(
+			<HoverCard defaultOpen>
+				<HoverCardTrigger asChild>
+					<a href="#term">Glossary term</a>
+				</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		const link = screen.getByRole('link', { name: 'Glossary term' })
+		expect(link.tagName).toBe('A')
+		// `asChild` is a documented part of this component's public API — the only place in
+		// the package where that is true. `handbook-reference.tsx` in `www` depends on it.
+		expect(link).toHaveAttribute('aria-describedby')
+		expect(link).toHaveAttribute('data-state', 'open')
+	})
+
+	it('shows the icon when hasIcon is set', () => {
+		render(
+			<HoverCard>
+				<HoverCardTrigger hasIcon>Term</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		expect(
+			screen.getByLabelText('More information available')
+		).toBeInTheDocument()
+	})
+
+	it('omits the icon by default', () => {
+		render(<Basic />)
+		expect(
+			screen.queryByLabelText('More information available')
+		).not.toBeInTheDocument()
+	})
+
+	it('takes a custom icon label', () => {
+		render(
+			<HoverCard>
+				<HoverCardTrigger hasIcon iconAriaLabel="What is this?">
+					Term
+				</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		expect(screen.getByLabelText('What is this?')).toBeInTheDocument()
+	})
+
+	it('never renders the icon under asChild, which owns its own content', () => {
+		render(
+			<HoverCard>
+				<HoverCardTrigger asChild hasIcon>
+					<a href="#term">Term</a>
+				</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		expect(
+			screen.queryByLabelText('More information available')
+		).not.toBeInTheDocument()
+	})
+
+	it('merges className and forwards a ref', () => {
+		const ref = React.createRef<HTMLAnchorElement>()
+		render(
+			<HoverCard>
+				<HoverCardTrigger ref={ref} className="custom">
+					Term
+				</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		const trigger = screen.getByText('Term')
+		expect(trigger).toHaveClass('custom')
+		expect(trigger).toHaveClass(s.trigger)
+		expect(ref.current).toBe(trigger)
+	})
+})
+
+describe('HoverCardContent', () => {
+	it('carries the side and align it will be positioned by', () => {
+		render(
+			<HoverCard side="right" align="start" defaultOpen>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		const card = screen.getByRole('dialog')
+		expect(card).toHaveAttribute('data-side', 'right')
+		expect(card).toHaveAttribute('data-align', 'start')
+	})
+
+	it('lets the content override the side set on the root', () => {
+		render(
+			<HoverCard side="top" defaultOpen>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent side="bottom">Definition</HoverCardContent>
+			</HoverCard>
+		)
+		expect(screen.getByRole('dialog')).toHaveAttribute('data-side', 'bottom')
+	})
+
+	it('publishes the offset as a custom property', () => {
+		render(
+			<HoverCard defaultOpen>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent sideOffset={16}>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		expect(
+			screen
+				.getByRole('dialog')
+				.style.getPropertyValue('--cds-hover-card-offset')
+		).toBe('16px')
+	})
+
+	it('merges className and forwards a ref', () => {
+		const ref = React.createRef<HTMLDivElement>()
+		render(
+			<HoverCard defaultOpen>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent ref={ref} className="custom">
+					Definition
+				</HoverCardContent>
+			</HoverCard>
+		)
+		const card = screen.getByRole('dialog')
+		expect(card).toHaveClass('custom')
+		expect(card).toHaveClass(s.content)
+		expect(ref.current).toBe(card)
+	})
+})
+
+describe('HoverCard controlled state', () => {
+	it('does not drift when the owner ignores onOpenChange', () => {
+		const onOpenChange = vi.fn()
+		render(
+			<HoverCard open={false} onOpenChange={onOpenChange} openDelay={0}>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent>Definition</HoverCardContent>
+			</HoverCard>
+		)
+		hover(screen.getByText('Term'))
+
+		expect(onOpenChange).toHaveBeenCalledWith(true)
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it('follows an owner that honours onOpenChange', () => {
+		const Controlled = () => {
+			const [open, setOpen] = useState(false)
+			return (
+				<HoverCard open={open} onOpenChange={setOpen} openDelay={0}>
+					<HoverCardTrigger>Term</HoverCardTrigger>
+					<HoverCardContent>Definition</HoverCardContent>
+				</HoverCard>
+			)
+		}
+		render(<Controlled />)
+		hover(screen.getByText('Term'))
+		expect(screen.getByRole('dialog')).toBeInTheDocument()
+	})
+})
+
+describe('HoverCard subcomponents', () => {
+	it('render as divs carrying their own class', () => {
+		render(
+			<HoverCard defaultOpen>
+				<HoverCardTrigger>Term</HoverCardTrigger>
+				<HoverCardContent>
+					<HoverCardTitle className="t">Title</HoverCardTitle>
+					<HoverCardMain className="m">Main</HoverCardMain>
+					<HoverCardFooter className="f">Footer</HoverCardFooter>
+				</HoverCardContent>
+			</HoverCard>
+		)
+		const title = screen.getByText('Title')
+		const main = screen.getByText('Main')
+		const footer = screen.getByText('Footer')
+
+		expect(title.tagName).toBe('DIV')
+		expect(main.tagName).toBe('DIV')
+		expect(footer.tagName).toBe('DIV')
+		expect(title).toHaveClass('t', s.title)
+		expect(main).toHaveClass('m', s.main)
+		expect(footer).toHaveClass('f', s.footer)
+	})
+})
+
+describe('Display names', () => {
+	it('are set by hand, not inherited from a primitive', () => {
+		expect(HoverCard.displayName).toBe('HoverCard')
+		expect(HoverCardTrigger.displayName).toBe('HoverCardTrigger')
+		expect(HoverCardContent.displayName).toBe('HoverCardContent')
+	})
+})
+
+describe('Usage errors', () => {
+	it('names the offending component when used outside a HoverCard', () => {
+		const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
+		expect(() => render(<HoverCardTrigger>Orphan</HoverCardTrigger>)).toThrow(
+			/`HoverCardTrigger` must be rendered inside a `<HoverCard>`/
+		)
+		spy.mockRestore()
+	})
 })

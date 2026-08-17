@@ -1,114 +1,224 @@
 /* Trigger */
 .trigger {
-  text-decoration: underline;
-  color: var(--cds-color-foreground-interactive-default);
-  cursor: help;
-  display: inline-flex;
-  gap: var(--cds-scale-3x-small);
-  align-items: center;
+	text-decoration: underline;
+	color: var(--cds-color-foreground-interactive-default);
+	cursor: help;
+	display: inline-flex;
+	gap: var(--cds-scale-3x-small);
+	align-items: center;
 }
 
 /* Focus indicator for accessibility */
 .trigger:focus-visible {
-  outline: var(--cds-focus-ring-width) solid var(--cds-color-foreground-interactive-default);
-  outline-offset: var(--cds-focus-ring-offset);
-  border-radius: var(--cds-radii-hard);
+	outline: var(--cds-focus-ring-width) solid
+		var(--cds-color-foreground-interactive-default);
+	outline-offset: var(--cds-focus-ring-offset);
+	border-radius: var(--cds-radii-hard);
+}
+
+/*
+ * The anchor for CSS anchor positioning, where the engine has it. Gated, because an
+ * unrecognised property in an ungated rule is merely dropped — but keeping it beside the
+ * `position-anchor` rule below makes the pairing legible.
+ */
+@supports (anchor-name: --probe) {
+	.trigger {
+		anchor-name: var(--cds-hover-card-anchor);
+	}
 }
 
 /* Title */
 .title {
-  padding: var(--cds-scale-x-small) var(--cds-scale-base);
-  border-bottom: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-200);
+	padding: var(--cds-scale-x-small) var(--cds-scale-base);
+	border-bottom: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-blackberry-200);
 }
 
 /* Main */
 .main {
-  padding: var(--cds-scale-x-small) var(--cds-scale-base);
+	padding: var(--cds-scale-x-small) var(--cds-scale-base);
 }
 
 /* Footer */
 .footer {
-  padding: var(--cds-scale-x-small) var(--cds-scale-base);
-  border-top: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-200);
+	padding: var(--cds-scale-x-small) var(--cds-scale-base);
+	border-top: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-blackberry-200);
 }
 
 /* Content */
 .content {
-  background: var(--cds-color-surface-primary);
-  border-radius: var(--cds-radii-medium);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-200);
-  max-width: 400px;
-  animation-duration: 400ms;
-  animation-timing-function: var(--cds-animation-easing-enter);
-  will-change: transform, opacity;
-  box-shadow: var(--cds-elevation-box-shadow-popover);
-  box-sizing: border-box;
-  z-index: var(--cds-z-index-dropdown);
+	/*
+   * `fixed` on both placement paths: it is what CSS anchor positioning resolves against,
+   * and what makes the JS fallback's viewport coordinates mean what they say.
+   *
+   * There is deliberately NO `display` declaration on this class. A `[popover]` element is
+   * `display: none` until shown, and a `display` here would override that UA rule and
+   * paint the card before `showPopover()` runs — the trap that bit `Dialog` and `Drawer`
+   * in Phase B. The element is unmounted while closed, so there is nothing to hide.
+   */
+	position: fixed;
+	margin: 0;
+	width: max-content;
+	background: var(--cds-color-surface-primary);
+	border-radius: var(--cds-radii-medium);
+	border: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-blackberry-200);
+	max-width: 400px;
+	animation-duration: 400ms;
+	animation-timing-function: var(--cds-animation-easing-enter);
+	will-change: transform, opacity;
+	box-shadow: var(--cds-elevation-box-shadow-popover);
+	box-sizing: border-box;
+	z-index: var(--cds-z-index-dropdown);
 }
 
 /* Respect user's motion preferences for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .content {
-    animation-duration: 0ms;
-  }
+	.content {
+		animation-duration: 0ms;
+	}
+}
+
+/* ── Placement, where the engine can do it in CSS ────────────────────────────────── */
+
+@supports (anchor-name: --probe) {
+	.content {
+		position-anchor: var(--cds-hover-card-anchor);
+	}
+
+	.content[data-side='top'] {
+		margin-bottom: var(--cds-hover-card-offset);
+	}
+
+	.content[data-side='bottom'] {
+		margin-top: var(--cds-hover-card-offset);
+	}
+
+	.content[data-side='left'] {
+		margin-right: var(--cds-hover-card-offset);
+	}
+
+	.content[data-side='right'] {
+		margin-left: var(--cds-hover-card-offset);
+	}
+
+	.content[data-side='top'][data-align='center'] {
+		position-area: top center;
+	}
+
+	.content[data-side='top'][data-align='start'] {
+		position-area: top span-right;
+	}
+
+	.content[data-side='top'][data-align='end'] {
+		position-area: top span-left;
+	}
+
+	.content[data-side='bottom'][data-align='center'] {
+		position-area: bottom center;
+	}
+
+	.content[data-side='bottom'][data-align='start'] {
+		position-area: bottom span-right;
+	}
+
+	.content[data-side='bottom'][data-align='end'] {
+		position-area: bottom span-left;
+	}
+
+	.content[data-side='left'][data-align='center'] {
+		position-area: left center;
+	}
+
+	.content[data-side='left'][data-align='start'] {
+		position-area: left span-bottom;
+	}
+
+	.content[data-side='left'][data-align='end'] {
+		position-area: left span-top;
+	}
+
+	.content[data-side='right'][data-align='center'] {
+		position-area: right center;
+	}
+
+	.content[data-side='right'][data-align='start'] {
+		position-area: right span-bottom;
+	}
+
+	.content[data-side='right'][data-align='end'] {
+		position-area: right span-top;
+	}
+}
+
+/*
+ * Flipping is gated separately from the block above: Safari 26 ships `anchor()` and
+ * `position-area` without `position-try-fallbacks`, and one combined guard would lose the
+ * whole placement block there.
+ */
+@supports (position-try-fallbacks: flip-block) {
+	.content {
+		position-try-fallbacks: flip-block, flip-inline;
+	}
 }
 
 .content[data-side='top'] {
-  animation-name: slideDownAndFade;
+	animation-name: slideDownAndFade;
 }
 
 .content[data-side='right'] {
-  animation-name: slideLeftAndFade;
+	animation-name: slideLeftAndFade;
 }
 
 .content[data-side='bottom'] {
-  animation-name: slideUpAndFade;
+	animation-name: slideUpAndFade;
 }
 
 .content[data-side='left'] {
-  animation-name: slideRightAndFade;
+	animation-name: slideRightAndFade;
 }
 
 @keyframes slideUpAndFade {
-  0% {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideRightAndFade {
-  0% {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateX(-2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes slideDownAndFade {
-  0% {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideLeftAndFade {
-  0% {
-    opacity: 0;
-    transform: translateX(2px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateX(2px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }

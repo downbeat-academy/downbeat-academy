@@ -1,19 +1,10 @@
 'use client'
 
-import React, {
-	forwardRef,
-	useCallback,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-} from 'react'
+import React, { forwardRef, useCallback, useEffect, useRef } from 'react'
 import classnames from 'classnames'
 import s from './tooltip.module.css'
 import { useTooltipContext } from './tooltip-context'
-import {
-	computeFallbackPosition,
-	supportsAnchorPositioning,
-} from './tooltip-position'
+import { useAnchoredOverlay } from '../overlay'
 
 import type { TooltipContentProps } from './types'
 
@@ -25,11 +16,6 @@ function composeRefs<T>(...refs: Array<React.Ref<T> | undefined>) {
 		})
 	}
 }
-
-// `useLayoutEffect` warns during SSR. The content only ever renders once open, which is a
-// client-side event, but a consumer rendering `<Tooltip open>` on the server would trip it.
-const useIsomorphicLayoutEffect =
-	typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
 	(
@@ -63,88 +49,27 @@ const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
 		const side = sideProp ?? contextSide
 		const align = alignProp ?? contextAlign
 
-		/**
-		 * Promote into the top layer.
-		 *
-		 * `popover="manual"`, never `"auto"`. An auto popover joins the light-dismiss
-		 * group, which force-closes every other open auto popover outside its ancestor
-		 * chain — a tooltip inside an open menu would dismiss the menu. Manual also means
-		 * Escape is ours to handle, which the effect below does.
-		 *
-		 * The attribute is set here rather than in JSX for the reason `toast-viewport.tsx`
-		 * records: jsdom parses `popover` without implementing the API, so a rendered
-		 * attribute would leave the element `display: none` forever in the jsdom project.
-		 * Setting it only where `showPopover` exists keeps attribute and capability
-		 * together.
-		 */
-		useIsomorphicLayoutEffect(() => {
-			const el = contentRef.current
-			if (!el || typeof el.showPopover !== 'function') return
-
-			el.setAttribute('popover', 'manual')
-			try {
-				el.showPopover()
-			} catch {
-				// Disconnected or mid-transition. Losing top-layer promotion costs stacking
-				// order, not correctness — the tooltip is still positioned and readable.
-			}
-
-			return () => {
-				try {
-					if (el.matches(':popover-open')) el.hidePopover()
-				} catch {
-					/* unmounting anyway */
-				}
-			}
-			// `open` is load-bearing in this dependency list, not decoration. This
-			// component stays mounted and returns `null` while closed, so on an empty
-			// array the effect would run once against a ref that is still null and never
-			// run again — the content would render, correctly positioned, and never be
-			// promoted into the top layer. It failed exactly that way once.
-		}, [open])
-
-		/**
-		 * The fallback placement, for engines with no CSS anchor positioning.
-		 *
-		 * Runs only when `supportsAnchorPositioning()` is false. Where it is true the
-		 * stylesheet owns placement entirely and this never writes an inline style, so the
-		 * two mechanisms cannot fight over the same properties.
-		 */
-		useIsomorphicLayoutEffect(() => {
-			if (supportsAnchorPositioning()) return
-			const el = contentRef.current
-			const trigger = getTriggerElement()
-			if (!el || !trigger) return
-
-			const place = () => {
-				const { top, left } = computeFallbackPosition(
-					trigger.getBoundingClientRect(),
-					el.getBoundingClientRect(),
-					side,
-					align,
-					sideOffset
-				)
-				el.style.top = `${top}px`
-				el.style.left = `${left}px`
-			}
-
-			place()
-
-			// `capture: true` so a scroll in any ancestor is caught, not just the window —
-			// scroll does not bubble.
-			window.addEventListener('scroll', place, true)
-			window.addEventListener('resize', place)
-			return () => {
-				window.removeEventListener('scroll', place, true)
-				window.removeEventListener('resize', place)
-			}
-		}, [getTriggerElement, side, align, sideOffset])
+		// Placement and top-layer promotion both live in the shared `overlay/` module,
+		// because `HoverCard` needs exactly the same two mechanisms. What stays here is the
+		// interaction timing, which is genuinely tooltip-specific.
+		useAnchoredOverlay({
+			ref: contentRef,
+			open,
+			getAnchorElement: getTriggerElement,
+			side,
+			align,
+			sideOffset,
+		})
 
 		// Escape closes, per APG. Bound to the document because focus is on the trigger,
 		// not the tooltip, so a handler on the content would never see the key.
+		//
+		// `dismiss: true` latches it shut. Closing alone is not enough: removing the
+		// tooltip from the top layer makes the browser re-hit-test, and a trigger still
+		// under a resting cursor gets a fresh `pointerenter` that reopens it immediately.
 		useEffect(() => {
 			const onKeyDown = (event: KeyboardEvent) => {
-				if (event.key === 'Escape') close()
+				if (event.key === 'Escape') close({ dismiss: true })
 			}
 			document.addEventListener('keydown', onKeyDown)
 			return () => document.removeEventListener('keydown', onKeyDown)
