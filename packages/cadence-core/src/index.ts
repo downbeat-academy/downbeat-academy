@@ -77,18 +77,10 @@ export { Separator } from './components/separator';
 export {
   DropdownMenu,
   DropdownMenuTrigger,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuRadioGroup,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
   DropdownMenuShortcut,
 } from './components/dropdown-menu';
 export {
@@ -219,15 +211,15 @@ export type {
   SeparatorOrientation,
 } from './components/separator';
 export type {
+  DropdownMenuProps,
+  DropdownMenuTriggerProps,
   DropdownMenuContentProps,
   DropdownMenuItemProps,
-  DropdownMenuCheckboxItemProps,
-  DropdownMenuRadioItemProps,
   DropdownMenuLabelProps,
   DropdownMenuSeparatorProps,
-  DropdownMenuSubTriggerProps,
-  DropdownMenuSubContentProps,
   DropdownMenuShortcutProps,
+  DropdownMenuSide,
+  DropdownMenuAlign,
 } from './components/dropdown-menu';
 export type {
   ToastProps,

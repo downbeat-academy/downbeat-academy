@@ -98,8 +98,9 @@ In a browser spec, import `userEvent` from **`vitest/browser`**, not
 not drive user-agent behaviour — a spec built on them can pass against your own React
 handler while proving nothing about the platform.
 
-`setup-tests.ts` loads jest-dom matchers and mocks `ResizeObserver`, `scrollIntoView`,
-and the pointer-capture APIs that Radix needs. **It must not be reused by the browser
+`setup-tests.ts` loads jest-dom matchers and mocks `ResizeObserver`, the one platform gap
+jsdom still needs papering over. The `scrollIntoView` and pointer-capture shims that sat
+beside it were for Radix and were removed in C.4. **It must not be reused by the browser
 project**: it assigns to the bare `global` identifier, which Vite does not shim for a
 browser bundle, and its mocks would stub the very platform that project exists to test.
 `setup-tests.browser.ts` carries the matchers and an `act(...)`-warning filter, nothing

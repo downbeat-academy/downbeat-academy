@@ -362,35 +362,38 @@ relaxed.
 
 ---
 
-### `dropdown-menu` stays on Radix while everything else leaves
+### `DropdownMenu` ships a narrower API than it used to
 
-**What.** `cadence-core` is removing Radix from 9 of its 12 wrapping components.
-`packages/cadence-core/src/components/dropdown-menu/` is deliberately excluded and keeps
-`@radix-ui/react-dropdown-menu`. As that work lands, the package will look half-migrated:
-most components on the platform, one still wrapping a dependency.
+**What.** C.4 rebuilt `DropdownMenu` on the platform and removed
+`@radix-ui/react-dropdown-menu`, the last Radix package in `cadence-core`. The rebuild is
+scoped to what the package actually uses. These exports are **gone**, not deprecated:
 
-**Why it is fine.** A menu needs typeahead, submenu safe-triangle tracking, roving focus,
-and collision-aware positioning. That is an estimated 5–8 days with real accessibility
-risk, and this repo has one maintainer. The `RadioCardItem` entry above is what happens
-when interaction semantics get hand-rolled here without that budget.
+`DropdownMenuGroup`, `DropdownMenuPortal`, `DropdownMenuSub`, `DropdownMenuSubTrigger`,
+`DropdownMenuSubContent`, `DropdownMenuRadioGroup`, `DropdownMenuRadioItem`,
+`DropdownMenuCheckboxItem`.
 
-The cost is honest and was accepted: because `react-menu` depends on popper, roving-focus,
-collection, dismissable-layer, focus-scope, portal, and presence, retaining this one
-package retains roughly 25 of the ~38 transitive `@radix-ui/*` packages. Most of the
-dependency-count win is deferred with it. This is a trade of dependency hygiene against
-accessibility risk, not an oversight.
+**Why it is fine.** Nothing in the repo rendered any of them. The two consumers —
+`admin/users/_components/user-actions-menu.tsx` and
+`admin/subscribers/_components/subscriber-actions-menu.tsx` — use five exports between
+them: root, trigger, content, item and separator. The removed parts are also exactly where
+a menu's hard behaviour lives: safe-triangle tracking between a submenu trigger and its
+content, and checkbox/radio indicator state. Rebuilding them would have meant carrying the
+accessibility risk the original retention decision was right to avoid, for an API surface
+with no callers.
 
-**Recorded so nobody finishes the job unprompted.** An agent seeing eleven components
-migrated and one not will try to close the gap.
+What _was_ rebuilt is the part with callers, and it is covered: roving tabindex with
+wrapping arrow keys, Home/End, typeahead that cycles on a repeated character, Escape and
+outside-press dismissal with focus return, and keyboard-versus-pointer open behaviour per
+APG. 46 jsdom specs and 12 browser specs across Chromium, WebKit and Firefox.
 
-**To fix.** Only after native positioning has proven itself in `Tooltip`. Tracked as
-`Radix C.4 — Re-decide whether to rebuild DropdownMenu` on the Remove Radix Dependencies
-epic. Deleting this entry requires that re-decision, not just an implementation.
+**To fix, if a submenu is ever genuinely needed.** Build it on `components/overlay/`, which
+already provides anchored placement and top-layer promotion for `Tooltip`, `HoverCard` and
+this component. The safe-triangle logic is the real work; the positioning is not. Do not
+reach back for Radix to get one submenu.
 
-Relatedly: consolidating the remaining Radix packages onto the single `radix-ui` package
-was considered and **rejected** — it declares all 56 primitives, which enlarges the
-installed set rather than shrinking it, and `.github/dependabot.yml` already batches
-`@radix-ui/*` updates into one PR.
+Relatedly: consolidating the Radix packages onto the single `radix-ui` package was
+considered and **rejected** during this epic — it declares all 56 primitives, which
+enlarges the installed set rather than shrinking it.
 
 ---
 
