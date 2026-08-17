@@ -71,7 +71,6 @@ export {
 export {
   Tooltip,
   TooltipProvider,
-  TooltipArrow,
   TooltipContent,
   TooltipTrigger,
 } from './components/tooltip';
@@ -205,8 +204,12 @@ export type {
   DrawerSide,
 } from './components/drawer';
 export type {
+  TooltipProps,
+  TooltipProviderProps,
   TooltipContentProps,
   TooltipTriggerProps,
+  TooltipSide,
+  TooltipAlign,
 } from './components/tooltip';
 export type {
   SeparatorProps,
