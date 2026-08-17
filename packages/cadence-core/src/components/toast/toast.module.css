@@ -1,19 +1,21 @@
 /* Viewport */
 .toast--viewport {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: var(--cds-z-index-sticky);
-  display: flex;
-  flex-direction: column;
-  gap: var(--cds-scale-base);
-  padding: var(--cds-scale-large);
-  height: fit-content;
-  transition: height var(--cds-transition-07) var(--cds-animation-easing-standard);
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: var(--cds-z-index-sticky);
+	display: flex;
+	flex-direction: column;
+	gap: var(--cds-scale-base);
+	padding: var(--cds-scale-large);
+	height: fit-content;
+	transition: height var(--cds-transition-07)
+		var(--cds-animation-easing-standard);
 
-  /*
-   * The viewport is a manual popover so it can enter the top layer and stay above a modal
-   * `<dialog>` — see `toast/toast-viewport.tsx` for why.
+	/*
+   * The viewport is a manual popover so it can enter the top layer and sit above ordinary
+   * stacked content — see `toast/toast-viewport.tsx`. It does NOT get above a modal
+   * `<dialog>`; that is a recorded gap in `docs/adr/0002-known-gaps.md`.
    *
    * That brings the UA `[popover]` rules with it, and they would otherwise move it: the
    * UA sets `inset: 0` plus `margin: auto`, which together with the `bottom`/`right` above
@@ -24,12 +26,12 @@
    * `width: auto` matters too: `inset: 0` on a fixed element makes it fill the width
    * before `fit-content` gets a say.
    */
-  top: auto;
-  left: auto;
-  margin: 0;
-  border: none;
-  width: fit-content;
-  overflow: visible;
+	top: auto;
+	left: auto;
+	margin: 0;
+	border: none;
+	width: fit-content;
+	overflow: visible;
 }
 
 /*
@@ -40,135 +42,139 @@
  * unconditionally.
  */
 .toast--viewport[popover] {
-  display: flex;
+	display: flex;
 }
 
 /* Toast element */
 .toast--base {
-  position: relative;
-  padding: var(--cds-scale-base);
-  border-radius: var(--cds-radii-medium);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--cds-scale-x-small);
-  box-shadow: 2px 2px 8px 0 hsla(240, 36%, 22%, 25%);
-  min-width: 25vw;
-  transition: var(--cds-transition-07);
+	position: relative;
+	padding: var(--cds-scale-base);
+	border-radius: var(--cds-radii-medium);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: var(--cds-scale-x-small);
+	box-shadow: 2px 2px 8px 0 hsla(240, 36%, 22%, 25%);
+	min-width: 25vw;
+	transition: var(--cds-transition-07);
 }
 
 .toast--base > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--cds-scale-2x-small);
+	display: flex;
+	flex-direction: column;
+	gap: var(--cds-scale-2x-small);
 }
 
 @media (max-width: 768px) {
-  .toast--base {
-    min-width: 50vw;
-  }
+	.toast--base {
+		min-width: 50vw;
+	}
 }
 
 @media (max-width: 480px) {
-  .toast--base {
-    min-width: 90vw;
-  }
+	.toast--base {
+		min-width: 90vw;
+	}
 }
 
 /* Variants */
 .toast--variant-default {
-  background: var(--cds-color-palette-blackberry-100);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-400);
-  color: var(--cds-color-foreground-primary);
-  transition: all var(--cds-transition-07) var(--cds-animation-easing-standard);
+	background: var(--cds-color-palette-blackberry-100);
+	border: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-blackberry-400);
+	color: var(--cds-color-foreground-primary);
+	transition: all var(--cds-transition-07) var(--cds-animation-easing-standard);
 }
 
 .toast--variant-success {
-  background: var(--cds-color-palette-kale-100);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-kale-600);
-  color: var(--cds-color-foreground-primary);
+	background: var(--cds-color-palette-kale-100);
+	border: var(--cds-border-width-thin) solid var(--cds-color-palette-kale-600);
+	color: var(--cds-color-foreground-primary);
 }
 
 .toast--variant-warning {
-  background: var(--cds-color-palette-pineapple-100);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-pineapple-600);
-  color: var(--cds-color-foreground-primary);
+	background: var(--cds-color-palette-pineapple-100);
+	border: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-pineapple-600);
+	color: var(--cds-color-foreground-primary);
 }
 
 .toast--variant-error {
-  background: var(--cds-color-palette-peach-100);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-peach-400);
-  color: var(--cds-color-foreground-primary);
+	background: var(--cds-color-palette-peach-100);
+	border: var(--cds-border-width-thin) solid var(--cds-color-palette-peach-400);
+	color: var(--cds-color-foreground-primary);
 }
 
 /* Direction */
 .toast--direction-from-bottom {
-  animation: slide-up var(--cds-transition-04) var(--cds-animation-easing-enter);
+	animation: slide-up var(--cds-transition-04) var(--cds-animation-easing-enter);
 }
 
 @keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
+	from {
+		transform: translateY(100%);
+	}
+	to {
+		transform: translateY(0);
+	}
 }
 
 .toast--direction-from-right {
-  animation: slide-left var(--cds-transition-04) var(--cds-animation-easing-enter);
+	animation: slide-left var(--cds-transition-04)
+		var(--cds-animation-easing-enter);
 }
 
 @keyframes slide-left {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
 }
 
 /* Title */
 .toast--title {
-  font-weight: bold;
-  font-family: var(--cds-typography-font-family-productive-body);
-  font-size: var(--cds-typography-font-size-fixed-productive-base);
+	font-weight: bold;
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-base);
 }
 
 /* Description */
 .toast--description {
-  font-family: var(--cds-typography-font-family-productive-body);
-  font-size: var(--cds-typography-font-size-fixed-productive-small);
+	font-family: var(--cds-typography-font-family-productive-body);
+	font-size: var(--cds-typography-font-size-fixed-productive-small);
 }
 
 /* Action */
 .toast--action {
-  display: inline-flex;
+	display: inline-flex;
 }
 
 /* Close button */
 .toast--close {
-  position: absolute;
-  top: var(--cds-scale-base);
-  right: var(--cds-scale-base);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  cursor: pointer;
-  background: var(--cds-color-palette-blackberry-100);
-  color: var(--cds-color-palette-blackberry-500);
-  border-radius: var(--cds-radii-hard);
-  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-300);
-  padding: 2px;
-  transition: var(--cds-transition-02);
+	position: absolute;
+	top: var(--cds-scale-base);
+	right: var(--cds-scale-base);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	cursor: pointer;
+	background: var(--cds-color-palette-blackberry-100);
+	color: var(--cds-color-palette-blackberry-500);
+	border-radius: var(--cds-radii-hard);
+	border: var(--cds-border-width-thin) solid
+		var(--cds-color-palette-blackberry-300);
+	padding: 2px;
+	transition: var(--cds-transition-02);
 }
 
 .toast--close:hover {
-  background: var(--cds-color-palette-blackberry-200);
+	background: var(--cds-color-palette-blackberry-200);
 }
 
 .toast--close:active {
-  background: var(--cds-color-palette-blackberry-300);
+	background: var(--cds-color-palette-blackberry-300);
 }

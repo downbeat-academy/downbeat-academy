@@ -133,14 +133,14 @@ describe('DropdownMenu placement', () => {
 		const { menuEl } = await open()
 		if (typeof (menuEl as HTMLElement).showPopover !== 'function') return
 
-		const box = menuEl.getBoundingClientRect()
-		const hit = document.elementFromPoint(
-			box.left + box.width / 2,
-			box.top + box.height / 2
-		)
-		// The cover claims z-index 100000, well above the stylesheet's. Winning here means
-		// winning through the top layer, not through stacking order.
-		expect(menuEl.contains(hit)).toBe(true)
+		// The cover claims z-index 100000, well above the stylesheet's, so being in the top
+		// layer is the only way to paint above it. `:popover-open` is exactly that
+		// membership.
+		//
+		// Asserted rather than hit-tested for the reason recorded in
+		// `tooltip.browser.test.tsx`: `elementFromPoint` on a top-layer element proved
+		// engine-dependent on Linux Firefox, and it was never the guarantee anyway.
+		expect(menuEl.matches(':popover-open')).toBe(true)
 	})
 })
 
