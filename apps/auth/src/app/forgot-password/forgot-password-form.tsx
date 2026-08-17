@@ -3,14 +3,14 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { useToast } from "@/components/toast"
 import { Button } from "@/components/ui/button"
 import {
   Form,
   Field,
   Input,
   Label,
-  ValidationMessage
+  ValidationMessage,
+  useToast
 } from "cadence-core"
 import { forgotPasswordAction } from "@/actions/auth"
 

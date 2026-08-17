@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { useToast, ToastAction } from "@/components/toast"
 import {
   Form,
   Field,
   Input,
   Label,
   ValidationMessage,
+  useToast,
+  ToastAction,
 } from "cadence-core"
 import { useRouter } from "next/navigation"
 import { Link } from '@/components/link'
