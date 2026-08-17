@@ -20,10 +20,11 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
 
-      - name: Setup Node.js 20
+      # 22, not 20: kept in step with ci-monorepo.yml, which explains why.
+      - name: Setup Node.js 22
         uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
       - name: Install Dependencies

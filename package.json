@@ -15,6 +15,9 @@
   "license": "UNLICENSED",
   "private": true,
   "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=22.22.2"
+  },
   "browserslist": [
     "baseline widely available on 2026-08-16"
   ],

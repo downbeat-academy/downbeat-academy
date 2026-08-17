@@ -34,7 +34,8 @@ on:
           - smoke
 
 env:
-  NODE_VERSION: '20.x'
+  # Kept in step with ci-monorepo.yml, which explains why this is 22.x and not 20.x.
+  NODE_VERSION: '22.x'
   # pnpm's version is NOT set here. `pnpm/action-setup` v6 hard-errors if it finds a
   # version in both the `version:` input and `packageManager` in package.json, so
   # `packageManager: pnpm@9.15.4` is the single source of truth.
