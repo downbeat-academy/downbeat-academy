@@ -214,7 +214,11 @@ describe('Tooltip top layer', () => {
 		// unreproducible across three macOS runs of all three engines. Hit-testing a
 		// top-layer element is an engine implementation detail; the spec guarantee is
 		// membership, and asserting the guarantee is both stronger and deterministic.
-		expect(tipEl.matches(':popover-open')).toBe(true)
+		// Awaited, not asserted outright. The promotion happens in a layout effect, and
+		// Firefox does not always have `:popover-open` matching by the time the element is
+		// queryable — it is a frame behind under load. Asserting immediately failed there
+		// while passing on Chromium and WebKit.
+		await waitFor(() => expect(tipEl.matches(':popover-open')).toBe(true))
 	})
 })
 

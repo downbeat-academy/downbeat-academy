@@ -161,6 +161,6 @@ describe('HoverCard interactivity', () => {
 		render(<Fixture />)
 		const { cardEl } = await open()
 		if (typeof (cardEl as HTMLElement).showPopover !== 'function') return
-		expect(cardEl.matches(':popover-open')).toBe(true)
+		await waitFor(() => expect(cardEl.matches(':popover-open')).toBe(true))
 	})
 })

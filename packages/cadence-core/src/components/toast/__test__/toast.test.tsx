@@ -1,6 +1,13 @@
 import React from 'react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { render, screen, act, cleanup, within } from '@testing-library/react'
+import {
+	render,
+	screen,
+	act,
+	cleanup,
+	within,
+	fireEvent,
+} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {
 	Toast,
@@ -558,6 +565,143 @@ describe('Toast', () => {
 			expect(
 				screen.getByRole('button', { name: 'Undo it' })
 			).toBeInTheDocument()
+		})
+	})
+
+	describe('auto-dismiss timing', () => {
+		/**
+		 * Timer behaviour lives here, in jsdom with fake timers, rather than in the browser
+		 * project — deliberately, and against the usual instinct that "real clock" work belongs
+		 * in a real browser.
+		 *
+		 * Two things forced it. Playwright's `hover` waits for the element to be visible,
+		 * stable and receiving pointer events before dispatching anything, and under CI load
+		 * that wait outlived the toast's own `duration`: the toast dismissed itself mid-wait,
+		 * the locator went stale, and hover retried a detached node until the 15s timeout.
+		 * Lengthening the duration only widens that race, because the wait is unbounded and the
+		 * lifetime is not. Driving the events by hand instead was worse — a dispatched
+		 * `pointerover` does not reach React's `onPointerEnter` through the portal, so the specs
+		 * passed with `onPointerEnter` deleted from the component. Vacuous, and caught by
+		 * mutating it.
+		 *
+		 * What is actually under test is our own timer arithmetic: plain React state and
+		 * `setTimeout`. jsdom drives React's synthetic events reliably and fake timers make the
+		 * clock exact, so the coverage is stronger here, not weaker. The browser project keeps
+		 * what genuinely needs an engine — real-clock dismissal, focus, F8, the top layer.
+		 */
+		const Timed = ({ duration }: { duration?: number }) => {
+			const [open, setOpen] = React.useState(true)
+			return (
+				<ToastProvider>
+					<Toast open={open} duration={duration} onOpenChange={setOpen}>
+						<ToastTitle>Saved</ToastTitle>
+					</Toast>
+					<ToastViewport />
+				</ToastProvider>
+			)
+		}
+
+		const item = () => screen.queryByRole('listitem')
+
+		it('dismisses itself once its duration elapses', () => {
+			vi.useFakeTimers()
+			try {
+				render(<Timed duration={1000} />)
+				expect(item()).toBeInTheDocument()
+
+				act(() => {
+					vi.advanceTimersByTime(999)
+				})
+				expect(item()).toBeInTheDocument()
+
+				act(() => {
+					vi.advanceTimersByTime(1)
+				})
+				expect(item()).not.toBeInTheDocument()
+			} finally {
+				vi.useRealTimers()
+			}
+		})
+
+		it('pauses while the pointer is over it', () => {
+			vi.useFakeTimers()
+			try {
+				render(<Timed duration={1000} />)
+				const toast = screen.getByRole('listitem')
+
+				act(() => {
+					vi.advanceTimersByTime(400)
+				})
+				fireEvent.pointerEnter(toast)
+
+				// Well past the full duration. A toast that expires under the pointer is a
+				// message the reader loses halfway through.
+				act(() => {
+					vi.advanceTimersByTime(5000)
+				})
+				expect(item()).toBeInTheDocument()
+			} finally {
+				vi.useRealTimers()
+			}
+		})
+
+		it('resumes with the remaining time, not a fresh duration', () => {
+			vi.useFakeTimers()
+			try {
+				render(<Timed duration={1000} />)
+				const toast = screen.getByRole('listitem')
+
+				act(() => {
+					vi.advanceTimersByTime(700)
+				})
+				fireEvent.pointerEnter(toast)
+				act(() => {
+					vi.advanceTimersByTime(5000)
+				})
+				fireEvent.pointerLeave(toast)
+
+				// 300ms was left when the pointer arrived, and 300ms is what should be left when
+				// it goes. Restarting the full second here would be the easy bug to write.
+				act(() => {
+					vi.advanceTimersByTime(299)
+				})
+				expect(item()).toBeInTheDocument()
+
+				act(() => {
+					vi.advanceTimersByTime(1)
+				})
+				expect(item()).not.toBeInTheDocument()
+			} finally {
+				vi.useRealTimers()
+			}
+		})
+
+		it('pauses while focus is inside it', () => {
+			vi.useFakeTimers()
+			try {
+				render(<Timed duration={1000} />)
+				fireEvent.focus(screen.getByRole('listitem'))
+
+				act(() => {
+					vi.advanceTimersByTime(5000)
+				})
+				expect(item()).toBeInTheDocument()
+			} finally {
+				vi.useRealTimers()
+			}
+		})
+
+		it('never dismisses when the duration is Infinity', () => {
+			vi.useFakeTimers()
+			try {
+				render(<Timed duration={Infinity} />)
+				act(() => {
+					vi.advanceTimersByTime(60_000)
+				})
+				expect(item()).toBeInTheDocument()
+			} finally {
+				vi.useRealTimers()
+			}
 		})
 	})
 })
