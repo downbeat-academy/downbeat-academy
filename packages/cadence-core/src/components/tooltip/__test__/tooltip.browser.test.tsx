@@ -24,7 +24,18 @@ import {
  * translate both land inside that.
  */
 
-const CLOSE_ENOUGH = 2
+/**
+ * Placement tolerance, in px.
+ *
+ * Wide enough to absorb platform variance, narrow enough to be worth asserting. Firefox on
+ * Linux resolved a `position-area` placement 3.6px from nominal where macOS put it within
+ * one — different font metrics and sub-pixel rounding, not a different position. CI caught
+ * that; a local run never would.
+ *
+ * The failure these specs exist to catch is an overlay that nothing positioned, which
+ * lands hundreds of pixels away. Six is nowhere near that.
+ */
+const CLOSE_ENOUGH = 6
 
 /**
  * Drop focus between specs, so a tooltip opened by focus cannot outlive the spec that
