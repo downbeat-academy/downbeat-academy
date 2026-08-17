@@ -27,7 +27,8 @@ the meaning Radix gave it: it is folded into the announcement rather than being 
 Auto-dismiss timers that **pause on hover and on focus** and bank elapsed time rather than
 restarting, so a toast cannot expire while it is being read or while the user is tabbing
 towards its action. They also pause when the tab is hidden — a toast that times out in a
-background tab is a message nobody saw. Swipe-to-dismiss for touch and pen, ignoring mouse
+background tab is a message nobody saw. Tab visibility only, not window blur: another
+application taking focus leaves the toast on screen. Swipe-to-dismiss for touch and pen, ignoring mouse
 drags so text stays selectable. The F8 hotkey, which the viewport's own accessible label
 promises. And announcement through a **persistent** live region built from the title and
 description only, so the close button is excluded by construction rather than by a marker

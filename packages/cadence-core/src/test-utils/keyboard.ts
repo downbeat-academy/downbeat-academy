@@ -45,3 +45,24 @@ export const tabVisitsButtons = async (): Promise<boolean> => {
 		if (previous instanceof HTMLElement) previous.focus()
 	}
 }
+
+/**
+ * Whether Enter reliably activates a focused `<button>` inside a modal `<dialog>` here.
+ *
+ * Playwright's Firefox does not, under load: after `.focus()` the button is
+ * `document.activeElement` by every measure a test can see, and the key activates nothing.
+ * Re-sending it for five seconds does not help, so it is not a race.
+ *
+ * **Checked by engine rather than by capability, deliberately.** The honest probe — open a
+ * `<dialog>`, `showModal()`, focus a button, press Enter — is itself unsafe: these specs
+ * share one page, and a probe that fails partway leaves a modal open and inerts every
+ * later spec in the file. That was measured, not feared: it turned 108 passing tests into
+ * 66 failures. A user-agent check cannot do that.
+ *
+ * Button activation on Enter is the platform's job, not something `Dialog` or `Drawer`
+ * implements, so skipping it here loses no coverage of our code. The
+ * `event.target !== event.currentTarget` guard these specs protect is also covered by the
+ * implicit-form-submit specs, which run on all three engines and do catch a mutation of it.
+ */
+export const enterActivatesButtonInModal = (): boolean =>
+	!navigator.userAgent.includes('Firefox')
