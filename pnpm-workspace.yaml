@@ -2,3 +2,32 @@ packages:
     - 'apps/*'
     - 'packages/*'
     - 'packages/email/.react-email'
+
+# Dependency install scripts are blocked by default from pnpm 10 onward. Only packages
+# listed here may run preinstall/install/postinstall.
+#
+# An audit of the full tree (~2,467 packages) found exactly ONE that ships an install
+# script: cypress, which downloads its test-runner binary. Everything else is blocked,
+# which closes the postinstall vector that most npm supply-chain attacks rely on — the
+# payload runs during `pnpm install`, before any test executes, so CI passing is not a
+# defence against it.
+#
+# CI already sets CYPRESS_INSTALL_BINARY=0 in ci-monorepo.yml and ci-cadence-browser.yml,
+# so this mainly matters for local installs.
+#
+# Before adding an entry: confirm the package genuinely needs to compile or fetch a
+# binary. Do NOT use dangerouslyAllowAllBuilds to silence a warning.
+onlyBuiltDependencies:
+    - cypress
+
+# Refuse to resolve any version published less than 7 days ago. Malicious releases are
+# usually caught and yanked within hours, so the delay filters out smash-and-grab
+# compromises before they ever reach the lockfile.
+#
+# This is enforced at install time, so unlike Dependabot's cooldown it protects every
+# install — including a developer running `pnpm add` locally — not just bot PRs.
+#
+# Not strict: pnpm falls back to the newest version that satisfies the age requirement
+# rather than failing the install. To take a fresh release deliberately, add it to
+# minimumReleaseAgeExclude rather than lowering this globally.
+minimumReleaseAge: 10080
