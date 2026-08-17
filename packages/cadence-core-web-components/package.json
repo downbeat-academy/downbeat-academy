@@ -19,7 +19,7 @@
     "lit": "^3.2.0"
   },
   "devDependencies": {
-    "@open-wc/testing": "^4.0.0",
+    "@open-wc/testing": "^5.0.0",
     "@storybook/addon-links": "^10.5.8",
     "@storybook/web-components": "^10.5.8",
     "@storybook/web-components-vite": "^10.5.8",
@@ -28,7 +28,7 @@
     "typescript": "^5.9.3",
     "vite": "^8.0.12",
     "vite-plugin-dts": "^5.0.0",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.10"
   },
   "files": [
     "dist"

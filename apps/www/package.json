@@ -111,21 +111,21 @@
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
-		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/jest-dom": "^7.0.1",
 		"@testing-library/react": "^16.3.2",
-		"@testing-library/user-event": "^14.6.1",
+		"@testing-library/user-event": "^14.6.4",
 		"@types/node": "^25.6.2",
 		"@types/pg": "^8.21.0",
 		"@types/react": "^19.2.18",
 		"@types/react-dom": "^19.2.4",
 		"@vitejs/plugin-react": "^6.0.1",
-		"@vitest/coverage-v8": "^4.1.6",
+		"@vitest/coverage-v8": "^4.1.10",
 		"bcryptjs": "^3.0.3",
-		"cypress": "^15.14.2",
+		"cypress": "^15.20.1",
 		"cypress-axe": "^1.7.0",
 		"drizzle-kit": "^0.31.10",
 		"ignore-loader": "^0.1.2",
-		"jsdom": "^26.1.0",
+		"jsdom": "^30.0.1",
 		"nanoid": "^5.1.11",
 		"postgres": "^3.4.9",
 		"start-server-and-test": "^2.1.5",
@@ -133,6 +133,6 @@
 		"typescript": "^5.9.3",
 		"vite": "^8.0.12",
 		"vite-tsconfig-paths": "^6.1.1",
-		"vitest": "^4.1.6"
+		"vitest": "^4.1.10"
 	}
 }
