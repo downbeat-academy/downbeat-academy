@@ -112,19 +112,24 @@ const Toast = forwardRef<HTMLLIElement, ToastProps>(
 			return clearTimer
 		}, [duration, open, resume, clearTimer])
 
-		// A toast that times out while the tab is hidden is a message the user never saw.
+		/**
+		 * A toast that times out while the tab is hidden is a message the user never saw.
+		 *
+		 * `visibilitychange` only — deliberately not `window` blur/focus. Blur fires when
+		 * another *application* takes focus, and the toast is still on screen then, so
+		 * pausing is over-eager. It also made the component untestable in CI, where a
+		 * headless browser window is frequently unfocused: the countdown paused on a blur
+		 * that never had a matching focus, and a 300ms toast was still on screen five
+		 * seconds later. Tab visibility is the condition that actually means "not seen".
+		 */
 		useEffect(() => {
 			const onVisibility = () => {
 				if (document.visibilityState === 'hidden') pause()
 				else resume()
 			}
 			document.addEventListener('visibilitychange', onVisibility)
-			window.addEventListener('blur', pause)
-			window.addEventListener('focus', resume)
 			return () => {
 				document.removeEventListener('visibilitychange', onVisibility)
-				window.removeEventListener('blur', pause)
-				window.removeEventListener('focus', resume)
 			}
 		}, [pause, resume])
 
