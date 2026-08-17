@@ -26,7 +26,8 @@ trapping, top-layer placement, `::backdrop`, background inerting, arrow-key grou
 navigation, and roving tabindex — correctly, in every engine, with no code. The browser
 support floor is Baseline Newly Available with progressive enhancement below it
 (`docs/adr/0003-browser-support-floor.md`), which is what makes this viable for overlays
-and positioning.
+and positioning. CSS anchor positioning is the one to be careful with: it is absent below
+Safari 26, so it needs an `@supports` fallback that still places the overlay correctly.
 
 Where the platform has no answer, implement the WAI-ARIA APG pattern directly, with tests
 written first. Where neither is safe — menus, with typeahead, submenu safe-triangle

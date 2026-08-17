@@ -67,9 +67,21 @@ the `css.modules` hashing block:
 | Project | Command | Environment | Setup | Matches |
 | --- | --- | --- | --- | --- |
 | `jsdom` | `pnpm test` | jsdom | `setup-tests.ts` | everything except `*.browser.test.*` |
-| `browser` | `pnpm test:browser` | Playwright/Chromium | `setup-tests.browser.ts` | `src/**/*.browser.test.{ts,tsx}` |
+| `browser` | `pnpm test:browser` | Playwright — Chromium, WebKit and Firefox | `setup-tests.browser.ts` | `src/**/*.browser.test.{ts,tsx}` |
 
 Both set **`css: true`** so CSS Modules compile and are injected.
+
+**Every browser spec runs on three engines**, because one cannot verify a multi-engine
+support floor and Chromium is the engine least likely to disagree. Two consequences worth
+knowing before writing one:
+
+- **WebKit's Tab order skips buttons.** macOS ships "Press Tab to highlight each item on a
+  webpage" off, and Playwright's WebKit inherits that default, so `userEvent.tab()` will
+  never land on a `<button>` there. That is a user-agent preference, not a component
+  defect. Gate any assertion that depends on it with `tabVisitsButtons()` from
+  `src/test-utils/keyboard.ts` and keep the engine-independent half unconditional.
+- **WebKit has no CSS anchor positioning below Safari 26.** It is the engine that proves a
+  progressive-enhancement fallback actually works.
 
 **`pnpm test` runs only the jsdom project.** That is deliberate: it keeps the shared
 `Lint, Typecheck & Test` CI job from ever downloading a browser. The browser project runs
@@ -125,6 +137,7 @@ nothing here reaches `dist/`.
 | `declaredRules(className)` | Every rule whose selector contains the class — for `:hover`, `[data-state]`, and other modifiers |
 | `declaredSelectors(className)` | The `selectorText` of those same rules. Use to assert *what state* drives styling — e.g. that a migrated control keys off `:checked` and no longer off `[data-state]` |
 | `formatViolations(violations)` | Readable violation output when the raw array is too noisy |
+| `tabVisitsButtons()` | **Browser project only** — whether this engine's Tab order includes buttons. WebKit's does not. Import from `src/test-utils/keyboard`, not the barrel: it pulls in `vitest/browser`, which does not resolve under jsdom |
 
 `axeViolations` disables `color-contrast` and does not let you re-enable it: jsdom has no
 layout engine, so axe cannot resolve computed colors and would report a false pass.

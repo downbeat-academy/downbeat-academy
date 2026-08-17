@@ -1,5 +1,7 @@
 {
 	"$schema": "https://turbo.build/schema.json",
+	"//": "The root package.json carries the `browserslist` key (see docs/adr/0003-browser-support-floor.md). It is not part of turbo's default hash, so without this entry a change to the support floor serves a cached dist built against the old target.",
+	"globalDependencies": ["package.json"],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],

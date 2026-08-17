@@ -2,6 +2,7 @@ import React from 'react'
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { userEvent } from 'vitest/browser'
+import { tabVisitsButtons } from '../../../test-utils/keyboard'
 import {
 	Drawer,
 	DrawerTrigger,
@@ -130,8 +131,16 @@ describe('Drawer modal behaviour', () => {
 
 		// And it is genuinely cycling rather than parked — without this, a drawer that
 		// dumped focus on `body` forever would pass.
-		for (const name of ['Cancel', 'Confirm', 'Close']) {
-			expect(visited).toContain(screen.getByRole('button', { name }))
+		//
+		// Gated, because this half asserts the *engine's* Tab policy rather than the
+		// drawer's behaviour: WebKit skips buttons unless macOS full keyboard access is on.
+		// See `tabVisitsButtons`. The escape guarantee above holds on every engine.
+		if (await tabVisitsButtons()) {
+			for (const name of ['Cancel', 'Confirm', 'Close']) {
+				expect(visited).toContain(screen.getByRole('button', { name }))
+			}
+		} else {
+			expect(screen.getByRole('dialog').matches(':modal')).toBe(true)
 		}
 	})
 
@@ -228,10 +237,16 @@ describe('Drawer modal behaviour', () => {
 		)
 		await openDrawer()
 
-		screen.getByRole('button', { name: 'Confirm' }).focus()
+		const confirm = screen.getByRole('button', { name: 'Confirm' })
+		confirm.focus()
+		// Wait for focus to actually land before pressing Enter. `focus()` resolves
+		// synchronously in Chromium but not always in Firefox inside a modal `<dialog>`,
+		// and a keypress dispatched to the wrong element silently does nothing — this
+		// failed on Firefox roughly one CI run in two once the third engine was added.
+		await waitFor(() => expect(document.activeElement).toBe(confirm))
 		await userEvent.keyboard('{Enter}')
 
-		expect(onConfirm).toHaveBeenCalled()
+		await waitFor(() => expect(onConfirm).toHaveBeenCalled())
 		expect(screen.queryByRole('dialog')).toBeInTheDocument()
 	})
 })

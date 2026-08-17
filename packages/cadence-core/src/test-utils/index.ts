@@ -7,3 +7,5 @@
  */
 export { axeViolations, formatViolations } from './axe'
 export { declaredRule, declaredRules, declaredSelectors } from './styles'
+// `./keyboard` is deliberately absent from this barrel: it imports `vitest/browser`, which
+// does not resolve under the jsdom project. Browser specs import it by path.

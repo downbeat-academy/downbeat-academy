@@ -64,8 +64,9 @@ module.exports = withSentryConfig(
 		// Upload a larger set of source maps for prettier stack traces (increases build time)
 		widenClientFileUpload: true,
 
-		// Transpiles SDK to be compatible with IE11 (increases bundle size)
-		transpileClientSDK: true,
+		// `transpileClientSDK` (IE11 compatibility) was removed when the browser-support
+		// floor was encoded — see docs/adr/0003-browser-support-floor.md. IE11 sits far
+		// below the floor, and the option's own documentation notes it increases bundle size.
 
 		// Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
 		// This can increase your server load as well as your hosting bill.
