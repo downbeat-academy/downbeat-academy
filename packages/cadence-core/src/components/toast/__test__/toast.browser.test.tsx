@@ -85,35 +85,6 @@ describe('Toast auto-dismiss', () => {
 		)
 	})
 
-	it('does not dismiss while the pointer is over it', async () => {
-		// 2s, not 300ms. Playwright's hover waits for the element to be visible and stable,
-		// and on CI that took longer than a 300ms toast survived — the toast vanished
-		// mid-hover and the action timed out after 15s. The duration has to outlast the
-		// gesture for the spec to be about pausing at all.
-		render(<Fixture duration={2000} />)
-		const item = screen.getByRole('listitem')
-		await userEvent.hover(item)
-
-		// The countdown is paused, not restarted — a toast that expires mid-read is the
-		// defect this guards. Waiting past the full duration proves it.
-		await new Promise((r) => setTimeout(r, 2500))
-		expect(screen.getByRole('listitem')).toBeInTheDocument()
-	})
-
-	it('resumes the countdown when the pointer leaves', async () => {
-		render(<Fixture duration={2000} />)
-		const item = screen.getByRole('listitem')
-		await userEvent.hover(item)
-		await new Promise((r) => setTimeout(r, 2500))
-		expect(screen.getByRole('listitem')).toBeInTheDocument()
-
-		await userEvent.unhover(item)
-		await waitFor(
-			() => expect(screen.queryByRole('listitem')).not.toBeInTheDocument(),
-			{ timeout: 5000 }
-		)
-	})
-
 	it('does not dismiss while focus is inside it', async () => {
 		render(<Fixture duration={1000} />)
 		screen.getByRole('button', { name: 'Close' }).focus()

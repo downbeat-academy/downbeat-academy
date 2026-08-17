@@ -112,7 +112,7 @@ describe('DropdownMenu placement', () => {
 		render(<Fixture />)
 		const { menuEl } = await open()
 		if (typeof (menuEl as HTMLElement).showPopover !== 'function') return
-		expect(menuEl.matches(':popover-open')).toBe(true)
+		await waitFor(() => expect(menuEl.matches(':popover-open')).toBe(true))
 	})
 
 	it('paints above a higher-stacked sibling', async () => {
@@ -140,7 +140,7 @@ describe('DropdownMenu placement', () => {
 		// Asserted rather than hit-tested for the reason recorded in
 		// `tooltip.browser.test.tsx`: `elementFromPoint` on a top-layer element proved
 		// engine-dependent on Linux Firefox, and it was never the guarantee anyway.
-		expect(menuEl.matches(':popover-open')).toBe(true)
+		await waitFor(() => expect(menuEl.matches(':popover-open')).toBe(true))
 	})
 })
 
