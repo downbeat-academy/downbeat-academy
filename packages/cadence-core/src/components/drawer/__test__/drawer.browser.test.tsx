@@ -237,10 +237,16 @@ describe('Drawer modal behaviour', () => {
 		)
 		await openDrawer()
 
-		screen.getByRole('button', { name: 'Confirm' }).focus()
+		const confirm = screen.getByRole('button', { name: 'Confirm' })
+		confirm.focus()
+		// Wait for focus to actually land before pressing Enter. `focus()` resolves
+		// synchronously in Chromium but not always in Firefox inside a modal `<dialog>`,
+		// and a keypress dispatched to the wrong element silently does nothing — this
+		// failed on Firefox roughly one CI run in two once the third engine was added.
+		await waitFor(() => expect(document.activeElement).toBe(confirm))
 		await userEvent.keyboard('{Enter}')
 
-		expect(onConfirm).toHaveBeenCalled()
+		await waitFor(() => expect(onConfirm).toHaveBeenCalled())
 		expect(screen.queryByRole('dialog')).toBeInTheDocument()
 	})
 })
