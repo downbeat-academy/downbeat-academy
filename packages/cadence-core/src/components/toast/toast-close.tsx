@@ -1,26 +1,46 @@
 'use client'
 
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 import { X } from 'cadence-icons'
-import * as ToastPrimitive from '@radix-ui/react-toast'
 import classnames from 'classnames'
+import { useToastItem } from './toast-context'
 import type { ToastCloseProps } from './types'
 import s from './toast.module.css'
 
-const ToastClose = forwardRef<
-  React.ElementRef<typeof ToastPrimitive.Close>,
-  ToastCloseProps
->(({ className, ...props }, ref) => (
-  <ToastPrimitive.Close
-    ref={ref}
-    toast-close=""
-    aria-label="Close"
-    className={classnames(s['toast--close'], className)}
-    {...props}
-  >
-    <X width={16} aria-hidden="true" />
-  </ToastPrimitive.Close>
-))
+const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(
+	({ className, onClick, ...props }, ref) => {
+		const { close } = useToastItem('ToastClose')
+
+		const handleClick = useCallback(
+			(event: React.MouseEvent<HTMLButtonElement>) => {
+				onClick?.(event)
+				if (!event.defaultPrevented) close()
+			},
+			[onClick, close]
+		)
+
+		return (
+			<button
+				ref={ref}
+				type="button"
+				// The stylesheet targets this attribute rather than the hashed class, and
+				// the 0.3 backfill pinned it. Kept as a bare attribute, not the
+				// `data-radix-*` one it sat beside.
+				toast-close=""
+				// Regression guard: this button once contained only `<X />`, which renders
+				// `role="img"` with an undefined `aria-labelledby` and left both the svg and
+				// the button nameless. Third instance of the defect after `dialog` and
+				// `drawer`.
+				aria-label="Close"
+				className={classnames(s['toast--close'], className)}
+				onClick={handleClick}
+				{...props}
+			>
+				<X width={16} aria-hidden="true" />
+			</button>
+		)
+	}
+)
 
 ToastClose.displayName = 'ToastClose'
 

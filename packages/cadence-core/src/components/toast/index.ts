@@ -13,13 +13,15 @@ export { useToast, toast } from './use-toast'
 
 // Types
 export type {
-  ToastProps,
-  ToastVariant,
-  ToastDirection,
-  ToastViewportProps,
-  ToastTitleProps,
-  ToastDescriptionProps,
-  ToastCloseProps,
-  ToastActionProps,
-  ToastActionElement,
+	ToastProps,
+	ToastProviderProps,
+	ToastType,
+	ToastVariant,
+	ToastDirection,
+	ToastViewportProps,
+	ToastTitleProps,
+	ToastDescriptionProps,
+	ToastCloseProps,
+	ToastActionProps,
+	ToastActionElement,
 } from './types'

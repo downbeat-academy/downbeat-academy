@@ -1,6 +1,6 @@
 import React from 'react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { render, screen, act, cleanup } from '@testing-library/react'
+import { render, screen, act, cleanup, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {
 	Toast,
@@ -39,10 +39,18 @@ import s from '../toast.module.css'
 // Mirrors TOAST_REMOVE_DELAY in use-toast.ts, which does not export it.
 const TOAST_REMOVE_DELAY = 1000000
 
-const Static = ({
-	children,
-	...props
-}: React.ComponentProps<typeof Toast>) => (
+/**
+ * Queries that look for a toast's own text are scoped to the list with `within`.
+ *
+ * The rebuild announces through a persistent live region in the provider, which holds a
+ * copy of the title and description for a second after the toast opens — the same
+ * duplication Radix had. A bare `getByText` therefore matches twice. Scoping is the more
+ * precise query in any case: a test about the title's class should not depend on what the
+ * live region happens to be saying.
+ */
+const inList = () => within(screen.getByRole('list'))
+
+const Static = ({ children, ...props }: React.ComponentProps<typeof Toast>) => (
 	<ToastProvider>
 		<Toast open {...props}>
 			{children}
@@ -143,18 +151,27 @@ describe('Toast', () => {
 		})
 
 		it('is excluded from the announcement', () => {
-			// Radix marks the close button so a screen reader announcing the toast does
-			// not read the dismiss control as part of the message.
+			// Rewritten in C.1, not relocated. This asserted
+			// `data-radix-toast-announce-exclude` — Radix's own marker, which cannot
+			// survive the removal of Radix. The *behaviour* it protected is what matters:
+			// a screen reader announcing the toast must not read the dismiss control as
+			// part of the message.
+			//
+			// The rebuild gets there differently. The live region is built from the named
+			// title and description parts rather than from the toast's `textContent`, so
+			// the close button is excluded by construction and there is no marker to set.
 			render(
 				<Static>
 					<ToastTitle>Saved</ToastTitle>
+					<ToastDescription>Your profile was updated.</ToastDescription>
 					<ToastClose />
 				</Static>
 			)
 
-			expect(screen.getByRole('button', { name: 'Close' })).toHaveAttribute(
-				'data-radix-toast-announce-exclude'
-			)
+			const announcement = screen.getByRole('status').textContent ?? ''
+			expect(announcement).toContain('Saved')
+			expect(announcement).toContain('Your profile was updated.')
+			expect(announcement).not.toContain('Close')
 		})
 	})
 
@@ -299,7 +316,7 @@ describe('Toast', () => {
 				</Static>
 			)
 
-			const title = screen.getByText('Saved')
+			const title = inList().getByText('Saved')
 			expect(title).toHaveClass('title-class')
 			expect(title).toHaveClass(s['toast--title'])
 		})
@@ -312,7 +329,7 @@ describe('Toast', () => {
 				</Static>
 			)
 
-			const desc = screen.getByText('Updated.')
+			const desc = inList().getByText('Updated.')
 			expect(desc).toHaveClass('desc-class')
 			expect(desc).toHaveClass(s['toast--description'])
 		})
@@ -468,7 +485,7 @@ describe('Toast', () => {
 			act(() => {
 				handle = toast({ title: 'Dismiss me' })
 			})
-			expect(screen.getByText('Dismiss me')).toBeInTheDocument()
+			expect(inList().getByText('Dismiss me')).toBeInTheDocument()
 
 			act(() => {
 				handle.dismiss()
@@ -479,7 +496,7 @@ describe('Toast', () => {
 			// dismissal sets `open: false`. The entry stays in the reducer's array for
 			// TOAST_REMOVE_DELAY regardless — see `use-toast.test.ts`. A C.1 rewrite that
 			// wants an exit animation has to keep the node mounted, which this does not.
-			expect(screen.queryByText('Dismiss me')).not.toBeInTheDocument()
+			expect(inList().queryByText('Dismiss me')).not.toBeInTheDocument()
 			expect(screen.queryByRole('listitem')).not.toBeInTheDocument()
 		})
 
@@ -494,8 +511,8 @@ describe('Toast', () => {
 				handle.update({ id: handle.id, title: 'After update' } as never)
 			})
 
-			expect(screen.getByText('After update')).toBeInTheDocument()
-			expect(screen.queryByText('Before update')).not.toBeInTheDocument()
+			expect(inList().getByText('After update')).toBeInTheDocument()
+			expect(inList().queryByText('Before update')).not.toBeInTheDocument()
 		})
 
 		it('renders oldest-first in the DOM even though the queue is newest-first', () => {
@@ -538,7 +555,9 @@ describe('Toast', () => {
 				})
 			})
 
-			expect(screen.getByRole('button', { name: 'Undo it' })).toBeInTheDocument()
+			expect(
+				screen.getByRole('button', { name: 'Undo it' })
+			).toBeInTheDocument()
 		})
 	})
 })
