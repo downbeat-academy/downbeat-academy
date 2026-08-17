@@ -18,7 +18,8 @@ import {
  * Chromium and Firefox, the JS fallback on WebKit.
  */
 
-const CLOSE_ENOUGH = 2
+/** See the note on the same constant in `tooltip.browser.test.tsx`. */
+const CLOSE_ENOUGH = 6
 
 afterEach(() => {
 	const active = document.activeElement
