@@ -4,30 +4,65 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
-      day: monday
-    open-pull-requests-limit: 5
-    versioning-strategy: increase
+      interval: monthly
+    open-pull-requests-limit: 10
+    # `increase` rewrote dependency ranges even when the existing caret already allowed
+    # the new version — see a6992a18, which churned 12 lines of cadence-core's manifest
+    # for zero semantic gain and added no changeset. `increase-if-necessary` leaves
+    # package.json alone unless the new version genuinely falls outside the range, so
+    # most patch bumps become lockfile-only and stop touching published packages.
+    versioning-strategy: increase-if-necessary
     commit-message:
       prefix: chore
       include: scope
     labels:
       - dependencies
-    # Grouped to match how these updates have been batched by hand
-    # (see the may-2026-dep-updates-group-a/b/c branches in the history).
-    # One PR per coherent area beats twenty single-package PRs for a solo maintainer.
+
+    # Cooldown applies to VERSION updates only. Security updates bypass it entirely and
+    # do not count against open-pull-requests-limit, so real CVE fixes still arrive
+    # immediately. The delay is the cheap half of supply-chain defence: malicious
+    # releases are typically yanked within hours, long before this window elapses.
+    cooldown:
+      default-days: 7
+      semver-patch-days: 14
+      semver-minor-days: 14
+      semver-major-days: 30
+
+    # ------------------------------------------------------------------------------
+    # GROUPING
+    #
+    # Two rules govern everything below, and both are load-bearing:
+    #
+    # 1. FIRST MATCH WINS, in file order. A dependency joins the first group whose
+    #    patterns AND update-types AND dependency-type filters all pass. If a group's
+    #    pattern matches but another filter rejects the candidate, it keeps falling
+    #    through to the next group rather than stopping.
+    #
+    # 2. EVERY GROUP IS RESTRICTED TO [minor, patch] — including the catch-alls at the
+    #    bottom. That is what makes major bumps arrive as individual, reviewable PRs:
+    #    a major fails every group's update-types filter, matches nothing, and gets its
+    #    own PR. See the warning above the catch-alls before editing.
+    #
+    # Without grouping, 46 of this repo's 109 external dependencies matched no group and
+    # each opened its own PR. Every one of them touches pnpm-lock.yaml, so they conflict
+    # with each other on merge — the conflicts, not the merge clicks, were the real tax.
+    # ------------------------------------------------------------------------------
     groups:
       next:
         patterns:
           - 'next'
           - '@next/*'
           - 'eslint-config-next'
+        update-types: [minor, patch]
+
       react:
         patterns:
           - 'react'
           - 'react-dom'
           - '@types/react'
           - '@types/react-dom'
+        update-types: [minor, patch]
+
       sanity:
         patterns:
           - 'sanity'
@@ -35,10 +70,17 @@ updates:
           - 'sanity-plugin-*'
           - 'next-sanity'
           - '@portabletext/*'
+          # Sanity Studio pins styled-components tightly; bumping it independently of
+          # Sanity's own releases breaks Studio rendering.
+          - 'styled-components'
+        update-types: [minor, patch]
+
       auth:
         patterns:
           - 'better-auth'
           - '@better-auth/*'
+        update-types: [minor, patch]
+
       database:
         patterns:
           - 'drizzle-orm'
@@ -46,14 +88,15 @@ updates:
           - 'pg'
           - '@types/pg'
           - 'postgres'
-      radix:
-        patterns:
-          - '@radix-ui/*'
+        update-types: [minor, patch]
+
       storybook:
         patterns:
           - 'storybook'
           - '@storybook/*'
           - 'chromatic'
+        update-types: [minor, patch]
+
       testing:
         patterns:
           - 'vitest'
@@ -63,22 +106,98 @@ updates:
           - '@testing-library/*'
           - 'jsdom'
           - '@open-wc/testing'
+          # axe-core itself was never listed — only cypress-axe — so a ruleset change
+          # could silently alter which a11y violations CI catches.
+          - 'axe-core'
+          - 'playwright'
+        update-types: [minor, patch]
+
       build-tooling:
         patterns:
           - 'vite'
           - 'vite-*'
+          # `vite-*` is a prefix match and does NOT cover the scoped plugin package.
+          - '@vitejs/*'
           - 'rollup'
           - 'rollup-*'
           - '@rollup/*'
           - 'turbo'
           - 'typescript'
           - 'style-dictionary'
+          # The PostCSS chain builds the published cadence-core CSS. A class-hashing or
+          # transform change corrupts shipped stylesheets silently, so it belongs with
+          # the rest of the build pipeline rather than in a generic catch-all.
+          - 'postcss'
+          - 'postcss-*'
+          - 'autoprefixer'
+        update-types: [minor, patch]
+
       observability:
         patterns:
           - '@sentry/*'
           - 'posthog-js'
           - 'posthog-node'
           - 'fathom-client'
+        update-types: [minor, patch]
+
+      # Runtime dependencies where a minor bump plausibly changes behaviour rather than
+      # just fixing bugs — either because they render core product surfaces, or because
+      # they ship inside a published package and a regression reaches consumers.
+      # Deliberately one group rather than four: these update rarely, so a single PR you
+      # actually read beats four standing ones you skim.
+      runtime-critical:
+        patterns:
+          - 'opensheetmusicdisplay'
+          - 'recharts'
+          - 'lit'
+          - '@tanstack/react-table'
+        update-types: [minor, patch]
+
+      # ------------------------------------------------------------------------------
+      # The two groups below exist to keep dual-classified packages away from the
+      # prod/dev catch-alls. `dependency-type` is evaluated per MANIFEST OCCURRENCE, not
+      # per package name, so a dependency listed as prod in one workspace and dev in
+      # another splits across BOTH catch-alls and produces two PRs racing on the same
+      # pnpm-lock.yaml — exactly the conflict this config is meant to eliminate.
+      #
+      # Currently dual-classified: classnames, eslint, eslint-config-next, nanoid.
+      # eslint-config-next is already claimed by the `next` group above. Naming the rest
+      # here means first-match-wins settles them before dependency-type is ever consulted.
+      # ------------------------------------------------------------------------------
+      linting:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - 'prettier'
+          - 'prettier-*'
+        update-types: [minor, patch]
+
+      utilities:
+        patterns:
+          - 'classnames'
+          - 'nanoid'
+          - 'date-fns'
+          - 'string-hash'
+        update-types: [minor, patch]
+
+      # ------------------------------------------------------------------------------
+      # CATCH-ALLS — these must stay LAST, and must keep `update-types: [minor, patch]`.
+      #
+      # Drop the restriction from either one and `patterns: ['*']` will swallow major
+      # bumps into a batch PR that reads as routine. There is no config-time guard
+      # against that; the only protection is this comment and review.
+      # ------------------------------------------------------------------------------
+      production-dependencies:
+        dependency-type: production
+        patterns:
+          - '*'
+        update-types: [minor, patch]
+
+      development-dependencies:
+        dependency-type: development
+        patterns:
+          - '*'
+        update-types: [minor, patch]
 
   - package-ecosystem: github-actions
     directory: /
@@ -88,7 +207,12 @@ updates:
       prefix: chore
     labels:
       - dependencies
+    cooldown:
+      default-days: 7
     groups:
       actions:
         patterns:
           - '*'
+        # Action majors change inputs and runtime versions; they get their own PR for
+        # the same reason npm majors do.
+        update-types: [minor, patch]
