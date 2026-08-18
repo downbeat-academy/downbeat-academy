@@ -37,7 +37,8 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: '20.x'
+  # Kept in step with ci-monorepo.yml, which explains why this is 22.x and not 20.x.
+  NODE_VERSION: '22.x'
   # pnpm's version is NOT set here. `pnpm/action-setup` v6 hard-errors if it finds a
   # version in both the `version:` input and `packageManager` in package.json, so
   # `packageManager: pnpm@10.34.5` is the single source of truth.
@@ -74,7 +75,7 @@ jobs:
 
       - name: Cache Playwright browsers
         id: playwright-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           # The browser set is part of the key, not just the Playwright version. Without
