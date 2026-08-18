@@ -25,3 +25,5 @@ ESM-only output (`dist/index.es.js`). Tests use `@open-wc/testing`.
 
 - [`AGENTS.md`](./AGENTS.md)
 - [`../cadence-core/`](../cadence-core/) — the React library this mirrors
+
+<!-- Railway PR-environment control test; this branch is not for merge. -->

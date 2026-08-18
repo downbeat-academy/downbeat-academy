@@ -33,3 +33,5 @@ Everything is exported from a single root barrel — there are no subpath export
 - [`AGENTS.md`](./AGENTS.md) — conventions, testing rules, build pipeline, gotchas
 - [`docs/`](./docs/) — development guide and component reference
 - [`../../docs/architecture/design-system.md`](../../docs/architecture/design-system.md)
+
+<!-- Railway PR-environment control test; this branch is not for merge. -->
