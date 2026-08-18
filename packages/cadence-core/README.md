@@ -35,3 +35,4 @@ Everything is exported from a single root barrel — there are no subpath export
 - [`../../docs/architecture/design-system.md`](../../docs/architecture/design-system.md)
 
 <!-- Railway PR-environment control test; this branch is not for merge. -->
+<!-- redeploy trigger: pnpm 10 isolation step -->

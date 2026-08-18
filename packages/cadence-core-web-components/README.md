@@ -27,3 +27,4 @@ ESM-only output (`dist/index.es.js`). Tests use `@open-wc/testing`.
 - [`../cadence-core/`](../cadence-core/) — the React library this mirrors
 
 <!-- Railway PR-environment control test; this branch is not for merge. -->
+<!-- redeploy trigger: pnpm 10 isolation step -->
