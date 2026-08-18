@@ -6,17 +6,33 @@ packages:
 # Dependency install scripts are blocked by default from pnpm 10 onward. Only packages
 # listed here may run preinstall/install/postinstall.
 #
-# An audit of the full tree (~2,467 packages) found exactly ONE that ships an install
-# script: cypress, which downloads its test-runner binary. Everything else is blocked,
-# which closes the postinstall vector that most npm supply-chain attacks rely on — the
-# payload runs during `pnpm install`, before any test executes, so CI passing is not a
-# defence against it.
+# Blocking these closes the postinstall vector that most npm supply-chain attacks rely
+# on — the payload runs during `pnpm install`, before any test executes, so CI passing is
+# not a defence against it.
+#
+# Nine scripts in the tree are blocked, and cypress is the only one that needs an
+# exception. Verified by a clean `pnpm install --frozen-lockfile` on pnpm 10.34.5
+# followed by a full lint/typecheck/test, build, and browser-test run, all of which pass
+# with the other eight blocked:
+#
+#   cypress          ALLOWED — downloads its test-runner binary, and has no other route
+#                    to it. Without this entry the E2E suite cannot run.
+#   esbuild          blocked — its install.js only verifies a binary that already
+#   @sentry/cli      arrives via platform-specific OPTIONAL DEPENDENCIES
+#   unrs-resolver    (@sentry/cli-linux-x64, esbuild-linux-64, and so on). The script is
+#   @parcel/watcher  a fallback downloader, so blocking it costs nothing.
+#   core-js          blocked — the script only prints a funding message.
+#   gl               blocked — a native gyp build, but it is an OPTIONAL dependency of
+#                    opensheetmusicdisplay and only backs OSMD's Node-side canvas
+#                    rendering. www renders in the browser and does not reach it.
+#
+# That optional-dependency pattern is what makes this safe, so it is the thing to check
+# before adding an entry: confirm the package has no other route to its binary, rather
+# than that it merely has a script. Do NOT use dangerouslyAllowAllBuilds to silence a
+# warning.
 #
 # CI already sets CYPRESS_INSTALL_BINARY=0 in ci-monorepo.yml and ci-cadence-browser.yml,
-# so this mainly matters for local installs.
-#
-# Before adding an entry: confirm the package genuinely needs to compile or fetch a
-# binary. Do NOT use dangerouslyAllowAllBuilds to silence a warning.
+# so the cypress entry mainly matters for local installs.
 onlyBuiltDependencies:
     - cypress
 
