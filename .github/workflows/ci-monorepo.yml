@@ -7,7 +7,12 @@ on:
   pull_request: {}
 
 env:
-  NODE_VERSION: '20.x'
+  # 22.x, not 20.x: Node 20 is past end-of-life, and the test toolchain has moved past
+  # it. jsdom 30 declares `node: ^22.22.2 || ^24.15.0 || >=26`, and the undici 8 it pulls
+  # in calls `worker_threads.markAsUncloneable`, which Node added in 22.10 — under Node
+  # 20 every jsdom-environment vitest worker dies at startup with
+  # `webidl.util.markAsUncloneable is not a function`. Keep this at or above 22.22.2.
+  NODE_VERSION: '22.x'
   # pnpm's version is NOT set here. `pnpm/action-setup` v6 hard-errors if it finds a
   # version in both the `version:` input and `packageManager` in package.json, so
   # `packageManager: pnpm@9.15.4` is the single source of truth.
