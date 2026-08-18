@@ -15,7 +15,7 @@ env:
   NODE_VERSION: '22.x'
   # pnpm's version is NOT set here. `pnpm/action-setup` v6 hard-errors if it finds a
   # version in both the `version:` input and `packageManager` in package.json, so
-  # `packageManager: pnpm@9.15.4` is the single source of truth.
+  # `packageManager: pnpm@10.34.5` is the single source of truth.
   # No job in this workflow launches a browser — E2E lives in ci-www-e2e.yml.
   # Skipping the binary download keeps installs fast across every job.
   CYPRESS_INSTALL_BINARY: '0'
