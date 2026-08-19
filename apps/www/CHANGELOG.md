@@ -1,5 +1,13 @@
 # www
 
+## 4.9.2
+
+### Patch Changes
+
+- 2599c24: Update dependencies.
+- Updated dependencies [2599c24]
+  - cadence-core@5.0.1
+
 ## 4.9.1
 
 ### Patch Changes
