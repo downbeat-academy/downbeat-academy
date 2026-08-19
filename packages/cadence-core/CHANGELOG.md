@@ -1,5 +1,11 @@
 # cadence-core
 
+## 5.0.1
+
+### Patch Changes
+
+- 2599c24: Update dependencies.
+
 ## 5.0.0
 
 ### Major Changes
