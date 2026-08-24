@@ -66,6 +66,23 @@ to be the production auth service. Gating on `NODE_ENV` would not work, because 
 deploys also run with `NODE_ENV=production`. Set `POSTHOG_DEBUG=true` to capture from a local
 run — those events go to the production project.
 
+### The two variables this needs, and how it fails without them
+
+`NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` (yes, `NEXT_PUBLIC_`, even though nothing here is sent
+to a browser — it is the same token `www` uses) and `AUTH_SERVICE_URL`. Both live in
+Infisical at `/auth` and reach Railway through the Infisical → Railway integration.
+
+Without the token, `getClient()` returns `null` and **every auth event is silently dropped**.
+Nothing logs, nothing errors, and `pnpm verify` stays green — the funnel simply reads zero
+in PostHog, which looks exactly like nobody signing in. This is not hypothetical: the token
+was absent from `/auth` for the first two weeks after the funnel shipped, and no layer of
+the testing strategy could have caught it, because all of them run against a fake token by
+design.
+
+`getClient()` caches its gate decision in a module-level singleton, so **adding the variable
+is not enough — the service has to be redeployed.** A synced Railway variable does not
+restart the process.
+
 ## Layout
 
 ```

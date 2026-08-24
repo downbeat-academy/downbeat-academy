@@ -59,7 +59,7 @@ Each app has an `.infisical.json` and wraps its dev server:
 
 | Path | App |
 | --- | --- |
-| `/auth` | `AUTH_SERVICE_URL`, `NEXT_PUBLIC_AUTH_SERVICE_URL`, `DATABASE_URL`, `BETTER_AUTH_SECRET`, `RESEND_API_KEY`, `DEFAULT_REDIRECT_URL` |
+| `/auth` | `AUTH_SERVICE_URL`, `NEXT_PUBLIC_AUTH_SERVICE_URL`, `DATABASE_URL`, `BETTER_AUTH_SECRET`, `RESEND_API_KEY`, `DEFAULT_REDIRECT_URL`, `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` |
 | `/www` | `NEXT_PUBLIC_PROJECT_URL`, `AUTH_SERVICE_URL`, `NEXT_PUBLIC_AUTH_SERVICE_URL`, `DATABASE_URL_AUTH`, `OAUTH_CLIENT_ID/SECRET`, `BETTER_AUTH_SECRET`, plus Sanity, Sentry, PostHog, Fathom keys |
 | `/cadence-links` | `NEXT_PUBLIC_APP_URL`, auth service URLs, `DATABASE_URL_AUTH`, `DATABASE_PUBLIC_URL`, `OAUTH_CLIENT_ID/SECRET`, `BETTER_AUTH_SECRET`, `ALLOWED_EMAILS` |
 
@@ -114,7 +114,7 @@ repo; see [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 | --- | --- | --- |
 | **Sentry** | `apps/www` | `withSentryConfig` in `next.config.js` (org `hype-creative-studios`, project `downbeatacademy`); `instrumentation.ts` lazily loads `sentry.server.config.ts` / `sentry.edge.config.ts`; `onRequestError` ignores stale Server Action IDs and aborted requests |
 | **PostHog** | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
-| **PostHog** | `apps/auth` | Server-side only (`posthog-node`), no client init. The authentication funnel: `sign_up_completed` / `sign_in_completed` via better-auth `databaseHooks`, `sign_out_completed` in `src/app/sign-out/page.tsx`, `password_reset_requested` in `sendResetPassword`. Gated by `shouldCaptureAuthAnalytics` on `AUTH_SERVICE_URL` |
+| **PostHog** | `apps/auth` | Server-side only (`posthog-node`), no client init. The authentication funnel: `sign_up_completed` / `sign_in_completed` via better-auth `databaseHooks`, `sign_out_completed` in `src/app/sign-out/page.tsx`, `password_reset_requested` in `sendResetPassword`. Gated by `shouldCaptureAuthAnalytics` on `AUTH_SERVICE_URL`, and needs `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` at Infisical `/auth` — without it the whole funnel is dropped in silence |
 | **Fathom** | `apps/www` | `src/lib/fathom.tsx`, `includedDomains` restricted to `downbeatacademy.com` |
 | **Resend** | `apps/auth`, `apps/www` | `auth` sends verification and reset mail using the `email` package's templates. `www` has its own templates in `src/actions/email/` and does **not** depend on the `email` package |
 
