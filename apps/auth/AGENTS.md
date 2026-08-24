@@ -60,6 +60,41 @@ Capture goes through `src/lib/analytics`, never `posthog-node` directly:
 - `distinctId` is always the better-auth `user.id`. That shared id is the *only* thing
   stitching these events to `www`'s — the two apps are on different domains, so there is no
   shared cookie and no common anonymous id.
+- `password_reset_completed` uses better-auth's `onPasswordReset`, which runs only after the
+  password has actually changed. Paired with `password_reset_requested` it gives the
+  completion rate of the flow. It covers the token-based reset route only —
+  `updatePasswordAction` changes a password for an already signed-in user, which is a
+  different action and is deliberately not reported as a reset.
+- `oauth_authorization_granted` is the one event that is **not** a database hook, because it
+  cannot be: `databaseHooks` only reach better-auth's base models, and the OAuth token row
+  belongs to the provider plugin. It hangs off an `after` hook on `/oauth2/token` instead,
+  which is the honest anchor anyway — the point where a consumer app stops being a redirect
+  and actually receives credentials.
+
+### Why `oauth_authorization_granted` looks the way it does
+
+There is **no consent screen.** `consentPage: '/consent'` is configured but that route does
+not exist, and it is never reached: all three consumer apps are first-party and registered
+with `skipConsent`, so `/oauth2/authorize` redirects straight back with a code. Instrumenting
+a consent click would have reported zero forever — the same class of mistake as the original
+`apps/www` instrumentation on the disabled email-auth path.
+
+`resolveOAuthGrant` reads `sub` and `aud` out of the issued `id_token`. Both are OpenID
+Connect claims with spec-defined meanings, which keeps the event tied to the protocol rather
+than to plugin internals. Two better-auth-specific anchors were considered and rejected: the
+authorize endpoint signals success by *throwing* a redirect, and the token row is a plugin
+model no hook can see. Either would break on a minor version bump, and would break silently.
+
+Three things to know if you touch it:
+
+- **`grant_type` is guarded.** A refresh hits the same endpoint with the same response shape.
+  Counting it turns the event into a measure of session length — the same trap
+  `resolveAuthMethod` exists to avoid for `sign_in_completed`.
+- **`sub` equals `user.id` only under the default public subject type.** Setting
+  `subject_type = 'pairwise'` on a client would silently stop the person stitching to `www`.
+- **A code exchange that resolves to no grant logs a warning.** If better-auth ever changes
+  the token response shape, that warning is the only thing standing between you and an event
+  that quietly stops firing.
 
 Like `www`, capture is gated by host: `shouldCaptureAuthAnalytics` requires `AUTH_SERVICE_URL`
 to be the production auth service. Gating on `NODE_ENV` would not work, because preview

@@ -86,6 +86,21 @@ instrumentation.
 - [ ] `sign_in_completed` — `{ method }`. Check **both** `method: 'email'` and `method: 'oauth'`.
 - [ ] `sign_out_completed`
 - [ ] `password_reset_requested`
+- [ ] `password_reset_completed` — finish a reset by actually setting a new password. The
+      pair gives the completion rate of the flow; `requested` alone cannot tell "reset it"
+      apart from "never opened the email".
+- [ ] `oauth_authorization_granted` — `{ client_id }`. Fires when a consumer app completes
+      the token exchange, so signing in to `www` and to `cadence-links` should produce
+      **different** `client_id` values. This is the only signal of which app people use.
+
+Two negatives for `oauth_authorization_granted`, both silent if wrong:
+
+- [ ] Stay signed in past an access-token expiry (an hour). The refresh must **not** produce
+      another grant — otherwise the event measures session length, not authorisation.
+- [ ] Its `distinctId` is the same person as `sign_in_completed`. It comes from the
+      `sub` claim, which equals the better-auth `user.id` only while clients use the default
+      public subject type. A client with `subject_type = 'pairwise'` would silently split
+      the person in two.
 
 Also confirm the negative: browse the signed-in site for a few minutes and check that
 `sign_in_completed` does **not** tick up. Session refreshes create session rows, and the

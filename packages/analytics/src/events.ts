@@ -48,6 +48,22 @@ export interface AnalyticsEventMap {
 	sign_in_completed: { method: AuthMethod }
 	sign_out_completed: never
 	password_reset_requested: never
+	/**
+	 * The password was actually changed, not merely a reset email sent. Paired
+	 * with `password_reset_requested`, the two give the completion rate of the
+	 * reset flow — the requested event alone cannot distinguish "reset the
+	 * password" from "never opened the email".
+	 *
+	 * Covers the token-based reset flow only. Changing a password while signed
+	 * in is a different action and is deliberately not reported as a reset.
+	 */
+	password_reset_completed: never
+	/**
+	 * A consumer app completed the OAuth flow and received tokens for a user.
+	 * `client_id` is the only signal of *which* app people actually authorise —
+	 * `sign_in_completed` says someone signed in, not what they signed in to.
+	 */
+	oauth_authorization_granted: { client_id: string }
 
 	// --- Conversion ----------------------------------------------------------
 	contact_form_submitted: never
@@ -100,6 +116,8 @@ export const ANALYTICS_EVENT_NAMES = [
 	'sign_in_completed',
 	'sign_out_completed',
 	'password_reset_requested',
+	'password_reset_completed',
+	'oauth_authorization_granted',
 	'contact_form_submitted',
 	'newsletter_subscribed',
 	'newsletter_unsubscribed',
