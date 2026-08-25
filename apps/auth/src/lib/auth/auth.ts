@@ -17,7 +17,13 @@ import {
 // Email templates from shared package
 import { VerifyEmail, ResetPasswordEmail } from 'email/emails/index'
 
-import { captureAuthEvent, resolveAuthMethod } from '@/lib/analytics'
+import { createAuthMiddleware } from 'better-auth/api'
+
+import {
+	captureAuthEvent,
+	resolveAuthMethod,
+	resolveOAuthGrant,
+} from '@/lib/analytics'
 
 // Security: Validate redirect URIs to prevent open redirect attacks
 const TRUSTED_DOMAINS = [
@@ -26,6 +32,15 @@ const TRUSTED_DOMAINS = [
 	'auth.downbeatacademy.services',
 	'links.downbeatacademy.services',
 ]
+
+/**
+ * Reads one property off a value better-auth types as `unknown` (request bodies
+ * and endpoint return values), without asserting a shape we do not control.
+ */
+function readField(source: unknown, key: string): unknown {
+	if (typeof source !== 'object' || source === null) return undefined
+	return (source as Record<string, unknown>)[key]
+}
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -133,12 +148,68 @@ export function createAuth() {
 			},
 		},
 
+		// `oauth_authorization_granted` cannot hang off a database hook like the
+		// events above: `databaseHooks` only cover better-auth's base models, and
+		// the OAuth token row belongs to the provider plugin. The token endpoint
+		// is the honest anchor anyway — it is where a consumer app stops being a
+		// redirect and actually receives credentials for a user.
+		hooks: {
+			after: createAuthMiddleware(async (ctx) => {
+				if (ctx.path !== '/oauth2/token') return
+
+				const grantType = readField(ctx.body, 'grant_type')
+				const idToken = readField(ctx.context.returned, 'id_token')
+
+				const grant = resolveOAuthGrant({
+					path: ctx.path,
+					grantType,
+					idToken,
+				})
+
+				if (grant) {
+					captureAuthEvent({
+						distinctId: grant.distinctId,
+						event: 'oauth_authorization_granted',
+						properties: { client_id: grant.client_id },
+					})
+					return
+				}
+
+				// A code exchange that produced no usable grant is either a
+				// failed request or a shape this hook no longer understands.
+				// Say so in the logs rather than going quiet: an analytics event
+				// that stops firing without a word is the exact failure this
+				// instrumentation exists to catch, and it would otherwise look
+				// identical to nobody signing in.
+				if (grantType === 'authorization_code') {
+					console.warn(
+						'[analytics] /oauth2/token succeeded but no OAuth grant could be resolved — oauth_authorization_granted was not captured',
+					)
+				}
+			}),
+		},
+
 		emailAndPassword: {
 			enabled: true,
 			autoSignIn: true,
 			requireEmailVerification: true,
 			resetPasswordPath: '/update-password',
 			forgetPasswordPath: '/api/auth/forget-password',
+			// Fires only after the password has actually been changed, so the
+			// pair of events gives the completion rate of the reset flow.
+			// `password_reset_requested` alone cannot tell "reset it" apart from
+			// "never opened the email".
+			//
+			// This is the token-based reset route only. `updatePasswordAction`
+			// changes a password for an already signed-in user, which is a
+			// different action and goes through the internal adapter rather than
+			// this endpoint — deliberately not reported as a reset.
+			onPasswordReset: async ({ user }) => {
+				captureAuthEvent({
+					distinctId: user.id,
+					event: 'password_reset_completed',
+				})
+			},
 			sendResetPassword: async ({ user, url, token }, request) => {
 				captureAuthEvent({
 					distinctId: user.id,

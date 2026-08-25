@@ -12,8 +12,14 @@ Everything below needs the real project, the real domain, and a real browser.
 - [ ] `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` is set in Infisical at `/www` **and** present in the
       Railway service environment. It appears in no committed `.env.example`, so it is easy for
       this to be silently missing — in which case nothing initialises and nothing errors.
-- [ ] The same token is set for the `auth` service, along with `AUTH_SERVICE_URL` pointing at
-      `https://auth.downbeatacademy.services`. `apps/auth` gates on that URL, not on `NODE_ENV`.
+- [ ] The same token is set for the `auth` service — in Infisical at `/auth`, which is a
+      **separate path from `/www` and does not inherit from it** — along with
+      `AUTH_SERVICE_URL` pointing at `https://auth.downbeatacademy.services`. `apps/auth`
+      gates on that URL, not on `NODE_ENV`.
+- [ ] The `auth` service has been **redeployed since** that token was added. `getClient()` in
+      `src/lib/analytics/posthog-server.ts` caches its gate decision in a module-level
+      singleton, so a synced Railway variable does not take effect until the process restarts.
+      Check for a fresh successful deployment rather than assuming the sync was enough.
 - [ ] You are on `downbeatacademy.com` or `www.downbeatacademy.com`. Nowhere else reports —
       see `POSTHOG_ALLOWED_HOSTS` in `apps/www/src/lib/posthog/config.ts`.
 - [ ] Open PostHog → **Activity** (live events) and filter to your own person once identified.
@@ -71,10 +77,30 @@ unreachable or broken — that is the exact condition this whole effort was crea
 
 **Auth** (captured server-side by `apps/auth`)
 
+If every event in this group is at zero while the `www` groups below are fine, do not start
+debugging the `databaseHooks` — check the token and the redeploy in "Before you start" first.
+That is the failure this group has actually had, and it presents identically to broken
+instrumentation.
+
 - [ ] `sign_up_completed` — `{ method }`
 - [ ] `sign_in_completed` — `{ method }`. Check **both** `method: 'email'` and `method: 'oauth'`.
 - [ ] `sign_out_completed`
 - [ ] `password_reset_requested`
+- [ ] `password_reset_completed` — finish a reset by actually setting a new password. The
+      pair gives the completion rate of the flow; `requested` alone cannot tell "reset it"
+      apart from "never opened the email".
+- [ ] `oauth_authorization_granted` — `{ client_id }`. Fires when a consumer app completes
+      the token exchange, so signing in to `www` and to `cadence-links` should produce
+      **different** `client_id` values. This is the only signal of which app people use.
+
+Two negatives for `oauth_authorization_granted`, both silent if wrong:
+
+- [ ] Stay signed in past an access-token expiry (an hour). The refresh must **not** produce
+      another grant — otherwise the event measures session length, not authorisation.
+- [ ] Its `distinctId` is the same person as `sign_in_completed`. It comes from the
+      `sub` claim, which equals the better-auth `user.id` only while clients use the default
+      public subject type. A client with `subject_type = 'pairwise'` would silently split
+      the person in two.
 
 Also confirm the negative: browse the signed-in site for a few minutes and check that
 `sign_in_completed` does **not** tick up. Session refreshes create session rows, and the
