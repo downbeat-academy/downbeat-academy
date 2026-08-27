@@ -467,9 +467,12 @@ describe('Dialog', () => {
 
 		it('has an accessible name', () => {
 			// Regression guard. This button shipped with no accessible name at all: it
-			// contains only `<X />`, which renders `role="img"` with an undefined
+			// contains only `<X />`, which then rendered `role="img"` with an undefined
 			// `aria-labelledby`, so both the svg and the button were nameless. Fixed
-			// alongside this suite — axe caught it in dialog-a11y.test.tsx.
+			// alongside this suite — axe caught it in dialog-a11y.test.tsx. The root cause
+			// is now fixed in `cadence-icons`, where an untitled icon is `aria-hidden` with
+			// no role — which makes the `aria-label` here load-bearing rather than a
+			// belt-and-braces addition.
 			render(<Basic open />)
 
 			expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument()

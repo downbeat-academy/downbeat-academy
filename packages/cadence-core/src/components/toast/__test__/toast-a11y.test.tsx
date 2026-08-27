@@ -126,10 +126,14 @@ describe('Toast accessibility', () => {
 	it('gives the built-in close button an accessible name', async () => {
 		// The regression this suite caught, and the third instance of the same defect
 		// after `dialog` and `drawer` (both fixed in #312). `ToastClose` renders only
-		// `<X />`, and `cadence-icons`' X sets `role="img"` with
+		// `<X />`, and `cadence-icons`' X then set `role="img"` with
 		// `aria-labelledby={titleId}` — undefined unless a title is passed, so React
-		// omits it. That left the svg nameless under `svg-img-alt` and the button
+		// omitted it. That left the svg nameless under `svg-img-alt` and the button
 		// nameless under `button-name`, on all 24 toast consumer surfaces.
+		//
+		// The root cause is fixed: an untitled icon is now `aria-hidden` with no role, so
+		// it cannot be a nameless `role="img"`. The button still needs this name, because
+		// a hidden icon cannot supply one.
 		render(
 			<ToastProvider>
 				<Toast open>
