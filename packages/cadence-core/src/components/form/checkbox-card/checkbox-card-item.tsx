@@ -16,7 +16,7 @@ const alignmentClassMap: Record<string, string> = {
   center: s.itemContentAlignmentCenter,
 }
 
-const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
+const CheckboxCardItem = forwardRef<HTMLLabelElement, CheckboxCardItemProps>(({
   value,
   disabled,
   required,
@@ -35,7 +35,6 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   'aria-labelledby': ariaLabelledby,
   'aria-describedby': ariaDescribedby,
   _groupValue,
-  _groupDefaultValue,
   _groupOnValueChange,
   _groupDisabled,
   _groupRequired,
@@ -52,29 +51,27 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
   const finalRequired = required ?? _groupRequired
   const finalIsInvalid = isInvalid ?? _groupIsInvalid
 
-  // Handle group vs individual checkbox logic
-  const isGrouped = _groupValue !== undefined || _groupOnValueChange !== undefined
-  let finalChecked = checked
-  let finalOnCheckedChange = onCheckedChange
+  // A checkbox group has no native equivalent — unlike radios, checkboxes sharing a `name`
+  // are not coordinated by the browser — so the group's array still resolves this item's
+  // state. `CheckboxCardGroup` always supplies a concrete array, controlled or not.
+  const isGrouped = _groupValue !== undefined
 
-  if (isGrouped) {
-    const currentValue = _groupValue || []
-    finalChecked = currentValue.includes(value)
+  // Left `undefined` for a standalone card with no `checked` prop, which is what keeps the
+  // input uncontrolled and clickable rather than pinned to `false` by React.
+  const finalChecked = isGrouped ? _groupValue.includes(value) : checked
 
-    if (_groupOnValueChange) {
-      finalOnCheckedChange = (newChecked: boolean) => {
-        const currentValueAtTime = _groupValue || []
-        if (newChecked) {
-          // Add to array if not present
-          if (!currentValueAtTime.includes(value)) {
-            _groupOnValueChange([...currentValueAtTime, value])
-          }
-        } else {
-          // Remove from array
-          _groupOnValueChange(currentValueAtTime.filter(v => v !== value))
-        }
-      }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const next = event.target.checked
+
+    if (isGrouped) {
+      _groupOnValueChange?.(
+        next
+          ? [..._groupValue, value]
+          : _groupValue.filter((v) => v !== value)
+      )
     }
+
+    onCheckedChange?.(next)
   }
 
   const rootClasses = classnames(
@@ -117,57 +114,40 @@ const CheckboxCardItem = forwardRef<HTMLDivElement, CheckboxCardItemProps>(({
     </div>
   )
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (finalDisabled) return
-
-    if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault()
-      finalOnCheckedChange?.(!finalChecked)
-    }
-  }
-
   return (
-    // KNOWN DEFECT, unchanged by the Radix migration: selection lives on this bare
-    // `div role="checkbox"` while the real input below is `aria-hidden` and removed
-    // from the tab order — the same pattern that quarantined 14 `radio-card` tests.
-    // This component is commented out of the form barrel and does not ship. Fixing it
-    // is tracked separately; do not treat its passing tests as evidence it is correct.
-    <div
+    // The card is a `<label>` wrapping the real checkbox — the same fix `radio-card`
+    // received in Radix A.4. A click anywhere on the card toggles the input natively, the
+    // input stays in the tab order, and Space operates it because it is a real checkbox.
+    // Previously this was a bare `div role="checkbox"` with an onClick and a hand-rolled
+    // keydown handler, holding an `aria-hidden`, `tabIndex={-1}` checkbox that assistive
+    // technology could not see and the keyboard could not reach.
+    //
+    // Selected, indeterminate, focused and disabled styling is expressed with `:has()`
+    // against that input rather than mirrored onto `data-state` / `data-disabled`
+    // attributes, so the DOM cannot drift out of sync with the control.
+    <label
       ref={ref}
-      id={id}
       className={rootClasses}
-      onClick={() => !finalDisabled && finalOnCheckedChange?.(!finalChecked)}
-      onKeyDown={handleKeyDown}
-      tabIndex={finalDisabled ? -1 : 0}
-      role="checkbox"
-      aria-checked={finalChecked === 'indeterminate' ? 'mixed' : finalChecked}
-      aria-disabled={finalDisabled}
-      aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledby}
-      aria-describedby={ariaDescribedby}
-      data-state={finalChecked === 'indeterminate' ? 'indeterminate' : finalChecked ? 'checked' : 'unchecked'}
-      data-disabled={finalDisabled || undefined}
       {...props}
     >
       {content}
       <div className={s.itemIndicatorArea}>
-        {/* Presentational only — the wrapping div owns interaction, so the input is
-            `readOnly` to keep React from warning about a controlled field with no
-            change handler. */}
         <Checkbox
-          checked={finalChecked === true}
+          id={id}
+          value={value}
+          name={_groupName}
+          checked={finalChecked === 'indeterminate' ? false : finalChecked}
           indeterminate={finalChecked === 'indeterminate'}
-          readOnly
+          onChange={handleChange}
           disabled={finalDisabled}
           required={finalRequired}
-          name={_groupName}
-          value={value}
           isInvalid={finalIsInvalid}
-          tabIndex={-1}
-          aria-hidden="true"
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          aria-describedby={ariaDescribedby}
         />
       </div>
-    </div>
+    </label>
   )
 })
 

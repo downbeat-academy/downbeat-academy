@@ -1,9 +1,48 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { CheckboxCardGroup, CheckboxCardItem } from '../index'
 import { describe, it, expect, vi } from 'vitest'
 // Assert against the CSS module rather than literal names — class names are hashed.
 import s from '../checkbox-card.module.css'
+import { declaredSelectors } from '../../../../test-utils'
+
+/**
+ * Rewritten alongside the accessibility fix, which is the same one `radio-card` received in
+ * Radix A.4: the card is now a `<label>` wrapping a real `<input type="checkbox">` rather
+ * than a bare `<div role="checkbox" onClick>` holding an `aria-hidden`, `tabIndex={-1}`
+ * input that assistive technology could not see and the keyboard could not reach.
+ *
+ * The previous suite passed throughout, which is exactly why it is worth being explicit
+ * about what it was measuring. `getByRole('checkbox')` returned the *wrapper div*, because
+ * the real input was hidden from the accessibility tree — so every assertion about
+ * "the checkbox" was an assertion about a div that no assistive technology could operate.
+ * Its `aria-checked`, `data-state` and `aria-disabled` checks confirmed that React had
+ * written the attributes it was told to write, and nothing about whether the control
+ * worked. A native input exposes none of them: selection is the `checked` DOM property,
+ * disabled and required are real attributes, and mixed is the `indeterminate` property.
+ *
+ * Three tests were mis-specified rather than merely Radix-shaped, and are corrected here:
+ *
+ *  - `applies size classes` and friends asserted card modifier classes on the
+ *    `role="checkbox"` element. That element is now the `<input>`, which cannot carry
+ *    them — an input cannot contain the title, icon and badge. They move to the card,
+ *    which is what they were always about.
+ *  - `applies alignment classes` queried a hard-coded `.item-content-alignment-center`,
+ *    which cannot match the hashed name, then asserted `toBeDefined()` — which passes on
+ *    `null`. It now asserts the hashed class actually applies.
+ *  - `can be disabled` clicked the wrapper and asserted the group callback did not fire.
+ *    It could not have fired: the group callback was never wired to a click on that
+ *    element in the disabled case, so the test passed for the wrong reason.
+ */
+
+const boxes = () => screen.getAllByRole('checkbox') as HTMLInputElement[]
+
+const byValue = (value: string) =>
+  boxes().find((b) => b.value === value) as HTMLInputElement
+
+/** The `<label>` card wrapping a given checkbox. */
+const cardFor = (box: HTMLElement) => box.closest('label') as HTMLElement
 
 describe('CheckboxCardGroup', () => {
   it('renders correctly', () => {
@@ -27,18 +66,19 @@ describe('CheckboxCardGroup', () => {
       </CheckboxCardGroup>
     )
 
-    const checkboxItems = screen.getAllByRole('checkbox')
+    const checkboxItems = boxes()
     expect(checkboxItems.length).toBe(2)
-    expect(checkboxItems[0]).toBeDefined()
-    expect(checkboxItems[1]).toBeDefined()
+    expect(checkboxItems[0].value).toBe('option1')
+    expect(checkboxItems[1].value).toBe('option2')
   })
 
-  it('can select multiple checkbox card items', () => {
+  it('can select multiple checkbox card items', async () => {
+    const user = userEvent.setup()
     const TestComponent = () => {
       const [values, setValues] = React.useState<string[]>([])
       return (
-        <CheckboxCardGroup 
-          aria-label="Test checkbox card group" 
+        <CheckboxCardGroup
+          aria-label="Test checkbox card group"
           value={values}
           onValueChange={setValues}
         >
@@ -50,21 +90,50 @@ describe('CheckboxCardGroup', () => {
 
     render(<TestComponent />)
 
-    const checkboxItems = screen.getAllByRole('checkbox')
-    
-    // Initially both should be unchecked
-    expect(checkboxItems[0].getAttribute('aria-checked')).toBe('false')
-    expect(checkboxItems[1].getAttribute('aria-checked')).toBe('false')
+    expect(byValue('option1').checked).toBe(false)
+    expect(byValue('option2').checked).toBe(false)
 
-    // Click first checkbox
-    fireEvent.click(checkboxItems[0])
-    expect(checkboxItems[0].getAttribute('aria-checked')).toBe('true')
-    expect(checkboxItems[1].getAttribute('aria-checked')).toBe('false')
+    await user.click(byValue('option1'))
+    expect(byValue('option1').checked).toBe(true)
+    expect(byValue('option2').checked).toBe(false)
 
-    // Click second checkbox
-    fireEvent.click(checkboxItems[1])
-    expect(checkboxItems[0].getAttribute('aria-checked')).toBe('true')
-    expect(checkboxItems[1].getAttribute('aria-checked')).toBe('true')
+    await user.click(byValue('option2'))
+    expect(byValue('option1').checked).toBe(true)
+    expect(byValue('option2').checked).toBe(true)
+  })
+
+  it('deselects a selected item', async () => {
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
+    render(
+      <CheckboxCardGroup
+        aria-label="Test checkbox card group"
+        value={['option1', 'option2']}
+        onValueChange={handleChange}
+      >
+        <CheckboxCardItem value="option1" title="Option 1" />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    await user.click(byValue('option1'))
+    expect(handleChange).toHaveBeenCalledWith(['option2'])
+  })
+
+  it('selects when the card, not the checkbox, is clicked', async () => {
+    // The reason the card is a <label>: the whole card is the hit target, natively, with
+    // no click handler mirroring the control.
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group" onValueChange={handleChange}>
+        <CheckboxCardItem value="option1" title="Option 1" />
+      </CheckboxCardGroup>
+    )
+
+    await user.click(screen.getByText('Option 1'))
+    expect(handleChange).toHaveBeenCalledWith(['option1'])
+    expect(byValue('option1').checked).toBe(true)
   })
 
   it('respects controlled state', () => {
@@ -75,9 +144,8 @@ describe('CheckboxCardGroup', () => {
       </CheckboxCardGroup>
     )
 
-    const checkboxItems = screen.getAllByRole('checkbox')
-    expect(checkboxItems[0].getAttribute('aria-checked')).toBe('true')
-    expect(checkboxItems[1].getAttribute('aria-checked')).toBe('false')
+    expect(byValue('option1').checked).toBe(true)
+    expect(byValue('option2').checked).toBe(false)
 
     rerender(
       <CheckboxCardGroup aria-label="Test checkbox card group" value={['option2']}>
@@ -86,8 +154,60 @@ describe('CheckboxCardGroup', () => {
       </CheckboxCardGroup>
     )
 
-    expect(checkboxItems[0].getAttribute('aria-checked')).toBe('false')
-    expect(checkboxItems[1].getAttribute('aria-checked')).toBe('true')
+    expect(byValue('option1').checked).toBe(false)
+    expect(byValue('option2').checked).toBe(true)
+  })
+
+  it('holds its own state when uncontrolled, starting from defaultValue', async () => {
+    // `defaultValue` was previously cloned down to each item as `_groupDefaultValue`, which
+    // no item ever read — so an uncontrolled group rendered unchecked and never changed.
+    const user = userEvent.setup()
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group" defaultValue={['option1']}>
+        <CheckboxCardItem value="option1" title="Option 1" />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    expect(byValue('option1').checked).toBe(true)
+    expect(byValue('option2').checked).toBe(false)
+
+    await user.click(byValue('option2'))
+    expect(byValue('option1').checked).toBe(true)
+    expect(byValue('option2').checked).toBe(true)
+
+    await user.click(byValue('option1'))
+    expect(byValue('option1').checked).toBe(false)
+  })
+
+  it('reports the whole selected set to onValueChange when uncontrolled', async () => {
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
+    render(
+      <CheckboxCardGroup
+        aria-label="Test checkbox card group"
+        defaultValue={['option1']}
+        onValueChange={handleChange}
+      >
+        <CheckboxCardItem value="option1" title="Option 1" />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    await user.click(byValue('option2'))
+    expect(handleChange).toHaveBeenCalledWith(['option1', 'option2'])
+  })
+
+  it('shares a name across the group for form submission', () => {
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group" name="features">
+        <CheckboxCardItem value="option1" title="Option 1" />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    expect(byValue('option1').name).toBe('features')
+    expect(byValue('option2').name).toBe('features')
   })
 
   it('applies grid columns class', () => {
@@ -124,6 +244,53 @@ describe('CheckboxCardGroup', () => {
   })
 })
 
+describe('CheckboxCardItem keyboard and focus', () => {
+  it('puts every card in the tab order', async () => {
+    const user = userEvent.setup()
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group">
+        <CheckboxCardItem value="option1" title="Option 1" />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    await user.tab()
+    expect(byValue('option1')).toHaveFocus()
+
+    await user.tab()
+    expect(byValue('option2')).toHaveFocus()
+  })
+
+  it('toggles with Space, from the browser rather than a keydown handler', async () => {
+    const user = userEvent.setup()
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group">
+        <CheckboxCardItem value="option1" title="Option 1" />
+      </CheckboxCardGroup>
+    )
+
+    await user.tab()
+    await user.keyboard(' ')
+    expect(byValue('option1').checked).toBe(true)
+
+    await user.keyboard(' ')
+    expect(byValue('option1').checked).toBe(false)
+  })
+
+  it('keeps a disabled card out of the tab order', async () => {
+    const user = userEvent.setup()
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group">
+        <CheckboxCardItem value="option1" title="Option 1" disabled />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    await user.tab()
+    expect(byValue('option2')).toHaveFocus()
+  })
+})
+
 describe('CheckboxCardItem', () => {
   it('renders with title', () => {
     render(
@@ -138,8 +305,8 @@ describe('CheckboxCardItem', () => {
   it('renders with children content', () => {
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group">
-        <CheckboxCardItem 
-          value="test" 
+        <CheckboxCardItem
+          value="test"
           title="Test Title"
         >
           <p>Test description</p>
@@ -155,8 +322,8 @@ describe('CheckboxCardItem', () => {
     const TestIcon = () => <span data-testid="test-icon">Icon</span>
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group">
-        <CheckboxCardItem 
-          value="test" 
+        <CheckboxCardItem
+          value="test"
           title="Test Title"
           icon={<TestIcon />}
         />
@@ -170,8 +337,8 @@ describe('CheckboxCardItem', () => {
     const TestBadge = () => <span data-testid="test-badge">Badge</span>
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group">
-        <CheckboxCardItem 
-          value="test" 
+        <CheckboxCardItem
+          value="test"
           title="Test Title"
           badge={<TestBadge />}
         />
@@ -193,59 +360,81 @@ describe('CheckboxCardItem', () => {
     expect(screen.getByTestId('custom-content')).toBeDefined()
   })
 
-  it('applies size classes', () => {
+  it('applies size classes to the card', () => {
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group">
         <CheckboxCardItem value="test" title="Test" size="large" />
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain(s.itemSizeLarge)
+    expect(cardFor(byValue('test')).className).toContain(s.itemSizeLarge)
   })
 
-  it('applies alignment classes', () => {
+  it('applies alignment classes to the content', () => {
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group">
         <CheckboxCardItem value="test" title="Test" alignment="center" />
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    // Check that the content div has the alignment class
-    const contentDiv = checkbox.querySelector('.item-content-alignment-center')
-    expect(contentDiv).toBeDefined()
+    const content = cardFor(byValue('test')).querySelector(
+      `.${s.itemContentAlignmentCenter}`
+    )
+    expect(content).not.toBeNull()
   })
 
-  it('works as standalone checkbox card', () => {
+  it('works as a standalone checkbox card', async () => {
+    const user = userEvent.setup()
     const handleChange = vi.fn()
     render(
-      <CheckboxCardItem 
-        value="standalone" 
+      <CheckboxCardItem
+        value="standalone"
         title="Standalone Card"
         onCheckedChange={handleChange}
       />
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    fireEvent.click(checkbox)
+    await user.click(byValue('standalone'))
     expect(handleChange).toHaveBeenCalledWith(true)
+    // Uncontrolled and outside a group, so the browser owns the state — a standalone card
+    // with no `checked` prop used to be pinned unchecked by React.
+    expect(byValue('standalone').checked).toBe(true)
+  })
+
+  it('reports both directions to onCheckedChange', async () => {
+    const user = userEvent.setup()
+    const handleChange = vi.fn()
+    render(
+      <CheckboxCardItem
+        value="standalone"
+        title="Standalone Card"
+        onCheckedChange={handleChange}
+      />
+    )
+
+    await user.click(byValue('standalone'))
+    await user.click(byValue('standalone'))
+    expect(handleChange).toHaveBeenNthCalledWith(1, true)
+    expect(handleChange).toHaveBeenNthCalledWith(2, false)
   })
 
   it('supports indeterminate state', () => {
     render(
-      <CheckboxCardItem 
-        value="indeterminate" 
+      <CheckboxCardItem
+        value="indeterminate"
         title="Indeterminate Card"
         checked="indeterminate"
       />
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-checked')).toBe('mixed')
+    // Native checkboxes model mixed as a DOM property, not a value of `checked`, and the
+    // browser maps it to `aria-checked="mixed"` itself.
+    expect(byValue('indeterminate').indeterminate).toBe(true)
+    expect(byValue('indeterminate').checked).toBe(false)
   })
 
-  it('can be disabled', () => {
+  it('can be disabled', async () => {
+    const user = userEvent.setup()
     const handleChange = vi.fn()
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group" onValueChange={handleChange}>
@@ -253,11 +442,25 @@ describe('CheckboxCardItem', () => {
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-disabled')).toBe('true')
-    
-    fireEvent.click(checkbox)
+    expect(byValue('test').disabled).toBe(true)
+
+    // Clicking the card, not the input — the disabled input cannot receive the click, and
+    // there is no wrapper handler left to fire in its place.
+    await user.click(screen.getByText('Test'))
     expect(handleChange).not.toHaveBeenCalled()
+    expect(byValue('test').checked).toBe(false)
+  })
+
+  it('disables every card when the group is disabled', () => {
+    render(
+      <CheckboxCardGroup aria-label="Test checkbox card group" disabled>
+        <CheckboxCardItem value="option1" title="Option 1" />
+        <CheckboxCardItem value="option2" title="Option 2" />
+      </CheckboxCardGroup>
+    )
+
+    expect(byValue('option1').disabled).toBe(true)
+    expect(byValue('option2').disabled).toBe(true)
   })
 
   it('applies invalid styles when isInvalid is true', () => {
@@ -267,11 +470,10 @@ describe('CheckboxCardItem', () => {
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain(s.itemIsInvalid)
+    expect(cardFor(byValue('test')).className).toContain(s.itemIsInvalid)
   })
 
-  it('applies custom className', () => {
+  it('applies custom className to the card', () => {
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group">
         <CheckboxCardItem
@@ -282,8 +484,7 @@ describe('CheckboxCardItem', () => {
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.className).toContain('custom-card-class')
+    expect(cardFor(byValue('test')).className).toContain('custom-card-class')
   })
 
   it('supports form attributes', () => {
@@ -298,10 +499,12 @@ describe('CheckboxCardItem', () => {
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('id')).toBe('test-checkbox-card')
-    // The card div doesn't have a value attribute - that's for the internal hidden checkbox
-    expect(checkbox).toBeDefined()
+    // `id` lands on the input, not the card — it is what a `<label for>` or an
+    // `aria-describedby` from a Field has to point at.
+    const box = byValue('test')
+    expect(box.id).toBe('test-checkbox-card')
+    expect(box.required).toBe(true)
+    expect(box.name).toBe('test-group')
   })
 
   it('supports aria attributes', () => {
@@ -312,18 +515,15 @@ describe('CheckboxCardItem', () => {
           title="Test"
           aria-label="Test card"
           aria-describedby="helper-text"
-          aria-labelledby="label-text"
         />
       </CheckboxCardGroup>
     )
 
-    const checkbox = screen.getByRole('checkbox')
-    expect(checkbox.getAttribute('aria-label')).toBe('Test card')
-    expect(checkbox.getAttribute('aria-describedby')).toBe('helper-text')
-    expect(checkbox.getAttribute('aria-labelledby')).toBe('label-text')
+    const box = screen.getByRole('checkbox', { name: 'Test card' })
+    expect(box.getAttribute('aria-describedby')).toBe('helper-text')
   })
 
-  it('displays selection indicator correctly', () => {
+  it('renders the selection indicator', () => {
     render(
       <CheckboxCardGroup aria-label="Test checkbox card group" value={['selected']}>
         <CheckboxCardItem value="selected" title="Selected Card" />
@@ -331,12 +531,29 @@ describe('CheckboxCardItem', () => {
       </CheckboxCardGroup>
     )
 
-    const checkboxes = screen.getAllByRole('checkbox')
-    // Find by checking the title text content or aria-checked state since the card div doesn't have a value attribute
-    const selectedCheckbox = checkboxes.find(cb => cb.getAttribute('aria-checked') === 'true')
-    const unselectedCheckbox = checkboxes.find(cb => cb.getAttribute('aria-checked') === 'false')
-    
-    expect(selectedCheckbox?.getAttribute('data-state')).toBe('checked')
-    expect(unselectedCheckbox?.getAttribute('data-state')).toBe('unchecked')
+    expect(byValue('selected').checked).toBe(true)
+    expect(byValue('unselected').checked).toBe(false)
+
+    for (const value of ['selected', 'unselected']) {
+      expect(
+        cardFor(byValue(value)).querySelector(`.${s.itemIndicatorArea}`)
+      ).not.toBeNull()
+    }
+  })
+})
+
+describe('CheckboxCardItem styling hooks', () => {
+  it('styles state from the native input, not from data attributes', () => {
+    // The defect this component carried was that selection lived in JavaScript on a
+    // wrapper div, mirrored onto `data-state` and `data-disabled`. Styling off `:has()`
+    // against the real input is what makes it impossible for the two to drift apart.
+    const selectors = declaredSelectors(s.itemRoot).join('\n')
+
+    expect(selectors).toMatch(/:has\(input:checked\)/)
+    expect(selectors).toMatch(/:has\(input:indeterminate\)/)
+    expect(selectors).toMatch(/:has\(input:disabled\)/)
+    expect(selectors).toMatch(/:has\(input:focus-visible\)/)
+    expect(selectors).not.toMatch(/data-state/)
+    expect(selectors).not.toMatch(/data-disabled/)
   })
 })
