@@ -11,7 +11,8 @@
 		"#000": "currentColor"
 	},
 	"svgProps": {
-		"role": "img",
-		"color": "{props.color}"
+		"color": "{props.color}",
+		"role": "{title || props['aria-label'] || props['aria-labelledby'] ? 'img' : undefined}",
+		"aria-hidden": "{title || props['aria-label'] || props['aria-labelledby'] ? undefined : true}"
 	}
 }

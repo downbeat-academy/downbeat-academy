@@ -168,13 +168,13 @@ it reappear in `git status`, that is a bug in the ignore rule, not something to 
 
 ## Gotchas
 
-- **`checkbox-card` repeats the defect `radio-card` used to have.** `CheckboxCardItem`
-  puts selection on a bare `<div role="checkbox" onClick>` while the real input is
-  `aria-hidden` and untabbable, so it is invisible to assistive technology and
-  unreachable by keyboard. It is commented out of the form barrel and does not ship, so
-  its passing tests are not evidence it is correct. `radio-card` was fixed in Radix A.4
-  by making the card a `<label>` around a native input — copy that, not the current
-  `checkbox-card`.
+- **`checkbox-card` and `radio-card` are both `<label>` around a native input.** Both once
+  put selection on a bare `<div role="checkbox">` / `<div role="radio">` with an `onClick`,
+  holding an `aria-hidden`, untabbable input — invisible to assistive technology and
+  unreachable by keyboard. `radio-card` was fixed in Radix A.4 and `checkbox-card` followed;
+  both now style selection with `:has(input:checked)` rather than mirroring `data-state`.
+  Copy that shape for any new card-style control, and do not reintroduce a `role` and
+  `aria-checked` on the wrapper.
 - **No linting exists here.** The old `.eslintrc` referenced six uninstalled plugins and
   was removed.
 - `cadence-icons` and `cadence-tokens` appear in both `dependencies` and

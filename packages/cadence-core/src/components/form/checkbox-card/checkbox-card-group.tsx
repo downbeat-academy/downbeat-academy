@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 import classnames from 'classnames'
 import s from './checkbox-card.module.css'
 import type { CheckboxCardGroupProps } from './types'
@@ -43,14 +43,28 @@ const CheckboxCardGroup = forwardRef<HTMLDivElement, CheckboxCardGroupProps>(({
     className
   )
 
+  // Checkboxes have no native group: unlike radios sharing a `name`, the browser does not
+  // coordinate them, so the selected set lives here. When the caller does not control it,
+  // the group holds it itself — `defaultValue` was previously handed to each item, which
+  // had nothing to do with it, so an uncontrolled group could never change.
+  const [internalValue, setInternalValue] = useState<string[]>(defaultValue ?? [])
+  const isControlled = value !== undefined
+  const currentValue = isControlled ? value : internalValue
+
+  const handleValueChange = (next: string[]) => {
+    if (!isControlled) {
+      setInternalValue(next)
+    }
+    onValueChange?.(next)
+  }
+
   // Clone children and pass down group props
   const clonedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement<Record<string, unknown>>(child)) {
       return React.cloneElement(child, {
         // Pass down group props to each CheckboxCardItem
-        _groupValue: value,
-        _groupDefaultValue: defaultValue,
-        _groupOnValueChange: onValueChange,
+        _groupValue: currentValue,
+        _groupOnValueChange: handleValueChange,
         _groupDisabled: disabled,
         _groupRequired: required,
         _groupName: name,

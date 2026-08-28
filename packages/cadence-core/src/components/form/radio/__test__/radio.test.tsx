@@ -6,6 +6,7 @@ import { RadioGroup, Radio } from '../radio'
 import s from '../radio.module.css'
 import {
 	declaredRule,
+	declaredRules,
 	declaredSelectors,
 } from '../../../../test-utils'
 
@@ -432,6 +433,26 @@ describe('Radio styling hooks', () => {
 		const indicator = container.querySelector(`.${s.indicator}`)
 		expect(indicator).toHaveAttribute('aria-hidden', 'true')
 		expect(declaredRule(s.indicator)).toMatch(/pointer-events:\s*none/)
+	})
+
+	it('draws the dot as a circle, not an ellipse', () => {
+		// The dot is `.indicator::after`, which `declaredRule` deliberately does not match —
+		// it takes the bare class only. `declaredSelectors` and `declaredRules` walk the
+		// stylesheets in the same order, so the selector index picks out the right body.
+		const selectors = declaredSelectors(s.indicator)
+		const dot = declaredRules(s.indicator)[
+			selectors.findIndex((selector) => selector.endsWith('::after'))
+		]
+		expect(dot).toBeDefined()
+
+		const width = dot.match(/width:\s*(\d+px)/)?.[1]
+		const height = dot.match(/height:\s*(\d+px)/)?.[1]
+
+		// It shipped as 8x6 through the A.3 migration, which reproduced the pre-existing
+		// dimensions exactly so the migration produced no visual diff. `border-radius: 50%`
+		// on an unequal box is an ellipse.
+		expect(width).toBe('8px')
+		expect(height).toBe(width)
 	})
 })
 

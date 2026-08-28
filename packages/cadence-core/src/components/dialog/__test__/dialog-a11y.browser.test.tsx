@@ -120,10 +120,12 @@ describe('Dialog accessibility', () => {
 
 	it('gives the built-in close button an accessible name', async () => {
 		// The regression this suite caught. `DialogContent` renders its own close button
-		// containing only `<X />`, and `cadence-icons`' X sets `role="img"` with
+		// containing only `<X />`, and `cadence-icons`' X then set `role="img"` with
 		// `aria-labelledby={titleId}` — undefined unless a title is passed, so React
-		// omits the attribute. That left the svg nameless under `svg-img-alt` and the
+		// omitted the attribute. That left the svg nameless under `svg-img-alt` and the
 		// button nameless under `button-name`, on all six shipping consumer surfaces.
+		// An untitled icon is now `aria-hidden` with no role, so the class of defect is
+		// closed at its source; this button still needs its own name.
 		//
 		// Worse than it sounds: initial focus lands on this button, so opening any dialog
 		// announced an unnamed button. `drawer-content.tsx` had the identical defect and

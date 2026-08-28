@@ -485,8 +485,10 @@ describe('Drawer', () => {
 
 		it('has an accessible name', () => {
 			// Regression guard. The equivalent button in `dialog` and `toast` shipped with
-			// no accessible name at all: it contains only `<X />`, which renders
-			// `role="img"` with no label, leaving both the svg and the button nameless.
+			// no accessible name at all: it contains only `<X />`, which then rendered
+			// `role="img"` with no label, leaving both the svg and the button nameless. An
+			// untitled `cadence-icons` icon is now `aria-hidden` with no role, so the icon
+			// cannot name the button either way.
 			render(<Basic open />)
 
 			expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument()

@@ -1,4 +1,6 @@
-import { defineConfig } from 'vite'
+/// <reference types="vitest" />
+
+import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
 import dts from 'vite-plugin-dts'
@@ -51,5 +53,12 @@ export default defineConfig({
 		postcss: {
 			plugins: [postcssNesting],
 		},
+	},
+	test: {
+		globals: true,
+		environment: 'jsdom',
+		// `src/components/` is generated, so the suite imports the built barrel the same way
+		// a consumer does rather than reaching for one icon's source file.
+		include: ['src/**/__test__/**/*.test.{ts,tsx}'],
 	},
 })

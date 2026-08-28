@@ -92,10 +92,8 @@
 
 .indicator::after {
   content: '';
-  /* Deliberately 8x6, not 8x8: this reproduces the existing dimensions exactly so the
-     migration produces no Chromatic diff. The dot is a slight ellipse today. */
   width: 8px;
-  height: 6px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--cds-color-foreground-high-contrast);
 }

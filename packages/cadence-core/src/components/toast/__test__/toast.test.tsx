@@ -130,10 +130,11 @@ describe('Toast', () => {
 
 	describe('the close button', () => {
 		it('has an accessible name', () => {
-			// Regression guard. This button shipped containing only `<X />`, which
-			// renders `role="img"` with an undefined `aria-labelledby`, leaving both the
+			// Regression guard. This button shipped containing only `<X />`, which then
+			// rendered `role="img"` with an undefined `aria-labelledby`, leaving both the
 			// svg and the button nameless. Third instance of the same defect after
-			// `dialog` and `drawer` (fixed in #312).
+			// `dialog` and `drawer` (fixed in #312). An untitled `cadence-icons` icon is
+			// now `aria-hidden` with no role, closing the class of defect at its source.
 			render(
 				<Static>
 					<ToastTitle>Saved</ToastTitle>

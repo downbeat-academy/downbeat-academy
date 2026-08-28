@@ -177,21 +177,27 @@ describe("Summary component", () => {
   });
 
   describe("icon accessibility", () => {
-    it("should render chevron icon with aria-hidden", () => {
-      render(<Summary>Icon test content</Summary>);
-      
-      const icon = screen.getByRole("img", { hidden: true });
-      expect(icon.getAttribute("aria-hidden")).toBe("true");
-      expect(icon.getAttribute("width")).toBe("16");
+    // These queried the chevron with `getByRole("img", { hidden: true })`, which only
+    // worked because every `cadence-icons` icon carried `role="img"` whether or not it had
+    // an accessible name — the defect that made six shipped controls nameless. An untitled
+    // icon is now `aria-hidden` with no role at all, so it has to be queried as an element.
+    it("should render chevron icon as decorative", () => {
+      const { container } = render(<Summary>Icon test content</Summary>);
+
+      const icon = container.querySelector("svg");
+      expect(icon).not.toBeNull();
+      expect(icon!.getAttribute("aria-hidden")).toBe("true");
+      expect(icon!.hasAttribute("role")).toBe(false);
+      expect(icon!.getAttribute("width")).toBe("16");
     });
 
     it("should have icon inside summary element", () => {
-      render(<Summary>Icon positioning test</Summary>);
-      
+      const { container } = render(<Summary>Icon positioning test</Summary>);
+
       const summaryElement = screen.getByText("Summary").parentElement;
-      const icon = screen.getByRole("img", { hidden: true });
-      
-      expect(summaryElement?.contains(icon)).toBe(true);
+      const icon = container.querySelector("svg");
+
+      expect(summaryElement?.contains(icon!)).toBe(true);
     });
   });
 

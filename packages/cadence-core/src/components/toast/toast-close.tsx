@@ -27,10 +27,12 @@ const ToastClose = forwardRef<HTMLButtonElement, ToastCloseProps>(
 				// the 0.3 backfill pinned it. Kept as a bare attribute, not the
 				// `data-radix-*` one it sat beside.
 				toast-close=""
-				// Regression guard: this button once contained only `<X />`, which renders
-				// `role="img"` with an undefined `aria-labelledby` and left both the svg and
-				// the button nameless. Third instance of the defect after `dialog` and
-				// `drawer`.
+				// Regression guard: this button once contained only `<X />`, which then
+				// rendered `role="img"` with an undefined `aria-labelledby` and left both the
+				// svg and the button nameless. Third instance of the defect after `dialog`
+				// and `drawer`. `cadence-icons` is now `aria-hidden` unless named, so the
+				// icon can no longer supply a name at all — this attribute is the only thing
+				// naming the button.
 				aria-label="Close"
 				className={classnames(s['toast--close'], className)}
 				onClick={handleClick}

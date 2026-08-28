@@ -19,7 +19,13 @@ export interface CheckboxCardGroupProps {
   gap?: 'small' | 'base' | 'large'
 }
 
-export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<'div'> {
+// The card is a `<label>`, which is what lets a click anywhere on it toggle the checkbox
+// natively — no click handler, and no separate control to keep in sync.
+//
+// `onChange` is omitted deliberately: this component's change API is `onCheckedChange`,
+// and the label's DOM handler would otherwise collide with the input's own.
+export interface CheckboxCardItemProps
+  extends Omit<ComponentPropsWithoutRef<'label'>, 'onChange'> {
   value: string
   disabled?: boolean
   required?: boolean
@@ -40,9 +46,12 @@ export interface CheckboxCardItemProps extends ComponentPropsWithoutRef<'div'> {
   // Checkbox-specific props
   checked?: boolean | 'indeterminate'
   onCheckedChange?: (checked: boolean) => void
-  // Internal props passed from CheckboxCardGroup (prefixed with _)
+  // Internal props passed from CheckboxCardGroup (prefixed with _).
+  //
+  // `_groupDefaultValue` is gone: the group now holds its own uncontrolled state and always
+  // passes a concrete `_groupValue`, so an item never has to reason about a default it
+  // cannot act on.
   _groupValue?: string[]
-  _groupDefaultValue?: string[]
   _groupOnValueChange?: (value: string[]) => void
   _groupDisabled?: boolean
   _groupRequired?: boolean

@@ -14,7 +14,7 @@
     "clean": "rimraf src/components",
     "svgr": "svgr --config-file .svgrrc.json --out-dir src/components src/assets",
     "icons:build": "pnpm clean && pnpm svgr",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
   },

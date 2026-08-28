@@ -13,8 +13,17 @@ const SvgLogs = ({
 		xmlns="http://www.w3.org/2000/svg"
 		fill="none"
 		viewBox="0 0 24 24"
-		role="img"
 		color={props.color}
+		role={
+			title || props['aria-label'] || props['aria-labelledby']
+				? 'img'
+				: undefined
+		}
+		aria-hidden={
+			title || props['aria-label'] || props['aria-labelledby']
+				? undefined
+				: true
+		}
 		aria-labelledby={titleId}
 		{...props}
 	>
