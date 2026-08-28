@@ -1,5 +1,56 @@
 # cadence-core
 
+## 5.1.0
+
+### Minor Changes
+
+- f952851: Fix the `CheckboxCardItem` accessibility defect and export the component.
+
+  `CheckboxCardItem` put selection on a bare `<div role="checkbox" onClick tabIndex={0}>`
+  while the real input beneath it was `aria-hidden="true"` and `tabIndex={-1}` — so the
+  control was invisible to assistive technology and unreachable by keyboard. This is the
+  identical defect `RadioCardItem` carried until Radix A.4, and it is fixed the same way:
+  the card is now a `<label>` wrapping a real `<input type="checkbox">`.
+
+  The wrapper's `onClick`, `onKeyDown`, `tabIndex`, `role`, `aria-checked`, `aria-disabled`,
+  `data-state` and `data-disabled` are gone. Selected, indeterminate, focused and disabled
+  styling is expressed with `:has()` against the input rather than mirrored onto data
+  attributes, so the DOM cannot drift out of sync with the control. A click anywhere on the
+  card toggles the input natively, Space operates it, and the card sits in the tab order.
+
+  Two consequences of using a real input:
+
+  - `CheckboxCardGroup` now holds its own selected set when uncontrolled. `defaultValue` was
+    previously cloned down to each item as `_groupDefaultValue`, which no item ever read, so
+    an uncontrolled group rendered unchecked and could never change.
+  - A standalone `CheckboxCardItem` with no `checked` prop is genuinely uncontrolled instead
+    of pinned unchecked by React.
+
+  `CheckboxCardGroup`, `CheckboxCardItem` and their prop types are now exported from
+  `cadence-core`. They were commented out of the barrel because of this defect, so nothing
+  could have consumed them before.
+
+  `CheckboxCardItemProps` now extends the props of `label` rather than `div`, and the ref is
+  an `HTMLLabelElement`. The internal `_groupDefaultValue` prop is removed.
+
+### Patch Changes
+
+- 2599c24: Update dependencies.
+- c36a74a: Draw the `Radio` selection dot as a circle rather than a slight ellipse.
+
+  `radio.module.css` declared the dot as `width: 8px; height: 6px` with `border-radius: 50%`,
+  which renders an ellipse. The dimensions were reproduced exactly during the native-input
+  migration so that migration would produce no visual diff, with the discrepancy recorded in
+  a comment rather than fixed — correcting it there would have been a visual change hiding
+  inside a behaviour-only change.
+
+  The height is now `8px`, and a test asserts the two dimensions match so the dot cannot
+  silently become an ellipse again. `RadioCardItem` renders a `Radio`, so this changes the
+  appearance of radio cards too.
+
+- Updated dependencies [3ee9142]
+  - cadence-icons@1.9.0
+
 ## 5.0.0
 
 ### Major Changes

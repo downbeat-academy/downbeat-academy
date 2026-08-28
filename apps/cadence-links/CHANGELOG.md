@@ -1,5 +1,17 @@
 # cadence-links
 
+## 1.2.4
+
+### Patch Changes
+
+- 2599c24: Update dependencies.
+- Updated dependencies [f952851]
+- Updated dependencies [2599c24]
+- Updated dependencies [3ee9142]
+- Updated dependencies [c36a74a]
+  - cadence-core@5.1.0
+  - cadence-icons@1.9.0
+
 ## 1.2.3
 
 ### Patch Changes
