@@ -125,7 +125,7 @@
 		"cypress-axe": "^1.7.0",
 		"drizzle-kit": "^0.31.10",
 		"ignore-loader": "^0.1.2",
-		"jsdom": "^26.1.0",
+		"jsdom": "^30.0.1",
 		"nanoid": "^6.0.0",
 		"postgres": "^3.4.9",
 		"start-server-and-test": "^2.1.5",
