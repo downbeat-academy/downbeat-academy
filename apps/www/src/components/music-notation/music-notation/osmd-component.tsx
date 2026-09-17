@@ -8,6 +8,7 @@ import {
 	TransposeCalculator,
 } from 'opensheetmusicdisplay'
 import { capture } from '@lib/posthog/capture'
+import { shouldCaptureNotationRender } from './notation-analytics'
 import type { OpenSheetMusicDisplayProps } from './types'
 
 interface ExtendedOpenSheetMusicDisplayProps
@@ -42,7 +43,6 @@ const OpenSheetMusicDisplay = ({
 	const osmd = useRef<OSMD | null>(null)
 	const initialRenderComplete = useRef(false)
 	const loadComplete = useRef(false)
-	const analyticsCapturedFor = useRef<typeof file | null>(null)
 
 	// The slug of the page the notation sits on. Derived from the path rather
 	// than threaded down as a prop, so this stays a drop-in for every caller —
@@ -152,12 +152,14 @@ const OpenSheetMusicDisplay = ({
 							initialRenderComplete.current = true
 							setError(null)
 
-							// Only the first successful render of a given file.
+							// Once per page, not once per render. The guard is
+							// module-scoped so it is shared by every excerpt on
+							// the page, and keyed on the slug so transposing —
+							// which swaps `file` — does not count as a new view.
 							// The resize and transpose effects below also call
 							// `render()`, and `onRenderComplete` fires on failure
 							// too — neither is a "the reader saw notation" signal.
-							if (analyticsCapturedFor.current !== file) {
-								analyticsCapturedFor.current = file
+							if (shouldCaptureNotationRender(currentSlug)) {
 								capture('notation_rendered', { slug: currentSlug })
 							}
 
