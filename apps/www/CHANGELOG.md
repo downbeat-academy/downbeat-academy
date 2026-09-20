@@ -1,5 +1,77 @@
 # www
 
+## 4.9.2
+
+### Patch Changes
+
+- 2599c24: Update dependencies.
+- b630560: Fix `notation_rendered` firing many times per page view.
+
+  The de-duplication guard lived in a `useRef` inside `OpenSheetMusicDisplay` and was keyed
+  on the MusicXML `file`. Both halves of that were wrong for an event whose payload is
+  `{ slug }`:
+
+  - the component mounts once per notation excerpt, so a page with six excerpts fired six
+    events all carrying the same slug
+  - transposing swaps the file being rendered, so every key change reset the guard and fired
+    again
+
+  Neither is visible in the data, because `slug` is the only property the event carries. In
+  production this produced 19–31 events in a single session on one article — a chart that
+  looks plausible and overcounts by roughly 10–20×.
+
+  The guard now lives at module scope in `notation-analytics.ts` and is keyed on the slug, so
+  one page view produces one event however many excerpts it holds and however often the
+  reader transposes. Navigating away and back still counts as a new view, matching
+  `TrackContentView`. A null or empty slug is never captured.
+
+- b3564a8: Add `password_reset_completed` and `oauth_authorization_granted` to the auth funnel.
+
+  Both were planned in the original epic and never shipped. `password_reset_completed` pairs
+  with `password_reset_requested` to give the completion rate of the reset flow — the
+  requested event alone cannot distinguish "reset the password" from "never opened the
+  email". It uses better-auth's `onPasswordReset`, which runs only after the password has
+  actually changed, and covers the token-based reset route only; changing a password while
+  signed in is a different action and is not reported as a reset.
+
+  `oauth_authorization_granted` carries `client_id`, and is the only signal of _which_
+  consumer app people authorise — `sign_in_completed` says someone signed in, not what they
+  signed in to.
+
+  It hangs off an `after` hook on `/oauth2/token` rather than a database hook, because
+  `databaseHooks` only reach better-auth's base models and the OAuth token row belongs to the
+  provider plugin. It reads `sub` and `aud` from the issued `id_token`, both OIDC-spec claims,
+  which keeps it tied to the protocol rather than to plugin internals — the authorize endpoint
+  signals success by throwing a redirect, and anchoring on that would break silently on a
+  minor version bump. Refresh grants are excluded, or the event would measure session length
+  instead of authorisation, and an exchange that resolves to no grant logs a warning rather
+  than going quiet.
+
+  Note for anyone instrumenting the consent step later: there isn't one. `consentPage:
+'/consent'` points at a route that does not exist and is never reached, because all three
+  consumer apps are registered with `skipConsent`.
+
+- 572e53e: Document that `apps/auth` needs `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` at Infisical `/auth`,
+  and that the service must be redeployed after adding it.
+
+  The token was missing for the first two weeks after the authentication funnel shipped, so
+  every auth event was dropped in silence — `getClient()` returns `null` without it, nothing
+  logs, and `pnpm verify` stays green. The Infisical table in `docs/architecture/infrastructure.md`
+  did not list the variable, `apps/auth/AGENTS.md` never mentioned it, and the live-QA
+  checklist said only "the same token is set for the `auth` service" without saying where.
+  All three now say it, and the QA checklist adds the redeploy step, since `getClient()`
+  caches its gate decision in a module-level singleton and a synced variable alone does not
+  restart the process.
+
+- Updated dependencies [f952851]
+- Updated dependencies [2599c24]
+- Updated dependencies [3ee9142]
+- Updated dependencies [b3564a8]
+- Updated dependencies [c36a74a]
+  - cadence-core@5.1.0
+  - cadence-icons@1.9.0
+  - analytics@0.3.0
+
 ## 4.9.1
 
 ### Patch Changes
