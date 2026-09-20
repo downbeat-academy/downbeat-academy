@@ -30,8 +30,15 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      # v1, NOT v2. The action's major line is pinned to the Changesets CLI major:
+      # v2 hard-errors on startup against the `@changesets/cli` v2 this repo installs
+      # ("designed to work with Changesets CLI v3 ... use Changesets action v1
+      # instead"). #363 bumped this to v2 and every Release run since failed — eight in
+      # a row, one per merged dependency PR, none of them visible outside the Actions
+      # tab because nothing else depends on this job. Moving to v2 means upgrading
+      # `@changesets/cli` to v3 in the same change, not on its own.
       - name: Create Release Pull Request
         id: changesets
-        uses: changesets/action@v2
+        uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
