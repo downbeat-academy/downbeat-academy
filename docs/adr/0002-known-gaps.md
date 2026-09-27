@@ -255,14 +255,6 @@ package resolution entirely.
 (`apps/www/src/styles/index.css`, `apps/auth/src/styles/index.css`,
 `packages/cadence-core/.storybook/preview.ts`, and the rollup config).
 
-### `apps/auth` duplicates cadence-core components locally
-
-**What.** `apps/auth/src/components/` contains local `link`, `tabs`, `toast`, and
-`ui/button` implementations, despite the app depending on `cadence-core`.
-
-**To fix.** Replace with the `cadence-core` equivalents. Treat the local copies as debt,
-not as precedent — new UI in `apps/auth` should use `cadence-core`.
-
 ### `packages/email` declares a `main` that does not exist
 
 **What.** `"main": "index.js"`, and there is no `index.js` at the package root.

@@ -37,8 +37,8 @@ color, spacing value, or font stack.
 
 **UI comes from `cadence-core` first.** Check its barrel (`src/index.ts`) before writing
 markup. If a primitive is missing, the right move is usually to add it to `cadence-core`,
-not to build it locally. `apps/auth` has local copies of `link`, `tabs`, `toast`, and
-`ui/button` — that is documented debt, not a pattern to follow.
+not to build it locally. The `link` and `ui/button` files in `apps/auth` and `www` are
+thin `next/link` adapters over `cadence-core`, not local implementations.
 
 **TypeScript strictness varies.** `www` and `auth` are `strict: false`; `cadence-links`,
 `cadence-core`, and `auth-permissions` are `strict: true`. Do not assume.

@@ -159,7 +159,7 @@ registered in `.storybook/main.ts`.
 Storybook 10 + react-vite on 6006. `.storybook/main.ts` globs `../src/**/*.stories.*` and
 `**/*.mdx`, so `__docs__/` is picked up automatically. `viteFinal` aliases
 `cadence-icons` to its `dist/` (falling back to source if unbuilt) and `cadence-tokens`
-to its `dist/`. Published via Chromatic; served on Railway from `storybook-static`.
+to its `dist/`. Served on Railway from `storybook-static`.
 
 **`storybook-static/` is build output and is gitignored.** Railway runs
 `build:storybook` at deploy time and serves the result, so the directory never needs to be

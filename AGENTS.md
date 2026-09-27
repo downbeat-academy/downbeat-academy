@@ -168,9 +168,9 @@ Do not assume a green `verify` means everything is checked:
 | Change a transactional email | `packages/email/emails/` | `pnpm email:dev` to preview. Note: `www` does **not** use this package |
 
 **Do not** add a component to an app when Cadence should own it. If `www` needs a
-button, the button belongs in `cadence-core`. `apps/auth` currently violates this with
-local copies of `link`, `tabs`, `toast`, and `ui/button` — treat those as debt, not
-precedent.
+button, the button belongs in `cadence-core`. The only UI files an app should carry are
+thin framework adapters, like `apps/auth`'s `link` and `ui/button`, which bind the
+`cadence-core` component to `next/link`.
 
 ## Conventions
 

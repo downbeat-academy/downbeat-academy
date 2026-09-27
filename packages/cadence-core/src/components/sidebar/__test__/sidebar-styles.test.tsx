@@ -20,7 +20,7 @@ import { declaredRule } from '../../../test-utils'
  *
  * Caveat 1: jsdom resolves the cascade but performs no layout, so these verify *declared*
  * computed values (`display`, `flex-shrink`) — not painted geometry.
- * Visual regressions still need Storybook/Chromatic.
+ * Visual regressions still need a look in Storybook.
  *
  * Caveat 2: jsdom does not resolve `var()`. A declaration written as
  * `border: 1px solid var(--cds-color-border-faint)` computes to `borderTopStyle: 'none'`,
