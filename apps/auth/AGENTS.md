@@ -193,9 +193,9 @@ When adding a plugin, grep its source for `modelName`.
 - **`skipConsent` cannot be set through the API.** The `oauthProvider` update-client
   endpoint's schema omits it. Use SQL:
   `UPDATE oauth_client SET skip_consent = true WHERE client_id = '…';`
-- **This app has local copies of `link`, `tabs`, `toast`, and `ui/button`** in
-  `src/components/`, despite depending on `cadence-core`. That is debt, not a pattern —
-  use `cadence-core` for anything new.
+- **`src/components/` holds only `link` and `ui/button`**, and both are thin adapters
+  that bind the `cadence-core` component to `next/link`, not separate implementations.
+  Use `cadence-core` directly for anything else.
 - **`drizzle-auth.config.ts` does not load dotenv**, unlike the other three configs in
   the repo. It relies on Infisical or ambient env. Running `db:push` outside
   `infisical run` will fail confusingly.

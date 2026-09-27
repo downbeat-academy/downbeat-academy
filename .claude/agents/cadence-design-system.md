@@ -108,7 +108,6 @@ pnpm verify
 ```
 
 For a token change, check consumers actually reflect it — run `pnpm www:dev` and look.
-Chromatic covers visual regression for Storybook.
 
 Always add a changeset: `minor` for a new component or token, `patch` for a fix. Say what
 changed visually, not just structurally — the changelog is read by someone deciding

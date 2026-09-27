@@ -165,8 +165,7 @@ pagination, and filtering — use it for any list or table view rather than hand
 Storybook 10 + react-vite, port 6006. `.storybook/main.ts` globs `../src/**/*.stories.*`
 and `**/*.mdx`, so `__docs__/` folders are picked up automatically. Its `viteFinal`
 aliases `cadence-icons` to its `dist/` — falling back to source if unbuilt — and
-`cadence-tokens` to its `dist/`. Published via Chromatic and served on Railway from
-`storybook-static`.
+`cadence-tokens` to its `dist/`. Served on Railway from `storybook-static`.
 
 ## `cadence-icons` — the icons
 

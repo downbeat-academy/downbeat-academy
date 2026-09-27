@@ -90,7 +90,7 @@ export function declaredRules(className: string): string[] {
  * ```
  *
  * This proves the stylesheet *targets* the right state. It cannot prove the result looks
- * right — that is the Storybook a11y addon and Chromatic's job.
+ * right — that takes the Storybook a11y addon and a look in Storybook.
  */
 export function declaredSelectors(className: string): string[] {
 	const target = className.split(' ')[0]

@@ -96,7 +96,7 @@ Add `appearance: none` to any input you style directly, or the browser's own con
 renders underneath yours.
 
 **Reproduce existing dimensions exactly**, even when they look wrong — the epic's
-non-goals say Chromatic diffs should be empty. If you find a genuine visual defect (the
+non-goals say there should be no visual change. If you find a genuine visual defect (the
 radio dot is an 8×6 ellipse), keep it, note it in the PR, and file it separately.
 
 ## 4. Types: this is the breaking part
