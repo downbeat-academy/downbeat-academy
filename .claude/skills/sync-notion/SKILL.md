@@ -22,15 +22,17 @@ milestones are all rows in it, distinguished by `Type` and linked through self-r
 | Property | Type | Values / notes |
 | --- | --- | --- |
 | `Name` | title | |
+| `ID` | auto-increment | Shown as `DBA-###`. Read-only. SQL column is `"userDefined:ID"` (an integer) |
 | `Type` | select | `🏃 Sprint`, `🐞 Bug`, `🔨 Task`, `🏔 Epic`, `🚀 Milestone` |
 | `Status` | status | `Parked`, `Backlog`, `To Do` (to-do) · `In Progress`, `Blocked` (in-progress) · `Completed`, `Won't Do` (complete) |
 | `Priority` | select | `High`, `Medium`, `Low` |
 | `LOE` | select | `High`, `Medium`, `Low`, `Unkown` *(sic — the typo is in the schema)* |
-| `Category` | multi-select | `🎨 Design`, `🔧 Engineering`, `🖋 Content`, `🧰 Miscellaneous`, `💅 Branding` |
+| `Category` | multi-select | `🎨 Design`, `🔧 Engineering`, `🖋 Content`, `🧰 Tooling`, `🧰 Miscellaneous`, `💅 Branding` |
 | `Branch` | url | Git branch for the work |
 | `PR` | url | Pull request link |
 | `Epics` | relation | Self-relation — the parent epic |
 | `Tasks` | relation | Self-relation — child tasks |
+| `Parent item`, `Sub-item` | relation | Notion's sub-items hierarchy (the parent is limited to one). Newer pages link their epic here, sometimes instead of `Epics` |
 | `Milestone` | relation | Self-relation |
 | `Start Date`, `Due Date` | date | |
 | `Assign` | person | |
@@ -67,6 +69,9 @@ FROM "collection://a475103d-b0e2-48bf-9158-fcbae9cb5d56"
 WHERE "Type" = '🔨 Task' AND "Status" = 'In Progress'
 ```
 
+To look up a task by its ID (`DBA-416`), filter on the number: `WHERE "userDefined:ID" = 416`.
+To find a page's epic, check both `Epics` and `Parent item`.
+
 Use `notion-search` with `data_source_url` set to the collection when the user describes
 a task rather than naming it exactly.
 
@@ -96,7 +101,8 @@ Never write `Created` — it is system-managed.
 - **Never invent a page.** If the task cannot be found, say so and ask, rather than
   creating a near-duplicate.
 - **Match `Type` to reality** — a bug fix is `🐞 Bug`, not `🔨 Task`.
-- When creating a task under an epic, set the `Epics` relation so the board stays useful.
+- When creating a task under an epic, set both `Epics` and `Parent item` so the boards and
+  the sub-item view both stay useful.
 - Preserve the emoji in `Type` and `Category` values; they are part of the option name.
 
 ## Related
