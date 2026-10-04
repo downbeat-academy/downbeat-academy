@@ -23,6 +23,7 @@ describe('sendFileDownload', () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
 		vi.spyOn(console, 'log').mockImplementation(() => {})
+		vi.spyOn(console, 'error').mockImplementation(() => {})
 	})
 
 	it('sends the download email to the requester', async () => {
@@ -43,5 +44,14 @@ describe('sendFileDownload', () => {
 		await expect(sendFileDownload(payload)).rejects.toThrow(
 			'Failed to send email'
 		)
+	})
+
+	// Resend returns API errors instead of throwing; a missed check here means a
+	// success toast for an email that was never sent.
+	it('throws when the API returns an error instead of rejecting', async () => {
+		const apiError = { name: 'validation_error', message: 'Invalid from' }
+		emailsSend.mockResolvedValueOnce({ data: null, error: apiError })
+		await expect(sendFileDownload(payload)).rejects.toThrow('Failed to send email')
+		expect(console.error).toHaveBeenCalledWith(expect.any(String), apiError)
 	})
 })

@@ -6,35 +6,38 @@ export type ContactFormData = {
 	firstName: string
 	lastName: string
 	email: string
-	audienceId?: string
+	segmentId?: string
 }
 
 export async function createContact({
 	firstName,
 	lastName,
 	email,
-	audienceId,
+	segmentId,
 }: ContactFormData) {
 	const resend = new Resend(process.env.RESEND_API_KEY)
 
-	// Ensure we have a valid audience ID
-	const finalAudienceId = audienceId || process.env.RESEND_DEFAULT_AUDIENCE_ID
-	
-	if (!finalAudienceId) {
-		throw new Error('No audience ID provided and RESEND_DEFAULT_AUDIENCE_ID not configured')
+	// Ensure we have a valid segment ID
+	const finalSegmentId = segmentId || process.env.RESEND_SEGMENT_ID
+
+	if (!finalSegmentId) {
+		throw new Error('No segment ID provided and RESEND_SEGMENT_ID not configured')
 	}
 
 	try {
-		const { data } = await resend.contacts.create({
+		// Resend reports API failures in `error` rather than throwing.
+		const { data, error } = await resend.contacts.create({
 			email: email,
-			audienceId: finalAudienceId,
 			firstName: firstName,
 			lastName: lastName,
 			unsubscribed: false,
+			segments: [{ id: finalSegmentId }],
 		})
+		if (error) throw error
 
 		console.log(data)
 	} catch (error) {
+		console.error('createContact: Resend contacts.create failed', error)
 		throw new Error('Failed to create contact')
 	}
 }
