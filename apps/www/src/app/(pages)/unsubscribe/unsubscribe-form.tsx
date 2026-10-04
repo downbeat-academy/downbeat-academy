@@ -31,10 +31,7 @@ export function UnsubscribeForm() {
 
 	const onSubmit = async (formData: any) => {
 		try {
-			await deleteContact({
-				email: formData.email,
-				// audienceId is optional - server action will use default
-			})
+			await deleteContact({ email: formData.email })
 			capture('newsletter_unsubscribed')
 			toast({
 				title: 'Unsubscribed',

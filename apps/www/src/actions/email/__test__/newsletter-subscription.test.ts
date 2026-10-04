@@ -14,36 +14,49 @@ describe('subscribeToNewsletter', () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
 		vi.spyOn(console, 'log').mockImplementation(() => {})
+		vi.spyOn(console, 'error').mockImplementation(() => {})
 	})
 
 	afterEach(() => {
 		vi.unstubAllEnvs()
 	})
 
-	it('throws when the default audience is not configured', async () => {
-		vi.stubEnv('RESEND_DEFAULT_AUDIENCE_ID', '')
+	it('throws when the segment is not configured', async () => {
+		vi.stubEnv('RESEND_SEGMENT_ID', '')
 		await expect(
 			subscribeToNewsletter({ email: 'user@example.com' })
-		).rejects.toThrow('RESEND_DEFAULT_AUDIENCE_ID not configured')
+		).rejects.toThrow('RESEND_SEGMENT_ID not configured')
 		expect(contactsCreate).not.toHaveBeenCalled()
 	})
 
-	it('creates a contact in the configured audience', async () => {
-		vi.stubEnv('RESEND_DEFAULT_AUDIENCE_ID', 'aud_123')
-		contactsCreate.mockResolvedValueOnce({ data: { id: 'c1' } })
+	it('creates a contact in the configured segment', async () => {
+		vi.stubEnv('RESEND_SEGMENT_ID', 'seg_123')
+		contactsCreate.mockResolvedValueOnce({ data: { id: 'c1' }, error: null })
 		await subscribeToNewsletter({ email: 'user@example.com' })
 		expect(contactsCreate).toHaveBeenCalledWith({
 			email: 'user@example.com',
 			unsubscribed: false,
-			audienceId: 'aud_123',
+			segments: [{ id: 'seg_123' }],
 		})
 	})
 
-	it('throws a friendly error when the API call fails', async () => {
-		vi.stubEnv('RESEND_DEFAULT_AUDIENCE_ID', 'aud_123')
+	it('throws a friendly error when the API call rejects', async () => {
+		vi.stubEnv('RESEND_SEGMENT_ID', 'seg_123')
 		contactsCreate.mockRejectedValueOnce(new Error('api down'))
 		await expect(
 			subscribeToNewsletter({ email: 'user@example.com' })
 		).rejects.toThrow('Failed to subscribe to newsletter')
+	})
+
+	// Resend returns API errors instead of throwing; treating that as success would
+	// show a success toast and fire `newsletter_subscribed` for a failed subscribe.
+	it('throws when the API returns an error instead of rejecting', async () => {
+		vi.stubEnv('RESEND_SEGMENT_ID', 'seg_123')
+		const apiError = { name: 'validation_error', message: 'Invalid segment' }
+		contactsCreate.mockResolvedValueOnce({ data: null, error: apiError })
+		await expect(
+			subscribeToNewsletter({ email: 'user@example.com' })
+		).rejects.toThrow('Failed to subscribe to newsletter')
+		expect(console.error).toHaveBeenCalledWith(expect.any(String), apiError)
 	})
 })

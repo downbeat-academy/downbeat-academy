@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 const { contactsRemove } = vi.hoisted(() => ({ contactsRemove: vi.fn() }))
 
@@ -14,35 +14,33 @@ describe('deleteContact', () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
 		vi.spyOn(console, 'log').mockImplementation(() => {})
+		vi.spyOn(console, 'error').mockImplementation(() => {})
 	})
 
-	afterEach(() => {
-		vi.unstubAllEnvs()
-	})
-
-	it('throws when no audience id is available', async () => {
-		vi.stubEnv('RESEND_DEFAULT_AUDIENCE_ID', '')
-		await expect(
-			deleteContact({ email: 'user@example.com' })
-		).rejects.toThrow(
-			'No audience ID provided and RESEND_DEFAULT_AUDIENCE_ID not configured'
-		)
-		expect(contactsRemove).not.toHaveBeenCalled()
-	})
-
-	it('removes the contact from the given audience', async () => {
-		contactsRemove.mockResolvedValueOnce({ data: { deleted: true } })
-		await deleteContact({ email: 'user@example.com', audienceId: 'aud_1' })
-		expect(contactsRemove).toHaveBeenCalledWith({
-			email: 'user@example.com',
-			audienceId: 'aud_1',
+	it('removes the contact by email, without needing a segment', async () => {
+		contactsRemove.mockResolvedValueOnce({
+			data: { deleted: true },
+			error: null,
 		})
+		await deleteContact({ email: 'user@example.com' })
+		expect(contactsRemove).toHaveBeenCalledWith({ email: 'user@example.com' })
 	})
 
-	it('throws a friendly error when removal fails', async () => {
+	it('throws a friendly error when removal rejects', async () => {
 		contactsRemove.mockRejectedValueOnce(new Error('api down'))
 		await expect(
-			deleteContact({ email: 'user@example.com', audienceId: 'aud_1' })
+			deleteContact({ email: 'user@example.com' })
 		).rejects.toThrow('Failed to delete contact')
+	})
+
+	// Without this, the unsubscribe page would report success and fire
+	// `newsletter_unsubscribed` while the contact stayed subscribed.
+	it('throws when the API returns an error instead of rejecting', async () => {
+		const apiError = { name: 'not_found', message: 'Contact not found' }
+		contactsRemove.mockResolvedValueOnce({ data: null, error: apiError })
+		await expect(
+			deleteContact({ email: 'user@example.com' })
+		).rejects.toThrow('Failed to delete contact')
+		expect(console.error).toHaveBeenCalledWith(expect.any(String), apiError)
 	})
 })

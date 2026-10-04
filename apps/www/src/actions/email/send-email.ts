@@ -15,16 +15,19 @@ export async function sendEmail({
 	message: string 
 }) {
 	try {
-		const { data } = await resend.emails.send({
+		// Resend reports API failures in `error` rather than throwing.
+		const { data, error } = await resend.emails.send({
 			from: 'Downbeat Academy <hello@email.downbeatacademy.com>',
 			to: 'jory@downbeatacademy.com',
 			subject: `${name} sent you a message from the Downbeat Academy contact form`,
 			react: ContactFormEmail({ name: name, email: email, message: message }),
 			replyTo: email,
 		})
+		if (error) throw error
 
 		console.log(data)
 	} catch (error) {
+		console.error('sendEmail: Resend emails.send failed', error)
 		throw new Error('Failed to send email')
 	}
 }
