@@ -40,3 +40,23 @@
 .high-contrast-link:hover {
   color: var(--cds-color-palette-blackberry-200) !important;
 } 
+/* "Cookie settings" is a button (it opens the consent banner, it does not
+   navigate) dressed to match the links beside it. */
+.cookie-settings {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--cds-color-foreground-high-contrast);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cookie-settings:hover {
+  color: var(--cds-color-palette-blackberry-200);
+}
+
+.cookie-settings:focus-visible {
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: var(--cds-focus-ring-offset);
+}

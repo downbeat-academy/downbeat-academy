@@ -57,7 +57,28 @@ Still to confirm against the real project:
 
 Record the answers here.
 
-## 3. Identity
+## 3. Consent
+
+PostHog is cookieless until the visitor accepts the banner (`src/components/cookie-consent`,
+`src/lib/consent`, `src/lib/posthog/consent.ts`). Start in a private window so there is no
+earlier choice.
+
+- [ ] In PostHog project settings, **cookieless server hash mode is enabled**. Without it every
+      cookieless event — every visitor who has not accepted — is dropped at ingestion, silently.
+- [ ] The banner appears on first load. Before answering, the browser has **no** `ph_*` cookie
+      and no `ph_*` localStorage key, yet a `$pageview` still arrives in Activity (with
+      `$cookieless_mode` set).
+- [ ] Accept. A `$opt_in` event arrives, a `ph_<token>_posthog` cookie appears, and the
+      distinct ID becomes a stable UUID.
+- [ ] Reopen with **Cookie settings** in the footer and Decline. The `ph_*` cookie disappears
+      at once, without a reload. Only `__ph_opt_in_out_<token>` (the refusal) stays in
+      localStorage. Events keep arriving cookielessly.
+- [ ] Sign in **without** accepting. No `$identify` is sent and no person is created for the
+      user — signing in is not consent.
+
+## 4. Identity
+
+Accept analytics cookies first: `identify()` only runs once the visitor has consented.
 
 - [ ] Sign in. A person appears whose distinct ID is the better-auth `user.id` (a cuid-style
       string), not an anonymous UUID.
@@ -67,9 +88,11 @@ Record the answers here.
       This is the single most important assertion here: the two apps are on different domains
       with no shared cookie, and that id is the only thing joining them. If it breaks, the
       funnel silently splits in two.
-- [ ] Sign out. A new anonymous distinct ID is issued (`posthog.reset()` ran).
+- [ ] Sign out. A new anonymous distinct ID is issued (`posthog.reset()` ran), and capture
+      still uses cookies — reset clears PostHog's own consent flag, and
+      `resetPostHogIdentity` has to re-apply the visitor's choice.
 
-## 4. Every event in the taxonomy
+## 5. Every event in the taxonomy
 
 Each of these should be seen at least once, carrying the properties declared in
 `packages/analytics/src/events.ts`. Anything still at zero after a full pass is either
@@ -125,7 +148,7 @@ Also confirm the negative: browse the signed-in site for a few minutes and check
 - [ ] `notation_rendered` — visit a lexicon entry with notation. Confirm it fires once, and
       **not** again when the window is resized or the excerpt transposed.
 
-## 5. Adversarial checks
+## 6. Adversarial checks
 
 - [ ] Load the site with uBlock Origin (or similar) enabled. Events still arrive. This is the
       entire reason the `/ingest` reverse proxy exists.
@@ -138,7 +161,7 @@ Also confirm the negative: browse the signed-in site for a few minutes and check
       (`setTimeout(() => { throw new Error('qa') })`) and confirm it appears. A server error
       should appear too, attributed to the same person when the visitor has a PostHog cookie.
 
-## 6. Record the result
+## 7. Record the result
 
 Update the Fathom-comparison notes with
 anything learned, and note the `defaults` answers from step 2 in `packages/analytics`.

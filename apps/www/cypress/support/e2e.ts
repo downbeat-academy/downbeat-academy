@@ -18,3 +18,11 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// Every spec starts with analytics cookies accepted, so the consent banner does
+// not cover the page and PostHog runs as it did before consent existed. Specs
+// that test consent itself clear this cookie first — see
+// cypress/e2e/analytics/cookie-consent.cy.ts.
+beforeEach(() => {
+	cy.setCookie('dba_analytics_consent', 'granted')
+})
