@@ -57,6 +57,6 @@
 }
 
 .cookie-settings:focus-visible {
-  outline: var(--cds-border-width-medium) solid var(--cds-color-border-focus);
-  outline-offset: var(--cds-scale-3x-small);
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: var(--cds-focus-ring-offset);
 }

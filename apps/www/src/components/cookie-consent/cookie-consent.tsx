@@ -47,9 +47,9 @@ function focusFallback() {
  * layer makes its visual position independent of DOM order, but tab order is
  * not.
  *
- * Accept and Decline are deliberately identical in weight. Rejecting has to be
- * as easy as accepting, and a primary/secondary pair is the visual nudge
- * consent guidance calls out.
+ * Inverted — dark surface, light text — so it reads as distinct from the page
+ * rather than part of it. Cadence's secondary button is drawn for light
+ * surfaces, so Decline gets an inverted override in the module CSS.
  */
 export function CookieConsent() {
 	const consent = useAnalyticsConsent()
@@ -137,7 +137,7 @@ export function CookieConsent() {
 								id={titleId}
 								type="productive-headline"
 								size="h6"
-								color="strong"
+								color="high-contrast"
 							>
 								Cookies on Downbeat Academy
 							</Text>
@@ -146,21 +146,23 @@ export function CookieConsent() {
 								id={descriptionId}
 								type="productive-body"
 								size="body-small"
-								color="primary"
+								color="high-contrast"
 							>
 								We&apos;d like to use analytics cookies to understand how the
 								site is used and improve it. If you decline, we still count
 								visits anonymously, without storing anything on your device.
 								You can change your mind at any time from Cookie settings in
 								the footer. See our{' '}
-								<Link href="/privacy-policy">Privacy Policy</Link>.
+								<Link href="/privacy-policy" type="inherit">
+									Privacy Policy
+								</Link>.
 							</Text>
 							{consent !== 'pending' && (
 								<Text
 									tag="p"
 									type="productive-body"
 									size="body-small"
-									color="primary"
+									color="high-contrast"
 								>
 									{consent === 'granted'
 										? 'You currently allow analytics cookies.'
@@ -172,12 +174,13 @@ export function CookieConsent() {
 							<Button
 								variant="secondary"
 								size="small"
+								className={s.decline}
 								onClick={() => decide('denied')}
 							>
 								Decline
 							</Button>
 							<Button
-								variant="secondary"
+								variant="primary"
 								size="small"
 								onClick={() => decide('granted')}
 							>

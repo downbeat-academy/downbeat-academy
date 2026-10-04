@@ -16,17 +16,19 @@
      reach instead of falling off-screen. The UA gives a popover overflow: auto. */
   max-height: calc(100dvh - 2 * var(--cds-scale-large));
   padding: var(--cds-scale-large);
-  background: var(--cds-color-surface-primary);
-  color: var(--cds-color-foreground-primary);
-  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
+  /* Inverted, to stand apart from the page. The border keeps an edge when the
+     banner sits over the footer, which shares this surface colour. */
+  background: var(--cds-color-surface-high-contrast);
+  color: var(--cds-color-foreground-high-contrast);
+  border: var(--cds-border-width-thin) solid var(--cds-color-palette-blackberry-500);
   border-radius: var(--cds-radii-medium);
   box-shadow: var(--cds-elevation-box-shadow-floating);
 }
 
 /* Focus lands on the banner itself when reopened from "Cookie settings". */
 .root:focus-visible {
-  outline: var(--cds-border-width-medium) solid var(--cds-color-border-focus);
-  outline-offset: var(--cds-scale-3x-small);
+  outline: var(--cds-focus-ring-width) solid var(--cds-focus-ring-color-standard);
+  outline-offset: var(--cds-focus-ring-offset);
 }
 
 /* A full-width sheet along the bottom edge on small screens. */
@@ -39,6 +41,21 @@
     border-width: var(--cds-border-width-thin) 0 0;
     border-radius: var(--cds-radii-medium) var(--cds-radii-medium) 0 0;
   }
+}
+
+/*
+ * Cadence's secondary button is drawn for light surfaces — dark text and
+ * border — and would vanish here. `.root .decline` outranks the single-class
+ * `.secondary` regardless of stylesheet order.
+ */
+.root .decline {
+  color: var(--cds-color-foreground-high-contrast);
+  border-color: var(--cds-color-border-high-contrast);
+}
+
+.root .decline:hover,
+.root .decline:active {
+  background: var(--cds-color-palette-blackberry-600);
 }
 
 /* The confirmation announced after a choice. */

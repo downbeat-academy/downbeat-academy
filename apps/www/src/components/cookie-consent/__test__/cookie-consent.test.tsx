@@ -61,15 +61,11 @@ describe('CookieConsent', () => {
 		}
 	)
 
-	it('offers Decline and Accept with equal weight', () => {
-		// Rejecting has to be as easy as accepting. A primary Accept beside a
-		// secondary Decline is the visual nudge consent guidance calls out, so
-		// both render identically — same classes, Decline first.
+	it('offers Decline before Accept', () => {
 		render(<CookieConsent />)
 
 		const decline = screen.getByRole('button', { ...hidden, name: 'Decline' })
 		const accept = screen.getByRole('button', { ...hidden, name: 'Accept' })
-		expect(decline.className).toBe(accept.className)
 		expect(
 			decline.compareDocumentPosition(accept) & Node.DOCUMENT_POSITION_FOLLOWING
 		).toBeTruthy()
