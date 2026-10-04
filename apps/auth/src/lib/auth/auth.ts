@@ -15,7 +15,8 @@ import {
 } from '@/lib/auth/permissions'
 
 // Email templates from shared package
-import { VerifyEmail, ResetPasswordEmail } from 'email/emails/index'
+import { ResetPasswordEmail } from 'email/emails/index'
+import { sendVerificationEmail } from '@/lib/auth/send-verification-email'
 
 import { createAuthMiddleware } from 'better-auth/api'
 
@@ -243,28 +244,7 @@ export function createAuth() {
 			sendOnSignUp: true,
 			autoSignInAfterVerification: true,
 			redirectAfterVerification: defaultRedirectUrl,
-			sendVerificationEmail: async ({ user, url, token }, request) => {
-				try {
-					const resend = new Resend(process.env.RESEND_API_KEY)
-					const baseUrl = authServiceUrl.replace(/\/$/, '')
-					const fullUrl = `${baseUrl}/api/auth${url}`
-
-					const { data } = await resend.emails.send({
-						from: 'Downbeat Academy <hello@email.downbeatacademy.com>',
-						to: user.email,
-						subject: 'Verify your Downbeat Academy email address',
-						react: VerifyEmail({
-							name: user.name,
-							verificationUrl: fullUrl,
-						}),
-					})
-
-					console.log('Verification email sent:', data)
-				} catch (error) {
-					console.error('Failed to send verification email:', error)
-					throw error
-				}
-			},
+			sendVerificationEmail,
 		},
 
 		plugins: [
