@@ -25,7 +25,6 @@ BLOB_READ_WRITE_TOKEN=test-token
 NEXT_PUBLIC_SANITY_PROJECT_ID=test-project
 NEXT_PUBLIC_SANITY_DATASET=production
 SANITY_SECRET_TOKEN=test-token
-SENTRY_AUTH_TOKEN=test-token
 EOF
 
 # Start the test database

@@ -61,4 +61,4 @@ body:
     id: evidence
     attributes:
       label: Errors, logs, screenshots
-      description: Console output, a Sentry link, or a screenshot. Redact any secrets.
+      description: Console output, a PostHog error tracking link, or a screenshot. Redact any secrets.

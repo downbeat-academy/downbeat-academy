@@ -56,8 +56,9 @@ not to build it locally. `apps/auth` has local copies of `link`, `tabs`, `toast`
   it — password auth belongs to `apps/auth`.
 - **`src/lib/sanity/sanity.queries.ts` is a legacy monolith** duplicating queries that
   live properly in `src/lib/queries/`.
-- **Sentry and PostHog are both initialized in `instrumentation-client.ts`** — easy to
-  miss when debugging either.
+- **PostHog error tracking has two halves.** `instrumentation-client.ts` captures browser
+  exceptions (`capture_exceptions: true`); `onRequestError` in `instrumentation.ts`
+  captures server errors via `posthog-node`. Both are host-gated, so neither fires locally.
 
 Read `docs/adr/0002-known-gaps.md` before concluding something is an accident.
 
