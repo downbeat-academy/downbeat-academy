@@ -134,7 +134,6 @@ updates:
 
       observability:
         patterns:
-          - '@sentry/*'
           - 'posthog-js'
           - 'posthog-node'
           - 'fathom-client'

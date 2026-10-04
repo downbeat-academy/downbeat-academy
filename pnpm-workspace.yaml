@@ -10,17 +10,17 @@ packages:
 # on — the payload runs during `pnpm install`, before any test executes, so CI passing is
 # not a defence against it.
 #
-# Nine scripts in the tree are blocked, and cypress is the only one that needs an
+# Eight scripts in the tree are blocked, and cypress is the only one that needs an
 # exception. Verified by a clean `pnpm install --frozen-lockfile` on pnpm 10.34.5
 # followed by a full lint/typecheck/test, build, and browser-test run, all of which pass
-# with the other eight blocked:
+# with the other seven blocked:
 #
 #   cypress          ALLOWED — downloads its test-runner binary, and has no other route
 #                    to it. Without this entry the E2E suite cannot run.
 #   esbuild          blocked — its install.js only verifies a binary that already
-#   @sentry/cli      arrives via platform-specific OPTIONAL DEPENDENCIES
-#   unrs-resolver    (@sentry/cli-linux-x64, esbuild-linux-64, and so on). The script is
-#   @parcel/watcher  a fallback downloader, so blocking it costs nothing.
+#   unrs-resolver    arrives via platform-specific OPTIONAL DEPENDENCIES
+#   @parcel/watcher  (esbuild-linux-64, and so on). The script is a fallback
+#                    downloader, so blocking it costs nothing.
 #   core-js          blocked — the script only prints a funding message.
 #   gl               blocked — a native gyp build, but it is an OPTIONAL dependency of
 #                    opensheetmusicdisplay and only backs OSMD's Node-side canvas

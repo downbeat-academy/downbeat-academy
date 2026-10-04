@@ -53,7 +53,7 @@ Still to confirm against the real project:
 
 - [ ] Does clicking produce `$autocapture`? …
 - [ ] Are person profiles created for anonymous visitors, or only identified ones? …
-- [ ] Is session recording on? It should not be — Sentry owns replay. …
+- [ ] Is session recording on? It should not be — session replay is not in use (Sentry's was dropped with DBA-289). …
 
 Record the answers here.
 
@@ -134,12 +134,13 @@ Also confirm the negative: browse the signed-in site for a few minutes and check
 - [ ] Run the site locally. Confirm **no** events appear in PostHog, and the console explains
       why. If local traffic is landing in the production project, the host gate has broken and
       the data is no longer trustworthy.
-- [ ] Confirm no `$exception` events. PostHog's `capture_exceptions` is off deliberately;
-      Sentry owns errors.
+- [ ] Confirm `$exception` events arrive in **Error tracking**. Throw from the browser console
+      (`setTimeout(() => { throw new Error('qa') })`) and confirm it appears. A server error
+      should appear too, attributed to the same person when the visitor has a PostHog cookie.
 
 ## 6. Record the result
 
-Update the "Evaluate consolidating Sentry into PostHog" and Fathom-comparison notes with
+Update the Fathom-comparison notes with
 anything learned, and note the `defaults` answers from step 2 in `packages/analytics`.
 
 If any event stayed at zero, it is not a reporting problem — treat it as a bug in the call

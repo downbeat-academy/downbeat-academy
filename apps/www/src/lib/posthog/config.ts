@@ -39,3 +39,37 @@ export function shouldInitPostHog({
 
 	return POSTHOG_ALLOWED_HOSTS.includes(hostname)
 }
+
+export type PostHogServerGateInput = {
+	/** `NEXT_PUBLIC_PROJECT_URL` — the origin this deployment believes it is serving. */
+	projectUrl: string | undefined
+	/** `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN`. */
+	token: string | undefined
+	/** Same escape hatch as the client, via `NEXT_PUBLIC_POSTHOG_DEBUG=true`. */
+	forceEnable?: boolean
+}
+
+/**
+ * The server-side counterpart of `shouldInitPostHog`, used for exception capture
+ * in `instrumentation.ts`. There is no `window.location` on the server, so it
+ * gates on the configured project URL instead — the same approach `apps/auth`
+ * takes with `AUTH_SERVICE_URL`. `NODE_ENV` is no use here: a preview deploy
+ * also runs with `NODE_ENV=production`.
+ */
+export function shouldCapturePostHogServer({
+	projectUrl,
+	token,
+	forceEnable = false,
+}: PostHogServerGateInput): boolean {
+	if (!token) return false
+	if (forceEnable) return true
+	if (!projectUrl) return false
+
+	try {
+		return POSTHOG_ALLOWED_HOSTS.includes(new URL(projectUrl).hostname)
+	} catch {
+		// A malformed URL should not capture, and must not throw while reporting
+		// an error.
+		return false
+	}
+}

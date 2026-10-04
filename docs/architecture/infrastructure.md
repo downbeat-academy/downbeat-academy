@@ -60,7 +60,7 @@ Each app has an `.infisical.json` and wraps its dev server:
 | Path | App |
 | --- | --- |
 | `/auth` | `AUTH_SERVICE_URL`, `NEXT_PUBLIC_AUTH_SERVICE_URL`, `DATABASE_URL`, `BETTER_AUTH_SECRET`, `RESEND_API_KEY`, `DEFAULT_REDIRECT_URL`, `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` |
-| `/www` | `NEXT_PUBLIC_PROJECT_URL`, `AUTH_SERVICE_URL`, `NEXT_PUBLIC_AUTH_SERVICE_URL`, `DATABASE_URL_AUTH`, `OAUTH_CLIENT_ID/SECRET`, `BETTER_AUTH_SECRET`, plus Sanity, Sentry, PostHog, Fathom keys |
+| `/www` | `NEXT_PUBLIC_PROJECT_URL`, `AUTH_SERVICE_URL`, `NEXT_PUBLIC_AUTH_SERVICE_URL`, `DATABASE_URL_AUTH`, `OAUTH_CLIENT_ID/SECRET`, `BETTER_AUTH_SECRET`, plus Sanity, PostHog, Fathom keys |
 | `/cadence-links` | `NEXT_PUBLIC_APP_URL`, auth service URLs, `DATABASE_URL_AUTH`, `DATABASE_PUBLIC_URL`, `OAUTH_CLIENT_ID/SECRET`, `BETTER_AUTH_SECRET`, `ALLOWED_EMAILS` |
 
 `cms-sanity` and the packages do not use Infisical.
@@ -112,16 +112,17 @@ repo; see [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 
 | Tool | Scope | Wiring |
 | --- | --- | --- |
-| **Sentry** | `apps/www` | `withSentryConfig` in `next.config.js` (org `hype-creative-studios`, project `downbeatacademy`); `instrumentation.ts` lazily loads `sentry.server.config.ts` / `sentry.edge.config.ts`; `onRequestError` ignores stale Server Action IDs and aborted requests |
-| **PostHog** | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
+| **PostHog** (error tracking) | `apps/www` | Browser: `capture_exceptions: true` in `instrumentation-client.ts`, plus `posthog.captureException` in `src/app/global-error.jsx`. Server: `onRequestError` in `instrumentation.ts` sends `$exception` events through the `posthog-node` client in `src/lib/posthog/server.ts`, attributed to the visitor via the `ph_<token>_posthog` cookie, and ignores stale Server Action IDs and aborted requests. Gated by `shouldCapturePostHogServer` on `NEXT_PUBLIC_PROJECT_URL` |
+| **PostHog** (analytics) | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
 | **PostHog** | `apps/auth` | Server-side only (`posthog-node`), no client init. The authentication funnel: `sign_up_completed` / `sign_in_completed` via better-auth `databaseHooks`, `sign_out_completed` in `src/app/sign-out/page.tsx`, `password_reset_requested` / `password_reset_completed` in `sendResetPassword` and `onPasswordReset`, `oauth_authorization_granted` via an `after` hook on `/oauth2/token`. Gated by `shouldCaptureAuthAnalytics` on `AUTH_SERVICE_URL`, and needs `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` at Infisical `/auth` — without it the whole funnel is dropped in silence |
 | **Fathom** | `apps/www` | `src/lib/fathom.tsx`, `includedDomains` restricted to `downbeatacademy.com` |
 | **Resend** | `apps/auth`, `apps/www` | `auth` sends verification and reset mail using the `email` package's templates. `www` has its own templates in `src/actions/email/` and does **not** depend on the `email` package |
 
 PostHog and Fathom currently overlap. Consolidating onto PostHog is under consideration.
 
-Sentry and PostHog are both initialized in the same file (`instrumentation-client.ts`),
-which is easy to miss when debugging one of them.
+PostHog replaced Sentry for error tracking (DBA-289). Errors land in PostHog's **Error
+tracking** product as `$exception` events, on the same person as that visitor's analytics.
+Source maps are not uploaded yet, so browser stack traces are minified.
 
 ### Things that are easy to get wrong here
 
@@ -134,9 +135,13 @@ which is easy to miss when debugging one of them.
   `auth.api.getSession()` — a database round trip — on every path it matches. With `/ingest`
   matched, every analytics event and every proxied PostHog asset triggers one, including for
   anonymous visitors.
-- **Exception capture belongs to Sentry.** PostHog's `capture_exceptions` is off deliberately;
-  turning it on sends every error to two vendors. See the "Evaluate consolidating Sentry into
-  PostHog" task before changing this.
+- **Error tracking is host-gated like everything else.** Exceptions from local and preview
+  deploys are dropped on both the client (`shouldInitPostHog`) and the server
+  (`shouldCapturePostHogServer`, which reads `NEXT_PUBLIC_PROJECT_URL` because there is no
+  `window.location` on the server). `NEXT_PUBLIC_POSTHOG_DEBUG=true` opens both gates.
+- **Route-level `error.tsx` boundaries do not report.** Only `global-error.jsx` calls
+  `captureException`. Server-side render errors still arrive through `onRequestError`; a
+  client-only render error caught by `(pages)/error.tsx` or `admin/error.tsx` does not.
 - **Event names are not free-form.** They live in `packages/analytics` and are enforced by the
   typed `capture` wrapper. Do not call `posthog.capture` directly — it accepts any string, which
   is how the same concept once shipped as both `registration_method` and `method`.

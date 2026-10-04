@@ -53,11 +53,10 @@ src/
 │   └── api/auth/[...all]/route.ts    the only API route
 ├── actions/          server actions — admin/, auth/, email/, profile/, each with __test__/
 ├── components/       folder-per-component, index.ts + *.module.css
-├── lib/              auth/, db/, sanity/, queries/, admin/, email/, posthog-server.ts
+├── lib/              auth/, db/, sanity/, queries/, admin/, email/, posthog/
 ├── hooks/  utils/  styles/  types/
 ├── proxy.ts          Next 16 middleware replacement (Node runtime)
-├── instrumentation.ts / instrumentation-client.ts
-└── sentry.{edge,server}.config.ts
+└── instrumentation.ts / instrumentation-client.ts
 ```
 
 ## Key patterns
@@ -106,8 +105,10 @@ Prefer `cadence-core` components. Where `www` has a local wrapper it aliases the
 
 ### Observability
 
-`instrumentation-client.ts` initializes **both** Sentry and PostHog — easy to miss when
-debugging either. PostHog uses `api_host: '/ingest'`, reverse-proxied by a `rewrites()`
+PostHog handles both analytics and error tracking (it replaced Sentry). Browser exceptions
+are captured by `capture_exceptions: true` in `instrumentation-client.ts` and by
+`global-error.jsx`; server errors by `onRequestError` in `instrumentation.ts`, through the
+`posthog-node` client in `src/lib/posthog/server.ts`. PostHog uses `api_host: '/ingest'`, reverse-proxied by a `rewrites()`
 rule in `next.config.js`.
 
 **PostHog does not run locally.** `shouldInitPostHog` (`src/lib/posthog/config.ts`) restricts
