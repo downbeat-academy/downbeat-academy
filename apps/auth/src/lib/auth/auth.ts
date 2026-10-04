@@ -17,6 +17,7 @@ import {
 // Email templates from shared package
 import { ResetPasswordEmail } from 'email/emails/index'
 import { sendVerificationEmail } from '@/lib/auth/send-verification-email'
+import { getTrustedOrigins } from '@/lib/auth/trusted-origins'
 
 import { createAuthMiddleware } from 'better-auth/api'
 
@@ -70,7 +71,6 @@ export function validateRedirectUri(uri?: string): string | null {
 export function createAuth() {
 	const isDev = process.env.NODE_ENV === 'development'
 	const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:3002'
-	const defaultRedirectUrl = process.env.DEFAULT_REDIRECT_URL || 'http://localhost:3000'
 
 	return betterAuth({
 		appName: 'Downbeat Academy',
@@ -78,16 +78,7 @@ export function createAuth() {
 		baseURL: authServiceUrl,
 
 		// CRITICAL: Trusted origins for cross-origin requests
-		trustedOrigins: [
-			'https://downbeatacademy.com',
-			'https://www.downbeatacademy.com',
-			'https://auth.downbeatacademy.services',
-			'https://links.downbeatacademy.services',
-			// Add localhost for development
-			...(isDev
-				? ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002']
-				: []),
-		],
+		trustedOrigins: getTrustedOrigins(isDev),
 
 		// Cookie configuration
 		// No cross-subdomain sharing needed — all consumer apps use OAuth
@@ -243,7 +234,8 @@ export function createAuth() {
 		emailVerification: {
 			sendOnSignUp: true,
 			autoSignInAfterVerification: true,
-			redirectAfterVerification: defaultRedirectUrl,
+			// Where the link lands afterwards is the `callbackURL` the sign-up
+			// action passes — see resolveVerificationCallbackUrl.
 			sendVerificationEmail,
 		},
 
