@@ -13,19 +13,23 @@ import {
 import { ChevronDown } from 'cadence-icons'
 import type { UserRow } from '@/lib/admin/types'
 import t from '../../_components/actions-trigger.module.css'
+import s from './user-actions-menu.module.css'
 import { unbanUser } from '@/actions/admin/unban-user'
 import { BanUserDialog } from './ban-user-dialog'
 import { RoleChangeDialog } from './role-change-dialog'
 import { RevokeSessionsDialog } from './revoke-sessions-dialog'
+import { DeleteUserDialog } from './delete-user-dialog'
 
 type Props = {
 	user: UserRow
 	isSelf: boolean
+	/** Deleting users is superAdmin-only; the item is hidden from plain admins. */
+	canDelete: boolean
 }
 
-type OpenDialog = 'ban' | 'role' | 'revoke' | null
+type OpenDialog = 'ban' | 'role' | 'revoke' | 'delete' | null
 
-export function UserActionsMenu({ user, isSelf }: Props) {
+export function UserActionsMenu({ user, isSelf, canDelete }: Props) {
 	const [open, setOpen] = useState<OpenDialog>(null)
 	const userLabel = user.name || user.email
 
@@ -70,6 +74,14 @@ export function UserActionsMenu({ user, isSelf }: Props) {
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
 					<DropdownMenuItem onSelect={handleCopyId}>Copy user ID</DropdownMenuItem>
+					{canDelete && (
+						<>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem onSelect={() => setOpen('delete')} className={s.destructive}>
+								Delete user
+							</DropdownMenuItem>
+						</>
+					)}
 				</DropdownMenuContent>
 			</DropdownMenu>
 
@@ -92,6 +104,15 @@ export function UserActionsMenu({ user, isSelf }: Props) {
 				userId={user.id}
 				userLabel={userLabel}
 			/>
+			{canDelete && (
+				<DeleteUserDialog
+					open={open === 'delete'}
+					onOpenChange={(v) => setOpen(v ? 'delete' : null)}
+					userId={user.id}
+					userLabel={userLabel}
+					userEmail={user.email}
+				/>
+			)}
 		</>
 	)
 }

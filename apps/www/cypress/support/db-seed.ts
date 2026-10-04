@@ -272,6 +272,40 @@ export async function getTestUserByEmail(email: string) {
 	return users[0] || null
 }
 
+/**
+ * Inserts a throwaway student for tests that delete a user. Never point those
+ * tests at a seeded `TEST_USERS` account: deleting one breaks every spec that
+ * logs in as it, until the next seed.
+ */
+export async function createDisposableUser(): Promise<{ id: string; email: string }> {
+	const { db } = await getDbConnection()
+	const id = `test-disposable-${nanoid(8)}`
+	const email = `${id}@example.com`
+
+	await db.insert(user).values({
+		id,
+		name: 'Disposable Test User',
+		email,
+		emailVerified: true,
+		role: 'student',
+		image: null,
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		banned: false,
+		banReason: null,
+		banExpires: null,
+	})
+
+	return { id, email }
+}
+
+/** Removes a disposable user if the test did not. Sessions and accounts cascade. */
+export async function deleteUserById(id: string): Promise<boolean> {
+	const { db } = await getDbConnection()
+	await db.delete(user).where(eq(user.id, id))
+	return true
+}
+
 // Close database connection when done
 export async function closeDbConnection() {
 	if (dbPool) {

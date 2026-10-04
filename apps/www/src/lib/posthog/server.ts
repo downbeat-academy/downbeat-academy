@@ -1,4 +1,5 @@
 import { PostHog } from 'posthog-node'
+import type { AnalyticsEvent, AnalyticsEventMap } from 'analytics'
 
 import { shouldCapturePostHogServer } from './config'
 
@@ -9,8 +10,9 @@ import { shouldCapturePostHogServer } from './config'
 let client: PostHog | null | undefined
 
 /**
- * Server-side PostHog client, used only for exception capture. Product
- * analytics in `www` stay client-side, through `capture.ts`.
+ * Server-side PostHog client, for exception capture and for the few events
+ * that must come from the server (see `captureServerEvent`). Product analytics
+ * in `www` stay client-side, through `capture.ts`.
  *
  * A singleton because `www` is a long-running Node server on Railway, not a
  * serverless function. `flushAt: 1` sends each event immediately, so no
@@ -72,6 +74,38 @@ export function getDistinctIdFromCookie(
 			: undefined
 	} catch {
 		return undefined
+	}
+}
+
+type CaptureInput<E extends AnalyticsEvent> = [AnalyticsEventMap[E]] extends [
+	never,
+]
+	? { distinctId: string; event: E; properties?: undefined }
+	: { distinctId: string; event: E; properties: AnalyticsEventMap[E] }
+
+/**
+ * Captures a taxonomy event from the server. Reserved for events that must not
+ * depend on the browser — an audit record, for instance, should not vanish
+ * because an admin runs an ad blocker. Everything else belongs in `capture.ts`.
+ *
+ * Never throws: a failed capture must not fail the action that triggered it.
+ */
+export function captureServerEvent<E extends AnalyticsEvent>({
+	distinctId,
+	event,
+	properties,
+}: CaptureInput<E>): void {
+	const posthog = getPostHogServer()
+	if (!posthog) return
+
+	try {
+		posthog.capture({
+			distinctId,
+			event,
+			properties: properties as Record<string, unknown> | undefined,
+		})
+	} catch {
+		// Analytics must never break the caller.
 	}
 }
 

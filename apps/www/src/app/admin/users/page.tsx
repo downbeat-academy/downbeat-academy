@@ -71,7 +71,11 @@ export default async function AdminUsersPage({
 				initialStatus={sp.status ?? 'all'}
 			/>
 
-			<UsersTable rows={result.rows} currentUserId={session.user.id} />
+			<UsersTable
+				rows={result.rows}
+				currentUserId={session.user.id}
+				canDeleteUsers={session.user.role === 'superAdmin'}
+			/>
 
 			<UsersPagination
 				page={result.page}

@@ -33,6 +33,13 @@
 /** How a user authenticated. */
 export type AuthMethod = 'oauth' | 'email'
 
+/**
+ * Who removed an account. `admin` is a superAdmin acting from the `www` admin
+ * dashboard. `self` is reserved for self-service deletion, so that flow can
+ * reuse `account_deleted` instead of introducing a second event.
+ */
+export type AccountDeletionMethod = 'admin' | 'self'
+
 /** Where a newsletter signup originated. */
 export type NewsletterSource = 'newsletter_page' | 'article' | 'footer'
 
@@ -64,6 +71,20 @@ export interface AnalyticsEventMap {
 	 * `sign_in_completed` says someone signed in, not what they signed in to.
 	 */
 	oauth_authorization_granted: { client_id: string }
+
+	// --- Account administration ----------------------------------------------
+	// Captured server-side in `apps/www`, from the admin dashboard's actions.
+	/**
+	 * An account was permanently deleted. The audit trail for admin deletions.
+	 *
+	 * Captured on the **actor's** distinct id, never the deleted user's: the
+	 * deletion also removes that user's PostHog person, and an event on their id
+	 * would recreate it. (A tab the deleted user still has open can recreate it
+	 * the same way, until their next request finds the session gone.)
+	 * `deleted_user_id` is the better-auth id, never the email
+	 * or name, because the point of deleting is to stop holding those.
+	 */
+	account_deleted: { method: AccountDeletionMethod; deleted_user_id: string }
 
 	// --- Conversion ----------------------------------------------------------
 	contact_form_submitted: never
@@ -118,6 +139,7 @@ export const ANALYTICS_EVENT_NAMES = [
 	'password_reset_requested',
 	'password_reset_completed',
 	'oauth_authorization_granted',
+	'account_deleted',
 	'contact_form_submitted',
 	'newsletter_subscribed',
 	'newsletter_unsubscribed',

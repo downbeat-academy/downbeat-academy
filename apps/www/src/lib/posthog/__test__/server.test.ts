@@ -4,8 +4,12 @@ const { PostHogMock } = vi.hoisted(() => ({ PostHogMock: vi.fn() }))
 
 vi.mock('posthog-node', () => ({ PostHog: PostHogMock }))
 
-const { getDistinctIdFromCookie, getPostHogServer, resetPostHogServerForTests } =
-	await import('../server')
+const {
+	captureServerEvent,
+	getDistinctIdFromCookie,
+	getPostHogServer,
+	resetPostHogServerForTests,
+} = await import('../server')
 
 const TOKEN = 'phc_test_token'
 
@@ -72,5 +76,69 @@ describe('getPostHogServer', () => {
 
 		expect(getPostHogServer()).toBeNull()
 		expect(PostHogMock).not.toHaveBeenCalled()
+	})
+})
+
+describe('captureServerEvent', () => {
+	afterEach(() => {
+		vi.unstubAllEnvs()
+		PostHogMock.mockReset()
+		resetPostHogServerForTests()
+	})
+
+	it('captures through the server client on the production host', () => {
+		const capture = vi.fn()
+		PostHogMock.mockImplementation(function () {
+			return { capture }
+		})
+		vi.stubEnv('NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN', TOKEN)
+		vi.stubEnv('NEXT_PUBLIC_PROJECT_URL', 'https://downbeatacademy.com')
+
+		captureServerEvent({
+			distinctId: 'actor-id',
+			event: 'account_deleted',
+			properties: { method: 'admin', deleted_user_id: 'target-id' },
+		})
+
+		expect(capture).toHaveBeenCalledWith({
+			distinctId: 'actor-id',
+			event: 'account_deleted',
+			properties: { method: 'admin', deleted_user_id: 'target-id' },
+		})
+	})
+
+	it('does nothing when the client is disabled', () => {
+		vi.stubEnv('NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN', TOKEN)
+		vi.stubEnv('NEXT_PUBLIC_PROJECT_URL', 'http://localhost:3000')
+		vi.stubEnv('NEXT_PUBLIC_POSTHOG_DEBUG', '')
+
+		expect(() =>
+			captureServerEvent({
+				distinctId: 'actor-id',
+				event: 'account_deleted',
+				properties: { method: 'admin', deleted_user_id: 'target-id' },
+			})
+		).not.toThrow()
+		expect(PostHogMock).not.toHaveBeenCalled()
+	})
+
+	it('swallows a capture error', () => {
+		PostHogMock.mockImplementation(function () {
+			return {
+				capture: () => {
+					throw new Error('boom')
+				},
+			}
+		})
+		vi.stubEnv('NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN', TOKEN)
+		vi.stubEnv('NEXT_PUBLIC_PROJECT_URL', 'https://downbeatacademy.com')
+
+		expect(() =>
+			captureServerEvent({
+				distinctId: 'actor-id',
+				event: 'account_deleted',
+				properties: { method: 'admin', deleted_user_id: 'target-id' },
+			})
+		).not.toThrow()
 	})
 })

@@ -5,3 +5,4 @@ export type UnbanUserResult = ActionResult
 export type SetRoleResult = ActionResult
 export type RevokeUserSessionsResult = ActionResult
 export type RemoveSubscriberResult = ActionResult
+export type RemoveUserResult = ActionResult
