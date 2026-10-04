@@ -1,0 +1,55 @@
+/*
+ * A `[popover]` is placed by the UA stylesheet like a modal dialog —
+ * `position: fixed; inset: 0; margin: auto` — which centres it. Pin it to the
+ * bottom corner instead. No `z-index`: the top layer already sits above
+ * everything, and a z-index on a top-layer element does nothing.
+ *
+ * No `display` here either. The UA hides a closed popover with `display: none`,
+ * and any author `display` would beat it; the layout comes from the inner Flex.
+ */
+.root {
+  inset: auto var(--cds-scale-large) var(--cds-scale-large) auto;
+  margin: 0;
+  width: calc(100vw - 2 * var(--cds-scale-large));
+  max-width: 420px;
+  /* Bounded, so at high zoom or on a short viewport the buttons scroll into
+     reach instead of falling off-screen. The UA gives a popover overflow: auto. */
+  max-height: calc(100dvh - 2 * var(--cds-scale-large));
+  padding: var(--cds-scale-large);
+  background: var(--cds-color-surface-primary);
+  color: var(--cds-color-foreground-primary);
+  border: var(--cds-border-width-thin) solid var(--cds-color-border-primary);
+  border-radius: var(--cds-radii-medium);
+  box-shadow: var(--cds-elevation-box-shadow-floating);
+}
+
+/* Focus lands on the banner itself when reopened from "Cookie settings". */
+.root:focus-visible {
+  outline: var(--cds-border-width-medium) solid var(--cds-color-border-focus);
+  outline-offset: var(--cds-scale-3x-small);
+}
+
+/* A full-width sheet along the bottom edge on small screens. */
+@media (max-width: 600px) {
+  .root {
+    inset: auto 0 0 0;
+    width: 100%;
+    max-width: none;
+    max-height: 100dvh;
+    border-width: var(--cds-border-width-thin) 0 0;
+    border-radius: var(--cds-radii-medium) var(--cds-radii-medium) 0 0;
+  }
+}
+
+/* The confirmation announced after a choice. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

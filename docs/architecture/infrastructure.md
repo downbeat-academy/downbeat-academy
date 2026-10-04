@@ -113,18 +113,51 @@ repo; see [`../adr/0002-known-gaps.md`](../adr/0002-known-gaps.md).
 | Tool | Scope | Wiring |
 | --- | --- | --- |
 | **PostHog** (error tracking) | `apps/www` | Browser: `capture_exceptions: true` in `instrumentation-client.ts`, plus `posthog.captureException` in `src/app/global-error.jsx`. Server: `onRequestError` in `instrumentation.ts` sends `$exception` events through the `posthog-node` client in `src/lib/posthog/server.ts`, attributed to the visitor via the `ph_<token>_posthog` cookie, and ignores stale Server Action IDs and aborted requests. Gated by `shouldCapturePostHogServer` on `NEXT_PUBLIC_PROJECT_URL` |
-| **PostHog** (analytics) | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
+| **PostHog** (analytics) | `apps/www` | Client init in `instrumentation-client.ts` with `api_host: '/ingest'`, reverse-proxied by a `rewrites()` rule to `us.i.posthog.com` to survive ad blockers. Gated by `shouldInitPostHog` in `src/lib/posthog/config.ts`. Cookieless until the visitor accepts the consent banner — see *Consent* below. Events go through the typed `capture` wrapper in `src/lib/posthog/capture.ts`. Identification in `src/components/posthog-identify/` |
 | **PostHog** | `apps/auth` | Server-side only (`posthog-node`), no client init. The authentication funnel: `sign_up_completed` / `sign_in_completed` via better-auth `databaseHooks`, `sign_out_completed` in `src/app/sign-out/page.tsx`, `password_reset_requested` / `password_reset_completed` in `sendResetPassword` and `onPasswordReset`, `oauth_authorization_granted` via an `after` hook on `/oauth2/token`. Gated by `shouldCaptureAuthAnalytics` on `AUTH_SERVICE_URL`, and needs `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` at Infisical `/auth` — without it the whole funnel is dropped in silence |
 | **Fathom** | `apps/www` | `src/lib/fathom.tsx`, `includedDomains` restricted to `downbeatacademy.com` |
 | **Resend** | `apps/auth`, `apps/www` | `auth` sends verification and reset mail using the `email` package's templates. `www` has its own templates in `src/actions/email/` and does **not** depend on the `email` package |
 
-PostHog and Fathom currently overlap. Consolidating onto PostHog is under consideration.
+PostHog and Fathom currently overlap. Consolidating onto PostHog is under consideration
+(DBA-353); the consent work below was its prerequisite.
+
+### Consent
+
+`www` asks for analytics-cookie consent with a banner (`src/components/cookie-consent`), and
+PostHog is **cookieless until the visitor accepts**:
+
+- **The choice lives in a first-party cookie, `dba_analytics_consent`** (`granted` / `denied`,
+  twelve months), owned by `src/lib/consent`. Changes are broadcast as a `window` event so
+  `instrumentation-client.ts` and React see the same change. PostHog's own consent flag is
+  *not* the record: `reset()` wipes it and PostHog only runs on the production hosts.
+- **PostHog starts with `cookieless_mode: 'on_reject'` and `opt_out_capturing_by_default: true`.**
+  A visitor who has not answered, or who declined, is still counted with a server-side hash and
+  nothing stored on the device. Accepting switches to cookies and a persistent id.
+  `applyPostHogConsent` (`src/lib/posthog/consent.ts`) keeps PostHog in step with the cookie.
+- **Signing in is not consent.** `PostHogIdentify` only calls `identify()` once the visitor has
+  accepted, and re-runs if they accept later in the visit.
+- **The banner is a `popover="manual"` element**, not a modal: the page stays usable, and Esc
+  or an outside click does not dismiss it. The footer's "Cookie settings" reopens it.
+- **`apps/auth`'s server-side funnel events are not gated.** They store nothing on the device
+  and the auth domain cannot read www's cookie; they rely on legitimate interest and must be
+  covered by the privacy policy.
 
 PostHog replaced Sentry for error tracking (DBA-289). Errors land in PostHog's **Error
 tracking** product as `$exception` events, on the same person as that visitor's analytics.
 Source maps are not uploaded yet, so browser stack traces are minified.
 
 ### Things that are easy to get wrong here
+
+- **Cookieless mode must also be enabled in the PostHog project settings** (cookieless server
+  hash mode). Without it, every event from a visitor who has not accepted is dropped at
+  ingestion — most traffic, silently.
+- **Withdrawing consent is `reset()` *then* `opt_out_capturing()`.** `reset()` alone discards
+  the identity but immediately persists a fresh one to a new `ph_*` cookie, which would stay
+  until the next page load. And `reset()` on sign-out clears PostHog's consent flag, so a
+  visitor who accepted is opted back in afterwards (`resetPostHogIdentity`) — reset first,
+  never after.
+- **Do not read the consent cookie in the root layout.** `cookies()` there makes every page
+  dynamic. The banner reads it on the client, after hydration.
 
 - **PostHog only captures from the hosts in `POSTHOG_ALLOWED_HOSTS`** (`src/lib/posthog/config.ts`),
   mirroring Fathom's `includedDomains`. Local and preview traffic is deliberately dropped so it

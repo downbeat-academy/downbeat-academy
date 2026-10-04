@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import { Twitter, Facebook, Tiktok, Youtube, Instagram } from 'cadence-icons'
 import { Flex, LogoSymbol, Text } from 'cadence-core'
 import { Link } from '@components/link'
+import { CookieSettingsButton } from '@components/cookie-consent'
 import s from './footer.module.css'
 
 import type { FooterProps } from './types'
@@ -166,6 +167,9 @@ const Footer = ({ className }: FooterProps) => {
 							<Link href="/privacy-policy" className={s[`high-contrast-link`]}>
 								Privacy Policy
 							</Link>
+						</Text>
+						<Text tag="p" type="productive-body" size="body-small">
+							<CookieSettingsButton className={s[`cookie-settings`]} />
 						</Text>
 					</Flex>
 				</aside>

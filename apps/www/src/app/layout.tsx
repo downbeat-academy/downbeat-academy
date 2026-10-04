@@ -5,6 +5,7 @@ import { Provider } from './provider'
 import { isAdmin } from 'auth-permissions'
 import { getOptionalSession } from '@/lib/auth/require-auth'
 import { PostHogIdentify } from '@components/posthog-identify/posthog-identify'
+import { CookieConsent } from '@components/cookie-consent'
 import '@styles/index.css'
 
 export default async function RootLayout({
@@ -18,6 +19,8 @@ export default async function RootLayout({
 		<html lang="en">
 			<body>
 				<Provider>
+					{/* Early in the DOM so it is near the start of the tab order. */}
+					<CookieConsent />
 					<NuqsAdapter>
 						<AppFrame>{children}</AppFrame>
 					</NuqsAdapter>

@@ -117,15 +117,22 @@ cannot pollute the project. If you are verifying instrumentation and expect to s
 `NEXT_PUBLIC_POSTHOG_DEBUG=true` — and unset it afterwards, because those events go to the
 production project. In development the console says which of the two reasons applied.
 
+**PostHog is cookieless until the visitor accepts the consent banner.** The choice is the
+`dba_analytics_consent` cookie, owned by `src/lib/consent` — read it with `readConsent()` or
+`useAnalyticsConsent()`, never from PostHog. `src/lib/posthog/consent.ts` keeps PostHog in step,
+and sign-out must go through `resetPostHogIdentity`, not a bare `posthog.reset()`, which would
+drop a visitor who accepted back to cookieless. Do not call `identify()` without checking consent.
+See [`../../docs/architecture/infrastructure.md`](../../docs/architecture/infrastructure.md#consent).
+
 `/ingest` is excluded from the `proxy.ts` matcher on purpose. The proxy does a full
 `auth.api.getSession()` database lookup for every path it matches; leaving `/ingest` in means one
 per analytics event.
 
 **Capture events through `src/lib/posthog/capture.ts`, never `posthog.capture` directly.** The
 wrapper types against the taxonomy in `packages/analytics`, so only real event names with their
-declared properties compile. `posthog.capture` accepts any string. `posthog.reset()` on sign-out
-(`components/navigation/main/header-navigation.tsx`) is a legitimate direct use — it is not a
-capture. The one server-side exception is `captureServerEvent` in `src/lib/posthog/server.ts`,
+declared properties compile. `posthog.capture` accepts any string. Sign-out calling
+`posthog.reset()` through `resetPostHogIdentity` (`components/navigation/main/header-navigation.tsx`)
+is a legitimate direct use — it is not a capture. The one server-side exception is `captureServerEvent` in `src/lib/posthog/server.ts`,
 kept for audit events that must not depend on the browser (today, `account_deleted`).
 
 Deleting a user (`src/actions/admin/remove-user.ts`) also deletes their PostHog person through
