@@ -58,6 +58,9 @@ export const SignUpForm = ({ redirectUri }: SignUpFormProps) => {
       formData.append('name', data.name)
       formData.append('email', data.email)
       formData.append('password', data.password)
+      if (redirectUri) {
+        formData.append('redirectUri', redirectUri)
+      }
       const result = await signUp(formData)
 
       if (result.success) {
