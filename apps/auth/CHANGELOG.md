@@ -1,5 +1,14 @@
 # auth
 
+## 1.3.1
+
+### Patch Changes
+
+- 4f2568b: Fix the sign-up verification email linking to a 404. better-auth already passes an absolute verification URL; the auth service was prefixing its own base URL onto it (DBA-414).
+- 1fe23e8: After verifying their email, new users now land signed in to the app they started sign-up from (www or cadence-links), instead of signed out on www. Removes the `redirectAfterVerification` option, which better-auth never read.
+- Updated dependencies [ffc5989]
+  - analytics@0.4.0
+
 ## 1.3.0
 
 ### Minor Changes

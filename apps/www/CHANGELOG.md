@@ -1,5 +1,22 @@
 # www
 
+## 4.10.0
+
+### Minor Changes
+
+- ffc5989: Add "Delete user" to the www admin dashboard (DBA-416). superAdmins can permanently delete an account from `/admin/users` after typing the user's email to confirm; plain admins do not see the action, and the server action refuses them and self-deletion. Deleting also removes the user's PostHog person and events (needs `POSTHOG_PERSONAL_API_KEY` with `person:write`), and records an `account_deleted` event on the acting superAdmin as an audit trail. `analytics` gains the `account_deleted` event and `AccountDeletionMethod` type.
+- 72279d3: Add analytics-cookie consent (DBA-287). PostHog now starts cookieless (`cookieless_mode: 'on_reject'`, opted out by default): visitors who have not answered, or who decline, are counted with a server-side hash and nothing is stored on their device. Accepting the new banner switches to cookies and a persistent id, and `identify()` only runs for signed-in users who have accepted. The choice is a first-party `dba_analytics_consent` cookie, and the footer gains a "Cookie settings" button that reopens the banner. Cookieless server hash mode must be enabled in the PostHog project settings, or events from visitors who have not accepted are dropped.
+- 0ff1db2: Replace Sentry with PostHog error tracking (DBA-289). Browser exceptions are captured by posthog-js (`capture_exceptions: true`) and `global-error.jsx`; server errors are captured by `onRequestError` through a new `posthog-node` client, attributed to the visitor via their PostHog cookie. `@sentry/nextjs`, its config files, and `withSentryConfig` are removed.
+
+### Patch Changes
+
+- 1aa788a: Fix newsletter and file-download sign-ups, which failed on every attempt because `RESEND_DEFAULT_AUDIENCE_ID` was never configured in production. Resend has replaced Audiences with Segments, so contacts are now added to the segment in `RESEND_SEGMENT_ID`, and deleting a contact needs only the email.
+
+  The Resend actions also now check the `error` Resend returns rather than relying on it throwing. Before, a failed API call showed a success toast and still fired the analytics event. The underlying error is now logged before the generic message is thrown.
+
+- Updated dependencies [ffc5989]
+  - analytics@0.4.0
+
 ## 4.9.2
 
 ### Patch Changes
