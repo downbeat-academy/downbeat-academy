@@ -94,7 +94,7 @@
 		"next-sanity": "^13.3.3",
 		"next-sitemap": "^4.2.3",
 		"nuqs": "^2.8.9",
-		"opensheetmusicdisplay": "^1.9.9",
+		"opensheetmusicdisplay": "^2.1.2",
 		"pg": "^8.23.0",
 		"posthog-js": "^1.407.2",
 		"posthog-node": "^5.51.6",
