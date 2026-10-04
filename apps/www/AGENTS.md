@@ -125,7 +125,13 @@ per analytics event.
 wrapper types against the taxonomy in `packages/analytics`, so only real event names with their
 declared properties compile. `posthog.capture` accepts any string. `posthog.reset()` on sign-out
 (`components/navigation/main/header-navigation.tsx`) is a legitimate direct use — it is not a
-capture.
+capture. The one server-side exception is `captureServerEvent` in `src/lib/posthog/server.ts`,
+kept for audit events that must not depend on the browser (today, `account_deleted`).
+
+Deleting a user (`src/actions/admin/remove-user.ts`) also deletes their PostHog person through
+`src/lib/posthog/persons.ts`. That needs `POSTHOG_PERSONAL_API_KEY`, a personal API key with the
+`person:write` scope; without it the cleanup is skipped. `scripts/verify-posthog-person-delete.sh`
+checks a key without deleting anything.
 
 Content routes are instrumented with `<TrackContentView>` from `components/analytics`, mounted
 from the server component that already fetched the record. Pass the slug and title from that same

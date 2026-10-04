@@ -70,6 +70,14 @@ export default defineConfig({
 					const { cleanupTestUsers } = await import('./cypress/support/db-seed')
 					return await cleanupTestUsers()
 				},
+				async 'db:createDisposableUser'() {
+					const { createDisposableUser } = await import('./cypress/support/db-seed')
+					return await createDisposableUser()
+				},
+				async 'db:deleteUser'(id: string) {
+					const { deleteUserById } = await import('./cypress/support/db-seed')
+					return await deleteUserById(id)
+				},
 				async 'db:verify'() {
 					const { verifyTestUsers } = await import('./scripts/verify-test-users')
 					return await verifyTestUsers()

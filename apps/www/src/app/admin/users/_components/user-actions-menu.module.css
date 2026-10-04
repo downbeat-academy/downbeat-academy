@@ -1,0 +1,5 @@
+/* DropdownMenuItem has no destructive variant, so the irreversible action is
+   coloured here. Promote to a cadence-core variant if a second caller needs it. */
+.destructive {
+	color: var(--cds-color-foreground-critical-default);
+}

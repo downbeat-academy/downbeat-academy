@@ -17,6 +17,7 @@ import { UserActionsMenu } from './user-actions-menu'
 type Props = {
 	rows: UserRow[]
 	currentUserId: string
+	canDeleteUsers: boolean
 }
 
 function roleBadgeType(role: string | null): 'error' | 'info' | 'highlight' | 'neutral' {
@@ -47,7 +48,7 @@ function roleLabel(role: string | null): string {
 	}
 }
 
-export function UsersTable({ rows, currentUserId }: Props) {
+export function UsersTable({ rows, currentUserId, canDeleteUsers }: Props) {
 	const columns = useMemo<ColumnDef<UserRow, any>[]>(
 		() => [
 			createTextColumn<UserRow>('name', 'Name'),
@@ -68,10 +69,14 @@ export function UsersTable({ rows, currentUserId }: Props) {
 				value ? <span>{formatRelativeTime(value)}</span> : <span>—</span>
 			),
 			createActionsColumn<UserRow>('actions', (row) => (
-				<UserActionsMenu user={row} isSelf={row.id === currentUserId} />
+				<UserActionsMenu
+					user={row}
+					isSelf={row.id === currentUserId}
+					canDelete={canDeleteUsers}
+				/>
 			)),
 		],
-		[currentUserId]
+		[currentUserId, canDeleteUsers]
 	)
 
 	return (
